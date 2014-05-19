@@ -45,17 +45,21 @@ h1 {
   font-size: 47px;
   line-height: 47px;
   color: #4b4b4b;
+  margin: 0px;
+  padding: 0px;
 }
 
-/* line 25, ../sass/core/_core.scss */
+/* line 27, ../sass/core/_core.scss */
 h2 {
   font-family: 'AcordeRegular', sans-serif;
   font-size: 20px;
   line-height: 20px;
   color: #4b4b4b;
+  margin: 0px;
+  padding: 0px;
 }
 
-/* line 31, ../sass/core/_core.scss */
+/* line 35, ../sass/core/_core.scss */
 p, span, a {
   font-family: 'OpenSansRegular', sans-serif;
   font-size: 14px;
@@ -65,27 +69,29 @@ p, span, a {
   padding: 0;
 }
 
-/* line 39, ../sass/core/_core.scss */
+/* line 43, ../sass/core/_core.scss */
 a {
   color: #1ca8dd;
   text-decoration: none;
+  margin: 0px;
+  padding: 0px;
 }
-/* line 43, ../sass/core/_core.scss */
+/* line 48, ../sass/core/_core.scss */
 a:hover {
   color: #116382;
 }
 
-/* line 47, ../sass/core/_core.scss */
+/* line 52, ../sass/core/_core.scss */
 .left {
   float: left;
 }
 
-/* line 50, ../sass/core/_core.scss */
+/* line 55, ../sass/core/_core.scss */
 .right {
   float: right;
 }
 
-/* line 53, ../sass/core/_core.scss */
+/* line 58, ../sass/core/_core.scss */
 .notification {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -105,7 +111,7 @@ a:hover {
   width: 0px;
   height: 0px;
 }
-/* line 61, ../sass/core/_core.scss */
+/* line 66, ../sass/core/_core.scss */
 .notification .count {
   -webkit-border-radius: 25px;
   -moz-border-radius: 25px;
@@ -120,7 +126,7 @@ a:hover {
   height: 25px;
 }
 
-/* line 73, ../sass/core/_core.scss */
+/* line 78, ../sass/core/_core.scss */
 .spacer-0 {
   clear: both;
   font-size: 1px;
@@ -129,7 +135,7 @@ a:hover {
   overflow: hidden;
 }
 
-/* line 76, ../sass/core/_core.scss */
+/* line 81, ../sass/core/_core.scss */
 .spacer-5 {
   clear: both;
   font-size: 1px;
@@ -138,7 +144,7 @@ a:hover {
   overflow: hidden;
 }
 
-/* line 79, ../sass/core/_core.scss */
+/* line 84, ../sass/core/_core.scss */
 .spacer-10 {
   clear: both;
   font-size: 1px;
@@ -147,7 +153,7 @@ a:hover {
   overflow: hidden;
 }
 
-/* line 82, ../sass/core/_core.scss */
+/* line 87, ../sass/core/_core.scss */
 .spacer-15 {
   clear: both;
   font-size: 1px;
@@ -156,7 +162,7 @@ a:hover {
   overflow: hidden;
 }
 
-/* line 85, ../sass/core/_core.scss */
+/* line 90, ../sass/core/_core.scss */
 .spacer-20 {
   clear: both;
   font-size: 1px;
@@ -165,7 +171,7 @@ a:hover {
   overflow: hidden;
 }
 
-/* line 89, ../sass/core/_core.scss */
+/* line 94, ../sass/core/_core.scss */
 .grey-line {
   clear: both;
   font-size: 1px;
@@ -175,7 +181,7 @@ a:hover {
   border-top: 1px solid #edf0f0;
 }
 
-/* line 93, ../sass/core/_core.scss */
+/* line 98, ../sass/core/_core.scss */
 .grey-dotted-line {
   clear: both;
   font-size: 1px;
@@ -185,14 +191,14 @@ a:hover {
   border-top: 1px dotted #8c8d8d;
 }
 
-/* line 98, ../sass/core/_core.scss */
+/* line 103, ../sass/core/_core.scss */
 .relative {
   width: 0;
   height: 0;
   position: relative;
 }
 
-/* line 105, ../sass/core/_core.scss */
+/* line 110, ../sass/core/_core.scss */
 .corner.active .indicator {
   width: 0;
   height: 0;
@@ -201,7 +207,7 @@ a:hover {
   position: absolute;
   right: 0px;
 }
-/* line 115, ../sass/core/_core.scss */
+/* line 120, ../sass/core/_core.scss */
 .corner.inactive .indicator {
   width: 0;
   height: 0;
@@ -211,29 +217,29 @@ a:hover {
   right: 0px;
 }
 
-/* line 125, ../sass/core/_core.scss */
+/* line 130, ../sass/core/_core.scss */
 body {
   background: #edf0f0;
   min-width: 1180px;
 }
 
-/* line 132, ../sass/core/_core.scss */
+/* line 137, ../sass/core/_core.scss */
 #wmpack-admin .left-side {
   padding-right: 13px;
   display: table-cell;
 }
-/* line 135, ../sass/core/_core.scss */
+/* line 140, ../sass/core/_core.scss */
 #wmpack-admin .left-side nav.menu {
   width: 100%;
   height: 70px;
   position: relative;
   padding: 0px;
 }
-/* line 140, ../sass/core/_core.scss */
+/* line 145, ../sass/core/_core.scss */
 #wmpack-admin .left-side nav.menu ul {
   list-style-type: none;
 }
-/* line 142, ../sass/core/_core.scss */
+/* line 147, ../sass/core/_core.scss */
 #wmpack-admin .left-side nav.menu ul li {
   width: 182px;
   height: 70px;
@@ -245,18 +251,18 @@ body {
   border-bottom: #daddde 1px solid;
   /*cursor: pointer;*/
 }
-/* line 152, ../sass/core/_core.scss */
+/* line 157, ../sass/core/_core.scss */
 #wmpack-admin .left-side nav.menu ul li:hover, #wmpack-admin .left-side nav.menu ul li.selected {
   border-top: 4px solid #9aca40;
   border-bottom: none;
   background-color: #ffffff;
   height: 68px;
 }
-/* line 158, ../sass/core/_core.scss */
+/* line 163, ../sass/core/_core.scss */
 #wmpack-admin .left-side nav.menu ul li:hover a, #wmpack-admin .left-side nav.menu ul li.selected a {
   color: #9aca40;
 }
-/* line 161, ../sass/core/_core.scss */
+/* line 166, ../sass/core/_core.scss */
 #wmpack-admin .left-side nav.menu ul li a {
   color: #4b4b4b;
   font-family: 'AcordeRegular';
@@ -266,28 +272,28 @@ body {
   width: 100%;
   display: block;
 }
-/* line 174, ../sass/core/_core.scss */
+/* line 179, ../sass/core/_core.scss */
 #wmpack-admin .right-side {
   width: 252px;
   display: table-cell;
 }
-/* line 177, ../sass/core/_core.scss */
+/* line 182, ../sass/core/_core.scss */
 #wmpack-admin .right-side .updates {
   padding: 15px;
   background-color: white;
 }
-/* line 180, ../sass/core/_core.scss */
+/* line 185, ../sass/core/_core.scss */
 #wmpack-admin .right-side .updates .details {
   height: 255px;
   position: relative;
   overflow: hidden;
 }
-/* line 185, ../sass/core/_core.scss */
+/* line 190, ../sass/core/_core.scss */
 #wmpack-admin .right-side .updates p {
   font-size: 13px;
   color: #8c8d8d;
 }
-/* line 190, ../sass/core/_core.scss */
+/* line 195, ../sass/core/_core.scss */
 #wmpack-admin .right-side .appticles-updates {
   padding: 10px 15px;
   background-color: #2a2d33;
@@ -297,19 +303,19 @@ body {
   -moz-border-radius: 0px 0px 4px 4px;
   border-radius: 0px 0px 4px 4px;
 }
-/* line 197, ../sass/core/_core.scss */
+/* line 202, ../sass/core/_core.scss */
 #wmpack-admin .right-side .appticles-updates div {
   float: left;
 }
-/* line 199, ../sass/core/_core.scss */
+/* line 204, ../sass/core/_core.scss */
 #wmpack-admin .right-side .appticles-updates div p {
   margin: 0;
 }
-/* line 202, ../sass/core/_core.scss */
+/* line 207, ../sass/core/_core.scss */
 #wmpack-admin .right-side .appticles-updates div.social {
   float: right;
 }
-/* line 204, ../sass/core/_core.scss */
+/* line 209, ../sass/core/_core.scss */
 #wmpack-admin .right-side .appticles-updates div.social .facebook {
   width: 18px;
   height: 18px;
@@ -331,12 +337,12 @@ body {
   font-weight: normal !important;
   content: "f";
 }
-/* line 214, ../sass/core/_core.scss */
+/* line 219, ../sass/core/_core.scss */
 #wmpack-admin .right-side .appticles-updates div.social .facebook::before {
   left: 7px;
   top: -1px;
 }
-/* line 219, ../sass/core/_core.scss */
+/* line 224, ../sass/core/_core.scss */
 #wmpack-admin .right-side .appticles-updates div.social .twitter {
   width: 18px;
   height: 18px;
@@ -358,12 +364,12 @@ body {
   font-weight: normal !important;
   content: "t";
 }
-/* line 229, ../sass/core/_core.scss */
+/* line 234, ../sass/core/_core.scss */
 #wmpack-admin .right-side .appticles-updates div.social .twitter::before {
   left: 5px;
   top: -1px;
 }
-/* line 234, ../sass/core/_core.scss */
+/* line 239, ../sass/core/_core.scss */
 #wmpack-admin .right-side .appticles-updates div.social .google-plus {
   width: 18px;
   height: 18px;
@@ -385,12 +391,12 @@ body {
   font-weight: normal !important;
   content: "g";
 }
-/* line 244, ../sass/core/_core.scss */
+/* line 249, ../sass/core/_core.scss */
 #wmpack-admin .right-side .appticles-updates div.social .google-plus::before {
   left: 5px;
   top: -1px;
 }
-/* line 252, ../sass/core/_core.scss */
+/* line 257, ../sass/core/_core.scss */
 #wmpack-admin .right-side .white-paper {
   width: 252px;
   height: 250px;
@@ -400,19 +406,19 @@ body {
   vertical-align: middle;
   background-color: #fff;
 }
-/* line 260, ../sass/core/_core.scss */
+/* line 265, ../sass/core/_core.scss */
 #wmpack-admin .right-side .white-paper p {
   font-family: 'AcordeRegular', sans-serif;
   font-size: 20px;
   line-height: normal;
   color: #4b4b4b;
 }
-/* line 268, ../sass/core/_core.scss */
+/* line 273, ../sass/core/_core.scss */
 #wmpack-admin .right-side .form-box {
   padding: 15px;
   background-color: white;
 }
-/* line 271, ../sass/core/_core.scss */
+/* line 276, ../sass/core/_core.scss */
 #wmpack-admin .right-side .form-box p {
   font-size: 13px;
 }
@@ -757,6 +763,18 @@ label {
   background: #1686b0;
   border: 1px solid #116382;
 }
+/* line 65, ../sass/core/_buttons.scss */
+.btn.grey {
+  background: #fcfcfc;
+  color: #939494;
+  text-transform: uppercase;
+  border: 1px solid #e3e3e3;
+}
+/* line 71, ../sass/core/_buttons.scss */
+.btn.grey:hover {
+  background: #e3e3e3;
+  border: 1px solid #c9c9c9;
+}
 
 /**********************************************************************************************************************/
 /*
@@ -810,13 +828,20 @@ label {
   vertical-align: middle;
   text-align: center;
 }
-/* line 43, ../sass/modules/content/_content.scss */
+/* line 40, ../sass/modules/content/_content.scss */
+.content .left-side .details .waitlist p {
+  font-family: 'OpenSansItalic',sans-serif;
+  font-size: 12px;
+  color: #8c8d8d;
+  line-height: normal;
+}
+/* line 49, ../sass/modules/content/_content.scss */
 .content .left-side ul.categories {
   list-style-type: none;
   width: 100%;
   display: block;
 }
-/* line 47, ../sass/modules/content/_content.scss */
+/* line 53, ../sass/modules/content/_content.scss */
 .content .left-side ul.categories li {
   background-color: #fcfcfc;
   display: block;
@@ -827,17 +852,17 @@ label {
   cursor: pointer;
   vertical-align: middle;
 }
-/* line 56, ../sass/modules/content/_content.scss */
+/* line 62, ../sass/modules/content/_content.scss */
 .content .left-side ul.categories li:hover {
   background-color: #e3f5fb;
   border-bottom: #d1eef9 1px solid;
 }
-/* line 60, ../sass/modules/content/_content.scss */
+/* line 66, ../sass/modules/content/_content.scss */
 .content .left-side ul.categories li span {
   font-family: 'AcordeRegular', sans-serif;
   padding: 22px 0;
 }
-/* line 63, ../sass/modules/content/_content.scss */
+/* line 69, ../sass/modules/content/_content.scss */
 .content .left-side ul.categories li span.status {
   margin-left: 20px;
   font-size: 12px;
@@ -846,7 +871,7 @@ label {
   display: block;
   float: left;
 }
-/* line 70, ../sass/modules/content/_content.scss */
+/* line 76, ../sass/modules/content/_content.scss */
 .content .left-side ul.categories li span.status.active::before {
   content: '';
   position: absolute;
@@ -860,7 +885,7 @@ label {
   background-color: #9aca40;
   left: 19px;
 }
-/* line 81, ../sass/modules/content/_content.scss */
+/* line 87, ../sass/modules/content/_content.scss */
 .content .left-side ul.categories li span.status.inactive::before {
   content: '';
   position: absolute;
@@ -874,7 +899,7 @@ label {
   background-color: #a60c00;
   left: 19px;
 }
-/* line 93, ../sass/modules/content/_content.scss */
+/* line 99, ../sass/modules/content/_content.scss */
 .content .left-side ul.categories li span.title {
   font-size: 15px;
   color: #2a2d33;
@@ -882,8 +907,259 @@ label {
   display: block;
   float: left;
 }
-/* line 100, ../sass/modules/content/_content.scss */
+/* line 106, ../sass/modules/content/_content.scss */
 .content .left-side ul.categories li span.posts {
+  font-family: 'OpenSansItalic',sans-serif;
+  color: #8c8d8d;
+  font-size: 15px;
+  display: inline-block;
+  float: right;
+  margin-right: 30px;
+}
+
+/* line 3, ../sass/modules/settings/_settings.scss */
+.settings .left-side {
+  width: 100%;
+  display: table;
+  vertical-align: top;
+}
+/* line 7, ../sass/modules/settings/_settings.scss */
+.settings .left-side .details {
+  padding: 30px;
+  background-color: white;
+}
+/* line 10, ../sass/modules/settings/_settings.scss */
+.settings .left-side .details h2.title {
+  font-family: 'OlRoundGothicLight', sans-serif;
+  font-size: 25px;
+  line-height: normal;
+  color: #4b4b4b;
+}
+/* line 17, ../sass/modules/settings/_settings.scss */
+.settings .left-side .details.offline {
+  background-color: #f5f7f7;
+}
+/* line 19, ../sass/modules/settings/_settings.scss */
+.settings .left-side .details.offline .offline-mode {
+  float: left;
+}
+/* line 21, ../sass/modules/settings/_settings.scss */
+.settings .left-side .details.offline .offline-mode p, .settings .left-side .details.offline .offline-mode label {
+  font-family: 'AcordeRegular', sans-serif;
+  font-size: 15px;
+  line-height: normal;
+  color: #8c8d8d;
+}
+/* line 27, ../sass/modules/settings/_settings.scss */
+.settings .left-side .details.offline .offline-mode input[type="radio"] {
+  width: 15px;
+  height: 15px;
+  float: left;
+  margin: 0 10px 0 30px;
+}
+/* line 34, ../sass/modules/settings/_settings.scss */
+.settings .left-side .details.offline .waitlist {
+  float: right;
+  text-align: right;
+}
+/* line 37, ../sass/modules/settings/_settings.scss */
+.settings .left-side .details.offline .waitlist .btn {
+  margin: 0;
+}
+/* line 40, ../sass/modules/settings/_settings.scss */
+.settings .left-side .details.offline .waitlist .btn.blue {
+  display: inline-flex;
+  float: right;
+  vertical-align: middle;
+  text-align: center;
+}
+/* line 47, ../sass/modules/settings/_settings.scss */
+.settings .left-side .details.offline .waitlist p {
+  font-family: 'OpenSansItalic',sans-serif;
+  font-size: 12px;
+  color: #8c8d8d;
+  line-height: normal;
+}
+/* line 55, ../sass/modules/settings/_settings.scss */
+.settings .left-side .details .display-mode {
+  float: left;
+}
+/* line 57, ../sass/modules/settings/_settings.scss */
+.settings .left-side .details .display-mode p, .settings .left-side .details .display-mode label {
+  font-family: 'AcordeRegular', sans-serif;
+  font-size: 15px;
+  line-height: normal;
+  color: #4b4b4b;
+}
+/* line 63, ../sass/modules/settings/_settings.scss */
+.settings .left-side .details .display-mode input[type="radio"] {
+  width: 15px;
+  height: 15px;
+  float: left;
+  margin: 0 10px 0 30px;
+}
+/* line 71, ../sass/modules/settings/_settings.scss */
+.settings .left-side .details.branding label, .settings .left-side .details.branding p {
+  font-family: 'AcordeRegular', sans-serif;
+  font-size: 15px;
+  line-height: normal;
+  color: black;
+}
+/* line 78, ../sass/modules/settings/_settings.scss */
+.settings .left-side .details.branding .custom-upload {
+  position: relative;
+  height: 36px;
+  width: 450px;
+  margin: 10px 0;
+}
+/* line 84, ../sass/modules/settings/_settings.scss */
+.settings .left-side .details.branding .custom-upload input[type=file] {
+  outline: none;
+  position: relative;
+  text-align: right;
+  -moz-opacity: 0;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  z-index: 2;
+  width: 450px;
+  height: 100%;
+}
+/* line 97, ../sass/modules/settings/_settings.scss */
+.settings .left-side .details.branding .custom-upload .fake-file {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 450px;
+  padding: 0;
+  margin: 0;
+  z-index: 1;
+  line-height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -moz-box;
+  display: box;
+}
+/* line 107, ../sass/modules/settings/_settings.scss */
+.settings .left-side .details.branding .custom-upload .fake-file .btn {
+  margin: 0px 0px 0px 20px;
+}
+/* line 112, ../sass/modules/settings/_settings.scss */
+.settings .left-side .details.branding .custom-upload .fake-file input {
+  font-size: 16px;
+  width: 300px;
+}
+/* line 116, ../sass/modules/settings/_settings.scss */
+.settings .left-side .details.branding .display-logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -moz-box;
+  display: box;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  box-orient: horizontal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: start;
+  -moz-box-pack: start;
+  -ms-flex-pack: start;
+  box-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  box-align: center;
+  align-items: center;
+  text-align: left;
+  height: 120px;
+}
+/* line 124, ../sass/modules/settings/_settings.scss */
+.settings .left-side .details.branding .display-logo .btn {
+  margin: 0;
+  vertical-align: middle;
+  text-align: center;
+}
+/* line 132, ../sass/modules/settings/_settings.scss */
+.settings .left-side .details.branding .display-logo img {
+  width: 120px;
+  height: 120px;
+  border-radius: 120px;
+  display: inline-block;
+  margin: 0 25px;
+}
+/* line 143, ../sass/modules/settings/_settings.scss */
+.settings .left-side ul.categories {
+  list-style-type: none;
+  width: 100%;
+  display: block;
+}
+/* line 147, ../sass/modules/settings/_settings.scss */
+.settings .left-side ul.categories li {
+  background-color: #fcfcfc;
+  display: block;
+  height: 65px;
+  width: 100%;
+  border-bottom: #f0f1f2 1px solid;
+  margin-bottom: 5px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+/* line 156, ../sass/modules/settings/_settings.scss */
+.settings .left-side ul.categories li:hover {
+  background-color: #e3f5fb;
+  border-bottom: #d1eef9 1px solid;
+}
+/* line 160, ../sass/modules/settings/_settings.scss */
+.settings .left-side ul.categories li span {
+  font-family: 'AcordeRegular', sans-serif;
+  padding: 22px 0;
+}
+/* line 163, ../sass/modules/settings/_settings.scss */
+.settings .left-side ul.categories li span.status {
+  margin-left: 20px;
+  font-size: 12px;
+  color: #8c8d8d;
+  width: 100px;
+  display: block;
+  float: left;
+}
+/* line 170, ../sass/modules/settings/_settings.scss */
+.settings .left-side ul.categories li span.status.active::before {
+  content: '';
+  position: absolute;
+  width: 19px;
+  height: 19px;
+  border: #fff 3px solid;
+  -webkit-border-radius: 19px;
+  -moz-border-radius: 19px;
+  border-radius: 19px;
+  display: block;
+  background-color: #9aca40;
+  left: 19px;
+}
+/* line 181, ../sass/modules/settings/_settings.scss */
+.settings .left-side ul.categories li span.status.inactive::before {
+  content: '';
+  position: absolute;
+  width: 19px;
+  height: 19px;
+  border: #fff 3px solid;
+  -webkit-border-radius: 19px;
+  -moz-border-radius: 19px;
+  border-radius: 19px;
+  display: block;
+  background-color: #a60c00;
+  left: 19px;
+}
+/* line 193, ../sass/modules/settings/_settings.scss */
+.settings .left-side ul.categories li span.title {
+  font-size: 15px;
+  color: #2a2d33;
+  text-transform: uppercase;
+  display: block;
+  float: left;
+}
+/* line 200, ../sass/modules/settings/_settings.scss */
+.settings .left-side ul.categories li span.posts {
   font-family: 'OpenSansItalic',sans-serif;
   color: #8c8d8d;
   font-size: 15px;
