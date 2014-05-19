@@ -114,7 +114,7 @@
             <!-- add feedback form -->
             <div class="form-box">
                 <h2>Give us your feedback</h2>
-                <div class="spacer-20"></div>
+                <div class="spacer-10"></div>
                 <form id="" name="" action="" method="post">
                     <input type="hidden" name="" id="" placeholder="the-email address of the admin" class="small" />
                     <textarea name="feedback_message" id="feedback_message" placeholder="Your message" class="small"></textarea>
