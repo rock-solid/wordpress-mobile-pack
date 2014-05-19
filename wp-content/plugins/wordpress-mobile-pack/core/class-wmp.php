@@ -81,6 +81,7 @@ class WMobilePack {
         wp_enqueue_script('js_loader', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Loader.js'), array('jquery-core', 'jquery-migrate'), '2.0');
         wp_enqueue_script('js_ajax_upload', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/AjaxUpload.js'), array('jquery-core', 'jquery-migrate'), '2.0');
         wp_enqueue_script('js_interface', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/JSInterface.js'), array('jquery-core', 'jquery-migrate'), '2.0');
+        
 	}
     
 	/**
@@ -91,6 +92,8 @@ class WMobilePack {
     public function load_content_js(){
         wp_enqueue_script('js_content_editcategories', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/EDIT_CATEGORIES.js'), array(), '2.0');
     }
+    
+    
     
 	/**
 	 * Method wmp_admin_menu  used to set the admin menu items of the plug-in
@@ -113,10 +116,10 @@ class WMobilePack {
 		add_submenu_page( 'wmp-options', 'Settings', 'Settings', 'manage_options', 'wmp-options-settings', array( &$WMobilePackAdmin, 'wmp_settings_options') );
 		add_submenu_page( 'wmp-options', 'Upgrade', 'Upgrade', 'manage_options', 'wmp-options-upgrade', array( &$WMobilePackAdmin, 'wmp_upgrade_options') );
 		
+        
 	}
 		
-    
-		
+     	
 	/**
 	 * Method wmp_get_setting used to return option/options of the plugin
 	 *

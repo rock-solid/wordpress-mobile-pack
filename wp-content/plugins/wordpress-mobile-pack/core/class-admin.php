@@ -57,16 +57,55 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			
 			global $wmobile_pack;
 			
-			
-			// set settings
-			
-			
 			// load view
 			include(WMP_PLUGIN_PATH.'admin/wmp-admin-content.php');
 
-
 		}
 		
+        /**
+         * 
+         * Method used to save the categories settings in the database
+         * 
+         * Handle request then generate response using WP_Ajax_Response
+         * 
+         */
+        public function wmp_content_save() {
+            
+            global $wmobile_pack;
+        	
+            $status = 0;
+            
+            if (isset($_POST) && is_array($_POST) && !empty($_POST)){
+                
+                if (isset($_POST['id']) && isset($_POST['status'])){
+                    
+                    if (is_numeric($_POST['id']) && ($_POST['status'] == 'active' || $_POST['status'] == 'inactive')){
+                        
+                        $status = 1;
+                         
+                        $category_id = intval($_POST['id']);
+                        $category_status = strval($_POST['status']);
+                        
+                        // get inactive categories option
+                        $inactive_categories = unserialize(WMobilePack::wmp_get_setting('inactive_categories'));
+                        
+                        // add or remove the category from the option
+                        if (in_array($category_id, $inactive_categories) && $category_status == 'active')
+                            $inactive_categories = array_diff($inactive_categories, array($category_id));
+                        
+                        if (!in_array($category_id, $inactive_categories) && $category_status == 'inactive')
+                            $inactive_categories[] = $category_id;
+                            
+                        // save option
+                        WMobilePack::wmp_update_settings('inactive_categories', serialize($inactive_categories));
+                    }
+                }    
+            }
+            
+            echo $status;
+            exit();
+        	// die($status);
+        }
 		
 		/**
 		 * Method used to render the settings selection page from the admin area

@@ -25,7 +25,7 @@ var JSInterface =  function(){
 		
 		AjaxUpload: new AjaxUpload(),   		// object that makes the upload of a form without refreshin via AJAX
 		Preloader: new Preloader(),  			// the preloader object used for sending data to server through AJAX
-		// Message: new Message(),   				// the object used to display AJAX error messages
+		Loader: new Loader(),   				// the object used to display AJAX error messages
 				
 		
 		/*****************************************************************************************/
@@ -41,7 +41,7 @@ var JSInterface =  function(){
 			//when document is finish loaded, initialize the interface objects (UI_register, UI_users, UI_comments, etc)
 			jQuery(document).ready(function(){
 			 
-                // JSInterface.Message.init();
+                JSInterface.Loader.init();
 				JSInterface.initObjects();
                 
 			});	

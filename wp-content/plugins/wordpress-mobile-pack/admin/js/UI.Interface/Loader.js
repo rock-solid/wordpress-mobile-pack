@@ -37,7 +37,7 @@ function Preloader(){
 		this.defaultParams = jQuery.extend({}, this.defaultParams, params);
 		
 		jQuery('#preloader_container').remove();
-		jQuery('body *:first',document).before('<div id="preloader_container" style="position:fixed; z-index:999998; display:none;"><div class="preloader"></div><div style="position:fixed; background: #000;"><div id="preloader_table" align="center" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#FFF; padding:10px;">'+this.defaultParams.message+'<br><br><img src="'+JSInterface.localpath+'includes/images/loading_animation.gif" /></div></div></div>');
+		jQuery('body *:first',document).before('<div id="preloader_container" style="position:fixed; z-index:999998; display:none;"><div class="preloader"></div><div style="position:fixed; background: #000;"><div id="preloader_table" align="center" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#FFF; padding:10px;">'+this.defaultParams.message+'<br><br><img src="'+JSInterface.localpath+'admin/images/loading_animation.gif" /></div></div></div>');
 		
 		var preloader_container = jQuery('#preloader_container');
 		var table = jQuery('#preloader_table',preloader_container);
@@ -102,6 +102,178 @@ function Preloader(){
         preloader_container.stop();
         
         preloader_container.fadeOut({duration: time},function(){ preloader_container.remove(); });
+	}
+	
+}
+
+/*****************************************************************************************************/
+/*                                                                                                   */
+/*                                            MESSAGE CLASS                                          */          
+/*                                                                                                   */
+/*****************************************************************************************************/
+function Message(){
+	var JSObject = this;
+	
+	this.defaultParams = {
+							width: 				450,
+							time: 				8000,
+							speed:				500,
+							delay:				500,
+							message:			"",
+							closeFunction: 		null};	// for redirect purpose...., after the message is closed
+	
+	this.parentContainer;				// the message container (div element)
+	this.container;						
+	
+	
+	
+	/*****************************************************************************************/
+	/*                                      VIEW MESSAGE                                     */
+	/*****************************************************************************************/
+	/**
+	 * view message
+	 * method type: LOCAL
+	 * params: @params : a JSON with new params like defaultParams
+	 */
+	this.view = function(params){
+		
+		this.defaultParams = jQuery.extend({}, this.defaultParams, params);
+		
+		// number of messages current displayed
+		var no_messages = jQuery('div[id="messageBox"]', this.parentContainer).get().length;
+		
+		// add message box to the parent container
+		var html = '<div id="messageBox" class="loader" style="display:none;">';
+			html += 	'<div id="boxTable" align="left" style="background: #fefcd4;">';
+			html += 		'<div style="float:right; height:15px; padding-right:5px; padding-top:5px"><img id="closeMsg" src="'+JSInterface.localpath+'admin/images/btn_close_msg.png" border="0" style="cursor:pointer" /></div>';
+			html += 		'<div align="center" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#000; padding:15px;">' + this.defaultParams.message +'</div>';
+			html += 	'</div>';
+			html += '</div>';
+			html += '<div style="height:5px;"></div>';
+		
+		jQuery(this.parentContainer).append(html);
+						
+		this.container = jQuery('div[id="messageBox"]:eq('+no_messages+')', this.parentContainer);
+		var table = jQuery('#boxTable',this.container);
+		var close_btn = jQuery('#closeMsg',table);
+		
+		// set message table width
+		var w = this.defaultParams.width;
+		table.width(w);
+		table.parent().width(w);
+		
+		// open message box
+		this.container.delay(this.defaultParams.delay).slideDown(this.defaultParams.speed);
+		
+		
+		// start message timer
+		this.container.unbind("countTimer");
+		this.container.bind("countTimer",function(){
+			
+			var seconds = JSObject.defaultParams.time;
+																		
+			//wait until elapsed time reaches 0 seconds
+			if (seconds/1000 - 1 >= 1){
+				JSObject.defaultParams.time -= 1000;
+			}
+			else{
+				jQuery(this).unbind("countTimer");
+				clearInterval(jQuery(this).data("timerInterval"));
+				jQuery(this).removeData("timerInterval");
+				
+				//remove the message from the stage
+				JSObject.remove();
+				
+				if (typeof JSObject.defaultParams.closeFunction == "function") JSObject.defaultParams.closeFunction();
+			}
+			
+		})
+		
+		this.container.data("timerInterval", setInterval(function(){ JSObject.container.trigger("countTimer")},1000));
+		
+		
+		// close button 'click' action
+		close_btn.unbind("click");
+		close_btn.bind("click",function(){
+			
+			jQuery(this).unbind("click");
+			
+			//remove the message from the stage
+			JSObject.remove();
+		})
+	}
+	
+	
+	/*****************************************************************************************/
+	/*                                      REMOVE MESSAGE                                   */
+	/*****************************************************************************************/
+	/**
+	 * remove message
+	 * method type: LOCAL
+	 * params: no params
+	 */
+	this.remove = function(){
+		
+		// close message box
+		JSObject.container.slideUp(JSObject.defaultParams.speed, function(){  
+																		  var spacerDiv = jQuery(this).next();
+																		  
+																		  jQuery(this).remove();
+																		  
+																		  // close the bottom spacer
+																		  spacerDiv.slideUp(200, function(){ jQuery(this).remove(); })
+																		  });
+	}
+	
+}
+
+
+/*****************************************************************************************************/
+/*                                                                                                   */
+/*                                            LOADER CLASS                                           */          
+/*                                                                                                   */
+/*****************************************************************************************************/ 
+function Loader(){
+	
+ 	var JSObject = this;
+	
+	this.arr_messages = [];		// an array with messages objects
+	
+	
+	/*****************************************************************************************/
+	/*                                      INIT LOADER                                      */
+	/*****************************************************************************************/
+	/**
+	 * initialize the Loader, and create the messages box
+	 * method type: LOCAL
+	 * params: no params
+	 */
+	this.init = function(){
+		
+		jQuery('#messages_container').remove();
+		jQuery(jQuery('body').get(0)).append('<div align="center" id="messages_container" style="position:fixed; z-index:999999; width: 100%; display:block; top: 5px; margin: 0 auto;"></div>');
+		
+		var messages_container = jQuery('#messages_container');
+				
+	}
+	
+	/*****************************************************************************************/
+	/*                                      DISPLAY LOADER                                   */
+	/*****************************************************************************************/
+	/**
+	 * display a new message
+	 * method type: LOCAL
+	 * params: @params : a JSON with params {time, width, message, speed, closeFunction}
+	 */
+	this.display = function(params){
+		
+		var messages_container = jQuery('#messages_container');
+		
+		var newMessage = new Message();
+		newMessage.parentContainer = messages_container;
+		this.arr_messages.push(newMessage);
+		
+		newMessage.view(params);
 	}
 	
 }
