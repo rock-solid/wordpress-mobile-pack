@@ -11,27 +11,31 @@
  
 require_once('core/config.php');
 require_once('core/class-wmp.php');
+require_once('core/class-admin.php');
 
-if ( class_exists( 'WMobilePack' ) ) {
-
+if ( class_exists( 'WMobilePack' ) && class_exists( 'WMobilePackAdmin' ) ) {
 	
 	global $wmobile_pack; 
 	$wmobile_pack = new WMobilePack();
+    $wmobile_pack_admin = new WMobilePackAdmin();
 
 	// add hooks
 	register_activation_hook( __FILE__, array( &$wmobile_pack, 'wmp_install' ) );
 	register_deactivation_hook( __FILE__, array( &$wmobile_pack, 'wmp_uninstall' ) );
 
-	
-	if(is_admin()) {
+	if (is_admin()) {
 		
 		$wmobile_pack->wmp_admin_init();
 		
 		// Initialize the MobilePress check logic and rendering
 		$wmobile_pack->wmp_check_load();
+        
+        add_action( 'wp_ajax_wmp_content_save', array( &$wmobile_pack_admin, 'wmp_content_save' ) );
 	}
 	
 	// Initialize the MobilePress check logic and rendering
 	//	$wmobile_pack->wmp_check_load();
 
+    
+    
 } 

@@ -12,7 +12,7 @@ class WMobilePack {
 	/* Properties						 */
 	/* ----------------------------------*/
 	
-	public $wmp_options;
+	public static $wmp_options;
 		
 		
 	/* ----------------------------------*/
@@ -22,19 +22,18 @@ class WMobilePack {
 
 	public function __construct(){
 	
-	
-		if(!is_array($this->wmp_options) || empty($this->wmp_options))
-			$this->wmp_options = array(
-											'theme' => 1,
-											'color_scheme' => 1,
-											'font' => 'Arial',
-											'logo' => '',
-											'icon' => '',
-											'blog_name' => get_bloginfo( "name" )
-									   );
-	
-	
-		
+	   
+		if(!is_array(self::$wmp_options) || empty(self::$wmp_options))
+        
+			self::$wmp_options = array(
+				'theme' => 1,
+				'color_scheme' => 1,
+				'font' => 'Arial',
+				'logo' => '',
+				'icon' => '',
+				'blog_name' => get_bloginfo( "name" ),
+                'inactive_categories' => serialize(array())
+		   );
 	}
 			
 		
@@ -46,7 +45,7 @@ class WMobilePack {
 	public function wmp_install(){
 		
 		// add settings to database
-		$this->wmp_save_settings($this->wmp_options);
+		$this->wmp_save_settings(self::$wmp_options);
 		
 		
 	}
@@ -59,7 +58,7 @@ class WMobilePack {
 	public function wmp_uninstall(){
 		
 		// remove settings from database
-		$this->wmp_delete_settings($this->wmp_options);
+		$this->wmp_delete_settings(self::$wmp_options);
 	}
 	
 		
@@ -82,6 +81,7 @@ class WMobilePack {
         wp_enqueue_script('js_loader', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Loader.js'), array('jquery-core', 'jquery-migrate'), '2.0');
         wp_enqueue_script('js_ajax_upload', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/AjaxUpload.js'), array('jquery-core', 'jquery-migrate'), '2.0');
         wp_enqueue_script('js_interface', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/JSInterface.js'), array('jquery-core', 'jquery-migrate'), '2.0');
+        
 	}
     
 	/**
@@ -92,6 +92,8 @@ class WMobilePack {
     public function load_content_js(){
         wp_enqueue_script('js_content_editcategories', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/EDIT_CATEGORIES.js'), array(), '2.0');
     }
+    
+    
     
 	/**
 	 * Method wmp_admin_menu  used to set the admin menu items of the plug-in
@@ -114,10 +116,10 @@ class WMobilePack {
 		add_submenu_page( 'wmp-options', 'Settings', 'Settings', 'manage_options', 'wmp-options-settings', array( &$WMobilePackAdmin, 'wmp_settings_options') );
 		add_submenu_page( 'wmp-options', 'Upgrade', 'Upgrade', 'manage_options', 'wmp-options-upgrade', array( &$WMobilePackAdmin, 'wmp_upgrade_options') );
 		
+        
 	}
 		
-    
-		
+     	
 	/**
 	 * Method wmp_get_setting used to return option/options of the plugin
 	 *
@@ -133,7 +135,7 @@ class WMobilePack {
 			
 			foreach($option as $option_name => $option_value)	{
 				if( get_option( 'wmpack_' . $option_name ) == '')
-					$wmp_settings[$option_name] = $this->wmp_options[$option_name];
+					$wmp_settings[$option_name] = self::$wmp_options[$option_name];
 				else
 					$wmp_settings[$option_name] = get_option( 'wmpack_' . $option_name );
 			}
@@ -143,16 +145,15 @@ class WMobilePack {
 			
 		} elseif(is_string($option)) { // if option is a string, return the value of the option
 			
-			if ( get_option( 'wmpack_' . $option_name ) == '' ) // the option is added in the db
-				$wmp_setting = $this->wmp_options[$option_name];
-			else
-				$wmp_setting = get_option( 'wmpack_' . $option_name );
+            // check if the option is added in the db 
+			if ( get_option( 'wmpack_' . $option ) === false ) { 
+				$wmp_setting = self::$wmp_options[$option];
+                echo "aici";
+			} else
+				$wmp_setting = get_option( 'wmpack_' . $option );
 				
-			// return option	
 			return $wmp_setting;
 		}
-		
-		
 	}
 
 
@@ -165,7 +166,7 @@ class WMobilePack {
 	 * The method return true in case of success
 	 *
 	 */	
-	function wmp_save_settings( $option, $option_value = '' ) {
+	public function wmp_save_settings( $option, $option_value = '' ) {
 		
 		if(is_array($option) && !empty($option)) {
 		
@@ -174,7 +175,7 @@ class WMobilePack {
 		
 			foreach($option as $option_name => $option_value) {
 				
-				if ( array_key_exists( $option_name , $this->wmp_options ) )
+				if ( array_key_exists( $option_name , self::$wmp_options ) )
 					add_option( 'wmpack_' . $option_name, $option_value );
 				else
 					$option_not_saved = true; // there is at least one option not in the default list
@@ -186,8 +187,8 @@ class WMobilePack {
 				return false; // there was an error
 				
 		} elseif(is_string($option) && $option_value != '') {
-			
-			if ( array_key_exists( $option , $this->wmp_options ) )
+
+			if ( array_key_exists( $option , self::$wmp_options ) )
 				return add_option( 'wmpack_' . $option, $option_value );
 			
 		}
@@ -214,7 +215,7 @@ class WMobilePack {
 				// set option not saved variable
 				$option_not_updated = false;
 				
-				if ( array_key_exists( $option_name , $this->wmp_options ) )
+				if ( array_key_exists( $option_name , self::$wmp_options ) )
 					update_option( 'wmpack_' . $option_name, $option_value );
 				else
 					$option_not_updated = true; // there is at least one option not in the default list
@@ -230,7 +231,7 @@ class WMobilePack {
 			
 		} elseif(is_string($option) && $option_value != '') {
 			
-			if ( array_key_exists( $option , $this->wmp_options ) )
+			if ( array_key_exists( $option , self::$wmp_options ) )
 				return update_option( 'wmpack_' . $option, $option_value );
 			
 		}
@@ -257,7 +258,7 @@ class WMobilePack {
 				$option_not_updated = false;
 				
 				
-				if ( array_key_exists( $option_name , $this->wmp_options ) )
+				if ( array_key_exists( $option_name , self::$wmp_options ) )
 					delete_option( 'wmpack_' . $option_name );
 				
 			}
@@ -266,7 +267,7 @@ class WMobilePack {
 			
 		} elseif(is_string($option)) {
 			
-			if ( array_key_exists( $option , $this->wmp_options ) )
+			if ( array_key_exists( $option , self::$wmp_options ) )
 				return delete_option( 'wmpack_' . $option );
 			
 		}
