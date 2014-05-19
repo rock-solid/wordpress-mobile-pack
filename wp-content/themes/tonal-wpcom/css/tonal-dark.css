@@ -1,0 +1,131 @@
+#masthead{
+    border-bottom: 20px solid rgba( 1, 1, 1, 0.04 );
+}
+.button-block,
+.icon-block{
+    background: rgba( 1, 1, 1, 0.8 );
+	color: rgba( 255, 255, 255, 0.5 );
+}
+.button-block:hover,
+.icon-block:hover {
+    background: rgba( 1, 1, 1, 1 );
+	color: rgba( 255, 255, 255, 1 );
+}
+.button-block a,
+a.icon-block {
+	color: rgba( 255, 255, 255, 0.5 );
+}
+.button-block a,
+a.icon-block  {
+	color: rgba( 255, 255, 255, 0.5 );
+}
+.navigation a,
+.navigation a:visited {
+    background: rgba( 1, 1, 1, 0.05 );
+}
+.navigation a:hover{
+    background: rgba( 1, 1, 1, 0.8 );
+	color: #fff;
+}
+.hentry{
+    border-bottom: 10px solid rgba( 1, 1, 1, 0.04 );
+}
+.reply a{
+	background: rgba( 1, 1, 1, 0.6 );
+	color: #fff;
+}
+.reply a:hover{
+	background:rgba( 1, 1, 1, 0.6 );
+	color: #fff;
+}
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+	border: 1px solid rgba( 1, 1, 1, 0.4 );
+	background: rgba( 1, 1, 1, 0.3 );
+	color: #fff;
+}
+button:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover,
+input[type="submit"]:hover {
+	border: 1px solid rgba( 1, 1, 1, 0.8 );
+}
+button:focus,
+input[type="button"]:focus,
+input[type="reset"]:focus,
+input[type="submit"]:focus,
+button:active,
+input[type="button"]:active,
+input[type="reset"]:active,
+input[type="submit"]:active {
+	border: 1px solid rgba( 1, 1, 1, 0.6 );
+}
+#respond{
+	background: rgba( 255, 255, 255, 0.04 );
+	color: #333;
+}
+#respond h3,
+#respond a {
+	color: #111;
+}
+.comment-list .comment-author img.avatar{
+	border: 5px solid rgba( 1, 1, 1, 0.04);
+}
+hr {
+	background-color: rgba( 1, 1, 1, 0.2);
+}
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+textarea {
+	border: 1px solid rgba( 1, 1, 1, 0.08);
+}
+.wp-caption {
+	background: rgba( 1, 1, 1, 0.02 );
+	border: 5px solid rgba( 1, 1, 1, 0.02 );
+}
+pre {
+	background: rgba( 1, 1, 1, 0.04 );
+}
+abbr, acronym {
+	border-bottom: 1px dotted rgba( 1, 1, 1, 0.08 );
+}
+mark, ins {
+	background: rgba( 1, 1, 1, 0.08 );
+}
+#menu-block {
+	background: rgba( 1, 1, 1, 0.8 );
+}
+input,
+textarea {
+	border: 1px solid #eee;
+}
+input:focus,
+textarea:focus {
+	border: 1px solid #ccc;
+	outline: 0;
+}
+.sticky .entry-content{
+	background: rgba( 1, 1, 1, 0.02 );
+    border-bottom: 1px solid rgba( 1, 1, 1, 0.06 );
+}
+.comment-content {
+    border-bottom: 1px solid rgba( 1, 1, 1, 0.06 );
+}
+@media only screen and (min-width: 40.063em) and (max-width: 64em) {
+	.comment-content {
+		background: rgba( 1, 1, 1, 0.02 );
+    	border-bottom: 1px solid rgba( 1, 1, 1, 0.06 );
+	}
+}
+/* min-width 641px and max-width 1024px, use when QAing tablet-only issues */
+@media only screen and (min-width: 64.063em) {
+	.comment-content {
+		background: rgba( 1, 1, 1, 0.02 );
+    	border-bottom: 1px solid rgba( 1, 1, 1, 0.06 );
+	}
+}

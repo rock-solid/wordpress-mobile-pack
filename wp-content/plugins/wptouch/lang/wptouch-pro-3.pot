@@ -1,0 +1,2737 @@
+# Copyright (C) 2013 
+# This file is distributed under the same license as the  package.
+msgid ""
+msgstr ""
+"Project-Id-Version:  \n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/combined\n"
+"POT-Creation-Date: 2013-11-26 12:08:18+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2013-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: wptouch-pro-3/admin/html/help.php:1
+msgid "WPtouch Pro Help & Account Links"
+msgstr ""
+
+#: wptouch-pro-3/admin/html/help.php:3
+msgid "Support Forums"
+msgstr ""
+
+#: wptouch-pro-3/admin/html/help.php:4
+msgid "Documentation"
+msgstr ""
+
+#: wptouch-pro-3/admin/html/help.php:5
+msgid "Account & Downloads"
+msgstr ""
+
+#: wptouch-pro-3/admin/html/help.php:6
+msgid "BraveNewCode on Twitter"
+msgstr ""
+
+#: wptouch-pro-3/admin/html/help.php:7
+msgid "Plugin Licensing Terms"
+msgstr ""
+
+#: wptouch-pro-3/admin/html/notification-center.php:5
+msgid "Notifications"
+msgstr ""
+
+#: wptouch-pro-3/admin/html/notification-content.php:20
+msgid "No notifications"
+msgstr ""
+
+#: wptouch-pro-3/admin/html/plugin-area.php:7
+msgid ""
+"This copy of WPtouch Pro is unlicensed! Please %sactivate your license%s, or "
+"%spurchase a license%s to enable automatic updates and full product support "
+"from us!"
+msgstr ""
+
+#: wptouch-pro-3/admin/html/plugin-area.php:9
+msgid ""
+"This copy of WPtouch Pro is unlicensed! Please contact the site "
+"administrator regarding product licensing."
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/custom/wptouch-admin-license.php:9
+msgid "License Details"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/custom/wptouch-admin-license.php:11
+msgid "Note"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/custom/wptouch-admin-license.php:12
+msgid "Once you activate, this page will be hidden."
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/custom/wptouch-admin-license.php:15
+msgid "It will only reappear if you reset your WPtouch Pro settings."
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/custom/wptouch-admin-license.php:18
+msgid "Account E-Mail Address"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/custom/wptouch-admin-license.php:20
+msgid "Product License Key"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/custom/wptouch-admin-license.php:23
+#: wptouch-pro-3/admin/settings/html/theme-browser-item.php:14
+#: wptouch-pro-3/pro/settings/html/extension-browser-item.php:71
+#: wptouch-pro-3/pro/settings/html/theme-browser-item.php:109
+msgid "Activate"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/custom/wptouch-admin-license.php:33
+msgid "Success."
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/custom/wptouch-admin-license.php:34
+msgid "Activation Complete. Enjoy WPtouch Pro!"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/custom/wptouch-admin-license.php:38
+msgid "E-mail address or license key rejected"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/custom/wptouch-admin-license.php:39
+msgid ""
+"The bravenewcode.com server rejected your E-Mail address and/or License Key. "
+"Please check they are correct and try again."
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/custom/wptouch-admin-license.php:43
+msgid "No licenses remaining."
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/custom/wptouch-admin-license.php:44
+msgid "You have used all your activations. What do you want to do?"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/custom/wptouch-admin-license.php:45
+msgid "Upgrade My License"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/custom/wptouch-admin-license.php:46
+msgid "Contact support for assistance"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/custom/wptouch-admin-license.php:50
+msgid "The server is unavailable."
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/custom/wptouch-admin-license.php:51
+msgid "The bravenewcode.com server currently cannot authorize your License."
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/custom/wptouch-admin-license.php:52
+msgid "Please %scontact us%s and let us know about it."
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:3
+#: wptouch-pro-3/themes/foundation/root-functions.php:10
+msgid "General"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:4
+msgid "Compatibility"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:10
+msgid "Auto-detect"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:45
+msgid "Site Title & Byline"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:51
+msgid "WPtouch Pro site title"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:52
+msgid ""
+"If the title of your site is long, you can shorten it for display within "
+"WPtouch Pro themes."
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:59
+msgid "Display %sPowered by WPtouch Pro%s in footer"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:71
+msgid "Regionalization"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:77
+msgid "Language"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:78
+msgid ""
+"The WPtouch Pro admin panel &amp; supported themes will be shown in this "
+"locale."
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:86
+msgid "Translate administration panel text"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:97
+msgid "Display Mode"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:103
+msgid "Theme Display"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:108
+msgid "Normal (active for all mobile visitors)"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:109
+msgid "Preview (active only for logged-in site administrators)"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:110
+msgid "Disabled (mobile theme will never show)"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:119
+msgid "Landing Page"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:125
+msgid "WPtouch Pro landing page"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:130
+msgid "Default (same as WordPress)"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:131
+msgid "Select from WordPress pages"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:132
+msgctxt "Refers to a custom landing page"
+msgid "Custom"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:139
+msgid "Custom Slug or URL"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:140
+msgid "Enter a Slug (i.e. \"/home\") or a full URL path"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:150
+msgid "Desktop / Mobile Switching"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:156
+msgid "1st time visitors see desktop theme"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:157
+msgid "Your regular theme will be shown to 1st time mobile visitors."
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:164
+msgid "Show switch link in mobile view"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:165
+msgid ""
+"Will show toggle buttons in the theme's footer allowing users to switch to "
+"your desktop theme. Is not shown in Web-App Mode."
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:172
+msgid "Choose the target for the mobile switch link"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:177
+msgid "Current page"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:178
+msgid "Home page"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:184
+msgid "Desktop theme switch buttons"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:185
+msgid ""
+"Allows visitors to switch from your desktop theme to your mobile theme. You "
+"can also customize the placement of Switch buttons by placing the "
+"wptouch_desktop_switch_link() template tag somewhere in your desktop theme."
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:189
+msgid "Automatically inserted inline"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:190
+msgid "Automatically inserted with AJAX (better for caching)"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:191
+msgid "Template tag"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:200
+msgid "Custom Code"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:206
+msgid "HTML, JavaScript, statistics or custom code"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:207
+msgid "Enter any custom code here to be output in the theme footer."
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:217
+msgid "Custom Stylesheet"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:223
+msgid "URL to a custom CSS file to load"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:224
+msgid "Useful if you have specific compatibility CSS you need to add."
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:234
+msgid "Shortcodes"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:240
+msgid "Remove these shortcodes when WPtouch Pro is active"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:241
+msgid "Enter a comma separated list of shortcodes to remove."
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:251
+msgid "Ignored URLs"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:257
+msgid "Do not load WPtouch Pro on these URLs/Pages"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:258
+msgid ""
+"Each permalink URL fragment should be on its own line and relative, e.g. \"/"
+"about\" or \"/products/store\""
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:268
+msgid "Desktop Theme"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:274
+msgid "Try to include desktop theme functions.php file"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:275
+msgid ""
+"This may be required for desktop themes with unique features that are not "
+"showing when WPtouch Pro is active."
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:282
+msgid "Method to load file"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:287
+msgid "Include file directly"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:288
+msgid "Translate and create new files"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:297
+msgid "Custom User-Agents"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:303
+msgid "User-agents (line separated)"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:304
+msgid ""
+"Adding additional user-agents will force WPtouch Pro to be active for "
+"matching browsers."
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:318
+msgid "Backup &amp; Import"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:324
+msgid "Automatically backup settings to the %s folder"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:326
+msgid "WPtouch Pro backups your settings each time they are saved."
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:337
+msgid "Tools &amp; Debug"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:343
+msgid ""
+"Use jQuery 2.0 in themes (faster for mobile devices) instead of WordPress' "
+"version"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:344
+msgid ""
+"jQuery 2.0 is significantly smaller and faster than previous jQuery versions "
+"- may cause problems with other plugins, use carefully."
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:351
+msgid "Show load times and query counts in the footer"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:352
+msgid "Helps you find slow pages/posts on your site."
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:359
+msgid "Enable debug log"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:360
+msgid "Creates a debug file to help diagnose installation issues."
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:371
+msgid "WordPress Plugins"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:384
+msgid "Admin Mode"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:390
+msgid "Admin panel settings shown"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:395
+msgid "Default"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-general-settings.php:396
+#: wptouch-pro-3/admin/settings/html/button.php:5
+#: wptouch-pro-3/admin/settings/html/checkbox.php:6
+#: wptouch-pro-3/admin/settings/html/custom-latest-posts.php:4
+#: wptouch-pro-3/admin/settings/html/list.php:16
+#: wptouch-pro-3/admin/settings/html/numeric.php:12
+#: wptouch-pro-3/admin/settings/html/radiolist.php:12
+#: wptouch-pro-3/admin/settings/html/text.php:8
+#: wptouch-pro-3/admin/settings/html/textarea.php:8
+msgid "Advanced"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-menus.php:3
+msgid "Theme Menus"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-menus.php:4
+msgid "Menu Setup"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-menus.php:5
+msgid "Icon Upload & Sets"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-menus.php:22
+msgid "WordPress Pages"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-menus.php:28
+#: wptouch-pro-3/admin/settings/html/icon_menu_area.php:6
+#: wptouch-pro-3/themes/foundation/modules/advertising/advertising.php:180
+#: wptouch-pro-3/themes/foundation/modules/media/media.php:59
+#: wptouch-pro-3-extras/extensions/infinity-cache/infinity-cache.php:206
+msgid "None"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-menus.php:66
+msgid "Menu Options"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-menus.php:72
+msgid "Enable parent items as links"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-menus.php:73
+msgid "If disabled, parent menu items will only toggle child items."
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-menus.php:80
+msgid "Use menu icons"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-menus.php:104
+msgid "Icon Upload"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-menus.php:117
+msgid "Uploaded Icons"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-menus.php:130
+msgid "Icon Sets"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-themes-and-addons.php:3
+msgid "Themes"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-themes-and-addons.php:4
+msgid "Extensions"
+msgstr ""
+
+#: wptouch-pro-3/admin/pages/wptouch-admin-touchboard.php:3
+#: wptouch-pro-3/core/admin-menu.php:34 wptouch-pro-3/core/admin-menu.php:38
+msgid "What's New"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/addon-browser-item.php:38
+#: wptouch-pro-3/admin/settings/html/installed_icon_sets_ajax.php:8
+#: wptouch-pro-3/admin/settings/html/installed_icon_sets_ajax.php:20
+#: wptouch-pro-3/admin/settings/html/theme-browser-item.php:59
+#: wptouch-pro-3/pro/settings/html/extension-browser-item.php:41
+#: wptouch-pro-3/pro/settings/html/theme-browser-item.php:62
+msgid "by %s"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/addon-browser-item.php:43
+msgid "This add-on is only available in WPtouch Pro"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/backup.php:1
+msgid "Download Backup File"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/backup.php:2
+msgid "Restore Backup File"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/button.php:6
+#: wptouch-pro-3/admin/settings/html/checkbox.php:7
+#: wptouch-pro-3/admin/settings/html/custom-latest-posts.php:8
+#: wptouch-pro-3/admin/settings/html/list.php:20
+#: wptouch-pro-3/admin/settings/html/numeric.php:16
+#: wptouch-pro-3/admin/settings/html/radiolist.php:14
+#: wptouch-pro-3/admin/settings/html/text.php:9
+#: wptouch-pro-3/admin/settings/html/textarea.php:9
+msgid "New"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/color.php:6
+msgid "Undo"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/color.php:7
+msgid "Desktop theme colors"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/color.php:7
+msgid "Palette"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/custom-latest-posts.php:1
+msgid "Custom latest posts page"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/custom_icon_management.php:3
+msgid "No icons have been uploaded yet"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/custom_icon_management.php:12
+#: wptouch-pro-3/admin/settings/html/image-upload.php:13
+#: wptouch-pro-3/admin/settings/html/theme-browser-item.php:18
+#: wptouch-pro-3/pro/settings/html/theme-browser-item.php:115
+msgid "Delete"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/custom_icon_upload.php:3
+msgid "Upload Icon"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/custom_icon_upload.php:4
+#: wptouch-pro-3/admin/settings/html/image-upload.php:15
+msgid "Upload Complete!"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/custom_icon_upload.php:9
+msgid "Ready to upload"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/debuginfo.php:12
+msgid "View Debug File"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/debuginfo.php:16
+#: wptouch-pro-3/admin/settings/html/debuginfo.php:18
+msgid "Your Server Configuration"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/icon_menu_area.php:5
+msgid "Check All"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/icon_menu_area.php:7
+msgid "Reset"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/icon_menu_area.php:9
+#: wptouch-pro-3-extras/themes/bio/default/header-bottom.php:13
+#: wptouch-pro-3-extras/themes/classic-redux/default/header-bottom.php:21
+#: wptouch-pro-3-extras/themes/classic-redux/default/header-bottom.php:32
+#: wptouch-pro-3-extras/themes/classic-redux/default/header-bottom.php:112
+#: wptouch-pro-3-extras/themes/hammock/default/header-bottom.php:23
+#: wptouch-pro-3-extras/themes/hammock/default/header-bottom.php:36
+#: wptouch-pro-3-extras/themes/hammock/root-functions.php:82
+#: wptouch-pro-3-extras/themes/scaffold/default/header-bottom.php:13
+msgid "Menu"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/icon_menu_area.php:19
+msgid "Active menus used in this theme."
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/icon_menu_area.php:23
+msgid "Show/Hide"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/icon_menu_area.php:24
+msgid "Menu Item"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/icon_menu_area.php:44
+msgid "Icon Set"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/icon_menu_area.php:54
+msgid "Drag icons to associate them with menu items"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/icon_menu_area.php:79
+msgid "You don't have any custom icons yet."
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/icon_menu_area.php:94
+msgid "Default Icon"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/icon_menu_area.php:95
+msgid "applies to all unset icons"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/icon_menu_area.php:103
+msgid "Trash"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/icon_menu_area.php:104
+msgid "drag icon here to reset"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/image-upload.php:11
+msgid "Upload"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/installed_icon_sets.php:2
+msgid "Gathering information about available icon sets..."
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/installed_icon_sets.php:4
+#: wptouch-pro-3/core/notifications.php:264
+msgid ""
+"The %s%s%s directory is not currently writable. %sPlease fix this issue to "
+"enable installation of additional icon sets."
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/installed_icon_sets_ajax.php:4
+#: wptouch-pro-3/core/class-wptouch-pro.php:1555
+#: wptouch-pro-3/core/class-wptouch-pro.php:1556
+#: wptouch-pro-3/core/config.php:54
+msgid "Custom Icons"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/installed_icon_sets_ajax.php:9
+#: wptouch-pro-3/admin/settings/html/installed_icon_sets_ajax.php:22
+msgid "Installed"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/installed_icon_sets_ajax.php:21
+msgid "Installing..."
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/installed_icon_sets_ajax.php:21
+#: wptouch-pro-3/pro/settings/html/extension-browser-item.php:66
+#: wptouch-pro-3/pro/settings/html/theme-browser-item.php:96
+msgid "Install"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/installed_icon_sets_ajax.php:23
+msgid "Unable to Install"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/plugin-compat-ajax.php:11
+#: wptouch-pro-3/themes/foundation/modules/custom-posts/custom-posts.php:64
+msgid "Enable %s"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/plugin-compat-ajax.php:12
+msgid ""
+"When unchecked, %s will be disabled for users viewing your WPtouch Pro theme."
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/plugin-compat-ajax.php:20
+msgid "No plugins to disable."
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/plugin-compat.php:3
+msgid "Your active plugin list is refreshing"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/redirect.php:17
+msgid "WordPress Page"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/restore.php:2
+msgid ""
+"Please paste your encoded settings below and save to restore your settings."
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/theme-browser-item.php:6
+#: wptouch-pro-3/pro/settings/html/theme-browser-item.php:6
+#: wptouch-pro-3/pro/settings/html/theme-browser-item.php:10
+msgid "Click to view screenshots"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/theme-browser-item.php:11
+#: wptouch-pro-3/pro/settings/html/extension-browser-item.php:74
+#: wptouch-pro-3/pro/settings/html/theme-browser-item.php:105
+msgid "Setup"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/theme-browser-item.php:16
+#: wptouch-pro-3/pro/settings/html/theme-browser-item.php:112
+msgid "Copy"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/theme-browser-item.php:54
+#: wptouch-pro-3/pro/settings/html/theme-browser-item.php:57
+msgid "This theme supports %s devices"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/theme-browser-item.php:64
+#: wptouch-pro-3/pro/settings/html/theme-browser-item.php:69
+msgid "Theme location: %s"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/theme-browser-item.php:65
+#: wptouch-pro-3/pro/settings/html/extension-browser-item.php:48
+#: wptouch-pro-3/pro/settings/html/theme-browser-item.php:70
+msgid "Relative to your WordPress wp-content directory."
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/touchboard.php:6
+msgid "Quick Links"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/touchboard.php:8
+msgid "What's New Changelog"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/touchboard.php:9
+msgid "Product Knowledgebase"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/touchboard.php:10
+msgid "Product Support"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/touchboard.php:11
+msgid "Manage Account"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/touchboard.php:12
+msgid "Manage License"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/touchboard.php:18
+msgid "WPtouch News"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/touchboard.php:19
+msgid "Read More"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/touchboard.php:25
+msgid "WPtouch Updates"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/touchboard.php:35
+msgid "What's New in %s"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/touchboard.php:38
+#: wptouch-pro-3/admin/settings/html/touchboard.php:40
+#: wptouch-pro-3/core/admin-menu.php:59
+msgid "License"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/touchboard.php:38
+msgid "Unlicensed"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/touchboard.php:38
+#: wptouch-pro-3/core/class-wptouch-pro.php:453
+msgid "Offline"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/touchboard.php:40
+msgid "Active"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/touchboard.php:40
+msgid "Online"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/touchboard.php:64
+msgid "%s Change Log"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/html/user-agent-list.php:4
+#: wptouch-pro-3/admin/settings/html/user-agent-list.php:6
+msgid ""
+"WPtouch Pro will be active when any of the following user-agents or user-"
+"agent combinations are matched"
+msgstr ""
+
+#: wptouch-pro-3/admin/settings/include/custom-latest-posts.php:14
+msgid "None (Use WordPress Settings)"
+msgstr ""
+
+#: wptouch-pro-3/core/admin-ajax.php:286
+msgid "Version %s"
+msgstr ""
+
+#: wptouch-pro-3/core/admin-ajax.php:292
+msgid ""
+"There is a temporary issue retrieving the change-log.  Please try again "
+"later."
+msgstr ""
+
+#: wptouch-pro-3/core/admin-menu.php:39
+msgid "Core Settings"
+msgstr ""
+
+#: wptouch-pro-3/core/admin-menu.php:40
+msgid "Themes & Extensions"
+msgstr ""
+
+#: wptouch-pro-3/core/admin-menu.php:41
+msgid "Theme Settings"
+msgstr ""
+
+#: wptouch-pro-3/core/admin-menu.php:41
+msgid "%s Settings"
+msgstr ""
+
+#: wptouch-pro-3/core/admin-menu.php:46
+msgid "Extension Settings"
+msgstr ""
+
+#: wptouch-pro-3/core/admin-menu.php:51 wptouch-pro-3/core/admin-menu.php:53
+msgid "Menus"
+msgstr ""
+
+#: wptouch-pro-3/core/admin-page-templates.php:16
+msgid "Mobile Page Template"
+msgstr ""
+
+#: wptouch-pro-3/core/admin-render.php:25
+msgid "This copy of %s is currently unlicensed!"
+msgstr ""
+
+#: wptouch-pro-3/core/admin-render.php:27
+msgid "Add a license %s"
+msgstr ""
+
+#: wptouch-pro-3/core/admin-render.php:81
+msgid "Save Changes"
+msgstr ""
+
+#: wptouch-pro-3/core/admin-render.php:82
+msgid "Preview Theme"
+msgstr ""
+
+#: wptouch-pro-3/core/admin-render.php:83
+msgid "Reset Settings"
+msgstr ""
+
+#: wptouch-pro-3/core/class-wptouch-pro.php:232
+msgid ""
+"Automatic theme migration from uploads/wptouch-data directory failed. Please "
+"manually move these files to wp-content/wptouch-data, or %scontact support%s "
+"to address this issue."
+msgstr ""
+
+#: wptouch-pro-3/core/class-wptouch-pro.php:239
+msgid ""
+"Please wait, we are downloading a fresh copy of your active WPtouch theme "
+"from the Cloud."
+msgstr ""
+
+#: wptouch-pro-3/core/class-wptouch-pro.php:242
+msgid ""
+"We were unable to install your WPtouch theme from the Cloud. Please visit "
+"%sthis article%s for more information."
+msgstr ""
+
+#: wptouch-pro-3/core/class-wptouch-pro.php:449
+msgid "Unsupported Browser"
+msgstr ""
+
+#: wptouch-pro-3/core/class-wptouch-pro.php:450
+msgid "Theme Preview requires Chrome or Safari."
+msgstr ""
+
+#: wptouch-pro-3/core/class-wptouch-pro.php:451
+msgid ""
+"This will reset all WPtouch Pro settings.\n"
+"Are you sure?"
+msgstr ""
+
+#: wptouch-pro-3/core/class-wptouch-pro.php:452
+msgid ""
+"This will reset all WPtouch Pro menu and icon settings.\n"
+"Are you sure?"
+msgstr ""
+
+#: wptouch-pro-3/core/class-wptouch-pro.php:454
+msgid ""
+"You appear to be offline. Connect to the internet to see available "
+"BraveNewCloud items."
+msgstr ""
+
+#: wptouch-pro-3/core/class-wptouch-pro.php:455
+msgid "The item failed to download. Please refresh the page and try again."
+msgstr ""
+
+#: wptouch-pro-3/core/class-wptouch-pro.php:1069
+#: wptouch-pro-3/themes/foundation/modules/webapp/webapp.php:207
+msgid "Settings"
+msgstr ""
+
+#: wptouch-pro-3/core/class-wptouch-pro.php:1150
+msgid "WPtouch Pro Changelog"
+msgstr ""
+
+#: wptouch-pro-3/core/class-wptouch-pro.php:2326
+msgid "Directory Problem"
+msgstr ""
+
+#: wptouch-pro-3/core/class-wptouch-pro.php:2327
+msgid "One or more required directories could not be created"
+msgstr ""
+
+#: wptouch-pro-3/core/globals.php:192
+msgid "smartphone"
+msgstr ""
+
+#: wptouch-pro-3/core/globals.php:194
+msgid "tablet"
+msgstr ""
+
+#: wptouch-pro-3/core/notifications.php:121
+msgid "License Missing"
+msgstr ""
+
+#: wptouch-pro-3/core/notifications.php:122
+msgid "This installation of WPtouch Pro is currently unlicensed."
+msgstr ""
+
+#: wptouch-pro-3/core/notifications.php:133
+msgid "WPtouch Pro %s"
+msgstr ""
+
+#: wptouch-pro-3/core/notifications.php:134
+msgid "A new version of WPtouch Pro is available."
+msgstr ""
+
+#: wptouch-pro-3/core/notifications.php:145
+msgid "Theme Update Available"
+msgstr ""
+
+#: wptouch-pro-3/core/notifications.php:146
+msgid "One or more updates are available for your installed themes."
+msgstr ""
+
+#: wptouch-pro-3/core/notifications.php:160
+msgid "Extension Update Available"
+msgstr ""
+
+#: wptouch-pro-3/core/notifications.php:161
+msgid "One or more updates are available for your installed extensions."
+msgstr ""
+
+#: wptouch-pro-3/core/notifications.php:173
+msgid "Preview Mode Enabled"
+msgstr ""
+
+#: wptouch-pro-3/core/notifications.php:174
+msgid ""
+"Only logged-in admins can see the mobile theme right now. You can change "
+"this at any time in %sCore Settings%s under %sDisplay Mode%s."
+msgstr ""
+
+#: wptouch-pro-3/core/notifications.php:182
+msgid "Theme Presentation Disabled"
+msgstr ""
+
+#: wptouch-pro-3/core/notifications.php:183
+msgid ""
+"No one can see the mobile theme right now. You can change this at any time "
+"in %sCore Settings%s under %sDisplay Mode%s."
+msgstr ""
+
+#: wptouch-pro-3/core/notifications.php:194
+msgid "WPtouch Pro prefers pretty permalinks to be enabled within WordPress."
+msgstr ""
+
+#: wptouch-pro-3/core/notifications.php:204
+msgid "WPtouch Pro will not work fully in safe mode."
+msgstr ""
+
+#: wptouch-pro-3/core/notifications.php:214
+#: wptouch-pro-3/core/notifications.php:224
+#: wptouch-pro-3/core/notifications.php:234
+msgid ""
+"Extra configuration is required. The plugin must be configured to exclude "
+"the user agents that WPtouch Pro uses."
+msgstr ""
+
+#: wptouch-pro-3/core/notifications.php:244
+msgid ""
+"Extra configuration is required. Add paths to your active WPtouch Pro theme "
+"CSS and Javascript files as files to ignore in WPMinify."
+msgstr ""
+
+#: wptouch-pro-3/core/notifications.php:254
+msgid ""
+"This plugin may not work correctly in WPtouch Pro, and should be disabled in "
+"the Plugin Compatibility section."
+msgstr ""
+
+#: wptouch-pro-3/core/notifications.php:263
+msgid "Icon Installation Issue"
+msgstr ""
+
+#: wptouch-pro-3/core/notifications.php:274
+msgid ""
+"WPtouch Pro 3 cannot co-exist with WPtouch 1.x. Disable it first in the "
+"WordPress Plugins settings."
+msgstr ""
+
+#: wptouch-pro-3/core/notifications.php:284
+msgid ""
+"WPtouch Pro 3 cannot co-exist with WPtouch Pro 2.x. Disable it first in the "
+"WordPress Plugins settings."
+msgstr ""
+
+#: wptouch-pro-3/include/add-ons/wordtwit-pro.php:179
+#: wptouch-pro-3/themes/foundation/modules/twitter/twitter.php:42
+msgid "%d second ago"
+msgid_plural "%d seconds ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: wptouch-pro-3/include/add-ons/wordtwit-pro.php:182
+#: wptouch-pro-3/themes/foundation/modules/twitter/twitter.php:45
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: wptouch-pro-3/include/add-ons/wordtwit-pro.php:185
+#: wptouch-pro-3/themes/foundation/modules/twitter/twitter.php:48
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: wptouch-pro-3/include/add-ons/wordtwit-pro.php:188
+#: wptouch-pro-3/themes/foundation/modules/twitter/twitter.php:51
+msgid "%d day ago"
+msgid_plural "%d days ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: wptouch-pro-3/include/html/desktop-switch.php:2
+msgid "Desktop Version"
+msgstr ""
+
+#: wptouch-pro-3/include/html/desktop-switch.php:2
+msgid "Switch To Mobile Version"
+msgstr ""
+
+#: wptouch-pro-3/include/html/footer.php:2
+msgid "Powered by %s%s%s"
+msgstr ""
+
+#: wptouch-pro-3/include/html/footer.php:3
+msgid "By %s"
+msgstr ""
+
+#: wptouch-pro-3/include/html/load-times.php:2
+msgid "%d queries in %0.1f ms"
+msgstr ""
+
+#: wptouch-pro-3/include/html/page-template.php:8
+msgid "Default Template"
+msgstr ""
+
+#: wptouch-pro-3/pro/settings/html/extension-browser-item.php:35
+#: wptouch-pro-3/pro/settings/html/theme-browser-item.php:47
+msgid "Upgrading..."
+msgstr ""
+
+#: wptouch-pro-3/pro/settings/html/extension-browser-item.php:35
+msgid "Upgrade to %s"
+msgstr ""
+
+#: wptouch-pro-3/pro/settings/html/extension-browser-item.php:47
+msgid "Extension location: %s"
+msgstr ""
+
+#: wptouch-pro-3/pro/settings/html/extension-browser-item.php:56
+#: wptouch-pro-3/pro/settings/html/theme-browser-item.php:81
+msgid "More Info"
+msgstr ""
+
+#: wptouch-pro-3/pro/settings/html/extension-browser-item.php:59
+#: wptouch-pro-3/pro/settings/html/theme-browser-item.php:84
+msgid "Upgrade License"
+msgstr ""
+
+#: wptouch-pro-3/pro/settings/html/extension-browser-item.php:61
+#: wptouch-pro-3/pro/settings/html/theme-browser-item.php:86
+msgid "Get License"
+msgstr ""
+
+#: wptouch-pro-3/pro/settings/html/extension-browser-item.php:66
+#: wptouch-pro-3/pro/settings/html/theme-browser-item.php:95
+msgid "Downloading..."
+msgstr ""
+
+#: wptouch-pro-3/pro/settings/html/extension-browser-item.php:75
+msgid "Deactivate"
+msgstr ""
+
+#: wptouch-pro-3/pro/settings/html/extension-browser-pro.php:10
+msgid "Loading Cloud Extensions"
+msgstr ""
+
+#: wptouch-pro-3/pro/settings/html/theme-browser-item.php:49
+msgid "Update to %s"
+msgstr ""
+
+#: wptouch-pro-3/pro/settings/html/theme-browser-item.php:89
+msgid "Buy Now"
+msgstr ""
+
+#: wptouch-pro-3/pro/settings/html/theme-browser-pro.php:11
+msgid "Loading Cloud Themes"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/404.php:6
+msgid "404 Not Found"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/404.php:8
+msgid "The post or page you requested is no longer available."
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/attachment.php:43
+msgid "&laquo; previous in gallery"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/attachment.php:45
+msgid "next in gallery &raquo;"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/comments.php:10
+#: wptouch-pro-3-extras/themes/classic-redux/default/post-loop.php:33
+msgid "no responses"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/comments.php:10
+#: wptouch-pro-3-extras/themes/classic-redux/default/post-loop.php:33
+msgid "1 response"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/comments.php:10
+#: wptouch-pro-3-extras/themes/classic-redux/default/post-loop.php:33
+msgid "% responses"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/comments.php:20
+#: wptouch-pro-3/themes/foundation/default/comments.php:26
+msgid "Load More Comments&hellip;"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/comments.php:38
+msgid "Comments are closed"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/comments.php:48
+msgid "Cancel"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/comments.php:51
+msgid "Leave a Reply"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/comments.php:51
+msgid "Leave a Reply to %s"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/comments.php:54
+msgid "You must be %slogged in%s to post a comment."
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/comments.php:61
+msgid "Logged in as"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/comments.php:61
+msgid "Log out"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/comments.php:65
+msgid "Name"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/comments.php:67
+#: wptouch-pro-3/themes/foundation/modules/social-links/social-links.php:78
+msgid "E-Mail"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/comments.php:69
+msgid "Website"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/comments.php:75
+msgid "Publish"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/formerror.php:6
+msgid "Comment Error"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/formerror.php:8
+msgid "Please enter all fields correctly to post a comment."
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/formerror.php:9
+msgid "Go back"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/index.php:33
+#: wptouch-pro-3-extras/themes/classic-redux/default/index.php:34
+#: wptouch-pro-3-extras/themes/cms/default/header-bottom.php:60
+#: wptouch-pro-3-extras/themes/hammock/default/index.php:34
+msgid "newer posts"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/index.php:33
+#: wptouch-pro-3-extras/themes/classic-redux/default/index.php:34
+#: wptouch-pro-3-extras/themes/cms/default/header-bottom.php:56
+#: wptouch-pro-3-extras/themes/hammock/default/index.php:34
+msgid "older posts"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/nav-bar.php:6
+#: wptouch-pro-3-extras/themes/bauhaus/default/nav-bar.php:6
+msgid "previous post"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/nav-bar.php:12
+#: wptouch-pro-3-extras/themes/bauhaus/default/nav-bar.php:13
+msgid "next post"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/one-comment.php:12
+msgid "Your comment is awaiting moderation"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/related-posts.php:4
+msgid "Related"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/search.php:6
+#: wptouch-pro-3-extras/themes/bauhaus/default/search.php:6
+#: wptouch-pro-3-extras/themes/classic-redux/default/search.php:5
+#: wptouch-pro-3-extras/themes/hammock/default/search.php:5
+msgid "You searched for \"%s\""
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/search.php:16
+#: wptouch-pro-3-extras/themes/classic-redux/default/search.php:15
+#: wptouch-pro-3-extras/themes/hammock/default/search.php:16
+msgid "%s results"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/search.php:36
+#: wptouch-pro-3-extras/themes/classic-redux/default/search.php:38
+#: wptouch-pro-3-extras/themes/hammock/default/search.php:40
+msgid "No search results found"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/search.php:45
+#: wptouch-pro-3-extras/themes/bauhaus/default/search.php:46
+#: wptouch-pro-3-extras/themes/classic-redux/default/search.php:47
+msgid "Load more %s results"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/single.php:13
+#: wptouch-pro-3-extras/themes/hammock/default/post-loop-menu.php:15
+#: wptouch-pro-3-extras/themes/hammock/default/post-loop.php:19
+msgid "By"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/switch-link.php:8
+msgid "mobile"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/default/switch-link.php:9
+msgid "desktop"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/advertising/advertising.php:169
+msgid "Service"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/advertising/advertising.php:175
+msgid "Choose a service"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/advertising/advertising.php:181
+msgid "Google Adsense"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/advertising/advertising.php:182
+msgctxt "Refers to a custom advertising service"
+msgid "Custom"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/advertising/advertising.php:192
+msgid "Google AdSense"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/advertising/advertising.php:195
+msgid "Publisher ID"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/advertising/advertising.php:196
+msgid "Slot ID"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/advertising/advertising.php:200
+msgid "Code Type"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/advertising/advertising.php:212
+msgid "Custom Ads"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/advertising/advertising.php:215
+msgid "Mobile advertising script"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/advertising/advertising.php:224
+msgid "Ad Presentation"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/advertising/advertising.php:230
+msgid "Theme location"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/advertising/advertising.php:235
+msgid "In the header"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/advertising/advertising.php:236
+msgid "Above the page content"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/advertising/advertising.php:237
+msgid "Below the page content"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/advertising/advertising.php:247
+msgid "Active Pages"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/advertising/advertising.php:250
+msgid "Blog listings"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/advertising/advertising.php:251
+msgid "Single posts"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/advertising/advertising.php:252
+msgid "Static pages"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/advertising/advertising.php:253
+msgid "Taxonomy"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/advertising/advertising.php:254
+msgid "Search results"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/base/base.php:69
+msgid "Loading"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/base/preview-bar.php:2
+msgid "Theme Preview"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/base/preview-bar.php:3
+msgid "Reload"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/custom-posts/custom-posts.php:76
+msgid "Custom Post Support"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/custom-posts/custom-posts.php:82
+msgid "Enable custom post-type support"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/custom-posts/custom-posts.php:90
+msgid "Show custom post taxonomy"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/custom-posts/custom-posts.php:102
+msgid "Custom Post Types"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/featured/featured.php:231
+msgid "Featured Slider"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/featured/featured.php:237
+msgid "Enable featured slider"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/featured/featured.php:238
+msgid "Requires at least 2 entries to contain featured images"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/featured/featured.php:245
+msgid "Maximum number of posts"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/featured/featured.php:250
+msgid "3 posts"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/featured/featured.php:251
+msgid "5 posts"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/featured/featured.php:252
+msgid "10 posts"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/featured/featured.php:258
+msgid "Automatically slide"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/featured/featured.php:266
+msgid "Continuously slide"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/featured/featured.php:274
+msgid "Grayscale images (CSS 3 effect)"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/featured/featured.php:275
+msgid ""
+"Featured slider images will be in grayscale for devices that support CSS "
+"filters."
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/featured/featured.php:282
+msgid "Show title & date"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/featured/featured.php:283
+msgid ""
+"If disabled, the title and date will not be shown. Note: some themes do not "
+"show the date."
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/featured/featured.php:290
+msgid "Featured slider posts also show in listings"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/featured/featured.php:298
+msgid "Slide transition speed"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/featured/featured.php:303
+msgid "Slow"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/featured/featured.php:304
+msgid "Normal"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/featured/featured.php:305
+msgid "Fast"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/featured/featured.php:316
+msgid "Show latest posts"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/featured/featured.php:317
+msgid "Show posts from a specific tag"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/featured/featured.php:318
+msgid "Show posts from a specific category"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/featured/featured.php:319
+msgid "Show only specific posts or pages"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/featured/featured.php:325
+msgid "Only this tag"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/featured/featured.php:334
+msgid "Only this category"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/featured/featured.php:343
+msgid "Comma-separated list of post/page IDs"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/google-fonts/google-fonts.php:10
+msgid "Browser Fonts"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/google-fonts/google-fonts.php:18
+msgid "Typography"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/google-fonts/google-fonts.php:24
+msgid "Font style"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/google-fonts/google-fonts.php:25
+msgid ""
+"Choose a Google font pairing designed for this theme, or default browser "
+"fonts."
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/login/login-html.php:7
+msgid "Remember Me"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/login/login-html.php:9
+msgid "Log In"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/login/login-html.php:20
+#: wptouch-pro-3-extras/themes/classic-redux/default/header-bottom.php:51
+#: wptouch-pro-3-extras/themes/hammock/default/header-bottom.php:49
+#: wptouch-pro-3-extras/themes/simple/default/header-bottom.php:22
+msgid "Login"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/login/login-html.php:29
+#: wptouch-pro-3-extras/extensions/infinity-cache/infinity-cache.php:207
+msgid "Sign-up"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/login/login-html.php:30
+msgid "Lost password?"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/login/login.php:22
+msgid "Account Username"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/login/login.php:23
+msgid "Account Password"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/login/login.php:32
+msgid "Login Form"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/login/login.php:38
+msgid "Use fly-in login form"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/login/login.php:39
+msgid ""
+"Will add login links and allow mobile visitors to login to your website from "
+"mobile devices"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/login/login.php:46
+msgid "Show \"Sign-up\" and \"Lost Password?\" links"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/media/media.php:48
+msgid "Video Handling"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/media/media.php:60
+msgid "CSS only (HTML5 videos)"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/media/media.php:61
+msgid "FitVids Method"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/media/media.php:62
+msgid "Fluid-Width Method"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/related-posts/related-posts.php:106
+msgid "Related Posts"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/related-posts/related-posts.php:112
+msgid "Enable display of related posts"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/related-posts/related-posts.php:120
+msgid "Maximum number of related posts to show"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/sharing/sharing-html.php:1
+#: wptouch-pro-3-extras/themes/hammock/default/sharing-html.php:2
+msgid "Share"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/sharing/sharing-html.php:1
+#: wptouch-pro-3-extras/themes/hammock/default/sharing-html.php:3
+msgid "Tweet"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/sharing/sharing-html.php:1
+#: wptouch-pro-3-extras/themes/hammock/default/sharing-html.php:5
+msgid "Mail"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/sharing/sharing.php:81
+#: wptouch-pro-3-extras/themes/hammock/root-functions.php:317
+msgid "Sharing"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/sharing/sharing.php:87
+#: wptouch-pro-3-extras/themes/hammock/root-functions.php:323
+msgid "Show sharing links"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/sharing/sharing.php:88
+#: wptouch-pro-3-extras/themes/hammock/root-functions.php:324
+msgid "Will show Facebook, Twitter, Google+ and Email buttons on single posts."
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/sharing/sharing.php:95
+msgid "Show sharing links on pages"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/sharing/sharing.php:96
+msgid ""
+"Will show Facebook, Twitter, Google+ and Email buttons on pages as well as "
+"single posts."
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/sharing/sharing.php:103
+msgid "Sharing links location"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/sharing/sharing.php:108
+msgid "Above post content"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/sharing/sharing.php:109
+msgid "Below post content"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/sharing/sharing.php:115
+msgid "Color scheme"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/sharing/sharing.php:120
+msgid "Theme colors"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/sharing/sharing.php:121
+msgid "Social network colors"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/social-links/social-links.php:8
+msgid "Footer Social Links"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/social-links/social-links.php:23
+msgid "Full URL to your Facebook page"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/social-links/social-links.php:31
+msgid "Full URL to your Twitter profile"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/social-links/social-links.php:39
+msgid "Full URL to your Google+ profile"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/social-links/social-links.php:47
+msgid "Full URL to your Pinterest page"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/social-links/social-links.php:55
+msgid "Full URL to your Vimeo page"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/social-links/social-links.php:63
+msgid "Full URL to your %s profile"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/social-links/social-links.php:70
+msgid "LinkedIn"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/social-links/social-links.php:71
+msgid "Full URL to your LinkedIn profile"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/social-links/social-links.php:79
+msgid "E-Mail address"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/social-links/social-links.php:87
+msgid "Full URL to your RSS feed"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/tablets/tablets.php:46
+msgid "iPad"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/tablets/tablets.php:52
+#: wptouch-pro-3/themes/foundation/modules/webapp/webapp.php:268
+#: wptouch-pro-3/themes/foundation/modules/webapp/webapp.php:286
+#: wptouch-pro-3/themes/foundation/modules/webapp/webapp.php:304
+#: wptouch-pro-3/themes/foundation/modules/webapp/webapp.php:323
+#: wptouch-pro-3/themes/foundation/modules/webapp/webapp.php:331
+#: wptouch-pro-3/themes/foundation/modules/webapp/webapp.php:349
+#: wptouch-pro-3/themes/foundation/modules/webapp/webapp.php:357
+#: wptouch-pro-3/themes/foundation/root-functions.php:390
+#: wptouch-pro-3/themes/foundation/root-functions.php:408
+msgid "%d by %d pixels (PNG)"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/twitter/twitter.php:66
+msgid "Disabled"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/twitter/twitter.php:81
+msgid "Twitter account to use for Tweet display"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/webapp/webapp.php:122
+msgid "External link— open it in the browser?"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/webapp/webapp.php:123
+msgid "File link— Do you want to open it in the browser?"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/webapp/webapp.php:210
+msgid "Enable iOS Web-App Mode"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/webapp/webapp.php:214
+msgid "Enable persistence"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/webapp/webapp.php:215
+msgid "Loads the last visited URL for visitors on open."
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/webapp/webapp.php:222
+msgid "URLs to ignore in Web-App Mode"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/webapp/webapp.php:235
+msgid "Notice Message"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/webapp/webapp.php:238
+msgid ""
+"Show a notice message for iPhone, iPod touch & iPad visitors about my Web-App"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/webapp/webapp.php:238
+msgid ""
+"WPtouch shows a notice bubble on 1st visit letting users know about your Web-"
+"App enabled website on iOS devices."
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/webapp/webapp.php:239
+msgid "Notice message contents"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/webapp/webapp.php:239
+msgid ""
+"[device] and [icon] are dynamic and used to determine the device and iOS "
+"version. Do not remove these from your message."
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/webapp/webapp.php:243
+msgid "the notice message will be shown again for visitors"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/webapp/webapp.php:248
+msgid "1 day until"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/webapp/webapp.php:249
+msgid "7 days until"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/webapp/webapp.php:250
+msgid "1 month until"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/webapp/webapp.php:251
+msgid "Every time"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/webapp/webapp.php:262
+msgid "iPhone Startup Screen"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/webapp/webapp.php:280
+msgid "Retina iPhone Startup Screen"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/webapp/webapp.php:298
+msgid "iPhone 5 Startup Screen"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/webapp/webapp.php:317
+msgid "iPad Mini and iPad Startup Screens"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/modules/webapp/webapp.php:343
+msgid "Retina iPad Startup Screens"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:11
+msgid "Branding"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:12
+msgid "Media Handling"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:13
+msgid "Web-App Mode"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:14
+msgid "Bookmark Icons"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:15
+msgid "Advertising"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:16
+msgid "Custom Content"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:113
+msgid ""
+"Install this Web-App on your [device]: tap [icon] then \"Add to Home Screen\""
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:304
+msgid "Number of posts in post listings"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:305
+msgid ""
+"Overrides the WordPress Reading settings for \"Blog pages show at most\""
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:312
+msgid "Excluded categories"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:313
+msgid "Comma separated by category name"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:320
+msgid "Excluded tags"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:321
+msgid "Comma separated by tag name"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:331
+msgid "Blog"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:342
+msgid "Show comments on pages"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:343
+msgid "Overrides the WordPress settings for showing comments on pages."
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:353
+#: wptouch-pro-3/themes/foundation/root-functions.php:1024
+msgid "Pages"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:366
+msgid "Icon Title"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:372
+msgid "Icon title"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:373
+msgid "When visitors bookmark your website, this will be the title shown."
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:384
+msgid "Android"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:402
+msgid "iPhone & iPod touch"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:438
+msgid "Theme Colors"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:448
+msgid "Site Logo"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:454
+msgid "(Scaled by themes to fit logo areas as needed)"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:467
+msgid "Smart App Banner"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:473
+msgid "Enter your app's %sApp Store ID%s"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:474
+msgid ""
+"Your app's unique identifier. Find your ID from the iTunes Link Maker: "
+"Search for your app. In the link it provides, your app ID is the nine-digit "
+"number in between id and ?mt. For example Angry Birds's ID is 343200656."
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:486
+msgid "Theme Footer"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:489
+msgid "Custom footer content (HTML is allowed)"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:489
+msgid ""
+"You can add custom footer content that will be displayed below the switch "
+"link."
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:854
+msgid "search results for '%s'"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:856
+msgid "%sCategories &rsaquo;%s %s"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:858
+msgid "Tags &rsaquo; %s"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:860
+#: wptouch-pro-3/themes/foundation/root-functions.php:862
+#: wptouch-pro-3/themes/foundation/root-functions.php:864
+msgid "Archives &rsaquo; %s"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:879
+msgid "Load more from this category"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:881
+msgid "Load more tagged like this"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:883
+msgid "Load more from this day"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:885
+msgid "Load more from this month"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:887
+msgid "Load more from this year"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:889
+msgid "Load more in this section"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:891
+msgid "Load more entries"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:973
+msgid "Post"
+msgstr ""
+
+#: wptouch-pro-3/themes/foundation/root-functions.php:975
+msgid "Page"
+msgstr ""
+
+#: wptouch-pro-3-extras/extensions/infinity-cache/infinity-cache.php:63
+#: wptouch-pro-3-extras/extensions/infinity-cache/infinity-cache.php:225
+msgid "Purge Page Cache"
+msgstr ""
+
+#: wptouch-pro-3-extras/extensions/infinity-cache/infinity-cache.php:123
+msgid "Enable Infinity Cache"
+msgstr ""
+
+#: wptouch-pro-3-extras/extensions/infinity-cache/infinity-cache.php:131
+msgid "Create cache for desktop users"
+msgstr ""
+
+#: wptouch-pro-3-extras/extensions/infinity-cache/infinity-cache.php:132
+msgid "If you are using another cache plugin such as W3, you can disable this."
+msgstr ""
+
+#: wptouch-pro-3-extras/extensions/infinity-cache/infinity-cache.php:153
+msgid "Compress output using GZIP"
+msgstr ""
+
+#: wptouch-pro-3-extras/extensions/infinity-cache/infinity-cache.php:163
+msgid "Maximum age of cached content"
+msgstr ""
+
+#: wptouch-pro-3-extras/extensions/infinity-cache/infinity-cache.php:164
+msgid ""
+"Each cached page will automatically be regenerated after this period elapses"
+msgstr ""
+
+#: wptouch-pro-3-extras/extensions/infinity-cache/infinity-cache.php:168
+#: wptouch-pro-3-extras/extensions/infinity-cache/infinity-cache.php:169
+#: wptouch-pro-3-extras/extensions/infinity-cache/infinity-cache.php:170
+#: wptouch-pro-3-extras/extensions/infinity-cache/infinity-cache.php:171
+#: wptouch-pro-3-extras/extensions/infinity-cache/infinity-cache.php:172
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: wptouch-pro-3-extras/extensions/infinity-cache/infinity-cache.php:179
+msgid "Remove stale cache file interval"
+msgstr ""
+
+#: wptouch-pro-3-extras/extensions/infinity-cache/infinity-cache.php:184
+msgid "Hourly"
+msgstr ""
+
+#: wptouch-pro-3-extras/extensions/infinity-cache/infinity-cache.php:185
+msgid "Daily"
+msgstr ""
+
+#: wptouch-pro-3-extras/extensions/infinity-cache/infinity-cache.php:192
+msgid "Disable caching for any of these matched URL fragments"
+msgstr ""
+
+#: wptouch-pro-3-extras/extensions/infinity-cache/infinity-cache.php:193
+msgid ""
+"Add one URL fragment per line, i.e. %s, to not cache pages that contain each "
+"URL fragment"
+msgstr ""
+
+#: wptouch-pro-3-extras/extensions/infinity-cache/infinity-cache.php:201
+msgid "Content Distribution Network Service"
+msgstr ""
+
+#: wptouch-pro-3-extras/extensions/infinity-cache/infinity-cache.php:202
+msgid ""
+"Using a content distribution network (CDN) can significantly enhance the "
+"responsiveness of your website."
+msgstr ""
+
+#: wptouch-pro-3-extras/extensions/infinity-cache/infinity-cache.php:215
+msgid "URL %d"
+msgstr ""
+
+#: wptouch-pro-3-extras/extensions/infinity-cache/infinity-cache.php:216
+msgid ""
+"Add the URLs you have configured for your CDN, for example http://cdn%d."
+"mysite.com"
+msgstr ""
+
+#: wptouch-pro-3-extras/extensions/infinity-cache/infinity-cache.php:233
+msgid "Infinity Cache"
+msgstr ""
+
+#: wptouch-pro-3-extras/extensions/mobile-content/mobile-content.php:20
+msgid "WPtouch Alternate Mobile Content"
+msgstr ""
+
+#: wptouch-pro-3-extras/extensions/mobile-content/mobile-content.php:38
+msgid "Mobile Content"
+msgstr ""
+
+#: wptouch-pro-3-extras/extensions/mobile-content/mobile-content.php:44
+msgid "Enable mobile content display"
+msgstr ""
+
+#: wptouch-pro-3-extras/extensions/responsive-images/responsive-images.php:92
+msgid "Responsive Images"
+msgstr ""
+
+#: wptouch-pro-3-extras/extensions/responsive-images/responsive-images.php:98
+msgid "Include desktop optimizations for mobile devices"
+msgstr ""
+
+#: wptouch-pro-3-extras/extensions/responsive-images/responsive-images.php:99
+msgid "Normally only images on mobile are optimized"
+msgstr ""
+
+#: wptouch-pro-3-extras/extensions/responsive-images/responsive-images.php:106
+msgid "Performance preference"
+msgstr ""
+
+#: wptouch-pro-3-extras/extensions/responsive-images/responsive-images.php:111
+msgid "Optimize for page speed"
+msgstr ""
+
+#: wptouch-pro-3-extras/extensions/responsive-images/responsive-images.php:112
+msgid "Optimize for quality"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/default/header-bottom.php:21
+#: wptouch-pro-3-extras/themes/bio/default/header-bottom.php:24
+#: wptouch-pro-3-extras/themes/classic-redux/default/header-bottom.php:76
+#: wptouch-pro-3-extras/themes/hammock/default/header-bottom.php:84
+#: wptouch-pro-3-extras/themes/scaffold/default/header-bottom.php:24
+msgid "Search this website"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/default/header-bottom.php:22
+#: wptouch-pro-3-extras/themes/bio/default/header-bottom.php:14
+#: wptouch-pro-3-extras/themes/bio/default/header-bottom.php:25
+#: wptouch-pro-3-extras/themes/classic-redux/default/header-bottom.php:46
+#: wptouch-pro-3-extras/themes/classic-redux/default/header-bottom.php:78
+#: wptouch-pro-3-extras/themes/hammock/default/header-bottom.php:42
+#: wptouch-pro-3-extras/themes/scaffold/default/header-bottom.php:14
+#: wptouch-pro-3-extras/themes/scaffold/default/header-bottom.php:25
+msgid "Search"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/default/header-bottom.php:40
+#: wptouch-pro-3-extras/themes/bauhaus/default/header-bottom.php:42
+#: wptouch-pro-3-extras/themes/classic-redux/default/header-bottom.php:53
+#: wptouch-pro-3-extras/themes/hammock/default/header-bottom.php:51
+#: wptouch-pro-3-extras/themes/simple/default/header-bottom.php:24
+msgid "Logout"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/default/post-loop.php:19
+#: wptouch-pro-3-extras/themes/bio/default/post-loop.php:19
+#: wptouch-pro-3-extras/themes/classic-redux/default/post-loop.php:24
+msgid "by"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/default/search.php:14
+msgid "Show %s Results"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/default/search.php:38
+msgid "No results found"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/default/single.php:25
+msgid "no comments"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/default/single.php:25
+msgid "1 comment"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/default/single.php:25
+msgid "% comments"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/default/single.php:44
+#: wptouch-pro-3-extras/themes/classic-redux/default/header-bottom.php:35
+#: wptouch-pro-3-extras/themes/classic-redux/default/header-bottom.php:61
+#: wptouch-pro-3-extras/themes/hammock/default/header-bottom.php:39
+msgid "Categories"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/default/single.php:47
+#: wptouch-pro-3-extras/themes/classic-redux/default/header-bottom.php:39
+#: wptouch-pro-3-extras/themes/classic-redux/default/header-bottom.php:68
+msgid "Tags"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/root-functions.php:118
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:97
+#: wptouch-pro-3-extras/themes/hammock/root-functions.php:72
+msgid "Header Menu"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/root-functions.php:120
+#: wptouch-pro-3-extras/themes/bio/root-functions.php:89
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:99
+#: wptouch-pro-3-extras/themes/cms/root-functions.php:116
+#: wptouch-pro-3-extras/themes/cms/root-functions.php:125
+#: wptouch-pro-3-extras/themes/hammock/root-functions.php:74
+#: wptouch-pro-3-extras/themes/scaffold/root-functions.php:77
+#: wptouch-pro-3-extras/themes/simple/root-functions.php:60
+#: wptouch-pro-3-extras/themes/simple/root-functions.php:71
+msgid "Choose a menu"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/root-functions.php:121
+msgid "Main menu selection"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/root-functions.php:128
+#: wptouch-pro-3-extras/themes/bio/root-functions.php:97
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:107
+#: wptouch-pro-3-extras/themes/cms/root-functions.php:132
+#: wptouch-pro-3-extras/themes/scaffold/root-functions.php:85
+#: wptouch-pro-3-extras/themes/simple/root-functions.php:79
+msgid "Theme background"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/root-functions.php:129
+msgid "Header & Menu"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/root-functions.php:130
+#: wptouch-pro-3-extras/themes/bio/root-functions.php:98
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:108
+#: wptouch-pro-3-extras/themes/cms/root-functions.php:133
+#: wptouch-pro-3-extras/themes/hammock/root-functions.php:84
+#: wptouch-pro-3-extras/themes/scaffold/root-functions.php:86
+#: wptouch-pro-3-extras/themes/simple/root-functions.php:80
+msgid "Links"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/root-functions.php:131
+msgid "Post/Page Headers"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/root-functions.php:232
+msgid "Theme Shapes"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/root-functions.php:238
+msgid "Theme shape style"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/root-functions.php:239
+msgid "Bauhaus will use this shape style throughout its appearance"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/root-functions.php:243
+msgid "Circles"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/root-functions.php:245
+msgid "Rounded squares"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/root-functions.php:264
+#: wptouch-pro-3-extras/themes/bio/root-functions.php:131
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:238
+msgid "Post thumbnails"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/root-functions.php:269
+#: wptouch-pro-3-extras/themes/bio/root-functions.php:136
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:243
+msgid "No thumbnails"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/root-functions.php:270
+#: wptouch-pro-3-extras/themes/bio/root-functions.php:137
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:244
+#: wptouch-pro-3-extras/themes/hammock/root-functions.php:230
+msgid "Blog listing only"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/root-functions.php:271
+#: wptouch-pro-3-extras/themes/bio/root-functions.php:138
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:245
+#: wptouch-pro-3-extras/themes/hammock/root-functions.php:231
+msgid "Blog listing, single posts"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/root-functions.php:272
+#: wptouch-pro-3-extras/themes/bio/root-functions.php:139
+msgid "Blog listing, single posts & pages"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/root-functions.php:273
+#: wptouch-pro-3-extras/themes/bio/root-functions.php:140
+msgid "All (blog, single, pages, search & archive)"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/root-functions.php:281
+#: wptouch-pro-3-extras/themes/bio/root-functions.php:148
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:254
+msgid "Thumbnail Selection"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/root-functions.php:286
+#: wptouch-pro-3-extras/themes/bio/root-functions.php:153
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:259
+msgid "Post featured image"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/root-functions.php:287
+#: wptouch-pro-3-extras/themes/bio/root-functions.php:154
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:260
+msgid "Post custom field"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/root-functions.php:295
+#: wptouch-pro-3-extras/themes/bio/root-functions.php:162
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:268
+msgid "Thumbnail custom field name"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/root-functions.php:306
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:301
+#: wptouch-pro-3-extras/themes/hammock/root-functions.php:262
+msgid "Show post categories and tags"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/root-functions.php:317
+#: wptouch-pro-3-extras/themes/bio/root-functions.php:173
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:279
+#: wptouch-pro-3-extras/themes/hammock/root-functions.php:240
+msgid "Show post date"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/root-functions.php:328
+#: wptouch-pro-3-extras/themes/bio/root-functions.php:184
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:290
+#: wptouch-pro-3-extras/themes/hammock/root-functions.php:251
+msgid "Show post author"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/root-functions.php:339
+#: wptouch-pro-3-extras/themes/bio/root-functions.php:195
+msgid "Show search in header"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/root-functions.php:340
+#: wptouch-pro-3-extras/themes/bio/root-functions.php:196
+msgid "Adds Search capability in the site header."
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/root-functions.php:350
+#: wptouch-pro-3-extras/themes/bio/root-functions.php:206
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:312
+#: wptouch-pro-3-extras/themes/hammock/root-functions.php:285
+msgid "Use infinite scrolling for blog"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bauhaus/root-functions.php:367
+msgid "Show featured slider on front page"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bio/root-functions.php:87
+#: wptouch-pro-3-extras/themes/scaffold/root-functions.php:75
+msgid "Primary Menu"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/bio/root-functions.php:90
+#: wptouch-pro-3-extras/themes/scaffold/root-functions.php:78
+msgid "Menus are awesome!"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/classic-redux/default/header-bottom.php:43
+#: wptouch-pro-3-extras/themes/classic-redux/default/header-bottom.php:88
+msgid "Tweets"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/classic-redux/default/header-bottom.php:92
+msgid "Follow %s on Twitter"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/classic-redux/default/post-loop.php:56
+msgid "Read This Post"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/classic-redux/default/single.php:16
+msgid "%s at %s"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/classic-redux/default/single.php:18
+#: wptouch-pro-3-extras/themes/hammock/default/single.php:21
+msgid "Written by %s"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:6
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:357
+msgid "Tablets"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:106
+#: wptouch-pro-3-extras/themes/cms/root-functions.php:131
+#: wptouch-pro-3-extras/themes/simple/root-functions.php:78
+msgid "Header background"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:246
+#: wptouch-pro-3-extras/themes/hammock/root-functions.php:232
+msgid "All (blog, single, search and archive)"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:323
+msgid "Use rounded corners"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:341
+#: wptouch-pro-3-extras/themes/hammock/root-functions.php:302
+msgid "Show page title areas on pages"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:363
+msgid "Add tablet support"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:375
+#: wptouch-pro-3-extras/themes/hammock/root-functions.php:335
+msgid "Header Menu Area"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:381
+#: wptouch-pro-3-extras/themes/hammock/root-functions.php:341
+msgid "Drop-down button says \"Menu\""
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:389
+msgid "Show tab bar"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:397
+msgid "Tab-bar shows categories or tags"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:402
+msgid "Categories and tags"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:403
+msgid "Categories only"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:404
+msgid "Tags only"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:405
+msgid "No categories or tags"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:411
+msgid "Max categories / tags"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:429
+#: wptouch-pro-3-extras/themes/cms/root-functions.php:242
+#: wptouch-pro-3-extras/themes/simple/root-functions.php:275
+msgid "CSS Effects"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:435
+#: wptouch-pro-3-extras/themes/cms/root-functions.php:248
+msgid "Add a noise effect to the header and theme background"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/classic-redux/root-functions.php:436
+#: wptouch-pro-3-extras/themes/cms/root-functions.php:249
+#: wptouch-pro-3-extras/themes/simple/root-functions.php:282
+msgid "Will apply the effect overtop of any background image you upload."
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/cms/default/header-bottom.php:14
+msgid "menu"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/cms/default/header-bottom.php:21
+msgid "login"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/cms/default/header-bottom.php:25
+msgid "logout"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/cms/default/header-bottom.php:38
+#: wptouch-pro-3-extras/themes/simple/default/footer-top.php:3
+msgid "search this website"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/cms/default/header-bottom.php:39
+#: wptouch-pro-3-extras/themes/simple/default/footer-top.php:5
+msgid "search"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/cms/root-functions.php:49
+msgid "Alt Menu"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/cms/root-functions.php:114
+msgid "Main Menu"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/cms/root-functions.php:123
+msgid "Alternate Menu"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/cms/root-functions.php:171
+msgid "Show titles on pages"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/cms/root-functions.php:186
+msgid "Category Slider"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/cms/root-functions.php:192
+msgid "Enable category slider"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/cms/root-functions.php:205
+#: wptouch-pro-3-extras/themes/simple/root-functions.php:256
+msgid "Tiled Background Image"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/cms/root-functions.php:211
+#: wptouch-pro-3-extras/themes/simple/root-functions.php:262
+msgid "(Scaled for retina displays)"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/cms/root-functions.php:223
+msgid "Alternate Menu Title"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/cms/root-functions.php:229
+msgid "Alternate menu title (if used)"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/cms/root-functions.php:230
+msgid ""
+"If you use a second menu in CMS, this text will be used for the drop-down "
+"button title."
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/cms/root-functions.php:260
+msgid "Static Front Page"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/cms/root-functions.php:266
+msgid "Static front page alternate content"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/cms/root-functions.php:267
+msgid ""
+"Shows after the featured slider (if enabled), and replaces your Static Front "
+"Page content. HTML allowed."
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/hammock/default/header-bottom.php:34
+msgid "Recent"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/hammock/default/header-bottom.php:44
+msgid "Size"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/hammock/default/header-bottom.php:86
+msgid "Go"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/hammock/default/page-content.php:24
+#: wptouch-pro-3-extras/themes/hammock/default/single.php:48
+msgid "Comment on this post"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/hammock/default/page-content.php:26
+#: wptouch-pro-3-extras/themes/hammock/default/single.php:50
+msgid "View Discussion"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/hammock/default/single.php:25
+msgid "%s"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/hammock/root-functions.php:81
+msgid "Site name"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/hammock/root-functions.php:83
+msgid "Content background"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/hammock/root-functions.php:224
+msgid "Display featured image"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/hammock/root-functions.php:229
+msgid "Do not display featured image"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/hammock/root-functions.php:274
+msgid "Show post excerpts in listings"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/hammock/root-functions.php:350
+msgid "Show category list in menu"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/simple/default/front-page.php:14
+msgid "Call Us"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/simple/default/front-page.php:20
+msgid "Our Location"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/simple/default/header-bottom.php:15
+msgid "Toggle Menu"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/simple/root-functions.php:58
+msgid "Site Menu (Pulldown)"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/simple/root-functions.php:61
+msgid "Pull-down menu at top of pages"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/simple/root-functions.php:69
+msgid "Front Page Menu"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/simple/root-functions.php:72
+msgid "Displayed below front page menu and content"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/simple/root-functions.php:185
+msgid "Enable search on blog pages"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/simple/root-functions.php:199
+msgid "Homepage Call Us"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/simple/root-functions.php:205
+msgid "Phone number"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/simple/root-functions.php:206
+msgid ""
+"Enter a phone number and a homepage menu item for 'call us' will be shown."
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/simple/root-functions.php:218
+msgid "Homepage Location"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/simple/root-functions.php:224
+msgid "Map address"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/simple/root-functions.php:225
+msgid ""
+"Enter an address and a homepage menu item for 'Our Location' will be shown."
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/simple/root-functions.php:237
+msgid "Front Page Content"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/simple/root-functions.php:243
+msgid "Front page alternate content"
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/simple/root-functions.php:244
+msgid "Shows above the front page menu (if enabled), HTML allowed."
+msgstr ""
+
+#: wptouch-pro-3-extras/themes/simple/root-functions.php:281
+msgid "Add a light noise effect to the drop-down menu and theme background"
+msgstr ""

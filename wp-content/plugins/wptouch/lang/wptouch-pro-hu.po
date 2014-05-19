@@ -1,0 +1,2581 @@
+# Translation of the WordPress plugin WPtouch Pro 3.0.1 by BraveNewCode Inc..
+# Copyright (C) 2013 BraveNewCode Inc.
+# This file is distributed under the same license as the WPtouch Pro package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: WPtouch Pro 3.0.1\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/wptouch-pro-3\n"
+"POT-Creation-Date: 2014-03-11 19:47:59+00:00\n"
+"PO-Revision-Date: 2014-03-18 15:31+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.6.4\n"
+
+#: admin/html/help.php:1
+msgid "WPtouch Pro Help & Account Links"
+msgstr "WPtouch Pro Segítség & Fiók linkek"
+
+#: admin/html/help.php:3
+msgid "Support Forums"
+msgstr "Támogató fórumok"
+
+#: admin/html/help.php:4
+msgid "Documentation"
+msgstr "Dokumentáció"
+
+#: admin/html/help.php:5
+msgid "Account & Downloads"
+msgstr "Fiók & letöltések"
+
+#: admin/html/help.php:6
+msgid "BraveNewCode on Twitter"
+msgstr "BraveNewCode a Twitteren"
+
+#: admin/html/help.php:7
+msgid "Plugin Licensing Terms"
+msgstr "Plugin licenszfeltételek"
+
+#: admin/html/notification-center.php:5
+msgid "Notifications"
+msgstr "Értesítések"
+
+#: admin/html/notification-content.php:20
+msgid "No notifications"
+msgstr "Nincsenek értesítések"
+
+#: admin/html/plugin-area.php:7
+msgid ""
+"This copy of WPtouch Pro is unlicensed! Please %sactivate your license%s, or "
+"%spurchase a license%s to enable automatic updates and full product support "
+"from us!"
+msgstr ""
+"Ez a WPtouch Pro nem licenszelt! Kérjük %saktiválja a licenszét%s, vagy "
+"%svásárojon egy licenszet%s az automatikus frissítések engedélyezéséhez és a "
+"teljes terméktámogatáshoz!"
+
+#: admin/html/plugin-area.php:9
+msgid ""
+"This copy of WPtouch Pro is unlicensed! Please contact the site "
+"administrator regarding product licensing."
+msgstr ""
+"Ez a WPtouch Pro nem licenszelt! Kérjük lépjen kapcsolatba az oldal "
+"adminisztrátorával a termék licenszeléssel kapcsolatban."
+
+#: admin/pages/custom/wptouch-admin-license.php:9 wptouch-admin-license.php:9
+msgid "License Details"
+msgstr "Licensz részletei"
+
+#: admin/pages/custom/wptouch-admin-license.php:11
+#: wptouch-admin-license.php:11
+msgid "Note"
+msgstr "Megjegyzés"
+
+#: admin/pages/custom/wptouch-admin-license.php:12
+#: wptouch-admin-license.php:12
+msgid "Once you activate, this page will be hidden."
+msgstr "Aktiválás után ez az oldal rejtve lesz."
+
+#: admin/pages/custom/wptouch-admin-license.php:15
+#: wptouch-admin-license.php:15
+msgid "It will only reappear if you reset your WPtouch Pro settings."
+msgstr ""
+"Akkor jelenik meg újra, ha alaphelyzetbe állítja a WPtouch Pro beállításait."
+
+#: admin/pages/custom/wptouch-admin-license.php:18
+#: wptouch-admin-license.php:18
+msgid "Account E-Mail Address"
+msgstr "Fiók email cím"
+
+#: admin/pages/custom/wptouch-admin-license.php:20
+#: wptouch-admin-license.php:20
+msgid "Product License Key"
+msgstr "Termék licenszkulcs"
+
+#: admin/pages/custom/wptouch-admin-license.php:23
+#: admin/settings/html/extension-browser-item.php:87
+#: admin/settings/html/theme-browser-item.php:129 wptouch-admin-license.php:23
+msgid "Activate"
+msgstr "Aktiválás"
+
+#: admin/pages/custom/wptouch-admin-license.php:33
+#: wptouch-admin-license.php:33
+msgid "Success."
+msgstr "Sikerült."
+
+#: admin/pages/custom/wptouch-admin-license.php:34
+#: wptouch-admin-license.php:34
+msgid "Activation Complete. Enjoy WPtouch Pro!"
+msgstr "Az aktiválás befejeződött. Élvezze a WPtouch Pro-t!"
+
+#: admin/pages/custom/wptouch-admin-license.php:38
+#: wptouch-admin-license.php:38
+msgid "E-mail address or license key rejected"
+msgstr "Az E-mail cím vagy a licensz kulcs visszautasítva"
+
+#: admin/pages/custom/wptouch-admin-license.php:39
+#: wptouch-admin-license.php:39
+msgid ""
+"The bravenewcode.com server rejected your E-Mail address and/or License Key. "
+"Please check they are correct and try again."
+msgstr ""
+"A bravenewcode.com kiszolgáló elutasította az email címet és/vagy a "
+"licenszkulcsot. Kérjük ellenőrizze, hogy megfelelőek-e és próbálja újra."
+
+#: admin/pages/custom/wptouch-admin-license.php:43
+#: wptouch-admin-license.php:43
+msgid "No licenses remaining."
+msgstr "Nem maradt több licensz."
+
+#: admin/pages/custom/wptouch-admin-license.php:44
+#: wptouch-admin-license.php:44
+msgid "You have used all your activations. What do you want to do?"
+msgstr ""
+"A bravenewcode.com kiszolgáló szerint Ön felhasználta az összes "
+"aktivációját. Mit szeretne tenni?"
+
+#: admin/pages/custom/wptouch-admin-license.php:45
+#: wptouch-admin-license.php:45
+msgid "Upgrade My License"
+msgstr "Frissíteni a licenszeim"
+
+#: admin/pages/custom/wptouch-admin-license.php:46
+#: wptouch-admin-license.php:46
+msgid "Contact support for assistance"
+msgstr "Segítségért lépjen kapcsolatba az ügyfélszolgálattal"
+
+#: admin/pages/custom/wptouch-admin-license.php:50
+#: wptouch-admin-license.php:50
+msgid "The server is unavailable."
+msgstr "A kiszolgáló nem elérhető."
+
+#: admin/pages/custom/wptouch-admin-license.php:51
+#: wptouch-admin-license.php:51
+msgid "The bravenewcode.com server currently cannot authorize your License."
+msgstr ""
+"A bravenewcode.com kiszolgáló úgy tűnik nem tudja hitelesíteni a licenszét."
+
+#: admin/pages/custom/wptouch-admin-license.php:52
+#: wptouch-admin-license.php:52
+msgid "Please %scontact us%s and let us know about it."
+msgstr "Kérjük %slépjen kapcsolatba velünk%s és mondja el mi történt."
+
+#: admin/pages/wptouch-admin-general-settings.php:3
+#: themes/foundation/root-functions.php:10
+msgid "General"
+msgstr "Általános"
+
+#: admin/pages/wptouch-admin-general-settings.php:4
+msgid "Compatibility"
+msgstr "Kompatibilitás"
+
+#: admin/pages/wptouch-admin-general-settings.php:10
+msgid "Auto-detect"
+msgstr "Automatikus felismerés"
+
+#: admin/pages/wptouch-admin-general-settings.php:47
+msgid "WPtouch Pro site title"
+msgstr "WPtouch Pro oldal címe"
+
+#: admin/pages/wptouch-admin-general-settings.php:48
+msgid ""
+"If the title of your site is long, you can shorten it for display within "
+"WPtouch Pro themes."
+msgstr ""
+"Ha az oldal címe túl hosszú, akkor rövidítheti a megjelenítését a WPtouch "
+"Pro témákon belül."
+
+#: admin/pages/wptouch-admin-general-settings.php:55
+msgid "Display %sPowered by WPtouch Pro%s in footer"
+msgstr "%sPowered by WPtouch Pro%s megjelenítése az oldal alján"
+
+#: admin/pages/wptouch-admin-general-settings.php:66
+msgid "Use my WPtouch Pro referral code to earn commission"
+msgstr "Saját WPtouch Pro jutalékszerző ajánló kód használata."
+
+#: admin/pages/wptouch-admin-general-settings.php:67
+msgid ""
+"Licensed users of WPtouch Pro can earn a commission for each sale they "
+"generate from their mobile website"
+msgstr ""
+"A WPtouch Pro licensszel rendelkező felhasználók minden egyes saját mobil "
+"weboldalról generált eladás után jutalékot szerezhetnek."
+
+#: admin/pages/wptouch-admin-general-settings.php:75
+msgid "Site Title & Byline"
+msgstr "Oldalcím &  szerző"
+
+#: admin/pages/wptouch-admin-general-settings.php:84
+msgid "Regionalization"
+msgstr "Regionális"
+
+#: admin/pages/wptouch-admin-general-settings.php:90
+msgid "Language"
+msgstr "Nyelv"
+
+#: admin/pages/wptouch-admin-general-settings.php:91
+msgid ""
+"The WPtouch Pro admin panel &amp; supported themes will be shown in this "
+"locale."
+msgstr ""
+"A WPtouch Pro admin panel &amp; támogatott témái ezen a nyelven fognak "
+"megjelenni."
+
+#: admin/pages/wptouch-admin-general-settings.php:99
+msgid "Translate administration panel text"
+msgstr "Admin panel szövegének fordítása"
+
+#: admin/pages/wptouch-admin-general-settings.php:110
+msgid "Display Mode"
+msgstr "Megjelenés módja"
+
+#: admin/pages/wptouch-admin-general-settings.php:116
+msgid "Theme Display"
+msgstr "Téma megjelenés"
+
+#: admin/pages/wptouch-admin-general-settings.php:121
+msgid "Normal (active for all mobile visitors)"
+msgstr "Normál (minden mobillátogató számára aktív)"
+
+#: admin/pages/wptouch-admin-general-settings.php:122
+msgid "Preview (active only for logged-in site administrators)"
+msgstr "Előnézet (csak a bejelentkezett adminisztrátorok számára aktív)"
+
+#: admin/pages/wptouch-admin-general-settings.php:123
+msgid "Disabled (mobile theme will never show)"
+msgstr "Letiltva (a mobil téma soha nem fog megjelenni)"
+
+#: admin/pages/wptouch-admin-general-settings.php:132
+msgid "Landing Page"
+msgstr "Nyitóoldal"
+
+#: admin/pages/wptouch-admin-general-settings.php:138
+msgid "WPtouch Pro landing page"
+msgstr "WPtouch Pro nyitóoldal"
+
+#: admin/pages/wptouch-admin-general-settings.php:143
+msgid "Default (same as WordPress)"
+msgstr "Alapértelemezett (ugyanaz, mint a WordPressben)"
+
+#: admin/pages/wptouch-admin-general-settings.php:144
+msgid "Select from WordPress pages"
+msgstr "Kiválasztás WordPress oldalakból"
+
+#: admin/pages/wptouch-admin-general-settings.php:145
+msgctxt "Refers to a custom landing page"
+msgid "Custom"
+msgstr "Egyéni"
+
+#: admin/pages/wptouch-admin-general-settings.php:152
+msgid "Custom Slug or URL"
+msgstr "Egyéni oldal azonosító vagy URL"
+
+#: admin/pages/wptouch-admin-general-settings.php:153
+msgid "Enter a Slug (i.e. \"/home\") or a full URL path"
+msgstr ""
+"Adjon meg egy oldal azonosítót (pl. \"/home\") vagy a teljes URL elérési utat"
+
+#: admin/pages/wptouch-admin-general-settings.php:163
+msgid "Desktop / Mobile Switching"
+msgstr "Asztali / Mobil kapcsoló"
+
+#: admin/pages/wptouch-admin-general-settings.php:169
+msgid "1st time visitors see desktop theme"
+msgstr "Az első látogatók az asztali témát látják"
+
+#: admin/pages/wptouch-admin-general-settings.php:170
+msgid "Your regular theme will be shown to 1st time mobile visitors."
+msgstr "Az első mobil látogatóknak az általános téma fog megjelenni."
+
+#: admin/pages/wptouch-admin-general-settings.php:177
+msgid "Show switch link in mobile view"
+msgstr "Mutassa a kapcsoló hivatkozást mobil nézetnél"
+
+#: admin/pages/wptouch-admin-general-settings.php:178
+msgid ""
+"Will show toggle buttons in the theme's footer allowing users to switch to "
+"your desktop theme. Is not shown in Web-App Mode."
+msgstr ""
+"Megjeleníti az oldal alján a kapcsoló gombokat, és engedélyezi a "
+"felhasználóknak az asztali témára való átváltást. Web-alkalmazás módban nem "
+"jelenik meg. "
+
+#: admin/pages/wptouch-admin-general-settings.php:185
+msgid "Choose the target for the mobile switch link"
+msgstr "Válasszon célt a mobil kapcsoló hivatkozáshoz"
+
+#: admin/pages/wptouch-admin-general-settings.php:190
+msgid "Current page"
+msgstr "Aktuális oldal"
+
+#: admin/pages/wptouch-admin-general-settings.php:191
+msgid "Home page"
+msgstr "Kezdőoldal"
+
+#: admin/pages/wptouch-admin-general-settings.php:197
+msgid "Desktop theme switch buttons"
+msgstr "Asztali téma kapcsoló gombok"
+
+#: admin/pages/wptouch-admin-general-settings.php:198
+msgid ""
+"Allows visitors to switch from your desktop theme to your mobile theme. You "
+"can also customize the placement of Switch buttons by placing the "
+"wptouch_desktop_switch_link() template tag somewhere in your desktop theme."
+msgstr ""
+"Engedélyezi a látogatóknak, hogy átváltsanak az asztali témáról a mobil "
+"témára. Az átkapcsoló gomb elhelyezkedését is testre szabhatja a "
+"wptouch_switch_link() sablon tag asztali témában való elhelyezésévél."
+
+#: admin/pages/wptouch-admin-general-settings.php:202
+msgid "Automatically inserted inline"
+msgstr "Automatikus beágyazás"
+
+#: admin/pages/wptouch-admin-general-settings.php:203
+msgid "Automatically inserted with AJAX (better for caching)"
+msgstr "Automatikusan AJAX-szal beszúrva (jobb a gyorsítótárhoz)"
+
+#: admin/pages/wptouch-admin-general-settings.php:204
+msgid "Template tag"
+msgstr "Sablon címke"
+
+#: admin/pages/wptouch-admin-general-settings.php:213
+msgid "Custom Code"
+msgstr "Egyéni kód"
+
+#: admin/pages/wptouch-admin-general-settings.php:219
+msgid "HTML, JavaScript, statistics or custom code"
+msgstr "HTML, JavaScript, statisztikák vagy egyéni kód"
+
+#: admin/pages/wptouch-admin-general-settings.php:220
+msgid "Enter any custom code here to be output in the theme footer."
+msgstr "Adja meg a téma láblécéhez tartozó egyéni kódot."
+
+#: admin/pages/wptouch-admin-general-settings.php:230
+msgid "Custom Stylesheet"
+msgstr "Egyéni stíluslapok"
+
+#: admin/pages/wptouch-admin-general-settings.php:236
+msgid "URL to a custom CSS file to load"
+msgstr "URL a betöltendő egyéni CSS fájlhoz"
+
+#: admin/pages/wptouch-admin-general-settings.php:237
+msgid "Useful if you have specific compatibility CSS you need to add."
+msgstr ""
+"Hasznos, ha valamilyen különleges kompatibilis CSS hozzáadására van szükség."
+
+#: admin/pages/wptouch-admin-general-settings.php:247
+msgid "Shortcodes"
+msgstr "Rövidkódok"
+
+#: admin/pages/wptouch-admin-general-settings.php:253
+msgid "Remove these shortcodes when WPtouch Pro is active"
+msgstr "Távolítsa el ezeket a rövidkódokat, amikor a WPtouch Pro aktív"
+
+#: admin/pages/wptouch-admin-general-settings.php:254
+msgid "Enter a comma separated list of shortcodes to remove."
+msgstr "Vesszővel elválasztva adja meg az eltávolítandó rövidkódokat."
+
+#: admin/pages/wptouch-admin-general-settings.php:264
+msgid "Ignored URLs"
+msgstr "Figyelmen kívül hagyott URL-ek"
+
+#: admin/pages/wptouch-admin-general-settings.php:270
+msgid "Do not load WPtouch Pro on these URLs/Pages"
+msgstr "Ezen URL/oldalak esetén ne töltse be a WPtouch Pro-t"
+
+#: admin/pages/wptouch-admin-general-settings.php:271
+msgid ""
+"Each permalink URL fragment should be on its own line and relative, e.g. \"/"
+"about\" or \"/products/store\""
+msgstr ""
+"Minden közvetlen link URL töredéknek a saját vonalán relatíven kellene "
+"lenni, pl. \"/about\" vagy \"/products/store\""
+
+#: admin/pages/wptouch-admin-general-settings.php:281
+msgid "Desktop Theme"
+msgstr "Asztali téma"
+
+#: admin/pages/wptouch-admin-general-settings.php:287
+msgid "Try to include desktop theme functions.php file"
+msgstr "Megpróbálja használni az asztali téma functions.php fájlját"
+
+#: admin/pages/wptouch-admin-general-settings.php:288
+msgid ""
+"This may be required for desktop themes with unique features that are not "
+"showing when WPtouch Pro is active."
+msgstr ""
+"Erre akkor lehet szükség, ha az asztali témák egyedi funkciói nem látszódnak "
+"amikor a WPtouch Pro aktív."
+
+#: admin/pages/wptouch-admin-general-settings.php:295
+msgid "Method to load file"
+msgstr "Fájlbetöltés módszere"
+
+#: admin/pages/wptouch-admin-general-settings.php:300
+msgid "Include file directly"
+msgstr "Közvetlenül tartalmazza a fájlt"
+
+#: admin/pages/wptouch-admin-general-settings.php:301
+msgid "Translate and create new files"
+msgstr "Fordítás és új fájlok létrehozása"
+
+#: admin/pages/wptouch-admin-general-settings.php:310
+msgid "Custom User-Agents"
+msgstr "Egyéni böngésző azonosítók"
+
+#: admin/pages/wptouch-admin-general-settings.php:316
+msgid "User-agents (line separated)"
+msgstr "Böngésző azonosítók (soronként elválasztva)"
+
+#: admin/pages/wptouch-admin-general-settings.php:317
+msgid ""
+"Adding additional user-agents will force WPtouch Pro to be active for "
+"matching browsers."
+msgstr ""
+"További böngésző azonosító hozzáadása kényszeríteni fogja a WPtouch Pro "
+"aktiválását az egyező böngészőknél."
+
+#: admin/pages/wptouch-admin-general-settings.php:331
+msgid "Backup &amp; Import"
+msgstr "Mentés &amp; importálás"
+
+#: admin/pages/wptouch-admin-general-settings.php:337
+msgid "Automatically backup settings to the %s folder"
+msgstr "Beállítások automatikus mentése a %s mappába"
+
+#: admin/pages/wptouch-admin-general-settings.php:339
+msgid "WPtouch Pro backups your settings each time they are saved."
+msgstr ""
+"A WPtouch Pro biztonsági másolatot készít a beállításokról minden "
+"alkalommal, amikor mentésre kerülnek."
+
+#: admin/pages/wptouch-admin-general-settings.php:350
+msgid "Tools &amp; Debug"
+msgstr "Eszközök &amp; hibakeresés"
+
+#: admin/pages/wptouch-admin-general-settings.php:356
+msgid ""
+"Use jQuery 2.0 in themes (faster for mobile devices) instead of WordPress' "
+"version"
+msgstr ""
+"Használja a jQuery 2.0-t a témáknál (mobil eszközöknél gyorsabb) a WordPress "
+"verzió helyett"
+
+#: admin/pages/wptouch-admin-general-settings.php:357
+msgid ""
+"jQuery 2.0 is significantly smaller and faster than previous jQuery versions "
+"- may cause problems with other plugins, use carefully."
+msgstr ""
+"A jQery 2.0 jelentősen kisebb és gyorsabb, mint a korábbi jQuery verziók - "
+"de problémát okozhat egyéb beépülőkket, ezért csak óvatosan."
+
+#: admin/pages/wptouch-admin-general-settings.php:364
+msgid "Show load times and query counts in the footer"
+msgstr "Mutassa a betöltési időket és lekérdezések számlálóját az alsó sávban"
+
+#: admin/pages/wptouch-admin-general-settings.php:365
+msgid "Helps you find slow pages/posts on your site."
+msgstr "Segít az oldalon lévő lassú oldalalk/bejegyzések megtalálásában."
+
+#: admin/pages/wptouch-admin-general-settings.php:372
+msgid "Enable debug log"
+msgstr "Hibakeresés naplózás engedélyezése"
+
+#: admin/pages/wptouch-admin-general-settings.php:373
+msgid "Creates a debug file to help diagnose installation issues."
+msgstr ""
+"Hibakereső fájl létrehozása a telepítési problémák diagnosztizálásához."
+
+#: admin/pages/wptouch-admin-general-settings.php:384
+msgid "WordPress Plugins"
+msgstr "WordPress beépülők"
+
+#: admin/pages/wptouch-admin-general-settings.php:397
+msgid "Admin Mode"
+msgstr "Admin mód"
+
+#: admin/pages/wptouch-admin-general-settings.php:403
+msgid "Admin panel settings shown"
+msgstr "Admin panel beállításainak mutatása"
+
+#: admin/pages/wptouch-admin-general-settings.php:408
+msgid "Default"
+msgstr "Alapértelmezett"
+
+#: admin/pages/wptouch-admin-general-settings.php:409
+#: admin/settings/html/button.php:5 admin/settings/html/checkbox.php:6
+#: admin/settings/html/custom-latest-posts.php:4
+#: admin/settings/html/list.php:16 admin/settings/html/numeric.php:12
+#: admin/settings/html/radiolist.php:12 admin/settings/html/text.php:8
+#: admin/settings/html/textarea.php:8
+msgid "Advanced"
+msgstr "Haladó"
+
+#: admin/pages/wptouch-admin-menus.php:3
+msgid "Theme Menus"
+msgstr "Téma menük"
+
+#: admin/pages/wptouch-admin-menus.php:4
+msgid "Menu Setup"
+msgstr "Menü beállítások"
+
+#: admin/pages/wptouch-admin-menus.php:5
+msgid "Icon Upload & Sets"
+msgstr "Ikon feltöltés & készletek"
+
+#: admin/pages/wptouch-admin-menus.php:22
+msgid "WordPress Pages"
+msgstr "WordPress oldalak"
+
+#: admin/pages/wptouch-admin-menus.php:28
+#: admin/settings/html/icon_menu_area.php:6
+#: pro/modules/advertising/advertising.php:180
+#: themes/foundation/modules/media/media.php:59
+msgid "None"
+msgstr "Nincs"
+
+#: admin/pages/wptouch-admin-menus.php:66
+msgid "Menu Options"
+msgstr "Menü opciók"
+
+#: admin/pages/wptouch-admin-menus.php:72
+msgid "Enable parent items as links"
+msgstr "Szülő elemek linkjeinek engedélyezése"
+
+#: admin/pages/wptouch-admin-menus.php:73
+msgid "If disabled, parent menu items will only toggle child items."
+msgstr ""
+"Ha le van tiltva, akkor a szülő menüelemek csak gyermek elemeket fogják "
+"megjeleníteni"
+
+#: admin/pages/wptouch-admin-menus.php:80
+msgid "Use menu icons"
+msgstr "Menü ikonok használata"
+
+#: admin/pages/wptouch-admin-menus.php:104
+msgid "Icon Upload"
+msgstr "Ikon feltöltés"
+
+#: admin/pages/wptouch-admin-menus.php:117
+msgid "Uploaded Icons"
+msgstr "Feltöltött ikonok"
+
+#: admin/pages/wptouch-admin-menus.php:130
+msgid "Icon Sets"
+msgstr "Ikon készletek"
+
+#: admin/pages/wptouch-admin-themes-and-addons.php:3
+msgid "Themes"
+msgstr "Témák"
+
+#: admin/pages/wptouch-admin-themes-and-addons.php:4
+msgid "Extensions"
+msgstr "Bővítmények"
+
+#: admin/pages/wptouch-admin-touchboard.php:3 core/admin-menu.php:35
+#: core/admin-menu.php:39
+msgid "What's New"
+msgstr "Újdonságok"
+
+#: admin/settings/html/backup.php:1
+msgid "Download Backup File"
+msgstr "Mentés fájl letöltése"
+
+#: admin/settings/html/backup.php:2
+msgid "Restore Backup File"
+msgstr "Biztonsági másolat visszaállítása"
+
+#: admin/settings/html/button.php:6 admin/settings/html/checkbox.php:7
+#: admin/settings/html/custom-latest-posts.php:8
+#: admin/settings/html/list.php:20 admin/settings/html/numeric.php:16
+#: admin/settings/html/radiolist.php:14 admin/settings/html/text.php:9
+#: admin/settings/html/textarea.php:9
+msgid "New"
+msgstr "Új"
+
+#: admin/settings/html/color.php:6
+msgid "Undo"
+msgstr "Visszavon"
+
+#: admin/settings/html/color.php:7
+msgid "Desktop theme colors"
+msgstr "Asztali téma színei"
+
+#: admin/settings/html/color.php:7
+msgid "Palette"
+msgstr "Paletta"
+
+#: admin/settings/html/custom-latest-posts.php:1
+msgid "Custom latest posts page"
+msgstr "Egyéni legújabb bejegyzések oldal"
+
+#: admin/settings/html/custom_icon_management.php:3
+msgid "No icons have been uploaded yet"
+msgstr "Még nem lettek feltöltve ikonok"
+
+#: admin/settings/html/custom_icon_management.php:12
+#: admin/settings/html/image-upload.php:13
+#: admin/settings/html/theme-browser-item.php:137
+msgid "Delete"
+msgstr "Törlés"
+
+#: admin/settings/html/custom_icon_upload.php:3
+msgid "Upload Icon"
+msgstr "Ikon feltöltése"
+
+#: admin/settings/html/custom_icon_upload.php:4
+#: admin/settings/html/image-upload.php:15
+msgid "Upload Complete!"
+msgstr "Feltöltés befejeződött!"
+
+#: admin/settings/html/custom_icon_upload.php:9
+msgid "Ready to upload"
+msgstr "Készen áll a feltöltésre"
+
+#: admin/settings/html/debuginfo.php:12
+msgid "View Debug File"
+msgstr "Hibakeresés fájl megtekintése"
+
+#: admin/settings/html/debuginfo.php:16 admin/settings/html/debuginfo.php:18
+msgid "Your Server Configuration"
+msgstr "A kiszolgáló beállításai"
+
+#: admin/settings/html/extension-browser-item.php:36
+#: admin/settings/html/theme-browser-item.php:49
+msgid "Updating..."
+msgstr "Frissítés..."
+
+#: admin/settings/html/extension-browser-item.php:36
+msgid "Upgrade to %s"
+msgstr "Frissítés %s verzióra"
+
+#: admin/settings/html/extension-browser-item.php:38
+#: admin/settings/html/theme-browser-item.php:54
+msgid "Download %s Update"
+msgstr "%s frissítés letöltése"
+
+#: admin/settings/html/extension-browser-item.php:45
+#: admin/settings/html/installed_icon_sets_ajax.php:8
+#: admin/settings/html/installed_icon_sets_ajax.php:20
+#: admin/settings/html/theme-browser-item.php:68
+msgid "by %s"
+msgstr "Készítette: %s"
+
+#: admin/settings/html/extension-browser-item.php:51
+msgid "Extension location: %s"
+msgstr "Bővítmények helye: %s"
+
+#: admin/settings/html/extension-browser-item.php:52
+#: admin/settings/html/theme-browser-item.php:76
+msgid "Relative to your WordPress wp-content directory."
+msgstr "Relatív a WordPress wp-content könyvtárhoz."
+
+#: admin/settings/html/extension-browser-item.php:61
+#: admin/settings/html/theme-browser-item.php:88
+msgid "Available in WPtouch Pro"
+msgstr "Elérhető a WPtouch Pro-val"
+
+#: admin/settings/html/extension-browser-item.php:65
+#: admin/settings/html/theme-browser-item.php:92
+msgid "More Info"
+msgstr "További információk"
+
+#: admin/settings/html/extension-browser-item.php:68
+#: admin/settings/html/theme-browser-item.php:96
+msgid "Upgrade License"
+msgstr "Licenszek bővítése"
+
+#: admin/settings/html/extension-browser-item.php:70
+#: admin/settings/html/theme-browser-item.php:98
+msgid "Get License"
+msgstr "Licensz beszerzése"
+
+#: admin/settings/html/extension-browser-item.php:78
+#: admin/settings/html/theme-browser-item.php:111
+msgid "Downloading..."
+msgstr "Letöltés..."
+
+#: admin/settings/html/extension-browser-item.php:78
+#: admin/settings/html/installed_icon_sets_ajax.php:21
+#: admin/settings/html/theme-browser-item.php:112
+msgid "Install"
+msgstr "Telepít"
+
+#: admin/settings/html/extension-browser-item.php:80
+#: admin/settings/html/theme-browser-item.php:115
+msgid "Download"
+msgstr "Letöltés"
+
+#: admin/settings/html/extension-browser-item.php:90
+#: admin/settings/html/theme-browser-item.php:125
+msgid "Setup"
+msgstr "Beállítás"
+
+#: admin/settings/html/extension-browser-item.php:91
+msgid "Deactivate"
+msgstr "Deaktiválás"
+
+#: admin/settings/html/extension-browser.php:2
+#: admin/settings/html/theme-browser.php:2
+msgid ""
+"Your server configuration is preventing WPtouch Pro from installing and "
+"updating from the Cloud. %sPlease visit %sthis article%s to follow the steps "
+"to enable Cloud install, or you can manually download and install into the "
+"wptouch-data/%s directory."
+msgstr ""
+"A szerver beállítások megakadályozzák a WPtouch Pro automatikus telepítését "
+"és frissítését a Felhőből. A megoldáshoz %skérjük látogasson el és %solvassa "
+"el ezt a cikket%s vagy manuálisan töltse le és telepítse a wptouch-data/%s "
+"könyvtárba."
+
+#: admin/settings/html/extension-browser.php:13
+msgid "Loading Cloud Extensions"
+msgstr "Felhő bővítmények betöltése"
+
+#: admin/settings/html/icon_menu_area.php:5
+msgid "Check All"
+msgstr "Összes ellenőrzése"
+
+#: admin/settings/html/icon_menu_area.php:7
+msgid "Reset"
+msgstr "Visszaállít"
+
+#: admin/settings/html/icon_menu_area.php:9
+msgid "Menu"
+msgstr "Menü"
+
+#: admin/settings/html/icon_menu_area.php:19
+msgid "Active menus used in this theme."
+msgstr "A témában használt aktív menük."
+
+#: admin/settings/html/icon_menu_area.php:23
+msgid "Show/Hide"
+msgstr "Mutat/Elrejt"
+
+#: admin/settings/html/icon_menu_area.php:24
+msgid "Menu Item"
+msgstr "Menü elem"
+
+#: admin/settings/html/icon_menu_area.php:44
+msgid "Icon Set"
+msgstr "Ikon készlet"
+
+#: admin/settings/html/icon_menu_area.php:54
+msgid "Drag icons to associate them with menu items"
+msgstr "Húzza át az ikonokat a menüelemekkel való társításhoz"
+
+#: admin/settings/html/icon_menu_area.php:79
+msgid "You don't have any custom icons yet."
+msgstr "Még nincsenek egyéni ikonok."
+
+#: admin/settings/html/icon_menu_area.php:94
+msgid "Default Icon"
+msgstr "Alapértelmezett ikon"
+
+#: admin/settings/html/icon_menu_area.php:95
+msgid "applies to all unset icons"
+msgstr "érvényesül az összes be nem állított ikonnál"
+
+#: admin/settings/html/icon_menu_area.php:103
+msgid "Trash"
+msgstr "Lomtár"
+
+#: admin/settings/html/icon_menu_area.php:104
+msgid "drag icon here to reset"
+msgstr "húzza ide az ikont a visszaállításhoz"
+
+#: admin/settings/html/image-upload.php:11
+msgid "Upload"
+msgstr "Feltöltés"
+
+#: admin/settings/html/installed_icon_sets.php:2
+msgid "Gathering information about available icon sets..."
+msgstr "Információ gyűjtése az elérhető ikon készletekről..."
+
+#: admin/settings/html/installed_icon_sets.php:4 core/notifications.php:215
+msgid ""
+"The %s%s%s directory is not currently writable. %sPlease fix this issue to "
+"enable installation of additional icon sets."
+msgstr ""
+"A %s%s%s mappa nem írható. %sKérjük javítsa ezt a problémát a további "
+"ikonkészletek telepítésének engedélyezéséhez."
+
+#: admin/settings/html/installed_icon_sets_ajax.php:4
+#: core/class-wptouch-pro.php:1522 core/class-wptouch-pro.php:1523
+#: core/config.php:53
+msgid "Custom Icons"
+msgstr "Egyéni ikonok"
+
+#: admin/settings/html/installed_icon_sets_ajax.php:9
+#: admin/settings/html/installed_icon_sets_ajax.php:22
+msgid "Installed"
+msgstr "Telepítve"
+
+#: admin/settings/html/installed_icon_sets_ajax.php:21
+msgid "Installing..."
+msgstr "Telepítés..."
+
+#: admin/settings/html/installed_icon_sets_ajax.php:23
+msgid "Unable to Install"
+msgstr "Nem lehet telepíteni"
+
+#: admin/settings/html/plugin-compat-ajax.php:11
+#: themes/foundation/modules/custom-posts/custom-posts.php:64
+msgid "Enable %s"
+msgstr "%s engedélyzése"
+
+#: admin/settings/html/plugin-compat-ajax.php:12
+msgid ""
+"When unchecked, %s will be disabled for users viewing your WPtouch Pro theme."
+msgstr ""
+"Ha nincs bejelölve, akkor a(z) %s nem lesz elérhető a WPtouch Pro témát néző "
+"felhasználóknak."
+
+#: admin/settings/html/plugin-compat-ajax.php:20
+msgid "No plugins to disable."
+msgstr "Nincs letiltandó beépülő."
+
+#: admin/settings/html/plugin-compat.php:3
+msgid "Your active plugin list is refreshing"
+msgstr "Az aktív beépülők listája frissül"
+
+#: admin/settings/html/redirect.php:17
+msgid "WordPress Page"
+msgstr "WordPress oldal"
+
+#: admin/settings/html/restore.php:2
+msgid ""
+"Please paste your encoded settings below and save to restore your settings."
+msgstr ""
+"Kérjük illessze be lentebb a kódolt beállításokat és mentse el a beállítások "
+"visszaállításához."
+
+#: admin/settings/html/theme-browser-item.php:6
+#: admin/settings/html/theme-browser-item.php:10
+msgid "Click to view screenshots"
+msgstr "Kattintson ide a képernyőképek megtekintéséhez"
+
+#: admin/settings/html/theme-browser-item.php:51
+msgid "Update to %s"
+msgstr "Frissítés %s verzióra"
+
+#: admin/settings/html/theme-browser-item.php:63
+msgid "This theme supports %s devices"
+msgstr "Ez a téma támogatott a %s eszközökön."
+
+#: admin/settings/html/theme-browser-item.php:75
+msgid "Theme location: %s"
+msgstr "Téma helye: %s"
+
+#: admin/settings/html/theme-browser-item.php:103
+msgid "Buy Now"
+msgstr "Vásárlás most"
+
+#: admin/settings/html/theme-browser-item.php:133
+msgid "Copy"
+msgstr "Másolás"
+
+#: admin/settings/html/theme-browser.php:14
+msgid "Loading Cloud Themes"
+msgstr "Felhő témák betöltése"
+
+#: admin/settings/html/touchboard.php:6
+msgid "Quick Links"
+msgstr "Gyors Hivatkozások"
+
+#: admin/settings/html/touchboard.php:8
+msgid "What's New Changelog"
+msgstr "WPtouch Pro kiadási megjegyzések"
+
+#: admin/settings/html/touchboard.php:10
+msgid "Look at Pro Themes"
+msgstr "Felhő témák megtekintése"
+
+#: admin/settings/html/touchboard.php:11
+msgid "Look at Pro Extensions"
+msgstr "Felhő bővítmények megtekintése"
+
+#: admin/settings/html/touchboard.php:12
+msgid "Look at Pro Features"
+msgstr "Pro funkciók megtekintése"
+
+#: admin/settings/html/touchboard.php:14
+msgid "Product Support"
+msgstr "Terméktámogatás"
+
+#: admin/settings/html/touchboard.php:16
+msgid "Product Knowledgebase"
+msgstr "Termék Tudástár"
+
+#: admin/settings/html/touchboard.php:17
+msgid "Manage Account"
+msgstr "Fiók kezelése"
+
+#: admin/settings/html/touchboard.php:18
+msgid "Manage License"
+msgstr "Licenszek kezelése"
+
+#: admin/settings/html/touchboard.php:20
+msgid "WPtouch User Guide"
+msgstr "WPtouch felhasználói útmutató"
+
+#: admin/settings/html/touchboard.php:27
+msgid "WPtouch News"
+msgstr "WPtouch hírek"
+
+#: admin/settings/html/touchboard.php:28
+msgid "Read More"
+msgstr "Olvassa tovább"
+
+#: admin/settings/html/touchboard.php:45
+msgid "What's New in %s"
+msgstr "Újdonságok a(z) %s verzióban"
+
+#: admin/settings/html/touchboard.php:49 admin/settings/html/touchboard.php:51
+#: core/admin-menu.php:60
+msgid "License"
+msgstr "Licensz"
+
+#: admin/settings/html/touchboard.php:49
+msgid "Unlicensed"
+msgstr "Nem licenszelt"
+
+#: admin/settings/html/touchboard.php:49 core/class-wptouch-pro.php:576
+msgid "Offline"
+msgstr "Offline"
+
+#: admin/settings/html/touchboard.php:51
+msgid "Active"
+msgstr "Aktív"
+
+#: admin/settings/html/touchboard.php:51
+msgid "Online"
+msgstr "Online"
+
+#: admin/settings/html/touchboard.php:61
+msgid "%s Change Log"
+msgstr "%s változások"
+
+#: admin/settings/html/user-agent-list.php:4
+#: admin/settings/html/user-agent-list.php:6
+msgid ""
+"WPtouch Pro will be active when any of the following user-agents or user-"
+"agent combinations are matched"
+msgstr ""
+"A WPtouch Pro aktív lesz, ha valamelyik alábbi böngésző azonosító megegyezik"
+
+#: admin/settings/include/custom-latest-posts.php:14
+msgid "None (Use WordPress Settings)"
+msgstr "Nincs (WordPress beállítások használata)"
+
+#: core/addon-theme-installer.php:161
+msgid "No server support for directly downloading new Cloud packages."
+msgstr "Nincs szerver támogatás a Felhő csomagok közvetlen letöltéséhez."
+
+#: core/addon-theme-installer.php:166
+msgid ""
+"Unable to write to directory %s. Try relaxing permissions to allow writing "
+"to this location."
+msgstr ""
+"A(z) %s mappába írás sikertelen. Próbálja meg beállítani a jogosultságokat, "
+"hogy engedélyezi az írási műveleteket erre a helyre. "
+
+#: core/addon-theme-installer.php:171
+msgid "No server support for unzipping files."
+msgstr "A fájlok kicsomagolásához nincs szerver támogatás."
+
+#: core/addon-theme-installer.php:181
+msgid "Unable to download the Cloud package."
+msgstr "A Felhő csomag letöltése sikertelen."
+
+#: core/admin-ajax.php:189
+msgid "Version %s"
+msgstr "Verzió: %s"
+
+#: core/admin-ajax.php:195
+msgid ""
+"There is a temporary issue retrieving the change-log.  Please try again "
+"later."
+msgstr ""
+"Ideiglenes probléma történt a kiadási megjegyzések betöltése közben. Kérjük "
+"próbálja meg később."
+
+#: core/admin-menu.php:40
+msgid "Core Settings"
+msgstr "Motor beállítások"
+
+#: core/admin-menu.php:41
+msgid "Themes & Extensions"
+msgstr "Témák és bővítmények"
+
+#: core/admin-menu.php:42
+msgid "Theme Settings"
+msgstr "Téma beállítások"
+
+#: core/admin-menu.php:42
+msgid "%s Settings"
+msgstr "%s beállítások"
+
+#: core/admin-menu.php:47
+msgid "Extension Settings"
+msgstr "Bővítmény beállítások"
+
+#: core/admin-menu.php:52 core/admin-menu.php:54
+msgid "Menus"
+msgstr "Menük"
+
+#: core/admin-menu.php:65
+msgid "Upgrade to Pro"
+msgstr "Frissítés Pro verzióra"
+
+#: core/admin-page-templates.php:16
+msgid "Mobile Page Template"
+msgstr "Mobil oldal sablon"
+
+#: core/admin-render.php:25
+msgid "This copy of %s is currently unlicensed!"
+msgstr "Ez a %s jelenleg nem licenszelt!"
+
+#: core/admin-render.php:27
+msgid "Add a license %s"
+msgstr "Licensz hozzáadása: %s"
+
+#: core/admin-render.php:81
+msgid "Save Changes"
+msgstr "Változások mentése"
+
+#: core/admin-render.php:82
+msgid "Preview Theme"
+msgstr "Téma előnézet"
+
+#: core/admin-render.php:83
+msgid "Reset Settings"
+msgstr "Beállítások visszaállítása"
+
+#: core/class-wptouch-pro.php:336
+msgid ""
+"Automatic theme migration from uploads/wptouch-data directory failed. Please "
+"manually move these files to wp-content/wptouch-data, or %scontact support%s "
+"to address this issue."
+msgstr ""
+"Az automatikus téma migráció az uploads/wptouch-data könyvtárból sikertelen. "
+"Kérjük manuálisan helyezze át ezeket a fájlokat a wp-content/wptouch data "
+"könyvtárba, vagy %slépjen kapcsolatba az ügyfélszolgálattal%s a probléma "
+"megoldásához."
+
+#: core/class-wptouch-pro.php:356
+msgid ""
+"We were unable to install your WPtouch theme from the Cloud. Please visit "
+"%sthis article%s for more information."
+msgstr ""
+"A WPtouch téma Felhőből való telepítése sikertelen. További információért "
+"kérjük olvassa el %sezt a cikket%s."
+
+#: core/class-wptouch-pro.php:360
+msgid ""
+"Your server setup is preventing WPtouch from installing your active theme "
+"from the Cloud. Please visit %sthis article%s for more information on how to "
+"fix it."
+msgstr ""
+"A szerverbeállítások megakadályozzák a jelenlegi WPtouch téma telepítését a "
+"Felhőből. A javításhoz és további információkért kérjük %solvassa el ezt a "
+"cikket%s."
+
+#: core/class-wptouch-pro.php:572
+msgid "Unsupported Browser"
+msgstr "Nem támogatott böngésző"
+
+#: core/class-wptouch-pro.php:573
+msgid "Theme Preview requires Chrome or Safari."
+msgstr "A téma előnézethez Chrome vagy Safari böngésző szükséges."
+
+#: core/class-wptouch-pro.php:574
+msgid ""
+"This will reset all WPtouch Pro settings.\n"
+"Are you sure?"
+msgstr ""
+"Ezzel alaphelyzetbe fogja állítani az összes WPtouch Pro beállítást.\n"
+"Biztos benne?"
+
+#: core/class-wptouch-pro.php:575
+msgid ""
+"This will reset all WPtouch Pro menu and icon settings.\n"
+"Are you sure?"
+msgstr ""
+"Ezzel alaphelyzetbe fogja állítani az összes WPtouch Pro menü és ikon "
+"beállítást.\n"
+"Biztos benne?"
+
+#: core/class-wptouch-pro.php:577
+msgid ""
+"You appear to be offline. Connect to the internet to see available "
+"BraveNewCloud items."
+msgstr ""
+"Úgy tűnik jelenleg offline. Kapcsolódjon az internetre az elérhető "
+"BraveNewCloud elemek megtekintéséhez."
+
+#: core/class-wptouch-pro.php:578
+msgid "The item failed to download for this reason: %reason%"
+msgstr "Az elem letöltése sikertelen, oka: %reason%"
+
+#: core/class-wptouch-pro.php:1093 pro/modules/webapp/webapp.php:206
+msgid "Settings"
+msgstr "Beállítások"
+
+#: core/class-wptouch-pro.php:1129
+msgid "%s Changelog"
+msgstr "%s változások"
+
+#: core/class-wptouch-pro.php:2305
+msgid "Directory Problem"
+msgstr "Mappa probléma"
+
+#: core/class-wptouch-pro.php:2306
+msgid "One or more required directories could not be created"
+msgstr "Egy vagy több szükséges könyvtár létrehozása sikertelen"
+
+#: core/globals.php:192
+msgid "smartphone"
+msgstr "okostelefon"
+
+#: core/globals.php:194
+msgid "tablet"
+msgstr "táblagép"
+
+#: core/notifications.php:124
+msgid "Preview Mode Enabled"
+msgstr "Előnézeti mód engedélyezve"
+
+#: core/notifications.php:125
+msgid ""
+"Only logged-in admins can see the mobile theme right now. You can change "
+"this at any time in %sCore Settings%s under %sDisplay Mode%s."
+msgstr ""
+"Most csak a bejelentkezett adminok nézhetik a mobil témát. Bármikor "
+"megváltoztathatja a %sMotor beállítások%s és %sMegjelenés módja%s alatt."
+
+#: core/notifications.php:133
+msgid "Theme Presentation Disabled"
+msgstr "Témabemutató letiltva"
+
+#: core/notifications.php:134
+msgid ""
+"No one can see the mobile theme right now. You can change this at any time "
+"in %sCore Settings%s under %sDisplay Mode%s."
+msgstr ""
+"Most senki nem láthatja a mobil témát. Bármikor megváltoztathatja a %sMotor "
+"beállítások%s és %sMegjelenés módja%s alatt."
+
+#: core/notifications.php:145
+msgid "WPtouch Pro prefers pretty permalinks to be enabled within WordPress."
+msgstr ""
+"A WPtouch Pro javasolja a közvetlen linkek engedélyezését a WordPress-en "
+"belül."
+
+#: core/notifications.php:155
+msgid "WPtouch Pro will not work fully in safe mode."
+msgstr "A WPtouch Pro nem fog teljes mértékben működni csökkentett módban."
+
+#: core/notifications.php:165 core/notifications.php:175
+#: core/notifications.php:185
+msgid ""
+"Extra configuration is required. The plugin must be configured to exclude "
+"the user agents that WPtouch Pro uses."
+msgstr ""
+"Extra konfiguráció szükséges. A beépülőt úgy kell beállítani, hogy kizárja a "
+"WPtouch Pro által használt böngésző azonosítókat."
+
+#: core/notifications.php:195
+msgid ""
+"Extra configuration is required. Add paths to your active WPtouch Pro theme "
+"CSS and Javascript files as files to ignore in WPMinify."
+msgstr ""
+"Extra konfiguráció szükséges. Adja hozzá az aktív WPtouch Pro téma CSS és "
+"Javascript fájljait a WPMinify figyelmen kívül hagyandó fájljaihoz."
+
+#: core/notifications.php:205
+msgid ""
+"This plugin may not work correctly in WPtouch Pro, and should be disabled in "
+"the Plugin Compatibility section."
+msgstr ""
+"Ez a beépülő valószínűleg nem működik megfelelően a WPtouch Pro-ban, és le "
+"kellene tiltani a Beépülő kompatibilitás résznél."
+
+#: core/notifications.php:214
+msgid "Icon Installation Issue"
+msgstr "Ikon telepítési hiba"
+
+#: include/add-ons/wordtwit-pro.php:179
+#: themes/foundation/modules/twitter/twitter.php:42
+msgid "%d second ago"
+msgid_plural "%d seconds ago"
+msgstr[0] "%d másodperce"
+msgstr[1] "%d másodperce"
+
+#: include/add-ons/wordtwit-pro.php:182
+#: themes/foundation/modules/twitter/twitter.php:45
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "%d perce"
+msgstr[1] "%d perce"
+
+#: include/add-ons/wordtwit-pro.php:185
+#: themes/foundation/modules/twitter/twitter.php:48
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] "%d órája"
+msgstr[1] "%d órája"
+
+#: include/add-ons/wordtwit-pro.php:188
+#: themes/foundation/modules/twitter/twitter.php:51
+msgid "%d day ago"
+msgid_plural "%d days ago"
+msgstr[0] "%d napja"
+msgstr[1] "%d napja"
+
+#: include/html/desktop-switch.php:2
+msgid "Desktop Version"
+msgstr "Asztali verzió"
+
+#: include/html/desktop-switch.php:2
+msgid "Switch To Mobile Version"
+msgstr "Váltás mobil verzióra"
+
+#: include/html/footer.php:7 include/html/footer.php:9
+msgid "Powered by %s%s%s"
+msgstr "Powered by %s%s%s"
+
+#: include/html/footer.php:11
+msgid "By %s"
+msgstr "Készítette: %s"
+
+#: include/html/load-times.php:2
+msgid "%d queries in %0.1f ms"
+msgstr "%d lekérdezés %0.1f ms alatt"
+
+#: include/html/page-template.php:8
+msgid "Default Template"
+msgstr "Alapértelmezett sablon"
+
+#: pro/modules/advertising/advertising.php:169
+msgid "Service"
+msgstr "Szolgáltatás"
+
+#: pro/modules/advertising/advertising.php:175
+msgid "Choose a service"
+msgstr "Szolgáltatás kiválasztása"
+
+#: pro/modules/advertising/advertising.php:181
+msgid "Google Adsense"
+msgstr "Google Adsense"
+
+#: pro/modules/advertising/advertising.php:182
+msgctxt "Refers to a custom advertising service"
+msgid "Custom"
+msgstr "Egyéni"
+
+#: pro/modules/advertising/advertising.php:192
+msgid "Google AdSense"
+msgstr "Google AdSense"
+
+#: pro/modules/advertising/advertising.php:195
+msgid "Publisher ID"
+msgstr "Szerző ID"
+
+#: pro/modules/advertising/advertising.php:196
+msgid "Slot ID"
+msgstr "Slot ID"
+
+#: pro/modules/advertising/advertising.php:200
+msgid "Code Type"
+msgstr "Kód típusa"
+
+#: pro/modules/advertising/advertising.php:212
+msgid "Custom Ads"
+msgstr "Egyéni hirdetések"
+
+#: pro/modules/advertising/advertising.php:215
+msgid "Mobile advertising script"
+msgstr "Mobil hirdetés szkript"
+
+#: pro/modules/advertising/advertising.php:224
+msgid "Ad Presentation"
+msgstr "Hirdetés megjelenítése"
+
+#: pro/modules/advertising/advertising.php:230
+msgid "Theme location"
+msgstr "Téma helye"
+
+#: pro/modules/advertising/advertising.php:235
+msgid "In the header"
+msgstr "A Fejlécben"
+
+#: pro/modules/advertising/advertising.php:236
+msgid "Above the page content"
+msgstr "Az oldal tartalma felett"
+
+#: pro/modules/advertising/advertising.php:237
+msgid "Below the page content"
+msgstr "Az oldal tartalma alatt"
+
+#: pro/modules/advertising/advertising.php:247
+msgid "Active Pages"
+msgstr "Aktív oldalak"
+
+#: pro/modules/advertising/advertising.php:250
+msgid "Blog listings"
+msgstr "Blog listázás"
+
+#: pro/modules/advertising/advertising.php:251
+msgid "Single posts"
+msgstr "Egyéni bejegyzések"
+
+#: pro/modules/advertising/advertising.php:252
+msgid "Static pages"
+msgstr "Statikus oldalak"
+
+#: pro/modules/advertising/advertising.php:253
+msgid "Taxonomy"
+msgstr "Osztályozás"
+
+#: pro/modules/advertising/advertising.php:254
+msgid "Search results"
+msgstr "Keresési eredmények"
+
+#: pro/modules/related-posts/related-posts.php:113
+msgid "Related Posts"
+msgstr "Kapcsolódó bejegyzések"
+
+#: pro/modules/related-posts/related-posts.php:119
+msgid "Enable display of related content on single posts"
+msgstr ""
+"Kapcsolódó bejegyzések megjelenítésének engedélyezése egyéni bejegyzéseknél"
+
+#: pro/modules/related-posts/related-posts.php:127
+msgid "Maximum number of related posts to show"
+msgstr "A kapcsolódó bejegyzések megjelenítésének maximális száma"
+
+#: pro/modules/webapp/webapp.php:121
+msgid "External link— open it in the browser?"
+msgstr "Külső link— megnyitja a böngészőben?"
+
+#: pro/modules/webapp/webapp.php:122
+msgid "File link— Do you want to open it in the browser?"
+msgstr "Szabad hivatkozás— Megnyitja a böngészőben?"
+
+#: pro/modules/webapp/webapp.php:209
+msgid "Enable iOS Web-App Mode"
+msgstr "iOS webalkalmazás mód engedélyezése"
+
+#: pro/modules/webapp/webapp.php:213
+msgid "Enable persistence"
+msgstr "Megtartás engedélyezése"
+
+#: pro/modules/webapp/webapp.php:214
+msgid "Loads the last visited URL for visitors on open."
+msgstr "Megnyitáskor betölti a legutóbb meglátogatott URL-t."
+
+#: pro/modules/webapp/webapp.php:221
+msgid "URLs to ignore in Web-App Mode"
+msgstr "Webalkalmazás módban figyelmen kívül hagyandó URL-ek"
+
+#: pro/modules/webapp/webapp.php:234
+msgid "Notice Message"
+msgstr "Felhívó üzenet"
+
+#: pro/modules/webapp/webapp.php:237
+msgid ""
+"Show a notice message for iPhone, iPod touch & iPad visitors about my Web-App"
+msgstr ""
+"Mutasson felhívó üzenetet az iPhone, iPod touch & iPad látogatóknak a "
+"webalkalmazásról"
+
+#: pro/modules/webapp/webapp.php:237
+msgid ""
+"WPtouch shows a notice bubble on 1st visit letting users know about your Web-"
+"App enabled website on iOS devices."
+msgstr ""
+"A WPtouch egy felhívó buboréküzenetet jelenít meg az első látogatáskor, hogy "
+"tudassa az iOS felhasználókkal, hogy ez egy webalkalmazásos oldal."
+
+#: pro/modules/webapp/webapp.php:238
+msgid "Notice message contents"
+msgstr "Felhívó üzenet tartalma"
+
+#: pro/modules/webapp/webapp.php:238
+msgid ""
+"[device] and [icon] are dynamic and used to determine the device and iOS "
+"version. Do not remove these from your message."
+msgstr ""
+"A [device] és [icon] dinamikus, és az eszköz valamint iOS verzió "
+"meghatározására szolgál. Ne távolítsa el ezeket az üzenetből."
+
+#: pro/modules/webapp/webapp.php:242
+msgid "the notice message will be shown again for visitors"
+msgstr "a felhívó üzenet újra megjelenik a látogatóknak"
+
+#: pro/modules/webapp/webapp.php:247
+msgid "1 day until"
+msgstr "1 napig"
+
+#: pro/modules/webapp/webapp.php:248
+msgid "7 days until"
+msgstr "7 napig"
+
+#: pro/modules/webapp/webapp.php:249
+msgid "1 month until"
+msgstr "1 hónapig"
+
+#: pro/modules/webapp/webapp.php:250
+msgid "Every time"
+msgstr "Mindig"
+
+#: pro/modules/webapp/webapp.php:261
+msgid "iPhone Startup Screen"
+msgstr "iPhone kezdőképernyő"
+
+#: pro/modules/webapp/webapp.php:267 pro/modules/webapp/webapp.php:285
+#: pro/modules/webapp/webapp.php:303 pro/modules/webapp/webapp.php:322
+#: pro/modules/webapp/webapp.php:330 pro/modules/webapp/webapp.php:348
+#: pro/modules/webapp/webapp.php:356
+#: themes/foundation/modules/tablets/tablets.php:52
+#: themes/foundation/root-functions.php:422
+#: themes/foundation/root-functions.php:440
+msgid "%d by %d pixels (PNG)"
+msgstr "%d x %d pixel (PNG)"
+
+#: pro/modules/webapp/webapp.php:279
+msgid "Retina iPhone Startup Screen"
+msgstr "Retina iPhone kezdőképernyő"
+
+#: pro/modules/webapp/webapp.php:297
+msgid "iPhone 5 Startup Screen"
+msgstr "iPhone 5 kezdőképernyő"
+
+#: pro/modules/webapp/webapp.php:316
+msgid "iPad Mini and iPad Startup Screens"
+msgstr "iPad Mini és iPad kezdőképernyők"
+
+#: pro/modules/webapp/webapp.php:342
+msgid "Retina iPad Startup Screens"
+msgstr "Retina iPad kezdőképernyő"
+
+#: pro/professional.php:76
+msgid "License Missing"
+msgstr "Hiányzó licensz"
+
+#: pro/professional.php:77
+msgid "This installation of WPtouch Pro is currently unlicensed."
+msgstr "A jelenleg telepített WPtouch Pro nem rendelkezik licenszel."
+
+#: pro/professional.php:88
+msgid "WPtouch Pro %s"
+msgstr "WPtouch Pro %s"
+
+#: pro/professional.php:89
+msgid "A new version of WPtouch Pro is available."
+msgstr "A WPtouch Pro új verziója érhető el."
+
+#: pro/professional.php:101
+msgid "Theme Update Available"
+msgstr "Téma frissítés érhető el"
+
+#: pro/professional.php:102
+msgid "One or more updates are available for your installed themes."
+msgstr "A telepített témákhoz egy vagy több frissítés érhető el."
+
+#: pro/professional.php:116
+msgid "Extension Update Available"
+msgstr "Bővítmény frissítés érhető el"
+
+#: pro/professional.php:117
+msgid "One or more updates are available for your installed extensions."
+msgstr "A telepített bővítményekhez egy vagy több frissítés érhető el."
+
+#: pro/professional.php:130
+msgid ""
+"WPtouch Pro 3 cannot co-exist with WPtouch 1.x. Disable it first in the "
+"WordPress Plugins settings."
+msgstr ""
+"A WPtouch Pro 3 nem működik együtt a WPtouch 1.x verzióval. Először tiltsa "
+"le a WordPress beépülők beállításainál."
+
+#: pro/professional.php:140
+msgid ""
+"WPtouch Pro 3 cannot co-exist with WPtouch Pro 2.x. Disable it first in the "
+"WordPress Plugins settings."
+msgstr ""
+"A WPtouch Pro 3 nem működik együtt a WPtouch 2.x verzióval. Először tiltsa "
+"le a WordPress beépülők beállításainál."
+
+#: pro/professional.php:220 pro/professional.php:244
+msgid "Unknown error"
+msgstr "Ismeretlen hiba"
+
+#: themes/foundation/default/404.php:6
+msgid "404 Not Found"
+msgstr "404 nem található"
+
+#: themes/foundation/default/404.php:8
+msgid "The post or page you requested is no longer available."
+msgstr "A keresett oldal vagy bejegyzés már nem elérhető."
+
+#: themes/foundation/default/attachment.php:43
+msgid "&laquo; previous in gallery"
+msgstr "&laquo; előző a galériában"
+
+#: themes/foundation/default/attachment.php:45
+msgid "next in gallery &raquo;"
+msgstr "következő a galériában &raquo;"
+
+#: themes/foundation/default/comments.php:10
+msgid "no responses"
+msgstr "nincs hozzászólás"
+
+#: themes/foundation/default/comments.php:10
+msgid "1 response"
+msgstr "1 hozzászólás"
+
+#: themes/foundation/default/comments.php:10
+msgid "% responses"
+msgstr "% hozzászólás"
+
+#: themes/foundation/default/comments.php:20
+#: themes/foundation/default/comments.php:26
+msgid "Load More Comments&hellip;"
+msgstr "További hozzászólások betöltése&hellip;"
+
+#: themes/foundation/default/comments.php:38
+msgid "Comments are closed"
+msgstr "A hozzászólások lezárva"
+
+#: themes/foundation/default/comments.php:48
+msgid "Cancel"
+msgstr "Mégsem"
+
+#: themes/foundation/default/comments.php:51
+msgid "Leave a Reply"
+msgstr "Hozzászólás"
+
+#: themes/foundation/default/comments.php:51
+msgid "Leave a Reply to %s"
+msgstr "Válasz %s részére"
+
+#: themes/foundation/default/comments.php:54
+msgid "You must be %slogged in%s to post a comment."
+msgstr "A hozzászóláshoz %sbe kell jelentkezni%s."
+
+#: themes/foundation/default/comments.php:61
+msgid "Logged in as"
+msgstr "Bejelentkezve: "
+
+#: themes/foundation/default/comments.php:61
+msgid "Log out"
+msgstr "Kijelentkezés"
+
+#: themes/foundation/default/comments.php:65
+msgid "Name"
+msgstr "Név"
+
+#: themes/foundation/default/comments.php:67
+#: themes/foundation/modules/social-links/social-links.php:94
+msgid "E-Mail"
+msgstr "Email"
+
+#: themes/foundation/default/comments.php:69
+msgid "Website"
+msgstr "Weboldal"
+
+#: themes/foundation/default/comments.php:75
+msgid "Publish"
+msgstr "Közzétesz"
+
+#: themes/foundation/default/footer.php:10
+msgid "Back to top"
+msgstr "Vissza a tetejére"
+
+#: themes/foundation/default/formerror.php:6
+msgid "Comment Error"
+msgstr "Hozzászólás hiba"
+
+#: themes/foundation/default/formerror.php:8
+msgid "Please enter all fields correctly to post a comment."
+msgstr "Kérjük töltse ki az összes mezőt a hozzászólás elküldéséhez."
+
+#: themes/foundation/default/formerror.php:9
+msgid "Go back"
+msgstr "Vissza"
+
+#: themes/foundation/default/index.php:33
+msgid "newer posts"
+msgstr "újabb bejegyzések"
+
+#: themes/foundation/default/index.php:33
+msgid "older posts"
+msgstr "régebbi bejegyzések"
+
+#: themes/foundation/default/nav-bar.php:6
+msgid "previous post"
+msgstr "előző bejegyzés"
+
+#: themes/foundation/default/nav-bar.php:12
+msgid "next post"
+msgstr "következő bejegyzés"
+
+#: themes/foundation/default/one-comment.php:12
+msgid "Your comment is awaiting moderation"
+msgstr "A hozzászólása moderálásra vár"
+
+#: themes/foundation/default/related-posts.php:4
+msgid "Related"
+msgstr "Kapcsolódó"
+
+#: themes/foundation/default/search.php:6
+msgid "You searched for \"%s\""
+msgstr "Keresés: \"%s\""
+
+#: themes/foundation/default/search.php:16
+msgid "%s results"
+msgstr "%s eredmények"
+
+#: themes/foundation/default/search.php:36
+msgid "No search results found"
+msgstr "Nincs találat"
+
+#: themes/foundation/default/search.php:45
+msgid "Load more %s results"
+msgstr "További %s találat betöltése"
+
+#: themes/foundation/default/single.php:13
+msgid "By"
+msgstr "Készítette:"
+
+#: themes/foundation/default/switch-link.php:8
+msgid "mobile"
+msgstr "mobil"
+
+#: themes/foundation/default/switch-link.php:9
+msgid "desktop"
+msgstr "asztali"
+
+#: themes/foundation/modules/base/base.php:69
+msgid "Loading"
+msgstr "Betöltés"
+
+#: themes/foundation/modules/base/preview-bar.php:2
+msgid "Theme Preview"
+msgstr "Téma előnézet"
+
+#: themes/foundation/modules/base/preview-bar.php:3
+msgid "Reload"
+msgstr "Újratöltés"
+
+#: themes/foundation/modules/custom-posts/custom-posts.php:76
+msgid "Custom Post Support"
+msgstr "Egyéni bejegyzés támogatás"
+
+#: themes/foundation/modules/custom-posts/custom-posts.php:82
+msgid "Enable custom post-type support"
+msgstr "Egyéni bejegyzéstípus támogatás engedélyezése"
+
+#: themes/foundation/modules/custom-posts/custom-posts.php:90
+msgid "Show custom post taxonomy"
+msgstr "Egyéni hozzászólás osztályozás mutatása"
+
+#: themes/foundation/modules/custom-posts/custom-posts.php:102
+msgid "Custom Post Types"
+msgstr "Egyéni bejegyzés típusok"
+
+#: themes/foundation/modules/featured/featured.php:260
+msgid "Featured Slider"
+msgstr "Kiemelt csúszka"
+
+#: themes/foundation/modules/featured/featured.php:266
+msgid "Enable featured slider"
+msgstr "Kiemelt csúszka engedélyezése"
+
+#: themes/foundation/modules/featured/featured.php:267
+msgid "Requires at least 2 entries to contain featured images"
+msgstr "Legalább két bejegyzés szükésges a kiemelt képekhez"
+
+#: themes/foundation/modules/featured/featured.php:274
+msgid "Maximum number of posts"
+msgstr "Hozzászólások maximális száma"
+
+#: themes/foundation/modules/featured/featured.php:279
+msgid "3 posts"
+msgstr "3 bejegyzés"
+
+#: themes/foundation/modules/featured/featured.php:280
+msgid "5 posts"
+msgstr "5 bejegyzés"
+
+#: themes/foundation/modules/featured/featured.php:281
+msgid "10 posts"
+msgstr "10 bejegyzés"
+
+#: themes/foundation/modules/featured/featured.php:287
+msgid "Automatically slide"
+msgstr "Automatikusan csúsztat"
+
+#: themes/foundation/modules/featured/featured.php:295
+msgid "Continuously slide"
+msgstr "Folyamatos csúsztatás"
+
+#: themes/foundation/modules/featured/featured.php:303
+msgid "Grayscale images (CSS 3 effect)"
+msgstr "Szürekárnyalatos képek (CSS 3 effekt)"
+
+#: themes/foundation/modules/featured/featured.php:304
+msgid ""
+"Featured slider images will be in grayscale for devices that support CSS "
+"filters."
+msgstr ""
+"A kiemelt csúszka képei szürkeárnyalatosan jelennek meg azokon az "
+"eszközökön, amik támogatják a CSS szűrőket."
+
+#: themes/foundation/modules/featured/featured.php:319
+msgid "Featured slider posts also show in listings"
+msgstr "Kiemelt csúszka bejegyzések is láthatóak a listázásnál"
+
+#: themes/foundation/modules/featured/featured.php:327
+msgid "Slide transition speed"
+msgstr "Csúsztatás sebessége"
+
+#: themes/foundation/modules/featured/featured.php:332
+msgid "Slow"
+msgstr "Lassú"
+
+#: themes/foundation/modules/featured/featured.php:333
+msgid "Normal"
+msgstr "Normál"
+
+#: themes/foundation/modules/featured/featured.php:334
+msgid "Fast"
+msgstr "Gyors"
+
+#: themes/foundation/modules/featured/featured.php:345
+msgid "Show latest posts"
+msgstr "Legújabb hozzászólások mutatása"
+
+#: themes/foundation/modules/featured/featured.php:346
+msgid "Show posts from a specific tag"
+msgstr "Csak megadott címke bejegyzéseit mutassa"
+
+#: themes/foundation/modules/featured/featured.php:347
+msgid "Show posts from a specific category"
+msgstr "Csak megadott kategória bejegyzéseit mutassa"
+
+#: themes/foundation/modules/featured/featured.php:348
+msgid "Show only specific posts or pages"
+msgstr "Csak különleges bejegyzések vagy oldalak mutatása"
+
+#: themes/foundation/modules/featured/featured.php:354
+msgid "Only this tag"
+msgstr "Csak ez a címke"
+
+#: themes/foundation/modules/featured/featured.php:363
+msgid "Only this category"
+msgstr "Csak ez a kategória"
+
+#: themes/foundation/modules/featured/featured.php:372
+msgid "Comma-separated list of post/page IDs"
+msgstr "A bejegyzés/oldal ID-k vesszővel elválasztott listája"
+
+#: themes/foundation/modules/google-fonts/google-fonts.php:10
+msgid "Browser Fonts"
+msgstr "Böngésző betűtípus"
+
+#: themes/foundation/modules/google-fonts/google-fonts.php:18
+msgid "Typography"
+msgstr "Íráskép"
+
+#: themes/foundation/modules/google-fonts/google-fonts.php:24
+msgid "Font style"
+msgstr "Betűtípus"
+
+#: themes/foundation/modules/google-fonts/google-fonts.php:25
+msgid ""
+"Choose a Google font pairing designed for this theme, or default browser "
+"fonts."
+msgstr ""
+"Válassza ki a témához készített Google betűtípus párosításokat vagy az "
+"alapértelmezett böngésző betűtípusokat."
+
+#: themes/foundation/modules/login/login-html.php:7
+msgid "Remember Me"
+msgstr "Emlékezzen rám"
+
+#: themes/foundation/modules/login/login-html.php:9
+msgid "Log In"
+msgstr "Bejelentkezés"
+
+#: themes/foundation/modules/login/login-html.php:20
+msgid "Login"
+msgstr "Bejelentkezés"
+
+#: themes/foundation/modules/login/login-html.php:29
+msgid "Sign-up"
+msgstr "Regisztráció"
+
+#: themes/foundation/modules/login/login-html.php:30
+msgid "Lost password?"
+msgstr "Elfelejtett jelszó?"
+
+#: themes/foundation/modules/login/login.php:22
+msgid "Account Username"
+msgstr "Fiók felhasználónév"
+
+#: themes/foundation/modules/login/login.php:23
+msgid "Account Password"
+msgstr "Fiók jelszó"
+
+#: themes/foundation/modules/login/login.php:32
+msgid "Login Form"
+msgstr "Bejelentkezés típusa"
+
+#: themes/foundation/modules/login/login.php:38
+msgid "Use fly-in login form"
+msgstr "Beúszó bejelentkezés használata"
+
+#: themes/foundation/modules/login/login.php:39
+msgid ""
+"Will add login links and allow mobile visitors to login to your website from "
+"mobile devices"
+msgstr ""
+"Bejelentkezés hivatkozás hozzáadása és mobil látogatók bejelentkezésének "
+"engedélyezése"
+
+#: themes/foundation/modules/login/login.php:46
+msgid "Show \"Sign-up\" and \"Lost Password?\" links"
+msgstr "\"Regisztráció\" és \"Elfeljtett jelszó?\" hivatkozások megjelenítése"
+
+#: themes/foundation/modules/media/media.php:48
+msgid "Video Handling"
+msgstr "Videó kezelés"
+
+#: themes/foundation/modules/media/media.php:60
+msgid "CSS only (HTML5 videos)"
+msgstr "csak CSS (HTML5 videók)"
+
+#: themes/foundation/modules/media/media.php:61
+msgid "FitVids Method"
+msgstr "FitVids módszer"
+
+#: themes/foundation/modules/media/media.php:62
+msgid "Fluid-Width Method"
+msgstr "Fluid-Width módszer"
+
+#: themes/foundation/modules/sharing/sharing-html.php:1
+msgid "Share"
+msgstr "Megosztás"
+
+#: themes/foundation/modules/sharing/sharing-html.php:1
+msgid "Tweet"
+msgstr "Tweet"
+
+#: themes/foundation/modules/sharing/sharing-html.php:1
+msgid "Mail"
+msgstr "Email"
+
+#: themes/foundation/modules/sharing/sharing.php:81
+msgid "Sharing"
+msgstr "Megosztás"
+
+#: themes/foundation/modules/sharing/sharing.php:87
+msgid "Show sharing links"
+msgstr "Megosztás linkek megjelenítése"
+
+#: themes/foundation/modules/sharing/sharing.php:88
+msgid "Will show Facebook, Twitter, Google+ and Email buttons on single posts."
+msgstr ""
+"A Facebook, Twitter, Google+ és Email gombok megjelennek az egyéni "
+"bejegyzéseknél."
+
+#: themes/foundation/modules/sharing/sharing.php:95
+msgid "Show sharing links on pages"
+msgstr "Megosztás linkek megjelenítése az oldalakon"
+
+#: themes/foundation/modules/sharing/sharing.php:96
+msgid ""
+"Will show Facebook, Twitter, Google+ and Email buttons on pages as well as "
+"single posts."
+msgstr ""
+"A Facebook, Twitter, Google+ és Email gombok és az egyéni bejegyzések is "
+"megjelennek."
+
+#: themes/foundation/modules/sharing/sharing.php:103
+msgid "Sharing links location"
+msgstr "Megosztás linkek helye"
+
+#: themes/foundation/modules/sharing/sharing.php:108
+msgid "Above post content"
+msgstr "A bejegyzés tartalma felett"
+
+#: themes/foundation/modules/sharing/sharing.php:109
+msgid "Below post content"
+msgstr "A bejegyzés tartalma alatt"
+
+#: themes/foundation/modules/sharing/sharing.php:115
+msgid "Color scheme"
+msgstr "Színséma"
+
+#: themes/foundation/modules/sharing/sharing.php:120
+msgid "Theme colors"
+msgstr "Téma színek"
+
+#: themes/foundation/modules/sharing/sharing.php:121
+msgid "Social network colors"
+msgstr "Közösségi hálózat színek"
+
+#: themes/foundation/modules/social-links/social-links.php:8
+msgid "Footer Social Links"
+msgstr "Lábléc közösségi linkek"
+
+#: themes/foundation/modules/social-links/social-links.php:23
+msgid "Full URL to your Facebook page"
+msgstr "Teljes URL a saját Facebook oldalhoz"
+
+#: themes/foundation/modules/social-links/social-links.php:31
+msgid "Full URL to your Twitter profile"
+msgstr "Teljes URL a Twitter profilhoz"
+
+#: themes/foundation/modules/social-links/social-links.php:39
+msgid "Full URL to your Google+ profile"
+msgstr "Teljes URL a Google+ profilhoz"
+
+#: themes/foundation/modules/social-links/social-links.php:47
+msgid "Full URL to your Instagram profile"
+msgstr "Teljes URL az Instagram profilhoz"
+
+#: themes/foundation/modules/social-links/social-links.php:54
+msgid "Tumblr"
+msgstr "Tumblr"
+
+#: themes/foundation/modules/social-links/social-links.php:55
+msgid "Full URL to your Tumblr profile"
+msgstr "Teljes URL a Tumblr profilhoz"
+
+#: themes/foundation/modules/social-links/social-links.php:63
+msgid "Full URL to your Pinterest page"
+msgstr "Teljes URL a Pinterest oldalhoz"
+
+#: themes/foundation/modules/social-links/social-links.php:71
+msgid "Full URL to your Vimeo page"
+msgstr "Teljes URL a saját Vimeo oldalhoz"
+
+#: themes/foundation/modules/social-links/social-links.php:79
+msgid "Full URL to your %s profile"
+msgstr "Teljes URL a %s profilhoz"
+
+#: themes/foundation/modules/social-links/social-links.php:86
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
+#: themes/foundation/modules/social-links/social-links.php:87
+msgid "Full URL to your LinkedIn profile"
+msgstr "Teljes URL a LinkedIn profilhoz"
+
+#: themes/foundation/modules/social-links/social-links.php:95
+msgid "E-Mail address"
+msgstr "Email cím"
+
+#: themes/foundation/modules/social-links/social-links.php:103
+msgid "Full URL to your RSS feed"
+msgstr "Teljes URL az RSS hírfolyamhoz"
+
+#: themes/foundation/modules/tablets/tablets.php:46
+msgid "iPad"
+msgstr "iPad"
+
+#: themes/foundation/modules/twitter/twitter.php:66
+msgid "Disabled"
+msgstr "Letiltva"
+
+#: themes/foundation/modules/twitter/twitter.php:81
+msgid "Twitter account to use for Tweet display"
+msgstr "A Tweet kijelzéséhez használt Twitter fiók"
+
+#: themes/foundation/root-functions.php:11
+msgid "Branding"
+msgstr "Arculat"
+
+#: themes/foundation/root-functions.php:12
+msgid "Media Handling"
+msgstr "Média kezelés"
+
+#: themes/foundation/root-functions.php:13
+msgid "Web-App Mode"
+msgstr "Webalkalmazás mód"
+
+#: themes/foundation/root-functions.php:14
+msgid "Bookmark Icons"
+msgstr "Könyvjelző ikonok"
+
+#: themes/foundation/root-functions.php:15
+msgid "Advertising"
+msgstr "Hirdetések"
+
+#: themes/foundation/root-functions.php:16
+msgid "Custom Content"
+msgstr "Egyéni tartalom"
+
+#: themes/foundation/root-functions.php:45
+msgid "Language: "
+msgstr "Nyelv:"
+
+#: themes/foundation/root-functions.php:133
+msgid ""
+"Install this Web-App on your [device]: tap [icon] then \"Add to Home Screen\""
+msgstr ""
+"Telepítse ezt a webalkalmazást a(z) [device]-n: érintse meg az [icon] és "
+"utána  \"Adja a kezdőképernyőhöz\""
+
+#: themes/foundation/root-functions.php:336
+msgid "Number of posts in post listings"
+msgstr "Bejegyzések száma a listázásnál"
+
+#: themes/foundation/root-functions.php:337
+msgid ""
+"Overrides the WordPress Reading settings for \"Blog pages show at most\""
+msgstr ""
+"Felülírja a WordPress olvasás beállításokat a \"Legfeljebb megjelenítendő "
+"bejegyzések számára\" vonatkozóan"
+
+#: themes/foundation/root-functions.php:344
+msgid "Excluded categories"
+msgstr "Kizárt kategóriák"
+
+#: themes/foundation/root-functions.php:345
+msgid "Comma separated by category name"
+msgstr "Kategória neve alapján vesszővel elválasztva"
+
+#: themes/foundation/root-functions.php:352
+msgid "Excluded tags"
+msgstr "Kizárt címkék"
+
+#: themes/foundation/root-functions.php:353
+msgid "Comma separated by tag name"
+msgstr "Címke neve alapján vesszővel elválasztva"
+
+#: themes/foundation/root-functions.php:363
+msgid "Blog"
+msgstr "Blog"
+
+#: themes/foundation/root-functions.php:374
+msgid "Show comments on pages"
+msgstr "Hozzászólások mutatása az oldalakon"
+
+#: themes/foundation/root-functions.php:375
+msgid "Overrides the WordPress settings for showing comments on pages."
+msgstr ""
+"Felülírja a WordPress beállításokat az oldalakon megjelenítendő "
+"hozzáaszólások mutatására vonatkozóan."
+
+#: themes/foundation/root-functions.php:385
+#: themes/foundation/root-functions.php:1100
+msgid "Pages"
+msgstr "Oldalak"
+
+#: themes/foundation/root-functions.php:398
+msgid "Icon Title"
+msgstr "Ikon cím"
+
+#: themes/foundation/root-functions.php:404
+msgid "Icon title"
+msgstr "Ikon cím"
+
+#: themes/foundation/root-functions.php:405
+msgid "When visitors bookmark your website, this will be the title shown."
+msgstr ""
+"Amikor a látogatók könyjelzőbe teszik az oldalt, akkor ez a cím fog "
+"megjelenni."
+
+#: themes/foundation/root-functions.php:416
+msgid "Android"
+msgstr "Android"
+
+#: themes/foundation/root-functions.php:434
+msgid "iPhone & iPod touch"
+msgstr "iPhone & iPod touch"
+
+#: themes/foundation/root-functions.php:470
+msgid "Theme Colors"
+msgstr "Téma színek"
+
+#: themes/foundation/root-functions.php:480
+msgid "Site Logo"
+msgstr "Oldal logó"
+
+#: themes/foundation/root-functions.php:486
+msgid "(Scaled by themes to fit logo areas as needed)"
+msgstr "(A logó területeket a témák méretezik át a szükséges mértékben)"
+
+#: themes/foundation/root-functions.php:499
+msgid "Smart App Banner"
+msgstr "Intelligens alkalmazás banner"
+
+#: themes/foundation/root-functions.php:505
+msgid "Enter your app's %sApp Store ID%s"
+msgstr "Adja meg az alkalmazás %sApp Store ID-t%s"
+
+#: themes/foundation/root-functions.php:506
+msgid ""
+"Your app's unique identifier. Find your ID from the iTunes Link Maker: "
+"Search for your app. In the link it provides, your app ID is the nine-digit "
+"number in between id and ?mt. For example Angry Birds's ID is 343200656."
+msgstr ""
+"Az alkalmazásának egyedi azonosítója. Találja meg az ID-t az iTunes Link "
+"Makerrel: Keresse meg az alkalmazását. A hivatkozásban megtalálja a kilenc "
+"számjegyű alkalmazás ID-t az id és a ?mt között. Például az Angry Birds ID-"
+"ja 343200656."
+
+#: themes/foundation/root-functions.php:518
+msgid "Theme Footer"
+msgstr "Téma lábléc"
+
+#: themes/foundation/root-functions.php:521
+msgid "Custom footer content (HTML is allowed)"
+msgstr "Egyéni lábléc tartalom (HTML engedélyezett)"
+
+#: themes/foundation/root-functions.php:521
+msgid ""
+"You can add custom footer content that will be displayed below the switch "
+"link."
+msgstr ""
+"Hozzáadhat egyéni lábléc tartalmat, ami a kapcsoló hivatkozás alatt fog "
+"megjelenni."
+
+#: themes/foundation/root-functions.php:886
+msgid "search results for '%s'"
+msgstr "keresési találat ehhez: '%s'"
+
+#: themes/foundation/root-functions.php:888
+msgid "%sCategories &rsaquo;%s %s"
+msgstr "%sKategóriák &rsaquo;%s %s"
+
+#: themes/foundation/root-functions.php:890
+msgid "Tags &rsaquo; %s"
+msgstr "Címkék &rsaquo; %s"
+
+#: themes/foundation/root-functions.php:892
+#: themes/foundation/root-functions.php:894
+#: themes/foundation/root-functions.php:896
+msgid "Archives &rsaquo; %s"
+msgstr "Archiválás &rsaquo; %s"
+
+#: themes/foundation/root-functions.php:911
+msgid "Load more from this category"
+msgstr "További elemek betöltése a kategóriából"
+
+#: themes/foundation/root-functions.php:913
+msgid "Load more tagged like this"
+msgstr "További ilyen címkéjű elemek betöltése"
+
+#: themes/foundation/root-functions.php:915
+msgid "Load more from this day"
+msgstr "További mai elemek betöltése"
+
+#: themes/foundation/root-functions.php:917
+msgid "Load more from this month"
+msgstr "További ehavi elemek betöltése"
+
+#: themes/foundation/root-functions.php:919
+msgid "Load more from this year"
+msgstr "További idei elemek betöltése"
+
+#: themes/foundation/root-functions.php:921
+msgid "Load more in this section"
+msgstr "További elemek betöltése"
+
+#: themes/foundation/root-functions.php:923
+msgid "Load more entries"
+msgstr "További elemek betöltése"
+
+#: themes/foundation/root-functions.php:1049
+msgid "Post"
+msgstr "Bejegyzés"
+
+#: themes/foundation/root-functions.php:1051
+msgid "Page"
+msgstr "Oldal"
+
+#. Plugin Name of the plugin/theme
+msgid "WPtouch Pro"
+msgstr "WPtouch Pro"
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.bravenewcode.com/product/wptouch-pro/"
+msgstr "http://www.bravenewcode.com/product/wptouch-pro/"
+
+#. Description of the plugin/theme
+msgid ""
+"The easy way to create great mobile experiences with your WordPress website."
+msgstr ""
+"Könnyű út  a WordPress weboldal élvezhető mobil verziójának készítéséhez."
+
+#. Author of the plugin/theme
+msgid "BraveNewCode Inc."
+msgstr "BraveNewCode Inc."
+
+#. Author URI of the plugin/theme
+msgid "http://www.bravenewcode.com/"
+msgstr "http://www.bravenewcode.com/"
+
+#~ msgid "WPtouch Pro Changelog"
+#~ msgstr "WPtouch Pro kiadási megjegyzések"
+
+#~ msgid "a child theme of %s,"
+#~ msgstr "a(z) %s gyermektémája,"
+
+#~ msgid "And boom. You're done."
+#~ msgstr "És hopp. Kész is van."
+
+#~ msgid "Check that spelling, one more time."
+#~ msgstr "Ellenőrizze újra, hogy helyesen írta-e be. "
+
+#~ msgid "Too many cooks in the kitchen!"
+#~ msgstr "Túl sokat főznek a konyhában!"
+
+#~ msgid "Preview mode"
+#~ msgstr "Előnézeti mód"
+
+#~ msgid "Will show WPtouch Pro in desktop browsers for logged in admin users."
+#~ msgstr ""
+#~ "Mutatni fogja a WPtouch Pro-t az asztali böngészőben a bejelentkezett "
+#~ "admin felhasználóknak."
+
+#~ msgid "On"
+#~ msgstr "Be"
+
+#~ msgid "Off"
+#~ msgstr "Ki"
+
+#~ msgid "Overview"
+#~ msgstr "Áttekintés"
+
+#~ msgid "Get started with activation &raquo;"
+#~ msgstr "Kezdjen az aktiválással &raquo;"
+
+#~ msgid ""
+#~ "File tickets and get direct support for WPtouch Pro from BraveNewCode"
+#~ msgstr ""
+#~ "Hibajegyek és közvetlen támogatás a BraveNewCode-tól a WPtouch Pro-hoz"
+
+#~ msgid ""
+#~ "Read helpful tutorials and product articles to get the most out of "
+#~ "WPtouch Pro"
+#~ msgstr ""
+#~ "Olvasson hasznos útmutatókat és a termékről szóló cikkeket, hogy a "
+#~ "legtöbbet hozza ki a WPtouch Pro-ból"
+
+#~ msgid "Check out what's new in the WPtouch Pro update change log"
+#~ msgstr ""
+#~ "Ellenőrizze, hogy milyen újdonságok vannak a WPtouch Pro frissítés "
+#~ "kiadási megjegyzéseiben"
+
+#~ msgid "Add or edit your active sites, or upgrade your license"
+#~ msgstr "Aktív oldalak szerkesztése, hozzáadása, vagy licensz frissítése"
+
+#~ msgid "%s Theme Options"
+#~ msgstr "%s Téma beállítások"
+
+#~ msgid "Heads up!"
+#~ msgstr "Fel a fejjel!"
+
+#~ msgid "Categories"
+#~ msgstr "Kategóriák"
+
+#~ msgid "Tags"
+#~ msgstr "Címkék"
+
+#~ msgid "Tweets"
+#~ msgstr "Tweetek"
+
+#~ msgid "Search"
+#~ msgstr "Keresés"
+
+#~ msgid "Search this website"
+#~ msgstr "Keresés az oldalon"
+
+#~ msgid "Follow %s on Twitter"
+#~ msgstr "Kövesse %s-t a Twitteren"
+
+#~ msgid "by"
+#~ msgstr "készítette:"
+
+#~ msgid "%s at %s"
+#~ msgstr "%s / %s"
+
+#~ msgid "Written by %s"
+#~ msgstr "Írta: %s"
+
+#~ msgid "Tablets"
+#~ msgstr "Táblagépek"
+
+#~ msgid "Header Menu"
+#~ msgstr "Fejléc menü"
+
+#~ msgid "Choose a menu"
+#~ msgstr "Menü kiválasztása"
+
+#~ msgid "Header background"
+#~ msgstr "Fejléc háttér"
+
+#~ msgid "Theme background"
+#~ msgstr "Téma háttér"
+
+#~ msgid "Post thumbnails"
+#~ msgstr "Bejegyzés bélyegképek"
+
+#~ msgid "No thumbnails"
+#~ msgstr "Nincs bélyegkép"
+
+#~ msgid "Blog listing only"
+#~ msgstr "Csak blog listázás"
+
+#~ msgid "Blog listing, single posts"
+#~ msgstr "Blog listázás és egyéni bejegyzések"
+
+#~ msgid "All (blog, single, search and archive)"
+#~ msgstr "Mind (blog, egyéni, keresés és archív)"
+
+#~ msgid "Show post date"
+#~ msgstr "Mutassa a bejegyzés dátumát"
+
+#~ msgid "Show post author"
+#~ msgstr "Mutassa a bejegyzés szerzőjét"
+
+#~ msgid "Show post categories and tags"
+#~ msgstr "Mutassa a bejegyzés kategóriáit és címkéit"
+
+#~ msgid "Use infinite scrolling for blog"
+#~ msgstr "Végtelen görgetés használata"
+
+#~ msgid "Use rounded corners"
+#~ msgstr "Lekerekített sarkok használata"
+
+#~ msgid "Show page title areas on pages"
+#~ msgstr "Oldal címsor mutatása az oldalakon"
+
+#~ msgid "Add tablet support"
+#~ msgstr "Táblagép támogatás hozzáadása"
+
+#~ msgid "Header Menu Area"
+#~ msgstr "Fejléc menü terület"
+
+#~ msgid "Drop-down button says \"Menu\""
+#~ msgstr "Lenyíló menü neve \"Menu\""
+
+#~ msgid "Show tab bar"
+#~ msgstr "Fül sáv mutatása"
+
+#~ msgid "Tab-bar shows categories or tags"
+#~ msgstr "Fül sáv mutassa a kategóriákat és címkéket"
+
+#~ msgid "Categories and tags"
+#~ msgstr "Kategóriák és címkék"
+
+#~ msgid "Categories only"
+#~ msgstr "Csak kategóriák"
+
+#~ msgid "Tags only"
+#~ msgstr "Csak címkék"
+
+#~ msgid "No categories or tags"
+#~ msgstr "Nincs kategória vagy címke"
+
+#~ msgid "Max categories / tags"
+#~ msgstr "Max kategória / címke"
+
+#~ msgid "CSS Effects"
+#~ msgstr "CSS effektek"
+
+#~ msgid "Add a noise effect to the header and theme background"
+#~ msgstr "Zaj effekt hozzáadása a fejléchez és a téma háttérhez."
+
+#~ msgid "Will apply the effect overtop of any background image you upload."
+#~ msgstr "Az effekt bármelyik feltöltött háttérképen alkalmazható."
+
+#~ msgid "menu"
+#~ msgstr "menü"
+
+#~ msgid "search this website"
+#~ msgstr "keresés az oldalon"
+
+#~ msgid "search"
+#~ msgstr "keresés"
+
+#~ msgid "Alt Menu"
+#~ msgstr "Alt menü"
+
+#~ msgid "Main Menu"
+#~ msgstr "Főmenü"
+
+#~ msgid "Alternate Menu"
+#~ msgstr "Alternatív menü"
+
+#~ msgid "Category Slider"
+#~ msgstr "Kategória csúszka"
+
+#~ msgid "Enable category slider"
+#~ msgstr "Kategória csúszka engedélyezése"
+
+#~ msgid "Tiled Background Image"
+#~ msgstr "Csempézett háttérkép"
+
+#~ msgid "(Scaled for retina displays)"
+#~ msgstr "(Retina kijelzőhöz méretezve)"
+
+#~ msgid "Alternate Menu Title"
+#~ msgstr "Alternatív menü címsor"
+
+#~ msgid "Alternate menu title (if used)"
+#~ msgstr "Alternatív menü címsor (ha van)"
+
+#~ msgid ""
+#~ "If you use a second menu in CMS, this text will be used for the drop-down "
+#~ "button title."
+#~ msgstr ""
+#~ "Ha a CMS témában második menüt használ, akkor ez a szöveg lesz használva "
+#~ "a lenyíló menük feliratához."
+
+#~ msgid "Static Front Page"
+#~ msgstr "Statikus címoldal"
+
+#~ msgid "Static front page alternate content"
+#~ msgstr "Statikus címoldal alternatív tartalma"
+
+#~ msgid ""
+#~ "Shows after the featured slider (if enabled), and replaces your Static "
+#~ "Front Page content. HTML allowed."
+#~ msgstr ""
+#~ "A kiemelt csúszka után jelenik meg (ha engedélyezve van) és lecseréli a "
+#~ "statikus címoldal tartalmát. HTML engedélyezett."
+
+#~ msgid "Homescreen Icons"
+#~ msgstr "Kezdőképernyő ikonok"
+
+#~ msgid "Options"
+#~ msgstr "Opciók"
+
+#~ msgid "Add glossy icon effect to uploaded icons"
+#~ msgstr "Fényes effekt hozzáadása a feltöltött ikonokhoz"
+
+#~ msgid ""
+#~ "A glossy effect will automatically be applied to icons for iOS devices."
+#~ msgstr ""
+#~ "A fényes effekt automatikusan alkalmazódik az iOS eszközök ikonjainál."
+
+#~ msgid "%d by %d pixels"
+#~ msgstr "%d x %d pixel"
+
+#~ msgid "iPhone/Android Retina"
+#~ msgstr "iPhone/Android Retina"
+
+#~ msgid "iPad Retina"
+#~ msgstr "iPad Retina"
+
+#~ msgid "Browser Behaviour"
+#~ msgstr "Böngésző viselkedés"
+
+#~ msgid "Hide browser address-bar on page load"
+#~ msgstr "Rejtse el a böngésző címsorát az oldal betöltésekor"
+
+#~ msgid ""
+#~ "Hides the browser address bar so that more of the mobile theme interface "
+#~ "is shown."
+#~ msgstr "Elrejti a böngésző címsorát, így több látszódik a mobil témából."
+
+#~ msgid "Call Us"
+#~ msgstr "Hívjon minket"
+
+#~ msgid "Our Location"
+#~ msgstr "A mi helyünk"
+
+#~ msgid "Toggle Menu"
+#~ msgstr "Kapcsoló menü"
+
+#~ msgid "Site Menu (Pulldown)"
+#~ msgstr "Oldal menü (lenyíló)"
+
+#~ msgid "Pull-down menu at top of pages"
+#~ msgstr "Lenyíló menü az oldalak tetején"
+
+#~ msgid "Front Page Menu"
+#~ msgstr "Címoldal menü"
+
+#~ msgid "Displayed below front page menu and content"
+#~ msgstr "A címoldal menü és tartalom alatt jelenik meg"
+
+#~ msgid "Enable search on blog pages"
+#~ msgstr "Keresés a blogon engedélyezése"
+
+#~ msgid "Homepage Call Us"
+#~ msgstr "Kezdőoldal Hívjon minket"
+
+#~ msgid "Phone number"
+#~ msgstr "Telefonszám"
+
+#~ msgid ""
+#~ "Enter a phone number and a homepage menu item for 'call us' will be shown."
+#~ msgstr ""
+#~ "Adja meg a 'hívjon minket' menüelemnél megjelenítendő telefonszámot és "
+#~ "kezdőlap menüelemet."
+
+#~ msgid "Homepage Location"
+#~ msgstr "Kezdőoldal helye"
+
+#~ msgid "Map address"
+#~ msgstr "Térkép cím"
+
+#~ msgid ""
+#~ "Enter an address and a homepage menu item for 'Our Location' will be "
+#~ "shown."
+#~ msgstr ""
+#~ "Adja meg az 'Elérhetőségünk' menüelemnél megjelenítendő címet és kezdőlap "
+#~ "menüelemet."
+
+#~ msgid "Front Page Content"
+#~ msgstr "Címoldal tartalma"
+
+#~ msgid "Front page alternate content"
+#~ msgstr "Címoldal alternatív tartalma"
+
+#~ msgid "Shows above the front page menu (if enabled), HTML allowed."
+#~ msgstr ""
+#~ "A nyitóoldal menüje felett jelenik meg (ha engedélyezett), HTML "
+#~ "engedélyezett."
+
+#~ msgid "3D Menu"
+#~ msgstr "3D Menü"
+
+#~ msgid "Use a 3D slide menu on supported devices"
+#~ msgstr "Használja a 3D csúszómenüt a támogatott készülékeken"
+
+#~ msgid "Add a light noise effect to the drop-down menu and theme background"
+#~ msgstr "Enyhe zaj effekt hozzáadása a lenyíló menükhöz és a téma háttérhez."
+
+#~ msgid "Blog Listings"
+#~ msgstr "Blog listázás"
+
+#~ msgid "Index pages only"
+#~ msgstr "Csak index oldalak"
+
+#~ msgid "Index and single post pages"
+#~ msgstr "Index és egyéni bejegyzés oldalakon"
+
+#~ msgid "Miscellaneous"
+#~ msgstr "Egyéb"
+
+#~ msgid "Menu Tab Bar"
+#~ msgstr "Menü fül sáv"
+
+#~ msgid "Blog Search"
+#~ msgstr "Blog keresés"

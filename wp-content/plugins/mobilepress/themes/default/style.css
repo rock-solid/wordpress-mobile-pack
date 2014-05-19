@@ -1,0 +1,98 @@
+/*
+Theme Name: Default
+Theme URI: http://wordpress.org
+Description: The default MobilePress theme.
+Author: MobilePress
+Author URI: http://mobilepress.co.za
+Version: 1.0
+Tags: mobile, mobilepress, light grey, black, orange, blue
+*/
+
+/* --- NOTE --- */
+/*
+/* The stylesheet below is not in used, the theme calls /css/style.min.css
+/* by default. The stylesheet below is provided to enable easier editing
+/* and maintaining of CSS.
+/*
+/* If you edit the stylesheet below, use the URL below to minify the CSS
+/* and overwrite /css/style.min.css
+/*
+/* Minify with: http://www.cssminifier.com/
+/*
+/* ------------ */
+
+/* Reset */
+body, html, div, span, h1, h2, h3, h4, h5, h6, p, ul, ol, li, blockquote, form, input, fieldset {margin: 0;padding: 0;}
+img, fieldset {border: none;}
+img {height:auto;max-width:100%;}
+ul, ol {list-style:none;}
+
+/* General Styles */
+body {background:#fff;font-family:Verdana, Arial, sans-serif;font-size: 1em;line-height: 1.2em;}
+blockquote {border-left:4px solid #d54e21;margin:12px 8px;padding-left:4px;}
+h1 {font-size:1.6em;font-weight:normal;line-height:1.6em;margin:0 0 10px 0;}
+h2 {font-size:1.1em;font-weight:normal;line-height:1.2em;margin:0 0 10px 0;}
+	h2 a {color:#2583ad;}
+h3 {font-size:1.0em;font-weight:normal;line-height:1.2em;margin:0 0 10px 0;}
+p {color:#333;font-size:0.9em;line-height:1.2em;margin:0 0 10px 0;}
+	p a {color:#d54e21;}
+textarea{width:90%;}
+ul {list-style:disc;margin:0 0 10px 25px;}
+ol {list-style:decimal;margin:0 0 10px 25px;}
+ul li, ol li {color:#333;font-size:1.0em;padding:2px;}
+.clearfix{clear:both;}
+
+/* Header */
+#headerwrap {width: 100%;}
+#header {background:#000;border-bottom:1px solid #ccc;padding:2px 8px 8px;}
+	#header h1 {color:#fff;margin:0;}
+		#header h1 a {color:#fff;text-decoration:none;}
+	#header p {color:#888;font-size:0.9em;margin:0;}
+		#header p a {color:#888;}
+
+/* Content / Posts */
+#contentwrap {width:100%;}
+#title {background:#fff;border-bottom:1px solid #ddd;color:#000;}
+	#title h2 {padding:8px;margin:0;}
+
+.page {background:#f3f3f3;padding:8px;}
+.post {background:#fff;border-bottom:1px solid #f3f3f3;clear:both;min-height:55px;padding:8px;}
+	.post p {font-size:0.8em;}
+		.post a {color:#2583ad;}
+	.post .title {margin:0;}
+	.post .subtitle {font-size:0.9em;margin:0;}
+		.post .subtitle a {color:#d54e21;}
+	.post .singleline {margin:0;}
+	.post .thumbnail{float:left;margin: 5px 7px 2px 0;}
+	.post .comment {margin:8px 0;}
+	.post .commentmeta {font-size:0.7em;}
+
+.postmeta {background:#f3f3f3;border-bottom:1px solid #ddd;color:#000;padding:8px;}
+	.postmeta p {font-size:0.8em;margin:0;}
+		.postmeta p a {color:#2583ad;}
+
+#posttags {background:#fff;border-bottom:1px solid #f3f3f3;padding: 8px;}
+	#posttags p {font-size:0.8em;margin:0;}
+		#posttags p a {color:#2583ad;}
+
+#pagination {border-bottom:1px solid #f3f3f3;clear:both;color:#000;font-size:0.9em;padding:8px;}
+	#pagination .next {float:right;}
+	#pagination .prev {float:left;}
+		#pagination a, #pagination a:visited {color:#d54e21;}
+
+#comments {background:#f3f3f3;border-bottom:1px solid #f3f3f3;padding:8px;}
+	#comments p {font-size:0.8em;margin:0;}
+		#comments p a {color:#2583ad;}
+
+/* Sidebar */
+#heading h2 {background:#f3f3f3;border-bottom:1px solid #f3f3f3;color:#000;font-size:0.9em;padding:8px;}
+ul#list, ol#list {border-bottom:1px solid #f3f3f3;margin:0;list-style:none;padding:0 8px 8px;}
+ul#list li, ol#list li {color:#333;font-size:0.8em;padding-left:0;}
+ul#list li a, ol#list li a {color:#d54e21;}
+
+/* Footer */
+#search {background:#fff;padding:8px;}
+#footerwrap {width:100%;}
+#footer {background:#000;border-top:1px solid #ccc;padding:8px;}
+	#footer p {color:#fff;font-size:0.9em;margin:0;}
+		#footer p a {color:#2583ad;}

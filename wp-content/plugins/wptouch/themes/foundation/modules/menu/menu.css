@@ -1,0 +1,147 @@
+/* @override http://wptp3.local.com/wp-content/plugins/wptouch-pro-3/themes/foundation/modules/menu/menu.css?ver=2.0.4 */
+
+/* Default WPtouch Pages Menu Styling */
+
+.wptouch-menu .menu-tree a, .wptouch-menu .menu-tree span {
+	color: rgba(0,0,0,.65);
+	text-shadow: rgba(255,255,255,.3) 0 1px 0;
+}
+
+.wptouch-menu .menu-tree > li {
+	border-bottom: 1px solid rgba(0,0,0,.08);
+	border-top: 1px solid rgba(255,255,255,.1);
+}
+
+.menu-tree li {
+	position: relative;
+	line-height: 100%;
+}
+
+.wptouch-menu ul ul {
+	display: none;
+}
+
+.menu-tree li span {
+	-webkit-transition-duration: 300ms;
+	display: block;
+	box-shadow: inset rgba(0,0,0,.15) 1px 0px 0px;
+	border-left: 1px solid rgba(255,255,255,.1);
+	padding: 15px;
+	float: right;
+}
+
+.menu-tree li span.toggle {
+	box-shadow: inset rgba(0,0,0,.2) 0px 4px 4px;
+	border: none;
+}
+
+.menu-tree li span:before {
+	font-family: FontAwesome;
+	content:"\f078";
+}
+
+.menu-tree li span.toggle:before {
+	content:"\f077";
+	font-weight: normal;
+	font-style: normal;
+}
+
+ul.menu-tree.no-parent-links span, ul.menu-tree ul span {
+	border: none;
+	box-shadow: none;
+}
+
+.menu-tree li a {
+	display: block;
+	-o-text-overflow: ellipsis;
+	-ms-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-right: 32px;
+}
+
+.menu-tree li img {
+	width: 26px;
+	height: 26px;
+	position: relative;
+	float: left;
+	padding-right: 6px;
+	top: 8px;
+	padding-left: 6px;
+}
+
+.menu-tree > .open-tree {
+	background: rgba(0,0,0,.03);
+	box-shadow: inset rgba(0,0,0,.25) 0px 0px 4px;
+	border-top-color: rgba(0,0,0,.2);
+	margin-top: -1px;
+	padding-top: 1px;
+}
+
+.menu-tree li.no-icon {
+	padding-left: 10px;
+}
+
+.menu-tree ul li {
+	border-style: none !important;
+	padding-left: 15px;
+}
+
+/* @group RTL */
+
+.rtl .menu-tree li span {
+	-webkit-transition-duration: 300ms;
+	float: left;
+	box-shadow: inset rgba(0,0,0,.15) -1px 0px 0px;
+	border-right: 1px solid rgba(255,255,255,.1);
+	border-left: none;
+}
+
+.rtl .menu-tree li span.toggle {
+	box-shadow: inset rgba(0,0,0,.2) 0px 4px 4px;
+	border: none;	
+}
+
+.rtl .menu-tree li.menu-item img {
+	float: right;
+}
+
+.rtl .menu-tree li.menu-item a {
+	padding-left: 32px;
+	padding-right: 0px;	
+}
+
+.rtl .menu-tree li.no-icon {
+	padding-right: 10px;
+}
+
+.rtl .menu-tree ul li {
+	padding-left: 0px;	
+	padding-right: 15px;
+}
+
+/* @end */
+
+/* @group Dark Header */
+
+.dark-header .wptouch-menu .menu-tree a, .dark-header .wptouch-menu .menu-tree span {
+	color: rgba(255,255,255,.9);
+	text-shadow: rgba(0,0,0,.3) 0 -1px 0;
+}
+
+.dark-header .wptouch-menu .menu-tree span:before {
+	color: rgba(255,255,255,.9);
+	text-shadow: rgba(0,0,0,.5) 0 -1px 0;
+}
+
+.dark-header .wptouch-menu .menu-tree > li.menu-item {
+	border-bottom: 1px solid rgba(0,0,0,.12);
+	border-top: 1px solid rgba(255,255,255,.06);
+}
+
+/* @end */
+
+

@@ -1,0 +1,11 @@
+/* 
+    Touch-based devices specific mobile stylesheet
+*/
+
+@import "basestyles.css"
+
+/* example: make links bigger */
+a {
+  padding: 10px;
+}
+

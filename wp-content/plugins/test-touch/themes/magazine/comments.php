@@ -1,0 +1,1 @@
+<?php include_once( wps_get_base_theme() . '/base-comments.php' ); ?>

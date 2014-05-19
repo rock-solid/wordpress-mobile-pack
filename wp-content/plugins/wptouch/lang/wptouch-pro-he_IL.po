@@ -1,0 +1,2067 @@
+# Translation of the WordPress plugin WPtouch Pro 3.0 by BraveNewCode Inc..
+# Copyright (C) 2013 BraveNewCode Inc.
+# This file is distributed under the same license as the WPtouch Pro package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2013.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: WPtouch Pro 3.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/wptouch-pro-3\n"
+"POT-Creation-Date: 2013-05-02 15:43-0500\n"
+"PO-Revision-Date: 2013-05-25 02:10+0200\n"
+"Last-Translator: Tamer Mansour <tamer.mansour@gmail.com>\n"
+"Language-Team: AppZone <admin@appzone.co.il>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.5\n"
+"Language: he_IL\n"
+
+#: admin/html/help.php:1
+msgid "WPtouch Pro Help & Account Links"
+msgstr "עזרה עבור WPtouch Pro & קישור לחשבון"
+
+#: admin/html/help.php:3
+msgid "Support Forums"
+msgstr "פורם תמיכה"
+
+#: admin/html/help.php:4
+msgid "Documentation"
+msgstr "מסמכים"
+
+#: admin/html/help.php:5
+msgid "Account & Downloads"
+msgstr "חשבון & הורדות"
+
+#: admin/html/help.php:6
+msgid "BraveNewCode on Twitter"
+msgstr "BraveNewCode ב טוויטר"
+
+#: admin/html/help.php:7
+msgid "Plugin Licensing Terms"
+msgstr "תנאי רישיון של התוסף"
+
+#: admin/html/notification-center.php:5
+#, php-format
+msgid "Preview Mode: %sOn%s"
+msgstr "מצב תצוגה: %sפעיל%s"
+
+#: admin/html/notification-center.php:9
+msgid "Notifications"
+msgstr "התראות"
+
+#: admin/html/notification-content.php:20
+msgid "No notifications"
+msgstr "אין התראות"
+
+#: admin/html/plugin-area.php:7
+#, php-format
+msgid ""
+"This copy of WPtouch Pro is unlicensed! Please %sactivate your license%s, or "
+"%spurchase a license%s to enable automatic updates and full product support "
+"from us!"
+msgstr ""
+"העותק הזה של Wptouch Pro הוא ללא רישיון! בבקש %sאקטב את הרישיון שלך%s או "
+"%sרכוש רישיון%s כדי לאפשר קבלת עדכונים אוטומטים ותמיכה מלאה מאתנו!"
+
+#: admin/html/plugin-area.php:9
+msgid ""
+"This copy of WPtouch Pro is unlicensed! Please contact the site "
+"administrator regarding product licensing."
+msgstr ""
+"העותק הזה של WPtouch Pro הוא ללא רישיון. אנא צור קשר עם מנהל האתר בדבר "
+"רישיון עבור המוצר."
+
+#: admin/pages/custom/theme-browser-item.php:7
+msgid "Click to view screenshots"
+msgstr "לחץ כדי לצפות בתצלומי מסך"
+
+#: admin/pages/custom/theme-browser-item.php:12
+#: admin/pages/custom/wptouch-admin-license.php:27
+msgid "Activate"
+msgstr "הפעל"
+
+#: admin/pages/custom/theme-browser-item.php:14
+msgid "Copy"
+msgstr "העתק"
+
+#: admin/pages/custom/theme-browser-item.php:16
+#: admin/settings/custom/html/custom_icon_management.php:12
+#: admin/settings/default/html/image-upload.php:13
+msgid "Delete"
+msgstr "מחק"
+
+#: admin/pages/custom/theme-browser-item.php:19
+msgid "Setup"
+msgstr "הגדרות"
+
+#: admin/pages/custom/theme-browser-item.php:55
+#, php-format
+msgid "This theme supports %s devices"
+msgstr "ערכת נושא זו תומכת ב %s מכשירים"
+
+#: admin/pages/custom/theme-browser-item.php:61
+#, php-format
+msgid "a child theme of %s,"
+msgstr "a child theme of %s,"
+
+#: admin/pages/custom/theme-browser-item.php:63
+#: admin/settings/custom/html/installed_icon_sets_ajax.php:8
+#: admin/settings/custom/html/installed_icon_sets_ajax.php:19
+#, php-format
+msgid "by %s"
+msgstr "נכתב על ידי %s"
+
+#: admin/pages/custom/theme-browser-item.php:68
+#, php-format
+msgid "Theme location: %s"
+msgstr "מיקום ערכת הנושא: %s"
+
+#: admin/pages/custom/theme-browser-item.php:69
+msgid "Relative to your WordPress wp-content directory."
+msgstr "ביחס לתיקיית ה WordPress wp-content שלך."
+
+#: admin/pages/custom/wptouch-admin-license.php:13
+msgid "License Details"
+msgstr "פרטי רישיון"
+
+#: admin/pages/custom/wptouch-admin-license.php:15
+msgid "Note"
+msgstr "הערה."
+
+#: admin/pages/custom/wptouch-admin-license.php:16
+msgid "Once you activate, this page will be hidden."
+msgstr "לאחר אכתוב, הדף הזה יהיה מוסתר."
+
+#: admin/pages/custom/wptouch-admin-license.php:19
+msgid "It will only reappear if you reset your WPtouch Pro settings."
+msgstr "זה יופיע רק כאשר תאפס את הגדרות של WPtouch Pro ."
+
+#: admin/pages/custom/wptouch-admin-license.php:22
+msgid "Account E-Mail Address"
+msgstr "כתובת דוא\"ל של החשבון."
+
+#: admin/pages/custom/wptouch-admin-license.php:24
+msgid "Product License Key"
+msgstr "קוד רישיון"
+
+#: admin/pages/custom/wptouch-admin-license.php:37
+msgid "And boom. You're done."
+msgstr "ובום, סיימת."
+
+#: admin/pages/custom/wptouch-admin-license.php:38
+msgid "Activation Complete. Enjoy WPtouch Pro!"
+msgstr "האקטוב הושלם. תהנה מ WPtouch Pro!"
+
+#: admin/pages/custom/wptouch-admin-license.php:42
+msgid "Check that spelling, one more time."
+msgstr "בדוק את האיות, פעם נוספת."
+
+#: admin/pages/custom/wptouch-admin-license.php:43
+msgid ""
+"The bravenewcode.com server rejected your E-Mail address and/or License Key. "
+"Please check they are correct and try again."
+msgstr ""
+"השרת של bravenewcode.com דחה את כתובת הדוא\"ל שלך ו/או את הרישיון. בדוק שנית "
+"אם הם נכונים ונסה שוב."
+
+#: admin/pages/custom/wptouch-admin-license.php:47
+msgid "Too many cooks in the kitchen!"
+msgstr "יותר מדי טבחים במטבח!"
+
+#: admin/pages/custom/wptouch-admin-license.php:48
+msgid ""
+"The bravenewcode.com server says you’ve used all your activations. What do "
+"you want to do?"
+msgstr ""
+"השרת bravenewcode.com אומר שניצלת את כל הרישיונות שיש ברשותך, מה ברצונך לעשות"
+
+#: admin/pages/custom/wptouch-admin-license.php:49
+msgid "Upgrade My License"
+msgstr "שדרג את הרישיון שלי"
+
+#: admin/pages/custom/wptouch-admin-license.php:50
+msgid "Manage My Licenses"
+msgstr "נהל את הרישיון שלי"
+
+#: admin/pages/custom/wptouch-admin-license.php:54
+msgid "The server seems confused."
+msgstr "השרת נראה מבולבל."
+
+#: admin/pages/custom/wptouch-admin-license.php:55
+msgid ""
+"The bravenewcode.com server can’t seem to authorize your E-Mail address and "
+"License Key. It’s not your fault."
+msgstr ""
+"השרת bravenewcode.com אינו יכול לאשר את כתובת הדוא\"ל והרישיון שלך. זו לא "
+"אשמתך."
+
+#: admin/pages/custom/wptouch-admin-license.php:56
+#, php-format
+msgid "Please %scontact us%s and let us know about it."
+msgstr "אנא %sצור אתנו קשר%s והודיע לנו על כך."
+
+#: admin/pages/wptouch-admin-general-settings.php:3
+#: themes/foundation/root-functions.php:10
+msgid "General"
+msgstr "כללי"
+
+#: admin/pages/wptouch-admin-general-settings.php:4
+msgid "Compatibility"
+msgstr "תאימות"
+
+#: admin/pages/wptouch-admin-general-settings.php:10
+msgid "Auto-detect"
+msgstr "זיהוי אוטומטי"
+
+#: admin/pages/wptouch-admin-general-settings.php:45
+msgid "Regionalization"
+msgstr "ממד אזורי"
+
+#: admin/pages/wptouch-admin-general-settings.php:51
+msgid "Language"
+msgstr "שפה"
+
+#: admin/pages/wptouch-admin-general-settings.php:52
+msgid ""
+"The WPtouch Pro admin panel &amp; supported themes will be shown in this "
+"locale."
+msgstr "פנל האדמין עבור WPtouch Pro &amp; ערכות נושא נתמכות יוצגו במיקום זה."
+
+#: admin/pages/wptouch-admin-general-settings.php:63
+msgid "Site Title & Byline"
+msgstr "כותרת וחתימת האתר"
+
+#: admin/pages/wptouch-admin-general-settings.php:69
+msgid "WPtouch Pro site title"
+msgstr "כותרת אתר WPtouch Pro"
+
+#: admin/pages/wptouch-admin-general-settings.php:70
+msgid ""
+"If the title of your site is long, you can shorten it for display within "
+"WPtouch Pro themes."
+msgstr ""
+"במידה וכותרת האתר שלך אורכה מדי, תוכל לקצרה כדי להבטיח תצוגה מיטבית בערכות "
+"נושא של WPtouch Pro "
+
+#: admin/pages/wptouch-admin-general-settings.php:77
+#, php-format
+msgid "Display %sPowered by WPtouch Pro%s in footer"
+msgstr "הצג %sPowered by WPtouch Pro%s בכותרת תחתונה"
+
+#: admin/pages/wptouch-admin-general-settings.php:88
+msgid "Landing Page"
+msgstr "העמוד הראשי שאליו יגיעו הגולשים לאתר"
+
+#: admin/pages/wptouch-admin-general-settings.php:94
+msgid "WPtouch Pro landing page"
+msgstr "העמוד הראשי שאליו יגיעו הגולשים לאתר עבור WPtouch Pro"
+
+#: admin/pages/wptouch-admin-general-settings.php:99
+msgid "Default (same as WordPress)"
+msgstr "ביברת מחדל ( בדומה ל WordPress )"
+
+#: admin/pages/wptouch-admin-general-settings.php:100
+msgid "Select from WordPress pages"
+msgstr "בחר בעמודי WordPress"
+
+#: admin/pages/wptouch-admin-general-settings.php:101
+msgctxt "Refers to a custom landing page"
+msgid "Custom"
+msgstr "מותאם אישית"
+
+#: admin/pages/wptouch-admin-general-settings.php:108
+msgid "Custom Slug or URL"
+msgstr "כתובת או Slug מותאם אישית"
+
+#: admin/pages/wptouch-admin-general-settings.php:109
+msgid "Enter a Slug (i.e. \"/home\") or a full URL path"
+msgstr "הכנס Slug (לדוגמא  \"/home\") או כתובת מלאה למיקום הרצוי"
+
+#: admin/pages/wptouch-admin-general-settings.php:119
+msgid "Desktop / Mobile Switching"
+msgstr "מעברים בין אתר שולחן העבודה/ נייד"
+
+#: admin/pages/wptouch-admin-general-settings.php:125
+msgid "1st time visitors see desktop theme"
+msgstr "מבקרים בפעם הראשונה יראו את האתר בגרסתו הרגילה"
+
+#: admin/pages/wptouch-admin-general-settings.php:126
+msgid "Your regular theme will be shown to 1st time mobile visitors."
+msgstr "ערכת נושא הרגילה שלך תוצג למבקים באתר בפעם הראשונה. "
+
+#: admin/pages/wptouch-admin-general-settings.php:133
+msgid "Show switch link in mobile view"
+msgstr "הצג לינק למעבר בין האתר הרגיל לאתר לנייד באתר הנייד"
+
+#: admin/pages/wptouch-admin-general-settings.php:134
+msgid ""
+"Will show toggle buttons in the theme's footer allowing users to switch to "
+"your desktop theme. Is not shown in Web-App Mode."
+msgstr ""
+"יציג כפתור בכותרת תחתונה של ערכת הנושא המאפשר למשתמשים לעבור לאתר הרגיל. לא "
+"יוצג במצב אפליקציית WEB ."
+
+#: admin/pages/wptouch-admin-general-settings.php:141
+msgid "Desktop theme switch buttons"
+msgstr "כפתור מעבר עבור ערכת נושא באתר הרגיל"
+
+#: admin/pages/wptouch-admin-general-settings.php:142
+msgid ""
+"Allows visitors to switch from your desktop theme to your mobile theme. You "
+"can also customize the placement of Switch buttons by placing the "
+"wptouch_desktop_switch_link() template tag somewhere in your desktop theme."
+msgstr ""
+"אפשר למבקרים לעבור מהאתר הרגיל לאתר המותאם לנייד. בנוסף תוכל להתאים את מיקום "
+"כפתור המעבר בין האתרים ע\"י מיקום התגית wptouch_desktop_switch_link() אפה "
+"שתרצה בערכת נושא של האתר הרגיל."
+
+#: admin/pages/wptouch-admin-general-settings.php:146
+msgid "Automatically inserted"
+msgstr "נוסף אוטומטית."
+
+#: admin/pages/wptouch-admin-general-settings.php:147
+msgid "Template tag"
+msgstr "תגית ערכת נושא"
+
+#: admin/pages/wptouch-admin-general-settings.php:156
+msgid "Custom Code"
+msgstr "קוד מותאם אישית"
+
+#: admin/pages/wptouch-admin-general-settings.php:162
+msgid "HTML, JavaScript, statistics or custom code"
+msgstr "HTML, JavaScript, סטטיסטיקה או קוד מותאם אישית"
+
+#: admin/pages/wptouch-admin-general-settings.php:163
+msgid "Enter any custom code here to be output in the theme footer."
+msgstr "הכנס כאן שורות קוד מותאמים אישית אשר הפלט שלו יוצג בכותרת תחתונה ."
+
+#: admin/pages/wptouch-admin-general-settings.php:173
+msgid "Custom Stylesheet"
+msgstr "stylesheet מותאם אישית"
+
+#: admin/pages/wptouch-admin-general-settings.php:179
+msgid "URL to a custom CSS file to load"
+msgstr "לינק עבור קובץ CSS מותאם אישית"
+
+#: admin/pages/wptouch-admin-general-settings.php:180
+msgid "Useful if you have specific compatibility CSS you need to add."
+msgstr "שימושי אם תרצה להוסיף CSS ספציפי לתאימות ."
+
+#: admin/pages/wptouch-admin-general-settings.php:190
+msgid "Shortcodes"
+msgstr "Shortcodes"
+
+#: admin/pages/wptouch-admin-general-settings.php:196
+msgid "Remove these shortcodes when WPtouch Pro is active"
+msgstr "הסר את ה Shortcodes האלו כאשר WPtouch Pro פעיל"
+
+#: admin/pages/wptouch-admin-general-settings.php:197
+msgid "Enter a comma separated list of shortcodes to remove."
+msgstr "הכנס רשימת shortcodes מופרדת בפסיק כיד להסיר אותם."
+
+#: admin/pages/wptouch-admin-general-settings.php:207
+msgid "Ignored URLs"
+msgstr "כתובות להתעלמות"
+
+#: admin/pages/wptouch-admin-general-settings.php:213
+msgid "Do not load WPtouch Pro on these URLs/Pages"
+msgstr "אל תטען את WPtouch Pro בכתובות/עמודים אלו"
+
+#: admin/pages/wptouch-admin-general-settings.php:214
+msgid ""
+"Each permalink URL fragment should be on its own line and relative, e.g. \"/"
+"about\" or \"/products/store\""
+msgstr ""
+"כל קט כתובת permalink (קישור יפה) צריך להיות בשורה משלו, לדוגמא .\"/about\" "
+"or \"/products/store\""
+
+#: admin/pages/wptouch-admin-general-settings.php:224
+msgid "Desktop Theme"
+msgstr "ערכת נושא של האתר הרגיל"
+
+#: admin/pages/wptouch-admin-general-settings.php:230
+msgid "Try to include desktop theme functions.php file"
+msgstr "נסה לצרף את הקובץ functions.php מערכת הנושא של האתר הרגיל"
+
+#: admin/pages/wptouch-admin-general-settings.php:231
+msgid ""
+"This may be required for desktop themes with unique features that are not "
+"showing when WPtouch Pro is active."
+msgstr ""
+"זה עשוי להידרש עבור ערכות נושא של האתר הרגיל בעלי תכונות מיוחדות אשר לא "
+"מופיעים כאשר WPtouch Pro פעיל."
+
+#: admin/pages/wptouch-admin-general-settings.php:238
+msgid "Method to load file"
+msgstr "שיטה לטעינת קוב."
+
+#: admin/pages/wptouch-admin-general-settings.php:243
+msgid "Include file directly"
+msgstr "כלול את הקובץ באופן ישיר"
+
+#: admin/pages/wptouch-admin-general-settings.php:244
+msgid "Translate and create new files"
+msgstr "תרגם וצור קבצים חדשים"
+
+#: admin/pages/wptouch-admin-general-settings.php:253
+msgid "Custom User-Agents"
+msgstr "User-Agents מותאם אישית"
+
+#: admin/pages/wptouch-admin-general-settings.php:259
+msgid "User-agents (line separated)"
+msgstr "User-agents (מופרד על ידי שורות)"
+
+#: admin/pages/wptouch-admin-general-settings.php:260
+msgid ""
+"Adding additional user-agents will force WPtouch Pro to be active for "
+"matching browsers."
+msgstr ""
+"הוספת עוד user-agents יאלץ את WPtouch Pro להיות פעיל עבור דפדפנים נוספים עם "
+"אותם user-agents"
+
+#: admin/pages/wptouch-admin-general-settings.php:274
+msgid "Backup &amp; Import"
+msgstr "גיבוי &amp; יבוא"
+
+#: admin/pages/wptouch-admin-general-settings.php:280
+#, php-format
+msgid "Automatically backup settings to the %s folder"
+msgstr "גבה הגדרות בצורה אוטומטית לתוך הספרייה %s"
+
+#: admin/pages/wptouch-admin-general-settings.php:282
+msgid "WPtouch Pro backups your settings each time they are saved."
+msgstr "WPtouch Pro מגבה את ההגדרות שלך בכל פעם שהם נשמרים."
+
+#: admin/pages/wptouch-admin-general-settings.php:293
+msgid "Tools &amp; Debug"
+msgstr "כלים &amp; ניפוי שגיאות"
+
+#: admin/pages/wptouch-admin-general-settings.php:299
+msgid "Preview mode"
+msgstr "מצב תצוגה"
+
+#: admin/pages/wptouch-admin-general-settings.php:300
+msgid "Will show WPtouch Pro in desktop browsers for logged in admin users."
+msgstr "WPtouch Pro יוצג בדפדפנים הרגילים עבור משתמשים מחוברים עם הרשאת אדמין."
+
+#: admin/pages/wptouch-admin-general-settings.php:304
+msgid "On"
+msgstr "פעיל"
+
+#: admin/pages/wptouch-admin-general-settings.php:305
+msgid "Off"
+msgstr "מבוטל"
+
+#: admin/pages/wptouch-admin-general-settings.php:311
+msgid ""
+"Use jQuery 2.0 in themes (faster for mobile devices) instead of WordPress' "
+"version"
+msgstr ""
+"השתמש ב jQuery 2.0 בערכות נושא (מהיר יותר עבור מכשירים ניידים) במקום הגרסה "
+"שקיימת ב WordPress"
+
+#: admin/pages/wptouch-admin-general-settings.php:312
+msgid ""
+"jQuery 2.0 is significantly smaller and faster than previous jQuery versions "
+"- may cause problems with other plugins, use carefully."
+msgstr ""
+"jQuery 2.0 משמעותית קטן יותר ומהיר יותר מגרסאות קודמות - יכול לגרום לבעיות "
+"עם תוספים אחרים, השתמשו באפשרות זו בזהירות."
+
+#: admin/pages/wptouch-admin-general-settings.php:319
+msgid "Show load times and query counts in the footer"
+msgstr "הראה את זמן הטעינה ומספר השאילתות בכותרת התחתונה "
+
+#: admin/pages/wptouch-admin-general-settings.php:320
+msgid "Helps you find slow pages/posts on your site."
+msgstr "עוזר לך למצוא דפים/כתבות איטיות באתר שלך."
+
+#: admin/pages/wptouch-admin-general-settings.php:327
+msgid "Enable debug log"
+msgstr "אפשר לוג עבור ניפוי שגיאות"
+
+#: admin/pages/wptouch-admin-general-settings.php:328
+msgid "Creates a debug file to help diagnose installation issues."
+msgstr "יוצר קובץ ניפוי כדי לסייע באיתור תקלות."
+
+#: admin/pages/wptouch-admin-general-settings.php:339
+msgid "WordPress Plugins"
+msgstr "תוספי WordPress"
+
+#: admin/pages/wptouch-admin-general-settings.php:352
+msgid "Admin Mode"
+msgstr "מצב אדמין"
+
+#: admin/pages/wptouch-admin-general-settings.php:358
+msgid "Admin panel settings shown"
+msgstr "פנל האדמין הוצג"
+
+#: admin/pages/wptouch-admin-general-settings.php:363
+msgid "Default"
+msgstr "ברירת מחדל"
+
+#: admin/pages/wptouch-admin-general-settings.php:364
+#: admin/pages/wptouch-admin-menus.php:66
+#: admin/settings/default/html/checkbox.php:6
+#: admin/settings/default/html/list.php:16
+#: admin/settings/default/html/numeric.php:12
+#: admin/settings/default/html/radiolist.php:12
+#: admin/settings/default/html/text.php:8
+#: admin/settings/default/html/textarea.php:8
+msgid "Advanced"
+msgstr "מתקדם"
+
+#: admin/pages/wptouch-admin-menus.php:3
+msgid "Theme Menus"
+msgstr "תפריט ערכת נושא"
+
+#: admin/pages/wptouch-admin-menus.php:4
+msgid "Menu Setup"
+msgstr "הגדרות תפריט"
+
+#: admin/pages/wptouch-admin-menus.php:5
+msgid "Icon Upload & Sets"
+msgstr "העלאת אייקונים וסטים"
+
+#: admin/pages/wptouch-admin-menus.php:22
+msgid "WordPress Pages"
+msgstr "עמוד WordPress"
+
+#: admin/pages/wptouch-admin-menus.php:28
+#: admin/settings/custom/html/icon_menu_area.php:6
+#: themes/foundation/root-functions.php:340
+#: themes/foundation/root-functions.php:741
+msgid "None"
+msgstr "אף לא אחד"
+
+#: admin/pages/wptouch-admin-menus.php:72
+msgid "Use menu icons"
+msgstr "השתמש באייקון תפריט"
+
+#: admin/pages/wptouch-admin-menus.php:96
+msgid "Icon Upload"
+msgstr "העלאת אייקון"
+
+#: admin/pages/wptouch-admin-menus.php:109
+msgid "Uploaded Icons"
+msgstr "אייקונים שהועלו"
+
+#: admin/pages/wptouch-admin-menus.php:122
+msgid "Icon Sets"
+msgstr "סט אייקונים"
+
+#: admin/pages/wptouch-admin-touchboard.php:3 core/admin-menu.php:27
+msgid "Overview"
+msgstr "סקירה"
+
+#: admin/settings/custom/html/backup.php:1
+msgid "Download Backup File"
+msgstr "הורד קובץ גיבוי"
+
+#: admin/settings/custom/html/backup.php:2
+msgid "Restore Backup File"
+msgstr "שחזר קובץ גיבוי"
+
+#: admin/settings/custom/html/custom_icon_management.php:3
+msgid "No icons have been uploaded yet"
+msgstr "לא נמצאו אייקונים שכבר הועלו"
+
+#: admin/settings/custom/html/custom_icon_upload.php:3
+msgid "Upload Icon"
+msgstr "העלה אייקון"
+
+#: admin/settings/custom/html/custom_icon_upload.php:4
+#: admin/settings/default/html/image-upload.php:15
+msgid "Upload Complete!"
+msgstr "ההעלה הסתיימה בהצלחה!"
+
+#: admin/settings/custom/html/custom_icon_upload.php:9
+msgid "Ready to upload"
+msgstr "מוכן להעלות"
+
+#: admin/settings/custom/html/icon_menu_area.php:5
+msgid "Check All"
+msgstr "סמן הכל"
+
+#: admin/settings/custom/html/icon_menu_area.php:7
+msgid "Reset"
+msgstr "אפס"
+
+#: admin/settings/custom/html/icon_menu_area.php:9
+#: themes/classic-redux/default/header-bottom.php:28
+#: themes/classic-redux/default/header-bottom.php:86
+msgid "Menu"
+msgstr "תפריט"
+
+#: admin/settings/custom/html/icon_menu_area.php:19
+msgid "Active menus used in this theme."
+msgstr "תפריט אקטיבי נמצא בשימוש בערכת נושא זו."
+
+#: admin/settings/custom/html/icon_menu_area.php:23
+msgid "Show/Hide"
+msgstr "הצג/הסתר"
+
+#: admin/settings/custom/html/icon_menu_area.php:24
+msgid "Menu Item"
+msgstr "פריט השייך לתפריט"
+
+#: admin/settings/custom/html/icon_menu_area.php:44
+msgid "Icon Set"
+msgstr "סט אייקונים"
+
+#: admin/settings/custom/html/icon_menu_area.php:54
+msgid "Drag icons to associate them with menu items"
+msgstr "גרור אייקונים בכדי לצרף אותם לפריטי תפריט"
+
+#: admin/settings/custom/html/icon_menu_area.php:79
+msgid "You don't have any custom icons yet."
+msgstr "אין ברשותך אייקונים מותאמים אישית."
+
+#: admin/settings/custom/html/icon_menu_area.php:95
+msgid "Default Icon"
+msgstr "אייקון ברירת מחדל"
+
+#: admin/settings/custom/html/icon_menu_area.php:96
+msgid "applies to all unset icons"
+msgstr "החל עבור כל האייקונים שלא הוגדרו "
+
+#: admin/settings/custom/html/icon_menu_area.php:104
+msgid "Trash"
+msgstr "פח אשפה"
+
+#: admin/settings/custom/html/icon_menu_area.php:105
+msgid "drag icon here to reset"
+msgstr "גרור את האייקון לכאן כדי לאפס"
+
+#: admin/settings/custom/html/installed_icon_sets.php:1
+msgid "Gathering information about available icon sets..."
+msgstr "אוסף מידע עבור סטים של אייקונים זמינים..."
+
+#: admin/settings/custom/html/installed_icon_sets_ajax.php:4
+#: core/class-wptouch-pro.php:1201 core/class-wptouch-pro.php:1202
+#: core/config.php:39
+msgid "Custom Icons"
+msgstr "אייקון מותאם אישית"
+
+#: admin/settings/custom/html/installed_icon_sets_ajax.php:9
+#: admin/settings/custom/html/installed_icon_sets_ajax.php:21
+msgid "Installed"
+msgstr "הותקן"
+
+#: admin/settings/custom/html/installed_icon_sets_ajax.php:20
+msgid "Installing..."
+msgstr "מתקין..."
+
+#: admin/settings/custom/html/installed_icon_sets_ajax.php:20
+msgid "Install"
+msgstr "התקן"
+
+#: admin/settings/custom/html/plugin-compat-ajax.php:11
+#: themes/foundation/modules/custom-posts/custom-posts.php:63
+#, php-format
+msgid "Enable %s"
+msgstr "אפשר %s"
+
+#: admin/settings/custom/html/plugin-compat-ajax.php:12
+#, php-format
+msgid ""
+"When unchecked, %s will be disabled for users viewing your WPtouch Pro theme."
+msgstr ""
+"כאשר לא נבחר, %s לא יהיה פעיל עבור משתמשים הצופים בערכת הנושא שלך עבור "
+"WPtouch Pro."
+
+#: admin/settings/custom/html/plugin-compat-ajax.php:20
+msgid "No plugins to disable."
+msgstr "אין plugins לביטול ."
+
+#: admin/settings/custom/html/plugin-compat.php:3
+msgid "Your active plugin list is refreshing"
+msgstr "רשימת ה plugin הפעילים שלך מתעדכנת"
+
+#: admin/settings/custom/html/restore.php:2
+msgid ""
+"Please paste your encoded settings below and save to restore your settings."
+msgstr "אנא הדבק למטה את ההגדרות המקודדות שלך ושמור כדי לשחזר את ההגדרות שלך."
+
+#: admin/settings/custom/html/touchboard.php:5
+#, php-format
+msgid "This copy of %s is currently unlicensed!"
+msgstr "העותק של %s ללא רישיון!"
+
+#: admin/settings/custom/html/touchboard.php:7
+msgid "Get started with activation &raquo;"
+msgstr "התחל בתהליך האקטיבציה &raquo;"
+
+#: admin/settings/custom/html/touchboard.php:16
+msgid "Loading remote images"
+msgstr "טוען תמונות מרוחקות"
+
+#: admin/settings/custom/html/touchboard.php:27
+msgid "Get Support"
+msgstr "קבלה עזרה"
+
+#: admin/settings/custom/html/touchboard.php:28
+msgid "File tickets and get direct support for WPtouch Pro from BraveNewCode"
+msgstr "פתח תקלות וקבל עזרה ישירה עבור WPtouch Pro מ BraveNewCode"
+
+#: admin/settings/custom/html/touchboard.php:31
+msgid "Knowledgebase"
+msgstr "מאגר מידע"
+
+#: admin/settings/custom/html/touchboard.php:32
+msgid ""
+"Read helpful tutorials and product articles to get the most out of WPtouch "
+"Pro"
+msgstr ""
+"קרא מדריכים שימושיים וכתבות עבור המוצר בכדי להפיק את המקסימום מ WPtouch Pro"
+
+#: admin/settings/custom/html/touchboard.php:35
+msgid "Product Updates"
+msgstr "עדכונים"
+
+#: admin/settings/custom/html/touchboard.php:36
+msgid "Check out what's new in the WPtouch Pro update change log"
+msgstr "ראה מה חדש ברשימת השינווים עבור העדכון ל WPtouch Pro"
+
+#: admin/settings/custom/html/touchboard.php:39
+msgid "Manage Account"
+msgstr "נהל חשבון"
+
+#: admin/settings/custom/html/touchboard.php:40
+msgid "Add or edit your active sites, or upgrade your license"
+msgstr "הוסף או ערוך את האתרים הפעילים שלך, או שדרג את הרישיון שברשותך"
+
+#: admin/settings/custom/html/touchboard.php:47
+#, php-format
+msgid "%s Change Log"
+msgstr "%s שינויים אחרונים"
+
+#: admin/settings/custom/html/touchboard.php:58
+msgid "WPtouch News"
+msgstr "חדשות WPtouch"
+
+#: admin/settings/default/html/checkbox.php:7
+#: admin/settings/default/html/list.php:20
+#: admin/settings/default/html/numeric.php:16
+#: admin/settings/default/html/radiolist.php:14
+#: admin/settings/default/html/text.php:9
+#: admin/settings/default/html/textarea.php:9
+msgid "New"
+msgstr "חדש"
+
+#: admin/settings/default/html/color.php:6
+msgid "Undo"
+msgstr "בטל"
+
+#: admin/settings/default/html/color.php:7
+msgid "Desktop theme colors"
+msgstr "צבעי ערכת נושא של האתר הרגיל"
+
+#: admin/settings/default/html/color.php:7
+msgid "Palette"
+msgstr "לוח צבעים"
+
+#: admin/settings/default/html/debuginfo.php:12
+msgid "View Debug File"
+msgstr "הצג קובץ ניפוי שגיאות"
+
+#: admin/settings/default/html/debuginfo.php:16
+#: admin/settings/default/html/debuginfo.php:18
+msgid "Your Server Configuration"
+msgstr "הגדרות השרת שלך"
+
+#: admin/settings/default/html/image-upload.php:11
+msgid "Upload"
+msgstr "העלאה"
+
+#: admin/settings/default/html/redirect.php:17
+msgid "WordPress Page"
+msgstr "עמוד WordPress"
+
+#: admin/settings/default/html/user-agent-list.php:4
+#: admin/settings/default/html/user-agent-list.php:6
+msgid ""
+"WPtouch Pro will be active when any of the following user-agent combinations "
+"are matched"
+msgstr "WPtouch Pro יופעל כאשר כל אחד מהקומבינציות של ה user-agent יהיה קיים"
+
+#: core/admin-ajax.php:240
+#, php-format
+msgid "Version %s"
+msgstr "גרסה %s"
+
+#: core/admin-ajax.php:246
+msgid ""
+"There is a temporary issue retrieving the change-log.  Please try again "
+"later."
+msgstr "זוהי תקלה זמנית, מאחזר את קובץ יומן שינויים. אנא נסה מאוחר יותר."
+
+#: core/admin-menu.php:28
+msgid "Core Settings"
+msgstr "הגדרות ליבה"
+
+#: core/admin-menu.php:29
+msgid "Themes"
+msgstr "ערכות נושא"
+
+#: core/admin-menu.php:32
+msgid "Theme Options"
+msgstr "הגדרות ערכת נושא"
+
+#: core/admin-menu.php:34
+#, php-format
+msgid "%s Theme Options"
+msgstr "%s הגדרות ערכת נושא"
+
+#: core/admin-menu.php:40 core/admin-menu.php:42
+msgid "Menus"
+msgstr "תפריט"
+
+#: core/admin-menu.php:47
+msgid "License"
+msgstr "רישיון"
+
+#: core/admin-render.php:67
+msgid "Save Changes"
+msgstr "שמור שינויים"
+
+#: core/admin-render.php:68
+msgid "Preview Theme"
+msgstr "תצוגה מקדימה של ערכת נושא"
+
+#: core/admin-render.php:69
+msgid "Reset Settings"
+msgstr "אפס הגדרות"
+
+#: core/class-wptouch-pro.php:322
+msgid "Heads up!"
+msgstr "שים לב!"
+
+#: core/class-wptouch-pro.php:323
+msgid "Theme Preview requires Chrome or Safari."
+msgstr "תצוגה מקדימה דורשת דפדן Chrome או ספארי"
+
+#: core/class-wptouch-pro.php:324
+msgid ""
+"This will reset all WPtouch Pro settings.\n"
+"Are you sure?"
+msgstr ""
+"פעולה זו תאפס את כל ההגדרות של WPtouch Pro. \n"
+"האם אתה בטוח ?"
+
+#: core/class-wptouch-pro.php:325
+msgid ""
+"This will reset all WPtouch Pro menu and icon settings.\n"
+"Are you sure?"
+msgstr ""
+"פעולה זו תאפס את הגדרות התפריט והאייקונים. \n"
+"אתה בטוח ?"
+
+#: core/class-wptouch-pro.php:892 themes/foundation/root-functions.php:441
+msgid "Settings"
+msgstr "הגדרות"
+
+#: core/class-wptouch-pro.php:986
+msgid "WPtouch Pro Changelog"
+msgstr "יומן רישום שינויים עבור WPtouch Pro"
+
+#: core/class-wptouch-pro.php:1892
+msgid "Directory Problem"
+msgstr "בעיית תיקיה"
+
+#: core/class-wptouch-pro.php:1893
+msgid "One or more required directories could not be created"
+msgstr "לא היה ניתן ליצור את הספרייה או הספריות הנדרשות"
+
+#: core/globals.php:197
+msgid "smartphone"
+msgstr "סמארטפון"
+
+#: core/globals.php:199
+msgid "tablet"
+msgstr "טאבלט"
+
+#: core/notifications.php:116
+#, php-format
+msgid "WPtouch Pro %s"
+msgstr "WPtouch Pro %s"
+
+#: core/notifications.php:117
+msgid "A new version of WPtouch Pro is available."
+msgstr "גרסה חדשה עבור WPtouch Pro זמינה."
+
+#: core/notifications.php:126
+msgid "Unlicensed Install"
+msgstr "עותק ללא רישיון"
+
+#: core/notifications.php:127
+msgid "This installation of WPtouch Pro is currently unlicensed."
+msgstr "התקנה זו של WPtouch Pro כרגע ללא רישיון"
+
+#: core/notifications.php:137
+msgid ""
+"WPtouch Pro 3 cannot co-exist with WPtouch 1.x. Disable it first in the "
+"WordPress Plugins settings."
+msgstr ""
+" 3WPtouch Pro לא יכול להתקיים במכביל עם WPtouch 1.x. נטרל אותו תחילה מתפריט "
+"התוספים של WordPress ."
+
+#: core/notifications.php:146
+msgid ""
+"WPtouch Pro 3 cannot co-exist with WPtouch Pro 2.x. Disable it first in the "
+"WordPress Plugins settings."
+msgstr ""
+" 3WPtouch Pro לא יכול להתקיים במכביל עם WPtouch Pro 2.x. נטרל אותו תחילה "
+"מתפריט התוספים של WordPress ."
+
+#: core/notifications.php:156
+msgid "WPtouch Pro prefers pretty permalinks to be enabled within WordPress."
+msgstr "WPtouch Pro מעדיף מבנה קישורים יפים שיהיו פעילים ב WordPress"
+
+#: core/notifications.php:165
+msgid "WPtouch Pro will not work fully in safe mode."
+msgstr "WPtouch Pro לא יעבוד בצורה מלאה במצב בטוח."
+
+#: core/notifications.php:174 core/notifications.php:183
+#: core/notifications.php:192
+msgid ""
+"Extra configuration is required. The plugin must be configured to exclude "
+"the user agents that WPtouch Pro uses."
+msgstr ""
+"נדרשים הגדרות נוספות, התוסף צריך להיות מוגדר כך שלא יכלול את ה user-agents ש "
+"WPtouch Pro משתמש בהם."
+
+#: core/notifications.php:201
+msgid ""
+"Extra configuration is required. Add paths to your active WPtouch Pro theme "
+"CSS and Javascript files as files to ignore in WPMinify."
+msgstr ""
+"נדרשים הגדרות נוספות, הוסף נתיב לערכת הנושא הפעילה של WPtouch Pro עבור קבצי "
+"CSS ו Javascript אשר נדרש להתעלם מהם ב WPMinify ."
+
+#: core/notifications.php:210
+msgid ""
+"This plugin may not work correctly in WPtouch Pro, and should be disabled in "
+"the Plugin Compatibility section."
+msgstr ""
+"תוסף זה יכול לא לעבוד בצורה תקינה ב WPtouch Pro, עליך לבטל אותו באזור תאימות "
+"התוספים"
+
+#: include/add-ons/wordtwit-pro.php:179
+#: themes/foundation/modules/twitter/twitter.php:35
+#, php-format
+msgid "%d second ago"
+msgid_plural "%d seconds ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: include/add-ons/wordtwit-pro.php:182
+#: themes/foundation/modules/twitter/twitter.php:38
+#, php-format
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: include/add-ons/wordtwit-pro.php:185
+#: themes/foundation/modules/twitter/twitter.php:41
+#, php-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: include/add-ons/wordtwit-pro.php:188
+#: themes/foundation/modules/twitter/twitter.php:44
+#, php-format
+msgid "%d day ago"
+msgid_plural "%d days ago"
+msgstr[0] ""
+
+#: include/html/desktop-switch.php:2
+msgid "Desktop Version"
+msgstr "גלישה באתר הרגיל"
+
+#: include/html/desktop-switch.php:2
+msgid "Switch To Mobile Version"
+msgstr "עבור לאתר המותאם לטלפון"
+
+#: include/html/footer.php:2
+#, php-format
+msgid "Powered by %s%s%s"
+msgstr "מופעל על ידי %s%s%s"
+
+#: include/html/footer.php:3
+#, php-format
+msgid "By %s"
+msgstr "על ידי %s"
+
+#: include/html/load-times.php:2
+#, php-format
+msgid "%d queries in %0.1f ms"
+msgstr "%d שאילתות תוך %0.1f ms"
+
+#: themes/classic-redux/default/header-bottom.php:31
+#: themes/classic-redux/default/header-bottom.php:46
+msgid "Categories"
+msgstr "קטגוריות"
+
+#: themes/classic-redux/default/header-bottom.php:35
+#: themes/classic-redux/default/header-bottom.php:50
+msgid "Tags"
+msgstr "תגיות"
+
+#: themes/classic-redux/default/header-bottom.php:39
+#: themes/classic-redux/default/header-bottom.php:65
+msgid "Tweets"
+msgstr "ציוצים"
+
+#: themes/classic-redux/default/header-bottom.php:42
+#: themes/classic-redux/default/header-bottom.php:57
+msgid "Search"
+msgstr "חיפוש"
+
+#: themes/classic-redux/default/header-bottom.php:56
+msgid "Search this website"
+msgstr "חפש באתר"
+
+#: themes/classic-redux/default/header-bottom.php:68
+#, php-format
+msgid "Follow %s on Twitter"
+msgstr "עקוב %s בטוייטר"
+
+#: themes/classic-redux/default/index.php:34
+#: themes/cms/default/header-bottom.php:47
+#: themes/foundation/default/index.php:32
+msgid "newer posts"
+msgstr "כתבות חדשות"
+
+#: themes/classic-redux/default/index.php:34
+#: themes/cms/default/header-bottom.php:43
+#: themes/foundation/default/index.php:32
+msgid "older posts"
+msgstr "כתבות קודמות"
+
+#: themes/classic-redux/default/nav-bar.php:8
+msgid "previous post"
+msgstr "הכתבה הקודמת"
+
+#: themes/classic-redux/default/nav-bar.php:14
+msgid "next post"
+msgstr "הכתבה הבאה"
+
+#: themes/classic-redux/default/post-loop.php:18
+msgid "by"
+msgstr "על ידי"
+
+#: themes/classic-redux/default/post-loop.php:22
+#: themes/foundation/default/comments.php:15
+msgid "no responses"
+msgstr "אין תגובות"
+
+#: themes/classic-redux/default/post-loop.php:22
+#: themes/foundation/default/comments.php:15
+msgid "1 response"
+msgstr "תגובה אחת"
+
+#: themes/classic-redux/default/post-loop.php:22
+#: themes/foundation/default/comments.php:15
+msgid "% responses"
+msgstr "% תגובות"
+
+#: themes/classic-redux/default/single.php:17
+#, php-format
+msgid "%s at %s"
+msgstr "%s בשעה %s"
+
+#: themes/classic-redux/default/single.php:18
+#, php-format
+msgid "Written by %s"
+msgstr "נכתב על ידי %s"
+
+#: themes/classic-redux/root-functions.php:7
+#: themes/classic-redux/root-functions.php:185
+msgid "Tablets"
+msgstr "טאבלטים"
+
+#: themes/classic-redux/root-functions.php:52
+msgid "Header Menu"
+msgstr "תפריט כותרת עליונה"
+
+#: themes/classic-redux/root-functions.php:54 themes/cms/root-functions.php:96
+#: themes/cms/root-functions.php:105 themes/simple/root-functions.php:46
+#: themes/simple/root-functions.php:57
+msgid "Choose a menu"
+msgstr "בחר תפריט"
+
+#: themes/classic-redux/root-functions.php:61
+#: themes/cms/root-functions.php:111 themes/simple/root-functions.php:64
+msgid "Header background"
+msgstr "רקע עבור כותרת עליונה"
+
+#: themes/classic-redux/root-functions.php:62
+#: themes/cms/root-functions.php:112 themes/simple/root-functions.php:65
+msgid "Theme background"
+msgstr "רקע עבור ערכת נושא"
+
+#: themes/classic-redux/root-functions.php:63
+#: themes/cms/root-functions.php:113 themes/simple/root-functions.php:66
+msgid "Links"
+msgstr "לינקים"
+
+#: themes/classic-redux/root-functions.php:191
+msgid "Add tablet support"
+msgstr "הוסף תמיכה בטאבלט"
+
+#: themes/classic-redux/root-functions.php:203
+msgid "Blog Listings"
+msgstr "תצוגת בלוג"
+
+#: themes/classic-redux/root-functions.php:209
+msgid "Post thumbnails"
+msgstr "תמונות ממוזערות של הכתבה"
+
+#: themes/classic-redux/root-functions.php:214
+msgid "No thumbnails"
+msgstr "ללא תמונות ממוזערות"
+
+#: themes/classic-redux/root-functions.php:215
+msgid "Index pages only"
+msgstr "עמוד האינדקס בלבד"
+
+#: themes/classic-redux/root-functions.php:216
+msgid "Index and single post pages"
+msgstr "עמוד האינדקס וכתבה בודדת"
+
+#: themes/classic-redux/root-functions.php:222
+msgid "Show post author"
+msgstr "הצג את מחבר הכתבה"
+
+#: themes/classic-redux/root-functions.php:230
+msgid "Show post categories and tags"
+msgstr "הצג את קטגוריות וטגיות הכתבה"
+
+#: themes/classic-redux/root-functions.php:243
+msgid "Miscellaneous"
+msgstr "שונות"
+
+#: themes/classic-redux/root-functions.php:249
+msgid "Use infinite scrolling for blog"
+msgstr "השתמש בגלילה אין סופית עבור בלוג"
+
+#: themes/classic-redux/root-functions.php:257
+msgid "Use rounded corners"
+msgstr "השתמש בפינות מעוגלות"
+
+#: themes/classic-redux/root-functions.php:269
+msgid "Menu Tab Bar"
+msgstr "תפריט Tab Bar"
+
+#: themes/classic-redux/root-functions.php:275
+msgid "Show tab bar"
+msgstr "הצג את ה tab bar"
+
+#: themes/classic-redux/root-functions.php:283
+msgid "Tab-bar shows categories or tags"
+msgstr "Tab-bar יציג קטגוריות או תוויות"
+
+#: themes/classic-redux/root-functions.php:288
+msgid "Categories and tags"
+msgstr "קטגוריות ותגיות"
+
+#: themes/classic-redux/root-functions.php:289
+msgid "Categories only"
+msgstr "קטגוריות בלבד"
+
+#: themes/classic-redux/root-functions.php:290
+msgid "Tags only"
+msgstr "תגיות בלבד"
+
+#: themes/classic-redux/root-functions.php:291
+msgid "No categories or tags"
+msgstr "אין קטגוריות או תגיות"
+
+#: themes/classic-redux/root-functions.php:297
+msgid "Max categories / tags"
+msgstr "קטגוריות/תגיות מקסימלית"
+
+#: themes/classic-redux/root-functions.php:315
+#: themes/cms/root-functions.php:186 themes/simple/root-functions.php:239
+msgid "CSS Effects"
+msgstr "אפקטים CSS"
+
+#: themes/classic-redux/root-functions.php:321
+#: themes/cms/root-functions.php:192
+msgid "Add a noise effect to the header and theme background"
+msgstr "הוסף אפקט רעש עבור הכותרת העליונה והרקע של ערכת הנושא"
+
+#: themes/classic-redux/root-functions.php:322
+#: themes/cms/root-functions.php:193 themes/simple/root-functions.php:246
+msgid "Will apply the effect overtop of any background image you upload."
+msgstr "יחל האפקט מעל לכל תמונת רקע אשר תעלה."
+
+#: themes/cms/default/header-bottom.php:14
+msgid "menu"
+msgstr "תפריט"
+
+#: themes/cms/default/header-bottom.php:25
+#: themes/simple/default/footer-top.php:7
+msgid "search this website"
+msgstr "חפש באתר"
+
+#: themes/cms/default/header-bottom.php:26
+#: themes/simple/default/footer-top.php:9
+msgid "search"
+msgstr "חיפוש"
+
+#: themes/cms/default/page.php:32 themes/foundation/default/page.php:22
+#: themes/foundation/root-functions.php:280
+msgid "Pages"
+msgstr "עמודים"
+
+#: themes/cms/root-functions.php:34
+msgid "Alt Menu"
+msgstr "תפריט אלטרנטיבי"
+
+#: themes/cms/root-functions.php:94
+msgid "Main Menu"
+msgstr "תפריט ראשי"
+
+#: themes/cms/root-functions.php:103
+msgid "Alternate Menu"
+msgstr "החלף תפריט"
+
+#: themes/cms/root-functions.php:149 themes/simple/root-functions.php:220
+msgid "Tiled Background Image"
+msgstr "תמונת רקע רציפה"
+
+#: themes/cms/root-functions.php:155 themes/simple/root-functions.php:226
+msgid "(Scaled for retina displays)"
+msgstr "(הותאם לתצוגת retina )"
+
+#: themes/cms/root-functions.php:167
+msgid "Secondary Menu Title"
+msgstr "כותרת תפריט משני"
+
+#: themes/cms/root-functions.php:173
+msgid "Secondary menu title (if used)"
+msgstr "כותרת תפריט משני (אם בשימוש)"
+
+#: themes/cms/root-functions.php:174
+msgid ""
+"If you use a second menu in CMS, this text will be used for the drop-down "
+"button title."
+msgstr "אם תשתמש בתפריט נוסף ב CMS, הטקסט הזה ישמש ככותרת הכפתור ברשימה הנפתחת"
+
+#: themes/cms/root-functions.php:205
+msgid "Front Page Message"
+msgstr "הודעת הדף הראשון"
+
+#: themes/cms/root-functions.php:211
+msgid "Front page alternate message"
+msgstr "הודעה אלטרנטיבית עבור הדף הראשון"
+
+#: themes/cms/root-functions.php:212
+msgid ""
+"Shows after the featured slider (if enabled), and before your home page's "
+"content. HTML allowed."
+msgstr ""
+"מוצג לאחר ה slider (אם מאופשר), ולפני תוכן דף הבית. שימוש ב HTML אפשרי."
+
+#: themes/foundation/default/404.php:6
+msgid "404 Not Found"
+msgstr "404 הדף לא נמצא"
+
+#: themes/foundation/default/404.php:8
+msgid "The post or page you requested is no longer available."
+msgstr "הכתבה או העמוד המבוקש לא זמין"
+
+#: themes/foundation/default/attachment.php:43
+msgid "&laquo; previous in gallery"
+msgstr "&laquo; הקודם בגלרייה"
+
+#: themes/foundation/default/attachment.php:45
+msgid "next in gallery &raquo;"
+msgstr "הבא בגלרייה &raquo;"
+
+#: themes/foundation/default/comments.php:24
+#: themes/foundation/default/comments.php:30
+msgid "Load More Comments&hellip;"
+msgstr "טען תגובות נוספות&hellip;"
+
+#: themes/foundation/default/comments.php:43
+msgid "comments are closed"
+msgstr "אזור התגובות סגור"
+
+#: themes/foundation/default/comments.php:52
+msgid "Cancel"
+msgstr "בטל"
+
+#: themes/foundation/default/comments.php:55
+msgid "Leave a Reply"
+msgstr "השאר תגובה"
+
+#: themes/foundation/default/comments.php:55
+#, php-format
+msgid "Leave a Reply to %s"
+msgstr "השאר תגובה ל %s"
+
+#: themes/foundation/default/comments.php:58
+#, php-format
+msgid "You must be %slogged in%s to post a comment."
+msgstr "אתה חייב להיות %sמחובר%s כדי להגיב."
+
+#: themes/foundation/default/comments.php:68
+msgid "Logged in as"
+msgstr "מחובר כ"
+
+#: themes/foundation/default/comments.php:68
+msgid "Log out"
+msgstr "התנתק"
+
+#: themes/foundation/default/comments.php:72
+msgid "Name"
+msgstr "שם"
+
+#: themes/foundation/default/comments.php:74
+#: themes/foundation/modules/social-links/social-links.php:38
+msgid "E-Mail"
+msgstr "דוא\"ל"
+
+#: themes/foundation/default/comments.php:76
+msgid "Website"
+msgstr "אתר"
+
+#: themes/foundation/default/comments.php:82
+msgid "Publish"
+msgstr "פרסם"
+
+#: themes/foundation/default/search.php:5
+#, php-format
+msgid "You searched for \"%s\""
+msgstr "החיפוש שלך עבור \"%s\""
+
+#: themes/foundation/default/search.php:16
+#, php-format
+msgid "%s results"
+msgstr "%s תוצאות"
+
+#: themes/foundation/default/search.php:35
+msgid "No search results found"
+msgstr "לא נמצאו תוצאות חיפוש"
+
+#: themes/foundation/default/single.php:13
+msgid "By"
+msgstr "נכתב על ידי"
+
+#: themes/foundation/default/switch-link.php:8
+msgid "mobile"
+msgstr "אתר מותאם לנייד"
+
+#: themes/foundation/default/switch-link.php:9
+msgid "desktop"
+msgstr "אתר האינטרנט"
+
+#: themes/foundation/modules/base/base.php:69
+msgid "Loading"
+msgstr "טוען"
+
+#: themes/foundation/modules/base/preview-bar.php:2
+msgid "Theme Preview"
+msgstr "תצוגה מגדימה של ערכת הנושא"
+
+#: themes/foundation/modules/base/preview-bar.php:3
+msgid "Reload"
+msgstr "טען מחדש"
+
+#: themes/foundation/modules/custom-posts/custom-posts.php:75
+msgid "Custom Post Support"
+msgstr "תמיכה עבור כתבה מותאמת אישית"
+
+#: themes/foundation/modules/custom-posts/custom-posts.php:81
+msgid "Enable custom post-type support"
+msgstr "אפשר תמיכה בסוג כתבה מותאם אישית"
+
+#: themes/foundation/modules/custom-posts/custom-posts.php:89
+msgid "Show custom post taxonomy"
+msgstr "הצג taxonomy עבור כתבה מותאמת אישית"
+
+#: themes/foundation/modules/custom-posts/custom-posts.php:101
+msgid "Custom Post Types"
+msgstr "סוגי כתבות מותאמות אישית"
+
+#: themes/foundation/modules/google-fonts/google-fonts.php:10
+msgid "Browser Fonts"
+msgstr "פונטי דפדפן"
+
+#: themes/foundation/modules/google-fonts/google-fonts.php:18
+msgid "Typography"
+msgstr "טיפוגרפיה"
+
+#: themes/foundation/modules/google-fonts/google-fonts.php:24
+msgid "Font style"
+msgstr "סגנון גופן"
+
+#: themes/foundation/modules/google-fonts/google-fonts.php:25
+msgid ""
+"Choose a Google font pairing designed for this theme, or default browser "
+"fonts."
+msgstr ""
+"בחר בפונט של גוגל אשר נמצא מתאים עבור ערכת נושא זו, או בפונטים ברירת מחדל של "
+"הדפדפן."
+
+#: themes/foundation/modules/sharing/sharing-html.php:2
+msgid "Share"
+msgstr "שתף"
+
+#: themes/foundation/modules/sharing/sharing-html.php:3
+msgid "Tweet"
+msgstr "ציוץ"
+
+#: themes/foundation/modules/sharing/sharing-html.php:5
+msgid "Mail"
+msgstr "דוא\"ל"
+
+#: themes/foundation/modules/sharing/sharing.php:73
+msgid "Sharing"
+msgstr "שיתןף"
+
+#: themes/foundation/modules/sharing/sharing.php:79
+msgid "Show sharing links"
+msgstr "הראה לינקים לשיתוף"
+
+#: themes/foundation/modules/sharing/sharing.php:80
+msgid "Will show Facebook, Twitter, Google+ and Email buttons on single posts."
+msgstr "הצגת כפתורי פייסבוק, טוויטר, גוגל+ ודוא\"ל בגוף הכתבה."
+
+#: themes/foundation/modules/sharing/sharing.php:87
+msgid "Sharing links location"
+msgstr "מיקום לינקים עבור שיתוף "
+
+#: themes/foundation/modules/sharing/sharing.php:92
+msgid "Above post content"
+msgstr "מעל לתוכן הכתבה"
+
+#: themes/foundation/modules/sharing/sharing.php:93
+msgid "Below post content"
+msgstr "מתחת לתוכן הכתבה"
+
+#: themes/foundation/modules/sharing/sharing.php:99
+msgid "Color scheme"
+msgstr "ערכת צבעים"
+
+#: themes/foundation/modules/sharing/sharing.php:104
+msgid "Theme colors"
+msgstr "צבעי ערכת נושא"
+
+#: themes/foundation/modules/sharing/sharing.php:105
+msgid "Social network colors"
+msgstr "צבעי רשתות חברתיות"
+
+#: themes/foundation/modules/social-links/social-links.php:8
+msgid "Footer Social Links"
+msgstr "לינקים לרשתות חברתיות בכותרת התחתונה של האתר"
+
+#: themes/foundation/modules/social-links/social-links.php:15
+msgid "URL to your Facebook page"
+msgstr "כתובת עבור עמוד הפייסבוק שלך"
+
+#: themes/foundation/modules/social-links/social-links.php:23
+msgid "URL to your Twitter profile"
+msgstr "כתובת פרופיל טוויטר שלך"
+
+#: themes/foundation/modules/social-links/social-links.php:31
+msgid "URL to your Google+ profile"
+msgstr "כתובת עבור פרופיל גוגל+ שלך"
+
+#: themes/foundation/modules/social-links/social-links.php:39
+msgid "E-Mail address"
+msgstr "כתובת דוא\"ל"
+
+#: themes/foundation/modules/webapp/webapp.php:108
+msgid "External link— open it in the browser?"
+msgstr "קישור חיצוני - האם לפתוח בדפדפן ?"
+
+#: themes/foundation/modules/webapp/webapp.php:109
+msgid "File link— Do you want to open it in the browser?"
+msgstr "קישור קובץ - האם תרצה לפתוח אותו בדפדפן ?"
+
+#: themes/foundation/root-functions.php:11
+msgid "Branding"
+msgstr "מיתוג"
+
+#: themes/foundation/root-functions.php:12
+msgid "Media Handling"
+msgstr "טיפול במדיה"
+
+#: themes/foundation/root-functions.php:13
+msgid "Web-App Mode"
+msgstr "מצב אפליקציית WEB"
+
+#: themes/foundation/root-functions.php:14
+msgid "Homescreen Icons"
+msgstr "איקונים של מסך הבית"
+
+#: themes/foundation/root-functions.php:15
+msgid "Advertising"
+msgstr "פרסום"
+
+#: themes/foundation/root-functions.php:16
+msgid "Custom Content"
+msgstr "תוכן מותאם אישית"
+
+#: themes/foundation/root-functions.php:62
+msgid ""
+"Install this Web-App on your [device]: tap [icon] then \"Add to Home Screen\""
+msgstr ""
+"התקן אפליקציה אינטרנטית זו ב  [device]: לחץ [icon] ולאחר מכן \"הוסף למסך הבית"
+"\""
+
+#: themes/foundation/root-functions.php:246
+msgid "Blog"
+msgstr "בלוג"
+
+#: themes/foundation/root-functions.php:252
+msgid "Number of posts in post listings"
+msgstr "מספר הכתבות ברשימת הכתבות"
+
+#: themes/foundation/root-functions.php:253
+msgid ""
+"Overrides the WordPress Reading settings for \"Blog pages show at most\""
+msgstr "עקוף את הגדרות הקריאה של WordPress עבור  \"Blog pages show at most\""
+
+#: themes/foundation/root-functions.php:260
+msgid "Excluded categories"
+msgstr "קטגוריות שאינן נכללות"
+
+#: themes/foundation/root-functions.php:261
+msgid "Comma separated by category name"
+msgstr "מופרד בפסיק על ידי שם הקטגוריה"
+
+#: themes/foundation/root-functions.php:268
+msgid "Excluded tags"
+msgstr "תגיות שאינן נכללות."
+
+#: themes/foundation/root-functions.php:269
+msgid "Comma separated by tag name"
+msgstr "מופרד בפסיק על ידי שם תגית"
+
+#: themes/foundation/root-functions.php:286
+msgid "Show comments on pages"
+msgstr "הצג תגובות בעמודים"
+
+#: themes/foundation/root-functions.php:287
+msgid "Overrides the WordPress settings for showing comments on pages."
+msgstr "עקוף את הגדרות WordPress עבור הצגת תגובות בדפים."
+
+#: themes/foundation/root-functions.php:298
+msgid "Disabled"
+msgstr "מבוטל"
+
+#: themes/foundation/root-functions.php:313
+msgid "Twitter account to use for Tweet display"
+msgstr "חשבון טוויטר לשימוש עבור הצגת הציוצים"
+
+#: themes/foundation/root-functions.php:329
+msgid "Video Handling"
+msgstr "טיפול בווידאו"
+
+#: themes/foundation/root-functions.php:341
+msgid "CSS only (HTML5 videos)"
+msgstr "CSS בלבד (וידאו HTML5)"
+
+#: themes/foundation/root-functions.php:342
+msgid "FitVids Method"
+msgstr "שיטת FitVids "
+
+#: themes/foundation/root-functions.php:343
+msgid "Fluid-Width Method"
+msgstr "שיטת Fluid-Width"
+
+#: themes/foundation/root-functions.php:355
+msgid "Featured Slider"
+msgstr "סליידר מובלט בתחילת העמוד"
+
+#: themes/foundation/root-functions.php:361
+msgid "Enable featured slider"
+msgstr "אפשר סליידר מובלט בראש העמוד"
+
+#: themes/foundation/root-functions.php:362
+msgid "Requires at least 2 entries to contain featured images"
+msgstr "נדרש לפחות 2 ערכים המכילים תמונה ראשית"
+
+#: themes/foundation/root-functions.php:369
+msgid "Automatically slide"
+msgstr "מצגת אוטומטית"
+
+#: themes/foundation/root-functions.php:377
+msgid "Continuous slide"
+msgstr "מצגת אין סופית"
+
+#: themes/foundation/root-functions.php:385
+msgid "Grayscale images (CSS 3 effect)"
+msgstr "תמונות עם גוונים אפורים (אפקט CSS 3 )"
+
+#: themes/foundation/root-functions.php:386
+msgid ""
+"Featured slider images will be in grayscale for devices that support CSS "
+"filters."
+msgstr ""
+"תמונות של הסליידר יהיו בגוון אפור עבור מכשירים עם תמיכה בפילטרים של CSS ."
+
+#: themes/foundation/root-functions.php:398
+msgid "Show latest posts"
+msgstr "הראה כתבות אחרונות"
+
+#: themes/foundation/root-functions.php:399
+msgid "Show posts from a specific tag"
+msgstr "הראה כתבות מטגיות ספציפיות"
+
+#: themes/foundation/root-functions.php:400
+msgid "Show posts from a specific category"
+msgstr "הראה כתבות מקטגוריות ספציפיות"
+
+#: themes/foundation/root-functions.php:401
+msgid "Show only specific posts"
+msgstr "הראה רק כתבות ספציפיות"
+
+#: themes/foundation/root-functions.php:407
+msgid "Only this tag"
+msgstr "בתגית זו"
+
+#: themes/foundation/root-functions.php:416
+msgid "Only this category"
+msgstr "בקטגוריה זו"
+
+#: themes/foundation/root-functions.php:425
+msgid "Comma-separated list of post/page IDs"
+msgstr "רשימה מופרדת בפסיק עבור זהויות של כתבות/עמודים"
+
+#: themes/foundation/root-functions.php:444
+msgid "Enable Web-App Mode"
+msgstr "אפשר מצב אפליקציית Web"
+
+#: themes/foundation/root-functions.php:448
+msgid "Enable persistence"
+msgstr "אפשר persistence"
+
+#: themes/foundation/root-functions.php:449
+msgid ""
+"WPtouch loads the last visited page or post for visitors in Web-App Mode."
+msgstr ""
+"WPtouch טוען את הדף או הכתבה שנצפתה לאחרונה למבקרים במצב אפליקציית WEB ."
+
+#: themes/foundation/root-functions.php:456
+msgid "URLs to ignore in Web-App Mode"
+msgstr "כתובות אשר יש להתעלם מהם במצב אפליקציית WEB"
+
+#: themes/foundation/root-functions.php:476
+msgid "Notice Message"
+msgstr "הודעת הערה"
+
+#: themes/foundation/root-functions.php:479
+msgid ""
+"Show a notice message for iPhone, iPod touch & iPad visitors about my Web-App"
+msgstr ""
+"הצג הודעת התראה עבור מבקרים הגולשים ממכשיר אייפון, אייפוד & אייפד אודות "
+"האפליקציית ה WEB שלי"
+
+#: themes/foundation/root-functions.php:479
+msgid ""
+"WPtouch shows a notice bubble on 1st visit letting users know about your Web-"
+"App enabled website on iOS devices."
+msgstr ""
+"WPtouch מציג בלון התראה בביקור הראשון אשר מודיע למשתמש אודות אפשרות שימוש "
+"באפליקציית WEB עבור האתר שלך במכשירי iOS"
+
+#: themes/foundation/root-functions.php:480
+msgid "Notice message contents"
+msgstr "תוכן הודעת התראה"
+
+#: themes/foundation/root-functions.php:480
+msgid ""
+"[device] and [icon] are dynamic and used to determine the device and iOS "
+"version. Do not remove these from your message."
+msgstr ""
+"[device] ו [icon] הם דינמיים ומשמשים לזיהוי דגם המכשיר וגרסת iOS. אל תסיר "
+"אותם מתוכן ההודעה שלך."
+
+#: themes/foundation/root-functions.php:484
+msgid "the notice message will be shown again for visitors"
+msgstr "ההתראה תוצג בשנית עבור מבקרים"
+
+#: themes/foundation/root-functions.php:489
+msgid "1 day until"
+msgstr "יום אחד עד"
+
+#: themes/foundation/root-functions.php:490
+msgid "7 days until"
+msgstr "7 ימים עד"
+
+#: themes/foundation/root-functions.php:491
+msgid "1 month until"
+msgstr "עוד חודש עד"
+
+#: themes/foundation/root-functions.php:492
+msgid "Every time"
+msgstr "בכל פעם"
+
+#: themes/foundation/root-functions.php:503
+msgid "iPhone Startup Screen"
+msgstr "מסך פתיחה באייפון"
+
+#: themes/foundation/root-functions.php:509
+#: themes/foundation/root-functions.php:527
+#: themes/foundation/root-functions.php:545
+#: themes/foundation/root-functions.php:564
+#: themes/foundation/root-functions.php:572
+#: themes/foundation/root-functions.php:590
+#: themes/foundation/root-functions.php:598
+#, php-format
+msgid "%d by %d pixels (PNG)"
+msgstr "%d על %d פיקסלים (PNG)"
+
+#: themes/foundation/root-functions.php:521
+msgid "Retina iPhone Startup Screen"
+msgstr "מסך פתיחה עבור אייפון עם מסך רטינה"
+
+#: themes/foundation/root-functions.php:539
+msgid "iPhone 5 Startup Screen"
+msgstr "מסך פתיחה באייפון 5"
+
+#: themes/foundation/root-functions.php:558
+msgid "iPad Mini and iPad Startup Screens"
+msgstr "מסך פתיחה באייפד מיני ואייפד רגיל"
+
+#: themes/foundation/root-functions.php:584
+msgid "Retina iPad Startup Screens"
+msgstr "מסך פתיחה באייפד עם מסך רטינה"
+
+#: themes/foundation/root-functions.php:616
+msgid "Options"
+msgstr "אפשרויות"
+
+#: themes/foundation/root-functions.php:622
+msgid "Icon title"
+msgstr "כותרת אייקון"
+
+#: themes/foundation/root-functions.php:623
+msgid "When visitors bookmark your website, this will be the title shown."
+msgstr "כאשר מבקרים יוסיפו את האתר שלך למועדפים , זאת תהיה הכותרת שתוצג"
+
+#: themes/foundation/root-functions.php:630
+msgid "Add glossy icon effect"
+msgstr "הוסף אפקט של אייקון מבריק"
+
+#: themes/foundation/root-functions.php:631
+msgid "A glossy effect will automatically be applied to icons for iOS devices."
+msgstr "אפקט אייקונים מבריקים יתווסף בצורה אוטומטית למכשירי iOS"
+
+#: themes/foundation/root-functions.php:642
+msgid "iPhone/Android"
+msgstr "אייפון/אנדרואיד"
+
+#: themes/foundation/root-functions.php:648
+#: themes/foundation/root-functions.php:666
+#: themes/foundation/root-functions.php:685
+#: themes/foundation/root-functions.php:703
+#, php-format
+msgid "%d by %d pixels"
+msgstr "%d על %d פיקסלים"
+
+#: themes/foundation/root-functions.php:660
+msgid "iPhone/Android Retina"
+msgstr "אייפון/אנדראויד עם מסך רטינה"
+
+#: themes/foundation/root-functions.php:679
+msgid "iPad"
+msgstr "אייפד"
+
+#: themes/foundation/root-functions.php:697
+msgid "iPad Retina"
+msgstr "אייפד עם מסך רטינה"
+
+#: themes/foundation/root-functions.php:716
+msgid "Theme Footer"
+msgstr "כותרת תחתונה של ערכת הנושא"
+
+#: themes/foundation/root-functions.php:719
+msgid "Custom footer content (HTML is allowed)"
+msgstr "תוכן מותאם אישית עבור כותרת תחתונה  (מותר להשתמש ב HTML)"
+
+#: themes/foundation/root-functions.php:719
+msgid ""
+"You can add custom footer content that will be displayed below the switch "
+"link."
+msgstr ""
+"יש באפשרותך להוסיף תוכן מותאם אישית בכותרת תחתונה אשר יופיע מתחת לכפתור "
+"המעבר בין האתר הרגיל לאתר המותאם לנייד"
+
+#: themes/foundation/root-functions.php:730
+msgid "Service"
+msgstr "שירות"
+
+#: themes/foundation/root-functions.php:736
+msgid "Choose a service"
+msgstr "בחר שירות"
+
+#: themes/foundation/root-functions.php:742
+msgid "Google Adsense"
+msgstr "גוגל Adsense"
+
+#: themes/foundation/root-functions.php:743
+msgctxt "Refers to a custom advertising service"
+msgid "Custom"
+msgstr "מותאם אישית"
+
+#: themes/foundation/root-functions.php:753
+msgid "Google AdSense"
+msgstr "גוגל Adsense"
+
+#: themes/foundation/root-functions.php:756
+msgid "Publisher ID"
+msgstr "Publisher ID"
+
+#: themes/foundation/root-functions.php:757
+msgid "Slot ID"
+msgstr "Slot ID"
+
+#: themes/foundation/root-functions.php:765
+msgid "Custom Ads"
+msgstr "פרסומות מותאמות"
+
+#: themes/foundation/root-functions.php:768
+msgid "Mobile advertising script"
+msgstr "סקריפט עבור פרסום בנייד"
+
+#: themes/foundation/root-functions.php:777
+msgid "Ad Presentation"
+msgstr "מצגת מודעה"
+
+#: themes/foundation/root-functions.php:783
+msgid "Theme location"
+msgstr "מיקום ערכת הנושא"
+
+#: themes/foundation/root-functions.php:788
+msgid "In the header"
+msgstr "בכותרת העליונה"
+
+#: themes/foundation/root-functions.php:789
+msgid "Above the page content"
+msgstr "מעל לתוכן העמוד"
+
+#: themes/foundation/root-functions.php:790
+msgid "Below the page content"
+msgstr "מתחת לתוכן העמוד"
+
+#: themes/foundation/root-functions.php:800
+msgid "Active Pages"
+msgstr "עמודים פעילים"
+
+#: themes/foundation/root-functions.php:803
+msgid "Blog listings"
+msgstr "תצוגת בלוג"
+
+#: themes/foundation/root-functions.php:804
+msgid "Single posts"
+msgstr "כתבה בודדת"
+
+#: themes/foundation/root-functions.php:805
+msgid "Static pages"
+msgstr "עמוד סטאטי"
+
+#: themes/foundation/root-functions.php:806
+msgid "Taxonomy"
+msgstr "Taxonomy"
+
+#: themes/foundation/root-functions.php:807
+msgid "Search results"
+msgstr "תוצאות חיפוש"
+
+#: themes/foundation/root-functions.php:834
+msgid "Theme Colors"
+msgstr "צבעי ערכת נושא"
+
+#: themes/foundation/root-functions.php:844
+msgid "Site Logo"
+msgstr "לוגו האתר"
+
+#: themes/foundation/root-functions.php:850
+msgid "(Scaled by themes to fit logo areas as needed)"
+msgstr "(שינו הגודל ע\"י ערכת הנושא להתאמת האזור עבור הלוגו לפי הצורך)"
+
+#: themes/foundation/root-functions.php:863
+msgid "Browser Behaviour"
+msgstr "התנהגות הדפדפן"
+
+#: themes/foundation/root-functions.php:869
+msgid "Hide browser address-bar on page load"
+msgstr "הסתר את שורת הכתובת בדפדפן בעת טעינת עמוד"
+
+#: themes/foundation/root-functions.php:870
+msgid ""
+"Hides the browser address bar so that more of the mobile theme interface is "
+"shown."
+msgstr "הסתר את שורת הכתובת כך שיוצג יותר מידע"
+
+#: themes/foundation/root-functions.php:882
+msgid "Smart App Banner"
+msgstr "באנר אפליקציה חכם"
+
+#: themes/foundation/root-functions.php:888
+#, php-format
+msgid "Enter your app's %sApp Store ID%s"
+msgstr "הכנס את %sApp Store ID%s עבור האפליקציה שלך"
+
+#: themes/foundation/root-functions.php:889
+msgid ""
+"Your app's unique identifier. Find your ID from the iTunes Link Maker: "
+"Search for your app. In the link it provides, your app ID is the nine-digit "
+"number in between id and ?mt. For example Angry Birds's ID is 343200656."
+msgstr ""
+"מזהה ייחודי עבור האפליקציה שלך. מצא את הזיהוי שלך מה iTunes Link Maker: בצע "
+"חיפוש עבור האפליקציה שלך. בלינק המתקבל, זיהוי האפליקציה שלך נמצא במספר בן 9 "
+"הספרות אשר נמצא בין id ו ?mt . לדוגמא הזיהוי של Angry Birds הוא 343200656 ."
+
+#: themes/foundation/root-functions.php:1258
+#, php-format
+msgid "search results for '%s'"
+msgstr "תוצאות חיפוש עבור '%s'"
+
+#: themes/foundation/root-functions.php:1260
+#, php-format
+msgid "%sCategories &rsaquo;%s %s"
+msgstr "%sקטגוריות &rsaquo;%s %s"
+
+#: themes/foundation/root-functions.php:1262
+#, php-format
+msgid "Tags &rsaquo; %s"
+msgstr "תגיות &rsaquo; %s"
+
+#: themes/foundation/root-functions.php:1264
+#: themes/foundation/root-functions.php:1266
+#: themes/foundation/root-functions.php:1268
+#, php-format
+msgid "Archives &rsaquo; %s"
+msgstr "ארכיון &rsaquo; %s"
+
+#: themes/foundation/root-functions.php:1283
+msgid "Load more search results"
+msgstr "תוצאות חיפוש נוספות"
+
+#: themes/foundation/root-functions.php:1285
+msgid "Load more from this category"
+msgstr "טען כתבות נוספות מקטגוריה זו"
+
+#: themes/foundation/root-functions.php:1287
+msgid "Load more tagged like this"
+msgstr "טען כתבות נוספות מתגית זו"
+
+#: themes/foundation/root-functions.php:1289
+msgid "Load more from this day"
+msgstr "טען כתבות נוספות מיום זה"
+
+#: themes/foundation/root-functions.php:1291
+msgid "Load more from this month"
+msgstr "טען כתבות נוספות מחודש זה"
+
+#: themes/foundation/root-functions.php:1293
+msgid "Load more from this year"
+msgstr "טען כתבות נוספות משנה זו"
+
+#: themes/foundation/root-functions.php:1295
+msgid "Load more in this section"
+msgstr "טען כתבות נוספות באזור זה"
+
+#: themes/foundation/root-functions.php:1297
+msgid "Load more entries"
+msgstr "טען כתבות נוספות"
+
+#: themes/simple/default/front-page.php:15
+msgid "Call Us"
+msgstr "התקשר אלינו"
+
+#: themes/simple/default/front-page.php:22
+msgid "Our Location"
+msgstr "המיקום שלנו"
+
+#: themes/simple/default/header-bottom.php:10
+msgid "Toggle Menu"
+msgstr "כפתור תרפיט"
+
+#: themes/simple/root-functions.php:44
+msgid "Site Menu (Pulldown)"
+msgstr "תפריט האתר (משוך כלפי מטה)"
+
+#: themes/simple/root-functions.php:47
+msgid "Pull-down menu at top of pages"
+msgstr "משוך את התפריט כלפי מטה מראש העמוד"
+
+#: themes/simple/root-functions.php:55
+msgid "Homepage Menu"
+msgstr "תפריט דף הבית"
+
+#: themes/simple/root-functions.php:58
+msgid "Displayed below homepage content"
+msgstr "מוצג למטה תוכן עמוד הבית"
+
+#: themes/simple/root-functions.php:163
+msgid "Homepage Call Us"
+msgstr "דף הבית צור אתנו קשר"
+
+#: themes/simple/root-functions.php:169
+msgid "Phone number"
+msgstr "מספר טלפון"
+
+#: themes/simple/root-functions.php:170
+msgid ""
+"Enter a phone number and a homepage menu item for 'call us' will be shown."
+msgstr "הכנס מספר טלפון ופריט מתפריט דף הבית כדי ש 'התקשר אלינו' יוצג."
+
+#: themes/simple/root-functions.php:182
+msgid "Homepage Location"
+msgstr "מיקום דף הבית"
+
+#: themes/simple/root-functions.php:188
+msgid "Map address"
+msgstr "כתובת עבור המפה."
+
+#: themes/simple/root-functions.php:189
+msgid "Enter an address and a homepage menu item for 'find us' will be shown."
+msgstr "הכנס כתובת ופריט מתפריט מסך הבית כדי ש \"מצא אותנו\" יוצג."
+
+#: themes/simple/root-functions.php:201
+msgid "Homepage Message"
+msgstr "הודעה בדף הבית"
+
+#: themes/simple/root-functions.php:207
+msgid "Introductory text"
+msgstr "טקסט מקדים"
+
+#: themes/simple/root-functions.php:245
+msgid "Add a light noise effect to the drop-down menu and theme background"
+msgstr "הוסף אפקט light noise לתפריט הנפתח ועבור הרקע של ערכת הנושא"
+
+#. Plugin Name of the plugin/theme
+msgid "WPtouch Pro"
+msgstr "WPtouch Pro"
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.bravenewcode.com/product/wptouch-pro/"
+msgstr "http://www.bravenewcode.com/product/wptouch-pro/"
+
+#. Description of the plugin/theme
+msgid ""
+"The easy way to create great mobile experiences with your WordPress website."
+msgstr ""
+"הדרך הקלה ביותר ליצור חווית שימוש נהדרת במכשירים ניידים עבור אתר ה WordPress "
+"שלך. "
+
+#. Author of the plugin/theme
+msgid "BraveNewCode Inc."
+msgstr "BraveNewCode Inc."
+
+#. Author URI of the plugin/theme
+msgid "http://www.bravenewcode.com/"
+msgstr "http://www.bravenewcode.com/"

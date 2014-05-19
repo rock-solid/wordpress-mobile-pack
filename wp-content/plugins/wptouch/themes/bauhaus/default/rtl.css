@@ -1,0 +1,147 @@
+/* @override http://wptp3.local.com/wp-content/wptouch-data/themes/bauhaus/default/bauhaus-rtl.css?ver=3.1 */
+
+/* Bauhaus RTL CSS */
+
+body {  
+	direction: rtl; 
+	unicode-bidi: embed;
+}
+
+.spinner {
+	margin-left: 10px;
+	margin-right: 0;
+}
+
+/* @group Post Loop */
+
+.loop-link i.arrow {
+	left: 3%;
+	right: auto;
+}
+
+.loop-link .post-date-author {
+	margin-left: 0px;
+	margin-right: 50px;
+}
+
+.loop-link img.post-thumbnail {
+	float: right;
+}
+
+.loop-link i.icon-pencil {
+	float: right;
+}
+
+.loop-link .bottom-border {
+	left: 0;
+	right: 88px;
+}
+
+.no-thumbs.loop-link .bottom-border {
+	left: 0px;
+	right: 40px;
+}
+
+.no-thumbs.loop-link .post-date-author, #content .no-thumbs.loop-link h2 {
+	margin-left: 0px;	
+	margin-right: 40px;	
+}
+
+/* @group Comment Bubble */
+
+.loop-link .comments {
+	right: 12px;
+	left: auto;
+}
+
+.no-thumbs.loop-link .comments {
+	left: auto;	
+	right: 112px;
+	top: 2px;
+}
+
+.loop-link .comments span {
+	color: white;
+	z-index: 3;
+	position: relative;
+	font-size: 70%;
+	font-weight: bold;
+	vertical-align: -2px;
+}
+
+.loop-link .comments:after {
+	content:"\f075";
+	display: block;
+	font: 30px 'FontAwesome', sans-serif;
+	position: absolute;
+	left: 50%;
+	margin-left: -15px;
+	top: 0;
+}
+
+.no-thumbs.loop-link .comments:after  {
+	-moz-transform: scaleX(-1);
+	-o-transform: scaleX(-1);
+	-webkit-transform: scaleX(-1);
+	transform: scaleX(-1);
+	filter: FlipH;
+	-ms-filter: "FlipH";	
+}
+
+/* @end */
+
+
+/* @end */
+
+/* @group Comments */
+
+.comment-author, .comment-time, .comment-body {
+	margin-left: 0px;
+	margin-right: 65px;
+}
+
+#comments .comment-avatar {
+	float: right;
+	left: 2px;
+	right: auto;
+}
+
+.comment .comment-body:after {
+	margin-right: 0px;
+	margin-left: -15px;
+}
+
+#comments blockquote {
+	margin-right: 0;
+	padding-right: 10px;
+}
+
+
+
+/* @end */
+
+/* @group Slider */
+
+#slider {
+	direction: ltr;
+}
+
+#slider a p.featured-date {
+	text-align: right;
+	left: auto;
+}
+
+#slider a p.heading-font {
+	left: auto;
+	right: 0px;
+	text-align: right;
+	padding-right: 5%;
+	padding-left: 30%;
+}
+
+.landscape #slider a p.heading-font, .landscape #slider a p.featured-date {
+	padding-left: 15%;
+
+}
+
+/* @end */

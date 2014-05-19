@@ -1,0 +1,2544 @@
+# Copyright (C) 2014 WPtouch Pro
+# This file is distributed under the same license as the WPtouch Pro package.
+msgid ""
+msgstr "Project-Id-Version: WPtouch Pro 3.2\nReport-Msgid-Bugs-To: http://wordpress.org/tag/wptouch-pro-3\nPOT-Creation-Date: 2014-03-07 22:09:03+00:00\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPO-Revision-Date: 2014-MO-DA HO:MI+ZONE\nLast-Translator: FULL NAME <EMAIL@ADDRESS>\nLanguage-Team: LANGUAGE <LL@li.org>\n"
+
+#: admin/html/help.php:1
+msgid "WPtouch Pro Help & Account Links"
+msgstr "WPtouch Pro 도움말 및 계정 링크"
+
+#: admin/html/help.php:3
+msgid "Support Forums"
+msgstr "지원 포럼"
+
+#: admin/html/help.php:4
+msgid "Documentation"
+msgstr "문서"
+
+#: admin/html/help.php:5
+msgid "Account & Downloads"
+msgstr "계정 및 다운로드"
+
+#: admin/html/help.php:6
+msgid "BraveNewCode on Twitter"
+msgstr "BraveNewCode의 Twitter 계정"
+
+#: admin/html/help.php:7
+msgid "Plugin Licensing Terms"
+msgstr "플러그인 라이선스 약관"
+
+#: admin/html/notification-center.php:5
+msgid "Notifications"
+msgstr "알림"
+
+#: admin/html/notification-content.php:20
+msgid "No notifications"
+msgstr "알림 없음"
+
+#: admin/html/plugin-area.php:7
+msgid "This copy of WPtouch Pro is unlicensed! Please %sactivate your license%s, or %spurchase a license%s to enable automatic updates and full product support from us!"
+msgstr "이 WPtouch Pro에는 라이선스가 없습니다! 자동 업데이트 및 완전한 제품 지원을 받기 위해 %s라이선스를 활성화%s하거나 %s라이선스를 구입%s하세요."
+
+#: admin/html/plugin-area.php:9
+msgid "This copy of WPtouch Pro is unlicensed! Please contact the site administrator regarding product licensing."
+msgstr "이 WPtouch Pro에는 라이선스가 없습니다! 사이트 관리자에게 제품 라이선스에 관하여 문의하세요."
+
+#: admin/pages/custom/wptouch-admin-license.php:9 wptouch-admin-license.php:9
+msgid "License Details"
+msgstr "라이선스 세부정보"
+
+#: admin/pages/custom/wptouch-admin-license.php:11 wptouch-admin-license.php:11
+msgid "Note"
+msgstr "참고"
+
+#: admin/pages/custom/wptouch-admin-license.php:12 wptouch-admin-license.php:12
+msgid "Once you activate, this page will be hidden."
+msgstr "활성화하면 이 페이지가 숨겨집니다."
+
+#: admin/pages/custom/wptouch-admin-license.php:15 wptouch-admin-license.php:15
+msgid "It will only reappear if you reset your WPtouch Pro settings."
+msgstr "이것은 WPtouch Pro 설정을 초기화하는 경우에만 다시 표시됩니다."
+
+#: admin/pages/custom/wptouch-admin-license.php:18 wptouch-admin-license.php:18
+msgid "Account E-Mail Address"
+msgstr "계정 이메일 주소"
+
+#: admin/pages/custom/wptouch-admin-license.php:20 wptouch-admin-license.php:20
+msgid "Product License Key"
+msgstr "제품 라이선스 키"
+
+#: admin/pages/custom/wptouch-admin-license.php:23
+#: admin/settings/html/extension-browser-item.php:87
+#: admin/settings/html/theme-browser-item.php:129 wptouch-admin-license.php:23
+msgid "Activate"
+msgstr "활성화"
+
+#: admin/pages/custom/wptouch-admin-license.php:33 wptouch-admin-license.php:33
+msgid "Success."
+msgstr "성공."
+
+#: admin/pages/custom/wptouch-admin-license.php:34 wptouch-admin-license.php:34
+msgid "Activation Complete. Enjoy WPtouch Pro!"
+msgstr "활성화 완료! WPtouch Pro를 사용하세요!"
+
+#: admin/pages/custom/wptouch-admin-license.php:38 wptouch-admin-license.php:38
+msgid "E-mail address or license key rejected"
+msgstr "이메일 주소 또는 라이선스 키가 거부됨"
+
+#: admin/pages/custom/wptouch-admin-license.php:39 wptouch-admin-license.php:39
+msgid "The bravenewcode.com server rejected your E-Mail address and/or License Key. Please check they are correct and try again."
+msgstr "bravenewcode.com 서버가 이메일 주소 및/또는 라이선스 키를 거부했습니다. 입력하신 내용이 올바른지 확인하고 다시 시도하세요."
+
+#: admin/pages/custom/wptouch-admin-license.php:43 wptouch-admin-license.php:43
+msgid "No licenses remaining."
+msgstr "남은 라이선스 없음."
+
+#: admin/pages/custom/wptouch-admin-license.php:44 wptouch-admin-license.php:44
+msgid "You have used all your activations. What do you want to do?"
+msgstr "모든 활성화 횟수를 사용하셨습니다. 무엇을 하시겠습니까?"
+
+#: admin/pages/custom/wptouch-admin-license.php:45 wptouch-admin-license.php:45
+msgid "Upgrade My License"
+msgstr "내 라이선스 업그레이드"
+
+#: admin/pages/custom/wptouch-admin-license.php:46 wptouch-admin-license.php:46
+msgid "Contact support for assistance"
+msgstr "지원팀에 연락하여 도움을 받으세요"
+
+#: admin/pages/custom/wptouch-admin-license.php:50 wptouch-admin-license.php:50
+msgid "The server is unavailable."
+msgstr "서버 이용 불가."
+
+#: admin/pages/custom/wptouch-admin-license.php:51 wptouch-admin-license.php:51
+msgid "The bravenewcode.com server currently cannot authorize your License."
+msgstr "bravenewcode.com 서버는 현재 라이선스를 인증할 수 없습니다."
+
+#: admin/pages/custom/wptouch-admin-license.php:52 wptouch-admin-license.php:52
+msgid "Please %scontact us%s and let us know about it."
+msgstr "%s저희에게 연락%s하시고 알려주세요."
+
+#: admin/pages/wptouch-admin-general-settings.php:3
+#: themes/foundation/root-functions.php:10
+msgid "General"
+msgstr "일반"
+
+#: admin/pages/wptouch-admin-general-settings.php:4
+msgid "Compatibility"
+msgstr "호환성"
+
+#: admin/pages/wptouch-admin-general-settings.php:10
+msgid "Auto-detect"
+msgstr "자동 감지"
+
+#: admin/pages/wptouch-admin-general-settings.php:45
+msgid "Site Title & Byline"
+msgstr "사이트 제목 및 작성자란"
+
+#: admin/pages/wptouch-admin-general-settings.php:51
+msgid "WPtouch Pro site title"
+msgstr "WPtouch Pro 사이트 제목"
+
+#: admin/pages/wptouch-admin-general-settings.php:52
+msgid "If the title of your site is long, you can shorten it for display within WPtouch Pro themes."
+msgstr "사이트 제목이 길면 WPtouch Pro 테마에 표시하기 위해 제목을 줄일 수 있습니다."
+
+#: admin/pages/wptouch-admin-general-settings.php:59
+msgid "Display %sPowered by WPtouch Pro%s in footer"
+msgstr "푸터에 %sWPtouch Pro 지원%s 표시"
+
+#: admin/pages/wptouch-admin-general-settings.php:67
+msgid "Use my WPtouch Pro referral code to earn commission"
+msgstr "내 WPtouch Pro 추천 코드를 사용하여 커미션 받기"
+
+#: admin/pages/wptouch-admin-general-settings.php:68
+msgid "Licensed users of WPtouch Pro can earn a commission for each sale they generate from their mobile website"
+msgstr "WPtouch Pro의 라이선스를 받은 사용자들은 모바일 웹사이트에서의 판매건당 커미션을 받을 수 있습니다."
+
+#: admin/pages/wptouch-admin-general-settings.php:79
+msgid "Regionalization"
+msgstr "지역화"
+
+#: admin/pages/wptouch-admin-general-settings.php:85
+msgid "Language"
+msgstr "언어"
+
+#: admin/pages/wptouch-admin-general-settings.php:86
+msgid "The WPtouch Pro admin panel &amp; supported themes will be shown in this locale."
+msgstr "WPtouch Pro 관리자 패널 및 지원되는 테마는 이 언어로 표시됩니다."
+
+#: admin/pages/wptouch-admin-general-settings.php:94
+msgid "Translate administration panel text"
+msgstr "관리자 패널 텍스트 번역"
+
+#: admin/pages/wptouch-admin-general-settings.php:105
+msgid "Display Mode"
+msgstr "표시 모드"
+
+#: admin/pages/wptouch-admin-general-settings.php:111
+msgid "Theme Display"
+msgstr "테마 표시"
+
+#: admin/pages/wptouch-admin-general-settings.php:116
+msgid "Normal (active for all mobile visitors)"
+msgstr "일반(모든 모바일 방문자에게 활성화)"
+
+#: admin/pages/wptouch-admin-general-settings.php:117
+msgid "Preview (active only for logged-in site administrators)"
+msgstr "미리보기(로그인한 사이트 관리자에게만 활성화)"
+
+#: admin/pages/wptouch-admin-general-settings.php:118
+msgid "Disabled (mobile theme will never show)"
+msgstr "비활성(모바일 테마 표시 안 함)"
+
+#: admin/pages/wptouch-admin-general-settings.php:127
+msgid "Landing Page"
+msgstr "랜딩 페이지"
+
+#: admin/pages/wptouch-admin-general-settings.php:133
+msgid "WPtouch Pro landing page"
+msgstr "WPtouch Pro 랜딩 페이지"
+
+#: admin/pages/wptouch-admin-general-settings.php:138
+msgid "Default (same as WordPress)"
+msgstr "기본(WordPress와 동일)"
+
+#: admin/pages/wptouch-admin-general-settings.php:139
+msgid "Select from WordPress pages"
+msgstr "WordPress 페이지에서 선택"
+
+#: admin/pages/wptouch-admin-general-settings.php:147
+msgid "Custom Slug or URL"
+msgstr "사용자 정의 슬러그 또는 URL"
+
+#: admin/pages/wptouch-admin-general-settings.php:148
+msgid "Enter a Slug (i.e. \"/home\") or a full URL path"
+msgstr "슬러그(예: \"/home\") 또는 전체 URL 경로 입력"
+
+#: admin/pages/wptouch-admin-general-settings.php:158
+msgid "Desktop / Mobile Switching"
+msgstr "데스크톱 / 모바일 전환"
+
+#: admin/pages/wptouch-admin-general-settings.php:164
+msgid "1st time visitors see desktop theme"
+msgstr "처음 방문한 사람들에게 데스크톱 테마 표시"
+
+#: admin/pages/wptouch-admin-general-settings.php:165
+msgid "Your regular theme will be shown to 1st time mobile visitors."
+msgstr "일반 테마는 처음 방문하는 모바일 방문자에게 표시됩니다."
+
+#: admin/pages/wptouch-admin-general-settings.php:172
+msgid "Show switch link in mobile view"
+msgstr "모바일 보기에 전환 링크 표시"
+
+#: admin/pages/wptouch-admin-general-settings.php:173
+msgid "Will show toggle buttons in the theme's footer allowing users to switch to your desktop theme. Is not shown in Web-App Mode."
+msgstr "사용자가 데스크톱 테마로 전환할 수 있도록 테마의 푸터에 전환 버튼을 표시합니다. 웹 앱 모드에는 표시되지 않습니다."
+
+#: admin/pages/wptouch-admin-general-settings.php:180
+msgid "Choose the target for the mobile switch link"
+msgstr "모바일 전환 링크의 대상 선택"
+
+#: admin/pages/wptouch-admin-general-settings.php:185
+msgid "Current page"
+msgstr "현재 페이지"
+
+#: admin/pages/wptouch-admin-general-settings.php:186
+msgid "Home page"
+msgstr "홈페이지"
+
+#: admin/pages/wptouch-admin-general-settings.php:192
+msgid "Desktop theme switch buttons"
+msgstr "데스크톱 테마 전환 버튼"
+
+#: admin/pages/wptouch-admin-general-settings.php:193
+msgid "Allows visitors to switch from your desktop theme to your mobile theme. You can also customize the placement of Switch buttons by placing the wptouch_desktop_switch_link() template tag somewhere in your desktop theme."
+msgstr "방문자가 데스크톱 테마에서 모바일 테마로 전환할 수 있도록 해줍니다. 또한 데스크톱 테마에서 원하는 곳에 wptouch_desktop_switch_link() 템플릿 태그를 추가하여 전환 버튼을 자유롭게 배치할 수 있습니다."
+
+#: admin/pages/wptouch-admin-general-settings.php:197
+msgid "Automatically inserted inline"
+msgstr "자동 삽입된 인라인"
+
+#: admin/pages/wptouch-admin-general-settings.php:198
+msgid "Automatically inserted with AJAX (better for caching)"
+msgstr "AJAX로 자동 삽입(캐시에 좋음)"
+
+#: admin/pages/wptouch-admin-general-settings.php:199
+msgid "Template tag"
+msgstr "템플릿 태그"
+
+#: admin/pages/wptouch-admin-general-settings.php:208
+msgid "Custom Code"
+msgstr "사용자 정의 코드"
+
+#: admin/pages/wptouch-admin-general-settings.php:214
+msgid "HTML, JavaScript, statistics or custom code"
+msgstr "HTML, JavaScript, 통계 또는 사용자 정의 모드"
+
+#: admin/pages/wptouch-admin-general-settings.php:215
+msgid "Enter any custom code here to be output in the theme footer."
+msgstr "테마 푸터에 출력할 사용자 정의 코드를 여기에 입력하세요."
+
+#: admin/pages/wptouch-admin-general-settings.php:225
+msgid "Custom Stylesheet"
+msgstr "사용자 정의 스타일시트"
+
+#: admin/pages/wptouch-admin-general-settings.php:231
+msgid "URL to a custom CSS file to load"
+msgstr "로드할 CSS 파일의 URL"
+
+#: admin/pages/wptouch-admin-general-settings.php:232
+msgid "Useful if you have specific compatibility CSS you need to add."
+msgstr "추가할 특정한 호환성 CSS가 있으면 유용합니다."
+
+#: admin/pages/wptouch-admin-general-settings.php:242
+msgid "Shortcodes"
+msgstr "쇼트코드"
+
+#: admin/pages/wptouch-admin-general-settings.php:248
+msgid "Remove these shortcodes when WPtouch Pro is active"
+msgstr "WPtouch Pro가 활성화되었을 때 이 쇼트코드 제거"
+
+#: admin/pages/wptouch-admin-general-settings.php:249
+msgid "Enter a comma separated list of shortcodes to remove."
+msgstr "쉼표로 구분된 쇼트코드 목록을 입력하여 제거하세요."
+
+#: admin/pages/wptouch-admin-general-settings.php:259
+msgid "Ignored URLs"
+msgstr "무시된 URL"
+
+#: admin/pages/wptouch-admin-general-settings.php:265
+msgid "Do not load WPtouch Pro on these URLs/Pages"
+msgstr "이 URL/페이지에서 WPtouch Pro를 로드하지 마세요"
+
+#: admin/pages/wptouch-admin-general-settings.php:266
+msgid "Each permalink URL fragment should be on its own line and relative, e.g. \"/about\" or \"/products/store\""
+msgstr "각 퍼머링크 URL 구성요소는 각각의 라인에 있어야 하며 상대주소는 \"/about\" 또는 \"/products/store\"와 같아야 합니다"
+
+#: admin/pages/wptouch-admin-general-settings.php:276
+msgid "Desktop Theme"
+msgstr "데스크톱 테마"
+
+#: admin/pages/wptouch-admin-general-settings.php:282
+msgid "Try to include desktop theme functions.php file"
+msgstr "데스크톱 테마의 functions.php 파일을 포함하세요"
+
+#: admin/pages/wptouch-admin-general-settings.php:283
+msgid "This may be required for desktop themes with unique features that are not showing when WPtouch Pro is active."
+msgstr "이것은 WPtouch Pro가 활성화되었을 때는 표시되지 않는 고유한 기능이 포함된 데스크톱 테마에 필요할 수 있습니다."
+
+#: admin/pages/wptouch-admin-general-settings.php:290
+msgid "Method to load file"
+msgstr "파일 로드 방법"
+
+#: admin/pages/wptouch-admin-general-settings.php:295
+msgid "Include file directly"
+msgstr "파일 직접 포함"
+
+#: admin/pages/wptouch-admin-general-settings.php:296
+msgid "Translate and create new files"
+msgstr "새 파일 번역 및 생성"
+
+#: admin/pages/wptouch-admin-general-settings.php:305
+msgid "Custom User-Agents"
+msgstr "맞춤형 사용자 에이전트"
+
+#: admin/pages/wptouch-admin-general-settings.php:311
+msgid "User-agents (line separated)"
+msgstr "사용자 에이전트(라인으로 구분)"
+
+#: admin/pages/wptouch-admin-general-settings.php:312
+msgid "Adding additional user-agents will force WPtouch Pro to be active for matching browsers."
+msgstr "사용자 에이전트를 추가하면 WPtouch Pro가 해당 브라우저에 강제로 활성화됩니다."
+
+#: admin/pages/wptouch-admin-general-settings.php:326
+msgid "Backup &amp; Import"
+msgstr "백업 및 가져오기"
+
+#: admin/pages/wptouch-admin-general-settings.php:332
+msgid "Automatically backup settings to the %s folder"
+msgstr "%s 폴더에 설정을 자동으로 백업"
+
+#: admin/pages/wptouch-admin-general-settings.php:334
+msgid "WPtouch Pro backups your settings each time they are saved."
+msgstr "WPtouch Pro는 저장될 때마다 설정을 백업합니다."
+
+#: admin/pages/wptouch-admin-general-settings.php:345
+msgid "Tools &amp; Debug"
+msgstr "도구 및 디버그"
+
+#: admin/pages/wptouch-admin-general-settings.php:351
+msgid "Use jQuery 2.0 in themes (faster for mobile devices) instead of WordPress' version"
+msgstr "테마에 WordPress 버전 대신 jQuery 2.0 사용(모바일 장치에서 속도 빠름)"
+
+#: admin/pages/wptouch-admin-general-settings.php:352
+msgid "jQuery 2.0 is significantly smaller and faster than previous jQuery versions - may cause problems with other plugins, use carefully."
+msgstr "jQuery 2.0은 이전 버전의 jQuery에 비해 상당히 작아졌고 빨라졌습니다. 다른 플러그인과 문제를 일으킬 수 있으니 주의하여 사용하세요."
+
+#: admin/pages/wptouch-admin-general-settings.php:359
+msgid "Show load times and query counts in the footer"
+msgstr "푸터에 로드 시간 및 쿼리 수 표시"
+
+#: admin/pages/wptouch-admin-general-settings.php:360
+msgid "Helps you find slow pages/posts on your site."
+msgstr "사이트에서 속도가 느린 페이지/게시글을 찾는 것을 도와줍니다."
+
+#: admin/pages/wptouch-admin-general-settings.php:367
+msgid "Enable debug log"
+msgstr "디버그 로그 켜기"
+
+#: admin/pages/wptouch-admin-general-settings.php:368
+msgid "Creates a debug file to help diagnose installation issues."
+msgstr "설치 문제를 진단하는 것을 돕기 위해 디버그 파일을 생성합니다."
+
+#: admin/pages/wptouch-admin-general-settings.php:379
+msgid "WordPress Plugins"
+msgstr "WordPress 플러그인"
+
+#: admin/pages/wptouch-admin-general-settings.php:392
+msgid "Admin Mode"
+msgstr "관리자 모드"
+
+#: admin/pages/wptouch-admin-general-settings.php:398
+msgid "Admin panel settings shown"
+msgstr "관리 패널 설정 표시"
+
+#: admin/pages/wptouch-admin-general-settings.php:403
+msgid "Default"
+msgstr "기본"
+
+#: admin/pages/wptouch-admin-general-settings.php:404
+#: admin/settings/html/button.php:5 admin/settings/html/checkbox.php:6
+#: admin/settings/html/custom-latest-posts.php:4
+#: admin/settings/html/list.php:16 admin/settings/html/numeric.php:12
+#: admin/settings/html/radiolist.php:12 admin/settings/html/text.php:8
+#: admin/settings/html/textarea.php:8
+msgid "Advanced"
+msgstr "고급"
+
+#: admin/pages/wptouch-admin-menus.php:3
+msgid "Theme Menus"
+msgstr "테마 메뉴"
+
+#: admin/pages/wptouch-admin-menus.php:4
+msgid "Menu Setup"
+msgstr "메뉴 설정"
+
+#: admin/pages/wptouch-admin-menus.php:5
+msgid "Icon Upload & Sets"
+msgstr "아이콘 업로드 및 세트"
+
+#: admin/pages/wptouch-admin-menus.php:22
+msgid "WordPress Pages"
+msgstr "WordPress 페이지"
+
+#: admin/pages/wptouch-admin-menus.php:28
+#: admin/settings/html/icon_menu_area.php:6
+#: infinity-cache/infinity-cache.php:206
+#: pro/modules/advertising/advertising.php:180
+#: themes/foundation/modules/media/media.php:59
+msgid "None"
+msgstr "없음"
+
+#: admin/pages/wptouch-admin-menus.php:66
+msgid "Menu Options"
+msgstr "메뉴 옵션"
+
+#: admin/pages/wptouch-admin-menus.php:72
+msgid "Enable parent items as links"
+msgstr "상위 항목을 링크로 사용"
+
+#: admin/pages/wptouch-admin-menus.php:73
+msgid "If disabled, parent menu items will only toggle child items."
+msgstr "이 옵션을 끄면, 상위 메뉴 항목은 하위 항목만 전환합니다."
+
+#: admin/pages/wptouch-admin-menus.php:80
+msgid "Use menu icons"
+msgstr "메뉴 아이콘 사용"
+
+#: admin/pages/wptouch-admin-menus.php:104
+msgid "Icon Upload"
+msgstr "아이콘 업로드"
+
+#: admin/pages/wptouch-admin-menus.php:117
+msgid "Uploaded Icons"
+msgstr "업로드된 아이콘"
+
+#: admin/pages/wptouch-admin-menus.php:130
+msgid "Icon Sets"
+msgstr "아이콘 세트"
+
+#: admin/pages/wptouch-admin-themes-and-addons.php:3
+msgid "Themes"
+msgstr "테마"
+
+#: admin/pages/wptouch-admin-themes-and-addons.php:4
+msgid "Extensions"
+msgstr "추가기능"
+
+#: admin/pages/wptouch-admin-touchboard.php:3 core/admin-menu.php:35
+#: core/admin-menu.php:39
+msgid "What's New"
+msgstr "새로운 사항"
+
+#: admin/settings/html/backup.php:1
+msgid "Download Backup File"
+msgstr "백업 파일 다운로드"
+
+#: admin/settings/html/backup.php:2
+msgid "Restore Backup File"
+msgstr "백업 파일 복원"
+
+#: admin/settings/html/button.php:6 admin/settings/html/checkbox.php:7
+#: admin/settings/html/custom-latest-posts.php:8
+#: admin/settings/html/list.php:20 admin/settings/html/numeric.php:16
+#: admin/settings/html/radiolist.php:14 admin/settings/html/text.php:9
+#: admin/settings/html/textarea.php:9
+msgid "New"
+msgstr "신규"
+
+#: admin/settings/html/color.php:6
+msgid "Undo"
+msgstr "되돌리기"
+
+#: admin/settings/html/color.php:7
+msgid "Desktop theme colors"
+msgstr "데스크톱 테마 색깔"
+
+#: admin/settings/html/color.php:7
+msgid "Palette"
+msgstr "팔레트"
+
+#: admin/settings/html/custom-latest-posts.php:1
+msgid "Custom latest posts page"
+msgstr "사용자 정의 최신 게시글 페이지"
+
+#: admin/settings/html/custom_icon_management.php:3
+msgid "No icons have been uploaded yet"
+msgstr "아직 아이콘이 업로드되지 않았습니다"
+
+#: admin/settings/html/custom_icon_management.php:12
+#: admin/settings/html/image-upload.php:13
+#: admin/settings/html/theme-browser-item.php:137
+msgid "Delete"
+msgstr "삭제"
+
+#: admin/settings/html/custom_icon_upload.php:3
+msgid "Upload Icon"
+msgstr "아이콘 업로드"
+
+#: admin/settings/html/custom_icon_upload.php:4
+#: admin/settings/html/image-upload.php:15
+msgid "Upload Complete!"
+msgstr "업로드 완료!"
+
+#: admin/settings/html/custom_icon_upload.php:9
+msgid "Ready to upload"
+msgstr "업로드 준비됨"
+
+#: admin/settings/html/debuginfo.php:12
+msgid "View Debug File"
+msgstr "디버그 파일 보기"
+
+#: admin/settings/html/debuginfo.php:16 admin/settings/html/debuginfo.php:18
+msgid "Your Server Configuration"
+msgstr "서버 구성"
+
+#: admin/settings/html/extension-browser-item.php:36
+#: admin/settings/html/theme-browser-item.php:49
+msgid "Updating..."
+msgstr "업데이트 중..."
+
+#: admin/settings/html/extension-browser-item.php:36
+msgid "Upgrade to %s"
+msgstr "%s(으)로 업그레이드"
+
+#: admin/settings/html/extension-browser-item.php:38
+#: admin/settings/html/theme-browser-item.php:54
+msgid "Download %s Update"
+msgstr "%s 업데이트 다운로드"
+
+#: admin/settings/html/extension-browser-item.php:45
+#: admin/settings/html/installed_icon_sets_ajax.php:8
+#: admin/settings/html/installed_icon_sets_ajax.php:20
+#: admin/settings/html/theme-browser-item.php:68
+msgid "by %s"
+msgstr "작성자: %s"
+
+#: admin/settings/html/extension-browser-item.php:51
+msgid "Extension location: %s"
+msgstr "추가기능 위치: %s"
+
+#: admin/settings/html/extension-browser-item.php:52
+#: admin/settings/html/theme-browser-item.php:76
+msgid "Relative to your WordPress wp-content directory."
+msgstr "WordPress wp-content 디렉터리에 대한 상대주소."
+
+#: admin/settings/html/extension-browser-item.php:61
+#: admin/settings/html/theme-browser-item.php:88
+msgid "Available in WPtouch Pro"
+msgstr "WPtouch Pro에서 이용 가능"
+
+#: admin/settings/html/extension-browser-item.php:65
+#: admin/settings/html/theme-browser-item.php:92
+msgid "More Info"
+msgstr "추가 정보"
+
+#: admin/settings/html/extension-browser-item.php:68
+#: admin/settings/html/theme-browser-item.php:96
+msgid "Upgrade License"
+msgstr "라이선스 업그레이드"
+
+#: admin/settings/html/extension-browser-item.php:70
+#: admin/settings/html/theme-browser-item.php:98
+msgid "Get License"
+msgstr "라이선스 받기"
+
+#: admin/settings/html/extension-browser-item.php:78
+#: admin/settings/html/theme-browser-item.php:111
+msgid "Downloading..."
+msgstr "다운로드 중..."
+
+#: admin/settings/html/extension-browser-item.php:78
+#: admin/settings/html/installed_icon_sets_ajax.php:21
+#: admin/settings/html/theme-browser-item.php:112
+msgid "Install"
+msgstr "설치"
+
+#: admin/settings/html/extension-browser-item.php:80
+#: admin/settings/html/theme-browser-item.php:115
+msgid "Download"
+msgstr "다운로드"
+
+#: admin/settings/html/extension-browser-item.php:90
+#: admin/settings/html/theme-browser-item.php:125
+msgid "Setup"
+msgstr "설정"
+
+#: admin/settings/html/extension-browser-item.php:91
+msgid "Deactivate"
+msgstr "비활성화"
+
+#: admin/settings/html/extension-browser.php:2
+#: admin/settings/html/theme-browser.php:2
+msgid "Your server configuration is preventing WPtouch Pro from installing and updating from the Cloud. %sPlease visit %sthis article%s to follow the steps to enable Cloud install, or you can manually download and install into the wptouch-data/%s directory."
+msgstr "서버 설정에 의해 WPtouch Pro가 클라우드로부터 설치 및 업데이트하지 못하도록 되어 있습니다. %s클라우드 설치를 하려면 %s이 글%s을 보시거나 wptouch-data/%s 디렉터리에 직접 다운로드 및 설치하실 수 있습니다."
+
+#: admin/settings/html/extension-browser.php:13
+msgid "Loading Cloud Extensions"
+msgstr "클라우드 추가기능 로드 중"
+
+#: admin/settings/html/icon_menu_area.php:5
+msgid "Check All"
+msgstr "모두 체크"
+
+#: admin/settings/html/icon_menu_area.php:7
+msgid "Reset"
+msgstr "초기화"
+
+#: admin/settings/html/icon_menu_area.php:9
+#: classic-redux/default/header-bottom.php:21
+#: classic-redux/default/header-bottom.php:32
+#: classic-redux/default/header-bottom.php:112
+#: scaffold/default/header-bottom.php:13
+msgid "Menu"
+msgstr "메뉴"
+
+#: admin/settings/html/icon_menu_area.php:19
+msgid "Active menus used in this theme."
+msgstr "이 테마에 사용된 활성 메뉴."
+
+#: admin/settings/html/icon_menu_area.php:23
+msgid "Show/Hide"
+msgstr "표시/숨김"
+
+#: admin/settings/html/icon_menu_area.php:24
+msgid "Menu Item"
+msgstr "메뉴 항목"
+
+#: admin/settings/html/icon_menu_area.php:44
+msgid "Icon Set"
+msgstr "아이콘 세트"
+
+#: admin/settings/html/icon_menu_area.php:54
+msgid "Drag icons to associate them with menu items"
+msgstr "아이콘을 끌어 메뉴 항목과 연결하세요"
+
+#: admin/settings/html/icon_menu_area.php:79
+msgid "You don't have any custom icons yet."
+msgstr "아직 사용자 정의 아이콘이 없습니다."
+
+#: admin/settings/html/icon_menu_area.php:94
+msgid "Default Icon"
+msgstr "기본 아이콘"
+
+#: admin/settings/html/icon_menu_area.php:95
+msgid "applies to all unset icons"
+msgstr "설정되지 않은 모든 아이콘에 적용됩니다"
+
+#: admin/settings/html/icon_menu_area.php:103
+msgid "Trash"
+msgstr "휴지통"
+
+#: admin/settings/html/icon_menu_area.php:104
+msgid "drag icon here to reset"
+msgstr "여기로 아이콘을 끌어 초기화하세요"
+
+#: admin/settings/html/image-upload.php:11
+msgid "Upload"
+msgstr "업로드"
+
+#: admin/settings/html/installed_icon_sets.php:2
+msgid "Gathering information about available icon sets..."
+msgstr "이용 가능한 아이콘 세트에 관한 정보 수집 중..."
+
+#: admin/settings/html/installed_icon_sets.php:4 core/notifications.php:215
+msgid "The %s%s%s directory is not currently writable. %sPlease fix this issue to enable installation of additional icon sets."
+msgstr "%s%s%s 디렉터리에 현재 쓸 수 없습니다. %s추가 아이콘 세트를 설치하려면 이 문제를 해결하세요."
+
+#: admin/settings/html/installed_icon_sets_ajax.php:4
+#: core/class-wptouch-pro.php:1522 core/class-wptouch-pro.php:1523
+#: core/config.php:53
+msgid "Custom Icons"
+msgstr "사용자 정의 아이콘"
+
+#: admin/settings/html/installed_icon_sets_ajax.php:9
+#: admin/settings/html/installed_icon_sets_ajax.php:22
+msgid "Installed"
+msgstr "설치됨"
+
+#: admin/settings/html/installed_icon_sets_ajax.php:21
+msgid "Installing..."
+msgstr "설치 중..."
+
+#: admin/settings/html/installed_icon_sets_ajax.php:23
+msgid "Unable to Install"
+msgstr "설치 불가"
+
+#: admin/settings/html/plugin-compat-ajax.php:11
+#: themes/foundation/modules/custom-posts/custom-posts.php:64
+msgid "Enable %s"
+msgstr "%s 켜기"
+
+#: admin/settings/html/plugin-compat-ajax.php:12
+msgid "When unchecked, %s will be disabled for users viewing your WPtouch Pro theme."
+msgstr "체크를 해제하면, WPtouch Pro 테마를 보는 사용자에게 %s이(가) 꺼집니다."
+
+#: admin/settings/html/plugin-compat-ajax.php:20
+msgid "No plugins to disable."
+msgstr "끌 플러그인이 없습니다."
+
+#: admin/settings/html/plugin-compat.php:3
+msgid "Your active plugin list is refreshing"
+msgstr "활성 플러그인 목록을 새로고침 중입니다"
+
+#: admin/settings/html/redirect.php:17
+msgid "WordPress Page"
+msgstr "WordPress 페이지"
+
+#: admin/settings/html/restore.php:2
+msgid "Please paste your encoded settings below and save to restore your settings."
+msgstr "아래에 인코딩된 설정을 붙여넣고 저장하여 설정을 복원하세요."
+
+#: admin/settings/html/theme-browser-item.php:6
+#: admin/settings/html/theme-browser-item.php:10
+msgid "Click to view screenshots"
+msgstr "클릭하여 스크린샷 보기"
+
+#: admin/settings/html/theme-browser-item.php:51
+msgid "Update to %s"
+msgstr "%s(으)로 업데이트"
+
+#: admin/settings/html/theme-browser-item.php:63
+msgid "This theme supports %s devices"
+msgstr "이 테마는 %s 장치를 지원합니다"
+
+#: admin/settings/html/theme-browser-item.php:75
+msgid "Theme location: %s"
+msgstr "테마 위치: %s"
+
+#: admin/settings/html/theme-browser-item.php:103
+msgid "Buy Now"
+msgstr "지금 구입"
+
+#: admin/settings/html/theme-browser-item.php:133
+msgid "Copy"
+msgstr "복사"
+
+#: admin/settings/html/theme-browser.php:14
+msgid "Loading Cloud Themes"
+msgstr "클라우드 테마 로드 중"
+
+#: admin/settings/html/touchboard.php:6
+msgid "Quick Links"
+msgstr "빠른 링크"
+
+#: admin/settings/html/touchboard.php:8
+msgid "What's New Changelog"
+msgstr "새로운 사항 변경 로그"
+
+#: admin/settings/html/touchboard.php:10
+msgid "Look at Pro Themes"
+msgstr "Pro 테마 보기"
+
+#: admin/settings/html/touchboard.php:11
+msgid "Look at Pro Extensions"
+msgstr "Pro 추가기능 보기"
+
+#: admin/settings/html/touchboard.php:12
+msgid "Look at Pro Features"
+msgstr "Pro 기능 보기"
+
+#: admin/settings/html/touchboard.php:14
+msgid "Product Support"
+msgstr "제품 지원"
+
+#: admin/settings/html/touchboard.php:16
+msgid "Product Knowledgebase"
+msgstr "제품 지식 데이터베이스"
+
+#: admin/settings/html/touchboard.php:17
+msgid "Manage Account"
+msgstr "계정 관리"
+
+#: admin/settings/html/touchboard.php:18
+msgid "Manage License"
+msgstr "라이선스 관리"
+
+#: admin/settings/html/touchboard.php:20
+msgid "WPtouch User Guide"
+msgstr "WPtouch 사용자 가이드"
+
+#: admin/settings/html/touchboard.php:27
+msgid "WPtouch News"
+msgstr "WPtouch 뉴스"
+
+#: admin/settings/html/touchboard.php:28
+msgid "Read More"
+msgstr "더 보기"
+
+#: admin/settings/html/touchboard.php:45
+msgid "What's New in %s"
+msgstr "%s의 새로운 사항"
+
+#: admin/settings/html/touchboard.php:49 admin/settings/html/touchboard.php:51
+#: core/admin-menu.php:60
+msgid "License"
+msgstr "라이선스"
+
+#: admin/settings/html/touchboard.php:49
+msgid "Unlicensed"
+msgstr "라이선스 없음"
+
+#: admin/settings/html/touchboard.php:49 core/class-wptouch-pro.php:576
+msgid "Offline"
+msgstr "오프라인"
+
+#: admin/settings/html/touchboard.php:51
+msgid "Active"
+msgstr "활성"
+
+#: admin/settings/html/touchboard.php:51
+msgid "Online"
+msgstr "온라인"
+
+#: admin/settings/html/touchboard.php:61
+msgid "%s Change Log"
+msgstr "%s 체인지로그"
+
+#: admin/settings/html/user-agent-list.php:4
+#: admin/settings/html/user-agent-list.php:6
+msgid "WPtouch Pro will be active when any of the following user-agents or user-agent combinations are matched"
+msgstr "WPtouch Pro는 다음의 사용자-에이전트 또는 사용자-에이전트 조합과 일치할 때 활성화됩니다"
+
+#: admin/settings/include/custom-latest-posts.php:14
+msgid "None (Use WordPress Settings)"
+msgstr "없음(WordPress 설정 사용)"
+
+#: bauhaus/default/header-bottom.php:21
+#: classic-redux/default/header-bottom.php:76
+#: scaffold/default/header-bottom.php:24
+msgid "Search this website"
+msgstr "이 웹사이트 검색"
+
+#: bauhaus/default/header-bottom.php:22
+#: classic-redux/default/header-bottom.php:46
+#: classic-redux/default/header-bottom.php:78
+#: scaffold/default/header-bottom.php:14 scaffold/default/header-bottom.php:25
+msgid "Search"
+msgstr "검색"
+
+#: bauhaus/default/header-bottom.php:40 bauhaus/default/header-bottom.php:42
+#: classic-redux/default/header-bottom.php:53
+#: scaffold/default/header-bottom.php:35 simple/default/header-bottom.php:24
+msgid "Logout"
+msgstr "로그아웃"
+
+#: bauhaus/default/nav-bar.php:6 cms/default/nav-bar.php:6
+#: themes/foundation/default/nav-bar.php:6
+msgid "previous post"
+msgstr "이전 게시글"
+
+#: bauhaus/default/nav-bar.php:13 cms/default/nav-bar.php:13
+#: themes/foundation/default/nav-bar.php:12
+msgid "next post"
+msgstr "다음 게시글"
+
+#: bauhaus/default/post-loop.php:22 classic-redux/default/post-loop.php:24
+msgid "by"
+msgstr "작성자:"
+
+#: bauhaus/default/search.php:6 classic-redux/default/search.php:5
+#: themes/foundation/default/search.php:6
+msgid "You searched for \"%s\""
+msgstr "\"%s\"을(를) 검색하셨습니다"
+
+#: bauhaus/default/search.php:14
+msgid "Show %s Results"
+msgstr "결과 %s개 표시"
+
+#: bauhaus/default/search.php:38
+msgid "No results found"
+msgstr "검색 결과 없음"
+
+#: bauhaus/default/search.php:46 classic-redux/default/search.php:47
+#: themes/foundation/default/search.php:45
+msgid "Load more %s results"
+msgstr "%s개의 결과 더 로드"
+
+#: bauhaus/default/single.php:26
+msgid "no comments"
+msgstr "댓글 없음"
+
+#: bauhaus/default/single.php:26
+msgid "1 comment"
+msgstr "댓글 1개"
+
+#: bauhaus/default/single.php:26
+msgid "% comments"
+msgstr "댓글 %개"
+
+#: bauhaus/default/single.php:46 classic-redux/default/header-bottom.php:35
+#: classic-redux/default/header-bottom.php:61
+msgid "Categories"
+msgstr "카테고리"
+
+#: bauhaus/default/single.php:49 classic-redux/default/header-bottom.php:39
+#: classic-redux/default/header-bottom.php:68
+msgid "Tags"
+msgstr "태그"
+
+#: bauhaus/root-functions.php:116 classic-redux/root-functions.php:97
+msgid "Header Menu"
+msgstr "헤더 메뉴"
+
+#: bauhaus/root-functions.php:118 classic-redux/root-functions.php:99
+#: cms/root-functions.php:119 cms/root-functions.php:128
+#: scaffold/root-functions.php:77 simple/root-functions.php:59
+#: simple/root-functions.php:70
+msgid "Choose a menu"
+msgstr "메뉴 선택"
+
+#: bauhaus/root-functions.php:119
+msgid "Main menu selection"
+msgstr "메인 메뉴 선택"
+
+#: bauhaus/root-functions.php:126 classic-redux/root-functions.php:107
+#: cms/root-functions.php:135 scaffold/root-functions.php:85
+#: simple/root-functions.php:78
+msgid "Theme background"
+msgstr "테마 배경"
+
+#: bauhaus/root-functions.php:127
+msgid "Header & Menu"
+msgstr "헤더 및 메뉴"
+
+#: bauhaus/root-functions.php:128 classic-redux/root-functions.php:108
+#: cms/root-functions.php:136 scaffold/root-functions.php:86
+#: simple/root-functions.php:79
+msgid "Links"
+msgstr "링크"
+
+#: bauhaus/root-functions.php:129
+msgid "Post/Page Headers"
+msgstr "게시글/페이지 헤더"
+
+#: bauhaus/root-functions.php:239
+msgid "Theme Shapes"
+msgstr "테마 모양"
+
+#: bauhaus/root-functions.php:245
+msgid "Theme shape style"
+msgstr "테마 모양 스타일"
+
+#: bauhaus/root-functions.php:246
+msgid "Bauhaus will use this shape style throughout its appearance"
+msgstr "Bauhaus는 이 모양 스타일을 전체에 사용합니다"
+
+#: bauhaus/root-functions.php:250
+msgid "Circles"
+msgstr "원"
+
+#: bauhaus/root-functions.php:251
+msgid "Rounded squares"
+msgstr "둥근 사각형"
+
+#: bauhaus/root-functions.php:270 classic-redux/root-functions.php:238
+msgid "Post thumbnails"
+msgstr "썸네일 게시"
+
+#: bauhaus/root-functions.php:275 classic-redux/root-functions.php:243
+msgid "No thumbnails"
+msgstr "썸네일 없음"
+
+#: bauhaus/root-functions.php:276 classic-redux/root-functions.php:244
+msgid "Blog listing only"
+msgstr "블로그 목록만"
+
+#: bauhaus/root-functions.php:277 classic-redux/root-functions.php:245
+msgid "Blog listing, single posts"
+msgstr "블로그 목록, 단일 게시글"
+
+#: bauhaus/root-functions.php:278
+msgid "Blog listing, single posts & pages"
+msgstr "블로그 목록, 단일 게시글 및 페이지"
+
+#: bauhaus/root-functions.php:279
+msgid "All (blog, single, pages, search & archive)"
+msgstr "모두(블로그, 단일, 페이지, 검색 및 아카이브)"
+
+#: bauhaus/root-functions.php:287 classic-redux/root-functions.php:254
+msgid "Thumbnail Selection"
+msgstr "썸네일 선택"
+
+#: bauhaus/root-functions.php:292 classic-redux/root-functions.php:259
+msgid "Post featured image"
+msgstr "추천 이미지 게시"
+
+#: bauhaus/root-functions.php:293 classic-redux/root-functions.php:260
+msgid "Post custom field"
+msgstr "사용자 정의 필드 게시"
+
+#: bauhaus/root-functions.php:301 classic-redux/root-functions.php:268
+msgid "Thumbnail custom field name"
+msgstr "썸네일 사용자 정의 필드 이름"
+
+#: bauhaus/root-functions.php:312 classic-redux/root-functions.php:301
+msgid "Show post categories and tags"
+msgstr "게시글 카테고리 및 태그 표시"
+
+#: bauhaus/root-functions.php:323 classic-redux/root-functions.php:279
+msgid "Show post date"
+msgstr "게시일 표시"
+
+#: bauhaus/root-functions.php:334 classic-redux/root-functions.php:290
+msgid "Show post author"
+msgstr "게시글 작성자 표시"
+
+#: bauhaus/root-functions.php:345
+msgid "Show comment bubbles on posts"
+msgstr "게시글에 댓글 풍선 표시"
+
+#: bauhaus/root-functions.php:356
+msgid "Show search in header"
+msgstr "헤더에 검색 표시"
+
+#: bauhaus/root-functions.php:357
+msgid "Adds Search capability in the site header."
+msgstr "사이트 헤더에 검색 기능을 추가합니다."
+
+#: bauhaus/root-functions.php:367 classic-redux/root-functions.php:312
+msgid "Use infinite scrolling for blog"
+msgstr "블로그에 무한 스크롤 사용"
+
+#: bauhaus/root-functions.php:384
+msgid "Show featured slider on front page"
+msgstr "첫 페이지에 추천 슬라이더 표시"
+
+#: classic-redux/default/header-bottom.php:43
+#: classic-redux/default/header-bottom.php:88
+msgid "Tweets"
+msgstr "트윗"
+
+#: classic-redux/default/header-bottom.php:51
+#: scaffold/default/header-bottom.php:33 simple/default/header-bottom.php:22
+#: themes/foundation/modules/login/login-html.php:20
+msgid "Login"
+msgstr "로그인"
+
+#: classic-redux/default/header-bottom.php:92
+msgid "Follow %s on Twitter"
+msgstr "Twitter에서 %s 팔로우"
+
+#: classic-redux/default/index.php:34 cms/default/header-bottom.php:60
+#: themes/foundation/default/index.php:33
+msgid "newer posts"
+msgstr "최근 게시글"
+
+#: classic-redux/default/index.php:34 cms/default/header-bottom.php:56
+#: themes/foundation/default/index.php:33
+msgid "older posts"
+msgstr "오래된 게시글"
+
+#: classic-redux/default/post-loop.php:33
+#: themes/foundation/default/comments.php:10
+msgid "no responses"
+msgstr "답글 없음"
+
+#: classic-redux/default/post-loop.php:33
+#: themes/foundation/default/comments.php:10
+msgid "1 response"
+msgstr "1개의 답글"
+
+#: classic-redux/default/post-loop.php:33
+#: themes/foundation/default/comments.php:10
+msgid "% responses"
+msgstr "%개의 답글"
+
+#: classic-redux/default/post-loop.php:56
+msgid "Read This Post"
+msgstr "이 게시글 읽기"
+
+#: classic-redux/default/search.php:15 themes/foundation/default/search.php:16
+msgid "%s results"
+msgstr "%s개의 결과"
+
+#: classic-redux/default/search.php:38 themes/foundation/default/search.php:36
+msgid "No search results found"
+msgstr "검색결과 없음"
+
+#: classic-redux/default/single.php:18
+msgid "Written by %s"
+msgstr "작성자: %s"
+
+#: classic-redux/root-functions.php:6 classic-redux/root-functions.php:357
+msgid "Tablets"
+msgstr "태블릿"
+
+#: classic-redux/root-functions.php:106 cms/root-functions.php:134
+#: simple/root-functions.php:77
+msgid "Header background"
+msgstr "헤더 배경"
+
+#: classic-redux/root-functions.php:246
+msgid "All (blog, single, search and archive)"
+msgstr "모두(블로그, 단일 글, 검색 및 아카이브)"
+
+#: classic-redux/root-functions.php:323
+msgid "Use rounded corners"
+msgstr "둥근 모서리 사용"
+
+#: classic-redux/root-functions.php:341
+msgid "Show page title areas on pages"
+msgstr "페이지에 페이지 제목 영역 표시"
+
+#: classic-redux/root-functions.php:363
+msgid "Add tablet support"
+msgstr "태블릿 지원 추가"
+
+#: classic-redux/root-functions.php:375
+msgid "Header Menu Area"
+msgstr "헤더 메뉴 영역"
+
+#: classic-redux/root-functions.php:381
+msgid "Drop-down button says \"Menu\""
+msgstr "드롭다운 버튼에 \"메뉴\"라고 되어 있음"
+
+#: classic-redux/root-functions.php:389
+msgid "Show tab bar"
+msgstr "탭 바 표시"
+
+#: classic-redux/root-functions.php:397
+msgid "Tab-bar shows categories or tags"
+msgstr "탭 바는 카테고리 또는 태그를 표시합니다"
+
+#: classic-redux/root-functions.php:402
+msgid "Categories and tags"
+msgstr "카테고리 및 태그"
+
+#: classic-redux/root-functions.php:403
+msgid "Categories only"
+msgstr "카테고리만"
+
+#: classic-redux/root-functions.php:404
+msgid "Tags only"
+msgstr "태그만"
+
+#: classic-redux/root-functions.php:405
+msgid "No categories or tags"
+msgstr "카테고리 또는 태그 없음"
+
+#: classic-redux/root-functions.php:411
+msgid "Max categories / tags"
+msgstr "카테고리 / 태그 최대 개수"
+
+#: classic-redux/root-functions.php:429 cms/root-functions.php:262
+#: simple/root-functions.php:274
+msgid "CSS Effects"
+msgstr "CSS 효과"
+
+#: classic-redux/root-functions.php:435 cms/root-functions.php:268
+msgid "Add a noise effect to the header and theme background"
+msgstr "헤더와 테마 배경에 노이즈 효과 추가"
+
+#: classic-redux/root-functions.php:436 cms/root-functions.php:269
+#: simple/root-functions.php:281
+msgid "Will apply the effect overtop of any background image you upload."
+msgstr "업로드한 배경 이미지에 효과를 적용합니다."
+
+#: cms/default/header-bottom.php:14
+msgid "menu"
+msgstr "메뉴"
+
+#: cms/default/header-bottom.php:21
+msgid "login"
+msgstr "로그인"
+
+#: cms/default/header-bottom.php:25
+msgid "logout"
+msgstr "로그아웃"
+
+#: cms/default/header-bottom.php:38 simple/default/footer-top.php:3
+msgid "search this website"
+msgstr "이 웹사이트 검색"
+
+#: cms/default/header-bottom.php:39 simple/default/footer-top.php:5
+msgid "search"
+msgstr "검색"
+
+#: cms/default/single.php:12 themes/foundation/default/single.php:13
+msgid "By"
+msgstr "작성자:"
+
+#: cms/root-functions.php:50
+msgid "Alt Menu"
+msgstr "대체 메뉴"
+
+#: cms/root-functions.php:117
+msgid "Main Menu"
+msgstr "메인 메뉴"
+
+#: cms/root-functions.php:126
+msgid "Alternate Menu"
+msgstr "대체 메뉴"
+
+#: cms/root-functions.php:174
+msgid "Show featured images on single posts"
+msgstr "단일 게시글에 추천 이미지 표시"
+
+#: cms/root-functions.php:191
+msgid "Show titles on pages"
+msgstr "페이지에 제목 표시"
+
+#: cms/root-functions.php:206
+msgid "Category Slider"
+msgstr "카테고리 슬라이더"
+
+#: cms/root-functions.php:212
+msgid "Enable category slider"
+msgstr "카테고리 슬라이더 사용"
+
+#: cms/root-functions.php:225 simple/root-functions.php:255
+msgid "Tiled Background Image"
+msgstr "타일 모양 배경 이미지"
+
+#: cms/root-functions.php:231 simple/root-functions.php:261
+msgid "(Scaled for retina displays)"
+msgstr "(레티나 디스플레이에 맞춤)"
+
+#: cms/root-functions.php:243
+msgid "Alternate Menu Title"
+msgstr "대체 메뉴 제목"
+
+#: cms/root-functions.php:249
+msgid "Alternate menu title (if used)"
+msgstr "대체 메뉴 제목(사용하는 경우)"
+
+#: cms/root-functions.php:250
+msgid "If you use a second menu in CMS, this text will be used for the drop-down button title."
+msgstr "CMS에 보조 메뉴를 사용하는 경우, 이 텍스트가 드롭다운 버튼 제목에 사용됩니다."
+
+#: cms/root-functions.php:280
+msgid "Static Front Page"
+msgstr "정적 프런트 페이지"
+
+#: cms/root-functions.php:286
+msgid "Static front page alternate content"
+msgstr "정적 프런트 페이지 대체 컨텐츠"
+
+#: cms/root-functions.php:287
+msgid "Shows after the featured slider (if enabled), and replaces your Static Front Page content. HTML allowed."
+msgstr "추천 슬라이더(사용하는 경우) 다음에 표시되며 정적 프런트 페이지 컨텐츠를 대체합니다. HTML 사용 가능."
+
+#: core/addon-theme-installer.php:161
+msgid "No server support for directly downloading new Cloud packages."
+msgstr "서버가 새로운 클라우드 패키지를 바로 다운로드하는 것을 지원하지 않습니다."
+
+#: core/addon-theme-installer.php:166
+msgid "Unable to write to directory %s. Try relaxing permissions to allow writing to this location."
+msgstr "디렉터리 %s에 쓸 수 없습니다. 권한을 완화하여 이 위치에 쓰기를 허용하세요."
+
+#: core/addon-theme-installer.php:171
+msgid "No server support for unzipping files."
+msgstr "서버가 파일 압축 해제를 지원하지 않습니다."
+
+#: core/addon-theme-installer.php:181
+msgid "Unable to download the Cloud package."
+msgstr "클라우드 패키지를 다운로드할 수 없습니다."
+
+#: core/admin-ajax.php:189
+msgid "Version %s"
+msgstr "버전 %s"
+
+#: core/admin-ajax.php:195
+msgid "There is a temporary issue retrieving the change-log.  Please try again later."
+msgstr "체인지로그를 검색하는 데 일시적인 문제가 발생했습니다. 나중에 다시 시도하세요."
+
+#: core/admin-menu.php:40
+msgid "Core Settings"
+msgstr "중요 설정"
+
+#: core/admin-menu.php:41
+msgid "Themes & Extensions"
+msgstr "테마 및 추가기능"
+
+#: core/admin-menu.php:42
+msgid "Theme Settings"
+msgstr "테마 설정"
+
+#: core/admin-menu.php:42
+msgid "%s Settings"
+msgstr "%s 설정"
+
+#: core/admin-menu.php:47
+msgid "Extension Settings"
+msgstr "추가기능 설정"
+
+#: core/admin-menu.php:52 core/admin-menu.php:54
+msgid "Menus"
+msgstr "메뉴"
+
+#: core/admin-menu.php:65
+msgid "Upgrade to Pro"
+msgstr "Pro로 업그레이드"
+
+#: core/admin-page-templates.php:16
+msgid "Mobile Page Template"
+msgstr "모바일 페이지 템플릿"
+
+#: core/admin-render.php:25
+msgid "This copy of %s is currently unlicensed!"
+msgstr "이 %s에는 현재 라이선스가 없습니다!"
+
+#: core/admin-render.php:27
+msgid "Add a license %s"
+msgstr "라이선스 %s 추가"
+
+#: core/admin-render.php:81
+msgid "Save Changes"
+msgstr "변경내용 저장"
+
+#: core/admin-render.php:82
+msgid "Preview Theme"
+msgstr "테마 미리보기"
+
+#: core/admin-render.php:83
+msgid "Reset Settings"
+msgstr "설정 초기화"
+
+#: core/class-wptouch-pro.php:336
+msgid "Automatic theme migration from uploads/wptouch-data directory failed. Please manually move these files to wp-content/wptouch-data, or %scontact support%s to address this issue."
+msgstr "uploads/wptouch-data 디렉터리로부터 자동으로 테마를 가져오지 못했습니다. wp-content/wptouch-data로 직접 이 파일들을 이동하거나 이 문제를 해결하기 위해 %s지원팀에 연락하세요%s."
+
+#: core/class-wptouch-pro.php:356
+msgid "We were unable to install your WPtouch theme from the Cloud. Please visit %sthis article%s for more information."
+msgstr "클라우드로부터 WPtouch 테마를 설치할 수 없습니다. 자세한 정보는 %s이 글%s을 참조하세요."
+
+#: core/class-wptouch-pro.php:360
+msgid "You server setup is preventing WPtouch from installing your active theme from the Cloud. Please visit %sthis article%s for more information on how to fix it."
+msgstr "서버 설정에 의해 WPtouch가 클라우드로부터 활성 테마를 설치하지 못하도록 되어 있습니다. 문제를 해결하는 방법에 관한 자세한 정보는 %s이 글%s을 참조하세요."
+
+#: core/class-wptouch-pro.php:572
+msgid "Unsupported Browser"
+msgstr "미지원 브라우저"
+
+#: core/class-wptouch-pro.php:573
+msgid "Theme Preview requires Chrome or Safari."
+msgstr "테마 미리보기에는 Chrome 또는 Safari가 필요합니다."
+
+#: core/class-wptouch-pro.php:574
+msgid "This will reset all WPtouch Pro settings.\nAre you sure?"
+msgstr "이것은 모든 WPtouch Pro 설정을 초기화합니다.\n계속할까요?"
+
+#: core/class-wptouch-pro.php:575
+msgid "This will reset all WPtouch Pro menu and icon settings.\nAre you sure?"
+msgstr "이것은 모든 WPtouch Pro 메뉴 및 아이콘 설정을 초기화합니다.\n계속할까요?"
+
+#: core/class-wptouch-pro.php:577
+msgid "You appear to be offline. Connect to the internet to see available BraveNewCloud items."
+msgstr "오프라인 상태이신 것 같습니다. 인터넷에 연결하여 이용 가능한 BraveNewCloud 아이템을 보세요."
+
+#: core/class-wptouch-pro.php:578
+msgid "The item failed to download for this reason: %reason%"
+msgstr "다음 사유로 항목을 다운로드하지 못했습니다: %reason%"
+
+#: core/class-wptouch-pro.php:1093 pro/modules/webapp/webapp.php:206
+msgid "Settings"
+msgstr "설정"
+
+#: core/class-wptouch-pro.php:1129
+msgid "%s Changelog"
+msgstr "%s 체인지로그"
+
+#: core/class-wptouch-pro.php:2305
+msgid "Directory Problem"
+msgstr "디렉터리 문제"
+
+#: core/class-wptouch-pro.php:2306
+msgid "One or more required directories could not be created"
+msgstr "하나 이상의 필수 디렉터리를 생성할 수 없습니다"
+
+#: core/globals.php:192
+msgid "smartphone"
+msgstr "스마트폰"
+
+#: core/globals.php:194
+msgid "tablet"
+msgstr "태블릿"
+
+#: core/notifications.php:124
+msgid "Preview Mode Enabled"
+msgstr "미리보기 모드 켜짐"
+
+#: core/notifications.php:125
+msgid "Only logged-in admins can see the mobile theme right now. You can change this at any time in %sCore Settings%s under %sDisplay Mode%s."
+msgstr "현재 로그인한 관리자만 모바일 테마를 볼 수 있습니다. %s표시 모드%s의 %s중요 설정%s에서 언제든지 이 설정을 변경할 수 있습니다."
+
+#: core/notifications.php:133
+msgid "Theme Presentation Disabled"
+msgstr "테마 프레젠테이션 꺼짐"
+
+#: core/notifications.php:134
+msgid "No one can see the mobile theme right now. You can change this at any time in %sCore Settings%s under %sDisplay Mode%s."
+msgstr "현재 아무도 모바일 테마를 볼 수 없습니다. %s표시 모드%s의 %s중요 설정%s에서 언제든지 이 설정을 변경할 수 있습니다."
+
+#: core/notifications.php:145
+msgid "WPtouch Pro prefers pretty permalinks to be enabled within WordPress."
+msgstr "WPtouch Pro는 WordPress에서 사용할 깔끔한 퍼머링크를 권장합니다."
+
+#: core/notifications.php:155
+msgid "WPtouch Pro will not work fully in safe mode."
+msgstr "WPtouch Pro는 안전 모드에서 일부 기능이 작동하지 않습니다."
+
+#: core/notifications.php:165 core/notifications.php:175
+#: core/notifications.php:185
+msgid "Extra configuration is required. The plugin must be configured to exclude the user agents that WPtouch Pro uses."
+msgstr "추가 구성이 필요합니다. 플러그인은 WPtouch Pro가 사용하는 사용자 에이전트를 제외하도록 구성되어야 합니다."
+
+#: core/notifications.php:195
+msgid "Extra configuration is required. Add paths to your active WPtouch Pro theme CSS and Javascript files as files to ignore in WPMinify."
+msgstr "추가 구성이 필요합니다. WPMinify가 활성 WPtouch Pro 테마 CSS와 Javascript 파일을 무시하도록 경로를 추가하세요."
+
+#: core/notifications.php:205
+msgid "This plugin may not work correctly in WPtouch Pro, and should be disabled in the Plugin Compatibility section."
+msgstr "이 플러그인은 WPtouch Pro에서 올바르게 작동하지 않을 수 있으며 플러그인 호환성 영역에서 꺼야 합니다."
+
+#: core/notifications.php:214
+msgid "Icon Installation Issue"
+msgstr "아이콘 설치 문제"
+
+#: include/add-ons/wordtwit-pro.php:179
+#: themes/foundation/modules/twitter/twitter.php:42
+msgid "%d second ago"
+msgid_plural "%d seconds ago"
+msgstr[0] "%d초 전"
+msgstr[1] "%d초 전"
+
+#: include/add-ons/wordtwit-pro.php:182
+#: themes/foundation/modules/twitter/twitter.php:45
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "%d분 전"
+msgstr[1] "%d분 전"
+
+#: include/add-ons/wordtwit-pro.php:185
+#: themes/foundation/modules/twitter/twitter.php:48
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] "%d시간 전"
+msgstr[1] "%d시간 전"
+
+#: include/add-ons/wordtwit-pro.php:188
+#: themes/foundation/modules/twitter/twitter.php:51
+msgid "%d day ago"
+msgid_plural "%d days ago"
+msgstr[0] "%d일 전"
+msgstr[1] "%d일 전"
+
+#: include/html/desktop-switch.php:2
+msgid "Desktop Version"
+msgstr "데스크톱 버전"
+
+#: include/html/desktop-switch.php:2
+msgid "Switch To Mobile Version"
+msgstr "모바일 버전으로 전환"
+
+#: include/html/footer.php:7 include/html/footer.php:9
+msgid "Powered by %s%s%s"
+msgstr "%s%s%s 지원"
+
+#: include/html/footer.php:11
+msgid "By %s"
+msgstr "사용자: %s"
+
+#: include/html/load-times.php:2
+msgid "%d queries in %0.1f ms"
+msgstr "%0.1fms에 %d개의 쿼리"
+
+#: include/html/page-template.php:8
+msgid "Default Template"
+msgstr "기본 템플릿"
+
+#: infinity-cache/infinity-cache.php:63 infinity-cache/infinity-cache.php:225
+msgid "Purge Page Cache"
+msgstr "페이지 캐시 삭제"
+
+#: infinity-cache/infinity-cache.php:123
+msgid "Enable Infinity Cache"
+msgstr "무한 캐시 켜기"
+
+#: infinity-cache/infinity-cache.php:131
+msgid "Create cache for desktop users"
+msgstr "데스크톱 사용자를 위해 캐시 생성"
+
+#: infinity-cache/infinity-cache.php:132
+msgid "If you are using another cache plugin such as W3, you can disable this."
+msgstr "W3와 같은 다른 캐시 플러그인을 사용 중인 경우 이 옵션을 끌 수 있습니다."
+
+#: infinity-cache/infinity-cache.php:153
+msgid "Compress output using GZIP"
+msgstr "GZIP으로 출력물 압축"
+
+#: infinity-cache/infinity-cache.php:163
+msgid "Maximum age of cached content"
+msgstr "캐시된 컨텐츠의 최대 보관기간"
+
+#: infinity-cache/infinity-cache.php:164
+msgid "Each cached page will automatically be regenerated after this period elapses"
+msgstr "캐시된 각 페이지는 이 기간이 지난 후에 자동으로 다시 생성됩니다"
+
+#: infinity-cache/infinity-cache.php:168 infinity-cache/infinity-cache.php:169
+#: infinity-cache/infinity-cache.php:170 infinity-cache/infinity-cache.php:171
+#: infinity-cache/infinity-cache.php:172
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d시간"
+msgstr[1] "%d시간"
+
+#: infinity-cache/infinity-cache.php:179
+msgid "Remove stale cache file interval"
+msgstr "오래된 캐시 파일 제거 간격"
+
+#: infinity-cache/infinity-cache.php:184
+msgid "Hourly"
+msgstr "매시간"
+
+#: infinity-cache/infinity-cache.php:185
+msgid "Daily"
+msgstr "매일"
+
+#: infinity-cache/infinity-cache.php:192
+msgid "Disable caching for any of these matched URL fragments"
+msgstr "다음과 일치하는 URL 위치의 캐시 끄기"
+
+#: infinity-cache/infinity-cache.php:193
+msgid "Add one URL fragment per line, i.e. %s, to not cache pages that contain each URL fragment"
+msgstr "각 URL 위치를 포함하는 페이지를 캐시하지 않기 위해 라인당 1개의 URL 위치 추가(예: %s)"
+
+#: infinity-cache/infinity-cache.php:201
+msgid "Content Distribution Network Service"
+msgstr "컨텐츠 전송 네트워크 서비스"
+
+#: infinity-cache/infinity-cache.php:202
+msgid "Using a content distribution network (CDN) can significantly enhance the responsiveness of your website."
+msgstr "컨텐츠 전송 네트워크(CDN)를 사용하면 웹사이트의 반응 속도를 상당히 높일 수 있습니다."
+
+#: infinity-cache/infinity-cache.php:207
+#: themes/foundation/modules/login/login-html.php:29
+msgid "Sign-up"
+msgstr "가입"
+
+#: infinity-cache/infinity-cache.php:215
+msgid "URL %d"
+msgstr "URL %d"
+
+#: infinity-cache/infinity-cache.php:216
+msgid "Add the URLs you have configured for your CDN, for example http://cdn%d.mysite.com"
+msgstr "CDN에 구성한 URL 추가(예: http://cdn%d.mysite.com)"
+
+#: infinity-cache/infinity-cache.php:233
+msgid "Infinity Cache"
+msgstr "무한 캐시"
+
+#: mobile-content/mobile-content.php:20
+msgid "WPtouch Alternate Mobile Content"
+msgstr "WPtouch 대체 모바일 컨텐츠"
+
+#: mobile-content/mobile-content.php:38
+msgid "Mobile Content"
+msgstr "모바일 컨텐츠"
+
+#: mobile-content/mobile-content.php:44
+msgid "Enable mobile content display"
+msgstr "모바일 컨텐츠 표시"
+
+#: pro/modules/advertising/advertising.php:169
+msgid "Service"
+msgstr "서비스"
+
+#: pro/modules/advertising/advertising.php:175
+msgid "Choose a service"
+msgstr "서비스 선택"
+
+#: pro/modules/advertising/advertising.php:181
+msgid "Google Adsense"
+msgstr "Google Adsense"
+
+#: pro/modules/advertising/advertising.php:182
+msgctxt "Refers to a custom advertising service"
+msgid "Custom"
+msgstr "사용자 정의"
+
+#: pro/modules/advertising/advertising.php:192
+msgid "Google AdSense"
+msgstr "Google AdSense"
+
+#: pro/modules/advertising/advertising.php:195
+msgid "Publisher ID"
+msgstr "게시자 ID"
+
+#: pro/modules/advertising/advertising.php:196
+msgid "Slot ID"
+msgstr "슬롯 ID"
+
+#: pro/modules/advertising/advertising.php:200
+msgid "Code Type"
+msgstr "코드 유형"
+
+#: pro/modules/advertising/advertising.php:212
+msgid "Custom Ads"
+msgstr "사용자 정의 광고"
+
+#: pro/modules/advertising/advertising.php:215
+msgid "Mobile advertising script"
+msgstr "모바일 광고 스크립트"
+
+#: pro/modules/advertising/advertising.php:224
+msgid "Ad Presentation"
+msgstr "광고 표시"
+
+#: pro/modules/advertising/advertising.php:230
+msgid "Theme location"
+msgstr "테마 위치"
+
+#: pro/modules/advertising/advertising.php:235
+msgid "In the header"
+msgstr "헤더"
+
+#: pro/modules/advertising/advertising.php:236
+msgid "Above the page content"
+msgstr "페이지 내용 위"
+
+#: pro/modules/advertising/advertising.php:237
+msgid "Below the page content"
+msgstr "페이지 내용 아래"
+
+#: pro/modules/advertising/advertising.php:247
+msgid "Active Pages"
+msgstr "활성 페이지"
+
+#: pro/modules/advertising/advertising.php:250
+msgid "Blog listings"
+msgstr "블로그 목록"
+
+#: pro/modules/advertising/advertising.php:251
+msgid "Single posts"
+msgstr "하나의 게시글"
+
+#: pro/modules/advertising/advertising.php:252
+msgid "Static pages"
+msgstr "정적 페이지"
+
+#: pro/modules/advertising/advertising.php:253
+msgid "Taxonomy"
+msgstr "체계"
+
+#: pro/modules/advertising/advertising.php:254
+msgid "Search results"
+msgstr "검색결과"
+
+#: pro/modules/related-posts/related-posts.php:113
+msgid "Related Posts"
+msgstr "관련 게시글"
+
+#: pro/modules/related-posts/related-posts.php:119
+msgid "Enable display of related content on single posts"
+msgstr "단일 게시글에 관련 컨텐츠 표시"
+
+#: pro/modules/related-posts/related-posts.php:127
+msgid "Maximum number of related posts to show"
+msgstr "표시할 관련 게시글의 최대 개수"
+
+#: pro/modules/webapp/webapp.php:121
+msgid "External link— open it in the browser?"
+msgstr "외부 링크— 브라우저에서 열까요?"
+
+#: pro/modules/webapp/webapp.php:122
+msgid "File link— Do you want to open it in the browser?"
+msgstr "파일 링크— 브라우저에서 열까요?"
+
+#: pro/modules/webapp/webapp.php:209
+msgid "Enable iOS Web-App Mode"
+msgstr "iOS 웹 앱 모드 켜기"
+
+#: pro/modules/webapp/webapp.php:213
+msgid "Enable persistence"
+msgstr "지속 기능 켜기"
+
+#: pro/modules/webapp/webapp.php:214
+msgid "Loads the last visited URL for visitors on open."
+msgstr "방문자가 열 때 마지막으로 방문한 URL을 로드합니다."
+
+#: pro/modules/webapp/webapp.php:221
+msgid "URLs to ignore in Web-App Mode"
+msgstr "웹 앱 모드에서 무시할 URL"
+
+#: pro/modules/webapp/webapp.php:234
+msgid "Notice Message"
+msgstr "알림 메시지"
+
+#: pro/modules/webapp/webapp.php:237
+msgid "Show a notice message for iPhone, iPod touch & iPad visitors about my Web-App"
+msgstr "iPhone, iPod Touch 및 iPad 방문자에게 내 웹 앱에 관한 공지 메시지 표시"
+
+#: pro/modules/webapp/webapp.php:237
+msgid "WPtouch shows a notice bubble on 1st visit letting users know about your Web-App enabled website on iOS devices."
+msgstr "WPtouch는 iOS 장치에서 첫 방문 시 웹 앱을 사용하는 웹사이트에 관한 공지를 띄웁니다."
+
+#: pro/modules/webapp/webapp.php:238
+msgid "Notice message contents"
+msgstr "알림 메시지 내용"
+
+#: pro/modules/webapp/webapp.php:238
+msgid "[device] and [icon] are dynamic and used to determine the device and iOS version. Do not remove these from your message."
+msgstr "[device] 및 [icon]은 동적이며 장치 및 iOS 버전을 확인하는 데 사용됩니다. 메시지에서 이것들을 지우지 마세요."
+
+#: pro/modules/webapp/webapp.php:242
+msgid "the notice message will be shown again for visitors"
+msgstr "공지 메시지가 방문자들에게 다시 표시됩니다"
+
+#: pro/modules/webapp/webapp.php:247
+msgid "1 day until"
+msgstr "1일 남음"
+
+#: pro/modules/webapp/webapp.php:248
+msgid "7 days until"
+msgstr "7일 남음"
+
+#: pro/modules/webapp/webapp.php:249
+msgid "1 month until"
+msgstr "1개월 남음"
+
+#: pro/modules/webapp/webapp.php:250
+msgid "Every time"
+msgstr "항상"
+
+#: pro/modules/webapp/webapp.php:261
+msgid "iPhone Startup Screen"
+msgstr "iPhone 시작 화면"
+
+#: pro/modules/webapp/webapp.php:267 pro/modules/webapp/webapp.php:285
+#: pro/modules/webapp/webapp.php:303 pro/modules/webapp/webapp.php:322
+#: pro/modules/webapp/webapp.php:330 pro/modules/webapp/webapp.php:348
+#: pro/modules/webapp/webapp.php:356
+#: themes/foundation/modules/tablets/tablets.php:52
+#: themes/foundation/root-functions.php:422
+#: themes/foundation/root-functions.php:440
+msgid "%d by %d pixels (PNG)"
+msgstr "%d X %d픽셀(PNG)"
+
+#: pro/modules/webapp/webapp.php:279
+msgid "Retina iPhone Startup Screen"
+msgstr "Retina iPhone 시작 화면"
+
+#: pro/modules/webapp/webapp.php:297
+msgid "iPhone 5 Startup Screen"
+msgstr "iPhone 5 시작 화면"
+
+#: pro/modules/webapp/webapp.php:316
+msgid "iPad Mini and iPad Startup Screens"
+msgstr "iPad Mini 및 iPad 시작 화면"
+
+#: pro/modules/webapp/webapp.php:342
+msgid "Retina iPad Startup Screens"
+msgstr "레티나 iPad 시작 화면"
+
+#: pro/professional.php:76
+msgid "License Missing"
+msgstr "라이선스 없음"
+
+#: pro/professional.php:77
+msgid "This installation of WPtouch Pro is currently unlicensed."
+msgstr "이 WPtouch Pro에는 현재 라이선스가 없습니다."
+
+#: pro/professional.php:88
+msgid "WPtouch Pro %s"
+msgstr "WPtouch Pro %s"
+
+#: pro/professional.php:89
+msgid "A new version of WPtouch Pro is available."
+msgstr "새로운 버전의 WPtouch Pro를 이용하실 수 있습니다."
+
+#: pro/professional.php:101
+msgid "Theme Update Available"
+msgstr "테마 업데이트 이용 가능"
+
+#: pro/professional.php:102
+msgid "One or more updates are available for your installed themes."
+msgstr "설치된 테마의 하나 이상의 업데이트를 이용하실 수 있습니다."
+
+#: pro/professional.php:116
+msgid "Extension Update Available"
+msgstr "추가기능 업데이트 이용 가능"
+
+#: pro/professional.php:117
+msgid "One or more updates are available for your installed extensions."
+msgstr "설치된 추가기능의 업데이트가 하나 이상 있습니다."
+
+#: pro/professional.php:130
+msgid "WPtouch Pro 3 cannot co-exist with WPtouch 1.x. Disable it first in the WordPress Plugins settings."
+msgstr "WPtouch Pro 3은 WPtouch Pro 1.x와 함께 사용할 수 없습니다. 먼저 WordPress 플러그인 설정에서 이전 버전을 끄세요."
+
+#: pro/professional.php:140
+msgid "WPtouch Pro 3 cannot co-exist with WPtouch Pro 2.x. Disable it first in the WordPress Plugins settings."
+msgstr "WPtouch Pro 3은 WPtouch Pro 2.x와 함께 사용할 수 없습니다. 먼저 WordPress 플러그인 설정에서 이전 버전을 끄세요."
+
+#: pro/professional.php:220 pro/professional.php:244
+msgid "Unknown error"
+msgstr "알 수 없는 오류"
+
+#: responsive-images/responsive-images.php:92
+msgid "Responsive Images"
+msgstr "반응형 이미지"
+
+#: responsive-images/responsive-images.php:98
+msgid "Include desktop optimizations for mobile devices"
+msgstr "모바일 장치를 위한 데스크톱 최적화 기능 포함"
+
+#: responsive-images/responsive-images.php:99
+msgid "Normally only images on mobile are optimized"
+msgstr "일반적으로 모바일에서는 이미지만 최적화됩니다"
+
+#: responsive-images/responsive-images.php:106
+msgid "Performance preference"
+msgstr "성능 설정"
+
+#: responsive-images/responsive-images.php:111
+msgid "Optimize for page speed"
+msgstr "페이지 속도 최적화"
+
+#: responsive-images/responsive-images.php:112
+msgid "Optimize for quality"
+msgstr "품질 최적화"
+
+#: scaffold/root-functions.php:75
+msgid "Primary Menu"
+msgstr "기본 메뉴"
+
+#: scaffold/root-functions.php:78
+msgid "Menus are awesome!"
+msgstr "메뉴가 멋집니다!"
+
+#: simple/default/front-page.php:14
+msgid "Call Us"
+msgstr "연락처"
+
+#: simple/default/front-page.php:20
+msgid "Our Location"
+msgstr "저희의 위치"
+
+#: simple/default/header-bottom.php:15
+msgid "Toggle Menu"
+msgstr "메뉴 토글전환"
+
+#: simple/root-functions.php:57
+msgid "Site Menu (Pulldown)"
+msgstr "사이트 메뉴(풀다운)"
+
+#: simple/root-functions.php:60
+msgid "Pull-down menu at top of pages"
+msgstr "페이지 상단에 풀다운 메뉴"
+
+#: simple/root-functions.php:68
+msgid "Front Page Menu"
+msgstr "프런트 페이지 메뉴"
+
+#: simple/root-functions.php:71
+msgid "Displayed below front page menu and content"
+msgstr "프런트 페이지 메뉴 및 컨텐츠 아래에 표시됨"
+
+#: simple/root-functions.php:184
+msgid "Enable search on blog pages"
+msgstr "블로그 페이지에서 검색 기능 사용"
+
+#: simple/root-functions.php:198
+msgid "Homepage Call Us"
+msgstr "홈페이지 연락처"
+
+#: simple/root-functions.php:204
+msgid "Phone number"
+msgstr "전화번호"
+
+#: simple/root-functions.php:205
+msgid "Enter a phone number and a homepage menu item for 'call us' will be shown."
+msgstr "전화번호를 입력하시면 '연락처'에 관한 홈페이지 메뉴 항목이 표시됩니다."
+
+#: simple/root-functions.php:217
+msgid "Homepage Location"
+msgstr "홈페이지 위치"
+
+#: simple/root-functions.php:223
+msgid "Map address"
+msgstr "주소"
+
+#: simple/root-functions.php:224
+msgid "Enter an address and a homepage menu item for 'Our Location' will be shown."
+msgstr "주소를 입력하시면 '저희의 위치'라는 홈페이지 메뉴 항목이 표시됩니다."
+
+#: simple/root-functions.php:236
+msgid "Front Page Content"
+msgstr "프런트 페이지 컨텐츠"
+
+#: simple/root-functions.php:242
+msgid "Front page alternate content"
+msgstr "프런트 페이지 대체 컨텐츠"
+
+#: simple/root-functions.php:243
+msgid "Shows above the front page menu (if enabled), HTML allowed."
+msgstr "프런트 페이지 메뉴(사용하는 경우) 위에 표시합니다. HTML 사용 가능."
+
+#: simple/root-functions.php:280
+msgid "Add a light noise effect to the drop-down menu and theme background"
+msgstr "드롭다운 메뉴 및 테마 배경에 약한 노이즈 효과 추가"
+
+#: themes/foundation/default/404.php:6
+msgid "404 Not Found"
+msgstr "404 찾을 수 없음"
+
+#: themes/foundation/default/404.php:8
+msgid "The post or page you requested is no longer available."
+msgstr "요청하시는 게시글 또는 페이지가 더 이상 존재하지 않습니다."
+
+#: themes/foundation/default/attachment.php:43
+msgid "&laquo; previous in gallery"
+msgstr "&laquo; 갤러리의 이전 항목"
+
+#: themes/foundation/default/attachment.php:45
+msgid "next in gallery &raquo;"
+msgstr "갤러리의 다음 항목 &raquo;"
+
+#: themes/foundation/default/comments.php:20
+#: themes/foundation/default/comments.php:26
+msgid "Load More Comments&hellip;"
+msgstr "더 많은 댓글 로드&hellip;"
+
+#: themes/foundation/default/comments.php:38
+msgid "Comments are closed"
+msgstr "댓글이 닫혔습니다"
+
+#: themes/foundation/default/comments.php:48
+msgid "Cancel"
+msgstr "취소"
+
+#: themes/foundation/default/comments.php:51
+msgid "Leave a Reply"
+msgstr "답글 남기기"
+
+#: themes/foundation/default/comments.php:51
+msgid "Leave a Reply to %s"
+msgstr "%s님에게 답글 남기기"
+
+#: themes/foundation/default/comments.php:54
+msgid "You must be %slogged in%s to post a comment."
+msgstr "댓글을 남기려면 %s로그인해야%s 합니다."
+
+#: themes/foundation/default/comments.php:61
+msgid "Logged in as"
+msgstr "로그인한 사용자:"
+
+#: themes/foundation/default/comments.php:61
+msgid "Log out"
+msgstr "로그아웃"
+
+#: themes/foundation/default/comments.php:65
+msgid "Name"
+msgstr "이름"
+
+#: themes/foundation/default/comments.php:67
+#: themes/foundation/modules/social-links/social-links.php:94
+msgid "E-Mail"
+msgstr "이메일"
+
+#: themes/foundation/default/comments.php:69
+msgid "Website"
+msgstr "웹사이트"
+
+#: themes/foundation/default/comments.php:75
+msgid "Publish"
+msgstr "게시"
+
+#: themes/foundation/default/footer.php:10
+msgid "Back to top"
+msgstr "맨 위로"
+
+#: themes/foundation/default/formerror.php:6
+msgid "Comment Error"
+msgstr "댓글 오류"
+
+#: themes/foundation/default/formerror.php:8
+msgid "Please enter all fields correctly to post a comment."
+msgstr "댓글을 게시하려면 모든 필드에 올바르게 입력하세요."
+
+#: themes/foundation/default/formerror.php:9
+msgid "Go back"
+msgstr "뒤로 이동"
+
+#: themes/foundation/default/one-comment.php:12
+msgid "Your comment is awaiting moderation"
+msgstr "댓글이 검토 대기 중입니다"
+
+#: themes/foundation/default/related-posts.php:4
+msgid "Related"
+msgstr "관련"
+
+#: themes/foundation/default/switch-link.php:8
+msgid "mobile"
+msgstr "모바일"
+
+#: themes/foundation/default/switch-link.php:9
+msgid "desktop"
+msgstr "데스크톱"
+
+#: themes/foundation/modules/base/base.php:69
+msgid "Loading"
+msgstr "로드 중"
+
+#: themes/foundation/modules/base/preview-bar.php:2
+msgid "Theme Preview"
+msgstr "테마 미리보기"
+
+#: themes/foundation/modules/base/preview-bar.php:3
+msgid "Reload"
+msgstr "재업로드"
+
+#: themes/foundation/modules/custom-posts/custom-posts.php:76
+msgid "Custom Post Support"
+msgstr "맞춤형 게시 지원"
+
+#: themes/foundation/modules/custom-posts/custom-posts.php:82
+msgid "Enable custom post-type support"
+msgstr "사용자 정의 게시 유형 지원 켜기"
+
+#: themes/foundation/modules/custom-posts/custom-posts.php:90
+msgid "Show custom post taxonomy"
+msgstr "사용자 정의 게시글 체계 표시"
+
+#: themes/foundation/modules/custom-posts/custom-posts.php:102
+msgid "Custom Post Types"
+msgstr "사용자 정의 게시 유형"
+
+#: themes/foundation/modules/featured/featured.php:260
+msgid "Featured Slider"
+msgstr "추천 슬라이더"
+
+#: themes/foundation/modules/featured/featured.php:266
+msgid "Enable featured slider"
+msgstr "추천 슬라이더 사용"
+
+#: themes/foundation/modules/featured/featured.php:267
+msgid "Requires at least 2 entries to contain featured images"
+msgstr "추천 이미지를 포함하려면 2개 이상의 입력사항이 필요합니다"
+
+#: themes/foundation/modules/featured/featured.php:274
+msgid "Maximum number of posts"
+msgstr "최대 게시글 수"
+
+#: themes/foundation/modules/featured/featured.php:279
+msgid "3 posts"
+msgstr "게시글 3개"
+
+#: themes/foundation/modules/featured/featured.php:280
+msgid "5 posts"
+msgstr "게시글 5개"
+
+#: themes/foundation/modules/featured/featured.php:281
+msgid "10 posts"
+msgstr "게시글 10개"
+
+#: themes/foundation/modules/featured/featured.php:287
+msgid "Automatically slide"
+msgstr "자동으로 밀기"
+
+#: themes/foundation/modules/featured/featured.php:295
+msgid "Continuously slide"
+msgstr "연속 슬라이드"
+
+#: themes/foundation/modules/featured/featured.php:303
+msgid "Grayscale images (CSS 3 effect)"
+msgstr "그레이 스케일 이미지(CSS 3 효과)"
+
+#: themes/foundation/modules/featured/featured.php:304
+msgid "Featured slider images will be in grayscale for devices that support CSS filters."
+msgstr "추천 슬라이더 이미지는 CSS 필터를 지원하는 장치에 그레이 스케일로 표시됩니다."
+
+#: themes/foundation/modules/featured/featured.php:319
+msgid "Featured slider posts also show in listings"
+msgstr "추천 슬라이더 게시글은 목록에도 표시됩니다"
+
+#: themes/foundation/modules/featured/featured.php:327
+msgid "Slide transition speed"
+msgstr "슬라이드 전환 속도"
+
+#: themes/foundation/modules/featured/featured.php:332
+msgid "Slow"
+msgstr "느림"
+
+#: themes/foundation/modules/featured/featured.php:333
+msgid "Normal"
+msgstr "보통"
+
+#: themes/foundation/modules/featured/featured.php:334
+msgid "Fast"
+msgstr "빠름"
+
+#: themes/foundation/modules/featured/featured.php:345
+msgid "Show latest posts"
+msgstr "최신 게시글 표시"
+
+#: themes/foundation/modules/featured/featured.php:346
+msgid "Show posts from a specific tag"
+msgstr "특정 태그의 게시글 표시"
+
+#: themes/foundation/modules/featured/featured.php:347
+msgid "Show posts from a specific category"
+msgstr "특정 카테고리의 게시글 표시"
+
+#: themes/foundation/modules/featured/featured.php:348
+msgid "Show only specific posts or pages"
+msgstr "특정 게시글이나 페이지만 표시"
+
+#: themes/foundation/modules/featured/featured.php:354
+msgid "Only this tag"
+msgstr "이 태그만"
+
+#: themes/foundation/modules/featured/featured.php:363
+msgid "Only this category"
+msgstr "이 카테고리만"
+
+#: themes/foundation/modules/featured/featured.php:372
+msgid "Comma-separated list of post/page IDs"
+msgstr "쉼표로 구분된 게시글/페이지 ID 목록"
+
+#: themes/foundation/modules/google-fonts/google-fonts.php:10
+msgid "Browser Fonts"
+msgstr "브라우저 글꼴"
+
+#: themes/foundation/modules/google-fonts/google-fonts.php:18
+msgid "Typography"
+msgstr "타이포그래피"
+
+#: themes/foundation/modules/google-fonts/google-fonts.php:24
+msgid "Font style"
+msgstr "글꼴 스타일"
+
+#: themes/foundation/modules/google-fonts/google-fonts.php:25
+msgid "Choose a Google font pairing designed for this theme, or default browser fonts."
+msgstr "이 테마를 위해 제작된 Google 글꼴 모음 또는 기본 브라우저 글꼴을 선택하세요."
+
+#: themes/foundation/modules/login/login-html.php:7
+msgid "Remember Me"
+msgstr "정보 기억하기"
+
+#: themes/foundation/modules/login/login-html.php:9
+msgid "Log In"
+msgstr "로그인"
+
+#: themes/foundation/modules/login/login-html.php:30
+msgid "Lost password?"
+msgstr "비밀번호 찾기"
+
+#: themes/foundation/modules/login/login.php:22
+msgid "Account Username"
+msgstr "계정 사용자 이름"
+
+#: themes/foundation/modules/login/login.php:23
+msgid "Account Password"
+msgstr "계정 비밀번호"
+
+#: themes/foundation/modules/login/login.php:32
+msgid "Login Form"
+msgstr "로그인 양식"
+
+#: themes/foundation/modules/login/login.php:38
+msgid "Use fly-in login form"
+msgstr "fly-in 로그인 양식 사용"
+
+#: themes/foundation/modules/login/login.php:39
+msgid "Will add login links and allow mobile visitors to login to your website from mobile devices"
+msgstr "로그인 링크를 추가하고 모바일 방문자가 모바일 장치에서 웹사이트에 로그인하도록 허용합니다"
+
+#: themes/foundation/modules/login/login.php:46
+msgid "Show \"Sign-up\" and \"Lost Password?\" links"
+msgstr "\"가입\" 및 \"비밀번호 찾기\" 링크 표시"
+
+#: themes/foundation/modules/media/media.php:48
+msgid "Video Handling"
+msgstr "비디오 처리"
+
+#: themes/foundation/modules/media/media.php:60
+msgid "CSS only (HTML5 videos)"
+msgstr "CSS만(HTML5 비디오)"
+
+#: themes/foundation/modules/media/media.php:61
+msgid "FitVids Method"
+msgstr "FitVids 방법"
+
+#: themes/foundation/modules/media/media.php:62
+msgid "Fluid-Width Method"
+msgstr "유동폭 방법"
+
+#: themes/foundation/modules/sharing/sharing-html.php:1
+msgid "Share"
+msgstr "공유"
+
+#: themes/foundation/modules/sharing/sharing-html.php:1
+msgid "Tweet"
+msgstr "트윗"
+
+#: themes/foundation/modules/sharing/sharing-html.php:1
+msgid "Mail"
+msgstr "메일"
+
+#: themes/foundation/modules/sharing/sharing.php:81
+msgid "Sharing"
+msgstr "공유"
+
+#: themes/foundation/modules/sharing/sharing.php:87
+msgid "Show sharing links"
+msgstr "공유 링크 표시"
+
+#: themes/foundation/modules/sharing/sharing.php:88
+msgid "Will show Facebook, Twitter, Google+ and Email buttons on single posts."
+msgstr "단일 게시글에 Facebook, Twitter, Google+ 및 이메일 버튼을 표시합니다."
+
+#: themes/foundation/modules/sharing/sharing.php:95
+msgid "Show sharing links on pages"
+msgstr "페이지에 공유 링크 표시"
+
+#: themes/foundation/modules/sharing/sharing.php:96
+msgid "Will show Facebook, Twitter, Google+ and Email buttons on pages as well as single posts."
+msgstr "단일 게시글뿐만 아니라 페이지에 Facebook, Twitter, Google+ 및 이메일 버튼을 표시합니다."
+
+#: themes/foundation/modules/sharing/sharing.php:103
+msgid "Sharing links location"
+msgstr "공유 링크 위치"
+
+#: themes/foundation/modules/sharing/sharing.php:108
+msgid "Above post content"
+msgstr "게시글 내용 위"
+
+#: themes/foundation/modules/sharing/sharing.php:109
+msgid "Below post content"
+msgstr "게시글 내용 아래"
+
+#: themes/foundation/modules/sharing/sharing.php:115
+msgid "Color scheme"
+msgstr "배색"
+
+#: themes/foundation/modules/sharing/sharing.php:120
+msgid "Theme colors"
+msgstr "테마 색깔"
+
+#: themes/foundation/modules/sharing/sharing.php:121
+msgid "Social network colors"
+msgstr "소셜 네트워크 색깔"
+
+#: themes/foundation/modules/social-links/social-links.php:8
+msgid "Footer Social Links"
+msgstr "푸터 소셜 링크"
+
+#: themes/foundation/modules/social-links/social-links.php:23
+msgid "Full URL to your Facebook page"
+msgstr "내 Facebook 페이지의 전체 URL"
+
+#: themes/foundation/modules/social-links/social-links.php:31
+msgid "Full URL to your Twitter profile"
+msgstr "내 Twitter 프로필의 전체 URL"
+
+#: themes/foundation/modules/social-links/social-links.php:39
+msgid "Full URL to your Google+ profile"
+msgstr "내 Google+ 프로필의 전체 URL"
+
+#: themes/foundation/modules/social-links/social-links.php:47
+msgid "Full URL to your Instagram profile"
+msgstr "Instagram 프로필의 전체 URL"
+
+#: themes/foundation/modules/social-links/social-links.php:54
+msgid "Tumblr"
+msgstr "Tumblr"
+
+#: themes/foundation/modules/social-links/social-links.php:55
+msgid "Full URL to your Tumblr profile"
+msgstr "Tumblr 프로필의 전체 URL"
+
+#: themes/foundation/modules/social-links/social-links.php:63
+msgid "Full URL to your Pinterest page"
+msgstr "내 Pinterest 페이지의 전체 URL"
+
+#: themes/foundation/modules/social-links/social-links.php:71
+msgid "Full URL to your Vimeo page"
+msgstr "내 Vimeo 페이지의 전체 URL"
+
+#: themes/foundation/modules/social-links/social-links.php:79
+msgid "Full URL to your %s profile"
+msgstr "%s 프로필의 전체 URL"
+
+#: themes/foundation/modules/social-links/social-links.php:86
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
+#: themes/foundation/modules/social-links/social-links.php:87
+msgid "Full URL to your LinkedIn profile"
+msgstr "내 LinkedIn 프로필의 전체 URL"
+
+#: themes/foundation/modules/social-links/social-links.php:95
+msgid "E-Mail address"
+msgstr "이메일 주소"
+
+#: themes/foundation/modules/social-links/social-links.php:103
+msgid "Full URL to your RSS feed"
+msgstr "내 RSS 피드의 전체 URL"
+
+#: themes/foundation/modules/tablets/tablets.php:46
+msgid "iPad"
+msgstr "iPad"
+
+#: themes/foundation/modules/twitter/twitter.php:66
+msgid "Disabled"
+msgstr "꺼짐"
+
+#: themes/foundation/modules/twitter/twitter.php:81
+msgid "Twitter account to use for Tweet display"
+msgstr "Tweet 표시에 사용할 Twitter 계정"
+
+#: themes/foundation/root-functions.php:11
+msgid "Branding"
+msgstr "브랜딩"
+
+#: themes/foundation/root-functions.php:12
+msgid "Media Handling"
+msgstr "미디어 처리"
+
+#: themes/foundation/root-functions.php:13
+msgid "Web-App Mode"
+msgstr "웹 앱 모드"
+
+#: themes/foundation/root-functions.php:14
+msgid "Bookmark Icons"
+msgstr "북마크 아이콘"
+
+#: themes/foundation/root-functions.php:15
+msgid "Advertising"
+msgstr "광고"
+
+#: themes/foundation/root-functions.php:16
+msgid "Custom Content"
+msgstr "사용자 정의 컨텐츠"
+
+#: themes/foundation/root-functions.php:45
+msgid "Language: "
+msgstr "언어:"
+
+#: themes/foundation/root-functions.php:133
+msgid "Install this Web-App on your [device]: tap [icon] then \"Add to Home Screen\""
+msgstr "[device]에 웹 앱을 설치하세요: [icon]을 탭하고 \"홈 화면에 추가\"를 탭하세요"
+
+#: themes/foundation/root-functions.php:336
+msgid "Number of posts in post listings"
+msgstr "게시글 목록의 글 개수"
+
+#: themes/foundation/root-functions.php:337
+msgid "Overrides the WordPress Reading settings for \"Blog pages show at most\""
+msgstr "WordPress의 \"표시할 블로그 페이지의 최대 수\"에 관한 읽기 설정을 무시합니다"
+
+#: themes/foundation/root-functions.php:344
+msgid "Excluded categories"
+msgstr "제외된 카테고리"
+
+#: themes/foundation/root-functions.php:345
+msgid "Comma separated by category name"
+msgstr "카테고리 이름별로 쉼표 구분"
+
+#: themes/foundation/root-functions.php:352
+msgid "Excluded tags"
+msgstr "제외된 태그"
+
+#: themes/foundation/root-functions.php:353
+msgid "Comma separated by tag name"
+msgstr "태그 이름별로 쉼표 구분"
+
+#: themes/foundation/root-functions.php:363
+msgid "Blog"
+msgstr "블로그"
+
+#: themes/foundation/root-functions.php:374
+msgid "Show comments on pages"
+msgstr "페이지에 댓글 표시"
+
+#: themes/foundation/root-functions.php:375
+msgid "Overrides the WordPress settings for showing comments on pages."
+msgstr "페이지에 댓글을 표시하는 WordPress 설정을 무시합니다."
+
+#: themes/foundation/root-functions.php:385
+#: themes/foundation/root-functions.php:1100
+msgid "Pages"
+msgstr "페이지"
+
+#: themes/foundation/root-functions.php:398
+msgid "Icon Title"
+msgstr "아이콘 제목"
+
+#: themes/foundation/root-functions.php:404
+msgid "Icon title"
+msgstr "아이콘 제목"
+
+#: themes/foundation/root-functions.php:405
+msgid "When visitors bookmark your website, this will be the title shown."
+msgstr "방문자가 웹사이트를 북마크에 저장하면 이 제목이 표시됩니다."
+
+#: themes/foundation/root-functions.php:416
+msgid "Android"
+msgstr "Android"
+
+#: themes/foundation/root-functions.php:434
+msgid "iPhone & iPod touch"
+msgstr "iPhone 및 iPod Touch"
+
+#: themes/foundation/root-functions.php:470
+msgid "Theme Colors"
+msgstr "테마 색깔"
+
+#: themes/foundation/root-functions.php:480
+msgid "Site Logo"
+msgstr "사이트 로고"
+
+#: themes/foundation/root-functions.php:486
+msgid "(Scaled by themes to fit logo areas as needed)"
+msgstr "(필요한 경우 테마에서 로고 영역에 맞춤)"
+
+#: themes/foundation/root-functions.php:499
+msgid "Smart App Banner"
+msgstr "스마트 앱 배너"
+
+#: themes/foundation/root-functions.php:505
+msgid "Enter your app's %sApp Store ID%s"
+msgstr "앱의 %sApp Store ID%s를 입력하세요"
+
+#: themes/foundation/root-functions.php:506
+msgid "Your app's unique identifier. Find your ID from the iTunes Link Maker: Search for your app. In the link it provides, your app ID is the nine-digit number in between id and ?mt. For example Angry Birds's ID is 343200656."
+msgstr "앱의 고유 식별자. iTunes Link Maker에서 ID를 찾으세요. 앱을 검색하세요. 링크에서 id와 ?mt 사이의 9자리 숫자가 앱 ID입니다. 예를 들어 Angry Birds의 ID는 343200656입니다."
+
+#: themes/foundation/root-functions.php:518
+msgid "Theme Footer"
+msgstr "테마 푸터"
+
+#: themes/foundation/root-functions.php:521
+msgid "Custom footer content (HTML is allowed)"
+msgstr "사용자 정의 푸터 컨텐츠(HTML 사용 가능)"
+
+#: themes/foundation/root-functions.php:521
+msgid "You can add custom footer content that will be displayed below the switch link."
+msgstr "전환 링크 아래에 표시되는 사용자 정의 푸터 내용을 추가할 수 있습니다."
+
+#: themes/foundation/root-functions.php:886
+msgid "search results for '%s'"
+msgstr "'%s'에 관한 검색결과"
+
+#: themes/foundation/root-functions.php:888
+msgid "%sCategories &rsaquo;%s %s"
+msgstr "%s카테고리 &rsaquo;%s %s"
+
+#: themes/foundation/root-functions.php:890
+msgid "Tags &rsaquo; %s"
+msgstr "태그 &rsaquo; %s"
+
+#: themes/foundation/root-functions.php:892
+#: themes/foundation/root-functions.php:894
+#: themes/foundation/root-functions.php:896
+msgid "Archives &rsaquo; %s"
+msgstr "아카이브 &rsaquo; %s"
+
+#: themes/foundation/root-functions.php:911
+msgid "Load more from this category"
+msgstr "이 카테고리에서 추가로 로드"
+
+#: themes/foundation/root-functions.php:913
+msgid "Load more tagged like this"
+msgstr "이 태그와 같은 글을 추가로 로드"
+
+#: themes/foundation/root-functions.php:915
+msgid "Load more from this day"
+msgstr "이날의 글을 추가로 로드"
+
+#: themes/foundation/root-functions.php:917
+msgid "Load more from this month"
+msgstr "이달의 글을 추가로 로드"
+
+#: themes/foundation/root-functions.php:919
+msgid "Load more from this year"
+msgstr "이 연도의 글을 추가로 로드"
+
+#: themes/foundation/root-functions.php:921
+msgid "Load more in this section"
+msgstr "이 영역에서 추가로 로드"
+
+#: themes/foundation/root-functions.php:923
+msgid "Load more entries"
+msgstr "더 많은 입력항목 로드"
+
+#: themes/foundation/root-functions.php:1049
+msgid "Post"
+msgstr "게시"
+
+#: themes/foundation/root-functions.php:1051
+msgid "Page"
+msgstr "페이지"
+
+#. Plugin Name of the plugin/theme
+msgid "WPtouch Pro"
+msgstr "WPtouch Pro"
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.bravenewcode.com/product/wptouch-pro/"
+msgstr "http://www.bravenewcode.com/product/wptouch-pro/"
+
+#. Description of the plugin/theme
+msgid "The easy way to create great mobile experiences with your WordPress website."
+msgstr "WordPress 웹사이트에서 모바일로 멋진 경험을 할 수 있도록 만드는 가장 쉬운 방법입니다."
+
+#. Author of the plugin/theme
+msgid "BraveNewCode Inc."
+msgstr "BraveNewCode Inc."
+
+#. Author URI of the plugin/theme
+msgid "http://www.bravenewcode.com/"
+msgstr "http://www.bravenewcode.com/"

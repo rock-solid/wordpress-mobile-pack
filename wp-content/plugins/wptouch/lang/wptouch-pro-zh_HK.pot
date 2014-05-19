@@ -1,0 +1,2544 @@
+# Copyright (C) 2014 WPtouch Pro
+# This file is distributed under the same license as the WPtouch Pro package.
+msgid ""
+msgstr "Project-Id-Version: WPtouch Pro 3.2\nReport-Msgid-Bugs-To: http://wordpress.org/tag/wptouch-pro-3\nPOT-Creation-Date: 2014-03-07 22:09:03+00:00\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPO-Revision-Date: 2014-MO-DA HO:MI+ZONE\nLast-Translator: FULL NAME <EMAIL@ADDRESS>\nLanguage-Team: LANGUAGE <LL@li.org>\n"
+
+#: admin/html/help.php:1
+msgid "WPtouch Pro Help & Account Links"
+msgstr "WPtouch Pro説明和帳戶連結"
+
+#: admin/html/help.php:3
+msgid "Support Forums"
+msgstr "支援論壇"
+
+#: admin/html/help.php:4
+msgid "Documentation"
+msgstr "文檔"
+
+#: admin/html/help.php:5
+msgid "Account & Downloads"
+msgstr "帳戶和下載"
+
+#: admin/html/help.php:6
+msgid "BraveNewCode on Twitter"
+msgstr "BraveNewCode在Twitter上"
+
+#: admin/html/help.php:7
+msgid "Plugin Licensing Terms"
+msgstr "外掛程式許可術語"
+
+#: admin/html/notification-center.php:5
+msgid "Notifications"
+msgstr "通知"
+
+#: admin/html/notification-content.php:20
+msgid "No notifications"
+msgstr "無通知"
+
+#: admin/html/plugin-area.php:7
+msgid "This copy of WPtouch Pro is unlicensed! Please %sactivate your license%s, or %spurchase a license%s to enable automatic updates and full product support from us!"
+msgstr "此WPtouch Pro無許可證！請%s啟用你的許可證%s或%s購買一個許可證%s以啟用自動更新並獲取我們的完整產品支援！"
+
+#: admin/html/plugin-area.php:9
+msgid "This copy of WPtouch Pro is unlicensed! Please contact the site administrator regarding product licensing."
+msgstr "此WPtouch Pro無許可證！請聯絡網站管理員獲取產品許可資訊。"
+
+#: admin/pages/custom/wptouch-admin-license.php:9 wptouch-admin-license.php:9
+msgid "License Details"
+msgstr "許可證詳情"
+
+#: admin/pages/custom/wptouch-admin-license.php:11 wptouch-admin-license.php:11
+msgid "Note"
+msgstr "注意"
+
+#: admin/pages/custom/wptouch-admin-license.php:12 wptouch-admin-license.php:12
+msgid "Once you activate, this page will be hidden."
+msgstr "一旦啟用，此頁面將被隱藏。"
+
+#: admin/pages/custom/wptouch-admin-license.php:15 wptouch-admin-license.php:15
+msgid "It will only reappear if you reset your WPtouch Pro settings."
+msgstr "僅重設了WPtouch Pro設定才會顯示。"
+
+#: admin/pages/custom/wptouch-admin-license.php:18 wptouch-admin-license.php:18
+msgid "Account E-Mail Address"
+msgstr "帳戶電子郵件地址"
+
+#: admin/pages/custom/wptouch-admin-license.php:20 wptouch-admin-license.php:20
+msgid "Product License Key"
+msgstr "產品許可證號"
+
+#: admin/pages/custom/wptouch-admin-license.php:23
+#: admin/settings/html/extension-browser-item.php:87
+#: admin/settings/html/theme-browser-item.php:129 wptouch-admin-license.php:23
+msgid "Activate"
+msgstr "激活"
+
+#: admin/pages/custom/wptouch-admin-license.php:33 wptouch-admin-license.php:33
+msgid "Success."
+msgstr "成功。"
+
+#: admin/pages/custom/wptouch-admin-license.php:34 wptouch-admin-license.php:34
+msgid "Activation Complete. Enjoy WPtouch Pro!"
+msgstr "激活完成。盡情享受WPtouch Pro!"
+
+#: admin/pages/custom/wptouch-admin-license.php:38 wptouch-admin-license.php:38
+msgid "E-mail address or license key rejected"
+msgstr "電子郵件地址或許可證金鑰被拒絕"
+
+#: admin/pages/custom/wptouch-admin-license.php:39 wptouch-admin-license.php:39
+msgid "The bravenewcode.com server rejected your E-Mail address and/or License Key. Please check they are correct and try again."
+msgstr "bravenewcode.com伺服器拒絕了你的電子郵件地址和/或許可證號。請檢查它們是否正確並再試。"
+
+#: admin/pages/custom/wptouch-admin-license.php:43 wptouch-admin-license.php:43
+msgid "No licenses remaining."
+msgstr "剩餘無許可證。"
+
+#: admin/pages/custom/wptouch-admin-license.php:44 wptouch-admin-license.php:44
+msgid "You have used all your activations. What do you want to do?"
+msgstr "你已經用完了你的所有激活。你想做什麼？"
+
+#: admin/pages/custom/wptouch-admin-license.php:45 wptouch-admin-license.php:45
+msgid "Upgrade My License"
+msgstr "升級我的許可證"
+
+#: admin/pages/custom/wptouch-admin-license.php:46 wptouch-admin-license.php:46
+msgid "Contact support for assistance"
+msgstr "聯絡支援人員以獲取幫助"
+
+#: admin/pages/custom/wptouch-admin-license.php:50 wptouch-admin-license.php:50
+msgid "The server is unavailable."
+msgstr "伺服器不可用。"
+
+#: admin/pages/custom/wptouch-admin-license.php:51 wptouch-admin-license.php:51
+msgid "The bravenewcode.com server currently cannot authorize your License."
+msgstr "bravenewcode.com伺服器當前無法授權你的許可證。"
+
+#: admin/pages/custom/wptouch-admin-license.php:52 wptouch-admin-license.php:52
+msgid "Please %scontact us%s and let us know about it."
+msgstr "請%s聯繫我們%s以告訴我們。"
+
+#: admin/pages/wptouch-admin-general-settings.php:3
+#: themes/foundation/root-functions.php:10
+msgid "General"
+msgstr "一般"
+
+#: admin/pages/wptouch-admin-general-settings.php:4
+msgid "Compatibility"
+msgstr "相容性"
+
+#: admin/pages/wptouch-admin-general-settings.php:10
+msgid "Auto-detect"
+msgstr "自動檢測"
+
+#: admin/pages/wptouch-admin-general-settings.php:45
+msgid "Site Title & Byline"
+msgstr "網站標題和作者行"
+
+#: admin/pages/wptouch-admin-general-settings.php:51
+msgid "WPtouch Pro site title"
+msgstr "WPtouch Pro網站標題"
+
+#: admin/pages/wptouch-admin-general-settings.php:52
+msgid "If the title of your site is long, you can shorten it for display within WPtouch Pro themes."
+msgstr "如果你的網站的標題很長，你可以縮短它以在WPtouch Pro主題內使用。"
+
+#: admin/pages/wptouch-admin-general-settings.php:59
+msgid "Display %sPowered by WPtouch Pro%s in footer"
+msgstr "在頁腳顯示%s由WPtouch Pro提供技術支援%s"
+
+#: admin/pages/wptouch-admin-general-settings.php:67
+msgid "Use my WPtouch Pro referral code to earn commission"
+msgstr "使用我的WPtouch Pro推薦代碼賺取傭金。"
+
+#: admin/pages/wptouch-admin-general-settings.php:68
+msgid "Licensed users of WPtouch Pro can earn a commission for each sale they generate from their mobile website"
+msgstr "WPtouch Pro授權使用者可從其行動網站產生銷售來賺取傭金。"
+
+#: admin/pages/wptouch-admin-general-settings.php:79
+msgid "Regionalization"
+msgstr "區域化"
+
+#: admin/pages/wptouch-admin-general-settings.php:85
+msgid "Language"
+msgstr "語言"
+
+#: admin/pages/wptouch-admin-general-settings.php:86
+msgid "The WPtouch Pro admin panel &amp; supported themes will be shown in this locale."
+msgstr "WPtouch Pro管理員面板和支援的主題將使用此區域顯示。"
+
+#: admin/pages/wptouch-admin-general-settings.php:94
+msgid "Translate administration panel text"
+msgstr "翻譯管理面板文字"
+
+#: admin/pages/wptouch-admin-general-settings.php:105
+msgid "Display Mode"
+msgstr "顯示模式"
+
+#: admin/pages/wptouch-admin-general-settings.php:111
+msgid "Theme Display"
+msgstr "主題顯示"
+
+#: admin/pages/wptouch-admin-general-settings.php:116
+msgid "Normal (active for all mobile visitors)"
+msgstr "正常(用於所有行動訪客)"
+
+#: admin/pages/wptouch-admin-general-settings.php:117
+msgid "Preview (active only for logged-in site administrators)"
+msgstr "預覽(僅用於已登入的網站管理員)"
+
+#: admin/pages/wptouch-admin-general-settings.php:118
+msgid "Disabled (mobile theme will never show)"
+msgstr "禁用(行動主題將永不顯示)"
+
+#: admin/pages/wptouch-admin-general-settings.php:127
+msgid "Landing Page"
+msgstr "登陸頁"
+
+#: admin/pages/wptouch-admin-general-settings.php:133
+msgid "WPtouch Pro landing page"
+msgstr "WPtouch Pro登陸頁"
+
+#: admin/pages/wptouch-admin-general-settings.php:138
+msgid "Default (same as WordPress)"
+msgstr "預設(與WordPress相同)"
+
+#: admin/pages/wptouch-admin-general-settings.php:139
+msgid "Select from WordPress pages"
+msgstr "選擇從WordPress頁面"
+
+#: admin/pages/wptouch-admin-general-settings.php:147
+msgid "Custom Slug or URL"
+msgstr "自訂Slug或URL"
+
+#: admin/pages/wptouch-admin-general-settings.php:148
+msgid "Enter a Slug (i.e. \"/home\") or a full URL path"
+msgstr "輸入一個Slug(即\"/home\")或一個完整URL路徑"
+
+#: admin/pages/wptouch-admin-general-settings.php:158
+msgid "Desktop / Mobile Switching"
+msgstr "桌面/行動切換"
+
+#: admin/pages/wptouch-admin-general-settings.php:164
+msgid "1st time visitors see desktop theme"
+msgstr "第一次訪問的訪客看見桌面主題"
+
+#: admin/pages/wptouch-admin-general-settings.php:165
+msgid "Your regular theme will be shown to 1st time mobile visitors."
+msgstr "常規主題將顯示給首次訪問的行動訪客。"
+
+#: admin/pages/wptouch-admin-general-settings.php:172
+msgid "Show switch link in mobile view"
+msgstr "在行動檢視顯示切換連結"
+
+#: admin/pages/wptouch-admin-general-settings.php:173
+msgid "Will show toggle buttons in the theme's footer allowing users to switch to your desktop theme. Is not shown in Web-App Mode."
+msgstr "將在主題的頁腳顯示切換按鈕允許使用者切換到你的桌面主題。不在Web應用模式中顯示。"
+
+#: admin/pages/wptouch-admin-general-settings.php:180
+msgid "Choose the target for the mobile switch link"
+msgstr "為行動切換連結選擇目標"
+
+#: admin/pages/wptouch-admin-general-settings.php:185
+msgid "Current page"
+msgstr "當前頁面"
+
+#: admin/pages/wptouch-admin-general-settings.php:186
+msgid "Home page"
+msgstr "主頁"
+
+#: admin/pages/wptouch-admin-general-settings.php:192
+msgid "Desktop theme switch buttons"
+msgstr "桌面主題切換按鈕"
+
+#: admin/pages/wptouch-admin-general-settings.php:193
+msgid "Allows visitors to switch from your desktop theme to your mobile theme. You can also customize the placement of Switch buttons by placing the wptouch_desktop_switch_link() template tag somewhere in your desktop theme."
+msgstr "允許訪客從你的桌面主題切換到你的行動主題。你也可以自訂切換按鈕的位置，方法是將wptouch_desktop_switch_link()範本標籤放在你的桌面主題的某個地方。"
+
+#: admin/pages/wptouch-admin-general-settings.php:197
+msgid "Automatically inserted inline"
+msgstr "自動插入到頁面"
+
+#: admin/pages/wptouch-admin-general-settings.php:198
+msgid "Automatically inserted with AJAX (better for caching)"
+msgstr "使用AJAX自動插入(對於快取更佳)"
+
+#: admin/pages/wptouch-admin-general-settings.php:199
+msgid "Template tag"
+msgstr "範本標籤"
+
+#: admin/pages/wptouch-admin-general-settings.php:208
+msgid "Custom Code"
+msgstr "自訂代碼"
+
+#: admin/pages/wptouch-admin-general-settings.php:214
+msgid "HTML, JavaScript, statistics or custom code"
+msgstr "HTML、JavaScript、統計或自訂代碼"
+
+#: admin/pages/wptouch-admin-general-settings.php:215
+msgid "Enter any custom code here to be output in the theme footer."
+msgstr "在這裡輸入任何自訂代碼以在主題頁腳輸出。"
+
+#: admin/pages/wptouch-admin-general-settings.php:225
+msgid "Custom Stylesheet"
+msgstr "自訂樣式表"
+
+#: admin/pages/wptouch-admin-general-settings.php:231
+msgid "URL to a custom CSS file to load"
+msgstr "要上傳的自訂CSS檔案URL"
+
+#: admin/pages/wptouch-admin-general-settings.php:232
+msgid "Useful if you have specific compatibility CSS you need to add."
+msgstr "如果有特定的相容性CSS需要新增則非常有用。"
+
+#: admin/pages/wptouch-admin-general-settings.php:242
+msgid "Shortcodes"
+msgstr "短代碼"
+
+#: admin/pages/wptouch-admin-general-settings.php:248
+msgid "Remove these shortcodes when WPtouch Pro is active"
+msgstr "當WPtouch Pro活動時刪除這些短代碼"
+
+#: admin/pages/wptouch-admin-general-settings.php:249
+msgid "Enter a comma separated list of shortcodes to remove."
+msgstr "輸入一個以逗號分隔的短代碼列表以刪除。"
+
+#: admin/pages/wptouch-admin-general-settings.php:259
+msgid "Ignored URLs"
+msgstr "忽略的URL"
+
+#: admin/pages/wptouch-admin-general-settings.php:265
+msgid "Do not load WPtouch Pro on these URLs/Pages"
+msgstr "不在這些URL/頁面上載入WPtouch Pro"
+
+#: admin/pages/wptouch-admin-general-settings.php:266
+msgid "Each permalink URL fragment should be on its own line and relative, e.g. \"/about\" or \"/products/store\""
+msgstr "每個永久連結的URL片段都應該在自己的線內並具有相關性，例如\"/about\"或\"/products/store\""
+
+#: admin/pages/wptouch-admin-general-settings.php:276
+msgid "Desktop Theme"
+msgstr "桌面主題"
+
+#: admin/pages/wptouch-admin-general-settings.php:282
+msgid "Try to include desktop theme functions.php file"
+msgstr "嘗試包含桌面主題functions.php檔案"
+
+#: admin/pages/wptouch-admin-general-settings.php:283
+msgid "This may be required for desktop themes with unique features that are not showing when WPtouch Pro is active."
+msgstr "這對於具有獨特功能但在WPtouch Pro活動時未顯示的桌面主題是必須的。"
+
+#: admin/pages/wptouch-admin-general-settings.php:290
+msgid "Method to load file"
+msgstr "載入檔案方法"
+
+#: admin/pages/wptouch-admin-general-settings.php:295
+msgid "Include file directly"
+msgstr "直接包含檔案"
+
+#: admin/pages/wptouch-admin-general-settings.php:296
+msgid "Translate and create new files"
+msgstr "翻譯並建立新檔案"
+
+#: admin/pages/wptouch-admin-general-settings.php:305
+msgid "Custom User-Agents"
+msgstr "自訂使用者代理"
+
+#: admin/pages/wptouch-admin-general-settings.php:311
+msgid "User-agents (line separated)"
+msgstr "使用者代理(以行分隔)"
+
+#: admin/pages/wptouch-admin-general-settings.php:312
+msgid "Adding additional user-agents will force WPtouch Pro to be active for matching browsers."
+msgstr "新增額外的使用者代理將強制WPtouch Pro對匹配的瀏覽器活動。"
+
+#: admin/pages/wptouch-admin-general-settings.php:326
+msgid "Backup &amp; Import"
+msgstr "備份和匯入"
+
+#: admin/pages/wptouch-admin-general-settings.php:332
+msgid "Automatically backup settings to the %s folder"
+msgstr "自動備份設定到%s資料夾"
+
+#: admin/pages/wptouch-admin-general-settings.php:334
+msgid "WPtouch Pro backups your settings each time they are saved."
+msgstr "WPtouch Pro會在每次儲存設定時備份你的設定。"
+
+#: admin/pages/wptouch-admin-general-settings.php:345
+msgid "Tools &amp; Debug"
+msgstr "工具和偵錯"
+
+#: admin/pages/wptouch-admin-general-settings.php:351
+msgid "Use jQuery 2.0 in themes (faster for mobile devices) instead of WordPress' version"
+msgstr "在主題中使用jQuery 2.0 (行動裝置更快)，而非WordPress的版本"
+
+#: admin/pages/wptouch-admin-general-settings.php:352
+msgid "jQuery 2.0 is significantly smaller and faster than previous jQuery versions - may cause problems with other plugins, use carefully."
+msgstr "jQuery 2.0比之前的jQuery版本更小更快，可能會造成與其他外掛程式的問題，請謹慎使用。"
+
+#: admin/pages/wptouch-admin-general-settings.php:359
+msgid "Show load times and query counts in the footer"
+msgstr "在頁腳顯示載入時間和查詢計數"
+
+#: admin/pages/wptouch-admin-general-settings.php:360
+msgid "Helps you find slow pages/posts on your site."
+msgstr "幫助你找到你的網站上的慢頁面/文章。"
+
+#: admin/pages/wptouch-admin-general-settings.php:367
+msgid "Enable debug log"
+msgstr "啟用偵錯日誌"
+
+#: admin/pages/wptouch-admin-general-settings.php:368
+msgid "Creates a debug file to help diagnose installation issues."
+msgstr "建立一個偵錯檔案來幫助診斷安裝問題。"
+
+#: admin/pages/wptouch-admin-general-settings.php:379
+msgid "WordPress Plugins"
+msgstr "WordPress外掛程式"
+
+#: admin/pages/wptouch-admin-general-settings.php:392
+msgid "Admin Mode"
+msgstr "管理員模式"
+
+#: admin/pages/wptouch-admin-general-settings.php:398
+msgid "Admin panel settings shown"
+msgstr "顯示的管理員面板設定"
+
+#: admin/pages/wptouch-admin-general-settings.php:403
+msgid "Default"
+msgstr "預設"
+
+#: admin/pages/wptouch-admin-general-settings.php:404
+#: admin/settings/html/button.php:5 admin/settings/html/checkbox.php:6
+#: admin/settings/html/custom-latest-posts.php:4
+#: admin/settings/html/list.php:16 admin/settings/html/numeric.php:12
+#: admin/settings/html/radiolist.php:12 admin/settings/html/text.php:8
+#: admin/settings/html/textarea.php:8
+msgid "Advanced"
+msgstr "進階"
+
+#: admin/pages/wptouch-admin-menus.php:3
+msgid "Theme Menus"
+msgstr "主題選單"
+
+#: admin/pages/wptouch-admin-menus.php:4
+msgid "Menu Setup"
+msgstr "選單設定"
+
+#: admin/pages/wptouch-admin-menus.php:5
+msgid "Icon Upload & Sets"
+msgstr "圖示上傳&圖示集"
+
+#: admin/pages/wptouch-admin-menus.php:22
+msgid "WordPress Pages"
+msgstr "WordPress頁面"
+
+#: admin/pages/wptouch-admin-menus.php:28
+#: admin/settings/html/icon_menu_area.php:6
+#: infinity-cache/infinity-cache.php:206
+#: pro/modules/advertising/advertising.php:180
+#: themes/foundation/modules/media/media.php:59
+msgid "None"
+msgstr "無"
+
+#: admin/pages/wptouch-admin-menus.php:66
+msgid "Menu Options"
+msgstr "選單選項"
+
+#: admin/pages/wptouch-admin-menus.php:72
+msgid "Enable parent items as links"
+msgstr "啟用父項作為連結"
+
+#: admin/pages/wptouch-admin-menus.php:73
+msgid "If disabled, parent menu items will only toggle child items."
+msgstr "如果禁用，父選單項目只會切換子項。"
+
+#: admin/pages/wptouch-admin-menus.php:80
+msgid "Use menu icons"
+msgstr "使用選單圖示"
+
+#: admin/pages/wptouch-admin-menus.php:104
+msgid "Icon Upload"
+msgstr "圖示上傳"
+
+#: admin/pages/wptouch-admin-menus.php:117
+msgid "Uploaded Icons"
+msgstr "上傳的圖示"
+
+#: admin/pages/wptouch-admin-menus.php:130
+msgid "Icon Sets"
+msgstr "圖示集"
+
+#: admin/pages/wptouch-admin-themes-and-addons.php:3
+msgid "Themes"
+msgstr "主題"
+
+#: admin/pages/wptouch-admin-themes-and-addons.php:4
+msgid "Extensions"
+msgstr "擴展"
+
+#: admin/pages/wptouch-admin-touchboard.php:3 core/admin-menu.php:35
+#: core/admin-menu.php:39
+msgid "What's New"
+msgstr "新功能"
+
+#: admin/settings/html/backup.php:1
+msgid "Download Backup File"
+msgstr "下載備份檔案"
+
+#: admin/settings/html/backup.php:2
+msgid "Restore Backup File"
+msgstr "恢復備份檔案"
+
+#: admin/settings/html/button.php:6 admin/settings/html/checkbox.php:7
+#: admin/settings/html/custom-latest-posts.php:8
+#: admin/settings/html/list.php:20 admin/settings/html/numeric.php:16
+#: admin/settings/html/radiolist.php:14 admin/settings/html/text.php:9
+#: admin/settings/html/textarea.php:9
+msgid "New"
+msgstr "新"
+
+#: admin/settings/html/color.php:6
+msgid "Undo"
+msgstr "復原"
+
+#: admin/settings/html/color.php:7
+msgid "Desktop theme colors"
+msgstr "桌面主題顏色"
+
+#: admin/settings/html/color.php:7
+msgid "Palette"
+msgstr "調色板"
+
+#: admin/settings/html/custom-latest-posts.php:1
+msgid "Custom latest posts page"
+msgstr "自訂最新文章頁面"
+
+#: admin/settings/html/custom_icon_management.php:3
+msgid "No icons have been uploaded yet"
+msgstr "尚未上傳任何圖示"
+
+#: admin/settings/html/custom_icon_management.php:12
+#: admin/settings/html/image-upload.php:13
+#: admin/settings/html/theme-browser-item.php:137
+msgid "Delete"
+msgstr "刪除"
+
+#: admin/settings/html/custom_icon_upload.php:3
+msgid "Upload Icon"
+msgstr "上傳圖示"
+
+#: admin/settings/html/custom_icon_upload.php:4
+#: admin/settings/html/image-upload.php:15
+msgid "Upload Complete!"
+msgstr "上傳完成!"
+
+#: admin/settings/html/custom_icon_upload.php:9
+msgid "Ready to upload"
+msgstr "準備上傳"
+
+#: admin/settings/html/debuginfo.php:12
+msgid "View Debug File"
+msgstr "檢視偵錯檔案"
+
+#: admin/settings/html/debuginfo.php:16 admin/settings/html/debuginfo.php:18
+msgid "Your Server Configuration"
+msgstr "你的伺服器設定"
+
+#: admin/settings/html/extension-browser-item.php:36
+#: admin/settings/html/theme-browser-item.php:49
+msgid "Updating..."
+msgstr "更新中..."
+
+#: admin/settings/html/extension-browser-item.php:36
+msgid "Upgrade to %s"
+msgstr "升級到%s"
+
+#: admin/settings/html/extension-browser-item.php:38
+#: admin/settings/html/theme-browser-item.php:54
+msgid "Download %s Update"
+msgstr "下載%s更新"
+
+#: admin/settings/html/extension-browser-item.php:45
+#: admin/settings/html/installed_icon_sets_ajax.php:8
+#: admin/settings/html/installed_icon_sets_ajax.php:20
+#: admin/settings/html/theme-browser-item.php:68
+msgid "by %s"
+msgstr "作者: %s"
+
+#: admin/settings/html/extension-browser-item.php:51
+msgid "Extension location: %s"
+msgstr "擴展位置: %s"
+
+#: admin/settings/html/extension-browser-item.php:52
+#: admin/settings/html/theme-browser-item.php:76
+msgid "Relative to your WordPress wp-content directory."
+msgstr "相對於你的WordPress wp內容目錄。"
+
+#: admin/settings/html/extension-browser-item.php:61
+#: admin/settings/html/theme-browser-item.php:88
+msgid "Available in WPtouch Pro"
+msgstr "在WPtouch Pro中提供"
+
+#: admin/settings/html/extension-browser-item.php:65
+#: admin/settings/html/theme-browser-item.php:92
+msgid "More Info"
+msgstr "更多資訊"
+
+#: admin/settings/html/extension-browser-item.php:68
+#: admin/settings/html/theme-browser-item.php:96
+msgid "Upgrade License"
+msgstr "升級許可證"
+
+#: admin/settings/html/extension-browser-item.php:70
+#: admin/settings/html/theme-browser-item.php:98
+msgid "Get License"
+msgstr "獲取許可證"
+
+#: admin/settings/html/extension-browser-item.php:78
+#: admin/settings/html/theme-browser-item.php:111
+msgid "Downloading..."
+msgstr "正在下載..."
+
+#: admin/settings/html/extension-browser-item.php:78
+#: admin/settings/html/installed_icon_sets_ajax.php:21
+#: admin/settings/html/theme-browser-item.php:112
+msgid "Install"
+msgstr "安裝"
+
+#: admin/settings/html/extension-browser-item.php:80
+#: admin/settings/html/theme-browser-item.php:115
+msgid "Download"
+msgstr "下載"
+
+#: admin/settings/html/extension-browser-item.php:90
+#: admin/settings/html/theme-browser-item.php:125
+msgid "Setup"
+msgstr "設定"
+
+#: admin/settings/html/extension-browser-item.php:91
+msgid "Deactivate"
+msgstr "停用"
+
+#: admin/settings/html/extension-browser.php:2
+#: admin/settings/html/theme-browser.php:2
+msgid "Your server configuration is preventing WPtouch Pro from installing and updating from the Cloud. %sPlease visit %sthis article%s to follow the steps to enable Cloud install, or you can manually download and install into the wptouch-data/%s directory."
+msgstr "你的伺服器設定阻止WPtouch Pro安裝及從雲端更新。%s請存取%s此文章%s以按照其中步驟啟用雲端安裝，或者你也可以手動下載並安裝到wptouch-data/%s目錄。"
+
+#: admin/settings/html/extension-browser.php:13
+msgid "Loading Cloud Extensions"
+msgstr "正在載入雲端擴展"
+
+#: admin/settings/html/icon_menu_area.php:5
+msgid "Check All"
+msgstr "全選"
+
+#: admin/settings/html/icon_menu_area.php:7
+msgid "Reset"
+msgstr "重設"
+
+#: admin/settings/html/icon_menu_area.php:9
+#: classic-redux/default/header-bottom.php:21
+#: classic-redux/default/header-bottom.php:32
+#: classic-redux/default/header-bottom.php:112
+#: scaffold/default/header-bottom.php:13
+msgid "Menu"
+msgstr "菜單"
+
+#: admin/settings/html/icon_menu_area.php:19
+msgid "Active menus used in this theme."
+msgstr "此主題中使用的活動選單。"
+
+#: admin/settings/html/icon_menu_area.php:23
+msgid "Show/Hide"
+msgstr "顯示/隱藏"
+
+#: admin/settings/html/icon_menu_area.php:24
+msgid "Menu Item"
+msgstr "選單項目"
+
+#: admin/settings/html/icon_menu_area.php:44
+msgid "Icon Set"
+msgstr "圖示集"
+
+#: admin/settings/html/icon_menu_area.php:54
+msgid "Drag icons to associate them with menu items"
+msgstr "拖動圖示以將其與選單項目關聯"
+
+#: admin/settings/html/icon_menu_area.php:79
+msgid "You don't have any custom icons yet."
+msgstr "你尚無任何自訂圖示。"
+
+#: admin/settings/html/icon_menu_area.php:94
+msgid "Default Icon"
+msgstr "預設圖示"
+
+#: admin/settings/html/icon_menu_area.php:95
+msgid "applies to all unset icons"
+msgstr "應用於所有未設定圖示"
+
+#: admin/settings/html/icon_menu_area.php:103
+msgid "Trash"
+msgstr "垃圾箱"
+
+#: admin/settings/html/icon_menu_area.php:104
+msgid "drag icon here to reset"
+msgstr "將圖示拖到這裡以重設"
+
+#: admin/settings/html/image-upload.php:11
+msgid "Upload"
+msgstr "上傳"
+
+#: admin/settings/html/installed_icon_sets.php:2
+msgid "Gathering information about available icon sets..."
+msgstr "正在收集可用圖示集的資訊..."
+
+#: admin/settings/html/installed_icon_sets.php:4 core/notifications.php:215
+msgid "The %s%s%s directory is not currently writable. %sPlease fix this issue to enable installation of additional icon sets."
+msgstr "%s%s%s目錄當前不可寫。%s請修復此問題以可安裝額外的圖示集。"
+
+#: admin/settings/html/installed_icon_sets_ajax.php:4
+#: core/class-wptouch-pro.php:1522 core/class-wptouch-pro.php:1523
+#: core/config.php:53
+msgid "Custom Icons"
+msgstr "自訂圖示"
+
+#: admin/settings/html/installed_icon_sets_ajax.php:9
+#: admin/settings/html/installed_icon_sets_ajax.php:22
+msgid "Installed"
+msgstr "已安裝"
+
+#: admin/settings/html/installed_icon_sets_ajax.php:21
+msgid "Installing..."
+msgstr "正在安裝..."
+
+#: admin/settings/html/installed_icon_sets_ajax.php:23
+msgid "Unable to Install"
+msgstr "無法安裝"
+
+#: admin/settings/html/plugin-compat-ajax.php:11
+#: themes/foundation/modules/custom-posts/custom-posts.php:64
+msgid "Enable %s"
+msgstr "啟用%s"
+
+#: admin/settings/html/plugin-compat-ajax.php:12
+msgid "When unchecked, %s will be disabled for users viewing your WPtouch Pro theme."
+msgstr "若取消選中，%s將對檢視你的WPtouch Pro主題的使用者禁用。"
+
+#: admin/settings/html/plugin-compat-ajax.php:20
+msgid "No plugins to disable."
+msgstr "無外掛程式可禁用。"
+
+#: admin/settings/html/plugin-compat.php:3
+msgid "Your active plugin list is refreshing"
+msgstr "你的活動外掛程式列表正在重新整理"
+
+#: admin/settings/html/redirect.php:17
+msgid "WordPress Page"
+msgstr "WordPress頁面"
+
+#: admin/settings/html/restore.php:2
+msgid "Please paste your encoded settings below and save to restore your settings."
+msgstr "請在下面粘貼你的編碼設定並儲存以恢復你的設定。"
+
+#: admin/settings/html/theme-browser-item.php:6
+#: admin/settings/html/theme-browser-item.php:10
+msgid "Click to view screenshots"
+msgstr "按一下檢視螢幕截取畫面"
+
+#: admin/settings/html/theme-browser-item.php:51
+msgid "Update to %s"
+msgstr "更新到%s"
+
+#: admin/settings/html/theme-browser-item.php:63
+msgid "This theme supports %s devices"
+msgstr "此主題支援%s裝置"
+
+#: admin/settings/html/theme-browser-item.php:75
+msgid "Theme location: %s"
+msgstr "主題位置: %s"
+
+#: admin/settings/html/theme-browser-item.php:103
+msgid "Buy Now"
+msgstr "立即購買"
+
+#: admin/settings/html/theme-browser-item.php:133
+msgid "Copy"
+msgstr "複製"
+
+#: admin/settings/html/theme-browser.php:14
+msgid "Loading Cloud Themes"
+msgstr "正在載入雲主題"
+
+#: admin/settings/html/touchboard.php:6
+msgid "Quick Links"
+msgstr "快速連結"
+
+#: admin/settings/html/touchboard.php:8
+msgid "What's New Changelog"
+msgstr "新功能更新記錄檔"
+
+#: admin/settings/html/touchboard.php:10
+msgid "Look at Pro Themes"
+msgstr "看看Pro版主題"
+
+#: admin/settings/html/touchboard.php:11
+msgid "Look at Pro Extensions"
+msgstr "看看Pro版擴展"
+
+#: admin/settings/html/touchboard.php:12
+msgid "Look at Pro Features"
+msgstr "看看Pro版功能"
+
+#: admin/settings/html/touchboard.php:14
+msgid "Product Support"
+msgstr "產品支援"
+
+#: admin/settings/html/touchboard.php:16
+msgid "Product Knowledgebase"
+msgstr "產品知識庫"
+
+#: admin/settings/html/touchboard.php:17
+msgid "Manage Account"
+msgstr "管理帳戶"
+
+#: admin/settings/html/touchboard.php:18
+msgid "Manage License"
+msgstr "管理許可證"
+
+#: admin/settings/html/touchboard.php:20
+msgid "WPtouch User Guide"
+msgstr "WPtouch使用者指南"
+
+#: admin/settings/html/touchboard.php:27
+msgid "WPtouch News"
+msgstr "WPtouch新聞"
+
+#: admin/settings/html/touchboard.php:28
+msgid "Read More"
+msgstr "閱讀更多"
+
+#: admin/settings/html/touchboard.php:45
+msgid "What's New in %s"
+msgstr "%s新功能"
+
+#: admin/settings/html/touchboard.php:49 admin/settings/html/touchboard.php:51
+#: core/admin-menu.php:60
+msgid "License"
+msgstr "許可證"
+
+#: admin/settings/html/touchboard.php:49
+msgid "Unlicensed"
+msgstr "無許可證"
+
+#: admin/settings/html/touchboard.php:49 core/class-wptouch-pro.php:576
+msgid "Offline"
+msgstr "離線"
+
+#: admin/settings/html/touchboard.php:51
+msgid "Active"
+msgstr "活動"
+
+#: admin/settings/html/touchboard.php:51
+msgid "Online"
+msgstr "線上"
+
+#: admin/settings/html/touchboard.php:61
+msgid "%s Change Log"
+msgstr "%s更改記錄檔"
+
+#: admin/settings/html/user-agent-list.php:4
+#: admin/settings/html/user-agent-list.php:6
+msgid "WPtouch Pro will be active when any of the following user-agents or user-agent combinations are matched"
+msgstr "當以下使用者代理或使用者代理組合匹配時，WPtouch Pro將活動"
+
+#: admin/settings/include/custom-latest-posts.php:14
+msgid "None (Use WordPress Settings)"
+msgstr "無(使用WordPress設定)"
+
+#: bauhaus/default/header-bottom.php:21
+#: classic-redux/default/header-bottom.php:76
+#: scaffold/default/header-bottom.php:24
+msgid "Search this website"
+msgstr "搜尋此網站"
+
+#: bauhaus/default/header-bottom.php:22
+#: classic-redux/default/header-bottom.php:46
+#: classic-redux/default/header-bottom.php:78
+#: scaffold/default/header-bottom.php:14 scaffold/default/header-bottom.php:25
+msgid "Search"
+msgstr "搜尋"
+
+#: bauhaus/default/header-bottom.php:40 bauhaus/default/header-bottom.php:42
+#: classic-redux/default/header-bottom.php:53
+#: scaffold/default/header-bottom.php:35 simple/default/header-bottom.php:24
+msgid "Logout"
+msgstr "登出"
+
+#: bauhaus/default/nav-bar.php:6 cms/default/nav-bar.php:6
+#: themes/foundation/default/nav-bar.php:6
+msgid "previous post"
+msgstr "前一篇文章"
+
+#: bauhaus/default/nav-bar.php:13 cms/default/nav-bar.php:13
+#: themes/foundation/default/nav-bar.php:12
+msgid "next post"
+msgstr "下一篇文章"
+
+#: bauhaus/default/post-loop.php:22 classic-redux/default/post-loop.php:24
+msgid "by"
+msgstr "作者:"
+
+#: bauhaus/default/search.php:6 classic-redux/default/search.php:5
+#: themes/foundation/default/search.php:6
+msgid "You searched for \"%s\""
+msgstr "你搜尋了\"%s\""
+
+#: bauhaus/default/search.php:14
+msgid "Show %s Results"
+msgstr "顯示%s個結果"
+
+#: bauhaus/default/search.php:38
+msgid "No results found"
+msgstr "沒有發現結果"
+
+#: bauhaus/default/search.php:46 classic-redux/default/search.php:47
+#: themes/foundation/default/search.php:45
+msgid "Load more %s results"
+msgstr "載入%s個更多結果"
+
+#: bauhaus/default/single.php:26
+msgid "no comments"
+msgstr "沒有評論"
+
+#: bauhaus/default/single.php:26
+msgid "1 comment"
+msgstr "1條評論"
+
+#: bauhaus/default/single.php:26
+msgid "% comments"
+msgstr "%條評論"
+
+#: bauhaus/default/single.php:46 classic-redux/default/header-bottom.php:35
+#: classic-redux/default/header-bottom.php:61
+msgid "Categories"
+msgstr "分類"
+
+#: bauhaus/default/single.php:49 classic-redux/default/header-bottom.php:39
+#: classic-redux/default/header-bottom.php:68
+msgid "Tags"
+msgstr "標籤"
+
+#: bauhaus/root-functions.php:116 classic-redux/root-functions.php:97
+msgid "Header Menu"
+msgstr "標題選單"
+
+#: bauhaus/root-functions.php:118 classic-redux/root-functions.php:99
+#: cms/root-functions.php:119 cms/root-functions.php:128
+#: scaffold/root-functions.php:77 simple/root-functions.php:59
+#: simple/root-functions.php:70
+msgid "Choose a menu"
+msgstr "選擇選單"
+
+#: bauhaus/root-functions.php:119
+msgid "Main menu selection"
+msgstr "主選單選擇"
+
+#: bauhaus/root-functions.php:126 classic-redux/root-functions.php:107
+#: cms/root-functions.php:135 scaffold/root-functions.php:85
+#: simple/root-functions.php:78
+msgid "Theme background"
+msgstr "主題背景"
+
+#: bauhaus/root-functions.php:127
+msgid "Header & Menu"
+msgstr "標題和選單"
+
+#: bauhaus/root-functions.php:128 classic-redux/root-functions.php:108
+#: cms/root-functions.php:136 scaffold/root-functions.php:86
+#: simple/root-functions.php:79
+msgid "Links"
+msgstr "連結"
+
+#: bauhaus/root-functions.php:129
+msgid "Post/Page Headers"
+msgstr "文章/頁面標頭"
+
+#: bauhaus/root-functions.php:239
+msgid "Theme Shapes"
+msgstr "主題形狀"
+
+#: bauhaus/root-functions.php:245
+msgid "Theme shape style"
+msgstr "主題形狀樣式"
+
+#: bauhaus/root-functions.php:246
+msgid "Bauhaus will use this shape style throughout its appearance"
+msgstr "Bauhaus將在其整體外觀中使用此形狀樣式"
+
+#: bauhaus/root-functions.php:250
+msgid "Circles"
+msgstr "圓圈"
+
+#: bauhaus/root-functions.php:251
+msgid "Rounded squares"
+msgstr "圓角方塊"
+
+#: bauhaus/root-functions.php:270 classic-redux/root-functions.php:238
+msgid "Post thumbnails"
+msgstr "文章縮圖"
+
+#: bauhaus/root-functions.php:275 classic-redux/root-functions.php:243
+msgid "No thumbnails"
+msgstr "無縮圖"
+
+#: bauhaus/root-functions.php:276 classic-redux/root-functions.php:244
+msgid "Blog listing only"
+msgstr "僅部落格列表"
+
+#: bauhaus/root-functions.php:277 classic-redux/root-functions.php:245
+msgid "Blog listing, single posts"
+msgstr "部落格列表，單篇文章"
+
+#: bauhaus/root-functions.php:278
+msgid "Blog listing, single posts & pages"
+msgstr "部落格列表、單個文章和頁面"
+
+#: bauhaus/root-functions.php:279
+msgid "All (blog, single, pages, search & archive)"
+msgstr "所有(部落格、單個文章、頁面、搜尋和存檔)"
+
+#: bauhaus/root-functions.php:287 classic-redux/root-functions.php:254
+msgid "Thumbnail Selection"
+msgstr "縮圖選擇"
+
+#: bauhaus/root-functions.php:292 classic-redux/root-functions.php:259
+msgid "Post featured image"
+msgstr "文章幻燈圖片"
+
+#: bauhaus/root-functions.php:293 classic-redux/root-functions.php:260
+msgid "Post custom field"
+msgstr "文章自訂欄位"
+
+#: bauhaus/root-functions.php:301 classic-redux/root-functions.php:268
+msgid "Thumbnail custom field name"
+msgstr "縮圖自訂欄位名稱"
+
+#: bauhaus/root-functions.php:312 classic-redux/root-functions.php:301
+msgid "Show post categories and tags"
+msgstr "顯示文章分類和標籤"
+
+#: bauhaus/root-functions.php:323 classic-redux/root-functions.php:279
+msgid "Show post date"
+msgstr "顯示文章日期"
+
+#: bauhaus/root-functions.php:334 classic-redux/root-functions.php:290
+msgid "Show post author"
+msgstr "顯示文章作者"
+
+#: bauhaus/root-functions.php:345
+msgid "Show comment bubbles on posts"
+msgstr "在文章上顯示評論泡泡"
+
+#: bauhaus/root-functions.php:356
+msgid "Show search in header"
+msgstr "在標頭中顯示搜尋"
+
+#: bauhaus/root-functions.php:357
+msgid "Adds Search capability in the site header."
+msgstr "在網站標頭中新增搜尋功能。"
+
+#: bauhaus/root-functions.php:367 classic-redux/root-functions.php:312
+msgid "Use infinite scrolling for blog"
+msgstr "部落格使用無限滾動"
+
+#: bauhaus/root-functions.php:384
+msgid "Show featured slider on front page"
+msgstr "在首頁顯示圖片投影"
+
+#: classic-redux/default/header-bottom.php:43
+#: classic-redux/default/header-bottom.php:88
+msgid "Tweets"
+msgstr "推文"
+
+#: classic-redux/default/header-bottom.php:51
+#: scaffold/default/header-bottom.php:33 simple/default/header-bottom.php:22
+#: themes/foundation/modules/login/login-html.php:20
+msgid "Login"
+msgstr "登入"
+
+#: classic-redux/default/header-bottom.php:92
+msgid "Follow %s on Twitter"
+msgstr "在Twitter上關注%s"
+
+#: classic-redux/default/index.php:34 cms/default/header-bottom.php:60
+#: themes/foundation/default/index.php:33
+msgid "newer posts"
+msgstr "較新的文章"
+
+#: classic-redux/default/index.php:34 cms/default/header-bottom.php:56
+#: themes/foundation/default/index.php:33
+msgid "older posts"
+msgstr "較舊的文章"
+
+#: classic-redux/default/post-loop.php:33
+#: themes/foundation/default/comments.php:10
+msgid "no responses"
+msgstr "無回應"
+
+#: classic-redux/default/post-loop.php:33
+#: themes/foundation/default/comments.php:10
+msgid "1 response"
+msgstr "1個回應"
+
+#: classic-redux/default/post-loop.php:33
+#: themes/foundation/default/comments.php:10
+msgid "% responses"
+msgstr "%個回應"
+
+#: classic-redux/default/post-loop.php:56
+msgid "Read This Post"
+msgstr "閱讀此文"
+
+#: classic-redux/default/search.php:15 themes/foundation/default/search.php:16
+msgid "%s results"
+msgstr "%s結果"
+
+#: classic-redux/default/search.php:38 themes/foundation/default/search.php:36
+msgid "No search results found"
+msgstr "沒有發現搜尋結果"
+
+#: classic-redux/default/single.php:18
+msgid "Written by %s"
+msgstr "作者: %s"
+
+#: classic-redux/root-functions.php:6 classic-redux/root-functions.php:357
+msgid "Tablets"
+msgstr "平板電腦"
+
+#: classic-redux/root-functions.php:106 cms/root-functions.php:134
+#: simple/root-functions.php:77
+msgid "Header background"
+msgstr "標題背景"
+
+#: classic-redux/root-functions.php:246
+msgid "All (blog, single, search and archive)"
+msgstr "所有(部落格、單篇、搜尋、存檔)"
+
+#: classic-redux/root-functions.php:323
+msgid "Use rounded corners"
+msgstr "使用圓角"
+
+#: classic-redux/root-functions.php:341
+msgid "Show page title areas on pages"
+msgstr "在頁面上顯示頁面標題區域"
+
+#: classic-redux/root-functions.php:363
+msgid "Add tablet support"
+msgstr "新增平板電腦支援"
+
+#: classic-redux/root-functions.php:375
+msgid "Header Menu Area"
+msgstr "標題選單區域"
+
+#: classic-redux/root-functions.php:381
+msgid "Drop-down button says \"Menu\""
+msgstr "下拉按鈕顯示\"選單\""
+
+#: classic-redux/root-functions.php:389
+msgid "Show tab bar"
+msgstr "顯示標籤列"
+
+#: classic-redux/root-functions.php:397
+msgid "Tab-bar shows categories or tags"
+msgstr "標籤列顯示分類或標籤"
+
+#: classic-redux/root-functions.php:402
+msgid "Categories and tags"
+msgstr "分類和標籤"
+
+#: classic-redux/root-functions.php:403
+msgid "Categories only"
+msgstr "僅分類"
+
+#: classic-redux/root-functions.php:404
+msgid "Tags only"
+msgstr "僅標籤"
+
+#: classic-redux/root-functions.php:405
+msgid "No categories or tags"
+msgstr "無分類或標籤"
+
+#: classic-redux/root-functions.php:411
+msgid "Max categories / tags"
+msgstr "最大分類/標籤"
+
+#: classic-redux/root-functions.php:429 cms/root-functions.php:262
+#: simple/root-functions.php:274
+msgid "CSS Effects"
+msgstr "CSS特效"
+
+#: classic-redux/root-functions.php:435 cms/root-functions.php:268
+msgid "Add a noise effect to the header and theme background"
+msgstr "新增一個噪音特效到標題和主題背景"
+
+#: classic-redux/root-functions.php:436 cms/root-functions.php:269
+#: simple/root-functions.php:281
+msgid "Will apply the effect overtop of any background image you upload."
+msgstr "會在你上傳的任何背景圖片上應用特效。"
+
+#: cms/default/header-bottom.php:14
+msgid "menu"
+msgstr "選單"
+
+#: cms/default/header-bottom.php:21
+msgid "login"
+msgstr "登入"
+
+#: cms/default/header-bottom.php:25
+msgid "logout"
+msgstr "登出"
+
+#: cms/default/header-bottom.php:38 simple/default/footer-top.php:3
+msgid "search this website"
+msgstr "搜尋此網站"
+
+#: cms/default/header-bottom.php:39 simple/default/footer-top.php:5
+msgid "search"
+msgstr "搜尋"
+
+#: cms/default/single.php:12 themes/foundation/default/single.php:13
+msgid "By"
+msgstr "作者："
+
+#: cms/root-functions.php:50
+msgid "Alt Menu"
+msgstr "替換選單"
+
+#: cms/root-functions.php:117
+msgid "Main Menu"
+msgstr "主選單"
+
+#: cms/root-functions.php:126
+msgid "Alternate Menu"
+msgstr "替換選單"
+
+#: cms/root-functions.php:174
+msgid "Show featured images on single posts"
+msgstr "在單篇文章上顯示精選圖片"
+
+#: cms/root-functions.php:191
+msgid "Show titles on pages"
+msgstr "在頁面上顯示標題"
+
+#: cms/root-functions.php:206
+msgid "Category Slider"
+msgstr "分類滑塊"
+
+#: cms/root-functions.php:212
+msgid "Enable category slider"
+msgstr "啟用分類滑塊"
+
+#: cms/root-functions.php:225 simple/root-functions.php:255
+msgid "Tiled Background Image"
+msgstr "平鋪背景圖片"
+
+#: cms/root-functions.php:231 simple/root-functions.php:261
+msgid "(Scaled for retina displays)"
+msgstr "(針對視網膜顯示幕縮放)"
+
+#: cms/root-functions.php:243
+msgid "Alternate Menu Title"
+msgstr "交替選單標題"
+
+#: cms/root-functions.php:249
+msgid "Alternate menu title (if used)"
+msgstr "交替選單標題(如使用)"
+
+#: cms/root-functions.php:250
+msgid "If you use a second menu in CMS, this text will be used for the drop-down button title."
+msgstr "若在CMS中使用二級選單，此文字將用於下拉按鈕標題。"
+
+#: cms/root-functions.php:280
+msgid "Static Front Page"
+msgstr "靜態首頁"
+
+#: cms/root-functions.php:286
+msgid "Static front page alternate content"
+msgstr "靜態首頁交替內容"
+
+#: cms/root-functions.php:287
+msgid "Shows after the featured slider (if enabled), and replaces your Static Front Page content. HTML allowed."
+msgstr "投影放映後顯示(如果啟用)，並替代你的靜態首頁內容。允許HTML。"
+
+#: core/addon-theme-installer.php:161
+msgid "No server support for directly downloading new Cloud packages."
+msgstr "伺服器不支援直接下載新的雲端程式包。"
+
+#: core/addon-theme-installer.php:166
+msgid "Unable to write to directory %s. Try relaxing permissions to allow writing to this location."
+msgstr "無法寫入到目錄%s。請嘗試放寬許可權以允許寫入到此位置。"
+
+#: core/addon-theme-installer.php:171
+msgid "No server support for unzipping files."
+msgstr "伺服器不支援解壓檔案。"
+
+#: core/addon-theme-installer.php:181
+msgid "Unable to download the Cloud package."
+msgstr "無法下載雲端程式包。"
+
+#: core/admin-ajax.php:189
+msgid "Version %s"
+msgstr "版本%s"
+
+#: core/admin-ajax.php:195
+msgid "There is a temporary issue retrieving the change-log.  Please try again later."
+msgstr "檢索記錄檔遇到臨時問題。請稍後再試。"
+
+#: core/admin-menu.php:40
+msgid "Core Settings"
+msgstr "核心設定"
+
+#: core/admin-menu.php:41
+msgid "Themes & Extensions"
+msgstr "主題和擴展"
+
+#: core/admin-menu.php:42
+msgid "Theme Settings"
+msgstr "主旨設定"
+
+#: core/admin-menu.php:42
+msgid "%s Settings"
+msgstr "%s設定"
+
+#: core/admin-menu.php:47
+msgid "Extension Settings"
+msgstr "擴展設定"
+
+#: core/admin-menu.php:52 core/admin-menu.php:54
+msgid "Menus"
+msgstr "選單"
+
+#: core/admin-menu.php:65
+msgid "Upgrade to Pro"
+msgstr "升級到Pro版"
+
+#: core/admin-page-templates.php:16
+msgid "Mobile Page Template"
+msgstr "行動頁面範本"
+
+#: core/admin-render.php:25
+msgid "This copy of %s is currently unlicensed!"
+msgstr "此%s當前無許可證！"
+
+#: core/admin-render.php:27
+msgid "Add a license %s"
+msgstr "新增一個許可證%s"
+
+#: core/admin-render.php:81
+msgid "Save Changes"
+msgstr "儲存更改"
+
+#: core/admin-render.php:82
+msgid "Preview Theme"
+msgstr "預覽主題"
+
+#: core/admin-render.php:83
+msgid "Reset Settings"
+msgstr "重設設定"
+
+#: core/class-wptouch-pro.php:336
+msgid "Automatic theme migration from uploads/wptouch-data directory failed. Please manually move these files to wp-content/wptouch-data, or %scontact support%s to address this issue."
+msgstr "從uploads/ wptouch-data目錄自動遷移主旨失敗。請將這些檔案手動移到wp-content/wptouch-data，或%s聯絡支援%s以解決此問題。"
+
+#: core/class-wptouch-pro.php:356
+msgid "We were unable to install your WPtouch theme from the Cloud. Please visit %sthis article%s for more information."
+msgstr "無法從雲端安裝你的WPtouch主題。請訪問%s此文章%s獲取更多資訊。"
+
+#: core/class-wptouch-pro.php:360
+msgid "You server setup is preventing WPtouch from installing your active theme from the Cloud. Please visit %sthis article%s for more information on how to fix it."
+msgstr "你的伺服器設定阻止WPtouch從雲端安裝你的活動主題。請存取%s此文章%s以獲取更多解決資訊。"
+
+#: core/class-wptouch-pro.php:572
+msgid "Unsupported Browser"
+msgstr "不支援的瀏覽器"
+
+#: core/class-wptouch-pro.php:573
+msgid "Theme Preview requires Chrome or Safari."
+msgstr "主題預覽需要Chrome或Safari瀏覽器。"
+
+#: core/class-wptouch-pro.php:574
+msgid "This will reset all WPtouch Pro settings.\nAre you sure?"
+msgstr "這將重設所有WPtouch Pro設定。\n你確定嗎？"
+
+#: core/class-wptouch-pro.php:575
+msgid "This will reset all WPtouch Pro menu and icon settings.\nAre you sure?"
+msgstr "這將重設所有WPtouch Pro選單和圖示設定。\n你確定嗎？"
+
+#: core/class-wptouch-pro.php:577
+msgid "You appear to be offline. Connect to the internet to see available BraveNewCloud items."
+msgstr "你似乎已離線。請連線到網路以檢視可用的BraveNewCloud項目。"
+
+#: core/class-wptouch-pro.php:578
+msgid "The item failed to download for this reason: %reason%"
+msgstr "該項目下載失敗，原因是：%reason%"
+
+#: core/class-wptouch-pro.php:1093 pro/modules/webapp/webapp.php:206
+msgid "Settings"
+msgstr "設定"
+
+#: core/class-wptouch-pro.php:1129
+msgid "%s Changelog"
+msgstr "%s更改記錄檔"
+
+#: core/class-wptouch-pro.php:2305
+msgid "Directory Problem"
+msgstr "目錄問題"
+
+#: core/class-wptouch-pro.php:2306
+msgid "One or more required directories could not be created"
+msgstr "無法建立一個或更多需要的目錄"
+
+#: core/globals.php:192
+msgid "smartphone"
+msgstr "智慧型手機"
+
+#: core/globals.php:194
+msgid "tablet"
+msgstr "平板電腦"
+
+#: core/notifications.php:124
+msgid "Preview Mode Enabled"
+msgstr "預覽模式已啟用"
+
+#: core/notifications.php:125
+msgid "Only logged-in admins can see the mobile theme right now. You can change this at any time in %sCore Settings%s under %sDisplay Mode%s."
+msgstr "僅登入的管理員可立即檢視該行動主題。可在%s顯示模式%s下的%s核心設定%s中隨時更改。"
+
+#: core/notifications.php:133
+msgid "Theme Presentation Disabled"
+msgstr "主題演示已禁用"
+
+#: core/notifications.php:134
+msgid "No one can see the mobile theme right now. You can change this at any time in %sCore Settings%s under %sDisplay Mode%s."
+msgstr "現在無人可檢視該行動主題。可在%s顯示模式%s下的%s核心設定%s中隨時更改。"
+
+#: core/notifications.php:145
+msgid "WPtouch Pro prefers pretty permalinks to be enabled within WordPress."
+msgstr "WPtouch Pro偏好在WordPress中啟用漂亮永久連結。"
+
+#: core/notifications.php:155
+msgid "WPtouch Pro will not work fully in safe mode."
+msgstr "WPtouch Pro在安全模式下將不會完全工作。"
+
+#: core/notifications.php:165 core/notifications.php:175
+#: core/notifications.php:185
+msgid "Extra configuration is required. The plugin must be configured to exclude the user agents that WPtouch Pro uses."
+msgstr "需要額外設定。必須設定該外掛程式以排除WPtouch Pro使用的使用者代理。"
+
+#: core/notifications.php:195
+msgid "Extra configuration is required. Add paths to your active WPtouch Pro theme CSS and Javascript files as files to ignore in WPMinify."
+msgstr "需要額外設定。向你的WPtouch Pro主題CSS和Javascript檔案新增路徑作為在WPMinify中忽略的檔案。"
+
+#: core/notifications.php:205
+msgid "This plugin may not work correctly in WPtouch Pro, and should be disabled in the Plugin Compatibility section."
+msgstr "此外掛程式在WPtouch Pro中無法正常工作，應在外掛程式相容性部分禁用。"
+
+#: core/notifications.php:214
+msgid "Icon Installation Issue"
+msgstr "圖示安裝問題"
+
+#: include/add-ons/wordtwit-pro.php:179
+#: themes/foundation/modules/twitter/twitter.php:42
+msgid "%d second ago"
+msgid_plural "%d seconds ago"
+msgstr[0] "%d秒前"
+msgstr[1] "%d秒前"
+
+#: include/add-ons/wordtwit-pro.php:182
+#: themes/foundation/modules/twitter/twitter.php:45
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "%d分鐘前"
+msgstr[1] "%d分鐘前"
+
+#: include/add-ons/wordtwit-pro.php:185
+#: themes/foundation/modules/twitter/twitter.php:48
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] "%d小時前"
+msgstr[1] "%d小時前"
+
+#: include/add-ons/wordtwit-pro.php:188
+#: themes/foundation/modules/twitter/twitter.php:51
+msgid "%d day ago"
+msgid_plural "%d days ago"
+msgstr[0] "%d天前"
+msgstr[1] "%d天前"
+
+#: include/html/desktop-switch.php:2
+msgid "Desktop Version"
+msgstr "桌面版"
+
+#: include/html/desktop-switch.php:2
+msgid "Switch To Mobile Version"
+msgstr "切換到行動版"
+
+#: include/html/footer.php:7 include/html/footer.php:9
+msgid "Powered by %s%s%s"
+msgstr "由%s%s%s提供技術支援"
+
+#: include/html/footer.php:11
+msgid "By %s"
+msgstr "作者：%s"
+
+#: include/html/load-times.php:2
+msgid "%d queries in %0.1f ms"
+msgstr "%0.1fms內%d次查詢"
+
+#: include/html/page-template.php:8
+msgid "Default Template"
+msgstr "預設範本"
+
+#: infinity-cache/infinity-cache.php:63 infinity-cache/infinity-cache.php:225
+msgid "Purge Page Cache"
+msgstr "清除頁面快取"
+
+#: infinity-cache/infinity-cache.php:123
+msgid "Enable Infinity Cache"
+msgstr "啟用無限快取"
+
+#: infinity-cache/infinity-cache.php:131
+msgid "Create cache for desktop users"
+msgstr "為桌面使用者建立快取"
+
+#: infinity-cache/infinity-cache.php:132
+msgid "If you are using another cache plugin such as W3, you can disable this."
+msgstr "如果你使用的是其他快取外掛程式，如W3，則可以禁用。"
+
+#: infinity-cache/infinity-cache.php:153
+msgid "Compress output using GZIP"
+msgstr "使用GZIP壓縮輸出"
+
+#: infinity-cache/infinity-cache.php:163
+msgid "Maximum age of cached content"
+msgstr "快取內容最大時限"
+
+#: infinity-cache/infinity-cache.php:164
+msgid "Each cached page will automatically be regenerated after this period elapses"
+msgstr "此時期過去後，每個快取頁面會自動重新生成。"
+
+#: infinity-cache/infinity-cache.php:168 infinity-cache/infinity-cache.php:169
+#: infinity-cache/infinity-cache.php:170 infinity-cache/infinity-cache.php:171
+#: infinity-cache/infinity-cache.php:172
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d小時"
+msgstr[1] "%d小時"
+
+#: infinity-cache/infinity-cache.php:179
+msgid "Remove stale cache file interval"
+msgstr "刪除舊快取檔案間隔"
+
+#: infinity-cache/infinity-cache.php:184
+msgid "Hourly"
+msgstr "每小時"
+
+#: infinity-cache/infinity-cache.php:185
+msgid "Daily"
+msgstr "每天"
+
+#: infinity-cache/infinity-cache.php:192
+msgid "Disable caching for any of these matched URL fragments"
+msgstr "禁用任何這些匹配的URL片段的快取"
+
+#: infinity-cache/infinity-cache.php:193
+msgid "Add one URL fragment per line, i.e. %s, to not cache pages that contain each URL fragment"
+msgstr "每行新增一個URL片段，即%s，以不快取包含每個URL片段的頁面"
+
+#: infinity-cache/infinity-cache.php:201
+msgid "Content Distribution Network Service"
+msgstr "內容分配網路服務"
+
+#: infinity-cache/infinity-cache.php:202
+msgid "Using a content distribution network (CDN) can significantly enhance the responsiveness of your website."
+msgstr "使用內容分配網路(CDN)可顯著提高網站回應速度。"
+
+#: infinity-cache/infinity-cache.php:207
+#: themes/foundation/modules/login/login-html.php:29
+msgid "Sign-up"
+msgstr "註冊"
+
+#: infinity-cache/infinity-cache.php:215
+msgid "URL %d"
+msgstr "URL %d"
+
+#: infinity-cache/infinity-cache.php:216
+msgid "Add the URLs you have configured for your CDN, for example http://cdn%d.mysite.com"
+msgstr "新增為你的CDN設定的URL，例如：http://cdn%d.mysite.com"
+
+#: infinity-cache/infinity-cache.php:233
+msgid "Infinity Cache"
+msgstr "無限快取"
+
+#: mobile-content/mobile-content.php:20
+msgid "WPtouch Alternate Mobile Content"
+msgstr "WPtouch替換行動內容"
+
+#: mobile-content/mobile-content.php:38
+msgid "Mobile Content"
+msgstr "行動內容"
+
+#: mobile-content/mobile-content.php:44
+msgid "Enable mobile content display"
+msgstr "啟用行動內容顯示"
+
+#: pro/modules/advertising/advertising.php:169
+msgid "Service"
+msgstr "服務"
+
+#: pro/modules/advertising/advertising.php:175
+msgid "Choose a service"
+msgstr "選擇一個服務"
+
+#: pro/modules/advertising/advertising.php:181
+msgid "Google Adsense"
+msgstr "Google Adsense"
+
+#: pro/modules/advertising/advertising.php:182
+msgctxt "Refers to a custom advertising service"
+msgid "Custom"
+msgstr "自訂"
+
+#: pro/modules/advertising/advertising.php:192
+msgid "Google AdSense"
+msgstr "Google Adsense"
+
+#: pro/modules/advertising/advertising.php:195
+msgid "Publisher ID"
+msgstr "發佈者ID"
+
+#: pro/modules/advertising/advertising.php:196
+msgid "Slot ID"
+msgstr "Slot ID"
+
+#: pro/modules/advertising/advertising.php:200
+msgid "Code Type"
+msgstr "代碼類型"
+
+#: pro/modules/advertising/advertising.php:212
+msgid "Custom Ads"
+msgstr "自訂廣告"
+
+#: pro/modules/advertising/advertising.php:215
+msgid "Mobile advertising script"
+msgstr "行動廣告腳本"
+
+#: pro/modules/advertising/advertising.php:224
+msgid "Ad Presentation"
+msgstr "廣告演示"
+
+#: pro/modules/advertising/advertising.php:230
+msgid "Theme location"
+msgstr "主題位置"
+
+#: pro/modules/advertising/advertising.php:235
+msgid "In the header"
+msgstr "在標題中"
+
+#: pro/modules/advertising/advertising.php:236
+msgid "Above the page content"
+msgstr "在頁面內容上面"
+
+#: pro/modules/advertising/advertising.php:237
+msgid "Below the page content"
+msgstr "在頁面內容下面"
+
+#: pro/modules/advertising/advertising.php:247
+msgid "Active Pages"
+msgstr "活動頁面"
+
+#: pro/modules/advertising/advertising.php:250
+msgid "Blog listings"
+msgstr "部落格列表"
+
+#: pro/modules/advertising/advertising.php:251
+msgid "Single posts"
+msgstr "單一文章"
+
+#: pro/modules/advertising/advertising.php:252
+msgid "Static pages"
+msgstr "靜態頁面"
+
+#: pro/modules/advertising/advertising.php:253
+msgid "Taxonomy"
+msgstr "分類"
+
+#: pro/modules/advertising/advertising.php:254
+msgid "Search results"
+msgstr "搜尋結果"
+
+#: pro/modules/related-posts/related-posts.php:113
+msgid "Related Posts"
+msgstr "相關文章"
+
+#: pro/modules/related-posts/related-posts.php:119
+msgid "Enable display of related content on single posts"
+msgstr "啟用在單篇文章上顯示相關內容。"
+
+#: pro/modules/related-posts/related-posts.php:127
+msgid "Maximum number of related posts to show"
+msgstr "顯示的最大相關文章數"
+
+#: pro/modules/webapp/webapp.php:121
+msgid "External link— open it in the browser?"
+msgstr "外部連結，在瀏覽器中打開它嗎？"
+
+#: pro/modules/webapp/webapp.php:122
+msgid "File link— Do you want to open it in the browser?"
+msgstr "檔案連結，你想在瀏覽器中打開它嗎？"
+
+#: pro/modules/webapp/webapp.php:209
+msgid "Enable iOS Web-App Mode"
+msgstr "啟用iOS Web-應用模式"
+
+#: pro/modules/webapp/webapp.php:213
+msgid "Enable persistence"
+msgstr "啟用持久性"
+
+#: pro/modules/webapp/webapp.php:214
+msgid "Loads the last visited URL for visitors on open."
+msgstr "開啟時為訪客載入上次訪問的URL。"
+
+#: pro/modules/webapp/webapp.php:221
+msgid "URLs to ignore in Web-App Mode"
+msgstr "在Web應用模式中要忽略的URL"
+
+#: pro/modules/webapp/webapp.php:234
+msgid "Notice Message"
+msgstr "通知訊息"
+
+#: pro/modules/webapp/webapp.php:237
+msgid "Show a notice message for iPhone, iPod touch & iPad visitors about my Web-App"
+msgstr "向iPhone、iPod touch和iPad訪客顯示一條關於我的Web應用的通知訊息"
+
+#: pro/modules/webapp/webapp.php:237
+msgid "WPtouch shows a notice bubble on 1st visit letting users know about your Web-App enabled website on iOS devices."
+msgstr "WPtouch對於首次訪問顯示一個通知泡泡，告訴使用者你透過Web應用在iOS裝置上實現的網站。"
+
+#: pro/modules/webapp/webapp.php:238
+msgid "Notice message contents"
+msgstr "通知訊息內容"
+
+#: pro/modules/webapp/webapp.php:238
+msgid "[device] and [icon] are dynamic and used to determine the device and iOS version. Do not remove these from your message."
+msgstr "[device]和[icon]是動態的，用來確定裝置和iOS版本。請不要從你的訊息中刪除。"
+
+#: pro/modules/webapp/webapp.php:242
+msgid "the notice message will be shown again for visitors"
+msgstr "該通知訊息將再次對訪客顯示"
+
+#: pro/modules/webapp/webapp.php:247
+msgid "1 day until"
+msgstr "1天直到"
+
+#: pro/modules/webapp/webapp.php:248
+msgid "7 days until"
+msgstr "7天直到"
+
+#: pro/modules/webapp/webapp.php:249
+msgid "1 month until"
+msgstr "1個月直到"
+
+#: pro/modules/webapp/webapp.php:250
+msgid "Every time"
+msgstr "每次"
+
+#: pro/modules/webapp/webapp.php:261
+msgid "iPhone Startup Screen"
+msgstr "iPhone啟動畫面"
+
+#: pro/modules/webapp/webapp.php:267 pro/modules/webapp/webapp.php:285
+#: pro/modules/webapp/webapp.php:303 pro/modules/webapp/webapp.php:322
+#: pro/modules/webapp/webapp.php:330 pro/modules/webapp/webapp.php:348
+#: pro/modules/webapp/webapp.php:356
+#: themes/foundation/modules/tablets/tablets.php:52
+#: themes/foundation/root-functions.php:422
+#: themes/foundation/root-functions.php:440
+msgid "%d by %d pixels (PNG)"
+msgstr "%d x %d像素(PNG)"
+
+#: pro/modules/webapp/webapp.php:279
+msgid "Retina iPhone Startup Screen"
+msgstr "Retina iPhone啟動畫面"
+
+#: pro/modules/webapp/webapp.php:297
+msgid "iPhone 5 Startup Screen"
+msgstr "iPhone 5啟動畫面"
+
+#: pro/modules/webapp/webapp.php:316
+msgid "iPad Mini and iPad Startup Screens"
+msgstr "iPad Mini和iPad啟動畫面"
+
+#: pro/modules/webapp/webapp.php:342
+msgid "Retina iPad Startup Screens"
+msgstr "視網膜iPad啟動畫面"
+
+#: pro/professional.php:76
+msgid "License Missing"
+msgstr "許可證丟失"
+
+#: pro/professional.php:77
+msgid "This installation of WPtouch Pro is currently unlicensed."
+msgstr "此WPtouch Pro安裝當前無許可證。"
+
+#: pro/professional.php:88
+msgid "WPtouch Pro %s"
+msgstr "WPtouch Pro %s"
+
+#: pro/professional.php:89
+msgid "A new version of WPtouch Pro is available."
+msgstr "WPtouch Pro有一個新版本。"
+
+#: pro/professional.php:101
+msgid "Theme Update Available"
+msgstr "有主旨更新"
+
+#: pro/professional.php:102
+msgid "One or more updates are available for your installed themes."
+msgstr "已安裝的主旨有一個或多個更新。"
+
+#: pro/professional.php:116
+msgid "Extension Update Available"
+msgstr "有擴展更新"
+
+#: pro/professional.php:117
+msgid "One or more updates are available for your installed extensions."
+msgstr "已安裝擴展有一個或更多更新。"
+
+#: pro/professional.php:130
+msgid "WPtouch Pro 3 cannot co-exist with WPtouch 1.x. Disable it first in the WordPress Plugins settings."
+msgstr "WPtouch Pro 3不能與WPtouch 1.x共存。請先在WordPress外掛程式設定中禁用它。"
+
+#: pro/professional.php:140
+msgid "WPtouch Pro 3 cannot co-exist with WPtouch Pro 2.x. Disable it first in the WordPress Plugins settings."
+msgstr "WPtouch Pro 3不能與WPtouch 2.x共存。請先在WordPress外掛程式設定中禁用它。"
+
+#: pro/professional.php:220 pro/professional.php:244
+msgid "Unknown error"
+msgstr "未知錯誤"
+
+#: responsive-images/responsive-images.php:92
+msgid "Responsive Images"
+msgstr "回應圖片"
+
+#: responsive-images/responsive-images.php:98
+msgid "Include desktop optimizations for mobile devices"
+msgstr "包含針對行動裝置的桌面優化"
+
+#: responsive-images/responsive-images.php:99
+msgid "Normally only images on mobile are optimized"
+msgstr "通常僅優化行動上的圖片"
+
+#: responsive-images/responsive-images.php:106
+msgid "Performance preference"
+msgstr "性能偏好"
+
+#: responsive-images/responsive-images.php:111
+msgid "Optimize for page speed"
+msgstr "優化頁面速度"
+
+#: responsive-images/responsive-images.php:112
+msgid "Optimize for quality"
+msgstr "優化品質"
+
+#: scaffold/root-functions.php:75
+msgid "Primary Menu"
+msgstr "主選單"
+
+#: scaffold/root-functions.php:78
+msgid "Menus are awesome!"
+msgstr "選單很棒！"
+
+#: simple/default/front-page.php:14
+msgid "Call Us"
+msgstr "致電我們"
+
+#: simple/default/front-page.php:20
+msgid "Our Location"
+msgstr "我們的位置"
+
+#: simple/default/header-bottom.php:15
+msgid "Toggle Menu"
+msgstr "切換選單"
+
+#: simple/root-functions.php:57
+msgid "Site Menu (Pulldown)"
+msgstr "網站選單(下拉)"
+
+#: simple/root-functions.php:60
+msgid "Pull-down menu at top of pages"
+msgstr "頁面頂部的下拉式選單"
+
+#: simple/root-functions.php:68
+msgid "Front Page Menu"
+msgstr "首頁選單"
+
+#: simple/root-functions.php:71
+msgid "Displayed below front page menu and content"
+msgstr "在首頁選單和內容下面顯示"
+
+#: simple/root-functions.php:184
+msgid "Enable search on blog pages"
+msgstr "在部落格頁面上啟用搜尋"
+
+#: simple/root-functions.php:198
+msgid "Homepage Call Us"
+msgstr "主頁致電我們"
+
+#: simple/root-functions.php:204
+msgid "Phone number"
+msgstr "電話號碼"
+
+#: simple/root-functions.php:205
+msgid "Enter a phone number and a homepage menu item for 'call us' will be shown."
+msgstr "輸入一個電話號碼和一個主頁選單項目以顯示“致電我們”。"
+
+#: simple/root-functions.php:217
+msgid "Homepage Location"
+msgstr "主頁位置"
+
+#: simple/root-functions.php:223
+msgid "Map address"
+msgstr "地圖地址"
+
+#: simple/root-functions.php:224
+msgid "Enter an address and a homepage menu item for 'Our Location' will be shown."
+msgstr "為將顯示的“公司位置”輸入一個地址和主頁選單項目。"
+
+#: simple/root-functions.php:236
+msgid "Front Page Content"
+msgstr "首頁內容"
+
+#: simple/root-functions.php:242
+msgid "Front page alternate content"
+msgstr "首頁替換內容"
+
+#: simple/root-functions.php:243
+msgid "Shows above the front page menu (if enabled), HTML allowed."
+msgstr "在首頁選單上顯示(如啟用)，允許HTML。"
+
+#: simple/root-functions.php:280
+msgid "Add a light noise effect to the drop-down menu and theme background"
+msgstr "新增一個輕噪音特效到下拉選單和主題背景"
+
+#: themes/foundation/default/404.php:6
+msgid "404 Not Found"
+msgstr "404未找到"
+
+#: themes/foundation/default/404.php:8
+msgid "The post or page you requested is no longer available."
+msgstr "請求的文章或頁面不再可用。"
+
+#: themes/foundation/default/attachment.php:43
+msgid "&laquo; previous in gallery"
+msgstr "&laquo; 圖庫上一張"
+
+#: themes/foundation/default/attachment.php:45
+msgid "next in gallery &raquo;"
+msgstr "圖庫下一張 &raquo;"
+
+#: themes/foundation/default/comments.php:20
+#: themes/foundation/default/comments.php:26
+msgid "Load More Comments&hellip;"
+msgstr "載入更多評論&hellip;"
+
+#: themes/foundation/default/comments.php:38
+msgid "Comments are closed"
+msgstr "評論已關閉"
+
+#: themes/foundation/default/comments.php:48
+msgid "Cancel"
+msgstr "取消"
+
+#: themes/foundation/default/comments.php:51
+msgid "Leave a Reply"
+msgstr "留言"
+
+#: themes/foundation/default/comments.php:51
+msgid "Leave a Reply to %s"
+msgstr "給%s留言"
+
+#: themes/foundation/default/comments.php:54
+msgid "You must be %slogged in%s to post a comment."
+msgstr "你必須%s登入%s才能發表評論。"
+
+#: themes/foundation/default/comments.php:61
+msgid "Logged in as"
+msgstr "已登入為"
+
+#: themes/foundation/default/comments.php:61
+msgid "Log out"
+msgstr "登出"
+
+#: themes/foundation/default/comments.php:65
+msgid "Name"
+msgstr "名字"
+
+#: themes/foundation/default/comments.php:67
+#: themes/foundation/modules/social-links/social-links.php:94
+msgid "E-Mail"
+msgstr "電子郵件"
+
+#: themes/foundation/default/comments.php:69
+msgid "Website"
+msgstr "網站"
+
+#: themes/foundation/default/comments.php:75
+msgid "Publish"
+msgstr "發佈"
+
+#: themes/foundation/default/footer.php:10
+msgid "Back to top"
+msgstr "返回頂部"
+
+#: themes/foundation/default/formerror.php:6
+msgid "Comment Error"
+msgstr "評論錯誤"
+
+#: themes/foundation/default/formerror.php:8
+msgid "Please enter all fields correctly to post a comment."
+msgstr "請正確輸入所有欄位以發表評論。"
+
+#: themes/foundation/default/formerror.php:9
+msgid "Go back"
+msgstr "返回"
+
+#: themes/foundation/default/one-comment.php:12
+msgid "Your comment is awaiting moderation"
+msgstr "你的評論等待審核"
+
+#: themes/foundation/default/related-posts.php:4
+msgid "Related"
+msgstr "相關"
+
+#: themes/foundation/default/switch-link.php:8
+msgid "mobile"
+msgstr "行動"
+
+#: themes/foundation/default/switch-link.php:9
+msgid "desktop"
+msgstr "桌面"
+
+#: themes/foundation/modules/base/base.php:69
+msgid "Loading"
+msgstr "正在載入"
+
+#: themes/foundation/modules/base/preview-bar.php:2
+msgid "Theme Preview"
+msgstr "主題預覽"
+
+#: themes/foundation/modules/base/preview-bar.php:3
+msgid "Reload"
+msgstr "重新載入"
+
+#: themes/foundation/modules/custom-posts/custom-posts.php:76
+msgid "Custom Post Support"
+msgstr "自訂文章支援"
+
+#: themes/foundation/modules/custom-posts/custom-posts.php:82
+msgid "Enable custom post-type support"
+msgstr "啟用自訂文章類型支援"
+
+#: themes/foundation/modules/custom-posts/custom-posts.php:90
+msgid "Show custom post taxonomy"
+msgstr "顯示自訂文章分類"
+
+#: themes/foundation/modules/custom-posts/custom-posts.php:102
+msgid "Custom Post Types"
+msgstr "自訂文章類型"
+
+#: themes/foundation/modules/featured/featured.php:260
+msgid "Featured Slider"
+msgstr "圖片投影"
+
+#: themes/foundation/modules/featured/featured.php:266
+msgid "Enable featured slider"
+msgstr "啟用圖片投影"
+
+#: themes/foundation/modules/featured/featured.php:267
+msgid "Requires at least 2 entries to contain featured images"
+msgstr "需要至少2個項目以包含投影圖片"
+
+#: themes/foundation/modules/featured/featured.php:274
+msgid "Maximum number of posts"
+msgstr "最大文章數"
+
+#: themes/foundation/modules/featured/featured.php:279
+msgid "3 posts"
+msgstr "3篇"
+
+#: themes/foundation/modules/featured/featured.php:280
+msgid "5 posts"
+msgstr "5篇"
+
+#: themes/foundation/modules/featured/featured.php:281
+msgid "10 posts"
+msgstr "10篇"
+
+#: themes/foundation/modules/featured/featured.php:287
+msgid "Automatically slide"
+msgstr "自動播放投影"
+
+#: themes/foundation/modules/featured/featured.php:295
+msgid "Continuously slide"
+msgstr "連續播放"
+
+#: themes/foundation/modules/featured/featured.php:303
+msgid "Grayscale images (CSS 3 effect)"
+msgstr "灰度圖片(CSS 3特效)"
+
+#: themes/foundation/modules/featured/featured.php:304
+msgid "Featured slider images will be in grayscale for devices that support CSS filters."
+msgstr "對於支援CSS篩選的裝置，圖片投影的圖片將使用灰度。"
+
+#: themes/foundation/modules/featured/featured.php:319
+msgid "Featured slider posts also show in listings"
+msgstr "圖片幻燈文章也使用列表顯示"
+
+#: themes/foundation/modules/featured/featured.php:327
+msgid "Slide transition speed"
+msgstr "投影片過渡速度"
+
+#: themes/foundation/modules/featured/featured.php:332
+msgid "Slow"
+msgstr "緩慢"
+
+#: themes/foundation/modules/featured/featured.php:333
+msgid "Normal"
+msgstr "正常"
+
+#: themes/foundation/modules/featured/featured.php:334
+msgid "Fast"
+msgstr "快速"
+
+#: themes/foundation/modules/featured/featured.php:345
+msgid "Show latest posts"
+msgstr "顯示最新文章"
+
+#: themes/foundation/modules/featured/featured.php:346
+msgid "Show posts from a specific tag"
+msgstr "顯示特定標籤的文章"
+
+#: themes/foundation/modules/featured/featured.php:347
+msgid "Show posts from a specific category"
+msgstr "顯示特定分類的文章"
+
+#: themes/foundation/modules/featured/featured.php:348
+msgid "Show only specific posts or pages"
+msgstr "僅顯示特定文章或頁面"
+
+#: themes/foundation/modules/featured/featured.php:354
+msgid "Only this tag"
+msgstr "僅此標籤"
+
+#: themes/foundation/modules/featured/featured.php:363
+msgid "Only this category"
+msgstr "僅此分類"
+
+#: themes/foundation/modules/featured/featured.php:372
+msgid "Comma-separated list of post/page IDs"
+msgstr "以逗號分隔的文章/頁面ID列表"
+
+#: themes/foundation/modules/google-fonts/google-fonts.php:10
+msgid "Browser Fonts"
+msgstr "瀏覽器字體"
+
+#: themes/foundation/modules/google-fonts/google-fonts.php:18
+msgid "Typography"
+msgstr "排印"
+
+#: themes/foundation/modules/google-fonts/google-fonts.php:24
+msgid "Font style"
+msgstr "字型樣式"
+
+#: themes/foundation/modules/google-fonts/google-fonts.php:25
+msgid "Choose a Google font pairing designed for this theme, or default browser fonts."
+msgstr "選擇一個為此主題設計的Google字體，或預設瀏覽器字體。"
+
+#: themes/foundation/modules/login/login-html.php:7
+msgid "Remember Me"
+msgstr "記住我"
+
+#: themes/foundation/modules/login/login-html.php:9
+msgid "Log In"
+msgstr "登入"
+
+#: themes/foundation/modules/login/login-html.php:30
+msgid "Lost password?"
+msgstr "丟失密碼？"
+
+#: themes/foundation/modules/login/login.php:22
+msgid "Account Username"
+msgstr "帳戶使用者名稱"
+
+#: themes/foundation/modules/login/login.php:23
+msgid "Account Password"
+msgstr "帳戶密碼"
+
+#: themes/foundation/modules/login/login.php:32
+msgid "Login Form"
+msgstr "登入表"
+
+#: themes/foundation/modules/login/login.php:38
+msgid "Use fly-in login form"
+msgstr "使用飛入登入表單"
+
+#: themes/foundation/modules/login/login.php:39
+msgid "Will add login links and allow mobile visitors to login to your website from mobile devices"
+msgstr "將新增登入連結並允許行動訪客從行動裝置登入你的網站"
+
+#: themes/foundation/modules/login/login.php:46
+msgid "Show \"Sign-up\" and \"Lost Password?\" links"
+msgstr "顯示\"註冊\"和\"丟失了密碼?\"連結"
+
+#: themes/foundation/modules/media/media.php:48
+msgid "Video Handling"
+msgstr "視訊處理"
+
+#: themes/foundation/modules/media/media.php:60
+msgid "CSS only (HTML5 videos)"
+msgstr "僅CSS(HTML5視訊)"
+
+#: themes/foundation/modules/media/media.php:61
+msgid "FitVids Method"
+msgstr "FitVids方法"
+
+#: themes/foundation/modules/media/media.php:62
+msgid "Fluid-Width Method"
+msgstr "流寬度方法"
+
+#: themes/foundation/modules/sharing/sharing-html.php:1
+msgid "Share"
+msgstr "分享"
+
+#: themes/foundation/modules/sharing/sharing-html.php:1
+msgid "Tweet"
+msgstr "推文"
+
+#: themes/foundation/modules/sharing/sharing-html.php:1
+msgid "Mail"
+msgstr "郵件"
+
+#: themes/foundation/modules/sharing/sharing.php:81
+msgid "Sharing"
+msgstr "分享"
+
+#: themes/foundation/modules/sharing/sharing.php:87
+msgid "Show sharing links"
+msgstr "顯示分享連結"
+
+#: themes/foundation/modules/sharing/sharing.php:88
+msgid "Will show Facebook, Twitter, Google+ and Email buttons on single posts."
+msgstr "將在單篇文章上顯示Facebook、Twitter、Google+及電子郵件按鈕。"
+
+#: themes/foundation/modules/sharing/sharing.php:95
+msgid "Show sharing links on pages"
+msgstr "在頁面上顯示分享連結"
+
+#: themes/foundation/modules/sharing/sharing.php:96
+msgid "Will show Facebook, Twitter, Google+ and Email buttons on pages as well as single posts."
+msgstr "將在頁面及單個文章上顯示Facebook、Twitter、Google+和電子郵件按鈕。"
+
+#: themes/foundation/modules/sharing/sharing.php:103
+msgid "Sharing links location"
+msgstr "分享連結位置"
+
+#: themes/foundation/modules/sharing/sharing.php:108
+msgid "Above post content"
+msgstr "在文章內容上面"
+
+#: themes/foundation/modules/sharing/sharing.php:109
+msgid "Below post content"
+msgstr "在文章內容下面"
+
+#: themes/foundation/modules/sharing/sharing.php:115
+msgid "Color scheme"
+msgstr "顏色方案"
+
+#: themes/foundation/modules/sharing/sharing.php:120
+msgid "Theme colors"
+msgstr "主題顏色"
+
+#: themes/foundation/modules/sharing/sharing.php:121
+msgid "Social network colors"
+msgstr "社交網路顏色"
+
+#: themes/foundation/modules/social-links/social-links.php:8
+msgid "Footer Social Links"
+msgstr "頁腳社交連結"
+
+#: themes/foundation/modules/social-links/social-links.php:23
+msgid "Full URL to your Facebook page"
+msgstr "到你的Facebook主頁的完整URL"
+
+#: themes/foundation/modules/social-links/social-links.php:31
+msgid "Full URL to your Twitter profile"
+msgstr "到你的Twitter主頁的完整URL"
+
+#: themes/foundation/modules/social-links/social-links.php:39
+msgid "Full URL to your Google+ profile"
+msgstr "到你的Google+主頁的完整URL"
+
+#: themes/foundation/modules/social-links/social-links.php:47
+msgid "Full URL to your Instagram profile"
+msgstr "到你的Instagram個人檔案的完整URL"
+
+#: themes/foundation/modules/social-links/social-links.php:54
+msgid "Tumblr"
+msgstr "Tumblr"
+
+#: themes/foundation/modules/social-links/social-links.php:55
+msgid "Full URL to your Tumblr profile"
+msgstr "到你的Tumblr個人檔案的完整URL"
+
+#: themes/foundation/modules/social-links/social-links.php:63
+msgid "Full URL to your Pinterest page"
+msgstr "到你的Pinterest主頁的完整URL"
+
+#: themes/foundation/modules/social-links/social-links.php:71
+msgid "Full URL to your Vimeo page"
+msgstr "到你的Vimeo主頁的完整URL"
+
+#: themes/foundation/modules/social-links/social-links.php:79
+msgid "Full URL to your %s profile"
+msgstr "你的%s個人主頁的完整URL"
+
+#: themes/foundation/modules/social-links/social-links.php:86
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
+#: themes/foundation/modules/social-links/social-links.php:87
+msgid "Full URL to your LinkedIn profile"
+msgstr "到你的LinkedIn主頁的完整URL"
+
+#: themes/foundation/modules/social-links/social-links.php:95
+msgid "E-Mail address"
+msgstr "電子郵件地址"
+
+#: themes/foundation/modules/social-links/social-links.php:103
+msgid "Full URL to your RSS feed"
+msgstr "到你的RSS訂閱源的完整URL"
+
+#: themes/foundation/modules/tablets/tablets.php:46
+msgid "iPad"
+msgstr "iPad"
+
+#: themes/foundation/modules/twitter/twitter.php:66
+msgid "Disabled"
+msgstr "已禁用"
+
+#: themes/foundation/modules/twitter/twitter.php:81
+msgid "Twitter account to use for Tweet display"
+msgstr "用於推文顯示的Twitter帳戶"
+
+#: themes/foundation/root-functions.php:11
+msgid "Branding"
+msgstr "品牌"
+
+#: themes/foundation/root-functions.php:12
+msgid "Media Handling"
+msgstr "媒體處理"
+
+#: themes/foundation/root-functions.php:13
+msgid "Web-App Mode"
+msgstr "Web應用程式模式"
+
+#: themes/foundation/root-functions.php:14
+msgid "Bookmark Icons"
+msgstr "書簽圖示"
+
+#: themes/foundation/root-functions.php:15
+msgid "Advertising"
+msgstr "廣告"
+
+#: themes/foundation/root-functions.php:16
+msgid "Custom Content"
+msgstr "自訂內容"
+
+#: themes/foundation/root-functions.php:45
+msgid "Language: "
+msgstr "語言:"
+
+#: themes/foundation/root-functions.php:133
+msgid "Install this Web-App on your [device]: tap [icon] then \"Add to Home Screen\""
+msgstr "在你的[device]上安裝此Web應用程式: 觸按[icon]，然後選擇\"新增到主螢幕\""
+
+#: themes/foundation/root-functions.php:336
+msgid "Number of posts in post listings"
+msgstr "文章列表中的文章數"
+
+#: themes/foundation/root-functions.php:337
+msgid "Overrides the WordPress Reading settings for \"Blog pages show at most\""
+msgstr "覆蓋WordPress閱讀設定\"部落格頁最多顯示\""
+
+#: themes/foundation/root-functions.php:344
+msgid "Excluded categories"
+msgstr "排除的分類"
+
+#: themes/foundation/root-functions.php:345
+msgid "Comma separated by category name"
+msgstr "以逗號分隔分類名稱"
+
+#: themes/foundation/root-functions.php:352
+msgid "Excluded tags"
+msgstr "排除的標籤"
+
+#: themes/foundation/root-functions.php:353
+msgid "Comma separated by tag name"
+msgstr "以逗號分隔標籤名稱"
+
+#: themes/foundation/root-functions.php:363
+msgid "Blog"
+msgstr "部落格"
+
+#: themes/foundation/root-functions.php:374
+msgid "Show comments on pages"
+msgstr "在頁面上顯示評論"
+
+#: themes/foundation/root-functions.php:375
+msgid "Overrides the WordPress settings for showing comments on pages."
+msgstr "覆寫WordPress在頁面上顯示評論的設定。"
+
+#: themes/foundation/root-functions.php:385
+#: themes/foundation/root-functions.php:1100
+msgid "Pages"
+msgstr "頁面"
+
+#: themes/foundation/root-functions.php:398
+msgid "Icon Title"
+msgstr "圖示標題"
+
+#: themes/foundation/root-functions.php:404
+msgid "Icon title"
+msgstr "圖示標題"
+
+#: themes/foundation/root-functions.php:405
+msgid "When visitors bookmark your website, this will be the title shown."
+msgstr "當訪客將你的網站加入我的最愛時，這將是顯示的標題。"
+
+#: themes/foundation/root-functions.php:416
+msgid "Android"
+msgstr "Android"
+
+#: themes/foundation/root-functions.php:434
+msgid "iPhone & iPod touch"
+msgstr "iPhone & iPod touch"
+
+#: themes/foundation/root-functions.php:470
+msgid "Theme Colors"
+msgstr "主題顏色"
+
+#: themes/foundation/root-functions.php:480
+msgid "Site Logo"
+msgstr "網站徽標"
+
+#: themes/foundation/root-functions.php:486
+msgid "(Scaled by themes to fit logo areas as needed)"
+msgstr "(根據需要按主題縮放以適應徽標區域)"
+
+#: themes/foundation/root-functions.php:499
+msgid "Smart App Banner"
+msgstr "智慧應用橫幅"
+
+#: themes/foundation/root-functions.php:505
+msgid "Enter your app's %sApp Store ID%s"
+msgstr "輸入你的應用程式的%sApp Store ID%s"
+
+#: themes/foundation/root-functions.php:506
+msgid "Your app's unique identifier. Find your ID from the iTunes Link Maker: Search for your app. In the link it provides, your app ID is the nine-digit number in between id and ?mt. For example Angry Birds's ID is 343200656."
+msgstr "你的應用程式的唯一識別碼。從iTunes Link Maker查找你的ID: 搜尋你的應用程式。在其提供的連結中，你的應用程式ID是id和?mt之間的九位數字。例如，憤怒的小鳥的ID是343200656。"
+
+#: themes/foundation/root-functions.php:518
+msgid "Theme Footer"
+msgstr "主題頁腳"
+
+#: themes/foundation/root-functions.php:521
+msgid "Custom footer content (HTML is allowed)"
+msgstr "自訂頁腳內容(允許HTML)"
+
+#: themes/foundation/root-functions.php:521
+msgid "You can add custom footer content that will be displayed below the switch link."
+msgstr "你可以新增將會在切換連結下面顯示的自訂頁腳內容。"
+
+#: themes/foundation/root-functions.php:886
+msgid "search results for '%s'"
+msgstr "'%s'的搜尋結果"
+
+#: themes/foundation/root-functions.php:888
+msgid "%sCategories &rsaquo;%s %s"
+msgstr "%s分類 &rsaquo;%s %s"
+
+#: themes/foundation/root-functions.php:890
+msgid "Tags &rsaquo; %s"
+msgstr "標籤&rsaquo; %s"
+
+#: themes/foundation/root-functions.php:892
+#: themes/foundation/root-functions.php:894
+#: themes/foundation/root-functions.php:896
+msgid "Archives &rsaquo; %s"
+msgstr "存檔&rsaquo; %s"
+
+#: themes/foundation/root-functions.php:911
+msgid "Load more from this category"
+msgstr "從此分類載入更多"
+
+#: themes/foundation/root-functions.php:913
+msgid "Load more tagged like this"
+msgstr "載入更多此類標籤"
+
+#: themes/foundation/root-functions.php:915
+msgid "Load more from this day"
+msgstr "從今天載入更多"
+
+#: themes/foundation/root-functions.php:917
+msgid "Load more from this month"
+msgstr "從本月載入更多"
+
+#: themes/foundation/root-functions.php:919
+msgid "Load more from this year"
+msgstr "從今年載入更多"
+
+#: themes/foundation/root-functions.php:921
+msgid "Load more in this section"
+msgstr "在此部分載入更多"
+
+#: themes/foundation/root-functions.php:923
+msgid "Load more entries"
+msgstr "載入更多條目"
+
+#: themes/foundation/root-functions.php:1049
+msgid "Post"
+msgstr "文章"
+
+#: themes/foundation/root-functions.php:1051
+msgid "Page"
+msgstr "頁面"
+
+#. Plugin Name of the plugin/theme
+msgid "WPtouch Pro"
+msgstr "WPtouch Pro"
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.bravenewcode.com/product/wptouch-pro/"
+msgstr "http://www.bravenewcode.com/product/wptouch-pro/"
+
+#. Description of the plugin/theme
+msgid "The easy way to create great mobile experiences with your WordPress website."
+msgstr "打造WordPress網站卓越行動體驗的簡單方式。"
+
+#. Author of the plugin/theme
+msgid "BraveNewCode Inc."
+msgstr "BraveNewCode Inc."
+
+#. Author URI of the plugin/theme
+msgid "http://www.bravenewcode.com/"
+msgstr "http://www.bravenewcode.com/"

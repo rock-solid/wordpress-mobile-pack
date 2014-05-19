@@ -1,0 +1,264 @@
+/*   
+Theme Name: Mojo Mobile
+Theme URI: http://websitez.com
+Description: Mojo Mobile is a powerful mobile theme that utilizes the jQuery mobile framework to give an advanced user experience. Combine with the <a href="http://websitez.com/products-page/featured/wordpress-mobile-plugin/">WP Mobile Detector</a> for a great mobile experience.
+Author: Websitez.com
+Author URI: http://www.websitez.com
+Version: 1.0
+Tags: one-column, flexible-width, yellow, white
+*/
+
+@charset "utf-8";
+
+body
+{margin: 0;
+padding: 0;
+background: #e4e4e4;}
+
+img
+{border:0px;}
+
+.post img
+{padding:0;
+max-width:100%;
+height:auto;}
+	
+img.centered
+{display:block;
+margin-left:auto;
+margin-right:auto;}
+
+img.alignright
+{padding:0px;
+margin:0 0 5px 10px;
+display: inline;}
+
+img.alignleft
+{padding:0;
+margin:0 10px 5px 0;
+display:inline;}
+
+.aligncenter{}
+
+.alignleft{float:left;}
+
+.alignright{float:right;}
+
+a:link, a:visited
+{text-decoration: none;}
+
+a:hover
+{text-decoration: underline;}
+
+#wrapper_mobile
+{width: 100%;
+text-align: left;}
+
+div.titles
+{font-family: Arial, Helvetica, Georgia, Sans-serif;
+color:#f0f0f0;
+padding-left: 10px;
+padding-right: 10px;}
+
+.title_link a:link
+{text-decoration: none;
+color: #f0f0f0;}
+
+.title_link a:visited
+{text-decoration: none;
+color: #f0f0f0;}
+
+.title_link a:hover
+{text-decoration: none;
+color: #cccccc;}
+
+div.main_body
+{width:1000px;}
+
+div.main_body_mobile
+{margin-left:10px;
+margin-right:10px;}
+
+#container
+{width:100%;}
+
+.sidebar
+{background:#ffffff;}
+
+#footer
+{margin-top:10px;
+margin-bottom:10px;}
+
+#footer_mobile
+{margin-top:10px;
+margin-left:10px;
+margin-right:10px;
+margin-bottom:10px;}
+
+div.footer_content
+{padding-left: 10px;
+padding-right: 10px;
+font-family: Arial, Helvetica, Georgia, Sans-serif;
+font-size: 14px;
+text-align: center;
+color: #ffffff;}
+
+body, h1, h2, h3, h4, h5, h6, blockquote, p, form
+{margin: 0;
+padding: 0;}
+
+h1
+{font-size: 26px;
+font-weight:bold;}
+
+div.subtitle
+{font-size: 14px;}
+
+.post
+{margin-top:10px;
+margin-left:5px;
+margin-right:20px;
+margin-bottom:10px;}
+
+.post_mobile
+{margin-top:10px;
+margin-left:5px;
+margin-right:5px;
+margin-bottom:10px;}
+
+.post_the_title
+{padding: 0px;
+	font-size: 14px;
+margin: 0px;}
+
+.post_the_date
+{padding: 0px;
+margin: 0px;
+font-family: Arial, Helvetica, Georgia, Sans-serif;
+font-size: 14px;
+color: #555555;}
+
+.post h2
+{font-family: Arial, Helvetica, Georgia, Sans-serif;
+font-size: 18px;}
+
+.post h2 a:link
+{text-decoration: none;
+color: #000000;}
+
+.post h2 a:visited
+{text-decoration: none;
+color: #000000;}
+
+.post h2 a:hover
+{text-decoration: none;
+color: #00cc00;}
+
+.post_mobile h2
+{font-family: Arial, Helvetica, Georgia, Sans-serif;
+font-size: 18px;}
+
+.post_mobile h2 a:link
+{text-decoration: none;
+color: #000000;}
+
+.post_mobile h2 a:visited
+{text-decoration: none;
+color: #000000;}
+
+.post_mobile h2 a:hover
+{text-decoration: none;
+color: #00cc00;}
+
+.entry
+{font-family: Arial, Helvetica, Georgia, Sans-serif;
+font-size: 14px;
+color: #000000;
+line-height: 16px;}
+
+p
+{padding: 10px 0 0 0;}
+
+p.postmetadata
+{font-family: Arial, Helvetica, Georgia, Sans-serif;
+font-size: 11px;
+color: #000000;
+border-top: 1px solid #ccc;
+margin: 5px 0;}
+
+.navigation
+{margin: 10px 10px 10px 10px;
+font-family: Arial, Helvetica, Georgia, Sans-serif;
+font-size: 12px;
+font-weight: bold;
+text-align: center;}
+
+.sidebar ul
+{list-style-type:none;
+margin:0;
+padding:0;
+padding-right:5px;}
+
+.sidebar ul li
+{font-family:  Arial, Helvetica, Georgia, Sans-serif;
+padding: 10px 0 10px 0;
+border-bottom-style:dotted;
+border-bottom-width:1px;
+border-bottom-color:#cccccc;}
+
+.sidebar ul li h2
+{padding-bottom:10px;
+font-family:  Arial, Helvetica, Georgia, Sans-serif;
+font-size: 16px;
+color:#222222;
+font-weight:bold;}
+
+.sidebar ul ul li
+{font-family:  Arial, Helvetica, Georgia, Sans-serif;
+font-size: 12px;
+padding: 0;
+border-bottom-style:none;}
+
+table#wp-calendar
+{font-family:  Arial, Helvetica, Georgia, Sans-serif;
+font-size: 12px;
+padding: 0;
+text-align:right;
+width:100%;}
+
+/* Custom */
+
+.wrapper{
+	padding: 5px 0px;
+}
+
+.ui-je-logo h1{
+	text-align: center; font-size: 18px; display: block; padding: 0;  text-overflow: ellipsis; overflow: hidden; white-space: nowrap; outline: 0 !important;
+}
+
+.calendar-day{
+	background-image:url(images/calendar-day.gif);
+	width: 67px;
+	height: 77px;
+}
+.calendar-day .month{
+	font-size: 10px;
+	font-weight: bold;
+	text-align: center;
+	padding-top: 34px;
+}
+.calendar-day .day{
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+}
+.websitez-footer{
+	font-size: .6em; text-align: center; padding: 0px 0px 6px;
+}
+.websitez-footer-mobile{
+	font-size: 1em; text-align: center; padding: 4px 0px;
+}
+.ui-input-search { padding: 0 30px; width: 77%; background-position: 8px 50%; background-repeat: no-repeat; position: relative; margin: 0 auto; }
+.wp-caption, .wp-caption-text, .gallery-caption{
+	font-size: .6em;
+}

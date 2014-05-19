@@ -1,0 +1,2544 @@
+# Copyright (C) 2014 WPtouch Pro
+# This file is distributed under the same license as the WPtouch Pro package.
+msgid ""
+msgstr "Project-Id-Version: WPtouch Pro 3.2\nReport-Msgid-Bugs-To: http://wordpress.org/tag/wptouch-pro-3\nPOT-Creation-Date: 2014-03-07 22:09:03+00:00\nMIME-Version: 1.0\nContent-Type: text/plain; charset=UTF-8\nContent-Transfer-Encoding: 8bit\nPO-Revision-Date: 2014-MO-DA HO:MI+ZONE\nLast-Translator: FULL NAME <EMAIL@ADDRESS>\nLanguage-Team: LANGUAGE <LL@li.org>\n"
+
+#: admin/html/help.php:1
+msgid "WPtouch Pro Help & Account Links"
+msgstr "Ссылки на справку и учетную запись WPtouch Pro"
+
+#: admin/html/help.php:3
+msgid "Support Forums"
+msgstr "Форумы поддержки"
+
+#: admin/html/help.php:4
+msgid "Documentation"
+msgstr "Документация"
+
+#: admin/html/help.php:5
+msgid "Account & Downloads"
+msgstr "Учетная запись и загрузки"
+
+#: admin/html/help.php:6
+msgid "BraveNewCode on Twitter"
+msgstr "BraveNewCode в Twitter"
+
+#: admin/html/help.php:7
+msgid "Plugin Licensing Terms"
+msgstr "Условия использования плагинов"
+
+#: admin/html/notification-center.php:5
+msgid "Notifications"
+msgstr "Уведомления"
+
+#: admin/html/notification-content.php:20
+msgid "No notifications"
+msgstr "Нет уведомлений"
+
+#: admin/html/plugin-area.php:7
+msgid "This copy of WPtouch Pro is unlicensed! Please %sactivate your license%s, or %spurchase a license%s to enable automatic updates and full product support from us!"
+msgstr "Эта копия WPtouch Pro нелицензирована! Вам нужно %sактивировать лицензию%s или %sкупить лицензию%s, чтобы включить автоматические обновления и нашу полную поддержку продукта!"
+
+#: admin/html/plugin-area.php:9
+msgid "This copy of WPtouch Pro is unlicensed! Please contact the site administrator regarding product licensing."
+msgstr "Эта копия WPtouch Pro нелицензирована! Свяжитесь с администратором сайта для лицензирования продукта."
+
+#: admin/pages/custom/wptouch-admin-license.php:9 wptouch-admin-license.php:9
+msgid "License Details"
+msgstr "Лицензионные данные"
+
+#: admin/pages/custom/wptouch-admin-license.php:11 wptouch-admin-license.php:11
+msgid "Note"
+msgstr "Заметка"
+
+#: admin/pages/custom/wptouch-admin-license.php:12 wptouch-admin-license.php:12
+msgid "Once you activate, this page will be hidden."
+msgstr "После активации эта страница будет скрыта."
+
+#: admin/pages/custom/wptouch-admin-license.php:15 wptouch-admin-license.php:15
+msgid "It will only reappear if you reset your WPtouch Pro settings."
+msgstr "Она появится вновь, только если вы сбросите ваши настройки WPtouch Pro."
+
+#: admin/pages/custom/wptouch-admin-license.php:18 wptouch-admin-license.php:18
+msgid "Account E-Mail Address"
+msgstr "Адрес эл. почты уч. записи"
+
+#: admin/pages/custom/wptouch-admin-license.php:20 wptouch-admin-license.php:20
+msgid "Product License Key"
+msgstr "Ключ лицензии продукта"
+
+#: admin/pages/custom/wptouch-admin-license.php:23
+#: admin/settings/html/extension-browser-item.php:87
+#: admin/settings/html/theme-browser-item.php:129 wptouch-admin-license.php:23
+msgid "Activate"
+msgstr "Активировать"
+
+#: admin/pages/custom/wptouch-admin-license.php:33 wptouch-admin-license.php:33
+msgid "Success."
+msgstr "Успешно."
+
+#: admin/pages/custom/wptouch-admin-license.php:34 wptouch-admin-license.php:34
+msgid "Activation Complete. Enjoy WPtouch Pro!"
+msgstr "Активация завершена. Наслаждайтесь WPtouch Pro!"
+
+#: admin/pages/custom/wptouch-admin-license.php:38 wptouch-admin-license.php:38
+msgid "E-mail address or license key rejected"
+msgstr "Адрес эл.почты или лицензионный ключ отклонён"
+
+#: admin/pages/custom/wptouch-admin-license.php:39 wptouch-admin-license.php:39
+msgid "The bravenewcode.com server rejected your E-Mail address and/or License Key. Please check they are correct and try again."
+msgstr "Сервер bravenewcode.com отклонил ваш адрес эл. почты и/или ключ лицензии. Проверьте их правильность и повторите попытку."
+
+#: admin/pages/custom/wptouch-admin-license.php:43 wptouch-admin-license.php:43
+msgid "No licenses remaining."
+msgstr "Лицензий не осталось."
+
+#: admin/pages/custom/wptouch-admin-license.php:44 wptouch-admin-license.php:44
+msgid "You have used all your activations. What do you want to do?"
+msgstr "Вы использовали все активации. Что вам нужно сделать?"
+
+#: admin/pages/custom/wptouch-admin-license.php:45 wptouch-admin-license.php:45
+msgid "Upgrade My License"
+msgstr "Обновить лицензию"
+
+#: admin/pages/custom/wptouch-admin-license.php:46 wptouch-admin-license.php:46
+msgid "Contact support for assistance"
+msgstr "Обратиться за помощью в службу поддержки."
+
+#: admin/pages/custom/wptouch-admin-license.php:50 wptouch-admin-license.php:50
+msgid "The server is unavailable."
+msgstr "Этот сервер недоступен."
+
+#: admin/pages/custom/wptouch-admin-license.php:51 wptouch-admin-license.php:51
+msgid "The bravenewcode.com server currently cannot authorize your License."
+msgstr "Сервер bravenewcode.com в настоящее время не может авторизовать вашу лицензию."
+
+#: admin/pages/custom/wptouch-admin-license.php:52 wptouch-admin-license.php:52
+msgid "Please %scontact us%s and let us know about it."
+msgstr "%sСвяжитесь с нами%s и сообщите нам об этом."
+
+#: admin/pages/wptouch-admin-general-settings.php:3
+#: themes/foundation/root-functions.php:10
+msgid "General"
+msgstr "Общие"
+
+#: admin/pages/wptouch-admin-general-settings.php:4
+msgid "Compatibility"
+msgstr "Совместимость"
+
+#: admin/pages/wptouch-admin-general-settings.php:10
+msgid "Auto-detect"
+msgstr "Автовыбор"
+
+#: admin/pages/wptouch-admin-general-settings.php:45
+msgid "Site Title & Byline"
+msgstr "Название и автор сайта"
+
+#: admin/pages/wptouch-admin-general-settings.php:51
+msgid "WPtouch Pro site title"
+msgstr "Название сайта WPtouch Pro"
+
+#: admin/pages/wptouch-admin-general-settings.php:52
+msgid "If the title of your site is long, you can shorten it for display within WPtouch Pro themes."
+msgstr "Если название вашего сайта длинное, вы можете сократить его для отображения в темах WPtouch Pro."
+
+#: admin/pages/wptouch-admin-general-settings.php:59
+msgid "Display %sPowered by WPtouch Pro%s in footer"
+msgstr "Отображать %sНа платформе WPtouch Pro%s в примечании"
+
+#: admin/pages/wptouch-admin-general-settings.php:67
+msgid "Use my WPtouch Pro referral code to earn commission"
+msgstr "Используйте рекомендательный код WPtouch Pro, чтобы заработать комиссионные"
+
+#: admin/pages/wptouch-admin-general-settings.php:68
+msgid "Licensed users of WPtouch Pro can earn a commission for each sale they generate from their mobile website"
+msgstr "Лицензированные пользователи WPtouch Pro могут зарабатывать комиссионные с каждой продажи, которую они генерируют со своего мобильного веб-сайта"
+
+#: admin/pages/wptouch-admin-general-settings.php:79
+msgid "Regionalization"
+msgstr "Определение региона"
+
+#: admin/pages/wptouch-admin-general-settings.php:85
+msgid "Language"
+msgstr "Язык"
+
+#: admin/pages/wptouch-admin-general-settings.php:86
+msgid "The WPtouch Pro admin panel &amp; supported themes will be shown in this locale."
+msgstr "Панель администратора WPtouch Pro и поддерживаемые темы будут отображаться в этой области."
+
+#: admin/pages/wptouch-admin-general-settings.php:94
+msgid "Translate administration panel text"
+msgstr "Перевести текст панели администрирования"
+
+#: admin/pages/wptouch-admin-general-settings.php:105
+msgid "Display Mode"
+msgstr "Режим отображения"
+
+#: admin/pages/wptouch-admin-general-settings.php:111
+msgid "Theme Display"
+msgstr "Отображение темы"
+
+#: admin/pages/wptouch-admin-general-settings.php:116
+msgid "Normal (active for all mobile visitors)"
+msgstr "Нормальный (активен для всех мобильных посетителей)"
+
+#: admin/pages/wptouch-admin-general-settings.php:117
+msgid "Preview (active only for logged-in site administrators)"
+msgstr "Предпросмотр (активен только для зарегистрированных администраторов сайта)"
+
+#: admin/pages/wptouch-admin-general-settings.php:118
+msgid "Disabled (mobile theme will never show)"
+msgstr "Отключен (мобильная тема не показывается)"
+
+#: admin/pages/wptouch-admin-general-settings.php:127
+msgid "Landing Page"
+msgstr "Начальная страница"
+
+#: admin/pages/wptouch-admin-general-settings.php:133
+msgid "WPtouch Pro landing page"
+msgstr "Начальная страница WPtouch Pro"
+
+#: admin/pages/wptouch-admin-general-settings.php:138
+msgid "Default (same as WordPress)"
+msgstr "По умолчанию (как WordPress)"
+
+#: admin/pages/wptouch-admin-general-settings.php:139
+msgid "Select from WordPress pages"
+msgstr "Выбрать из страниц WordPress"
+
+#: admin/pages/wptouch-admin-general-settings.php:147
+msgid "Custom Slug or URL"
+msgstr "Пользовательский слэг или URL"
+
+#: admin/pages/wptouch-admin-general-settings.php:148
+msgid "Enter a Slug (i.e. \"/home\") or a full URL path"
+msgstr "Введите слэг (напр., \"/домой\") или полный URL-путь"
+
+#: admin/pages/wptouch-admin-general-settings.php:158
+msgid "Desktop / Mobile Switching"
+msgstr "Переключение на Комп./ Мобильн."
+
+#: admin/pages/wptouch-admin-general-settings.php:164
+msgid "1st time visitors see desktop theme"
+msgstr "Новые посетители видят тему комп. версии"
+
+#: admin/pages/wptouch-admin-general-settings.php:165
+msgid "Your regular theme will be shown to 1st time mobile visitors."
+msgstr "Новые посетители мобильной версии увидят вашу обычную тему."
+
+#: admin/pages/wptouch-admin-general-settings.php:172
+msgid "Show switch link in mobile view"
+msgstr "Отобр. ссылку-перекл. в моб. версии"
+
+#: admin/pages/wptouch-admin-general-settings.php:173
+msgid "Will show toggle buttons in the theme's footer allowing users to switch to your desktop theme. Is not shown in Web-App Mode."
+msgstr "Отобразит кнопки переключения в примечании темы, чтобы пользователи могли перекл. на вашу тему комп. версии. Не отображается в режиме веб-приложения."
+
+#: admin/pages/wptouch-admin-general-settings.php:180
+msgid "Choose the target for the mobile switch link"
+msgstr "Выбрать цель для ссылки-перекл. на моб."
+
+#: admin/pages/wptouch-admin-general-settings.php:185
+msgid "Current page"
+msgstr "Текущая страница"
+
+#: admin/pages/wptouch-admin-general-settings.php:186
+msgid "Home page"
+msgstr "Главная страница"
+
+#: admin/pages/wptouch-admin-general-settings.php:192
+msgid "Desktop theme switch buttons"
+msgstr "Переключатели темы комп. версии"
+
+#: admin/pages/wptouch-admin-general-settings.php:193
+msgid "Allows visitors to switch from your desktop theme to your mobile theme. You can also customize the placement of Switch buttons by placing the wptouch_desktop_switch_link() template tag somewhere in your desktop theme."
+msgstr "Позволяет посетителям переключать с вашей компьютерной темы на мобильную. Вы также можете настроить размещение Переключателей, поместив тег шаблона wptouch_desktop_switch_link () где-нибудь в компьютерной теме."
+
+#: admin/pages/wptouch-admin-general-settings.php:197
+msgid "Automatically inserted inline"
+msgstr "Автоматически вставлено в потоке"
+
+#: admin/pages/wptouch-admin-general-settings.php:198
+msgid "Automatically inserted with AJAX (better for caching)"
+msgstr "Автоматически вставлено с помощью AJAX (улучшает кэширование)"
+
+#: admin/pages/wptouch-admin-general-settings.php:199
+msgid "Template tag"
+msgstr "Тег шаблона"
+
+#: admin/pages/wptouch-admin-general-settings.php:208
+msgid "Custom Code"
+msgstr "Пользовательский код"
+
+#: admin/pages/wptouch-admin-general-settings.php:214
+msgid "HTML, JavaScript, statistics or custom code"
+msgstr "HTML, JavaScript, статистика или польз. код"
+
+#: admin/pages/wptouch-admin-general-settings.php:215
+msgid "Enter any custom code here to be output in the theme footer."
+msgstr "Введите польз. код здесь для вывода в примечании темы."
+
+#: admin/pages/wptouch-admin-general-settings.php:225
+msgid "Custom Stylesheet"
+msgstr "Пользовательская таблица стилей"
+
+#: admin/pages/wptouch-admin-general-settings.php:231
+msgid "URL to a custom CSS file to load"
+msgstr "URL к польз. файлу CSS для загрузки"
+
+#: admin/pages/wptouch-admin-general-settings.php:232
+msgid "Useful if you have specific compatibility CSS you need to add."
+msgstr "Полезно, если у вас есть конкретные CSS-стили для совместимости, чтобы добавить."
+
+#: admin/pages/wptouch-admin-general-settings.php:242
+msgid "Shortcodes"
+msgstr "Короткие коды"
+
+#: admin/pages/wptouch-admin-general-settings.php:248
+msgid "Remove these shortcodes when WPtouch Pro is active"
+msgstr "Удалите эти короткие коды, когда WPtouch активен."
+
+#: admin/pages/wptouch-admin-general-settings.php:249
+msgid "Enter a comma separated list of shortcodes to remove."
+msgstr "Введите cписок разделенных запятыми коротких кодов для удаления."
+
+#: admin/pages/wptouch-admin-general-settings.php:259
+msgid "Ignored URLs"
+msgstr "Пропущенные URL-адреса"
+
+#: admin/pages/wptouch-admin-general-settings.php:265
+msgid "Do not load WPtouch Pro on these URLs/Pages"
+msgstr "Не загружать WPtouch Pro для этих URL-адресов/страниц"
+
+#: admin/pages/wptouch-admin-general-settings.php:266
+msgid "Each permalink URL fragment should be on its own line and relative, e.g. \"/about\" or \"/products/store\""
+msgstr "Каждый фрагмент постоянной ссылки URL должен быть на отдельной строке и относителен, напр., \"/о приложении\" или \"/продукция/магазин\""
+
+#: admin/pages/wptouch-admin-general-settings.php:276
+msgid "Desktop Theme"
+msgstr "Компьютерная тема"
+
+#: admin/pages/wptouch-admin-general-settings.php:282
+msgid "Try to include desktop theme functions.php file"
+msgstr "Попробуйте включить файл компьютерной темы functions.php"
+
+#: admin/pages/wptouch-admin-general-settings.php:283
+msgid "This may be required for desktop themes with unique features that are not showing when WPtouch Pro is active."
+msgstr "Это может потребоваться для компьютерных тем с уникальными возможностями, не отображаемыми при активном WPtouch."
+
+#: admin/pages/wptouch-admin-general-settings.php:290
+msgid "Method to load file"
+msgstr "Способ загрузки файла"
+
+#: admin/pages/wptouch-admin-general-settings.php:295
+msgid "Include file directly"
+msgstr "Использовать файл напрямую"
+
+#: admin/pages/wptouch-admin-general-settings.php:296
+msgid "Translate and create new files"
+msgstr "Перевести и создать новые файлы"
+
+#: admin/pages/wptouch-admin-general-settings.php:305
+msgid "Custom User-Agents"
+msgstr "Заданные агенты пользователя"
+
+#: admin/pages/wptouch-admin-general-settings.php:311
+msgid "User-agents (line separated)"
+msgstr "Агенты пользователя (разд. строками)"
+
+#: admin/pages/wptouch-admin-general-settings.php:312
+msgid "Adding additional user-agents will force WPtouch Pro to be active for matching browsers."
+msgstr "Добавление дополнительных агентов пользователя заставит WPtouch Pro сопоставлять браузеры."
+
+#: admin/pages/wptouch-admin-general-settings.php:326
+msgid "Backup &amp; Import"
+msgstr "Архивировать и импортировать"
+
+#: admin/pages/wptouch-admin-general-settings.php:332
+msgid "Automatically backup settings to the %s folder"
+msgstr "Автоматически создавать резервную копию настроек в папку %s"
+
+#: admin/pages/wptouch-admin-general-settings.php:334
+msgid "WPtouch Pro backups your settings each time they are saved."
+msgstr "WPtouch Pro создает резервные копии ваших настроек каждый раз, когда они сохранены."
+
+#: admin/pages/wptouch-admin-general-settings.php:345
+msgid "Tools &amp; Debug"
+msgstr "Инструменты и отладка"
+
+#: admin/pages/wptouch-admin-general-settings.php:351
+msgid "Use jQuery 2.0 in themes (faster for mobile devices) instead of WordPress' version"
+msgstr "Использовать jQuery 2.0 в темах (быстрее для моб. устройств) вместо версии WordPress'"
+
+#: admin/pages/wptouch-admin-general-settings.php:352
+msgid "jQuery 2.0 is significantly smaller and faster than previous jQuery versions - may cause problems with other plugins, use carefully."
+msgstr "jQuery 2.0 значительно меньше и быстрее, чем предыдущие версии jQuery - могут возникнуть проблемы с другими плагинами, использовать осторожно."
+
+#: admin/pages/wptouch-admin-general-settings.php:359
+msgid "Show load times and query counts in the footer"
+msgstr "Показывать время загрузки и число запросов в примечании"
+
+#: admin/pages/wptouch-admin-general-settings.php:360
+msgid "Helps you find slow pages/posts on your site."
+msgstr "Помогает находить медл. страницы/записи на сайте."
+
+#: admin/pages/wptouch-admin-general-settings.php:367
+msgid "Enable debug log"
+msgstr "Включить журнал отладки"
+
+#: admin/pages/wptouch-admin-general-settings.php:368
+msgid "Creates a debug file to help diagnose installation issues."
+msgstr "Создает файл отладки для диагностики проблем с установкой."
+
+#: admin/pages/wptouch-admin-general-settings.php:379
+msgid "WordPress Plugins"
+msgstr "Плагины WordPress"
+
+#: admin/pages/wptouch-admin-general-settings.php:392
+msgid "Admin Mode"
+msgstr "Режим администратора"
+
+#: admin/pages/wptouch-admin-general-settings.php:398
+msgid "Admin panel settings shown"
+msgstr "Настройки панели администратора"
+
+#: admin/pages/wptouch-admin-general-settings.php:403
+msgid "Default"
+msgstr "По умолчанию"
+
+#: admin/pages/wptouch-admin-general-settings.php:404
+#: admin/settings/html/button.php:5 admin/settings/html/checkbox.php:6
+#: admin/settings/html/custom-latest-posts.php:4
+#: admin/settings/html/list.php:16 admin/settings/html/numeric.php:12
+#: admin/settings/html/radiolist.php:12 admin/settings/html/text.php:8
+#: admin/settings/html/textarea.php:8
+msgid "Advanced"
+msgstr "Дополнительный"
+
+#: admin/pages/wptouch-admin-menus.php:3
+msgid "Theme Menus"
+msgstr "Тематические меню"
+
+#: admin/pages/wptouch-admin-menus.php:4
+msgid "Menu Setup"
+msgstr "Настройка меню"
+
+#: admin/pages/wptouch-admin-menus.php:5
+msgid "Icon Upload & Sets"
+msgstr "Загрузка и наборы значков"
+
+#: admin/pages/wptouch-admin-menus.php:22
+msgid "WordPress Pages"
+msgstr "Страницы WordPress"
+
+#: admin/pages/wptouch-admin-menus.php:28
+#: admin/settings/html/icon_menu_area.php:6
+#: infinity-cache/infinity-cache.php:206
+#: pro/modules/advertising/advertising.php:180
+#: themes/foundation/modules/media/media.php:59
+msgid "None"
+msgstr "Никакая"
+
+#: admin/pages/wptouch-admin-menus.php:66
+msgid "Menu Options"
+msgstr "Параметры меню"
+
+#: admin/pages/wptouch-admin-menus.php:72
+msgid "Enable parent items as links"
+msgstr "Включить родительские элементы как ссылки"
+
+#: admin/pages/wptouch-admin-menus.php:73
+msgid "If disabled, parent menu items will only toggle child items."
+msgstr "Если отключено, род. пункты меню будут переключать только дочерние элементы."
+
+#: admin/pages/wptouch-admin-menus.php:80
+msgid "Use menu icons"
+msgstr "Использовать значки меню"
+
+#: admin/pages/wptouch-admin-menus.php:104
+msgid "Icon Upload"
+msgstr "Загрузка значка"
+
+#: admin/pages/wptouch-admin-menus.php:117
+msgid "Uploaded Icons"
+msgstr "Загруженные значки"
+
+#: admin/pages/wptouch-admin-menus.php:130
+msgid "Icon Sets"
+msgstr "Наборы значков"
+
+#: admin/pages/wptouch-admin-themes-and-addons.php:3
+msgid "Themes"
+msgstr "Темы"
+
+#: admin/pages/wptouch-admin-themes-and-addons.php:4
+msgid "Extensions"
+msgstr "Расширения"
+
+#: admin/pages/wptouch-admin-touchboard.php:3 core/admin-menu.php:35
+#: core/admin-menu.php:39
+msgid "What's New"
+msgstr "Что нового"
+
+#: admin/settings/html/backup.php:1
+msgid "Download Backup File"
+msgstr "Загрузить архивный файл"
+
+#: admin/settings/html/backup.php:2
+msgid "Restore Backup File"
+msgstr "Восстановить архивный файл"
+
+#: admin/settings/html/button.php:6 admin/settings/html/checkbox.php:7
+#: admin/settings/html/custom-latest-posts.php:8
+#: admin/settings/html/list.php:20 admin/settings/html/numeric.php:16
+#: admin/settings/html/radiolist.php:14 admin/settings/html/text.php:9
+#: admin/settings/html/textarea.php:9
+msgid "New"
+msgstr "Новое"
+
+#: admin/settings/html/color.php:6
+msgid "Undo"
+msgstr "Отменить"
+
+#: admin/settings/html/color.php:7
+msgid "Desktop theme colors"
+msgstr "Цвета компьютерной темы"
+
+#: admin/settings/html/color.php:7
+msgid "Palette"
+msgstr "Палитра"
+
+#: admin/settings/html/custom-latest-posts.php:1
+msgid "Custom latest posts page"
+msgstr "Индивидуальная страница позднейших записей"
+
+#: admin/settings/html/custom_icon_management.php:3
+msgid "No icons have been uploaded yet"
+msgstr "Значки еще не были загружены"
+
+#: admin/settings/html/custom_icon_management.php:12
+#: admin/settings/html/image-upload.php:13
+#: admin/settings/html/theme-browser-item.php:137
+msgid "Delete"
+msgstr "Удалить"
+
+#: admin/settings/html/custom_icon_upload.php:3
+msgid "Upload Icon"
+msgstr "Добавить значок"
+
+#: admin/settings/html/custom_icon_upload.php:4
+#: admin/settings/html/image-upload.php:15
+msgid "Upload Complete!"
+msgstr "Передача завершена!"
+
+#: admin/settings/html/custom_icon_upload.php:9
+msgid "Ready to upload"
+msgstr "Готово к передаче"
+
+#: admin/settings/html/debuginfo.php:12
+msgid "View Debug File"
+msgstr "Просмотреть файл отладки"
+
+#: admin/settings/html/debuginfo.php:16 admin/settings/html/debuginfo.php:18
+msgid "Your Server Configuration"
+msgstr "Конфигурация сервера"
+
+#: admin/settings/html/extension-browser-item.php:36
+#: admin/settings/html/theme-browser-item.php:49
+msgid "Updating..."
+msgstr "Обновление..."
+
+#: admin/settings/html/extension-browser-item.php:36
+msgid "Upgrade to %s"
+msgstr "Повысить категорию до %s"
+
+#: admin/settings/html/extension-browser-item.php:38
+#: admin/settings/html/theme-browser-item.php:54
+msgid "Download %s Update"
+msgstr "Загрузить обновление %s"
+
+#: admin/settings/html/extension-browser-item.php:45
+#: admin/settings/html/installed_icon_sets_ajax.php:8
+#: admin/settings/html/installed_icon_sets_ajax.php:20
+#: admin/settings/html/theme-browser-item.php:68
+msgid "by %s"
+msgstr "от %s"
+
+#: admin/settings/html/extension-browser-item.php:51
+msgid "Extension location: %s"
+msgstr "Расположение расширения: %s"
+
+#: admin/settings/html/extension-browser-item.php:52
+#: admin/settings/html/theme-browser-item.php:76
+msgid "Relative to your WordPress wp-content directory."
+msgstr "Относится к вашему каталогу wp-content WordPress."
+
+#: admin/settings/html/extension-browser-item.php:61
+#: admin/settings/html/theme-browser-item.php:88
+msgid "Available in WPtouch Pro"
+msgstr "В наличии в WPtouch Pro"
+
+#: admin/settings/html/extension-browser-item.php:65
+#: admin/settings/html/theme-browser-item.php:92
+msgid "More Info"
+msgstr "Подробнее"
+
+#: admin/settings/html/extension-browser-item.php:68
+#: admin/settings/html/theme-browser-item.php:96
+msgid "Upgrade License"
+msgstr "Повысить категорию лицензии"
+
+#: admin/settings/html/extension-browser-item.php:70
+#: admin/settings/html/theme-browser-item.php:98
+msgid "Get License"
+msgstr "Получить лицензию"
+
+#: admin/settings/html/extension-browser-item.php:78
+#: admin/settings/html/theme-browser-item.php:111
+msgid "Downloading..."
+msgstr "Загрузка..."
+
+#: admin/settings/html/extension-browser-item.php:78
+#: admin/settings/html/installed_icon_sets_ajax.php:21
+#: admin/settings/html/theme-browser-item.php:112
+msgid "Install"
+msgstr "Установить"
+
+#: admin/settings/html/extension-browser-item.php:80
+#: admin/settings/html/theme-browser-item.php:115
+msgid "Download"
+msgstr "Загрузка"
+
+#: admin/settings/html/extension-browser-item.php:90
+#: admin/settings/html/theme-browser-item.php:125
+msgid "Setup"
+msgstr "Настроить"
+
+#: admin/settings/html/extension-browser-item.php:91
+msgid "Deactivate"
+msgstr "Деактивировать"
+
+#: admin/settings/html/extension-browser.php:2
+#: admin/settings/html/theme-browser.php:2
+msgid "Your server configuration is preventing WPtouch Pro from installing and updating from the Cloud. %sPlease visit %sthis article%s to follow the steps to enable Cloud install, or you can manually download and install into the wptouch-data/%s directory."
+msgstr "Конфигурация вашего сервера предотвращает установку и обновление WPtouch Pro из Облака.. %sПожалуйста, посетите %sэту статью%s, чтобы выполнить шаги, которые задействуют облачную установку - или вы можете вручную загрузить и установить директорий wptouch-data/%s."
+
+#: admin/settings/html/extension-browser.php:13
+msgid "Loading Cloud Extensions"
+msgstr "Загрузка облачных расширений"
+
+#: admin/settings/html/icon_menu_area.php:5
+msgid "Check All"
+msgstr "Отметить все"
+
+#: admin/settings/html/icon_menu_area.php:7
+msgid "Reset"
+msgstr "Сбросить"
+
+#: admin/settings/html/icon_menu_area.php:9
+#: classic-redux/default/header-bottom.php:21
+#: classic-redux/default/header-bottom.php:32
+#: classic-redux/default/header-bottom.php:112
+#: scaffold/default/header-bottom.php:13
+msgid "Menu"
+msgstr "Меню"
+
+#: admin/settings/html/icon_menu_area.php:19
+msgid "Active menus used in this theme."
+msgstr "Активные меню в этой теме."
+
+#: admin/settings/html/icon_menu_area.php:23
+msgid "Show/Hide"
+msgstr "Показать/Скрыть"
+
+#: admin/settings/html/icon_menu_area.php:24
+msgid "Menu Item"
+msgstr "Пункт меню"
+
+#: admin/settings/html/icon_menu_area.php:44
+msgid "Icon Set"
+msgstr "Набор значков"
+
+#: admin/settings/html/icon_menu_area.php:54
+msgid "Drag icons to associate them with menu items"
+msgstr "Перетащите значки, чтобы связать их с пунктами меню"
+
+#: admin/settings/html/icon_menu_area.php:79
+msgid "You don't have any custom icons yet."
+msgstr "У вас еще нет пользовательских значков."
+
+#: admin/settings/html/icon_menu_area.php:94
+msgid "Default Icon"
+msgstr "Значок по умолчанию"
+
+#: admin/settings/html/icon_menu_area.php:95
+msgid "applies to all unset icons"
+msgstr "применяется ко всем сброшенным значкам"
+
+#: admin/settings/html/icon_menu_area.php:103
+msgid "Trash"
+msgstr "Корзина"
+
+#: admin/settings/html/icon_menu_area.php:104
+msgid "drag icon here to reset"
+msgstr "перетащите значок сюда для сброса"
+
+#: admin/settings/html/image-upload.php:11
+msgid "Upload"
+msgstr "Передать"
+
+#: admin/settings/html/installed_icon_sets.php:2
+msgid "Gathering information about available icon sets..."
+msgstr "Сбор информации о доступных наборах значков..."
+
+#: admin/settings/html/installed_icon_sets.php:4 core/notifications.php:215
+msgid "The %s%s%s directory is not currently writable. %sPlease fix this issue to enable installation of additional icon sets."
+msgstr "Каталог %s%s%s сейчас недоступен для записи. %sИсправьте эту проблему, чтобы разрешить установку дополнительных наборов значков."
+
+#: admin/settings/html/installed_icon_sets_ajax.php:4
+#: core/class-wptouch-pro.php:1522 core/class-wptouch-pro.php:1523
+#: core/config.php:53
+msgid "Custom Icons"
+msgstr "Пользовательские значки"
+
+#: admin/settings/html/installed_icon_sets_ajax.php:9
+#: admin/settings/html/installed_icon_sets_ajax.php:22
+msgid "Installed"
+msgstr "Установлено"
+
+#: admin/settings/html/installed_icon_sets_ajax.php:21
+msgid "Installing..."
+msgstr "Установка..."
+
+#: admin/settings/html/installed_icon_sets_ajax.php:23
+msgid "Unable to Install"
+msgstr "Не удается установить"
+
+#: admin/settings/html/plugin-compat-ajax.php:11
+#: themes/foundation/modules/custom-posts/custom-posts.php:64
+msgid "Enable %s"
+msgstr "Включить %s"
+
+#: admin/settings/html/plugin-compat-ajax.php:12
+msgid "When unchecked, %s will be disabled for users viewing your WPtouch Pro theme."
+msgstr "Если не отмечено, %s будет отключено для пользователей, просматривающих вашу тему в WPtouch Pro."
+
+#: admin/settings/html/plugin-compat-ajax.php:20
+msgid "No plugins to disable."
+msgstr "Нет плагинов для отключения."
+
+#: admin/settings/html/plugin-compat.php:3
+msgid "Your active plugin list is refreshing"
+msgstr "Обновляется список активных плагинов"
+
+#: admin/settings/html/redirect.php:17
+msgid "WordPress Page"
+msgstr "Страница WordPress"
+
+#: admin/settings/html/restore.php:2
+msgid "Please paste your encoded settings below and save to restore your settings."
+msgstr "Вставьте ваши кодированные настройки ниже и сохраните, чтобы восстановить настройки."
+
+#: admin/settings/html/theme-browser-item.php:6
+#: admin/settings/html/theme-browser-item.php:10
+msgid "Click to view screenshots"
+msgstr "Нажмите для просм. снимков экрана"
+
+#: admin/settings/html/theme-browser-item.php:51
+msgid "Update to %s"
+msgstr "Обновление до %s"
+
+#: admin/settings/html/theme-browser-item.php:63
+msgid "This theme supports %s devices"
+msgstr "Эта тема поддерживает устройства %s"
+
+#: admin/settings/html/theme-browser-item.php:75
+msgid "Theme location: %s"
+msgstr "Расположение темы: %s"
+
+#: admin/settings/html/theme-browser-item.php:103
+msgid "Buy Now"
+msgstr "Купить сразу"
+
+#: admin/settings/html/theme-browser-item.php:133
+msgid "Copy"
+msgstr "Копировать"
+
+#: admin/settings/html/theme-browser.php:14
+msgid "Loading Cloud Themes"
+msgstr "Загрузка облачных тем"
+
+#: admin/settings/html/touchboard.php:6
+msgid "Quick Links"
+msgstr "Быстрые ссылки"
+
+#: admin/settings/html/touchboard.php:8
+msgid "What's New Changelog"
+msgstr "Журнал изменений проекта"
+
+#: admin/settings/html/touchboard.php:10
+msgid "Look at Pro Themes"
+msgstr "Посмотрите на темы Pro"
+
+#: admin/settings/html/touchboard.php:11
+msgid "Look at Pro Extensions"
+msgstr "Посмотрите на расширения Pro"
+
+#: admin/settings/html/touchboard.php:12
+msgid "Look at Pro Features"
+msgstr "Посмотрите на функции  Pro"
+
+#: admin/settings/html/touchboard.php:14
+msgid "Product Support"
+msgstr "Поддержка продукта"
+
+#: admin/settings/html/touchboard.php:16
+msgid "Product Knowledgebase"
+msgstr "Информационная база данных"
+
+#: admin/settings/html/touchboard.php:17
+msgid "Manage Account"
+msgstr "Управление учетной записью"
+
+#: admin/settings/html/touchboard.php:18
+msgid "Manage License"
+msgstr "Управление лицензией"
+
+#: admin/settings/html/touchboard.php:20
+msgid "WPtouch User Guide"
+msgstr "Руководство пользователя WPtouch"
+
+#: admin/settings/html/touchboard.php:27
+msgid "WPtouch News"
+msgstr "Новости WPtouch"
+
+#: admin/settings/html/touchboard.php:28
+msgid "Read More"
+msgstr "Читать дальше"
+
+#: admin/settings/html/touchboard.php:45
+msgid "What's New in %s"
+msgstr "Что нового в %s"
+
+#: admin/settings/html/touchboard.php:49 admin/settings/html/touchboard.php:51
+#: core/admin-menu.php:60
+msgid "License"
+msgstr "Лицензия"
+
+#: admin/settings/html/touchboard.php:49
+msgid "Unlicensed"
+msgstr "Без лицензии"
+
+#: admin/settings/html/touchboard.php:49 core/class-wptouch-pro.php:576
+msgid "Offline"
+msgstr "Автономно"
+
+#: admin/settings/html/touchboard.php:51
+msgid "Active"
+msgstr "Активно"
+
+#: admin/settings/html/touchboard.php:51
+msgid "Online"
+msgstr "Он-лайн"
+
+#: admin/settings/html/touchboard.php:61
+msgid "%s Change Log"
+msgstr "Журнал изменений %s"
+
+#: admin/settings/html/user-agent-list.php:4
+#: admin/settings/html/user-agent-list.php:6
+msgid "WPtouch Pro will be active when any of the following user-agents or user-agent combinations are matched"
+msgstr "WPtouch Pro активируется при соответствии любым из следующих сочетаний пользователь-агенты или пользователь-агент"
+
+#: admin/settings/include/custom-latest-posts.php:14
+msgid "None (Use WordPress Settings)"
+msgstr "Нет (использовать настройки WordPress)"
+
+#: bauhaus/default/header-bottom.php:21
+#: classic-redux/default/header-bottom.php:76
+#: scaffold/default/header-bottom.php:24
+msgid "Search this website"
+msgstr "Поиск на веб-сайте"
+
+#: bauhaus/default/header-bottom.php:22
+#: classic-redux/default/header-bottom.php:46
+#: classic-redux/default/header-bottom.php:78
+#: scaffold/default/header-bottom.php:14 scaffold/default/header-bottom.php:25
+msgid "Search"
+msgstr "Поиск"
+
+#: bauhaus/default/header-bottom.php:40 bauhaus/default/header-bottom.php:42
+#: classic-redux/default/header-bottom.php:53
+#: scaffold/default/header-bottom.php:35 simple/default/header-bottom.php:24
+msgid "Logout"
+msgstr "Выход"
+
+#: bauhaus/default/nav-bar.php:6 cms/default/nav-bar.php:6
+#: themes/foundation/default/nav-bar.php:6
+msgid "previous post"
+msgstr "предыдущая запись"
+
+#: bauhaus/default/nav-bar.php:13 cms/default/nav-bar.php:13
+#: themes/foundation/default/nav-bar.php:12
+msgid "next post"
+msgstr "следующая запись"
+
+#: bauhaus/default/post-loop.php:22 classic-redux/default/post-loop.php:24
+msgid "by"
+msgstr "от"
+
+#: bauhaus/default/search.php:6 classic-redux/default/search.php:5
+#: themes/foundation/default/search.php:6
+msgid "You searched for \"%s\""
+msgstr "Вы искали \"%s\""
+
+#: bauhaus/default/search.php:14
+msgid "Show %s Results"
+msgstr "Показывать %s результатов"
+
+#: bauhaus/default/search.php:38
+msgid "No results found"
+msgstr "Результаты не найдены"
+
+#: bauhaus/default/search.php:46 classic-redux/default/search.php:47
+#: themes/foundation/default/search.php:45
+msgid "Load more %s results"
+msgstr "Загрузить еще %s результатов"
+
+#: bauhaus/default/single.php:26
+msgid "no comments"
+msgstr "нет комментариев"
+
+#: bauhaus/default/single.php:26
+msgid "1 comment"
+msgstr "1 комментарий"
+
+#: bauhaus/default/single.php:26
+msgid "% comments"
+msgstr "% комментария(ев)"
+
+#: bauhaus/default/single.php:46 classic-redux/default/header-bottom.php:35
+#: classic-redux/default/header-bottom.php:61
+msgid "Categories"
+msgstr "Категории"
+
+#: bauhaus/default/single.php:49 classic-redux/default/header-bottom.php:39
+#: classic-redux/default/header-bottom.php:68
+msgid "Tags"
+msgstr "Теги"
+
+#: bauhaus/root-functions.php:116 classic-redux/root-functions.php:97
+msgid "Header Menu"
+msgstr "Меню заголовка"
+
+#: bauhaus/root-functions.php:118 classic-redux/root-functions.php:99
+#: cms/root-functions.php:119 cms/root-functions.php:128
+#: scaffold/root-functions.php:77 simple/root-functions.php:59
+#: simple/root-functions.php:70
+msgid "Choose a menu"
+msgstr "Выбрать меню"
+
+#: bauhaus/root-functions.php:119
+msgid "Main menu selection"
+msgstr "Выбор в главном меню"
+
+#: bauhaus/root-functions.php:126 classic-redux/root-functions.php:107
+#: cms/root-functions.php:135 scaffold/root-functions.php:85
+#: simple/root-functions.php:78
+msgid "Theme background"
+msgstr "Фон темы"
+
+#: bauhaus/root-functions.php:127
+msgid "Header & Menu"
+msgstr "Заголовок и меню"
+
+#: bauhaus/root-functions.php:128 classic-redux/root-functions.php:108
+#: cms/root-functions.php:136 scaffold/root-functions.php:86
+#: simple/root-functions.php:79
+msgid "Links"
+msgstr "Ссылки"
+
+#: bauhaus/root-functions.php:129
+msgid "Post/Page Headers"
+msgstr "Колонтитулы публикаций/страниц"
+
+#: bauhaus/root-functions.php:239
+msgid "Theme Shapes"
+msgstr "Формы тем"
+
+#: bauhaus/root-functions.php:245
+msgid "Theme shape style"
+msgstr "Стили форм тем"
+
+#: bauhaus/root-functions.php:246
+msgid "Bauhaus will use this shape style throughout its appearance"
+msgstr "Во всех внешних видах Bauhaus будет использован этот стиль"
+
+#: bauhaus/root-functions.php:250
+msgid "Circles"
+msgstr "Круги"
+
+#: bauhaus/root-functions.php:251
+msgid "Rounded squares"
+msgstr "Закруглённые квадраты"
+
+#: bauhaus/root-functions.php:270 classic-redux/root-functions.php:238
+msgid "Post thumbnails"
+msgstr "Эскизы записей"
+
+#: bauhaus/root-functions.php:275 classic-redux/root-functions.php:243
+msgid "No thumbnails"
+msgstr "Нет эскизов"
+
+#: bauhaus/root-functions.php:276 classic-redux/root-functions.php:244
+msgid "Blog listing only"
+msgstr "Только список блога"
+
+#: bauhaus/root-functions.php:277 classic-redux/root-functions.php:245
+msgid "Blog listing, single posts"
+msgstr "Список блога, одиночные записи"
+
+#: bauhaus/root-functions.php:278
+msgid "Blog listing, single posts & pages"
+msgstr "Список блогов, единичные публикации и страницы"
+
+#: bauhaus/root-functions.php:279
+msgid "All (blog, single, pages, search & archive)"
+msgstr "Все (блог, отдельный, страницы, поиск и архив)"
+
+#: bauhaus/root-functions.php:287 classic-redux/root-functions.php:254
+msgid "Thumbnail Selection"
+msgstr "Выбор эскиза"
+
+#: bauhaus/root-functions.php:292 classic-redux/root-functions.php:259
+msgid "Post featured image"
+msgstr "Разместить популярное изображение"
+
+#: bauhaus/root-functions.php:293 classic-redux/root-functions.php:260
+msgid "Post custom field"
+msgstr "Разместить индивидуальное поле"
+
+#: bauhaus/root-functions.php:301 classic-redux/root-functions.php:268
+msgid "Thumbnail custom field name"
+msgstr "Название индивидуального поля эскиза"
+
+#: bauhaus/root-functions.php:312 classic-redux/root-functions.php:301
+msgid "Show post categories and tags"
+msgstr "Показать категории записей и теги"
+
+#: bauhaus/root-functions.php:323 classic-redux/root-functions.php:279
+msgid "Show post date"
+msgstr "Показать дату публикации"
+
+#: bauhaus/root-functions.php:334 classic-redux/root-functions.php:290
+msgid "Show post author"
+msgstr "Показать автора записи"
+
+#: bauhaus/root-functions.php:345
+msgid "Show comment bubbles on posts"
+msgstr "Показывать кружочки с комментариями на публикациях"
+
+#: bauhaus/root-functions.php:356
+msgid "Show search in header"
+msgstr "Показывать поиск в колонтитуле"
+
+#: bauhaus/root-functions.php:357
+msgid "Adds Search capability in the site header."
+msgstr "Добавить возможность поиска в колонтитуле сайта."
+
+#: bauhaus/root-functions.php:367 classic-redux/root-functions.php:312
+msgid "Use infinite scrolling for blog"
+msgstr "Исп. бесконечную прокрутку в блоге"
+
+#: bauhaus/root-functions.php:384
+msgid "Show featured slider on front page"
+msgstr "Показать ползунок избранных на главной странице"
+
+#: classic-redux/default/header-bottom.php:43
+#: classic-redux/default/header-bottom.php:88
+msgid "Tweets"
+msgstr "Твиты"
+
+#: classic-redux/default/header-bottom.php:51
+#: scaffold/default/header-bottom.php:33 simple/default/header-bottom.php:22
+#: themes/foundation/modules/login/login-html.php:20
+msgid "Login"
+msgstr "Вход"
+
+#: classic-redux/default/header-bottom.php:92
+msgid "Follow %s on Twitter"
+msgstr "Подписаться на %s в Twitter"
+
+#: classic-redux/default/index.php:34 cms/default/header-bottom.php:60
+#: themes/foundation/default/index.php:33
+msgid "newer posts"
+msgstr "поздние записи"
+
+#: classic-redux/default/index.php:34 cms/default/header-bottom.php:56
+#: themes/foundation/default/index.php:33
+msgid "older posts"
+msgstr "ранние записи"
+
+#: classic-redux/default/post-loop.php:33
+#: themes/foundation/default/comments.php:10
+msgid "no responses"
+msgstr "нет ответов"
+
+#: classic-redux/default/post-loop.php:33
+#: themes/foundation/default/comments.php:10
+msgid "1 response"
+msgstr "1 ответ"
+
+#: classic-redux/default/post-loop.php:33
+#: themes/foundation/default/comments.php:10
+msgid "% responses"
+msgstr "ответов: %"
+
+#: classic-redux/default/post-loop.php:56
+msgid "Read This Post"
+msgstr "Читать эту запись"
+
+#: classic-redux/default/search.php:15 themes/foundation/default/search.php:16
+msgid "%s results"
+msgstr "Результаты %s"
+
+#: classic-redux/default/search.php:38 themes/foundation/default/search.php:36
+msgid "No search results found"
+msgstr "Нет результатов поиска"
+
+#: classic-redux/default/single.php:18
+msgid "Written by %s"
+msgstr "Автор: %s"
+
+#: classic-redux/root-functions.php:6 classic-redux/root-functions.php:357
+msgid "Tablets"
+msgstr "Планшеты"
+
+#: classic-redux/root-functions.php:106 cms/root-functions.php:134
+#: simple/root-functions.php:77
+msgid "Header background"
+msgstr "Фон заголовка"
+
+#: classic-redux/root-functions.php:246
+msgid "All (blog, single, search and archive)"
+msgstr "Все (блог, одиночные, поиск и архив)"
+
+#: classic-redux/root-functions.php:323
+msgid "Use rounded corners"
+msgstr "Использовать закругленные углы"
+
+#: classic-redux/root-functions.php:341
+msgid "Show page title areas on pages"
+msgstr "Показывать поля с заголовком на страницах"
+
+#: classic-redux/root-functions.php:363
+msgid "Add tablet support"
+msgstr "Добавить поддержку планшетов"
+
+#: classic-redux/root-functions.php:375
+msgid "Header Menu Area"
+msgstr "Поле меню в заголовке"
+
+#: classic-redux/root-functions.php:381
+msgid "Drop-down button says \"Menu\""
+msgstr "Разворачивающаяся кнопка: \"Меню\""
+
+#: classic-redux/root-functions.php:389
+msgid "Show tab bar"
+msgstr "Показать панель вкладок"
+
+#: classic-redux/root-functions.php:397
+msgid "Tab-bar shows categories or tags"
+msgstr "Панель вкладок отобр. категории/теги"
+
+#: classic-redux/root-functions.php:402
+msgid "Categories and tags"
+msgstr "Категории и теги"
+
+#: classic-redux/root-functions.php:403
+msgid "Categories only"
+msgstr "Только категории"
+
+#: classic-redux/root-functions.php:404
+msgid "Tags only"
+msgstr "Только теги"
+
+#: classic-redux/root-functions.php:405
+msgid "No categories or tags"
+msgstr "Нет категорий или тегов"
+
+#: classic-redux/root-functions.php:411
+msgid "Max categories / tags"
+msgstr "Макс. категории/ теги"
+
+#: classic-redux/root-functions.php:429 cms/root-functions.php:262
+#: simple/root-functions.php:274
+msgid "CSS Effects"
+msgstr "Эффекты CSS"
+
+#: classic-redux/root-functions.php:435 cms/root-functions.php:268
+msgid "Add a noise effect to the header and theme background"
+msgstr "Добавьте шумовой эффект для заголовка и фона темы"
+
+#: classic-redux/root-functions.php:436 cms/root-functions.php:269
+#: simple/root-functions.php:281
+msgid "Will apply the effect overtop of any background image you upload."
+msgstr "Применит эффект для изображения фона после его загрузки."
+
+#: cms/default/header-bottom.php:14
+msgid "menu"
+msgstr "меню"
+
+#: cms/default/header-bottom.php:21
+msgid "login"
+msgstr "вход"
+
+#: cms/default/header-bottom.php:25
+msgid "logout"
+msgstr "выход"
+
+#: cms/default/header-bottom.php:38 simple/default/footer-top.php:3
+msgid "search this website"
+msgstr "найти на веб-сайте"
+
+#: cms/default/header-bottom.php:39 simple/default/footer-top.php:5
+msgid "search"
+msgstr "найти"
+
+#: cms/default/single.php:12 themes/foundation/default/single.php:13
+msgid "By"
+msgstr "От"
+
+#: cms/root-functions.php:50
+msgid "Alt Menu"
+msgstr "Альт. меню"
+
+#: cms/root-functions.php:117
+msgid "Main Menu"
+msgstr "Главное меню"
+
+#: cms/root-functions.php:126
+msgid "Alternate Menu"
+msgstr "Альтернативное меню"
+
+#: cms/root-functions.php:174
+msgid "Show featured images on single posts"
+msgstr "Показывать популярные изображения на единичных публикациях"
+
+#: cms/root-functions.php:191
+msgid "Show titles on pages"
+msgstr "Показывать заголовки на страницах"
+
+#: cms/root-functions.php:206
+msgid "Category Slider"
+msgstr "Слайдер категории"
+
+#: cms/root-functions.php:212
+msgid "Enable category slider"
+msgstr "Включить слайдер категории"
+
+#: cms/root-functions.php:225 simple/root-functions.php:255
+msgid "Tiled Background Image"
+msgstr "Мозаичное изображение фона"
+
+#: cms/root-functions.php:231 simple/root-functions.php:261
+msgid "(Scaled for retina displays)"
+msgstr "(Масштабировано для дисплеев Retina)"
+
+#: cms/root-functions.php:243
+msgid "Alternate Menu Title"
+msgstr "Заголовок альтернативного меню"
+
+#: cms/root-functions.php:249
+msgid "Alternate menu title (if used)"
+msgstr "Заголовок альт. меню (если использ.)"
+
+#: cms/root-functions.php:250
+msgid "If you use a second menu in CMS, this text will be used for the drop-down button title."
+msgstr "Если вы используете второе меню в CMS, этот текст будет названием кнопки с выпадающим списком."
+
+#: cms/root-functions.php:280
+msgid "Static Front Page"
+msgstr "Статическая титульная страница"
+
+#: cms/root-functions.php:286
+msgid "Static front page alternate content"
+msgstr "Альт. содерж. статической тит. страницы"
+
+#: cms/root-functions.php:287
+msgid "Shows after the featured slider (if enabled), and replaces your Static Front Page content. HTML allowed."
+msgstr "Показывает после готового слайдера (если включено) и заменяет содержание статической титульной страницы. HTML разрешен."
+
+#: core/addon-theme-installer.php:161
+msgid "No server support for directly downloading new Cloud packages."
+msgstr "Нет поддержки сервера для прямой загрузки новых облачных пакетов."
+
+#: core/addon-theme-installer.php:166
+msgid "Unable to write to directory %s. Try relaxing permissions to allow writing to this location."
+msgstr "Невозможно записать в директорий %s. Попробуйте ослабить допуск для того, чтобы разрешить запись в это место."
+
+#: core/addon-theme-installer.php:171
+msgid "No server support for unzipping files."
+msgstr "Нет поддержки сервера для разархивирования файлов."
+
+#: core/addon-theme-installer.php:181
+msgid "Unable to download the Cloud package."
+msgstr "Невозможно загрузить облачный пакет."
+
+#: core/admin-ajax.php:189
+msgid "Version %s"
+msgstr "Версия %s"
+
+#: core/admin-ajax.php:195
+msgid "There is a temporary issue retrieving the change-log.  Please try again later."
+msgstr "Временная проблема извлечения журнала изменений. Повторите попытку позже."
+
+#: core/admin-menu.php:40
+msgid "Core Settings"
+msgstr "Базовые настройки"
+
+#: core/admin-menu.php:41
+msgid "Themes & Extensions"
+msgstr "Темы и расширения"
+
+#: core/admin-menu.php:42
+msgid "Theme Settings"
+msgstr "Параметры темы"
+
+#: core/admin-menu.php:42
+msgid "%s Settings"
+msgstr "Параметры %s"
+
+#: core/admin-menu.php:47
+msgid "Extension Settings"
+msgstr "Настройки расширения"
+
+#: core/admin-menu.php:52 core/admin-menu.php:54
+msgid "Menus"
+msgstr "Меню"
+
+#: core/admin-menu.php:65
+msgid "Upgrade to Pro"
+msgstr "Повысить категорию до Pro"
+
+#: core/admin-page-templates.php:16
+msgid "Mobile Page Template"
+msgstr "Шаблон мобильной страницы"
+
+#: core/admin-render.php:25
+msgid "This copy of %s is currently unlicensed!"
+msgstr "Эта копия %s пока нелицензирована!"
+
+#: core/admin-render.php:27
+msgid "Add a license %s"
+msgstr "Добавить лицензию %s"
+
+#: core/admin-render.php:81
+msgid "Save Changes"
+msgstr "Сохранить изменения"
+
+#: core/admin-render.php:82
+msgid "Preview Theme"
+msgstr "Просмотреть тему"
+
+#: core/admin-render.php:83
+msgid "Reset Settings"
+msgstr "Сбросить настройки"
+
+#: core/class-wptouch-pro.php:336
+msgid "Automatic theme migration from uploads/wptouch-data directory failed. Please manually move these files to wp-content/wptouch-data, or %scontact support%s to address this issue."
+msgstr "Отказ автоматического переноса темы из закачек/директории данных wptouch. Пожалуйста, перенесите эти файлы на wp-content/wptouch-data или %scontact support%s вручную, чтобы решить вопрос."
+
+#: core/class-wptouch-pro.php:356
+msgid "We were unable to install your WPtouch theme from the Cloud. Please visit %sthis article%s for more information."
+msgstr "Нам не удалось установить вашу активную тему WPtouch из Облака. Пожалуйста, посетите %sэту статью%s за дополнительной информацией."
+
+#: core/class-wptouch-pro.php:360
+msgid "You server setup is preventing WPtouch from installing your active theme from the Cloud. Please visit %sthis article%s for more information on how to fix it."
+msgstr "Настройки вашего сервера не позволяют WPtouch установить вашу активную тему из Облака. Пожалуйста, посетите %sэту статью%s, чтобы получить дополнительную информацию о том, как это исправить."
+
+#: core/class-wptouch-pro.php:572
+msgid "Unsupported Browser"
+msgstr "Не поддерживаемый обозреватель"
+
+#: core/class-wptouch-pro.php:573
+msgid "Theme Preview requires Chrome or Safari."
+msgstr "Для просм. темы требуется Chrome/Safari."
+
+#: core/class-wptouch-pro.php:574
+msgid "This will reset all WPtouch Pro settings.\nAre you sure?"
+msgstr "Это сбросит все настройки WPtouch Pro.\nВы уверены?"
+
+#: core/class-wptouch-pro.php:575
+msgid "This will reset all WPtouch Pro menu and icon settings.\nAre you sure?"
+msgstr "Это сбросит все настройки меню и значков WPtouch Pro.\nВы уверены?"
+
+#: core/class-wptouch-pro.php:577
+msgid "You appear to be offline. Connect to the internet to see available BraveNewCloud items."
+msgstr "Вы работаете автономно. Подключитесь к Интернету, чтобы увидеть доступные элементы BraveNewCloud."
+
+#: core/class-wptouch-pro.php:578
+msgid "The item failed to download for this reason: %reason%"
+msgstr "Отказ загрузки элемента произошёл по следующей причине: %причина%"
+
+#: core/class-wptouch-pro.php:1093 pro/modules/webapp/webapp.php:206
+msgid "Settings"
+msgstr "Настройки"
+
+#: core/class-wptouch-pro.php:1129
+msgid "%s Changelog"
+msgstr "%s Changelog"
+
+#: core/class-wptouch-pro.php:2305
+msgid "Directory Problem"
+msgstr "Проблема с каталогом"
+
+#: core/class-wptouch-pro.php:2306
+msgid "One or more required directories could not be created"
+msgstr "Не удалось создать один или более необходимых каталогов"
+
+#: core/globals.php:192
+msgid "smartphone"
+msgstr "смартфон"
+
+#: core/globals.php:194
+msgid "tablet"
+msgstr "планшет"
+
+#: core/notifications.php:124
+msgid "Preview Mode Enabled"
+msgstr "Включен режим предпросмотра"
+
+#: core/notifications.php:125
+msgid "Only logged-in admins can see the mobile theme right now. You can change this at any time in %sCore Settings%s under %sDisplay Mode%s."
+msgstr "Только вошедшие в систему администраторы могут сейчас видеть мобильную тему. Это можно изменить в любое время в %sОсновных настройках%s в разделе %sРежим дисплея%s."
+
+#: core/notifications.php:133
+msgid "Theme Presentation Disabled"
+msgstr "Презентация темы отключена"
+
+#: core/notifications.php:134
+msgid "No one can see the mobile theme right now. You can change this at any time in %sCore Settings%s under %sDisplay Mode%s."
+msgstr "Сейчас никто не может видеть мобильную тему. Это можно изменить в любое время в %sОсновных настройках%s в разделе %sРежим дисплея%s."
+
+#: core/notifications.php:145
+msgid "WPtouch Pro prefers pretty permalinks to be enabled within WordPress."
+msgstr "WPtouch Pro предпочитает включение в WordPress удобных постоянных ссылок."
+
+#: core/notifications.php:155
+msgid "WPtouch Pro will not work fully in safe mode."
+msgstr "WPtouch Pro не будет работать в полной мере в безопасном режиме."
+
+#: core/notifications.php:165 core/notifications.php:175
+#: core/notifications.php:185
+msgid "Extra configuration is required. The plugin must be configured to exclude the user agents that WPtouch Pro uses."
+msgstr "Требуется дополнительная конфигурация. Нужно настроить плагин, чтобы исключить агентов пользователей, используемых WPtouch Pro."
+
+#: core/notifications.php:195
+msgid "Extra configuration is required. Add paths to your active WPtouch Pro theme CSS and Javascript files as files to ignore in WPMinify."
+msgstr "Требуется дополнительная конфигурация. Добавьте пути к вашим активным файлам CSS и Javascript темы WPtouch Pro, как файлам для пропускания в WPMinify."
+
+#: core/notifications.php:205
+msgid "This plugin may not work correctly in WPtouch Pro, and should be disabled in the Plugin Compatibility section."
+msgstr "Этот плагин может работать неправильно в WPtouch Pro и должен быть отключен в разделе совместимости плагинов."
+
+#: core/notifications.php:214
+msgid "Icon Installation Issue"
+msgstr "Проблема установки значка"
+
+#: include/add-ons/wordtwit-pro.php:179
+#: themes/foundation/modules/twitter/twitter.php:42
+msgid "%d second ago"
+msgid_plural "%d seconds ago"
+msgstr[0] "%d секунду назад"
+msgstr[1] "%d секунд(ы) назад"
+
+#: include/add-ons/wordtwit-pro.php:182
+#: themes/foundation/modules/twitter/twitter.php:45
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] "%d минуту назад"
+msgstr[1] "%d минут(ы) назад"
+
+#: include/add-ons/wordtwit-pro.php:185
+#: themes/foundation/modules/twitter/twitter.php:48
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] "%d час назад"
+msgstr[1] "%d часа(-ов) назад"
+
+#: include/add-ons/wordtwit-pro.php:188
+#: themes/foundation/modules/twitter/twitter.php:51
+msgid "%d day ago"
+msgid_plural "%d days ago"
+msgstr[0] "%d день назад"
+msgstr[1] "%d дня(-ей) назад"
+
+#: include/html/desktop-switch.php:2
+msgid "Desktop Version"
+msgstr "Версия для компьютера"
+
+#: include/html/desktop-switch.php:2
+msgid "Switch To Mobile Version"
+msgstr "Переключить на мобильную версию"
+
+#: include/html/footer.php:7 include/html/footer.php:9
+msgid "Powered by %s%s%s"
+msgstr "На платформе %s%s%s"
+
+#: include/html/footer.php:11
+msgid "By %s"
+msgstr "От %s"
+
+#: include/html/load-times.php:2
+msgid "%d queries in %0.1f ms"
+msgstr "%d запросов за %0.1f ms"
+
+#: include/html/page-template.php:8
+msgid "Default Template"
+msgstr "Шаблон по умолчанию"
+
+#: infinity-cache/infinity-cache.php:63 infinity-cache/infinity-cache.php:225
+msgid "Purge Page Cache"
+msgstr "Очистить кэш страницы"
+
+#: infinity-cache/infinity-cache.php:123
+msgid "Enable Infinity Cache"
+msgstr "Включить бесконечный кэш"
+
+#: infinity-cache/infinity-cache.php:131
+msgid "Create cache for desktop users"
+msgstr "Создать кэш для пользователей настольных ПК"
+
+#: infinity-cache/infinity-cache.php:132
+msgid "If you are using another cache plugin such as W3, you can disable this."
+msgstr "Если используется другая надстройка кэша, такая как W3, это можно отключить."
+
+#: infinity-cache/infinity-cache.php:153
+msgid "Compress output using GZIP"
+msgstr "Сжать выходной файл с помощью GZIP"
+
+#: infinity-cache/infinity-cache.php:163
+msgid "Maximum age of cached content"
+msgstr "Максимальный срок хранения содержимого кэша"
+
+#: infinity-cache/infinity-cache.php:164
+msgid "Each cached page will automatically be regenerated after this period elapses"
+msgstr "Все кэшированные страницы автоматически регенерируются по истечении этого периода"
+
+#: infinity-cache/infinity-cache.php:168 infinity-cache/infinity-cache.php:169
+#: infinity-cache/infinity-cache.php:170 infinity-cache/infinity-cache.php:171
+#: infinity-cache/infinity-cache.php:172
+msgid "%d hour"
+msgid_plural "%d hours"
+msgstr[0] "%d час"
+msgstr[1] "%d час"
+
+#: infinity-cache/infinity-cache.php:179
+msgid "Remove stale cache file interval"
+msgstr "Удалить интервал файлов устаревшего кэша"
+
+#: infinity-cache/infinity-cache.php:184
+msgid "Hourly"
+msgstr "Каждый час"
+
+#: infinity-cache/infinity-cache.php:185
+msgid "Daily"
+msgstr "Ежедневно"
+
+#: infinity-cache/infinity-cache.php:192
+msgid "Disable caching for any of these matched URL fragments"
+msgstr "Отключить кэширование для любого подходящего фрагмента URL"
+
+#: infinity-cache/infinity-cache.php:193
+msgid "Add one URL fragment per line, i.e. %s, to not cache pages that contain each URL fragment"
+msgstr "Добавлять по одному фрагменту URL на строку, т.е. %s, чтобы не кэшировать страницы, содержащие каждый фрагмент URL"
+
+#: infinity-cache/infinity-cache.php:201
+msgid "Content Distribution Network Service"
+msgstr "Сетевая служба распространения контента"
+
+#: infinity-cache/infinity-cache.php:202
+msgid "Using a content distribution network (CDN) can significantly enhance the responsiveness of your website."
+msgstr "Использование Службы распространения контента (CDN) может значительно повысить оперативность отклика вашего веб-сайта."
+
+#: infinity-cache/infinity-cache.php:207
+#: themes/foundation/modules/login/login-html.php:29
+msgid "Sign-up"
+msgstr "Регистрация"
+
+#: infinity-cache/infinity-cache.php:215
+msgid "URL %d"
+msgstr "URL %d"
+
+#: infinity-cache/infinity-cache.php:216
+msgid "Add the URLs you have configured for your CDN, for example http://cdn%d.mysite.com"
+msgstr "Добавьте конфигурированные URL к своей CDN, например http://cdn%d.mysite.com"
+
+#: infinity-cache/infinity-cache.php:233
+msgid "Infinity Cache"
+msgstr "Бесконечный кэш"
+
+#: mobile-content/mobile-content.php:20
+msgid "WPtouch Alternate Mobile Content"
+msgstr "Альт. мобильный контент WPtouch"
+
+#: mobile-content/mobile-content.php:38
+msgid "Mobile Content"
+msgstr "Мобильный контент"
+
+#: mobile-content/mobile-content.php:44
+msgid "Enable mobile content display"
+msgstr "Включить показ мобильного контента"
+
+#: pro/modules/advertising/advertising.php:169
+msgid "Service"
+msgstr "Служба"
+
+#: pro/modules/advertising/advertising.php:175
+msgid "Choose a service"
+msgstr "Выберите службу"
+
+#: pro/modules/advertising/advertising.php:181
+msgid "Google Adsense"
+msgstr "Google AdSense"
+
+#: pro/modules/advertising/advertising.php:182
+msgctxt "Refers to a custom advertising service"
+msgid "Custom"
+msgstr "Пользовательская"
+
+#: pro/modules/advertising/advertising.php:192
+msgid "Google AdSense"
+msgstr "Google AdSense"
+
+#: pro/modules/advertising/advertising.php:195
+msgid "Publisher ID"
+msgstr "Код издателя"
+
+#: pro/modules/advertising/advertising.php:196
+msgid "Slot ID"
+msgstr "ИД слота"
+
+#: pro/modules/advertising/advertising.php:200
+msgid "Code Type"
+msgstr "Тип кода"
+
+#: pro/modules/advertising/advertising.php:212
+msgid "Custom Ads"
+msgstr "Пользовательская реклама"
+
+#: pro/modules/advertising/advertising.php:215
+msgid "Mobile advertising script"
+msgstr "Текст рекламы мобильной версии"
+
+#: pro/modules/advertising/advertising.php:224
+msgid "Ad Presentation"
+msgstr "Рекламная презентация"
+
+#: pro/modules/advertising/advertising.php:230
+msgid "Theme location"
+msgstr "Расположение темы"
+
+#: pro/modules/advertising/advertising.php:235
+msgid "In the header"
+msgstr "В заголовке"
+
+#: pro/modules/advertising/advertising.php:236
+msgid "Above the page content"
+msgstr "Содержание сверху страницы"
+
+#: pro/modules/advertising/advertising.php:237
+msgid "Below the page content"
+msgstr "Содержание снизу страницы"
+
+#: pro/modules/advertising/advertising.php:247
+msgid "Active Pages"
+msgstr "Активные страницы"
+
+#: pro/modules/advertising/advertising.php:250
+msgid "Blog listings"
+msgstr "Списки блога"
+
+#: pro/modules/advertising/advertising.php:251
+msgid "Single posts"
+msgstr "Одиночные записи"
+
+#: pro/modules/advertising/advertising.php:252
+msgid "Static pages"
+msgstr "Статические страницы"
+
+#: pro/modules/advertising/advertising.php:253
+msgid "Taxonomy"
+msgstr "Таксономия"
+
+#: pro/modules/advertising/advertising.php:254
+msgid "Search results"
+msgstr "Результаты поиска"
+
+#: pro/modules/related-posts/related-posts.php:113
+msgid "Related Posts"
+msgstr "Сходные публикации"
+
+#: pro/modules/related-posts/related-posts.php:119
+msgid "Enable display of related content on single posts"
+msgstr "Включить вывод на экран родственного контента в единичных публикациях"
+
+#: pro/modules/related-posts/related-posts.php:127
+msgid "Maximum number of related posts to show"
+msgstr "Макс. число показываемых сходных публикаций"
+
+#: pro/modules/webapp/webapp.php:121
+msgid "External link— open it in the browser?"
+msgstr "Внешняя ссылка — открыть ее в браузере?"
+
+#: pro/modules/webapp/webapp.php:122
+msgid "File link— Do you want to open it in the browser?"
+msgstr "Ссылка на файл — открыть ее в браузере?"
+
+#: pro/modules/webapp/webapp.php:209
+msgid "Enable iOS Web-App Mode"
+msgstr "Включить режим веб-приложения iOS"
+
+#: pro/modules/webapp/webapp.php:213
+msgid "Enable persistence"
+msgstr "Включить сохраняемость"
+
+#: pro/modules/webapp/webapp.php:214
+msgid "Loads the last visited URL for visitors on open."
+msgstr "Загружает последний посещённый URL для открытия посетителями."
+
+#: pro/modules/webapp/webapp.php:221
+msgid "URLs to ignore in Web-App Mode"
+msgstr "Пропустить URL-адреса в реж. веб-прил."
+
+#: pro/modules/webapp/webapp.php:234
+msgid "Notice Message"
+msgstr "Уведомление"
+
+#: pro/modules/webapp/webapp.php:237
+msgid "Show a notice message for iPhone, iPod touch & iPad visitors about my Web-App"
+msgstr "Показывать уведомление о моем веб-приложении посетителям на iPhone, iPod Touch и iPad"
+
+#: pro/modules/webapp/webapp.php:237
+msgid "WPtouch shows a notice bubble on 1st visit letting users know about your Web-App enabled website on iOS devices."
+msgstr "WPtouch показывает пузырек с уведомлением при 1-м посещении, сообщая пользователям о вашем веб-сайте c поддержкой веб-приложения на устройствах iOS."
+
+#: pro/modules/webapp/webapp.php:238
+msgid "Notice message contents"
+msgstr "Содержимое уведомлений"
+
+#: pro/modules/webapp/webapp.php:238
+msgid "[device] and [icon] are dynamic and used to determine the device and iOS version. Do not remove these from your message."
+msgstr "[device] и [icon] - динамические и используются для определения устройства и версии iOS. Не удаляйте их из своего сообщения."
+
+#: pro/modules/webapp/webapp.php:242
+msgid "the notice message will be shown again for visitors"
+msgstr "уведомление будет повторно показано посетителям"
+
+#: pro/modules/webapp/webapp.php:247
+msgid "1 day until"
+msgstr "остался 1 день"
+
+#: pro/modules/webapp/webapp.php:248
+msgid "7 days until"
+msgstr "осталось 7 дней"
+
+#: pro/modules/webapp/webapp.php:249
+msgid "1 month until"
+msgstr "остался 1 месяц"
+
+#: pro/modules/webapp/webapp.php:250
+msgid "Every time"
+msgstr "Каждый раз"
+
+#: pro/modules/webapp/webapp.php:261
+msgid "iPhone Startup Screen"
+msgstr "Заставка для iPhone"
+
+#: pro/modules/webapp/webapp.php:267 pro/modules/webapp/webapp.php:285
+#: pro/modules/webapp/webapp.php:303 pro/modules/webapp/webapp.php:322
+#: pro/modules/webapp/webapp.php:330 pro/modules/webapp/webapp.php:348
+#: pro/modules/webapp/webapp.php:356
+#: themes/foundation/modules/tablets/tablets.php:52
+#: themes/foundation/root-functions.php:422
+#: themes/foundation/root-functions.php:440
+msgid "%d by %d pixels (PNG)"
+msgstr "%d на %d пикселов (PNG)"
+
+#: pro/modules/webapp/webapp.php:279
+msgid "Retina iPhone Startup Screen"
+msgstr "Заставка для iPhone с Retina"
+
+#: pro/modules/webapp/webapp.php:297
+msgid "iPhone 5 Startup Screen"
+msgstr "Заставка для iPhone 5"
+
+#: pro/modules/webapp/webapp.php:316
+msgid "iPad Mini and iPad Startup Screens"
+msgstr "Заставки для iPad mini и iPad"
+
+#: pro/modules/webapp/webapp.php:342
+msgid "Retina iPad Startup Screens"
+msgstr "Заставки для iPad с Retina"
+
+#: pro/professional.php:76
+msgid "License Missing"
+msgstr "Лицензия отсутствует"
+
+#: pro/professional.php:77
+msgid "This installation of WPtouch Pro is currently unlicensed."
+msgstr "Эта установка WPtouch Pro пока нелицензирована."
+
+#: pro/professional.php:88
+msgid "WPtouch Pro %s"
+msgstr "WPtouch Pro %s"
+
+#: pro/professional.php:89
+msgid "A new version of WPtouch Pro is available."
+msgstr "Доступна новая версия WPtouch Pro."
+
+#: pro/professional.php:101
+msgid "Theme Update Available"
+msgstr "Имеется обновление темы"
+
+#: pro/professional.php:102
+msgid "One or more updates are available for your installed themes."
+msgstr "Для установленных тем имеется одно обновление или более."
+
+#: pro/professional.php:116
+msgid "Extension Update Available"
+msgstr "Доступно обновление расширения"
+
+#: pro/professional.php:117
+msgid "One or more updates are available for your installed extensions."
+msgstr "Для установленных расширений имеется одно или более обновлений."
+
+#: pro/professional.php:130
+msgid "WPtouch Pro 3 cannot co-exist with WPtouch 1.x. Disable it first in the WordPress Plugins settings."
+msgstr "WPtouch Pro 3 не может сосуществовать с WPtouch 1.x. Отключите его в настройках плагинов WordPress."
+
+#: pro/professional.php:140
+msgid "WPtouch Pro 3 cannot co-exist with WPtouch Pro 2.x. Disable it first in the WordPress Plugins settings."
+msgstr "WPtouch Pro 3 не может сосуществовать с WPtouch Pro 2.x. Отключите его в настройках плагинов WordPress."
+
+#: pro/professional.php:220 pro/professional.php:244
+msgid "Unknown error"
+msgstr "Неизвестная ошибка"
+
+#: responsive-images/responsive-images.php:92
+msgid "Responsive Images"
+msgstr "Реагирующие изображения"
+
+#: responsive-images/responsive-images.php:98
+msgid "Include desktop optimizations for mobile devices"
+msgstr "Включить оптимизацию рабочего стола для мобильных устройств"
+
+#: responsive-images/responsive-images.php:99
+msgid "Normally only images on mobile are optimized"
+msgstr "Обычно оптимизируются только изображения на мобильном"
+
+#: responsive-images/responsive-images.php:106
+msgid "Performance preference"
+msgstr "Настройки рабочих характеристик"
+
+#: responsive-images/responsive-images.php:111
+msgid "Optimize for page speed"
+msgstr "Оптимизация по скорости"
+
+#: responsive-images/responsive-images.php:112
+msgid "Optimize for quality"
+msgstr "Оптимизация по качеству"
+
+#: scaffold/root-functions.php:75
+msgid "Primary Menu"
+msgstr "Основное меню"
+
+#: scaffold/root-functions.php:78
+msgid "Menus are awesome!"
+msgstr "Меню прекрасны!"
+
+#: simple/default/front-page.php:14
+msgid "Call Us"
+msgstr "Позвонить нам"
+
+#: simple/default/front-page.php:20
+msgid "Our Location"
+msgstr "Наш адрес"
+
+#: simple/default/header-bottom.php:15
+msgid "Toggle Menu"
+msgstr "Переключить меню"
+
+#: simple/root-functions.php:57
+msgid "Site Menu (Pulldown)"
+msgstr "Меню сайта (раскрывающееся)"
+
+#: simple/root-functions.php:60
+msgid "Pull-down menu at top of pages"
+msgstr "Выпадающее меню вверху страниц"
+
+#: simple/root-functions.php:68
+msgid "Front Page Menu"
+msgstr "Меню титульной страницы"
+
+#: simple/root-functions.php:71
+msgid "Displayed below front page menu and content"
+msgstr "Отобр. ниже меню и содержания тит. страницы"
+
+#: simple/root-functions.php:184
+msgid "Enable search on blog pages"
+msgstr "Включить поиск на страницах блога"
+
+#: simple/root-functions.php:198
+msgid "Homepage Call Us"
+msgstr "Позвонить нам главной страницы"
+
+#: simple/root-functions.php:204
+msgid "Phone number"
+msgstr "Номер телефона"
+
+#: simple/root-functions.php:205
+msgid "Enter a phone number and a homepage menu item for 'call us' will be shown."
+msgstr "Введите номер телефона и вы увидите пункт меню главной страницы 'позвонить нам'."
+
+#: simple/root-functions.php:217
+msgid "Homepage Location"
+msgstr "Адрес главной страницы"
+
+#: simple/root-functions.php:223
+msgid "Map address"
+msgstr "Адрес на карте"
+
+#: simple/root-functions.php:224
+msgid "Enter an address and a homepage menu item for 'Our Location' will be shown."
+msgstr "Введите адрес и вы увидите пункт меню главной страницы 'Где мы находимся'."
+
+#: simple/root-functions.php:236
+msgid "Front Page Content"
+msgstr "Содержание титульной страницы"
+
+#: simple/root-functions.php:242
+msgid "Front page alternate content"
+msgstr "Альт. содержание титульной страницы"
+
+#: simple/root-functions.php:243
+msgid "Shows above the front page menu (if enabled), HTML allowed."
+msgstr "Показ. над меню титульной страницы (если включено), HTML разрешен."
+
+#: simple/root-functions.php:280
+msgid "Add a light noise effect to the drop-down menu and theme background"
+msgstr "Добавьте легкий шумовой эффект для раскрыв. меню и фона темы"
+
+#: themes/foundation/default/404.php:6
+msgid "404 Not Found"
+msgstr "404 Не найдено"
+
+#: themes/foundation/default/404.php:8
+msgid "The post or page you requested is no longer available."
+msgstr "Запрашиваемая запись или страница больше не доступна."
+
+#: themes/foundation/default/attachment.php:43
+msgid "&laquo; previous in gallery"
+msgstr "&laquo; предыдущее в галерее"
+
+#: themes/foundation/default/attachment.php:45
+msgid "next in gallery &raquo;"
+msgstr "следующее в галерее &raquo;"
+
+#: themes/foundation/default/comments.php:20
+#: themes/foundation/default/comments.php:26
+msgid "Load More Comments&hellip;"
+msgstr "Загрузить еще комментарии&hellip;"
+
+#: themes/foundation/default/comments.php:38
+msgid "Comments are closed"
+msgstr "Комментарии закрыты"
+
+#: themes/foundation/default/comments.php:48
+msgid "Cancel"
+msgstr "Отмена"
+
+#: themes/foundation/default/comments.php:51
+msgid "Leave a Reply"
+msgstr "Ответить"
+
+#: themes/foundation/default/comments.php:51
+msgid "Leave a Reply to %s"
+msgstr "Ответить на %s"
+
+#: themes/foundation/default/comments.php:54
+msgid "You must be %slogged in%s to post a comment."
+msgstr "Вы должны %sвойти%s, чтобы оставить комментарий."
+
+#: themes/foundation/default/comments.php:61
+msgid "Logged in as"
+msgstr "Вход выполнен как"
+
+#: themes/foundation/default/comments.php:61
+msgid "Log out"
+msgstr "Выйти"
+
+#: themes/foundation/default/comments.php:65
+msgid "Name"
+msgstr "Имя"
+
+#: themes/foundation/default/comments.php:67
+#: themes/foundation/modules/social-links/social-links.php:94
+msgid "E-Mail"
+msgstr "Эл. почта"
+
+#: themes/foundation/default/comments.php:69
+msgid "Website"
+msgstr "Веб-сайт"
+
+#: themes/foundation/default/comments.php:75
+msgid "Publish"
+msgstr "Опубликовать"
+
+#: themes/foundation/default/footer.php:10
+msgid "Back to top"
+msgstr "Наверх"
+
+#: themes/foundation/default/formerror.php:6
+msgid "Comment Error"
+msgstr "Комментировать ошибку"
+
+#: themes/foundation/default/formerror.php:8
+msgid "Please enter all fields correctly to post a comment."
+msgstr "Пожалуйста, введите все поля правильно, чтобы разместить комментарий."
+
+#: themes/foundation/default/formerror.php:9
+msgid "Go back"
+msgstr "Вернуться"
+
+#: themes/foundation/default/one-comment.php:12
+msgid "Your comment is awaiting moderation"
+msgstr "Ваш комментарий ожидает модерации"
+
+#: themes/foundation/default/related-posts.php:4
+msgid "Related"
+msgstr "Сходное"
+
+#: themes/foundation/default/switch-link.php:8
+msgid "mobile"
+msgstr "мобильн."
+
+#: themes/foundation/default/switch-link.php:9
+msgid "desktop"
+msgstr "компьютерная"
+
+#: themes/foundation/modules/base/base.php:69
+msgid "Loading"
+msgstr "Загрузка"
+
+#: themes/foundation/modules/base/preview-bar.php:2
+msgid "Theme Preview"
+msgstr "Просмотр темы"
+
+#: themes/foundation/modules/base/preview-bar.php:3
+msgid "Reload"
+msgstr "Перезагрузить"
+
+#: themes/foundation/modules/custom-posts/custom-posts.php:76
+msgid "Custom Post Support"
+msgstr "Поддержка польз. записей"
+
+#: themes/foundation/modules/custom-posts/custom-posts.php:82
+msgid "Enable custom post-type support"
+msgstr "Включить поддержку польз. типов записей"
+
+#: themes/foundation/modules/custom-posts/custom-posts.php:90
+msgid "Show custom post taxonomy"
+msgstr "Показать польз. таксономию записи"
+
+#: themes/foundation/modules/custom-posts/custom-posts.php:102
+msgid "Custom Post Types"
+msgstr "Пользовательские типы записей"
+
+#: themes/foundation/modules/featured/featured.php:260
+msgid "Featured Slider"
+msgstr "Готовый слайдер"
+
+#: themes/foundation/modules/featured/featured.php:266
+msgid "Enable featured slider"
+msgstr "Включить готовый слайдер"
+
+#: themes/foundation/modules/featured/featured.php:267
+msgid "Requires at least 2 entries to contain featured images"
+msgstr "Требуется хотя бы 2 записи с готовыми изображениями"
+
+#: themes/foundation/modules/featured/featured.php:274
+msgid "Maximum number of posts"
+msgstr "Макс. число публикаций"
+
+#: themes/foundation/modules/featured/featured.php:279
+msgid "3 posts"
+msgstr "3 публикации"
+
+#: themes/foundation/modules/featured/featured.php:280
+msgid "5 posts"
+msgstr "5 публикаций"
+
+#: themes/foundation/modules/featured/featured.php:281
+msgid "10 posts"
+msgstr "10 публикаций"
+
+#: themes/foundation/modules/featured/featured.php:287
+msgid "Automatically slide"
+msgstr "Автоматический слайд"
+
+#: themes/foundation/modules/featured/featured.php:295
+msgid "Continuously slide"
+msgstr "Непрерывный слайд"
+
+#: themes/foundation/modules/featured/featured.php:303
+msgid "Grayscale images (CSS 3 effect)"
+msgstr "Серые изображения (эффект CSS 3)"
+
+#: themes/foundation/modules/featured/featured.php:304
+msgid "Featured slider images will be in grayscale for devices that support CSS filters."
+msgstr "Изображения готового слайдера будут в оттенках серого для устройств, поддерживающих фильтры CSS."
+
+#: themes/foundation/modules/featured/featured.php:319
+msgid "Featured slider posts also show in listings"
+msgstr "Популярные записи на линейке также отражены в листингах"
+
+#: themes/foundation/modules/featured/featured.php:327
+msgid "Slide transition speed"
+msgstr "Скорость смены слайдов"
+
+#: themes/foundation/modules/featured/featured.php:332
+msgid "Slow"
+msgstr "Медленная"
+
+#: themes/foundation/modules/featured/featured.php:333
+msgid "Normal"
+msgstr "Нормальная"
+
+#: themes/foundation/modules/featured/featured.php:334
+msgid "Fast"
+msgstr "Быстрая"
+
+#: themes/foundation/modules/featured/featured.php:345
+msgid "Show latest posts"
+msgstr "Показать последние записи"
+
+#: themes/foundation/modules/featured/featured.php:346
+msgid "Show posts from a specific tag"
+msgstr "Показать записи из конкретного тега"
+
+#: themes/foundation/modules/featured/featured.php:347
+msgid "Show posts from a specific category"
+msgstr "Показать записи из конкретной категории"
+
+#: themes/foundation/modules/featured/featured.php:348
+msgid "Show only specific posts or pages"
+msgstr "Показать только конкретные записи/ стр."
+
+#: themes/foundation/modules/featured/featured.php:354
+msgid "Only this tag"
+msgstr "Только этот тег"
+
+#: themes/foundation/modules/featured/featured.php:363
+msgid "Only this category"
+msgstr "Только эта категория"
+
+#: themes/foundation/modules/featured/featured.php:372
+msgid "Comma-separated list of post/page IDs"
+msgstr "Список разделенных запятыми идентификаторов записей/страниц"
+
+#: themes/foundation/modules/google-fonts/google-fonts.php:10
+msgid "Browser Fonts"
+msgstr "Шрифты браузера"
+
+#: themes/foundation/modules/google-fonts/google-fonts.php:18
+msgid "Typography"
+msgstr "Оформление"
+
+#: themes/foundation/modules/google-fonts/google-fonts.php:24
+msgid "Font style"
+msgstr "Стиль шрифта"
+
+#: themes/foundation/modules/google-fonts/google-fonts.php:25
+msgid "Choose a Google font pairing designed for this theme, or default browser fonts."
+msgstr "Выберите пары шрифтов Google, предназначенные для этой темы, или шрифты браузера по умолчанию."
+
+#: themes/foundation/modules/login/login-html.php:7
+msgid "Remember Me"
+msgstr "Запомнить"
+
+#: themes/foundation/modules/login/login-html.php:9
+msgid "Log In"
+msgstr "Вход"
+
+#: themes/foundation/modules/login/login-html.php:30
+msgid "Lost password?"
+msgstr "Потерялся пароль?"
+
+#: themes/foundation/modules/login/login.php:22
+msgid "Account Username"
+msgstr "Имя пользователя учётной записи"
+
+#: themes/foundation/modules/login/login.php:23
+msgid "Account Password"
+msgstr "Пароль учётной записи"
+
+#: themes/foundation/modules/login/login.php:32
+msgid "Login Form"
+msgstr "Форма регистрации"
+
+#: themes/foundation/modules/login/login.php:38
+msgid "Use fly-in login form"
+msgstr "Использовать форму оперативного входа"
+
+#: themes/foundation/modules/login/login.php:39
+msgid "Will add login links and allow mobile visitors to login to your website from mobile devices"
+msgstr "Добавляет ссылки на вход и разрешает мобильным посетителям входить на веб-сайт с мобильных устройств"
+
+#: themes/foundation/modules/login/login.php:46
+msgid "Show \"Sign-up\" and \"Lost Password?\" links"
+msgstr "Показывать ссылки на \"Регистрацию\" и \"Потерю пароля\"?"
+
+#: themes/foundation/modules/media/media.php:48
+msgid "Video Handling"
+msgstr "Обработка видео"
+
+#: themes/foundation/modules/media/media.php:60
+msgid "CSS only (HTML5 videos)"
+msgstr "Только CSS (видео HTML5)"
+
+#: themes/foundation/modules/media/media.php:61
+msgid "FitVids Method"
+msgstr "Метод FitVids"
+
+#: themes/foundation/modules/media/media.php:62
+msgid "Fluid-Width Method"
+msgstr "Метод Fluid-Width"
+
+#: themes/foundation/modules/sharing/sharing-html.php:1
+msgid "Share"
+msgstr "Поделиться"
+
+#: themes/foundation/modules/sharing/sharing-html.php:1
+msgid "Tweet"
+msgstr "Твитнуть"
+
+#: themes/foundation/modules/sharing/sharing-html.php:1
+msgid "Mail"
+msgstr "Отпр. по эл. почте"
+
+#: themes/foundation/modules/sharing/sharing.php:81
+msgid "Sharing"
+msgstr "Общий доступ"
+
+#: themes/foundation/modules/sharing/sharing.php:87
+msgid "Show sharing links"
+msgstr "Показать ссылки для обмена"
+
+#: themes/foundation/modules/sharing/sharing.php:88
+msgid "Will show Facebook, Twitter, Google+ and Email buttons on single posts."
+msgstr "Отобразит кнопки Facebook, Twitter, Google+ и эл. почты в одиночных записях."
+
+#: themes/foundation/modules/sharing/sharing.php:95
+msgid "Show sharing links on pages"
+msgstr "Показывать совместные ссылки на страницах"
+
+#: themes/foundation/modules/sharing/sharing.php:96
+msgid "Will show Facebook, Twitter, Google+ and Email buttons on pages as well as single posts."
+msgstr "Покажет кнопки Facebook, Twitter, Google+ и эл.почты на страницах, а также единичные публикации."
+
+#: themes/foundation/modules/sharing/sharing.php:103
+msgid "Sharing links location"
+msgstr "Ссылки для общего доступа"
+
+#: themes/foundation/modules/sharing/sharing.php:108
+msgid "Above post content"
+msgstr "Содержание сверху записи"
+
+#: themes/foundation/modules/sharing/sharing.php:109
+msgid "Below post content"
+msgstr "Содержание снизу записи"
+
+#: themes/foundation/modules/sharing/sharing.php:115
+msgid "Color scheme"
+msgstr "Цветовая схема"
+
+#: themes/foundation/modules/sharing/sharing.php:120
+msgid "Theme colors"
+msgstr "Цвета темы"
+
+#: themes/foundation/modules/sharing/sharing.php:121
+msgid "Social network colors"
+msgstr "Цвета социальной сети"
+
+#: themes/foundation/modules/social-links/social-links.php:8
+msgid "Footer Social Links"
+msgstr "Соц. ссылки примечания"
+
+#: themes/foundation/modules/social-links/social-links.php:23
+msgid "Full URL to your Facebook page"
+msgstr "Полный URL-адрес вашей стр. Facebook"
+
+#: themes/foundation/modules/social-links/social-links.php:31
+msgid "Full URL to your Twitter profile"
+msgstr "Полный URL вашего профиля Twitter"
+
+#: themes/foundation/modules/social-links/social-links.php:39
+msgid "Full URL to your Google+ profile"
+msgstr "Полный URL вашего профиля Google+"
+
+#: themes/foundation/modules/social-links/social-links.php:47
+msgid "Full URL to your Instagram profile"
+msgstr "Полный URL вашего профиля в Instagram"
+
+#: themes/foundation/modules/social-links/social-links.php:54
+msgid "Tumblr"
+msgstr "Tumblr"
+
+#: themes/foundation/modules/social-links/social-links.php:55
+msgid "Full URL to your Tumblr profile"
+msgstr "Полный URL вашего профиля в Tumblr"
+
+#: themes/foundation/modules/social-links/social-links.php:63
+msgid "Full URL to your Pinterest page"
+msgstr "Полный URL-адрес вашей стр. Pinterest"
+
+#: themes/foundation/modules/social-links/social-links.php:71
+msgid "Full URL to your Vimeo page"
+msgstr "Полный URL-адрес вашей стр. Vimeo"
+
+#: themes/foundation/modules/social-links/social-links.php:79
+msgid "Full URL to your %s profile"
+msgstr "Полный URL для вашего профиля %s"
+
+#: themes/foundation/modules/social-links/social-links.php:86
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
+#: themes/foundation/modules/social-links/social-links.php:87
+msgid "Full URL to your LinkedIn profile"
+msgstr "Полный URL вашего профиля LinkedIn"
+
+#: themes/foundation/modules/social-links/social-links.php:95
+msgid "E-Mail address"
+msgstr "Адрес эл. почты"
+
+#: themes/foundation/modules/social-links/social-links.php:103
+msgid "Full URL to your RSS feed"
+msgstr "Полный URL вашего RSS-канала"
+
+#: themes/foundation/modules/tablets/tablets.php:46
+msgid "iPad"
+msgstr "iPad"
+
+#: themes/foundation/modules/twitter/twitter.php:66
+msgid "Disabled"
+msgstr "Отключено"
+
+#: themes/foundation/modules/twitter/twitter.php:81
+msgid "Twitter account to use for Tweet display"
+msgstr "Уч. запись Twitter для отображения твитов"
+
+#: themes/foundation/root-functions.php:11
+msgid "Branding"
+msgstr "Фирменная символика"
+
+#: themes/foundation/root-functions.php:12
+msgid "Media Handling"
+msgstr "Обработка медиа"
+
+#: themes/foundation/root-functions.php:13
+msgid "Web-App Mode"
+msgstr "Режим веб-приложения"
+
+#: themes/foundation/root-functions.php:14
+msgid "Bookmark Icons"
+msgstr "Закладка пиктограмм"
+
+#: themes/foundation/root-functions.php:15
+msgid "Advertising"
+msgstr "Реклама"
+
+#: themes/foundation/root-functions.php:16
+msgid "Custom Content"
+msgstr "Пользовательское содержимое"
+
+#: themes/foundation/root-functions.php:45
+msgid "Language: "
+msgstr "Язык:"
+
+#: themes/foundation/root-functions.php:133
+msgid "Install this Web-App on your [device]: tap [icon] then \"Add to Home Screen\""
+msgstr "Установите веб-приложение на [device]: нажмите [icon], затем \"Добавить на главный экран\""
+
+#: themes/foundation/root-functions.php:336
+msgid "Number of posts in post listings"
+msgstr "Количество записей в списках блога"
+
+#: themes/foundation/root-functions.php:337
+msgid "Overrides the WordPress Reading settings for \"Blog pages show at most\""
+msgstr "Переопределяет Настройки чтения WordPress для \"Самых просматриваемых страниц блога\""
+
+#: themes/foundation/root-functions.php:344
+msgid "Excluded categories"
+msgstr "Исключенные категории"
+
+#: themes/foundation/root-functions.php:345
+msgid "Comma separated by category name"
+msgstr "Разд. запятыми названия категорий"
+
+#: themes/foundation/root-functions.php:352
+msgid "Excluded tags"
+msgstr "Исключенные теги"
+
+#: themes/foundation/root-functions.php:353
+msgid "Comma separated by tag name"
+msgstr "Разделен. запятыми названия тегов"
+
+#: themes/foundation/root-functions.php:363
+msgid "Blog"
+msgstr "Блог"
+
+#: themes/foundation/root-functions.php:374
+msgid "Show comments on pages"
+msgstr "Показать комментарии на страницах"
+
+#: themes/foundation/root-functions.php:375
+msgid "Overrides the WordPress settings for showing comments on pages."
+msgstr "Переопределяет настройки WordPress для показа комментариев на страницах."
+
+#: themes/foundation/root-functions.php:385
+#: themes/foundation/root-functions.php:1100
+msgid "Pages"
+msgstr "Страницы"
+
+#: themes/foundation/root-functions.php:398
+msgid "Icon Title"
+msgstr "Заголовок пиктограммы"
+
+#: themes/foundation/root-functions.php:404
+msgid "Icon title"
+msgstr "Подпись значка"
+
+#: themes/foundation/root-functions.php:405
+msgid "When visitors bookmark your website, this will be the title shown."
+msgstr "Когда посетители добавляют закладку вашего сайта, это будет отображаемым названием."
+
+#: themes/foundation/root-functions.php:416
+msgid "Android"
+msgstr "Android"
+
+#: themes/foundation/root-functions.php:434
+msgid "iPhone & iPod touch"
+msgstr "iPhone и iPod touch"
+
+#: themes/foundation/root-functions.php:470
+msgid "Theme Colors"
+msgstr "Цвета темы"
+
+#: themes/foundation/root-functions.php:480
+msgid "Site Logo"
+msgstr "Эмблема сайта"
+
+#: themes/foundation/root-functions.php:486
+msgid "(Scaled by themes to fit logo areas as needed)"
+msgstr "(Масштаб в темах по размеру областей эмблемы)"
+
+#: themes/foundation/root-functions.php:499
+msgid "Smart App Banner"
+msgstr "Умный баннер приложения"
+
+#: themes/foundation/root-functions.php:505
+msgid "Enter your app's %sApp Store ID%s"
+msgstr "Введите %sИД в App Store%s приложения"
+
+#: themes/foundation/root-functions.php:506
+msgid "Your app's unique identifier. Find your ID from the iTunes Link Maker: Search for your app. In the link it provides, your app ID is the nine-digit number in between id and ?mt. For example Angry Birds's ID is 343200656."
+msgstr "Найдите уникальный идентификатор своего приложения от создателя ссылок ITunes: ищите свое приложение. В найденной ссылке ИД вашего приложения - девятизначный номер между ид. и ?mt. Например, ИД Angry Birds - 343200656."
+
+#: themes/foundation/root-functions.php:518
+msgid "Theme Footer"
+msgstr "Примечание темы"
+
+#: themes/foundation/root-functions.php:521
+msgid "Custom footer content (HTML is allowed)"
+msgstr "Содержимое польз. примечания (HTML разрешен)"
+
+#: themes/foundation/root-functions.php:521
+msgid "You can add custom footer content that will be displayed below the switch link."
+msgstr "Вы можете добавить примечание, которое будет отображаться под ссылкой-переключателем."
+
+#: themes/foundation/root-functions.php:886
+msgid "search results for '%s'"
+msgstr "найдено '%s'"
+
+#: themes/foundation/root-functions.php:888
+msgid "%sCategories &rsaquo;%s %s"
+msgstr "%sКатегории &rsaquo;%s %s"
+
+#: themes/foundation/root-functions.php:890
+msgid "Tags &rsaquo; %s"
+msgstr "Теги &rsaquo; %s"
+
+#: themes/foundation/root-functions.php:892
+#: themes/foundation/root-functions.php:894
+#: themes/foundation/root-functions.php:896
+msgid "Archives &rsaquo; %s"
+msgstr "Архивы &rsaquo; %s"
+
+#: themes/foundation/root-functions.php:911
+msgid "Load more from this category"
+msgstr "Загрузить еще из этой категории"
+
+#: themes/foundation/root-functions.php:913
+msgid "Load more tagged like this"
+msgstr "Загрузить еще помеченные так же"
+
+#: themes/foundation/root-functions.php:915
+msgid "Load more from this day"
+msgstr "Загрузить еще с этого дня"
+
+#: themes/foundation/root-functions.php:917
+msgid "Load more from this month"
+msgstr "Загрузить еще с этого месяца"
+
+#: themes/foundation/root-functions.php:919
+msgid "Load more from this year"
+msgstr "Загрузить еще с этого года"
+
+#: themes/foundation/root-functions.php:921
+msgid "Load more in this section"
+msgstr "Загрузить еще в этом разделе"
+
+#: themes/foundation/root-functions.php:923
+msgid "Load more entries"
+msgstr "Загрузить еще записи"
+
+#: themes/foundation/root-functions.php:1049
+msgid "Post"
+msgstr "Запись"
+
+#: themes/foundation/root-functions.php:1051
+msgid "Page"
+msgstr "Страница"
+
+#. Plugin Name of the plugin/theme
+msgid "WPtouch Pro"
+msgstr "WPtouch Pro"
+
+#. Plugin URI of the plugin/theme
+msgid "http://www.bravenewcode.com/product/wptouch-pro/"
+msgstr "http://www.bravenewcode.com/product/wptouch-pro/"
+
+#. Description of the plugin/theme
+msgid "The easy way to create great mobile experiences with your WordPress website."
+msgstr "Легкий способ создавать функциональные возможности для мобильных устройств с помощью вашего сайта WordPress."
+
+#. Author of the plugin/theme
+msgid "BraveNewCode Inc."
+msgstr "BraveNewCode Inc."
+
+#. Author URI of the plugin/theme
+msgid "http://www.bravenewcode.com/"
+msgstr "http://www.bravenewcode.com/"

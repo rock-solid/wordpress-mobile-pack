@@ -1,0 +1,1033 @@
+/* @override http://wptp3.local.com/wp-content/wptouch-data/themes/bauhaus/default/style.css?ver=3.1.7 */
+
+/* Bauhaus CSS */
+
+/*
+Responsive styles can be applied via '.smartphone', '.tablet', '.portrait' & '.landscape' classes.
+These classes are automatically applied and manipulated on <body> by Foundation.
+*/
+
+body {
+	font-family: "Helvetica Neue", Helvetica, Geneva, Arial, sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	letter-spacing: -1px;
+}
+
+/* @group Header */
+
+header a, header div {
+	color: rgba(0,0,0,.9);
+	text-shadow: rgba(255,255,255,.2) 0px 1px 0px;
+}
+
+header {
+	position: relative;
+	opacity: 1;
+	overflow: hidden;
+	height: 54px;
+	z-index: 4;
+}
+
+header a.header-center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	width: 68%;
+}
+
+header h1 {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin: 0;
+	font-size: 150%;
+	font-weight: normal;
+	font-style: normal;
+	line-height: 2.25;
+}
+
+header img {
+	max-height: 44px;
+	position: relative;
+	max-width: 100%;
+}
+
+.portrait header img, .landscape header img {
+	top: 4px;
+}
+
+#menu-toggle {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+
+#menu-toggle:after {
+	content: "\f0c9";
+	display: block;
+	font: 110% 'FontAwesome', sans-serif;
+	padding: 18px;
+}
+
+#search-toggle {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+}
+
+#search-toggle:after {
+	content: "\f002";
+	display: block;
+	font: 110% 'FontAwesome', sans-serif;
+	padding: 18px;
+}
+
+#menu-toggle.touched:after, #search-toggle.touched:after {
+	color: rgba(0,0,0,.3);
+}
+
+.login-link {
+	padding-left: 12px;
+}
+
+.login-link i {
+	margin-right: 5px;
+}
+
+#menu {
+	display: none;
+	position: absolute;
+	top: 54px;
+	z-index: 3;
+	right: 0;
+	left: 0;
+	display: none;
+}
+
+#wptouch-search-inner {
+	background-color: rgba(0,0,0,.1);
+	text-align: center;
+	padding: 3px;
+}
+
+#wptouch-search-inner input[type="text"] {
+	width: 65%;
+	-webkit-appearance: none;
+	border: 1px solid rgba(0,0,0,.3);
+	padding: 4px;
+	background-color: rgba(255,255,255,.9);
+	font-size: 90%;
+}
+
+#wptouch-search-inner input[type="text"]:focus {
+	background-color: white;
+}
+
+#wptouch-search-inner input[type="submit"] {
+	border: 1px solid rgba(0,0,0,.2);
+	padding: 2px 10px 4px;
+	-webkit-appearance: none;
+	background-color: rgba(255,255,255,.1);
+	color: rgba(0,0,0,.8);
+	font-size: 95%;
+	vertical-align: bottom;
+}
+
+#search-dropper {
+	overflow: hidden;
+	max-height: 0;
+	-webkit-transition: max-height 400ms ease;
+}
+
+#search-dropper.toggled {
+	max-height: 50px;
+}
+
+.touched {
+	background-color: rgba(0,0,0,.1);
+}
+
+.page-wrapper .wptouch-custom-ad {
+	margin: 0 0 -3px;
+}
+
+/* @end */
+
+/* @group Slider */
+
+#slider {
+	background: rgba(0,0,0,.85);
+	text-shadow: rgba(0,0,0,.1) 0px 1px 1px;
+}
+
+.swipe-wrap > div {
+	height: 220px;
+	overflow: hidden;
+}
+
+#slider p {
+	background: none;
+}
+
+#slider a p.featured-date {
+	color: #999;
+	font-size: 80%;
+	top: 15px;
+	display: block;
+	text-align: left;
+	left: 100px;
+	text-shadow: none;
+	text-transform: uppercase;
+}
+
+#slider a p.heading-font {
+	position: absolute;
+	top: 30px;
+	left: 100px;
+	text-align: left;
+	text-shadow: rgba(0,0,0,.2) 0px 1px 0px;
+	letter-spacing: -1px;
+	font-weight: normal;
+	overflow: hidden;
+	-o-text-overflow: ellipsis;
+	-ms-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	-webkit-box-orient: vertical;
+	-moz-box-orient: vertical;
+	-ms-box-orient: vertical;
+	box-orient: vertical;
+	display: -webkit-box;
+	-webkit-line-clamp: 5;
+	padding-right: 5%;
+	margin: 3px 0 0;
+	font-size: 160%;
+	line-height: 115%;
+	height: 5.3em;
+}
+
+#slider a p.heading-font:after {
+	content: "\f105";
+	margin-left: 8px;
+	top: 2px;
+	position: relative;
+	font-family: FontAwesome;
+}
+
+.landscape #slider a p.heading-font, .landscape #slider a p.featured-date {
+	left: 160px;
+}
+
+#slider .comments-number {
+	display: block;
+	position: absolute;
+	z-index: 1;
+	top: 5px;
+	left: 50px;
+	text-align: center;
+	width: 18px;
+}
+
+#slider .comments-number span {
+	color: white;
+	z-index: 3;
+	position: relative;
+	font-size: 95%;
+	font-weight: bold;
+	margin-left: -25%;
+	top: 6px;
+}
+
+#slider .comments-number:after {
+	content: "\f075";
+	display: block;
+	font: 36px 'FontAwesome', sans-serif;
+	position: absolute;
+	top: 0;
+	left: -60%;
+}
+
+ul.dots {
+	top: 180px;
+	right: 0;
+	left: 0;
+	height: 20px;
+}
+
+.landscape ul.dots {
+	top: 230px;
+}
+
+#slider img {
+	-webkit-filter: blur(2px) saturate(200%);
+	opacity: .2;
+}
+
+#slider img.clone {
+	width: 210px;
+	height: 210px;
+	position: absolute;
+	top: 5px;
+	left: -90px;
+	-webkit-box-reflect: none;
+	-webkit-filter: saturate(100%);
+	opacity: 1;
+}
+
+/* Need this because the setting for featured grayscale is overridden by the above */
+
+#slider.grayscale img {
+	-webkit-filter: saturate(100%) grayscale(1) contrast(1.1);
+}
+
+/* @end */
+
+/* @group Post Loop */
+
+.loop-link {
+	display: block;
+	position: relative;
+	min-height: 80px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.loop-link i.arrow {
+	font-size: 34px;
+	position: absolute;
+	right: 3%;
+	top: 50%;
+	margin-top: -18px;
+}
+
+.loop-link .post-date-author {
+	color: rgba(0,0,0,.5);
+	display: block;
+	font-size: 70%;
+	margin-left: 50px;
+	padding-top: 10px;
+	text-transform: uppercase;
+}
+
+#content .loop-link h2 {
+	display: inline-block;
+	width: 60%;
+	font-size: 130%;
+	line-height: 130%;
+	margin: 0;
+	padding-bottom: 10px;
+	overflow: hidden;
+	font-weight: normal;
+	font-style: normal;
+}
+
+.loop-link img.post-thumbnail {
+	width: 64px;
+	height: 64px;
+	margin: 12px 10px 0;
+	float: left;
+	z-index: 1;
+	position: relative;
+}
+
+.loop-link .date-circle {
+	position: relative;
+	font-size: 215%;
+	line-height: 110%;
+	display: block;
+	float: left;
+	margin: 12px 10px 0;
+	width: 62px;
+	height: 48px;
+	border: 1px solid rgba(0,0,0,.1);
+	z-index: 1;
+	padding-top: 14px;
+	text-align: center;
+	overflow: hidden;
+	color: rgba(0,0,0,.7);
+}
+
+.loop-link .date-circle .month {
+	text-transform: uppercase;
+	font-size: 40%;
+	position: absolute;
+	top: -1px;
+	right: 0;
+	left: 0;
+	letter-spacing: -1px;
+}
+
+.loop-link .date-circle .day {
+	position: absolute;
+	top: 18px;
+	right: 0;
+	left: 0;
+	font-size: 80%;
+	letter-spacing: -1px;
+}
+
+.loop-link .bottom-border {
+	border-bottom: 1px solid rgba(0,0,0,.15);
+	display: block;
+	position: absolute;
+	bottom: 0;
+	left: 88px;
+	right: 0;
+}
+
+.no-thumbs.loop-link .bottom-border {
+	left: 40px;
+}
+
+.no-thumbs.loop-link .post-date-author, #content .no-thumbs.loop-link h2 {
+	margin-left: 40px;
+}
+
+/* @group Comment Bubble */
+
+.loop-link .comments {
+	position: absolute;
+	z-index: 2;
+	top: 5px;
+	left: 58px;
+	text-align: center;
+	width: 18px;
+}
+
+.no-thumbs.loop-link .comments {
+	top: 20px;
+	left: 10px;
+}
+
+.loop-link .comments span {
+	color: white;
+	z-index: 3;
+	position: relative;
+	font-size: 70%;
+	font-weight: bold;
+	vertical-align: -2px;
+}
+
+.loop-link .comments:after {
+	content: "\f075";
+	display: block;
+	font: 30px 'FontAwesome', sans-serif;
+	position: absolute;
+	left: 50%;
+	margin-left: -15px;
+	top: 0;
+}
+
+.no-thumbs.loop-link .comments:after {
+	-moz-transform: scaleX(-1);
+	-o-transform: scaleX(-1);
+	-webkit-transform: scaleX(-1);
+	transform: scaleX(-1);
+	filter: FlipH;
+	-ms-filter: "FlipH";
+}
+
+/* @end */
+
+/* @end */
+
+/* @group Single */
+
+/* @group Crumb Path (incomplete) */
+
+.crumb-path {
+	background-image: -webkit-gradient(radial, 50% 0%,0,50% 0%,400, to(rgba(0, 0, 0,0)), from(rgba(255, 255, 255, 0.50)));
+	z-index: 2;
+	text-align: left;
+	opacity: .9;
+}
+
+.crumb-path p {
+	font-size: 80%;
+	padding: 6px 12px;
+	margin: 0;
+}
+
+.crumb-path p span {
+	display: inline-block;
+	width: 65%;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.landscape .crumb-path p span {
+	width: 78%;
+}
+
+.ios7 .crumb-path {
+	position: -webkit-sticky;
+	top: 0px;
+}
+
+/* @end */
+
+.sharing-options.style-default.share-top a {
+	font-size: 80%;
+	font-weight: normal;
+	font-style: normal;
+}
+
+.sharing-options +.nav-controls {
+	margin-bottom: -11px;
+}
+
+/* @group Posts Nav */
+
+.nav-controls {
+	background-color: rgba(0,0,0,.05);
+	font-size: 90%;
+	font-weight: bold;
+	border-top: 1px solid rgba(0,0,0,.05);
+	border-bottom: 1px solid rgba(0,0,0,.05);
+	padding: 10px 20px;
+	text-align: center;
+	margin: -1px 0;
+	color: rgba(0,0,0,.7);
+}
+
+.nav-controls div {
+	display: inline-block;
+	width: 49%;
+	vertical-align: top;
+	float: left;
+}
+
+.nav-controls a:before {
+	margin-right: 3px;
+}
+
+.nav-controls a {
+	font-weight: normal;
+	font-style: normal;
+	display: block;
+}
+
+.nav-controls a.prev-post {
+	padding-right: 8px;
+}
+
+.nav-controls .previous {
+	text-align: left;
+}
+
+.nav-controls .next {
+	text-align: right;
+	float: right;
+}
+
+.nav-controls a:after {
+	margin-left: 3px;
+}
+
+/* @end */
+
+/* @end */
+
+/* @group Posts / Pages Shared CSS */
+
+.post-page-content {
+	color: rgba(0,0,0,.7);
+	font-size: 100%;
+	line-height: 165%;
+	padding-bottom: 50px;
+	overflow: hidden;
+}
+
+.post-page-content img.aligncenter {
+	margin-left: -20px;
+	margin-right: -20px;
+	padding: 0 !important;
+	border: none !important;
+}
+
+.post-page-content table {
+	margin-left: 20px;
+	margin-right: 20px;
+	max-width: 100%;
+	overflow: scroll;
+}
+
+.post-page-content h1, .post-page-content h2, .post-page-content h3, .post-page-content h4, .post-page-content h5, .post-page-content h6, .post-page-content dl, .post-page-content address {
+	margin-left: 20px;
+	margin-right: 20px;
+}
+
+.post-page-content ul, .post-page-content ol {
+	margin-left: 15px;
+	margin-right: 15px;
+	list-style-type: circle;
+}
+
+.post-page-content li {
+	margin-left: 10;
+	margin-right: 10;
+	padding-right: 0;
+	padding-left: 0;
+}
+
+.post-page-content > p, .post-page-content > div > p {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.wptouch-shortcode-webapp-mobile, .wptouch-shortcode-webapp-only, .wptouch-shortcode-webapp-only {
+	margin-top: 15px;
+	padding-left: 20px;
+	padding-right: 20px;
+	overflow: hidden;
+	display: block;
+}
+
+.post-page-content p a, .comment-body a {
+	border-bottom-style: dotted;
+	border-bottom-width: 1px;
+}
+
+.post-page-content .post-thumbnail {
+	margin: 0 0 -8px;
+	padding: 0;
+	min-width: 100%;
+	height: auto;
+}
+
+.post-page-head-area .post-date-comments, .post-page-head-area .post-author {
+	font-size: 75%;
+	color: rgba(0,0,0,.5);
+	margin-right: 10px;
+	margin-left: 10px;
+}
+
+.post-page-content .cat-tags {
+	margin-left: 20px;
+	margin-right: 20px;
+	font-size: 90%;
+	margin-top: 15px;
+	text-align: left;
+}
+
+.post-page-head-area.bauhaus {
+	background-image: -webkit-gradient(radial, 50% 0%,0,50% 0%,500, from(rgba(0, 0, 0,0)), to(rgba(255, 255, 255, 0.50)));
+	text-align: center;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	text-shadow: rgba(255,255,255,.3) 0px 1px 0px;
+	overflow: hidden;
+}
+
+.post-page-head-area.bauhaus h2.post-title {
+	color: rgba(0,0,0,.7);
+	letter-spacing: -2px;
+	font-size: 180%;
+	font-weight: normal;
+	margin: 0 !important;
+	padding: 10px 12px;
+}
+
+.post-page-content blockquote {
+	border-left: 3px solid rgba(0,0,0,.2);
+	margin-left: 30px;
+	margin-right: 30px;
+	padding-left: 10px;
+}
+
+.post-page-content .wptouch-ad {
+	padding: 0;
+}
+
+/* @end */
+
+/* @group Related Posts */
+
+.related-posts {
+	padding-top: 0;
+	background-color: rgba(255,255,255,.5);
+	padding: 15px;
+	border-top: 1px solid rgba(0,0,0,.1);
+	color: rgba(0,0,0,.7);
+}
+
+.related-posts ul li {
+	position: relative;
+	list-style-type: none;
+	margin: 0 0 20px;
+}
+
+.related-posts h3 {
+	padding-bottom: 10px;
+	margin-top: 0;
+	margin-bottom: 0;
+	font-size: 1.6em;
+}
+
+.related-posts li.has-thumb  p {
+	margin-top: 5px;
+	font-size: .9em;
+}
+
+.related-posts li.has-thumb  a, .related-posts .has-thumb p {
+	padding-left: 60px;
+	display: block;
+}
+
+.related-posts .has-thumb img {
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	top: 3px;
+	border: 1px solid rgba(0,0,0,.1);
+	border-radius: 25px;
+}
+
+.rtl .related-posts img {
+	left: 0;
+}
+
+/* @end */
+
+/* @group Comments */
+
+.no-com-bubbles #slider .comments-number, .no-com-bubbles .loop-link .comments {
+	display: none;
+}
+
+#comments {
+	color: rgba(0,0,0,.7);
+	background-color: rgba(255,255,255,.3);
+	border-top: 1px solid rgba(0,0,0,.1);
+	border-bottom: 1px solid rgba(0,0,0,.1);
+	padding-bottom: 20px;
+}
+
+#responses, #respond {
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+#respond {
+	padding-top: 20px;
+}
+
+.comment {
+	margin-left: 15px;
+	padding-right: 15px;
+}
+
+.comment-author, .comment-time, .comment-body {
+	margin-left: 65px;
+}
+
+.comment-author {
+	font-weight: bold;
+	font-size: 95%;
+}
+
+.comment-time {
+	font-size: 75%;
+	color: rgba(0,0,0,.4);
+}
+
+#comments .comment-avatar {
+	width: 54px;
+	height: 54px;
+	border-radius: 150px;
+	border: 1px solid rgba(255,255,255,.5);
+	float: left;
+	right: 2px;
+	position: relative;
+	overflow: hidden;
+}
+
+#comments .comment-avatar img {
+	width: 100%;
+	height: auto;
+}
+
+.comment .comment-body {
+	font-size: 90%;
+	padding-bottom: 15px;
+}
+
+.comment .comment-body:after {
+	content: '';
+	display: block;
+	border-bottom: 1px solid rgba(0,0,0,.15);
+	margin-left: -65px;
+	margin-right: -15px;
+}
+
+#comments blockquote {
+	margin-left: 0;
+	padding-left: 10px;
+}
+
+#comments .load-more-comments-wrap a {
+	font-size: 95%;
+}
+
+/* @group Commentform */
+
+form#commentform input, form#commentform textarea {
+	border-radius: 4px;
+	border-top-left-radius: 12px;
+}
+
+.dark-post-head form#commentform button#submit {
+	color: rgba(255,255,255,.8);
+	border-radius: 4px;
+}
+
+/* @end */
+
+/* @end */
+
+/* @group Search */
+
+.search span.select-wrap {
+	display: block;
+	margin-top: 25px;
+}
+
+.search span.select-wrap .search-select {
+	margin-left: auto;
+	margin-right: auto;
+	display: inline-block;
+	background-color: transparent;
+	-webkit-appearance: none;
+	padding: 4px;
+	border-style: none;
+	font-size: 100%;
+}
+
+.search span.select-wrap i.icon-caret-down {
+	content: "\f063";
+	font: 110% 'FontAwesome', sans-serif;
+	position: relative;
+	z-index: 2;
+	top: 1px;
+	right: 2px;
+}
+
+.no-results {
+	text-align: center;
+	display: block;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+
+/* @end */
+
+/* @group Login Fly-In */
+
+.dark-post-head .wptouch-login-wrap, .dark-post-head .wptouch-login-wrap a {
+	color: rgba(255,255,255,.8);
+	text-shadow: rgba(0,0,0,.2) 0 -1px 0;
+}
+
+.dark-post-head .wptouch-login-wrap #wp-submit {
+	color: rgba(255,255,255,.8);
+	border: 1px solid rgba(0,0,0,.2);
+	background-color: rgba(0,0,0,.1);
+}
+
+/* @end */
+
+/* @group Footer */
+
+.load-more-link, .load-more-comments-wrap a {
+	padding-top: 20px;
+	padding-bottom: 20px;
+	font-weight: normal;
+	font-style: normal;
+}
+
+#switch {
+	margin-top: 15px;
+	margin-bottom: -15px;
+}
+
+.page-wrapper .footer {
+	margin-top: 25px;
+	font-size: 75%;
+}
+
+.footer, a.back-to-top {
+	font-size: 80%;
+	color: rgba(0,0,0,.5);
+	font-weight: normal;
+	font-style: normal;
+}
+
+/* @end */
+
+/* @group Circles */
+
+.circles #slider img.clone {
+	border-radius: 225px;
+}
+
+.circles .loop-link .date-circle {
+	border-radius: 100px;
+}
+
+.circles .loop-link img.post-thumbnail {
+	border-radius: 150px;
+}
+
+.landscape.circles #slider img.clone {
+	width: 250px;
+	height: 250px;
+	border-radius: 225px;
+	left: -30px;
+	top: 12px;
+}
+
+.landscape.circles #slider .comments-number {
+	left: 130px;
+	top: 15px;
+}
+
+/* @end */
+
+/* @group Round Squares */
+
+.roundsquares #slider .comments-number {
+	left: 85px;
+	top: 0;
+}
+
+.roundsquares #slider img.clone {
+	left: -85px;
+	border-radius: 30px;
+}
+
+.landscape.roundsquares #slider img.clone {
+	left: 0;
+}
+
+.landscape.roundsquares #slider .comments-number {
+	left: 160px;
+}
+
+.roundsquares .loop-link .date-circle {
+	border-radius: 14px;
+}
+
+.roundsquares .loop-link img.post-thumbnail, .roundsquares .related img.wp-post-image, .roundsquares .comment-avatar {
+	border-radius: 14px;
+}
+
+/* @end */
+
+/* @group Dark */
+
+.dark-body .loop-link .post-date-author {
+	color: rgba(255,255,255,.4);
+}
+
+.dark-header #menu-toggle.touched:after, .dark-header #search-toggle.touched:after {
+	color: rgba(255,255,255,.3);
+}
+
+.dark-header #wptouch-search-inner input[type="submit"] {
+	color: rgba(255,255,255,.9);
+}
+
+.dark-header .loop-link .date-circle {
+	color: rgba(255,255,255,.8);
+}
+
+.dark-header header a, .dark-header header div {
+	color: rgba(255,255,255,.9);
+	text-shadow: rgba(0,0,0,.2) 0px -1px 0px;
+}
+
+.dark-body .post-page-content, .dark-body .footer, .dark-body .back-to-top {
+	color: rgba(255,255,255,.8);
+}
+
+.dark-body .loop-link .bottom-border {
+	border-bottom: 1px solid rgba(255,255,255,.15);
+}
+
+.dark-body .sharing-options a {
+	border-top-color: rgba(0,0,0,.1);
+	border-bottom-color: rgba(0,0,0,.1);
+	text-shadow: none;
+}
+
+.dark-post-head .post-page-head-area h2.post-title, .dark-post-head .post-page-head-area select, .dark-post-head .post-page-head-area .archive-text {
+	color: rgba(255,255,255,.8);
+	text-shadow: rgba(0,0,0,.2) 0px -1px 0px;
+}
+
+.dark-post-head .post-page-head-area .post-date-comments, .dark-post-head .post-page-head-area .post-author {
+	color: rgba(255,255,255,.6);
+	text-shadow: rgba(0,0,0,.1) 0px -1px 0px;
+}
+
+.dark-post-head .post-page-head-area {
+	background-image: -webkit-gradient(radial, 50% 0%,0,50% 0%,500, from(rgba(255, 255, 255, 0.20)), to(rgba(0, 0, 0,0)));
+}
+
+.dark-body #comments {
+	color: rgba(255,255,255,.7);
+	background-color: rgba(0,0,0,.05);
+	border-top: 1px solid rgba(0,0,0,.1);
+	border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.dark-body .comment-time {
+	color: rgba(255,255,255,.4);
+}
+
+.dark-body .comment .comment-body:after {
+	border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+.dark-body .comment-avatar {
+	border: 1px solid rgba(0,0,0,.1);
+}
+
+.dark-body .related-posts {
+	background-color: rgba(0,0,0,.2);
+}
+
+/* @end */
+
+/* @group Web App Mode */
+
+.ios7.web-app-mode.has-fixed header {
+	position: -webkit-sticky;
+	opacity: 0.97;
+	padding-top: 20px;
+	top: 0;
+}
+
+.ios7.web-app-mode .crumb-path {
+	position: -webkit-sticky;
+	top: 74px;
+}
+
+.ios7.smartphone.web-app-mode #menu {
+	position: fixed;
+	top: 74px;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+}
+
+.ios7.web-app-mode #search-dropper {
+	position: -webkit-sticky;
+	top: 74px;
+	z-index: 3;
+}
+
+/* @end */

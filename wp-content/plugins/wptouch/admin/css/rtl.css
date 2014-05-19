@@ -1,0 +1,504 @@
+/* @override http://wptp3.local.com/wp-content/plugins/wptouch-pro-3/admin/css/rtl.css?ver=3.1 */
+
+/* @group General */
+body {
+  direction: rtl;
+  unicode-bidi: embed;
+}
+
+#wptouch-settings-area.wrap {
+	margin-right: 0px;
+	margin-left: 20px;
+}
+
+#wptouch-settings-area h2.logo-title {
+	padding-left: 0px;
+	padding-right: 45px;
+	background: url(../images/title-icon-blue.png) no-repeat right center;
+}
+
+#wptouch-settings-area h2.logo-title .title-orange {
+	unicode-bidi: isolate;
+}
+
+#wptouch-settings-area .wptouch-section .new,#wptouch-settings-area .wptouch-section .advanced {
+	margin-left: 0px;
+	margin-right: 2px;
+}
+
+#admin-spinner {
+	left: auto;
+	right: 8px;
+}
+
+#wptouch-settings-area .alert a.btn {
+	top: 3px;
+	left: 3px;
+	right: auto;
+}
+
+/* @end */
+
+/* @group Nano */
+
+.nano .content {
+	left: 0;
+	right: 0;
+}
+
+.nano > .pane {
+	right: auto;
+	left: 1px;
+}
+
+/* @end */
+
+/* @group Colorpicker */
+
+.farbtastic .color, .farbtastic .overlay {
+	left: auto;
+	right: 47px;
+}
+
+/* @end */
+
+/* @group What's New */
+
+#touchboard-left {
+	margin-left: 265px;
+	margin-right: 0;
+}
+
+#change-log h4 {
+	padding-left: 0px;
+	padding-right: 20px;
+}
+
+.overview-right-wrap {
+	float: left;
+}
+
+.rtl .overview-box-appearance h3 {
+	padding: 8px 15px 8px 8px;
+	text-align: right;
+	float: none;
+}
+
+#touchboard-left h3 span {
+	float: left;
+	padding-left: 8px;
+}
+
+#touchboard-left h3 span strong {
+}
+
+#touchboard-links ul {
+	padding-left: 0px;
+	padding-right: 15px;
+}
+
+.overview-right-wrap h3 a {
+	float: left;
+}
+
+#touchboard-left .cloud-top-text {
+	position: absolute;
+	top: 14%;
+	left: 60%;
+	width: 36%;
+	text-align: right;
+}
+
+/* @end */
+
+/* @group Uploader */
+
+.qq-upload-drop-area, .qq-upload-extra-drop-area {
+	left: auto;
+	right: 0;
+}
+
+.qq-upload-file, .qq-upload-spinner, .qq-upload-size, .qq-upload-cancel, .qq-upload-failed-text, .qq-upload-finished {
+	margin-right: 0px;
+	margin-left: 12px;
+}
+
+.uploader .spinner {
+	margin-right: auto;
+	margin-left: auto;
+	left: 0;
+	right: 0;
+}
+
+.uploader .image-placeholder {
+	margin-right: 0px;
+	float: right;
+	margin-left: 15px;
+}
+
+.uploader .image-placeholder img {
+	right: auto;
+	left: 1px;
+}
+
+/* @end */
+
+/* @group Carousels */
+
+#wptouch-settings-content .carousel ul.dots li {
+	margin-right: 3px;
+	margin-left: 3px;
+}
+
+#touchboard-carousel.carousel .carousel-control.left {
+	left: inherit;
+	right: 15px;
+}
+
+#touchboard-carousel.carousel .carousel-control.right {
+	right: inherit;
+	left: 15px;
+}
+
+/* @end */
+
+/* @group Notifications */
+
+.dropdown-menu.notifications-div:before {
+	left: 12%;
+}
+
+.dropdown-menu.notifications-div:after {
+	left: 12.4%;
+}
+
+.notifications.dropdown {
+	text-align: left;
+	float: left;
+}
+
+.notifications-btn {
+	margin-right: 0px;
+	margin-left: 0;
+}
+
+.dropdown .number {
+	right: auto;
+	float: left;
+	left: -8px;
+}
+
+#preview-notification {
+	margin-left: 0px;
+	padding-right: 0px;
+	float: right;
+	margin-right: 35px;
+	padding-left: 2px;
+}
+
+#preview-notification span {
+	margin-left: 0px;
+	margin-right: 2px;
+}
+
+.notifications ul li {
+	position: relative;
+	text-align: right;
+	color: #464646;
+	font-weight: bold;
+	font-size: 14px;
+	min-height: 20px;
+	border-bottom: 1px solid #e5e5e5;
+	padding: 15px 30px 15px 15px;
+	margin: 0;
+	text-shadow: #fff 0 1px 0;
+	direction: rtl;
+}
+
+.notifications ul li:before {
+	margin-right: -20px;
+	margin-left: 5px;
+}
+
+.notifications li.no-notifications {
+	left: 0;
+	right: 0;
+}
+
+#ajax-notifications .dismiss {
+	background-color: #5A90B1;
+	width: 16px;
+	height: 16px;
+	position: absolute;
+	color: #fff;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	border-radius: 18px;
+	cursor: pointer;
+	display: none;
+	top: 17px;
+	font: bold 8px Tahoma, Geneva, sans-serif;
+	right: 7px;
+}
+
+/* @end */
+
+/* @group Form Elements */
+
+#wptouch-settings-area .button {
+	margin-right: 0px;
+	margin-left: 5px;
+}
+
+#wptouch-settings-area input[type="radio"] {
+	margin-right: 0px;
+	margin-left: 5px;
+}
+
+#wptouch-settings-area input[type="checkbox"] {
+	margin-right: 0px;
+	margin-left: 2px;
+}
+
+/* @end */
+
+/* @group Sections & Misc */
+
+.wptouch-section h3 {
+	text-align: left;
+	float: right;
+	padding-left: 10px;
+}
+
+#wptouch-settings-area .wptouch-section ul.padded {
+	padding-left: 0px;
+	border-left: 0px;
+	padding-right: 20px;
+	border-right: 1px solid #d0dfe9;
+}
+
+#wptouch-settings-area .wptouch-section ul.padded li {
+	margin-left: 0px;
+	margin-right: 0;
+}
+
+#wptouch-settings-area .wptouch-section table td a.dismiss {
+	margin-left: 0px;
+	margin-right: 10px;
+}
+
+#wptouch-settings-area #plugin-compat-setting.nano ul li {
+	padding-left: 0px;
+	padding-right: 5px;
+}
+
+/* @end */
+
+/* @group Branding */
+
+#section-foundation-colors .fdn-colors .dropdown-toggle span {
+	margin-right: 0px;
+	margin-left: 8px;
+}
+
+#section-foundation-colors .fdn-colors .dropdown-menu:after {
+	right: 10px;
+}
+
+#section-foundation-colors .fdn-colors .dropdown-menu:before {
+	right: 9px;
+}
+
+#section-foundation-colors .fdn-colors .dropdown-menu {
+	right: -5px;
+}
+
+#section-foundation-colors .fdn-colors .dropdown-menu p {
+	text-align: left;
+}
+
+#section-foundation-colors .fdn-colors  .desktop-colors-ul {
+	padding-left: 0px;
+	margin-right: auto;
+	margin-left: auto;
+	padding-right: 18px;
+}
+
+#wptouch-settings-content .colorpicker, .selected-color {
+	margin-left: 0px;
+	margin-right: 20%;
+}
+
+/* @end */
+
+/* @group Menus */
+
+#pack-set-menu-area .section {
+	left: auto;
+	right: 5px;
+	float: right;
+}
+
+#left-area li div.title {
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#left-area .header {
+	text-align: right;
+}
+
+#right-area {
+	margin-right: 1%;
+	margin-left: 5%;
+}
+
+#pack-set-menu-area #right-area .header {
+	text-align: right;
+	padding-right: 10px;
+	padding-left: 10px;
+}
+
+#pack-set-menu-area #right-area ul#menu-set-options {
+	float: left;
+}
+
+ul.menu-tree li {
+	clear: right;
+}
+
+ul.menu-tree li input {
+	right: auto;
+	left: 10px;
+	float: left;
+}
+
+ul.menu-tree a.expand {
+	padding-left: 0px;
+	padding-right: 14px;
+}
+
+ul.menu-tree li .drop-target {
+	margin-right: 10px;
+	margin-left: 10px;
+	float: right;
+}
+
+#default-trash-area {
+	margin-left: 0px;
+	margin-right: 1.5%;
+}
+
+#default-trash-area span {
+	left: auto;
+	right: 5px;
+}
+
+#default-trash-area > div {
+	float: right;
+}
+
+#default-area {
+	border-right: 0px;
+	border-left: 1px solid #ccc;
+}
+
+#default-trash-area span.text {
+	padding-left: 0px;
+	padding-right: 29px;
+}
+
+ul.menu-tree a.expand {
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAVCAMAAABMmV/8AAAAHlBMVEVmZmZmZmZgYGBmZmZmZmZjY2NmZmYAAABhYWFmZmaQeZ5ZAAAACHRSTlN4G+kGS7kkAGTyVF8AAABDSURBVHjanYs5DsBACAO5wf//cFiyEqkzBYxkm3LgHFGqEROgJRz4ykZb3vnwV7jQFFPSkX6pAoiejgH2lt3vKqLPA52IBF3mIq5eAAAAAElFTkSuQmCC) no-repeat 100% 3px;
+	padding-left: 14px;
+}
+
+ul.menu-tree a.expand.open {
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAVCAYAAAB7R6/OAAAAuElEQVQoFdVRsQ0CMRC7oBcVG9B+8RKjsEfSUsIA6Dv67AGjIFHQ/gZUNMGW4igBnh5LVnyOlSixSylZCGFtZhPYIMZoi+zcsO7BZZPAoMAKegSv4BYsUEBGD3HOpC4nUH9F9+beMe/Ai3xd8YBxADf1JkM6YYD+eCYDjv/wC7piNvMXAee9Z9Vsk4XV4OcNfAU/6FjvZE1v0jNPGNiDQE2vtPmEZkkCNb3SBTUbVItamwBD9Smc7QXZGiKWBjqp9wAAAABJRU5ErkJggg==) no-repeat 100% -11px;
+}
+
+/* @end */
+
+/* @group Icons */
+
+li.custom-icon {
+	float: right;
+}
+
+.custom-icon img {
+	margin-right: 0px;
+	float: right;
+	margin-left: 10px;
+}
+
+a.delete-custom-icon {
+	left: auto;
+	right: -8px;
+}
+
+ul.manage-sets li img {
+	margin-right: 0px;
+	float: right;
+	margin-left: 10px;
+}
+
+ul.manage-sets .installed {
+	right: auto;
+	padding-left: 18px;
+	left: 8px;
+}
+
+ul.manage-sets button {
+	right: auto;
+	left: 0;
+}
+
+ul.manage-sets button i.blue-cloud {
+	padding-left: 8px;
+	background-position: right 0;
+}
+
+/* @end */
+
+/* @group Theme & Add-on Browser */
+
+.cloud-browser i.icon-cloud-download {
+	margin-right: 0;
+	margin-left: 5px;
+}
+
+.cloud-browser li.cloud:before, .cloud-browser li.active:before {
+	left: 22px;
+}
+
+.cloud-browser > li {
+	text-align: right;
+}
+
+.cloud-browser .item-information .upgrade {
+	width: 197px;
+	margin-left: -2px;
+	margin-top: 3px;
+}
+
+/* @end */
+
+/* @group License */
+
+#wptouch-settings-area #license-area-left {
+	float: right;
+	text-align: left;
+}
+
+#wptouch-settings-area #license-area-right {
+	padding-left: 0px;
+	border-left: 0px;
+	margin-left: 0px;
+	float: right;
+	padding-right: 20px;
+	border-right: 1px solid #d0dfe9;
+	margin-right: 25px;
+}
+
+/* @end */

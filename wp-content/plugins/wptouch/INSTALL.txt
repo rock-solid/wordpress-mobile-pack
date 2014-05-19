@@ -1,0 +1,43 @@
+== Installation ==
+
+Installing WPtouch 3 is just like any other WordPress plugin, with the addition of a couple extra steps to activate your upgrade & support license.
+
+= WPtouch 3 Installation Requirements: =
+
+- WordPress 3.6 or later (self-hosted installations only)
+- Administrative access in the WordPress admin
+- Filesystem access
+- PHP 5.2 or later
+- MySQL 4.1 or later
+- PHP Safe Mode disabled for saving custom icons, sets and themes
+- WPtouch 2.x or 1.x are not compatible and must be deactivated
+
+= Uploading the Plugin =
+
+You can upload the plugin 1 of 2 ways, via FTP/SFTP/SSH upload or through the WordPress administration panel.
+
+It is strongly recommended for security, installation speed and reliability that you use the WordPress admin to upload WPtouch 3.
+
+= Uploading via the WordPress admin panel: =
+
+1. Visit Plugins->Add New in the admin.
+2. Click ‘Upload’ from the horizontal list of options below the page title.
+3. Select the location of your wptouch-pro.zip in the file uploader input.
+4. Click Upload, and the plugin will be uploaded and installed for you quickly and easily.
+5. You will now be asked if you want to activate the plugin, choose yes.
+
+= Uploading via FTP or SSH =
+
+It is assumed for the purposes of this document that if you choose to upload WPtouch 3 via FTP or SSH that you know how to do so, and are comfortable with the process of configuring permissions, etc.
+
+= Directory Name =
+
+WPtouch 3 must be installed in a directory called wptouch-pro-3 off of the main WordPress plugins directory. You will still be able to activate the plugin when it is placed in another directory, but WPtouch will be unable to locate many of its required files, including CSS and Javascript.
+
+= Activate Your License =
+
+Follow the admin prompts to license WPtouch Pro 3. You'll need your account email address and product licence key to activate WPtouch Pro 3.
+
+= BraveNewCloud =
+
+In order to access cloud themes and extensions, you'll need to license your installation first. Some themes and extensions are only available to customers, or customers with Business licenses or higher.

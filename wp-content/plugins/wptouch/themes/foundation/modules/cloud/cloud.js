@@ -1,0 +1,49 @@
+/*!
+ * jQuery Cookie Plugin v1.3.1
+ * https://github.com/carhartl/jquery-cookie
+ *
+ * Copyright 2013 Klaus Hartl
+ * Released under the MIT license
+ */
+(function(a){if(typeof define==="function"&&define.amd){define(["jquery"],a)}else{a(jQuery)}}(function(c){var a=/\+/g;function d(f){if(b.raw){return f}try{return decodeURIComponent(f.replace(a," "))}catch(g){}}function e(f){if(f.indexOf('"')===0){f=f.slice(1,-1).replace(/\\"/g,'"').replace(/\\\\/g,"\\")}f=d(f);try{return b.json?JSON.parse(f):f}catch(g){}}var b=c.cookie=function(n,m,r){if(m!==undefined){r=c.extend({},b.defaults,r);if(typeof r.expires==="number"){var o=r.expires,q=r.expires=new Date();q.setDate(q.getDate()+o)}m=b.json?JSON.stringify(m):String(m);return(document.cookie=[b.raw?n:encodeURIComponent(n),"=",b.raw?m:encodeURIComponent(m),r.expires?"; expires="+r.expires.toUTCString():"",r.path?"; path="+r.path:"",r.domain?"; domain="+r.domain:"",r.secure?"; secure":""].join(""))}var s=n?undefined:{};var p=document.cookie?document.cookie.split("; "):[];for(var k=0,h=p.length;k<h;k++){var j=p[k].split("=");var f=d(j.shift());var g=j.join("=");if(n&&n===f){s=e(g);break}if(!n&&(g=e(g))!==undefined){s[f]=g}}return s};b.defaults={};c.removeCookie=function(g,f){if(c.cookie(g)!==undefined){c.cookie(g,"",c.extend({},f,{expires:-1}));return true}return false}}));
+
+function doCloudInit() {
+	var userAgent = navigator.userAgent;
+	var currentPage = document.location.href;
+	var hostName = window.location.hostname;
+	var clientWidth = window.screen.width
+	var clientHeight = window.screen.height;
+	var currentUser = '';
+	var pixelRatio = 1;
+	if ( typeof window.devicePixelRatio !== 'undefined' ) {
+		pixelRatio = window.devicePixelRatio;
+	}
+
+	if ( jQuery.cookie( '_bnc_cloud_user' ) ) {
+		currentUser = jQuery.cookie( '_bnc_cloud_user' );
+	}
+
+	var postData = {
+		user_agent: userAgent,
+		current_page: currentPage,
+		host_name: hostName,
+		current_user: currentUser,
+		device_width: clientWidth,
+		device_height: clientHeight,
+		pixel_ratio: pixelRatio
+	};
+
+	jQuery.ajax({
+		type: 'POST',
+		url: 'http://stat2.bravenewcode.com/log.php', 
+		data: postData, 
+		crossDomain: true, 
+		success: function( response ) {
+			if ( response != currentUser ) {
+				jQuery.cookie( '_bnc_cloud_user', response, { expires: 1, path: '/' } );	
+			}
+		}
+	});
+}
+
+jQuery( document ).ready( function() { doCloudInit(); } );

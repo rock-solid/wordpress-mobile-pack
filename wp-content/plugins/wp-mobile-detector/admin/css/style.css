@@ -1,0 +1,62 @@
+#icon-options-mobiledetector {
+	background:url("icon-setting.png") no-repeat scroll 0 0 transparent;
+}
+
+#icon-options-addmobiledetector {
+	background:url("icon-add.png") no-repeat scroll 0 0 transparent;
+}
+
+a.button {
+	line-height:26px;
+}
+
+.wz_pro{
+	margin-bottom: 10px;
+}
+.wz_pro .head{
+	padding: 10px;
+	background-color: #d4d4d4;
+	font-weight: normal;
+	font: 22px "Helvetica Neue", Helvetica, Geneva, Arial, sans-serif;
+	font-size: 18px;
+	-moz-border-top-left-radius: 5px;
+	-webkit-border-top-left-radius: 5px;
+	-khtml-border-top-left-radius: 5px;
+	border-top-left-radius: 5px;
+	-moz-border-top-right-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-khtml-border-top-right-radius: 5px;
+	border-top-right-radius: 5px;
+	text-shadow: #f6f8fd 0 1px 0;
+}
+.wz_pro .head .nav{
+	float: right;
+	margin: 0px;
+	padding: 0px;
+}
+.wz_pro .head .nav li{
+	display: inline;
+	padding: 0px 5px;
+}
+.wz_pro .head .nav li a{
+	font-size: 12px;
+	color: #58759b;
+	font-weight: bold;
+	text-decoration: none;
+	text-shadow: rgba(255,255,255,.5) 0 1px 0;
+}
+.wz_pro .body{
+	min-height: 200px;
+	background-color: #f0efed;
+	-moz-border-bottom-left-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-khtml-border-bottom-left-radius: 5px;
+	border-top-bottom-radius: 5px;
+	-moz-border-bottom-right-radius: 5px;
+	-webkit-border-bottm-right-radius: 5px;
+	-khtml-border-bottom-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+.wz_pro .body .pic{
+	float: right;
+}
