@@ -61,29 +61,31 @@ p, span, a {
   font-size: 14px;
   line-height: 19px;
   color: #4b4b4b;
+  margin: 0;
+  padding: 0;
 }
 
-/* line 37, ../sass/core/_core.scss */
+/* line 39, ../sass/core/_core.scss */
 a {
   color: #1ca8dd;
   text-decoration: none;
 }
-/* line 41, ../sass/core/_core.scss */
+/* line 43, ../sass/core/_core.scss */
 a:hover {
   color: #116382;
 }
 
-/* line 45, ../sass/core/_core.scss */
+/* line 47, ../sass/core/_core.scss */
 .left {
   float: left;
 }
 
-/* line 48, ../sass/core/_core.scss */
+/* line 50, ../sass/core/_core.scss */
 .right {
   float: right;
 }
 
-/* line 51, ../sass/core/_core.scss */
+/* line 53, ../sass/core/_core.scss */
 .notification {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -103,7 +105,7 @@ a:hover {
   width: 0px;
   height: 0px;
 }
-/* line 59, ../sass/core/_core.scss */
+/* line 61, ../sass/core/_core.scss */
 .notification .count {
   -webkit-border-radius: 25px;
   -moz-border-radius: 25px;
@@ -118,7 +120,7 @@ a:hover {
   height: 25px;
 }
 
-/* line 71, ../sass/core/_core.scss */
+/* line 73, ../sass/core/_core.scss */
 .spacer-0 {
   clear: both;
   font-size: 1px;
@@ -127,7 +129,7 @@ a:hover {
   overflow: hidden;
 }
 
-/* line 74, ../sass/core/_core.scss */
+/* line 76, ../sass/core/_core.scss */
 .spacer-5 {
   clear: both;
   font-size: 1px;
@@ -136,7 +138,7 @@ a:hover {
   overflow: hidden;
 }
 
-/* line 77, ../sass/core/_core.scss */
+/* line 79, ../sass/core/_core.scss */
 .spacer-10 {
   clear: both;
   font-size: 1px;
@@ -145,7 +147,7 @@ a:hover {
   overflow: hidden;
 }
 
-/* line 80, ../sass/core/_core.scss */
+/* line 82, ../sass/core/_core.scss */
 .spacer-15 {
   clear: both;
   font-size: 1px;
@@ -154,7 +156,7 @@ a:hover {
   overflow: hidden;
 }
 
-/* line 83, ../sass/core/_core.scss */
+/* line 85, ../sass/core/_core.scss */
 .spacer-20 {
   clear: both;
   font-size: 1px;
@@ -163,7 +165,7 @@ a:hover {
   overflow: hidden;
 }
 
-/* line 87, ../sass/core/_core.scss */
+/* line 89, ../sass/core/_core.scss */
 .grey-line {
   clear: both;
   font-size: 1px;
@@ -173,7 +175,7 @@ a:hover {
   border-top: 1px solid #edf0f0;
 }
 
-/* line 91, ../sass/core/_core.scss */
+/* line 93, ../sass/core/_core.scss */
 .grey-dotted-line {
   clear: both;
   font-size: 1px;
@@ -183,14 +185,14 @@ a:hover {
   border-top: 1px dotted #8c8d8d;
 }
 
-/* line 96, ../sass/core/_core.scss */
+/* line 98, ../sass/core/_core.scss */
 .relative {
   width: 0;
   height: 0;
   position: relative;
 }
 
-/* line 103, ../sass/core/_core.scss */
+/* line 105, ../sass/core/_core.scss */
 .corner.active .indicator {
   width: 0;
   height: 0;
@@ -199,7 +201,7 @@ a:hover {
   position: absolute;
   right: 0px;
 }
-/* line 113, ../sass/core/_core.scss */
+/* line 115, ../sass/core/_core.scss */
 .corner.inactive .indicator {
   width: 0;
   height: 0;
@@ -209,28 +211,29 @@ a:hover {
   right: 0px;
 }
 
-/* line 123, ../sass/core/_core.scss */
+/* line 125, ../sass/core/_core.scss */
 body {
   background: #edf0f0;
   min-width: 1180px;
 }
 
-/* line 130, ../sass/core/_core.scss */
+/* line 132, ../sass/core/_core.scss */
 #wmpack-admin .left-side {
   padding-right: 13px;
   display: table-cell;
 }
-/* line 133, ../sass/core/_core.scss */
+/* line 135, ../sass/core/_core.scss */
 #wmpack-admin .left-side nav.menu {
   width: 100%;
   height: 70px;
   position: relative;
+  padding: 0px;
 }
-/* line 137, ../sass/core/_core.scss */
+/* line 140, ../sass/core/_core.scss */
 #wmpack-admin .left-side nav.menu ul {
   list-style-type: none;
 }
-/* line 139, ../sass/core/_core.scss */
+/* line 142, ../sass/core/_core.scss */
 #wmpack-admin .left-side nav.menu ul li {
   width: 182px;
   height: 70px;
@@ -242,18 +245,18 @@ body {
   border-bottom: #daddde 1px solid;
   /*cursor: pointer;*/
 }
-/* line 149, ../sass/core/_core.scss */
+/* line 152, ../sass/core/_core.scss */
 #wmpack-admin .left-side nav.menu ul li:hover, #wmpack-admin .left-side nav.menu ul li.selected {
   border-top: 4px solid #9aca40;
   border-bottom: none;
   background-color: #ffffff;
   height: 68px;
 }
-/* line 155, ../sass/core/_core.scss */
+/* line 158, ../sass/core/_core.scss */
 #wmpack-admin .left-side nav.menu ul li:hover a, #wmpack-admin .left-side nav.menu ul li.selected a {
   color: #9aca40;
 }
-/* line 158, ../sass/core/_core.scss */
+/* line 161, ../sass/core/_core.scss */
 #wmpack-admin .left-side nav.menu ul li a {
   color: #4b4b4b;
   font-family: 'AcordeRegular';
@@ -263,28 +266,28 @@ body {
   width: 100%;
   display: block;
 }
-/* line 171, ../sass/core/_core.scss */
+/* line 174, ../sass/core/_core.scss */
 #wmpack-admin .right-side {
   width: 252px;
   display: table-cell;
 }
-/* line 174, ../sass/core/_core.scss */
+/* line 177, ../sass/core/_core.scss */
 #wmpack-admin .right-side .updates {
   padding: 15px;
   background-color: white;
 }
-/* line 177, ../sass/core/_core.scss */
+/* line 180, ../sass/core/_core.scss */
 #wmpack-admin .right-side .updates .details {
   height: 255px;
   position: relative;
   overflow: hidden;
 }
-/* line 182, ../sass/core/_core.scss */
+/* line 185, ../sass/core/_core.scss */
 #wmpack-admin .right-side .updates p {
   font-size: 13px;
   color: #8c8d8d;
 }
-/* line 187, ../sass/core/_core.scss */
+/* line 190, ../sass/core/_core.scss */
 #wmpack-admin .right-side .appticles-updates {
   padding: 10px 15px;
   background-color: #2a2d33;
@@ -294,16 +297,20 @@ body {
   -moz-border-radius: 0px 0px 4px 4px;
   border-radius: 0px 0px 4px 4px;
 }
-/* line 194, ../sass/core/_core.scss */
+/* line 197, ../sass/core/_core.scss */
 #wmpack-admin .right-side .appticles-updates div {
   float: left;
 }
-/* line 196, ../sass/core/_core.scss */
-#wmpack-admin .right-side .appticles-updates div:last-child {
+/* line 199, ../sass/core/_core.scss */
+#wmpack-admin .right-side .appticles-updates div p {
+  margin: 0;
+}
+/* line 202, ../sass/core/_core.scss */
+#wmpack-admin .right-side .appticles-updates div.social {
   float: right;
 }
-/* line 198, ../sass/core/_core.scss */
-#wmpack-admin .right-side .appticles-updates div:last-child .facebook {
+/* line 204, ../sass/core/_core.scss */
+#wmpack-admin .right-side .appticles-updates div.social .facebook {
   width: 18px;
   height: 18px;
   background: #8c8d8d;
@@ -312,9 +319,11 @@ body {
   -webkit-border-radius: 18px;
   -moz-border-radius: 18px;
   border-radius: 18px;
+  display: block;
+  float: left;
 }
 /* line 4, ../sass/mixins/_icon.scss */
-#wmpack-admin .right-side .appticles-updates div:last-child .facebook:before {
+#wmpack-admin .right-side .appticles-updates div.social .facebook:before {
   position: relative;
   text-align: center;
   font-family: "Appticles" !important;
@@ -322,13 +331,13 @@ body {
   font-weight: normal !important;
   content: "f";
 }
-/* line 207, ../sass/core/_core.scss */
-#wmpack-admin .right-side .appticles-updates div:last-child .facebook::before {
+/* line 214, ../sass/core/_core.scss */
+#wmpack-admin .right-side .appticles-updates div.social .facebook::before {
   left: 7px;
   top: -1px;
 }
-/* line 212, ../sass/core/_core.scss */
-#wmpack-admin .right-side .appticles-updates div:last-child .twitter {
+/* line 219, ../sass/core/_core.scss */
+#wmpack-admin .right-side .appticles-updates div.social .twitter {
   width: 18px;
   height: 18px;
   background: #8c8d8d;
@@ -337,9 +346,11 @@ body {
   -webkit-border-radius: 18px;
   -moz-border-radius: 18px;
   border-radius: 18px;
+  display: block;
+  float: left;
 }
 /* line 4, ../sass/mixins/_icon.scss */
-#wmpack-admin .right-side .appticles-updates div:last-child .twitter:before {
+#wmpack-admin .right-side .appticles-updates div.social .twitter:before {
   position: relative;
   text-align: center;
   font-family: "Appticles" !important;
@@ -347,13 +358,13 @@ body {
   font-weight: normal !important;
   content: "t";
 }
-/* line 221, ../sass/core/_core.scss */
-#wmpack-admin .right-side .appticles-updates div:last-child .twitter::before {
+/* line 229, ../sass/core/_core.scss */
+#wmpack-admin .right-side .appticles-updates div.social .twitter::before {
   left: 5px;
   top: -1px;
 }
-/* line 226, ../sass/core/_core.scss */
-#wmpack-admin .right-side .appticles-updates div:last-child .google-plus {
+/* line 234, ../sass/core/_core.scss */
+#wmpack-admin .right-side .appticles-updates div.social .google-plus {
   width: 18px;
   height: 18px;
   background: #8c8d8d;
@@ -362,9 +373,11 @@ body {
   -webkit-border-radius: 18px;
   -moz-border-radius: 18px;
   border-radius: 18px;
+  display: block;
+  float: left;
 }
 /* line 4, ../sass/mixins/_icon.scss */
-#wmpack-admin .right-side .appticles-updates div:last-child .google-plus:before {
+#wmpack-admin .right-side .appticles-updates div.social .google-plus:before {
   position: relative;
   text-align: center;
   font-family: "Appticles" !important;
@@ -372,12 +385,12 @@ body {
   font-weight: normal !important;
   content: "g";
 }
-/* line 235, ../sass/core/_core.scss */
-#wmpack-admin .right-side .appticles-updates div:last-child .google-plus::before {
+/* line 244, ../sass/core/_core.scss */
+#wmpack-admin .right-side .appticles-updates div.social .google-plus::before {
   left: 5px;
   top: -1px;
 }
-/* line 243, ../sass/core/_core.scss */
+/* line 252, ../sass/core/_core.scss */
 #wmpack-admin .right-side .white-paper {
   width: 252px;
   height: 250px;
@@ -387,19 +400,19 @@ body {
   vertical-align: middle;
   background-color: #fff;
 }
-/* line 251, ../sass/core/_core.scss */
+/* line 260, ../sass/core/_core.scss */
 #wmpack-admin .right-side .white-paper p {
   font-family: 'AcordeRegular', sans-serif;
   font-size: 20px;
   line-height: normal;
   color: #4b4b4b;
 }
-/* line 259, ../sass/core/_core.scss */
+/* line 268, ../sass/core/_core.scss */
 #wmpack-admin .right-side .form-box {
   padding: 15px;
   background-color: white;
 }
-/* line 262, ../sass/core/_core.scss */
+/* line 271, ../sass/core/_core.scss */
 #wmpack-admin .right-side .form-box p {
   font-size: 13px;
 }
@@ -779,7 +792,7 @@ label {
   line-height: normal;
   padding: 5px 0 0 0;
   color: black;
-  margin-right: 15px;
+  margin: 0 15px 0 0;
 }
 /* line 27, ../sass/modules/content/_content.scss */
 .content .left-side .details .waitlist {
@@ -790,13 +803,20 @@ label {
 .content .left-side .details .waitlist .btn {
   margin: 0;
 }
-/* line 36, ../sass/modules/content/_content.scss */
+/* line 33, ../sass/modules/content/_content.scss */
+.content .left-side .details .waitlist .btn.blue {
+  display: inline-flex;
+  float: right;
+  vertical-align: middle;
+  text-align: center;
+}
+/* line 43, ../sass/modules/content/_content.scss */
 .content .left-side ul.categories {
   list-style-type: none;
   width: 100%;
   display: block;
 }
-/* line 40, ../sass/modules/content/_content.scss */
+/* line 47, ../sass/modules/content/_content.scss */
 .content .left-side ul.categories li {
   background-color: #fcfcfc;
   display: block;
@@ -806,140 +826,18 @@ label {
   margin-bottom: 5px;
   cursor: pointer;
   vertical-align: middle;
-}
-/* line 49, ../sass/modules/content/_content.scss */
-.content .left-side ul.categories li:hover {
-  background-color: #e3f5fb;
-  border-bottom: #d1eef9 1px solid;
-}
-/* line 53, ../sass/modules/content/_content.scss */
-.content .left-side ul.categories li span {
-  font-family: 'AcordeRegular', sans-serif;
-  padding: 22px 0;
 }
 /* line 56, ../sass/modules/content/_content.scss */
-.content .left-side ul.categories li span.status {
-  margin-left: 20px;
-  font-size: 12px;
-  color: #8c8d8d;
-  width: 100px;
-  display: block;
-  float: left;
-}
-/* line 63, ../sass/modules/content/_content.scss */
-.content .left-side ul.categories li span.status.active::before {
-  content: '';
-  position: absolute;
-  width: 19px;
-  height: 19px;
-  border: #fff 3px solid;
-  -webkit-border-radius: 19px;
-  -moz-border-radius: 19px;
-  border-radius: 19px;
-  display: block;
-  background-color: #9aca40;
-  left: 19px;
-}
-/* line 74, ../sass/modules/content/_content.scss */
-.content .left-side ul.categories li span.status.inactive::before {
-  content: '';
-  position: absolute;
-  width: 19px;
-  height: 19px;
-  border: #fff 3px solid;
-  -webkit-border-radius: 19px;
-  -moz-border-radius: 19px;
-  border-radius: 19px;
-  display: block;
-  background-color: #a60c00;
-  left: 19px;
-}
-/* line 86, ../sass/modules/content/_content.scss */
-.content .left-side ul.categories li span.title {
-  font-size: 15px;
-  color: #2a2d33;
-  text-transform: uppercase;
-  display: block;
-  float: left;
-}
-/* line 93, ../sass/modules/content/_content.scss */
-.content .left-side ul.categories li span.posts {
-  font-family: 'OpenSansItalic',sans-serif;
-  color: #8c8d8d;
-  font-size: 15px;
-  display: inline-block;
-  float: right;
-  margin-right: 30px;
-}
-
-/* line 3, ../sass/modules/settings/_settings.scss */
-.content .left-side {
-  width: 100%;
-  display: table;
-  vertical-align: top;
-}
-/* line 7, ../sass/modules/settings/_settings.scss */
-.content .left-side .details {
-  padding: 30px;
-  background-color: white;
-}
-/* line 10, ../sass/modules/settings/_settings.scss */
-.content .left-side .details h2.title {
-  font-family: 'OlRoundGothicLight', sans-serif;
-  font-size: 25px;
-  line-height: normal;
-  color: #4b4b4b;
-}
-/* line 16, ../sass/modules/settings/_settings.scss */
-.content .left-side .details .more-content {
-  float: left;
-}
-/* line 18, ../sass/modules/settings/_settings.scss */
-.content .left-side .details .more-content p {
-  font-family: 'AcordeRegular',sans-serif;
-  font-size: 15px;
-  line-height: normal;
-  padding: 5px 0 0 0;
-  color: black;
-  margin-right: 15px;
-}
-/* line 27, ../sass/modules/settings/_settings.scss */
-.content .left-side .details .waitlist {
-  float: right;
-  text-align: right;
-}
-/* line 30, ../sass/modules/settings/_settings.scss */
-.content .left-side .details .waitlist .btn {
-  margin: 0;
-}
-/* line 36, ../sass/modules/settings/_settings.scss */
-.content .left-side ul.categories {
-  list-style-type: none;
-  width: 100%;
-  display: block;
-}
-/* line 40, ../sass/modules/settings/_settings.scss */
-.content .left-side ul.categories li {
-  background-color: #fcfcfc;
-  display: block;
-  height: 65px;
-  width: 100%;
-  border-bottom: #f0f1f2 1px solid;
-  margin-bottom: 5px;
-  cursor: pointer;
-  vertical-align: middle;
-}
-/* line 49, ../sass/modules/settings/_settings.scss */
 .content .left-side ul.categories li:hover {
   background-color: #e3f5fb;
   border-bottom: #d1eef9 1px solid;
 }
-/* line 53, ../sass/modules/settings/_settings.scss */
+/* line 60, ../sass/modules/content/_content.scss */
 .content .left-side ul.categories li span {
   font-family: 'AcordeRegular', sans-serif;
   padding: 22px 0;
 }
-/* line 56, ../sass/modules/settings/_settings.scss */
+/* line 63, ../sass/modules/content/_content.scss */
 .content .left-side ul.categories li span.status {
   margin-left: 20px;
   font-size: 12px;
@@ -948,7 +846,7 @@ label {
   display: block;
   float: left;
 }
-/* line 63, ../sass/modules/settings/_settings.scss */
+/* line 70, ../sass/modules/content/_content.scss */
 .content .left-side ul.categories li span.status.active::before {
   content: '';
   position: absolute;
@@ -962,7 +860,7 @@ label {
   background-color: #9aca40;
   left: 19px;
 }
-/* line 74, ../sass/modules/settings/_settings.scss */
+/* line 81, ../sass/modules/content/_content.scss */
 .content .left-side ul.categories li span.status.inactive::before {
   content: '';
   position: absolute;
@@ -976,7 +874,7 @@ label {
   background-color: #a60c00;
   left: 19px;
 }
-/* line 86, ../sass/modules/settings/_settings.scss */
+/* line 93, ../sass/modules/content/_content.scss */
 .content .left-side ul.categories li span.title {
   font-size: 15px;
   color: #2a2d33;
@@ -984,7 +882,7 @@ label {
   display: block;
   float: left;
 }
-/* line 93, ../sass/modules/settings/_settings.scss */
+/* line 100, ../sass/modules/content/_content.scss */
 .content .left-side ul.categories li span.posts {
   font-family: 'OpenSansItalic',sans-serif;
   color: #8c8d8d;

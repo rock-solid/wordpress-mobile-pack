@@ -61,14 +61,14 @@
                  	<img src="<?php echo plugins_url()."/".WMP_DOMAIN."/admin/images/content-icons.png";?>" alt="" class="left" />
                 </div>
                 <div class="waitlist">
-                	 <a class="btn blue smaller right" href="#">Join Waitlist</a>
+                	 <a class="btn blue smaller" href="#">Join Waitlist</a>
                      <div class="spacer-0"></div>
                      <p>and get notified when available</p>
                 </div> 
                 <div class="spacer-5"></div>
                 <div class="grey-line"></div>
                 <div class="spacer-20"></div>
-                <div class="spacer-20"></div>
+                <div class="spacer-20"></div> 
             </div>
         </div>
     
@@ -92,10 +92,10 @@
             <div class="appticles-updates">
                 <!-- add content -->
             	<div><p>Appticles Updates</p></div>
-                <div>
-                	<div class="facebook"></div>
-                    <div class="twitter"></div>
-                    <div class="google-plus"></div>
+                <div class="social">
+                	<a href="#" class="facebook"></a>
+                    <a href="#" class="twitter"></a>
+                    <a href="#" class="google-plus"></a>
                 </div>
             </div>
             <div class="spacer-15"></div>
@@ -116,7 +116,7 @@
             <!-- add feedback form -->
             <div class="form-box">
                 <h2>Give us your feedback</h2>
-                <div class="spacer-20"></div>
+                <div class="spacer-10"></div>
                 <form id="" name="" action="" method="post">
                     <input type="hidden" name="" id="" placeholder="the-email address of the admin" class="small" />
                     <textarea name="feedback_message" id="feedback_message" placeholder="Your message" class="small"></textarea>
