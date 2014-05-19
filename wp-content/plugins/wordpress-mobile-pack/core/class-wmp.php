@@ -46,7 +46,7 @@ class WMobilePack {
 	public function wmp_install(){
 		
 		// add settings to database
-		$this->wps_save_settings($this->wmp_options);
+		$this->wmp_save_settings($this->wmp_options);
 		
 		
 	}
@@ -59,7 +59,7 @@ class WMobilePack {
 	public function wmp_uninstall(){
 		
 		// remove settings from database
-		$this->wps_delete_settings($this->wmp_options);
+		$this->wmp_delete_settings($this->wmp_options);
 	}
 	
 		
@@ -72,10 +72,27 @@ class WMobilePack {
 		
 		// add admin menu hook
 		add_action( 'admin_menu', array( &$this, 'wmp_admin_menu' ) );
-		
-		// enqueue css and javascript for the admin
+        
+		// enqueue css and javascript for the admin area
+        wp_enqueue_style('css_fonts', plugins_url(WMP_DOMAIN.'/admin/css/fonts.css'), array(), '2.0');
+        wp_enqueue_style('css_ie', plugins_url(WMP_DOMAIN.'/admin/css/ie.css'), array(), '2.0');
+        wp_enqueue_style('css_main', plugins_url(WMP_DOMAIN.'/admin/css/main.css'), array(), '2.0');
+        
+        wp_enqueue_script('js_validate', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/jquery.validate.min.js'), array('jquery-core', 'jquery-migrate'), '1.11.1');
+        wp_enqueue_script('js_loader', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Loader.js'), array('jquery-core', 'jquery-migrate'), '2.0');
+        wp_enqueue_script('js_ajax_upload', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/AjaxUpload.js'), array('jquery-core', 'jquery-migrate'), '2.0');
+        wp_enqueue_script('js_interface', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/JSInterface.js'), array('jquery-core', 'jquery-migrate'), '2.0');
 	}
-	
+    
+	/**
+     * 
+     * Load specific javascript files for the Content submenu page
+     * 
+     */
+    public function load_content_js(){
+        wp_enqueue_script('js_content_editcategories', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/EDIT_CATEGORIES.js'), array(), '2.0');
+    }
+    
 	/**
 	 * Method wmp_admin_menu  used to set the admin menu items of the plug-in
 	 *
@@ -90,15 +107,16 @@ class WMobilePack {
 		add_menu_page( 'WP Mobile Pack', 'WP Mobile Pack', 'manage_options', 'wmp-options', '', WP_PLUGIN_URL . '/wordpress-mobile-pack/views/images/icon.png',62 );
 		add_submenu_page( 'wmp-options', "What's New", "What's New", 'manage_options', 'wmp-options', array( &$WMobilePackAdmin, 'wmp_options' ) );
 		add_submenu_page( 'wmp-options', 'Look & Feel', 'Look & Feel', 'manage_options', 'wmp-options-theme', array( &$WMobilePackAdmin, 'wmp_theme_options') );
-		add_submenu_page( 'wmp-options', 'Content', 'Content', 'manage_options', 'wmp-options-content', array( &$WMobilePackAdmin, 'wmp_content_options') );
+        
+		$content_page = add_submenu_page( 'wmp-options', 'Content', 'Content', 'manage_options', 'wmp-options-content', array( &$WMobilePackAdmin, 'wmp_content_options') );
+        add_action( 'load-' . $content_page, array( &$this, 'load_content_js' ) );   
+        
 		add_submenu_page( 'wmp-options', 'Settings', 'Settings', 'manage_options', 'wmp-options-settings', array( &$WMobilePackAdmin, 'wmp_settings_options') );
 		add_submenu_page( 'wmp-options', 'Upgrade', 'Upgrade', 'manage_options', 'wmp-options-upgrade', array( &$WMobilePackAdmin, 'wmp_upgrade_options') );
 		
-	
-	
 	}
 		
-		
+    
 		
 	/**
 	 * Method wmp_get_setting used to return option/options of the plugin
@@ -139,7 +157,7 @@ class WMobilePack {
 
 
 	/**
-	 * Method wps_save_settings used to save the setting/settings of the plugin in options table in the db
+	 * Method wmp_save_settings used to save the setting/settings of the plugin in options table in the db
 	 *
 	 * @param $option - array / string 
 	 * @param $option_value - optional, mandatory only when $option is string
@@ -147,7 +165,7 @@ class WMobilePack {
 	 * The method return true in case of success
 	 *
 	 */	
-	function wps_save_settings( $option, $option_value = '' ) {
+	function wmp_save_settings( $option, $option_value = '' ) {
 		
 		if(is_array($option) && !empty($option)) {
 		
@@ -179,7 +197,7 @@ class WMobilePack {
 	}
 
 	/**
-	 * Method wps_update_settings used to update the setting/settings of the plugin in options table in the db
+	 * Method wmp_update_settings used to update the setting/settings of the plugin in options table in the db
 	 *
 	 * @param $option - array / string 
 	 * @param $option_value - optional, mandatory only when $option is string
@@ -187,7 +205,7 @@ class WMobilePack {
 	 * The method return true in case of success and false otherwise
 	 *
 	 */	
-	function wps_update_settings( $option, $option_value = '' ) {
+	function wmp_update_settings( $option, $option_value = '' ) {
 	
 		if(is_array($option) && !empty($option)) {
 			
@@ -222,14 +240,14 @@ class WMobilePack {
 
 	
 	/**
-	 * Method wps_delete_settings used to delete the setting/settings of the plugin in options table in the db
+	 * Method wmp_delete_settings used to delete the setting/settings of the plugin in options table in the db
 	 *
 	 * @param $option - array / string 
 	 *
 	 * The method return true in case of success and false otherwise
 	 *
 	 */	
-	function wps_delete_settings( $option ) {
+	function wmp_delete_settings( $option ) {
 	
 		if(is_array($option) && !empty($option)) {
 			

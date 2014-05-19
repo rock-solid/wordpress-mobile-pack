@@ -1,7 +1,22 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Content</title>
+<link href="resources/css/main.css" rel="stylesheet" type="text/css" />
+<link href="resources/css/fonts.css" rel="stylesheet" type="text/css" />
+
+<link rel="stylesheet" type="text/css" href="resources/css/ie.css"  />
+
+</head>
+
+<body>
+
 <div id="wmpack-admin">
 	<div class="spacer-20"></div>
     <!-- set title -->
-    <h1>Content</h1>
+    <h1>CONTENT</h1>
 	<div class="spacer-20"></div>
 	<div class="content">
         <div class="left-side">
@@ -56,7 +71,7 @@
                 <div class="spacer-20"></div>
                 <div class="more-content">
                  	<p class="left">Add more content from </p>
-                 	<img src="<?php echo plugins_url()."/".WMP_DOMAIN."/admin/images/content-icons.png";?>" alt="" class="left" />
+                 	<img src="resources/images/content-icons.png" alt="" class="left" />
                 </div>
                 <div class="waitlist">
                 	 <a class="btn blue smaller right" href="#">Join Waitlist</a>
@@ -97,12 +112,14 @@
                 </div>
             </div>
             <div class="spacer-15"></div>
-
+            <!-- add whitepaper -->
+            <div class="white-paper"><p>White paper</p></div>
+            <div class="spacer-15"></div>
 			<!-- add newsletter box -->
-            <div class="form-box">
+      <div class="form-box">
                 <h2>Join our newsletter</h2>
                 <div class="spacer-10"></div>
-                <p>Receive monthly freebies, Special Offers &amp; Access to Exclusive Subscriber Content.</p>
+                <p>Receive monthly freebies, Special Offers & Access to Exclusive Subscriber Content.</p>
                 <div class="spacer-0"></div>
 <form id="newsletter" name="" action="" method="post">
                     <input type="hidden" name="" id="" placeholder="the-email address of the admin" class="small" />
@@ -110,8 +127,7 @@
                 </form>
             </div>
 		    <div class="spacer-15"></div>
-            
-            <!-- add feedback form -->
+        <!-- add feedback form -->
             <div class="form-box">
                 <h2>Give us your feedback</h2>
                 <div class="spacer-20"></div>
@@ -127,16 +143,13 @@
 
 
 </div>
-    
-<script type="text/javascript">
-    if (window.JSInterface && window.JSInterface != null){
-        jQuery(document).ready(function(){
-            
-            JSInterface.localpath = "<?php echo plugins_url()."/".WMP_DOMAIN."/"; ?>";
-            JSInterface.init();
-    
-            window.JSInterface.add("UI_editcategories","EDIT_CATEGORIES",{'DOMDoc':window.document}, window);
-            // window.JSInterface.UI_editcategories.init();
-        });
-    }
-</script>
+
+
+
+
+
+
+
+
+</body>
+</html>

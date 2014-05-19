@@ -1,0 +1,995 @@
+/**********************************************************************************************************************/
+/*
+/* IMPORT MIXINS
+/*
+/**********************************************************************************************************************/
+/************************************************/
+/*		import icon and display mixins files
+/************************************************/
+/************************************************/
+/*		mixins for css3 animations
+/************************************************/
+/************************************************/
+/*		other mixins
+/************************************************/
+/**********************************************************************************************************************/
+/*
+/* IMPORT CORE
+/*
+/**********************************************************************************************************************/
+/* line 3, ../sass/core/_core.scss */
+html,
+body {
+  position: relative;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* line 9, ../sass/core/_core.scss */
+*, *:after, *:before {
+  margin: 0px;
+  padding: 0px;
+  font-weight: normal;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-touch-callout: none;
+  -ms-touch-action: none;
+  -webkit-user-drag: none;
+}
+
+/* line 19, ../sass/core/_core.scss */
+h1 {
+  font-family: 'OlRoundGothicLight', sans-serif;
+  font-size: 47px;
+  line-height: 47px;
+  color: #4b4b4b;
+}
+
+/* line 25, ../sass/core/_core.scss */
+h2 {
+  font-family: 'AcordeRegular', sans-serif;
+  font-size: 20px;
+  line-height: 20px;
+  color: #4b4b4b;
+}
+
+/* line 31, ../sass/core/_core.scss */
+p, span, a {
+  font-family: 'OpenSansRegular', sans-serif;
+  font-size: 14px;
+  line-height: 19px;
+  color: #4b4b4b;
+}
+
+/* line 37, ../sass/core/_core.scss */
+a {
+  color: #1ca8dd;
+  text-decoration: none;
+}
+/* line 41, ../sass/core/_core.scss */
+a:hover {
+  color: #116382;
+}
+
+/* line 45, ../sass/core/_core.scss */
+.left {
+  float: left;
+}
+
+/* line 48, ../sass/core/_core.scss */
+.right {
+  float: right;
+}
+
+/* line 51, ../sass/core/_core.scss */
+.notification {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -moz-box;
+  display: box;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  box-align: center;
+  align-items: center;
+  position: relative;
+  width: 0px;
+  height: 0px;
+}
+/* line 59, ../sass/core/_core.scss */
+.notification .count {
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  background: #ff4e40;
+  font-family: 'OpenSansRegular', sans-serif;
+  text-align: center;
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 25px;
+  width: 25px;
+  height: 25px;
+}
+
+/* line 71, ../sass/core/_core.scss */
+.spacer-0 {
+  clear: both;
+  font-size: 1px;
+  height: 0px;
+  line-height: 1px;
+  overflow: hidden;
+}
+
+/* line 74, ../sass/core/_core.scss */
+.spacer-5 {
+  clear: both;
+  font-size: 1px;
+  height: 5px;
+  line-height: 1px;
+  overflow: hidden;
+}
+
+/* line 77, ../sass/core/_core.scss */
+.spacer-10 {
+  clear: both;
+  font-size: 1px;
+  height: 10px;
+  line-height: 1px;
+  overflow: hidden;
+}
+
+/* line 80, ../sass/core/_core.scss */
+.spacer-15 {
+  clear: both;
+  font-size: 1px;
+  height: 15px;
+  line-height: 1px;
+  overflow: hidden;
+}
+
+/* line 83, ../sass/core/_core.scss */
+.spacer-20 {
+  clear: both;
+  font-size: 1px;
+  height: 20px;
+  line-height: 1px;
+  overflow: hidden;
+}
+
+/* line 87, ../sass/core/_core.scss */
+.grey-line {
+  clear: both;
+  font-size: 1px;
+  height: 1px;
+  line-height: 1px;
+  overflow: hidden;
+  border-top: 1px solid #edf0f0;
+}
+
+/* line 91, ../sass/core/_core.scss */
+.grey-dotted-line {
+  clear: both;
+  font-size: 1px;
+  height: 1px;
+  line-height: 1px;
+  overflow: hidden;
+  border-top: 1px dotted #8c8d8d;
+}
+
+/* line 96, ../sass/core/_core.scss */
+.relative {
+  width: 0;
+  height: 0;
+  position: relative;
+}
+
+/* line 103, ../sass/core/_core.scss */
+.corner.active .indicator {
+  width: 0;
+  height: 0;
+  border-top: 44px solid #9aca40;
+  border-left: 44px solid transparent;
+  position: absolute;
+  right: 0px;
+}
+/* line 113, ../sass/core/_core.scss */
+.corner.inactive .indicator {
+  width: 0;
+  height: 0;
+  border-top: 44px solid #ae113d;
+  border-left: 44px solid transparent;
+  position: absolute;
+  right: 0px;
+}
+
+/* line 123, ../sass/core/_core.scss */
+body {
+  background: #edf0f0;
+  min-width: 1180px;
+}
+
+/* line 130, ../sass/core/_core.scss */
+#wmpack-admin .left-side {
+  padding-right: 13px;
+  display: table-cell;
+}
+/* line 133, ../sass/core/_core.scss */
+#wmpack-admin .left-side nav.menu {
+  width: 100%;
+  height: 70px;
+  position: relative;
+}
+/* line 137, ../sass/core/_core.scss */
+#wmpack-admin .left-side nav.menu ul {
+  list-style-type: none;
+}
+/* line 139, ../sass/core/_core.scss */
+#wmpack-admin .left-side nav.menu ul li {
+  width: 182px;
+  height: 70px;
+  display: table-cell;
+  background-color: #f5f7f7;
+  vertical-align: middle;
+  text-align: center;
+  border-right: #daddde 1px solid;
+  border-bottom: #daddde 1px solid;
+  /*cursor: pointer;*/
+}
+/* line 149, ../sass/core/_core.scss */
+#wmpack-admin .left-side nav.menu ul li:hover, #wmpack-admin .left-side nav.menu ul li.selected {
+  border-top: 4px solid #9aca40;
+  border-bottom: none;
+  background-color: #ffffff;
+  height: 68px;
+}
+/* line 155, ../sass/core/_core.scss */
+#wmpack-admin .left-side nav.menu ul li:hover a, #wmpack-admin .left-side nav.menu ul li.selected a {
+  color: #9aca40;
+}
+/* line 158, ../sass/core/_core.scss */
+#wmpack-admin .left-side nav.menu ul li a {
+  color: #4b4b4b;
+  font-family: 'AcordeRegular';
+  font-size: 18px;
+  line-height: normal;
+  padding: 20px 0;
+  width: 100%;
+  display: block;
+}
+/* line 171, ../sass/core/_core.scss */
+#wmpack-admin .right-side {
+  width: 252px;
+  display: table-cell;
+}
+/* line 174, ../sass/core/_core.scss */
+#wmpack-admin .right-side .updates {
+  padding: 15px;
+  background-color: white;
+}
+/* line 177, ../sass/core/_core.scss */
+#wmpack-admin .right-side .updates .details {
+  height: 255px;
+  position: relative;
+  overflow: hidden;
+}
+/* line 182, ../sass/core/_core.scss */
+#wmpack-admin .right-side .updates p {
+  font-size: 13px;
+  color: #8c8d8d;
+}
+/* line 187, ../sass/core/_core.scss */
+#wmpack-admin .right-side .appticles-updates {
+  padding: 10px 15px;
+  background-color: #2a2d33;
+  border-top: #fff 1px solid;
+  height: 43px;
+  -webkit-border-radius: 0px 0px 4px 4px;
+  -moz-border-radius: 0px 0px 4px 4px;
+  border-radius: 0px 0px 4px 4px;
+}
+/* line 194, ../sass/core/_core.scss */
+#wmpack-admin .right-side .appticles-updates div {
+  float: left;
+}
+/* line 196, ../sass/core/_core.scss */
+#wmpack-admin .right-side .appticles-updates div:last-child {
+  float: right;
+}
+/* line 198, ../sass/core/_core.scss */
+#wmpack-admin .right-side .appticles-updates div:last-child .facebook {
+  width: 18px;
+  height: 18px;
+  background: #8c8d8d;
+  color: #2a2d33;
+  margin: 0 6px;
+  -webkit-border-radius: 18px;
+  -moz-border-radius: 18px;
+  border-radius: 18px;
+}
+/* line 4, ../sass/mixins/_icon.scss */
+#wmpack-admin .right-side .appticles-updates div:last-child .facebook:before {
+  position: relative;
+  text-align: center;
+  font-family: "Appticles" !important;
+  font-size: 10px !important;
+  font-weight: normal !important;
+  content: "f";
+}
+/* line 207, ../sass/core/_core.scss */
+#wmpack-admin .right-side .appticles-updates div:last-child .facebook::before {
+  left: 7px;
+  top: -1px;
+}
+/* line 212, ../sass/core/_core.scss */
+#wmpack-admin .right-side .appticles-updates div:last-child .twitter {
+  width: 18px;
+  height: 18px;
+  background: #8c8d8d;
+  color: #2a2d33;
+  margin: 0 6px;
+  -webkit-border-radius: 18px;
+  -moz-border-radius: 18px;
+  border-radius: 18px;
+}
+/* line 4, ../sass/mixins/_icon.scss */
+#wmpack-admin .right-side .appticles-updates div:last-child .twitter:before {
+  position: relative;
+  text-align: center;
+  font-family: "Appticles" !important;
+  font-size: 10px !important;
+  font-weight: normal !important;
+  content: "t";
+}
+/* line 221, ../sass/core/_core.scss */
+#wmpack-admin .right-side .appticles-updates div:last-child .twitter::before {
+  left: 5px;
+  top: -1px;
+}
+/* line 226, ../sass/core/_core.scss */
+#wmpack-admin .right-side .appticles-updates div:last-child .google-plus {
+  width: 18px;
+  height: 18px;
+  background: #8c8d8d;
+  color: #2a2d33;
+  margin: 0 6px;
+  -webkit-border-radius: 18px;
+  -moz-border-radius: 18px;
+  border-radius: 18px;
+}
+/* line 4, ../sass/mixins/_icon.scss */
+#wmpack-admin .right-side .appticles-updates div:last-child .google-plus:before {
+  position: relative;
+  text-align: center;
+  font-family: "Appticles" !important;
+  font-size: 10px !important;
+  font-weight: normal !important;
+  content: "g";
+}
+/* line 235, ../sass/core/_core.scss */
+#wmpack-admin .right-side .appticles-updates div:last-child .google-plus::before {
+  left: 5px;
+  top: -1px;
+}
+/* line 243, ../sass/core/_core.scss */
+#wmpack-admin .right-side .white-paper {
+  width: 252px;
+  height: 250px;
+  border: #bfbfbf 1px solid;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #fff;
+}
+/* line 251, ../sass/core/_core.scss */
+#wmpack-admin .right-side .white-paper p {
+  font-family: 'AcordeRegular', sans-serif;
+  font-size: 20px;
+  line-height: normal;
+  color: #4b4b4b;
+}
+/* line 259, ../sass/core/_core.scss */
+#wmpack-admin .right-side .form-box {
+  padding: 15px;
+  background-color: white;
+}
+/* line 262, ../sass/core/_core.scss */
+#wmpack-admin .right-side .form-box p {
+  font-size: 13px;
+}
+
+/* line 2, ../sass/core/_forms.scss */
+form {
+  text-align: left;
+}
+
+/* line 5, ../sass/core/_forms.scss */
+input {
+  font-family: 'AcordeSemiBold', sans-serif;
+  width: 240px;
+  height: 36px;
+  background: #fafafa;
+  color: #2a2d33;
+  font-size: 14px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid #daddde;
+  padding: 0 15px;
+}
+/* line 16, ../sass/core/_forms.scss */
+input.smaller {
+  width: 120px;
+}
+/* line 19, ../sass/core/_forms.scss */
+input.small {
+  width: 220px;
+}
+/* line 22, ../sass/core/_forms.scss */
+input.big {
+  width: 320px;
+}
+/* line 25, ../sass/core/_forms.scss */
+input:focus {
+  outline: none;
+  border: 1px solid #a4abae;
+}
+/* line 29, ../sass/core/_forms.scss */
+input.error {
+  border-color: #d0160a;
+  background: #fef7f7;
+}
+
+/* line 35, ../sass/core/_forms.scss */
+textarea {
+  font-family: 'AcordeSemiBold', sans-serif;
+  width: 240px;
+  height: 100px;
+  background: #fafafa;
+  color: #2a2d33;
+  font-size: 14px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid #daddde;
+  padding: 15px;
+  resize: none;
+}
+/* line 46, ../sass/core/_forms.scss */
+textarea.smaller {
+  width: 120px;
+}
+/* line 49, ../sass/core/_forms.scss */
+textarea.small {
+  width: 220px;
+}
+/* line 52, ../sass/core/_forms.scss */
+textarea.big {
+  width: 320px;
+}
+/* line 55, ../sass/core/_forms.scss */
+textarea:focus {
+  outline: none;
+  border: 1px solid #a4abae;
+}
+/* line 59, ../sass/core/_forms.scss */
+textarea.error {
+  border-color: #d0160a;
+  background: #fef7f7;
+}
+
+/* line 65, ../sass/core/_forms.scss */
+label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -moz-box;
+  display: box;
+  font-family: 'AcordeRegular', sans-serif;
+  color: #2a2d33;
+  font-size: 15px;
+}
+
+/* line 72, ../sass/core/_forms.scss */
+::-webkit-input-placeholder {
+  color: #b2b5bc;
+  font-size: 13px;
+}
+
+/* line 76, ../sass/core/_forms.scss */
+:-moz-placeholder {
+  color: #b2b5bc;
+  font-size: 13px;
+}
+
+/* line 80, ../sass/core/_forms.scss */
+::-moz-placeholder {
+  color: #b2b5bc;
+  font-size: 13px;
+}
+
+/* line 84, ../sass/core/_forms.scss */
+:-ms-input-placeholder {
+  color: #b2b5bc;
+  font-size: 13px;
+}
+
+/* line 89, ../sass/core/_forms.scss */
+.field-error {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -moz-box;
+  display: box;
+  margin: -10px 0 10px 15px;
+}
+/* line 93, ../sass/core/_forms.scss */
+.field-error span {
+  color: #d0160a;
+  font-family: "OpenSansRegular", sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+/* line 100, ../sass/core/_forms.scss */
+.error-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -moz-box;
+  display: box;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  box-orient: vertical;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 0 auto;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  flex: 1 0 auto;
+  text-align: left;
+  border: 1px solid #ecc2c3;
+  background: #fef7f7;
+  width: 100%;
+}
+/* line 109, ../sass/core/_forms.scss */
+.error-container .box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -moz-box;
+  display: box;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  box-orient: vertical;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 0 auto;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  flex: 1 0 auto;
+  width: 100%;
+  padding: 25px 50px;
+  margin: 0 0 10px 0;
+}
+/* line 118, ../sass/core/_forms.scss */
+.error-container .title {
+  border-bottom: 1px solid #ecc2c3;
+  margin: 0 0 15px 0;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -moz-box;
+  display: box;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  box-orient: horizontal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+/* line 125, ../sass/core/_forms.scss */
+.error-container .title h2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -moz-box;
+  display: box;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 0 auto;
+  -moz-box-flex: 1;
+  box-flex: 1;
+  flex: 1 0 auto;
+  color: #d0160a;
+  margin: 0 0 15px 0 !important;
+}
+/* line 132, ../sass/core/_forms.scss */
+.error-container span {
+  color: #d0160a;
+  font-family: "OpenSansRegular", sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+}
+/* line 138, ../sass/core/_forms.scss */
+.error-container .close-x {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -moz-box;
+  display: box;
+  -webkit-box-pack: end;
+  -moz-box-pack: end;
+  -ms-flex-pack: end;
+  box-pack: end;
+  justify-content: flex-end;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  box-align: center;
+  align-items: center;
+  color: #ecc2c3;
+  width: 25px;
+  height: 25px;
+  padding: 0 15px;
+  top: -10px;
+  right: -25px;
+  position: absolute;
+}
+/* line 4, ../sass/mixins/_icon.scss */
+.error-container .close-x:before {
+  position: relative;
+  text-align: center;
+  font-family: "Appticles" !important;
+  font-size: 25px !important;
+  font-weight: normal !important;
+  content: "close-x";
+}
+/* line 151, ../sass/core/_forms.scss */
+.error-container .close-x:hover {
+  cursor: pointer;
+}
+/* line 155, ../sass/core/_forms.scss */
+.error-container .close-x::before {
+  width: 25px;
+  height: 25px;
+}
+
+/* line 2, ../sass/core/_buttons.scss */
+.btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -moz-box;
+  display: box;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  box-orient: horizontal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -ms-flex-pack: center;
+  box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  box-align: center;
+  align-items: center;
+  font-family: 'AcordeRegular', sans-serif;
+  width: 240px;
+  height: 36px;
+  min-height: 36px;
+  background: #ffffff;
+  color: #2a2d33;
+  font-size: 14px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  border: #daddde;
+  padding: 0 15px;
+  margin: 15px 0 0 0;
+  text-decoration: none;
+}
+/* line 21, ../sass/core/_buttons.scss */
+.btn.smaller {
+  width: 120px;
+}
+/* line 24, ../sass/core/_buttons.scss */
+.btn.small {
+  width: 220px;
+}
+/* line 27, ../sass/core/_buttons.scss */
+.btn.big {
+  width: 320px;
+}
+/* line 30, ../sass/core/_buttons.scss */
+.btn.bigger {
+  width: 455px;
+}
+/* line 34, ../sass/core/_buttons.scss */
+.btn strong {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: -moz-inline-box;
+  display: inline-flex;
+  font-family: 'AcordeSemiBold', sans-serif;
+  font-weight: normal;
+  font-style: normal;
+}
+/* line 40, ../sass/core/_buttons.scss */
+.btn:hover {
+  background: #fafafa;
+  border: 1px solid #bfc4c6;
+}
+/* line 44, ../sass/core/_buttons.scss */
+.btn.green {
+  background: #9aca40;
+  color: #ffffff;
+  border: 1px solid #7ea82f;
+}
+/* line 49, ../sass/core/_buttons.scss */
+.btn.green:hover {
+  background: #7ea82f;
+  border: 1px solid #608024;
+}
+/* line 55, ../sass/core/_buttons.scss */
+.btn.blue {
+  background: #1ca8dd;
+  color: #ffffff;
+  border: 1px solid #1686b0;
+}
+/* line 60, ../sass/core/_buttons.scss */
+.btn.blue:hover {
+  background: #1686b0;
+  border: 1px solid #116382;
+}
+
+/**********************************************************************************************************************/
+/*
+/* IMPORT MODULES
+/*
+/**********************************************************************************************************************/
+/* line 3, ../sass/modules/content/_content.scss */
+.content .left-side {
+  width: 100%;
+  display: table;
+  vertical-align: top;
+}
+/* line 7, ../sass/modules/content/_content.scss */
+.content .left-side .details {
+  padding: 30px;
+  background-color: white;
+}
+/* line 10, ../sass/modules/content/_content.scss */
+.content .left-side .details h2.title {
+  font-family: 'OlRoundGothicLight', sans-serif;
+  font-size: 25px;
+  line-height: normal;
+  color: #4b4b4b;
+}
+/* line 16, ../sass/modules/content/_content.scss */
+.content .left-side .details .more-content {
+  float: left;
+}
+/* line 18, ../sass/modules/content/_content.scss */
+.content .left-side .details .more-content p {
+  font-family: 'AcordeRegular',sans-serif;
+  font-size: 15px;
+  line-height: normal;
+  padding: 5px 0 0 0;
+  color: black;
+  margin-right: 15px;
+}
+/* line 27, ../sass/modules/content/_content.scss */
+.content .left-side .details .waitlist {
+  float: right;
+  text-align: right;
+}
+/* line 30, ../sass/modules/content/_content.scss */
+.content .left-side .details .waitlist .btn {
+  margin: 0;
+}
+/* line 36, ../sass/modules/content/_content.scss */
+.content .left-side ul.categories {
+  list-style-type: none;
+  width: 100%;
+  display: block;
+}
+/* line 40, ../sass/modules/content/_content.scss */
+.content .left-side ul.categories li {
+  background-color: #fcfcfc;
+  display: block;
+  height: 65px;
+  width: 100%;
+  border-bottom: #f0f1f2 1px solid;
+  margin-bottom: 5px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+/* line 49, ../sass/modules/content/_content.scss */
+.content .left-side ul.categories li:hover {
+  background-color: #e3f5fb;
+  border-bottom: #d1eef9 1px solid;
+}
+/* line 53, ../sass/modules/content/_content.scss */
+.content .left-side ul.categories li span {
+  font-family: 'AcordeRegular', sans-serif;
+  padding: 22px 0;
+}
+/* line 56, ../sass/modules/content/_content.scss */
+.content .left-side ul.categories li span.status {
+  margin-left: 20px;
+  font-size: 12px;
+  color: #8c8d8d;
+  width: 100px;
+  display: block;
+  float: left;
+}
+/* line 63, ../sass/modules/content/_content.scss */
+.content .left-side ul.categories li span.status.active::before {
+  content: '';
+  position: absolute;
+  width: 19px;
+  height: 19px;
+  border: #fff 3px solid;
+  -webkit-border-radius: 19px;
+  -moz-border-radius: 19px;
+  border-radius: 19px;
+  display: block;
+  background-color: #9aca40;
+  left: 19px;
+}
+/* line 74, ../sass/modules/content/_content.scss */
+.content .left-side ul.categories li span.status.inactive::before {
+  content: '';
+  position: absolute;
+  width: 19px;
+  height: 19px;
+  border: #fff 3px solid;
+  -webkit-border-radius: 19px;
+  -moz-border-radius: 19px;
+  border-radius: 19px;
+  display: block;
+  background-color: #a60c00;
+  left: 19px;
+}
+/* line 86, ../sass/modules/content/_content.scss */
+.content .left-side ul.categories li span.title {
+  font-size: 15px;
+  color: #2a2d33;
+  text-transform: uppercase;
+  display: block;
+  float: left;
+}
+/* line 93, ../sass/modules/content/_content.scss */
+.content .left-side ul.categories li span.posts {
+  font-family: 'OpenSansItalic',sans-serif;
+  color: #8c8d8d;
+  font-size: 15px;
+  display: inline-block;
+  float: right;
+  margin-right: 30px;
+}
+
+/* line 3, ../sass/modules/settings/_settings.scss */
+.content .left-side {
+  width: 100%;
+  display: table;
+  vertical-align: top;
+}
+/* line 7, ../sass/modules/settings/_settings.scss */
+.content .left-side .details {
+  padding: 30px;
+  background-color: white;
+}
+/* line 10, ../sass/modules/settings/_settings.scss */
+.content .left-side .details h2.title {
+  font-family: 'OlRoundGothicLight', sans-serif;
+  font-size: 25px;
+  line-height: normal;
+  color: #4b4b4b;
+}
+/* line 16, ../sass/modules/settings/_settings.scss */
+.content .left-side .details .more-content {
+  float: left;
+}
+/* line 18, ../sass/modules/settings/_settings.scss */
+.content .left-side .details .more-content p {
+  font-family: 'AcordeRegular',sans-serif;
+  font-size: 15px;
+  line-height: normal;
+  padding: 5px 0 0 0;
+  color: black;
+  margin-right: 15px;
+}
+/* line 27, ../sass/modules/settings/_settings.scss */
+.content .left-side .details .waitlist {
+  float: right;
+  text-align: right;
+}
+/* line 30, ../sass/modules/settings/_settings.scss */
+.content .left-side .details .waitlist .btn {
+  margin: 0;
+}
+/* line 36, ../sass/modules/settings/_settings.scss */
+.content .left-side ul.categories {
+  list-style-type: none;
+  width: 100%;
+  display: block;
+}
+/* line 40, ../sass/modules/settings/_settings.scss */
+.content .left-side ul.categories li {
+  background-color: #fcfcfc;
+  display: block;
+  height: 65px;
+  width: 100%;
+  border-bottom: #f0f1f2 1px solid;
+  margin-bottom: 5px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+/* line 49, ../sass/modules/settings/_settings.scss */
+.content .left-side ul.categories li:hover {
+  background-color: #e3f5fb;
+  border-bottom: #d1eef9 1px solid;
+}
+/* line 53, ../sass/modules/settings/_settings.scss */
+.content .left-side ul.categories li span {
+  font-family: 'AcordeRegular', sans-serif;
+  padding: 22px 0;
+}
+/* line 56, ../sass/modules/settings/_settings.scss */
+.content .left-side ul.categories li span.status {
+  margin-left: 20px;
+  font-size: 12px;
+  color: #8c8d8d;
+  width: 100px;
+  display: block;
+  float: left;
+}
+/* line 63, ../sass/modules/settings/_settings.scss */
+.content .left-side ul.categories li span.status.active::before {
+  content: '';
+  position: absolute;
+  width: 19px;
+  height: 19px;
+  border: #fff 3px solid;
+  -webkit-border-radius: 19px;
+  -moz-border-radius: 19px;
+  border-radius: 19px;
+  display: block;
+  background-color: #9aca40;
+  left: 19px;
+}
+/* line 74, ../sass/modules/settings/_settings.scss */
+.content .left-side ul.categories li span.status.inactive::before {
+  content: '';
+  position: absolute;
+  width: 19px;
+  height: 19px;
+  border: #fff 3px solid;
+  -webkit-border-radius: 19px;
+  -moz-border-radius: 19px;
+  border-radius: 19px;
+  display: block;
+  background-color: #a60c00;
+  left: 19px;
+}
+/* line 86, ../sass/modules/settings/_settings.scss */
+.content .left-side ul.categories li span.title {
+  font-size: 15px;
+  color: #2a2d33;
+  text-transform: uppercase;
+  display: block;
+  float: left;
+}
+/* line 93, ../sass/modules/settings/_settings.scss */
+.content .left-side ul.categories li span.posts {
+  font-family: 'OpenSansItalic',sans-serif;
+  color: #8c8d8d;
+  font-size: 15px;
+  display: inline-block;
+  float: right;
+  margin-right: 30px;
+}
