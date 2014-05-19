@@ -1,3 +1,8 @@
+<?php 
+    $inactive_categories = unserialize(WMobilePack::wmp_get_setting('inactive_categories'));
+    $categories = get_categories();
+    print_r($categories);
+?>
 <div id="wmpack-admin">
 	<div class="spacer-20"></div>
     <!-- set title -->
@@ -23,26 +28,23 @@
             	<div class="spacer-20"></div>
                 <div class="spacer-20"></div>
                 <!-- start categories list -->
-                <ul class="categories">
-                	<li>
-                    	<span class=" status active">active</span>
-                        <span class="title">Sports</span>
-                        <span class="posts">88 posts published</span>
-                    
-                    </li>
-                	<li>
-                    	<span class="status inactive">inactive</span>
-                        <span class="title">Lifestyle</span>
-                        <span class="posts">5 posts published</span>
-                    
-                    </li>
-                    <li>
-                    	<span class="status active">active</span>
-                        <span class="title">Food</span>
-                        <span class="posts">155 posts published</span>
-                    
-                    </li>
-                </ul>
+                <?php if (count($categories) > 0):?>
+                    <ul class="categories">
+                        <?php 
+                            foreach ($categories as $category):
+                        
+                                $status = 'active';
+                                if (in_array($category->cat_ID, $inactive_categories))
+                                    $status = 'inactive';
+                        ?>
+                    	<li>
+                        	<span class="status <?php echo $status;?>"><?php echo $status;?></span>
+                            <span class="title"><?php echo $category->name;?></span>
+                            <span class="posts"><?php echo $category->category_count != 1 ? $category->category_count.' posts' : '1 post';?> published</span>
+                        </li>
+                        <?php endforeach;?>
+                    </ul>
+                <?php endif;?>
                 <div class="spacer-20"></div>
                 <a class="btn green smaller" href="#">Send</a>
                 

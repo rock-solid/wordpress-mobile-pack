@@ -64,7 +64,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			// load view
 			include(WMP_PLUGIN_PATH.'admin/wmp-admin-content.php');
 
-			
+
 		}
 		
 		
