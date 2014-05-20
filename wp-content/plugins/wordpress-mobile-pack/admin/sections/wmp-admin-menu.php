@@ -1,0 +1,26 @@
+<?php
+// get current screen
+$screen = get_current_screen();
+// set current page
+if($screen->id !== '')
+	$current_page = str_replace('wp-mobile-pack_page_','',$screen->id);
+else
+	$current_page = '';
+?>
+<!-- add nav main menu -->
+<nav class="menu">
+    <ul>
+        <li <?php echo $current_page == 'wmp-options-theme' ? 'class="selected"' : '';?>>
+        	<a href="<?php echo add_query_arg(array('page'=>'wmp-options-theme'), network_admin_url('admin.php'));?>">Look & Feel</a>
+        </li>
+        <li <?php echo $current_page == 'wmp-options-content' ? 'class="selected"' : '';?>>
+        	<a href="<?php echo add_query_arg(array('page'=>'wmp-options-content'), network_admin_url('admin.php'));?>">Content</a>
+        </li>
+        <li <?php echo $current_page == 'wmp-options-settings' ? 'class="selected"' : '';?>>
+        	<a href="<?php echo add_query_arg(array('page'=>'wmp-options-settings'), network_admin_url('admin.php'));?>">Settings</a>
+        </li>
+        <li <?php echo $current_page == 'wmp-options-upgrade' ? 'class="selected"' : '';?>>
+        	<a href="<?php echo add_query_arg(array('page'=>'wmp-options-upgrade'), network_admin_url('admin.php'));?>">Upgrade</a>
+        </li>
+    </ul>
+</nav>
