@@ -1,3 +1,12 @@
+<script type="text/javascript">
+    if (window.JSInterface && window.JSInterface != null){
+        jQuery(document).ready(function(){
+            
+            JSInterface.localpath = "<?php echo plugins_url()."/".WMP_DOMAIN."/"; ?>";
+            JSInterface.init();
+        });
+    }
+</script>
 <div id="wmpack-admin">
 	<div class="spacer-20"></div>
     <!-- set title -->
@@ -178,10 +187,6 @@
 <script type="text/javascript">
     if (window.JSInterface && window.JSInterface != null){
         jQuery(document).ready(function(){
-            
-            JSInterface.localpath = "<?php echo plugins_url()."/".WMP_DOMAIN."/"; ?>";
-            JSInterface.init();
-    
             window.JSInterface.add("UI_editimages","EDIT_IMAGES",{'DOMDoc':window.document}, window);
         });
     }

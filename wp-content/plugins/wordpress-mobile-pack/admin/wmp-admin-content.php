@@ -1,3 +1,12 @@
+<script type="text/javascript">
+    if (window.JSInterface && window.JSInterface != null){
+        jQuery(document).ready(function(){
+            
+            JSInterface.localpath = "<?php echo plugins_url()."/".WMP_DOMAIN."/"; ?>";
+            JSInterface.init();
+        });
+    }
+</script>
 <?php 
     $inactive_categories = unserialize(WMobilePack::wmp_get_setting('inactive_categories'));
     $categories = get_categories();
@@ -100,11 +109,7 @@
     if (window.JSInterface && window.JSInterface != null){
         jQuery(document).ready(function(){
             
-            JSInterface.localpath = "<?php echo plugins_url()."/".WMP_DOMAIN."/"; ?>";
-            JSInterface.init();
-    
             window.JSInterface.add("UI_editcategories","EDIT_CATEGORIES",{'DOMDoc':window.document}, window);
-            // window.JSInterface.UI_editcategories.init();
         });
     }
 </script>

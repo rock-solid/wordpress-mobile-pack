@@ -13,9 +13,6 @@ function SEND_FEEDBACK(){
     this.form;
     this.DOMDoc;
 
-	// get page name
-	this.pageName;
-
 	/*****************************************************************************************************/
     /*                                                                                                   */
     /*                              FUNCTION INIT - called from JSInterface                              */
@@ -50,44 +47,35 @@ function SEND_FEEDBACK(){
     /*****************************************************************************************************/
     this.initValidation = function(){
 
-      	/*******************************************************/
-	    /*            CONFIG ERRORS CONTAINERS                 */
-	    /*******************************************************/
-	
-	    // set the CSS error class
-	    jQuery.validator.defaults.errorClass = "field-message error";
-	
-	    // this is the object which handle the form validations
+        // this is the object that handles the form validations
 	    this.validator = jQuery("#"+this.form.id, this.DOMDoc).validate({
 	
+            rules: {
+                feedback_message: {
+    		        required    : true
+    			}
+            },
+            
 	        // the errorPlacement has to take the table layout into account
 	        // all the errors must be handled by containers/divs with custom ids: Ex. "error_fullname_container"
 	        errorPlacement: function(error, element) {
 	            var id = (element[0].id.split("_").length > 1) ? element[0].id.split("_")[1] : element[0].id.split("_")[0];
 	            var errorContainer = jQuery("#error_"+id+"_container",JSObject.DOMDoc);
 	            error.appendTo( errorContainer );
-	        }
+	        },
+            
+            errorElement: 'span',
+            errorClass: 'field-message error'
 	    });
-
-		/*******************************************************/
-		/*      		INPUTS VALIDATION RULES          	   */
-		/*******************************************************/
-		 
-		// add rules
-		jQuery.extend( this.validator.settings.rules, {
-           
-            feedback_message: {
-		        required    : true
-			}
-           
-		});
+    	
         
         /*************  PLACEGOLDERS *************/
         
-        Message = jQuery('#'+this.type+'_message',this.DOMDoc);        
-        Message.data('holder',Message.attr('placeholder'));
+        var MessageInput = jQuery('#'+this.type+'_message',this.DOMDoc);        
+        MessageInput.data('holder',MessageInput.attr('placeholder'));
 
-        Message.focusin(function(){jQuery(this).attr('placeholder','');}).focusout(function(){jQuery(this).attr('placeholder',jQuery(this).data('holder'));});
+        MessageInput.focusin(function(){jQuery(this).attr('placeholder','');}).focusout(function(){jQuery(this).attr('placeholder',jQuery(this).data('holder'));});
+                
         /*******************************************/
     }
 
@@ -277,7 +265,7 @@ function SEND_FEEDBACK(){
 			var message = 'There was an error. Please reload the page and try again in few seconds or contact the plugin administrator if the problem persists.';
 			JSInterface.Loader.display({message: message});	
 		}
-		 /* 
+        
 		//enable form elements
 		setTimeout(function(){
 						var aElems = JSObject.form.elements;
@@ -290,7 +278,7 @@ function SEND_FEEDBACK(){
 		//enable buttons
 		JSObject.addButtonsActions();
 		
-		jQuery('.feedback',JSObject.DOMDoc).animate({opacity:1},300);*/
+		jQuery('.feedback',JSObject.DOMDoc).animate({opacity:1},300);
 		
 	}
 }
