@@ -65,7 +65,7 @@ function EDIT_IMAGES(){
         // this is the object that handles the form validations
 	    this.validator = jQuery("#"+this.form.id, this.DOMDoc).validate({
 	
-            rules: {
+            /*rules: {
                 editimages_icon : {
     				accept		: "png|jpg|jpeg"
     			},
@@ -82,7 +82,7 @@ function EDIT_IMAGES(){
     				accept		: "Please a png image format with a transparent background.",
     			}
             },
-            
+            */
 	        // the errorPlacement has to take the table layout into account
 	        // all the errors must be handled by containers/divs with custom ids: Ex. "error_fullname_container"
 	        errorPlacement: function(error, element) {
@@ -616,19 +616,19 @@ function EDIT_IMAGES(){
         
 		JSON = eval ("("+responseJSON+")");
 		response = Boolean(Number(String(JSON.status)));
+        
+        if (JSON.uploaded_icon != undefined) 
+            JSObject.displayImage("icon", JSON.uploaded_icon)
+        
+        if (JSON.uploaded_logo != undefined) 
+            JSObject.displayImage("logo", JSON.uploaded_logo)
 		
-		if (response == true){
+		if (response == true && JSON.messages.length == 0){
 			
             // show message
             var message = 'Your app has been successfully modified!';
             JSInterface.Loader.display({message: message});
             
-            if (JSON.uploaded_icon != undefined) 
-                JSObject.displayImage("icon", JSON.uploaded_icon)
-            
-            if (JSON.uploaded_logo != undefined) 
-                JSObject.displayImage("logo", JSON.uploaded_logo)
-
 		} else {
 			
 			// show messages

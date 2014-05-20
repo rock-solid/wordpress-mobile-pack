@@ -22,18 +22,19 @@ class WMobilePack {
 
 	public function __construct(){
 	
-	   
-		if(!is_array(self::$wmp_options) || empty(self::$wmp_options))
+		if(!is_array(self::$wmp_options) || empty(self::$wmp_options)){
         
-			self::$wmp_options = array(
-				'theme' => 1,
-				'color_scheme' => 1,
-				'font' => 'Arial',
-				'logo' => '',
-				'icon' => '',
-				'blog_name' => get_bloginfo( "name" ),
-                'inactive_categories' => serialize(array())
-		   );
+            self::$wmp_options = array(
+            	'theme' => 1,
+            	'color_scheme' => 1,
+            	'font' => 'Arial',
+            	'logo' => '',
+            	'icon' => '',
+            	'blog_name' => get_bloginfo( "name" ),
+                'inactive_categories' => serialize(array()),
+                'display_mode' => 'normal'
+            );
+        }
 	}
 			
 		
@@ -57,6 +58,18 @@ class WMobilePack {
 	 */
 	public function wmp_uninstall(){
 		
+        $logo_path = WMobilePack::wmp_get_setting('logo');
+        
+        if ($logo_path != '' && !file_exists(WMP_FILES_UPLOADS_DIR.$logo_path))
+            unlink(WMP_FILES_UPLOADS_DIR.$logo_path);  
+        
+        $icon_path = WMobilePack::wmp_get_setting('icon');
+        
+        if ($icon_path != '' && !file_exists(WMP_FILES_UPLOADS_DIR.$icon_path))
+            unlink(WMP_FILES_UPLOADS_DIR.$icon_path);  
+            
+        rmdir( WMP_FILES_UPLOADS_DIR );
+        
 		// remove settings from database
 		$this->wmp_delete_settings(self::$wmp_options);
 	}
