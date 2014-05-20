@@ -10,15 +10,7 @@
 	<div class="content">
         <div class="left-side">
             <!-- add nav menu -->
-            <nav class="menu">
-                <ul>
-                    <li><a href="#">Look & Feel</a></li>
-                    <li class="selected"><a href="#">Content</a></li>
-                    <li><a href="#">Settings</a></li>
-                    <li><a href="#">Upgrade</a></li>
-                </ul>
-            
-            </nav>
+            <?php include_once('sections/wmp-admin-menu.php'); ?>
           <div class="spacer-0"></div>
             <!-- add content form -->
             <div class="details">
@@ -30,7 +22,7 @@
                 <!-- start categories list -->
                 <?php if (count($categories) > 0):?>
                 
-                    <form name="editcategories_form" id="editcategories_form" action="<?php echo plugins_url()."/".WMP_DOMAIN."/"; ?>publishers/ajax/recoveraccount" method="post">
+                    <form name="editcategories_form" id="editcategories_form" action="" method="post">
                     
                         <ul class="categories">
                             <?php 
@@ -80,56 +72,15 @@
     
         <div class="right-side">
             <!-- add news and updates -->
-            <div class="updates">
-                <h2>News & Updates</h2> 
-                <div class="spacer-20"></div>
-                <div class="details">
-                    <!-- start news and updates -->
-                    <p>Lorem ipsum dolor sit amet, nec accusamus assentior in, per ea probo percipit ullamcorper. An mel animal menandri vituperata. Ne usu duis ignota oblique. <a href="#" target="_blank" title="read more">read more</a></p> 
-                    <div class="spacer-20"></div>
-                    <div class="grey-dotted-line"></div>
-                    <div class="spacer-20"></div>
-                    <p>Lorem ipsum dolor sit amet, nec accusamus assentior in, per ea probo percipit ullamcorper. An mel animal menandri vituperata. Ne usu duis ignota oblique. <a href="#" target="_blank" title="read more">read more</a></p> 
-                        
-                </div>
-            </div>
-            <div class="spacer-5"></div>
-            <!-- add appticles social -->
-            <div class="appticles-updates">
-                <!-- add content -->
-            	<div><p>Appticles Updates</p></div>
-                <div class="social">
-                	<a href="#" class="facebook"></a>
-                    <a href="#" class="twitter"></a>
-                    <a href="#" class="google-plus"></a>
-                </div>
-            </div>
+            <?php include_once('sections/wmp-news.php'); ?>
             <div class="spacer-15"></div>
 
 			<!-- add newsletter box -->
-            <div class="form-box">
-                <h2>Join our newsletter</h2>
-                <div class="spacer-10"></div>
-                <p>Receive monthly freebies, Special Offers &amp; Access to Exclusive Subscriber Content.</p>
-                <div class="spacer-0"></div>
-<form id="newsletter" name="" action="" method="post">
-                    <input type="hidden" name="" id="" placeholder="the-email address of the admin" class="small" />
-                    <a class="btn green smaller" href="#">Subscribe</a>
-                </form>
-            </div>
-		    <div class="spacer-15"></div>
+            <?php include_once('sections/wmp-newsletter.php'); ?>
+            <div class="spacer-15"></div>
             
             <!-- add feedback form -->
-            <div class="form-box">
-                <h2>Give us your feedback</h2>
-                <div class="spacer-10"></div>
-                <form id="" name="" action="" method="post">
-                    <input type="hidden" name="" id="" placeholder="the-email address of the admin" class="small" />
-                    <textarea name="feedback_message" id="feedback_message" placeholder="Your message" class="small"></textarea>
-                    <div class="spacer-5"></div>
-                    <a class="btn green smaller" href="#">Send</a>
-                </form>
-            </div>
+            <?php include_once('sections/wmp-feedback.php'); ?>
         </div>
 	</div>
 

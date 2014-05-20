@@ -10,4 +10,7 @@ define('WMP_LIBS_DIR', WP_PLUGIN_DIR . '/wordpress-mobile-pack/libs/');
 define('WMP_LIBS_URI', WP_PLUGIN_URL . '/wordpress-mobile-pack/libs/');
 define('WMP_ADMIN_PATH', WP_PLUGIN_DIR . '/wordpress-mobile-pack/admin');
 
+
+define('WMP_FEEDBACK_EMAIL','florentina@webcrumbz.co');
+define('WMP_NEWS_UPDATES','http://dev.webcrumbz.co/~flori/api/news_updates.php');
 ?>

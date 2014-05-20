@@ -31,6 +31,7 @@ if ( class_exists( 'WMobilePack' ) && class_exists( 'WMobilePackAdmin' ) ) {
 		$wmobile_pack->wmp_check_load();
         
         add_action( 'wp_ajax_wmp_content_save', array( &$wmobile_pack_admin, 'wmp_content_save' ) );
+		add_action( 'wp_ajax_wmp_send_feedback', array( &$wmobile_pack_admin, 'wmp_send_feedback' ) );
 	}
 	
 	// Initialize the MobilePress check logic and rendering

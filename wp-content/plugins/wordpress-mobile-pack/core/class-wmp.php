@@ -90,12 +90,14 @@ class WMobilePack {
         wp_enqueue_script('js_loader', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Loader.js'), array('jquery-core', 'jquery-migrate'), '2.0');
         wp_enqueue_script('js_ajax_upload', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/AjaxUpload.js'), array('jquery-core', 'jquery-migrate'), '2.0');
         wp_enqueue_script('js_interface', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/JSInterface.js'), array('jquery-core', 'jquery-migrate'), '2.0');	
+		wp_enqueue_script('js_scrollbar', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/perfect-scrollbar.js'), array(), '2.0');	
+		wp_enqueue_script('js_feedback', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Feedback/SEND_FEEDBACK.js'), array(), '2.0');	
 	
 		// enqueue styles
 		wp_enqueue_style('css_fonts', plugins_url(WMP_DOMAIN.'/admin/css/fonts.css'), array(), '2.0');
         wp_enqueue_style('css_ie', plugins_url(WMP_DOMAIN.'/admin/css/ie.css'), array(), '2.0');
         wp_enqueue_style('css_main', plugins_url(WMP_DOMAIN.'/admin/css/main.css'), array(), '2.0');	
-	
+		wp_enqueue_style('css_scrollbar', plugins_url(WMP_DOMAIN.'/admin/css/perfect-scrollbar.css'), array(), '2.0');
 	}
 	
 	
@@ -163,7 +165,7 @@ class WMobilePack {
             // check if the option is added in the db 
 			if ( get_option( 'wmpack_' . $option ) === false ) { 
 				$wmp_setting = self::$wmp_options[$option];
-                echo "aici";
+                
 			} else
 				$wmp_setting = get_option( 'wmpack_' . $option );
 				
