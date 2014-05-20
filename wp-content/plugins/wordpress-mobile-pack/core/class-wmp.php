@@ -74,7 +74,6 @@ class WMobilePack {
         
 		// enqueue css and javascript for the admin area
         add_action( 'admin_enqueue_scripts',array( &$this, 'wmp_enqueue_scripts' ) );
-        
 	}
     
 	

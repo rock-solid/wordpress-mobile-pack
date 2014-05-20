@@ -20,10 +20,17 @@
                 <div class="spacer-20"></div>
                 
                 <!-- start categories list -->
-                <?php if (count($categories) > 0):?>
+                <?php if (count($categories) > 0): ?>
                 
-                    <form name="editcategories_form" id="editcategories_form" action="" method="post">
-                    
+
+                    <form name="editcategories_form" id="editcategories_form" action="<?php echo plugins_url()."/".WMP_DOMAIN."/"; ?>publishers/ajax/recoveraccount" method="post">
+                        
+                        <div id="editcategories_warning" style="display: <?php echo count($inactive_categories) < count($categories) ? 'none' : 'block'?>;">
+                            <p>Since you deactivated all your categories, no content will be displayed in your mobile web app!</p>
+                            <div class="spacer-20"></div>
+                        </div>
+                        
+
                         <ul class="categories">
                             <?php 
                                 foreach ($categories as $category):
@@ -72,7 +79,9 @@
     
         <div class="right-side">
             <!-- add news and updates -->
+
             <?php include_once('sections/wmp-news.php'); ?>
+
             <div class="spacer-15"></div>
 
 			<!-- add newsletter box -->

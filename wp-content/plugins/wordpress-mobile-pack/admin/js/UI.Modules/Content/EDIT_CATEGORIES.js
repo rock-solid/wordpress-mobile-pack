@@ -97,7 +97,15 @@ function EDIT_CATEGORIES(){
 								// success message								
 								var message = 'The status of this category has been changed.';
                                 JSInterface.Loader.display({message: message});
-	
+                                
+                                // count remaining active categories
+                                var no_active_categories = jQuery( "li span.active", JSObject.form ).length;
+                                if (no_active_categories > 0){
+                                    jQuery('#'+JSObject.type+'_warning', JSObject.DOMDoc).hide();
+                                } else {
+                                    jQuery('#'+JSObject.type+'_warning', JSObject.DOMDoc).show();
+                                }
+                                
 							} else {
 							
 								// error message
