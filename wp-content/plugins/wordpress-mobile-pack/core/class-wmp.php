@@ -72,9 +72,13 @@ class WMobilePack {
 		// add admin menu hook
 		add_action( 'admin_menu', array( &$this, 'wmp_admin_menu' ) );
         
-		// enqueue css and javascript for the admin area
-        add_action( 'wp_enqueue_scripts',array( &$this, 'wmp_enqueue_scripts' ) );
-        add_action( 'wp_enqueue_styles',array( &$this, 'wmp_enqueue_styles' ) );
+        wp_enqueue_style('css_fonts', plugins_url(WMP_DOMAIN.'/admin/css/fonts.css'), array(), '2.0');
+        wp_enqueue_style('css_ie', plugins_url(WMP_DOMAIN.'/admin/css/ie.css'), array(), '2.0');
+        wp_enqueue_style('css_main', plugins_url(WMP_DOMAIN.'/admin/css/main.css'), array(), '2.0');	
+        
+        // enqueue css and javascript for the admin area
+        add_action( 'admin_enqueue_scripts',array( &$this, 'wmp_enqueue_scripts' ) );
+        // add_action( 'wp_enqueue_styles',array( &$this, 'wmp_enqueue_styles' ) );
         
 	}
     

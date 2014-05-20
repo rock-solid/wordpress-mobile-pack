@@ -28,10 +28,15 @@
                 <div class="spacer-20"></div>
                 
                 <!-- start categories list -->
-                <?php if (count($categories) > 0):?>
+                <?php if (count($categories) > 0): ?>
                 
                     <form name="editcategories_form" id="editcategories_form" action="<?php echo plugins_url()."/".WMP_DOMAIN."/"; ?>publishers/ajax/recoveraccount" method="post">
-                    
+                        
+                        <div id="editcategories_warning" style="display: <?php echo count($inactive_categories) < count($categories) ? 'none' : 'block'?>;">
+                            <p>Since you deactivated all your categories, no content will be displayed in your mobile web app!</p>
+                            <div class="spacer-20"></div>
+                        </div>
+                        
                         <ul class="categories">
                             <?php 
                                 foreach ($categories as $category):
@@ -99,9 +104,9 @@
                 <!-- add content -->
             	<div><p>Appticles Updates</p></div>
                 <div class="social">
-                	<a href="#" class="facebook"></a>
-                    <a href="#" class="twitter"></a>
-                    <a href="#" class="google-plus"></a>
+                	<a href="https://www.facebook.com/appticles" class="facebook" target="_blank"></a>
+                    <a href="https://twitter.com/appticles" class="twitter" target="_blank"></a>
+                    <a href="https://plus.google.com/+AppticlesCom" class="google-plus" target="_blank"></a>
                 </div>
             </div>
             <div class="spacer-15"></div>
