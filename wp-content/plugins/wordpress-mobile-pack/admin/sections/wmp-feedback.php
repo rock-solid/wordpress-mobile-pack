@@ -9,7 +9,7 @@
 ?>
 
 <div class="form-box feedback">
-    <h2>Give us your feedback</h2>
+    <h2>Give Us Your Feedback</h2>
     <div class="spacer-10"></div>
     <form id="feedback_form" name="feedback_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_send_feedback" method="post">
         <input type="hidden" name="feedback_page" id="feedback_page" value="<?php echo ucfirst($current_page);?>" />

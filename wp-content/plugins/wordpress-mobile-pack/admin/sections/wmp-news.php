@@ -6,7 +6,7 @@ if(!empty($arrNews) && is_array($arrNews )):
 	// if the news array is empty this section will not be displayed	
 ?>
     <div class="updates">
-        <h2>News & Updates</h2> 
+        <h2>News &amp; Updates</h2> 
         <div class="spacer-20"></div>
         <div class="details" id="news_updates">
             <!-- start news and updates -->

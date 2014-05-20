@@ -9,9 +9,11 @@
 	<div class="spacer-20"></div>
 	<div class="content">
         <div class="left-side">
+        
             <!-- add nav menu -->
             <?php include_once('sections/wmp-admin-menu.php'); ?>
-          <div class="spacer-0"></div>
+            <div class="spacer-0"></div>
+            
             <!-- add content form -->
             <div class="details">
             	<div class="spacer-10"></div>

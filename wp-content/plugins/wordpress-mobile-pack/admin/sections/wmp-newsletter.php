@@ -1,5 +1,5 @@
 <div class="form-box">
-    <h2>Join our newsletter</h2>
+    <h2>Join Our Newsletter</h2>
     <div class="spacer-10"></div>
     <p>Receive monthly freebies, Special Offers &amp; Access to Exclusive Subscriber Content.</p>
     <div class="spacer-0"></div>
