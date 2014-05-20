@@ -4,7 +4,7 @@
  * http://bassistance.de/jquery-plugins/jquery-plugin-validation/
  * http://docs.jquery.com/Plugins/Validation
  *
- * Copyright 2013 JÃ¶rn Zaefferer
+ * Copyright 2013 Jörn Zaefferer
  * Released under the MIT license:
  *   http://www.opensource.org/licenses/mit-license.php
  */
@@ -329,8 +329,8 @@ jQuery.validator.addMethod("giroaccountNL", function(value, element) {
 
 jQuery.validator.addMethod("bankorgiroaccountNL", function(value, element) {
 	return this.optional(element) ||
-			($.validator.methods["bankaccountNL"].call(this, value, element)) ||
-			($.validator.methods["giroaccountNL"].call(this, value, element));
+			(jQuery.validator.methods["bankaccountNL"].call(this, value, element)) ||
+			(jQuery.validator.methods["giroaccountNL"].call(this, value, element));
 }, "Please specify a valid bank or giro account number");
 
 
@@ -527,12 +527,12 @@ jQuery.validator.addMethod("pattern", function(value, element, param) {
 jQuery.validator.addMethod("require_from_group", function(value, element, options) {
 	var validator = this;
 	var selector = options[1];
-	var validOrNot = $(selector, element.form).filter(function() {
+	var validOrNot = jQuery(selector, element.form).filter(function() {
 		return validator.elementValue(this);
 	}).length >= options[0];
 
-	if(!$(element).data('being_validated')) {
-		var fields = $(selector, element.form);
+	if(!jQuery(element).data('being_validated')) {
+		var fields = jQuery(selector, element.form);
 		fields.data('being_validated', true);
 		fields.valid();
 		fields.data('being_validated', false);
@@ -562,13 +562,13 @@ jQuery.validator.addMethod("skip_or_fill_minimum", function(value, element, opti
 	var validator = this,
 		numberRequired = options[0],
 		selector = options[1];
-	var numberFilled = $(selector, element.form).filter(function() {
+	var numberFilled = jQuery(selector, element.form).filter(function() {
 		return validator.elementValue(this);
 	}).length;
 	var valid = numberFilled >= numberRequired || numberFilled === 0;
 
-	if(!$(element).data('being_validated')) {
-		var fields = $(selector, element.form);
+	if(!jQuery(element).data('being_validated')) {
+		var fields = jQuery(selector, element.form);
 		fields.data('being_validated', true);
 		fields.valid();
 		fields.data('being_validated', false);
@@ -588,7 +588,7 @@ jQuery.validator.addMethod("accept", function(value, element, param) {
 		return optionalValue;
 	}
 
-	if ($(element).attr("type") === "file") {
+	if (jQuery(element).attr("type") === "file") {
 		// If we are using a wildcard, make it regex friendly
 		typeParam = typeParam.replace(/\*/g, ".*");
 
@@ -615,47 +615,3 @@ jQuery.validator.addMethod("extension", function(value, element, param) {
 	param = typeof param === "string" ? param.replace(/,/g, '|') : "png|jpe?g|gif";
 	return this.optional(element) || value.match(new RegExp(".(" + param + ")$", "i"));
 }, jQuery.format("Please enter a value with a valid extension."));
-
-// same as remote, but pending status is no more needed. We use abort instead of pending.
-jQuery.validator.addMethod("remote2", function(value, element, param) {
-	
-	var validator = this;
-	validator.startRequest(element);
-	$(element).data("ajaxResponse", false);
-	
-	var data = {};
-	data[element.name] = value;
-		
-	if (ajaxCall) ajaxCall.abort();
-	
-	var ajaxCall = $.ajax($.extend(true, {
-		url			: param,
-		mode		: "abort",
-		port		: "validate" + element.name,
-		data		: data,
-		cache		: false,
-		async		: true,
-		success		: function(response) {
-			
-			var valid = response === "ok";	// wbz - 03.05.2012
-			if ( valid ) {
-				var submitted = validator.formSubmitted;
-				validator.prepareElement(element);
-				validator.formSubmitted = submitted;
-				validator.successList.push(element);
-				validator.showErrors();
-			} else {
-				var errors = {};
-				var message = response || validator.defaultMessage( element, "remote" );
-				errors[element.name] = $.isFunction(message) ? message(value) : message;
-				validator.showErrors(errors);
-			}
-			
-			validator.stopRequest(element, valid);
-			
-			$(element).data("ajaxResponse", true);     // wbz - 03.05.2012
-		}
-	}, param));
-	return "ok";
-	
-}, jQuery.validator.messages.remote);

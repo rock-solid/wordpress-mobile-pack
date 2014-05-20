@@ -30,7 +30,7 @@
                 <!-- start categories list -->
                 <?php if (count($categories) > 0): ?>
                 
-                    <form name="editcategories_form" id="editcategories_form" action="<?php echo plugins_url()."/".WMP_DOMAIN."/"; ?>publishers/ajax/recoveraccount" method="post">
+                    <form name="editcategories_form" id="editcategories_form" action="" method="post">
                         
                         <div id="editcategories_warning" style="display: <?php echo count($inactive_categories) < count($categories) ? 'none' : 'block'?>;">
                             <p>Since you deactivated all your categories, no content will be displayed in your mobile web app!</p>

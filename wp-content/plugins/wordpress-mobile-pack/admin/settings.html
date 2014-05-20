@@ -3,11 +3,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<title>Content</title>
+<title>Settings</title>
 <link href="resources/css/main.css" rel="stylesheet" type="text/css" />
 <link href="resources/css/fonts.css" rel="stylesheet" type="text/css" />
 
 <link rel="stylesheet" type="text/css" href="resources/css/ie.css"  />
+<script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script>
+	$('.custom-upload input[type=file]').change(function(){
+		$(this).next().find('input').val($(this).val());
+	});
+</script>
 
 </head>
 
@@ -16,72 +22,92 @@
 <div id="wmpack-admin">
 	<div class="spacer-20"></div>
     <!-- set title -->
-    <h1>CONTENT</h1>
+    <h1>SETTINGS</h1>
 	<div class="spacer-20"></div>
-	<div class="content">
+	<div class="settings">
         <div class="left-side">
             <!-- add nav menu -->
             <nav class="menu">
                 <ul>
                     <li><a href="#">Look & Feel</a></li>
-                    <li class="selected"><a href="#">Content</a></li>
-                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">Content</a></li>
+                    <li class="selected"><a href="#">Settings</a></li>
                     <li><a href="#">Upgrade</a></li>
                 </ul>
             
             </nav>
           <div class="spacer-0"></div>
-            <!-- add content form -->
+            <!-- add settings -->
             <div class="details">
             	<div class="spacer-10"></div>
             	<p>Lorem ipsum dolor sit amet, nec accusamus assentior in, per ea probo percipit ullamcorper. An mel animal menandri vituperata. Vis an solet ocurreret, sit laudem semper perfecto ex, vix an nibh tacimates. Ne usu duis ignota oblique.</p>
             	<div class="spacer-20"></div>
-                <div class="spacer-20"></div>
-                <!-- start categories list -->
-                <ul class="categories">
-                	<li>
-                    	<span class=" status active">active</span>
-                        <span class="title">Sports</span>
-                        <span class="posts">88 posts published</span>
-                    
-                    </li>
-                	<li>
-                    	<span class="status inactive">inactive</span>
-                        <span class="title">Lifestyle</span>
-                        <span class="posts">5 posts published</span>
-                    
-                    </li>
-                    <li>
-                    	<span class="status active">active</span>
-                        <span class="title">Food</span>
-                        <span class="posts">155 posts published</span>
-                    
-                    </li>
-                </ul>
-                <div class="spacer-20"></div>
-                <a class="btn green smaller" href="#">Send</a>
-                
             </div>
-            <div class="spacer-10"></div>
+            <div class="spacer-15"></div>
+            <div class="details offline">
+            	<div class="offline-mode">
+                 	<p>Offline mode </p>
+                    <div class="spacer-20"></div>
+                 	<!-- add radio buttons -->
+                    <input type="radio" name="offline" id="on" /><label for="on">On</label>
+                    <div class="spacer-10"></div>
+                    <input type="radio" name="offline" id="off" selected="selected" /><label for="off">Off</label>
+                </div>
+                <div class="waitlist">
+                	<div class="spacer-20"></div>
+                    <div class="spacer-20"></div>
+                	 <a class="btn blue smaller" href="#">Join Waitlist</a>
+                     <div class="spacer-0"></div>
+                     <p>and get notified when available</p>
+                </div>
+                <div class="spacer-20"></div>
+            </div>
+            <div class="spacer-15"></div>
             <div class="details">
-            	<h2 class="title">Coming Soon</h2>
-           		<div class="spacer_15"></div>
+            	<div class="display-mode">
+                 	<p>Display mode</p>
+                    <div class="spacer-20"></div>
+                    <form name="display_form" action="" method="post">
+                        <!-- add radio buttons -->
+                        <input type="radio" name="display_mode" id="display_mode_normal" value="normal" /><label for="display_mode_normal">Normal(visible to all users)</label>
+                        <div class="spacer-10"></div>
+                        <input type="radio" name="display_mode" id="display_mode_preview" value="preview" /><label for="display_mode_preview">Preview(visible to admin only)</label>
+                        <div class="spacer-10"></div>
+                        <input type="radio" name="display_mode" id="display_mode_disabled" value="disabled" /><label for="display_mode_disabled">Disabled(not visible)</label>
+                		<div class="spacer-20"></div>
+                        <a class="btn green smaller" href="#">Save</a>
+                    </form>
+                </div>
+                <div class="spacer-20"></div>
+            </div>
+            <div class="spacer-15"></div>
+            <div class="details branding">
+                <h2 class="title">Custom Branding</h2>
+                <div class="spacer_15"></div>
                 <div class="grey-line"></div>
                 <div class="spacer-15"></div>
                 <div class="spacer-20"></div>
-                <div class="more-content">
-                 	<p class="left">Add more content from </p>
-                 	<img src="resources/images/content-icons.png" alt="" class="left" />
-                </div>
-                <div class="waitlist">
-                	 <a class="btn blue smaller right" href="#">Join Waitlist</a>
-                     <div class="spacer-0"></div>
-                     <p>and get notified when available</p>
-                </div> 
-                <div class="spacer-5"></div>
-                <div class="grey-line"></div>
-                <div class="spacer-20"></div>
-                <div class="spacer-20"></div>
+               	<form name="branding_form" action="" method="post">
+                    <label for="branding_logo">Upload your logo</label>
+                   <div class="custom-upload">
+                        <input type="file" id="branding_logo" name="branding_logo" />
+                        <div class="fake-file">
+                            <input disabled="disabled" />
+                            <a href="#" class="btn grey smaller">Browse</a>
+                        </div>
+                    </div>
+                   
+                   <div class="spacer-20"></div>
+                   <!-- if image is added display second box type -->
+                   <div class="display-logo">
+                   	   <label for="branding_icon">App icon</label>
+                       <img src="resources/images/app-icon.png" />
+                       <a href="#" class="btn grey smaller">Change</a>
+                   </div>
+                   <div class="spacer-20"></div>
+                   <a class="btn green smaller" href="#">Save</a>
+                   
+                </form>
             </div>
         </div>
     
@@ -105,10 +131,10 @@
             <div class="appticles-updates">
                 <!-- add content -->
             	<div><p>Appticles Updates</p></div>
-                <div>
-                	<div class="facebook"></div>
-                    <div class="twitter"></div>
-                    <div class="google-plus"></div>
+                <div class="social">
+                	<a class="facebook"></a>
+                    <a class="twitter"></a>
+                    <a class="google-plus"></a>
                 </div>
             </div>
             <div class="spacer-15"></div>

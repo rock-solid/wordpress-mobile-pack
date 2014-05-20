@@ -86,14 +86,15 @@ class WMobilePack {
 		
 		// enqueue scripts
         wp_enqueue_script('js_validate', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/jquery.validate.min.js'), array('jquery-core', 'jquery-migrate'), '1.11.1');
-        wp_enqueue_script('js_loader', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Loader.js'), array('jquery-core', 'jquery-migrate'), '2.0');
-        wp_enqueue_script('js_ajax_upload', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/AjaxUpload.js'), array('jquery-core', 'jquery-migrate'), '2.0');
-        wp_enqueue_script('js_interface', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/JSInterface.js'), array('jquery-core', 'jquery-migrate'), '2.0');	
+        wp_enqueue_script('js_validate_additional', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/validate-additional-methods.min.js'), array('jquery-core', 'jquery-migrate'), '1.11.1');
+        wp_enqueue_script('js_loader', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Loader.js'), array('jquery-core', 'jquery-migrate'), WMP_VERSION);
+        wp_enqueue_script('js_ajax_upload', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/AjaxUpload.js'), array('jquery-core', 'jquery-migrate'), WMP_VERSION);
+        wp_enqueue_script('js_interface', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/JSInterface.js'), array('jquery-core', 'jquery-migrate'), WMP_VERSION);	
 	
 		// enqueue styles
-		wp_enqueue_style('css_fonts', plugins_url(WMP_DOMAIN.'/admin/css/fonts.css'), array(), '2.0');
-        wp_enqueue_style('css_ie', plugins_url(WMP_DOMAIN.'/admin/css/ie.css'), array(), '2.0');
-        wp_enqueue_style('css_main', plugins_url(WMP_DOMAIN.'/admin/css/main.css'), array(), '2.0');	
+		wp_enqueue_style('css_fonts', plugins_url(WMP_DOMAIN.'/admin/css/fonts.css'), array(), WMP_VERSION);
+        wp_enqueue_style('css_ie', plugins_url(WMP_DOMAIN.'/admin/css/ie.css'), array(), WMP_VERSION);
+        wp_enqueue_style('css_main', plugins_url(WMP_DOMAIN.'/admin/css/main.css'), array(), WMP_VERSION);	
 	
 	}
 	
@@ -104,9 +105,18 @@ class WMobilePack {
      * 
      */
     public function load_content_js(){
-        wp_enqueue_script('js_content_editcategories', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/EDIT_CATEGORIES.js'), array(), '2.0');
+        wp_enqueue_script('js_content_editcategories', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/EDIT_CATEGORIES.js'), array(), WMP_VERSION);
     }
     
+    
+    /**
+     * 
+     * Load specific javascript files for the Settings submenu page
+     * 
+     */
+    public function load_settings_js(){
+        wp_enqueue_script('js_settings_editimages', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/EDIT_IMAGES.js'), array(), WMP_VERSION);
+    }
     
     
 	/**
@@ -127,7 +137,9 @@ class WMobilePack {
 		$content_page = add_submenu_page( 'wmp-options', 'Content', 'Content', 'manage_options', 'wmp-options-content', array( &$WMobilePackAdmin, 'wmp_content_options') );
         add_action( 'load-' . $content_page, array( &$this, 'load_content_js' ) );   
         
-		add_submenu_page( 'wmp-options', 'Settings', 'Settings', 'manage_options', 'wmp-options-settings', array( &$WMobilePackAdmin, 'wmp_settings_options') );
+		$settings_page = add_submenu_page( 'wmp-options', 'Settings', 'Settings', 'manage_options', 'wmp-options-settings', array( &$WMobilePackAdmin, 'wmp_settings_options') );
+        add_action( 'load-' . $settings_page, array( &$this, 'load_settings_js' ) ); 
+        
 		add_submenu_page( 'wmp-options', 'Upgrade', 'Upgrade', 'manage_options', 'wmp-options-upgrade', array( &$WMobilePackAdmin, 'wmp_upgrade_options') );
 		
         
@@ -162,7 +174,6 @@ class WMobilePack {
             // check if the option is added in the db 
 			if ( get_option( 'wmpack_' . $option ) === false ) { 
 				$wmp_setting = self::$wmp_options[$option];
-                echo "aici";
 			} else
 				$wmp_setting = get_option( 'wmpack_' . $option );
 				
@@ -220,11 +231,11 @@ class WMobilePack {
 	 * The method return true in case of success and false otherwise
 	 *
 	 */	
-	function wmp_update_settings( $option, $option_value = '' ) {
+	function wmp_update_settings( $option, $option_value = null ) {
 	
-		if(is_array($option) && !empty($option)) {
+		if (is_array($option) && !empty($option)) {
 			
-			foreach($option as $option_name => $option_value) {
+			foreach ($option as $option_name => $option_value) {
 				
 				// set option not saved variable
 				$option_not_updated = false;
@@ -234,7 +245,7 @@ class WMobilePack {
 				else
 					$option_not_updated = true; // there is at least one option not in the default list
 					
-				if(!$option_not_updated)
+				if (!$option_not_updated)
 					return true;
 				else
 					return false; // there was an error
@@ -243,7 +254,7 @@ class WMobilePack {
 		
 			return true;
 			
-		} elseif(is_string($option) && $option_value != '') {
+		} elseif (is_string($option) && $option_value !== null) {
 			
 			if ( array_key_exists( $option , self::$wmp_options ) )
 				return update_option( 'wmpack_' . $option, $option_value );

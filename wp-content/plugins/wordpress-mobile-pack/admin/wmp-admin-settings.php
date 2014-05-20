@@ -1,20 +1,7 @@
-<?php 
-
-
-global $wmobile_pack; 
-?>
-
-<script src="http://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
-<script>
-	$('.custom-upload input[type=file]').change(function(){
-		$(this).next().find('input').val($(this).val());
-	});
-</script>
-
 <div id="wmpack-admin">
 	<div class="spacer-20"></div>
     <!-- set title -->
-    <h1>SETTINGS</h1>
+    <h1>Settings</h1>
 	<div class="spacer-20"></div>
 	<div class="settings">
         <div class="left-side">
@@ -38,12 +25,12 @@ global $wmobile_pack;
             <div class="spacer-15"></div>
             <div class="details offline">
             	<div class="offline-mode">
-                 	<p>Offline mode </p>
+                 	<p>Offline mode:</p>
                     <div class="spacer-20"></div>
                  	<!-- add radio buttons -->
-                    <input type="radio" name="offline" id="on" disabled="disabled" /><label for="on">On</label>
+                    <input type="radio" name="offline" id="on" /><label for="on">On</label>
                     <div class="spacer-10"></div>
-                    <input type="radio" name="offline" id="off" checked="checked" disabled="disabled" /><label for="off">Off</label>
+                    <input type="radio" name="offline" id="off" selected="selected" /><label for="off">Off</label>
                 </div>
                 <div class="waitlist">
                 	<div class="spacer-20"></div>
@@ -57,15 +44,15 @@ global $wmobile_pack;
             <div class="spacer-15"></div>
             <div class="details">
             	<div class="display-mode">
-                 	<p>Display mode</p>
+                 	<p>Choose display mode:</p>
                     <div class="spacer-20"></div>
                     <form name="display_form" action="" method="post">
                         <!-- add radio buttons -->
-                        <input type="radio" name="display_mode" id="display_mode_normal" value="normal" /><label for="display_mode_normal">Normal(visible to all users)</label>
+                        <input type="radio" name="display_mode" id="display_mode_normal" value="normal" /><label for="display_mode_normal"><strong>Normal</strong> (all mobile visitors)</label>
                         <div class="spacer-10"></div>
-                        <input type="radio" name="display_mode" id="display_mode_preview" value="preview" /><label for="display_mode_preview">Preview(visible to admin only)</label>
+                        <input type="radio" name="display_mode" id="display_mode_preview" value="preview" /><label for="display_mode_preview"><strong>Preview</strong> (logged in administrators)</label>
                         <div class="spacer-10"></div>
-                        <input type="radio" name="display_mode" id="display_mode_disabled" value="disabled" /><label for="display_mode_disabled">Disabled(not visible)</label>
+                        <input type="radio" name="display_mode" id="display_mode_disabled" value="disabled" /><label for="display_mode_disabled"><strong>Disabled</strong> (hidden for all)</label>
                 		<div class="spacer-20"></div>
                         <a class="btn green smaller" href="#">Save</a>
                     </form>
@@ -73,32 +60,107 @@ global $wmobile_pack;
                 <div class="spacer-20"></div>
             </div>
             <div class="spacer-15"></div>
+            
             <div class="details branding">
-                <h2 class="title">Custom Branding</h2>
+                <h2 class="title">Customize Your App's Logo and Icon</h2>
                 <div class="spacer_15"></div>
                 <div class="grey-line"></div>
                 <div class="spacer-15"></div>
                 <div class="spacer-20"></div>
-               	<form name="branding_form" action="" method="post">
-                    <label for="branding_logo">Upload your logo</label>
-                   <div class="custom-upload">
-                        <input type="file" id="branding_logo" name="branding_logo" />
-                        <div class="fake-file">
-                            <input disabled="disabled" />
-                            <a href="#" class="btn grey smaller">Browse</a>
-                        </div>
+                <form name="editimages_form" id="editimages_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_editimages&type=upload" method="post" enctype="multipart/form-data">
+                   
+                    <?php
+                        $logo_path = WMobilePack::wmp_get_setting('logo');
+                        
+                        if (!file_exists(WMP_FILES_UPLOADS_DIR.$logo_path))
+                            $logo_path = '';    
+                    ?>
+
+                    <!-- upload logo field -->
+                    <div class="editimages_uploadlogo" style="display: <?php echo $logo_path == '' ? 'block' : 'none';?>;">
+                    
+                        <label for="editimages_logo">Upload your app logo</label>
+                        
+                        <div class="custom-upload">
+                        
+                            <input type="file" id="editimages_logo" name="editimages_logo" />
+                            <div class="fake-file">
+                                <input type="text" id="fakefilelogo" disabled="disabled" />
+                                <a href="#" class="btn grey smaller">Browse</a>
+                            </div>
+                            
+                            <div class="error_container" id="error_logo_container"></div>
+                            <a href="javascript:void(0)" id="editimages_logo_removenew" style="display: none;">remove</a>
+                        </div> 
+                    
                     </div>
-                   
-                   <div class="spacer-20"></div>
-                   <!-- if image is added display second box type -->
-                   <div class="display-logo">
-                   	   <label for="branding_icon">App icon</label>
-                       <img src="resources/images/app-icon.png" />
-                       <a href="#" class="btn grey smaller">Change</a>
-                   </div>
-                   <div class="spacer-20"></div>
-                   <a class="btn green smaller" href="#">Save</a>
-                   
+                    
+                    <!-- logo image -->
+                    <div class="editimages_logocontainer display-logo" style="display: <?php echo $logo_path != '' ? 'block' : 'none';?>;;">
+                    
+                        <label for="branding_logo">App logo</label>
+                        <img src="<?php echo WMP_FILES_UPLOADS_URL.$logo_path;?>" id="editimages_currentlogo" />
+                        
+                        <!-- edit/delete logo links -->
+                        <a href="javascript:void(0);" class="editimages_changelogo btn grey smaller">Change</a>
+                        <a href="#" class="editimages_deletelogo btn grey smaller">Remove</a>
+                    </div>
+                    
+                    <!-- cancel upload logo button -->
+					<div class="editimages_changelogo_cancel" style="display: none;">
+						<div class="spacer_m"></div>
+						<a href="javascript:void(0);">cancel</a>
+					</div>
+                                
+                    <div class="spacer-20"></div>
+                    
+                    <?php
+                        $icon_path = WMobilePack::wmp_get_setting('icon');
+                        
+                        if (!file_exists(WMP_FILES_UPLOADS_DIR.$icon_path))
+                            $icon_path = '';    
+                    ?>
+
+                    <!-- upload icon field -->
+                    <div class="editimages_uploadicon" style="display: <?php echo $icon_path == '' ? 'block' : 'none';?>;">
+                    
+                        <label for="editimages_icon">Upload your app icon</label>
+                        
+                        <div class="custom-upload">
+                        
+                            <input type="file" id="editimages_icon" name="editimages_icon" />
+                            <div class="fake-file">
+                                <input type="text" id="fakefileicon" disabled="disabled" />
+                                <a href="#" class="btn grey smaller">Browse</a>
+                            </div>
+                            
+                            <div class="error_container" id="error_icon_container"></div>
+                            <a href="javascript:void(0)" id="editimages_icon_removenew" style="display: none;">remove</a>
+                        </div> 
+                    
+                    </div>
+                    
+                    <!-- icon image -->
+                    <div class="editimages_iconcontainer display-logo" style="display: <?php echo $icon_path != '' ? 'block' : 'none';?>;;">
+                    
+                        <label for="branding_icon">App icon</label>
+                        <img src="<?php echo WMP_FILES_UPLOADS_URL.$icon_path;?>" id="editimages_currenticon" />
+                        
+                        <!-- edit/delete icon links -->
+                        <a href="javascript:void(0);" class="editimages_changeicon btn grey smaller">Change</a>
+                        <a href="#" class="editimages_deleteicon btn grey smaller">Remove</a>
+                    </div>
+                    
+                    <!-- cancel upload icon button -->
+					<div class="editimages_changeicon_cancel" style="display: none;">
+						<div class="spacer_m"></div>
+						<a href="javascript:void(0);">cancel</a>
+					</div>
+                                
+                    <div class="spacer-20"></div>
+                    
+                    <a href="javascript:void(0);" id="editimages_send_btn" class="btn green smaller">Save</a>
+
                 </form>
             </div>
         </div>
@@ -119,6 +181,7 @@ global $wmobile_pack;
                 </div>
             </div>
             <div class="spacer-5"></div>
+            
             <!-- add appticles social -->
             <div class="appticles-updates">
                 <!-- add content -->
@@ -130,22 +193,21 @@ global $wmobile_pack;
                 </div>
             </div>
             <div class="spacer-15"></div>
-            <!-- add whitepaper -->
-            <div class="white-paper"><p>White paper</p></div>
-            <div class="spacer-15"></div>
+            
 			<!-- add newsletter box -->
-      <div class="form-box">
+            <div class="form-box">
                 <h2>Join our newsletter</h2>
                 <div class="spacer-10"></div>
                 <p>Receive monthly freebies, Special Offers & Access to Exclusive Subscriber Content.</p>
                 <div class="spacer-0"></div>
-				<form id="newsletter" name="" action="" method="post">
+                <form id="newsletter" name="" action="" method="post">
                     <input type="hidden" name="" id="" placeholder="the-email address of the admin" class="small" />
                     <a class="btn green smaller" href="#">Subscribe</a>
                 </form>
             </div>
 		    <div class="spacer-15"></div>
-        <!-- add feedback form -->
+            
+            <!-- add feedback form -->
             <div class="form-box">
                 <h2>Give us your feedback</h2>
                 <div class="spacer-20"></div>
@@ -158,7 +220,17 @@ global $wmobile_pack;
             </div>
         </div>
 	</div>
-
-
 </div>
+
+<script type="text/javascript">
+    if (window.JSInterface && window.JSInterface != null){
+        jQuery(document).ready(function(){
+            
+            JSInterface.localpath = "<?php echo plugins_url()."/".WMP_DOMAIN."/"; ?>";
+            JSInterface.init();
+    
+            window.JSInterface.add("UI_editimages","EDIT_IMAGES",{'DOMDoc':window.document}, window);
+        });
+    }
+</script>
 

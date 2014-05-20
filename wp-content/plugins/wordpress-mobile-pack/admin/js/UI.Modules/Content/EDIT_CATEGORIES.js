@@ -1,6 +1,6 @@
 /*****************************************************************************************************/
 /*                                                                                                   */
-/*                                    	'PUBLISHERS RECOVER ACCOUNT'                             	 */
+/*                                    	'ACTIVATE / DEACTIVATE CATEGORIES'                           */
 /*                                                                                                   */
 /*****************************************************************************************************/
 
@@ -36,8 +36,6 @@ function EDIT_CATEGORIES(){
     }
 
 
-
-
     /*****************************************************************************************************/
     /*                                                                                                   */
     /*                                  FUNCTION INIT VALIDATION                                         */
@@ -51,6 +49,7 @@ function EDIT_CATEGORIES(){
 	    /*                                                                                                   */
 	    /*****************************************************************************************************/
 	    
+        console.log(ajaxurl)
         jQuery( "li .status", this.form ).on("click", function(){
 		
 			var isConfirmed = confirm("Are you sure you want to change the status for this category?");
