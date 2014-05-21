@@ -65,7 +65,7 @@ function SEND_FEEDBACK(){
 	        },
             
             errorElement: 'span',
-            errorClass: 'field-message error'
+            //errorClass: 'field-message error'
 	    });
     	
         
