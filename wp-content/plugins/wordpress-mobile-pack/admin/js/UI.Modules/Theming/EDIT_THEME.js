@@ -8,7 +8,7 @@ function EDIT_THEME(){
 
     var JSObject = this;
 
-    this.type = "editsettings";
+    this.type = "edittheme";
 
     this.form;
     this.DOMDoc;
@@ -60,7 +60,7 @@ function EDIT_THEME(){
         // this is the object that handles the form validations
 	    this.validator = jQuery("#"+this.form.id, this.DOMDoc).validate({
 	
-            rules: {
+            /*rules: {
                 editsettings_displaymode : {
     				required    : true
     			}
@@ -71,7 +71,7 @@ function EDIT_THEME(){
     				required		: "Please choose an option."
     			}
             },
-            
+            */
 	        // the errorPlacement has to take the table layout into account
 	        // all the errors must be handled by containers/divs with custom ids: Ex. "error_fullname_container"
 	        errorPlacement: function(error, element) {

@@ -13,6 +13,7 @@ class WMobilePack {
 	/* ----------------------------------*/
 	
 	public static $wmp_options;
+    public static $wmp_allowed_fonts = array('Roboto Condensed', 'Georgia', 'Times New Roman', 'Open Sans');
 		
 		
 	/* ----------------------------------*/
@@ -25,16 +26,18 @@ class WMobilePack {
 		if(!is_array(self::$wmp_options) || empty(self::$wmp_options)){
         
             self::$wmp_options = array(
-                'blog_name' => get_bloginfo( "name" ),
-            	'theme' => 1,
-            	'color_scheme' => 1,
-            	'font_headlines' => 'Roboto Condensed',
-                'font_subtitles' => 'Roboto Condensed',
-                'font_paragraphs' => 'Roboto Condensed',
-                'inactive_categories' => serialize(array()),
-                'display_mode' => 'normal',
-            	'logo' => '',
-            	'icon' => ''
+            
+                'blog_name'             => get_bloginfo( "name" ),
+            	'theme'                 => 1,
+            	'color_scheme'          => 1,
+            	'font_headlines'        => $wmp_allowed_fonts[0],
+                'font_subtitles'        => $wmp_allowed_fonts[0],
+                'font_paragraphs'       => $wmp_allowed_fonts[0],
+                'inactive_categories'   => serialize(array()),
+                'display_mode'          => 'normal',
+            	'logo'                  => '',
+            	'icon'                  => ''
+                
             );
         }
 	}

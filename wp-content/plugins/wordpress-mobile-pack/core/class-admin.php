@@ -227,6 +227,26 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                         WMobilePack::wmp_update_settings('display_mode', $_POST['editsettings_displaymode']);
                     }
                 }
+                
+                if (isset($_POST['edittheme_colorscheme']) && $_POST['edittheme_colorscheme'] != '' &&
+                    isset($_POST['edittheme_fontheadlines']) && $_POST['edittheme_fontheadlines'] != '' &&
+                    isset($_POST['edittheme_fontsubtitles']) && $_POST['edittheme_fontsubtitles'] != '' &&
+                    isset($_POST['edittheme_fontparagraphs']) && $_POST['edittheme_fontparagraphs'] != ''){
+                    
+                    if (in_array($_POST['edittheme_colorscheme'], array(1,2,3)) && 
+                        in_array($_POST['edittheme_fontheadlines'], WMobilePack::$wmp_allowed_fonts) && 
+                        in_array($_POST['edittheme_fontsubtitles'], WMobilePack::$wmp_allowed_fonts) &&
+                        in_array($_POST['edittheme_fontparagraphs'], WMobilePack::$wmp_allowed_fonts)){
+                        
+                        $status = 1;
+                        
+                        // save options
+                        WMobilePack::wmp_update_settings('color_scheme', $_POST['edittheme_colorscheme']);
+                        WMobilePack::wmp_update_settings('font_headlines', $_POST['edittheme_fontheadlines']);
+                        WMobilePack::wmp_update_settings('font_subtitles', $_POST['edittheme_fontsubtitles']);
+                        WMobilePack::wmp_update_settings('font_paragraphs', $_POST['edittheme_fontparagraphs']);
+                    }
+                }
             }
             
             echo $status;
@@ -359,7 +379,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                                                     if ($image_size['width'] > $arrMaximumSize['width'] || $image_size['height'] > $arrMaximumSize['height']) {
                                                         
                                                         // resize and copy to the wmp uploads folder
-                                                        $image->resize( 50, 50, true );
+                                                        $image->resize( $arrMaximumSize['width'], $image_size['height'] );
                                                         $image->save( WMP_FILES_UPLOADS_DIR.$uniqueFilename );
                                                         
                                                         $copied_and_resized = true;

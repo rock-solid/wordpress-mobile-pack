@@ -62,7 +62,7 @@ function EDIT_IMAGES(){
         // this is the object that handles the form validations
 	    this.validator = jQuery("#"+this.form.id, this.DOMDoc).validate({
 	
-            /*rules: {
+            rules: {
                 editimages_icon : {
     				accept		: "png|jpg|jpeg"
     			},
@@ -79,7 +79,7 @@ function EDIT_IMAGES(){
     				accept		: "Please a png image format with a transparent background.",
     			}
             },
-            */
+            
 	        // the errorPlacement has to take the table layout into account
 	        // all the errors must be handled by containers/divs with custom ids: Ex. "error_fullname_container"
 	        errorPlacement: function(error, element) {
@@ -299,7 +299,7 @@ function EDIT_IMAGES(){
 						jQuery('.'+JSObject.type+'_uploadlogo',JSObject.DOMDoc).show();
 					
 						// show cancel button
-						if (jQuery('#'+JSObject.type+'_currentlogo',JSObject.DOMDoc).attr("src") != "")
+						if (jQuery('#'+JSObject.type+'_currentlogo',JSObject.DOMDoc).css("background-image") != "none")
 							jQuery('.'+JSObject.type+'_changelogo_cancel',JSObject.DOMDoc).show();
 						
 						// hide current logo
@@ -337,7 +337,7 @@ function EDIT_IMAGES(){
 						
 						// display current logo (if it exists)
 						if (jQuery('.'+JSObject.type+'_logocontainer',JSObject.DOMDoc).css("display") == 'none' &&
-							jQuery('#'+JSObject.type+'_currentlogo',JSObject.DOMDoc).attr("src") != "")
+							jQuery('#'+JSObject.type+'_currentlogo',JSObject.DOMDoc).css("background-image") != "none")
 							
 							jQuery('.'+JSObject.type+'_logocontainer',JSObject.DOMDoc).show();
 					}
@@ -381,7 +381,7 @@ function EDIT_IMAGES(){
 								if (response == true) {
 								
 									// remove image url
-	  								jQuery('#'+JSObject.type+'_currentlogo',JSObject.DOMDoc).attr("src", "");
+	  								jQuery('#'+JSObject.type+'_currentlogo',JSObject.DOMDoc).css("background-image", "none");
 	  								
 	  								// trigger the display of the upload field
 	  								$EditLogoLink.trigger("click");
@@ -443,7 +443,7 @@ function EDIT_IMAGES(){
 			jQuery('.'+JSObject.type+'_changelogo_cancel',JSObject.DOMDoc).hide();
 			
        		// add new path in the src attribute
-			jQuery('#'+JSObject.type+'_currentlogo',JSObject.DOMDoc).attr("src", path);
+			jQuery('#'+JSObject.type+'_currentlogo',JSObject.DOMDoc).css("background-image", "url("+path+")");
 			
 			// display image container
 			jQuery('.'+JSObject.type+'_logocontainer',JSObject.DOMDoc).css("display", "block");
@@ -609,8 +609,6 @@ function EDIT_IMAGES(){
 		// remove preloader
 		JSInterface.Preloader.remove(100);
 		
-        console.log(responseJSON)
-        
 		JSON = eval ("("+responseJSON+")");
 		response = Boolean(Number(String(JSON.status)));
         

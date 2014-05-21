@@ -3,6 +3,7 @@
 define("WMP_VERSION", '2.0');
 define("WMP_BASE_THEME", dirname(__FILE__) . '/themes/base'); 
 
+define('WMP_PLUGIN_NAME', 'WP Mobile Pack');
 define('WMP_DOMAIN', 'wordpress-mobile-pack');
 define('WMP_PLUGIN_PATH', WP_PLUGIN_DIR . '/wordpress-mobile-pack/');
 define('WMP_LIBS_DIR', WP_PLUGIN_DIR . '/wordpress-mobile-pack/libs/');

@@ -10,7 +10,7 @@
 <div id="wmpack-admin">
 	<div class="spacer-20"></div>
     <!-- set title -->
-    <h1>Settings</h1>
+    <h1><?php echo WMP_PLUGIN_NAME;?></h1>
 	<div class="spacer-20"></div>
 	<div class="settings">
         <div class="left-side">
@@ -26,25 +26,7 @@
             	<div class="spacer-20"></div>
             </div>
             <div class="spacer-15"></div>
-            <div class="details offline">
-            	<div class="offline-mode"> 
-                 	<p>Offline mode:</p>
-                    <div class="spacer-20"></div>
-                 	<!-- add radio buttons -->
-                    <input type="radio" name="offline" id="on" disabled="disabled" /><label for="on">On</label>
-                    <div class="spacer-10"></div>
-                    <input type="radio" name="offline" id="off" disabled="disabled" checked="checked" /><label for="off">Off</label>
-                </div>
-                <div class="waitlist">
-                	<div class="spacer-20"></div>
-                    <div class="spacer-20"></div>
-                	 <a class="btn blue smaller" href="#">Join Waitlist</a>
-                     <div class="spacer-0"></div>
-                     <p>and get notified when available</p>
-                </div>
-                <div class="spacer-20"></div>
-            </div>
-            <div class="spacer-15"></div>
+            
             <div class="details">
             	<div class="display-mode">
                  	<p>Choose display mode:</p>
@@ -70,6 +52,26 @@
                     </form>
                 </div>
                 <div class="spacer-0"></div>
+            </div>
+            <div class="spacer-15"></div>
+            
+            <div class="details offline">
+            	<div class="offline-mode"> 
+                 	<p>Offline mode:</p>
+                    <div class="spacer-20"></div>
+                 	<!-- add radio buttons -->
+                    <input type="radio" name="offline" id="on" disabled="disabled" /><label for="on">On</label>
+                    <div class="spacer-10"></div>
+                    <input type="radio" name="offline" id="off" disabled="disabled" checked="checked" /><label for="off">Off</label>
+                </div>
+                <div class="waitlist">
+                	<div class="spacer-20"></div>
+                    <div class="spacer-20"></div>
+                	 <a class="btn blue smaller" href="#">Join Waitlist</a>
+                     <div class="spacer-0"></div>
+                     <p>and get notified when available</p>
+                </div>
+                <div class="spacer-20"></div>
             </div>
             <div class="spacer-15"></div>
             
@@ -103,7 +105,7 @@
                                     <a href="#" class="btn grey smaller">Browse</a>
                                 </div>
                                 
-                                <div class="error_container" id="error_logo_container"></div>
+                                <div class="field-message error" id="error_logo_container"></div>
                                 <a href="javascript:void(0)" id="editimages_logo_removenew" class="remove" style="display: none;"></a>
                             </div> 
                         
@@ -149,7 +151,7 @@
                                     <a href="#" class="btn grey smaller">Browse</a>
                                 </div>
                                 
-                                <div class="error_container" id="error_icon_container"></div>
+                                <div class="field-message error" id="error_icon_container"></div>
                                 <a href="javascript:void(0)" id="editimages_icon_removenew" class="remove" style="display: none;"></a>
                             </div> 
                         
@@ -178,7 +180,13 @@
     
                     </form>    
                 </div>
-                <div class="notice notice-left right" style="width: 200px;"> <span>Lorem ipsum dolor sit amet, nec accusamus assentior in, per ea probo percipit ullamcorper. An mel animal menandri vituperata. Vis an solet ocurreret, sit laudem semper perfecto ex, vix an nibh tacimates. Ne usu duis ignota oblique.</span> </div>
+                <div class="notice notice-left right" style="width: 200px;">
+                    <span>
+                        Please add your logo in a png image format with a transparent background.<br/><br/>
+                        Your icon should be square with a recommended size of 256 x 256 px.<br/><br/>
+                        The file size for uploaded images should not exceed 1MB.
+                    </span>
+                </div>
                 <div class="spacer-0"></div>
             </div>
         </div>

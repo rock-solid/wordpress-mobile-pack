@@ -49,8 +49,7 @@ function EDIT_CATEGORIES(){
 	    /*                                                                                                   */
 	    /*****************************************************************************************************/
 	    
-        console.log(ajaxurl)
-        jQuery( "li .status", this.form ).on("click", function(){
+        jQuery( "li", this.form ).on("click", function(){
 		
 			var isConfirmed = confirm("Are you sure you want to change the status for this category?");
 	
@@ -58,7 +57,8 @@ function EDIT_CATEGORIES(){
 
 				var currentStatus;
                 
-                var statusContainer = jQuery(this);
+                var statusContainer = jQuery('.status',this);
+                console.log(statusContainer)
 				var categoryId = statusContainer.attr("data-category-id");
                 
 				if (statusContainer.hasClass("active") == false) {
@@ -117,6 +117,11 @@ function EDIT_CATEGORIES(){
 				}
 			}
 		});
+        
+        // close button action for the inactive categories warning
+        jQuery( "#" + JSObject.type + "_warning a.close-x", this.form ).on("click", function(){
+            jQuery('#'+JSObject.type+'_warning', JSObject.DOMDoc).hide();
+        })
     }
 
 }

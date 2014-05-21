@@ -14,7 +14,7 @@
 <div id="wmpack-admin">
 	<div class="spacer-20"></div>
     <!-- set title -->
-    <h1>Content</h1>
+    <h1><?php echo WMP_PLUGIN_NAME;?></h1>
 	<div class="spacer-20"></div>
 	<div class="content">
         <div class="left-side">
@@ -26,7 +26,7 @@
             <!-- add content form -->
             <div class="details">
             	<div class="spacer-10"></div>
-            	<p>You can choose what categories are displayed in your mobile web application from the section below. Click on the green/red bullets from the beginning of each row to deactivate/activate categories.</p>
+            	<p>You can choose what categories are displayed in your mobile web application from the section below. Click on the rows to deactivate/activate categories.</p>
             	<div class="spacer-20"></div>
                 <div class="spacer-20"></div>
                 
@@ -35,12 +35,14 @@
                 
                     <form name="editcategories_form" id="editcategories_form" action="" method="post">
                         
-                        <div id="editcategories_warning" style="display: <?php echo count($inactive_categories) < count($categories) ? 'none' : 'block'?>;">
-                            <p>Since you deactivated all your categories, no content will be displayed in your mobile web app!</p>
-                            <div class="spacer-20"></div>
+                        <div id="editcategories_warning" class="message-container warning" style="display: <?php echo count($inactive_categories) < count($categories) ? 'none' : 'block'?>;">
+                            <div class="wrapper">
+                                <div class="relative"><a class="close-x"></a></div>
+                                <span>Since you deactivated all your categories, no content will be displayed in your mobile web app!</span> 
+                            </div>
+                            <div class="spacer-10"></div>
                         </div>
-                        
-
+                
                         <ul class="categories">
                             <?php 
                                 foreach ($categories as $category):
@@ -60,14 +62,21 @@
                     
                 <?php else: ?>
                 
-                    <p>Since you don't have any categories, no content will be displayed in your mobile web app!</p>
-                    
+                    <div class="message-container warning">
+                        <div class="wrapper">
+                            <div class="title">
+                                <h2 class="underlined">No categories to display!</h2>
+                            </div>
+                            <span>Since you don't have any categories, no content will be displayed in your mobile web app!</span> 
+                        </div>
+                    </div>
+                        
                 <?php endif;?>
             </div>
             <div class="spacer-10"></div>
             <div class="details">
             	<h2 class="title">Coming Soon</h2>
-           		<div class="spacer_15"></div>
+           		<div class="spacer-15"></div>
                 <div class="grey-line"></div>
                 <div class="spacer-15"></div>
                 <div class="spacer-20"></div>

@@ -10,7 +10,7 @@
 <div id="wmpack-admin">
 	<div class="spacer-20"></div>
     <!-- set title -->
-    <h1>Look &amp; Feel</h1>
+    <h1><?php echo WMP_PLUGIN_NAME;?></h1>
 	<div class="spacer-20"></div>
 	<div class="look-and-feel">
         <div class="left-side">
