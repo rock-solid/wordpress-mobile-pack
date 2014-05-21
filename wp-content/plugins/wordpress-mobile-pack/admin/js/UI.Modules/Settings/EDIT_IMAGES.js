@@ -14,7 +14,6 @@ function EDIT_IMAGES(){
     this.DOMDoc;
 
     this.send_btn;
-	this.submit_btn;
     this.deletingIcon = false;
 	this.deletingLogo = false;
 	
@@ -31,8 +30,6 @@ function EDIT_IMAGES(){
 
         // save a reference to "SEND" Button
         this.send_btn = jQuery('#'+this.type+'_send_btn',this.DOMDoc).get(0);
-       
-        this.submit_btn = jQuery("#" + this.type+"_submit_btn",this.DOMDoc).get(0);
        
         // save a reference to the FORM and remove the default submit action
         this.form = this.DOMDoc.getElementById(this.type+'_form');

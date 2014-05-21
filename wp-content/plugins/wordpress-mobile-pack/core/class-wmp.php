@@ -131,6 +131,7 @@ class WMobilePack {
      */
     public function load_settings_js(){
         wp_enqueue_script('js_settings_editimages', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/EDIT_IMAGES.js'), array(), WMP_VERSION);
+        wp_enqueue_script('js_settings_editdisplay', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/EDIT_DISPLAY.js'), array(), WMP_VERSION);
     }
     
     

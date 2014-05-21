@@ -207,6 +207,34 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
   
         /**
          * 
+         * Method used to save the settings display mode
+         * 
+         */
+        public function wmp_settings_save() {
+            
+            global $wmobile_pack;
+        	
+            $status = 0;
+            
+            if (isset($_POST) && is_array($_POST) && !empty($_POST)){
+                
+                if (isset($_POST['editsettings_displaymode']) && $_POST['editsettings_displaymode'] != ''){
+                    if (in_array($_POST['editsettings_displaymode'], array('normal', 'preview', 'disabled'))){
+                        
+                        $status = 1;
+                        
+                        // save option
+                        WMobilePack::wmp_update_settings('display_mode', $_POST['editsettings_displaymode']);
+                    }
+                }
+            }
+            
+            echo $status;
+            exit();
+        }
+        
+        /**
+         * 
          * Method used to save the icon and logo
          * 
          */

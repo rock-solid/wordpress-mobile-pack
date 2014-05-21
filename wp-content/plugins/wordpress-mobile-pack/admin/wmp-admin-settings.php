@@ -49,15 +49,22 @@
             	<div class="display-mode">
                  	<p>Choose display mode:</p>
                     <div class="spacer-20"></div>
-                    <form name="display_form" action="" method="post">
+                    <form name="editsettings_form" id="editsettings_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_save" method="post" enctype="multipart/form-data">
+                        <?php
+                            $selected_value = WMobilePack::wmp_get_setting('display_mode');
+                            if ($selected_value == '')
+                                $selected_value = 'normal';
+                        ?>
                         <!-- add radio buttons -->
-                        <input type="radio" name="display_mode" id="display_mode_normal" value="normal" /><label for="display_mode_normal"><strong>Normal</strong> (all mobile visitors)</label>
+                        <input type="radio" name="editsettings_displaymode" id="editsettings_displaymode_normal" value="normal" <?php if ($selected_value == "normal") echo "checked" ;?> /><label for="editsettings_displaymode_normal"><strong>Normal</strong> (all mobile visitors)</label>
                         <div class="spacer-10"></div>
-                        <input type="radio" name="display_mode" id="display_mode_preview" value="preview" /><label for="display_mode_preview"><strong>Preview</strong> (logged in administrators)</label>
+                        <input type="radio" name="editsettings_displaymode" id="editsettings_displaymode_preview" value="preview" <?php if ($selected_value == "preview") echo "checked" ;?> /><label for="editsettings_displaymode_preview"><strong>Preview</strong> (logged in administrators)</label>
                         <div class="spacer-10"></div>
-                        <input type="radio" name="display_mode" id="display_mode_disabled" value="disabled" /><label for="display_mode_disabled"><strong>Disabled</strong> (hidden for all)</label>
+                        <input type="radio" name="editsettings_displaymode" id="editsettings_displaymode_disabled" value="disabled" <?php if ($selected_value == "disabled") echo "checked" ;?> /><label for="editsettings_modedisplay_disabled"><strong>Disabled</strong> (hidden for all)</label>
                 		<div class="spacer-20"></div>
-                        <a class="btn green smaller" href="#">Save</a>
+                        <div class="error_container" id="error_displaymode_container"></div>
+                        
+                        <a href="javascript:void(0)" id="editsettings_send_btn" class="btn green smaller">Save</a>
                     </form>
                 </div>
                 <div class="spacer-20"></div>
@@ -187,6 +194,7 @@
 <script type="text/javascript">
     if (window.JSInterface && window.JSInterface != null){
         jQuery(document).ready(function(){
+            window.JSInterface.add("UI_editdisplay","EDIT_DISPLAY",{'DOMDoc':window.document}, window);
             window.JSInterface.add("UI_editimages","EDIT_IMAGES",{'DOMDoc':window.document}, window);
         });
     }
