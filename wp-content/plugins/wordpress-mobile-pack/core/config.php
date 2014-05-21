@@ -16,5 +16,6 @@ if ( !defined( 'WMP_FILES_UPLOADS_DIR' ) && !defined( 'WMP_FILES_UPLOADS_URL' ) 
 
 define('WMP_FEEDBACK_EMAIL','florentina@webcrumbz.co');
 define('WMP_NEWS_UPDATES','http://dev.webcrumbz.co/~flori/api/news_updates.php');
-define('WMP_NEWSLETTER_PATH','http://dev.webcrumbz.co/~flori/api/news_updates.php');
+define('WMP_NEWSLETTER_PATH','http://gateway-dev.appticles.com/newsletter/api/subscribe');
+define('WMP_WAITLIST_PATH','http://gateway-dev.appticles.com/waitlist/api/subscribe');
 ?>

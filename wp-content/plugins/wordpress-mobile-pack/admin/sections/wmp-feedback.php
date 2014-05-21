@@ -3,9 +3,13 @@
 	$screen = get_current_screen();
 	// set current page
 	if($screen->id !== '')
-		$current_page = str_replace('wp-mobile-pack_page_wmp-options-','',$screen->id);
+		if($screen->id == 'toplevel_page_wmp-options')
+			$current_page = "What's new";
+		else
+			$current_page = str_replace('wp-mobile-pack_page_wmp-options-','',$screen->id);
 	else
 		$current_page = '';
+
 ?>
 
 <div class="form-box feedback">

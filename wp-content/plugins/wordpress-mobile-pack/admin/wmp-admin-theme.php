@@ -58,13 +58,16 @@
                         	<div class="relative">
                             	<div class="overlay">
                                 	<div class="spacer-30"></div>
+                            		<div class="preview"></div>
+                                    <div class="spacer-10"></div>
+                                    <div class="text">Preview theme</div>
+                                    <div class="spacer-5"></div>
+                                    <a href="#" class="btn blue smaller">Join Waitlist</a>
                                     <div class="text">
-                                    	<span>COMING SOON</span>
-                                        Get notified<br>
-                                        when available	
+                                    	And get notified when<br> available	
                                     </div>
-                                    <div class="spacer-20"></div>
-                                	<a href="#" class="btn blue smaller">Join Waitlist</a>
+                                    
+                                	
                                 </div>
                             </div>
                         </div>

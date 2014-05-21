@@ -22,7 +22,7 @@
             <!-- add settings -->
             <div class="details">
             	<div class="spacer-10"></div>
-            	<p>Edit the <strong>Display Mode</strong> of your app to enable or disabled it for your mobile readers. The <strong>Preview</strong> display mode lets you edit your app without it being visible to anyone else. <br/><br/>You can also personalize your app by adding <strong>your own logo and icon</strong>. The logo will be displayed on the home page of your mobile web app, while the icon will be used when readers add your app to their homescreen.</p>
+            	<p>Lorem ipsum dolor sit amet, nec accusamus assentior in, per ea probo percipit ullamcorper. An mel animal menandri vituperata. Vis an solet ocurreret, sit laudem semper perfecto ex, vix an nibh tacimates. Ne usu duis ignota oblique.</p>
             	<div class="spacer-20"></div>
             </div>
             <div class="spacer-15"></div>
@@ -49,24 +49,15 @@
             	<div class="display-mode">
                  	<p>Choose display mode:</p>
                     <div class="spacer-20"></div>
-                    <form name="editsettings_form" id="editsettings_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_save" method="post" enctype="multipart/form-data">
-                        <?php
-                            $selected_value = WMobilePack::wmp_get_setting('display_mode');
-                            if ($selected_value == '')
-                                $selected_value = 'normal';
-                        ?>
+                    <form name="display_form" action="" method="post">
                         <!-- add radio buttons -->
-
-                        <input type="radio" name="editsettings_displaymode" id="editsettings_displaymode_normal" value="normal" <?php if ($selected_value == "normal") echo "checked" ;?> /><label for="editsettings_displaymode_normal"><strong>Normal</strong> (all mobile visitors)</label>
+                        <input type="radio" name="display_mode" id="display_mode_normal" value="normal" /><label for="display_mode_normal"><strong>Normal</strong>&nbsp;(all mobile visitors)</label>
                         <div class="spacer-10"></div>
-                        <input type="radio" name="editsettings_displaymode" id="editsettings_displaymode_preview" value="preview" <?php if ($selected_value == "preview") echo "checked" ;?> /><label for="editsettings_displaymode_preview"><strong>Preview</strong> (logged in administrators)</label>
+                        <input type="radio" name="display_mode" id="display_mode_preview" value="preview" /><label for="display_mode_preview"><strong>Preview</strong>&nbsp;(logged in administrators)</label>
                         <div class="spacer-10"></div>
-                        <input type="radio" name="editsettings_displaymode" id="editsettings_displaymode_disabled" value="disabled" <?php if ($selected_value == "disabled") echo "checked" ;?> /><label for="editsettings_modedisplay_disabled"><strong>Disabled</strong> (hidden for all)</label>
-
+                        <input type="radio" name="display_mode" id="display_mode_disabled" value="disabled" /><label for="display_mode_disabled"><strong>Disabled</strong>&nbsp;(hidden for all)</label>
                 		<div class="spacer-20"></div>
-                        <div class="error_container" id="error_displaymode_container"></div>
-                        
-                        <a href="javascript:void(0)" id="editsettings_send_btn" class="btn green smaller">Save</a>
+                        <a class="btn green smaller" href="#">Save</a>
                     </form>
                 </div>
                 <div class="spacer-0"></div>
@@ -117,14 +108,13 @@
                             
                             <!-- edit/delete logo links -->
                             <a href="javascript:void(0);" class="editimages_changelogo btn grey smaller edit">Change</a>
-                            <a href="#" class="editimages_deletelogo smaller remove">Remove</a>
+                            <a href="#" class="editimages_deletelogo smaller remove">remove</a>
                             
                         </div>
                         
                         <!-- cancel upload logo button -->
-                        <div class="editimages_changelogo_cancel" style="display: none;">
-                            <div class="spacer_m"></div>
-                            <a href="javascript:void(0);">cancel</a>
+                        <div class="editimages_changelogo_cancel cancel-link" style="display: none;">
+                            <a href="javascript:void(0);" class="cancel">cancel</a>
                         </div>
                                     
                         <div class="spacer-20"></div>
@@ -163,13 +153,12 @@
                             
                             <!-- edit/delete icon links -->
                             <a href="javascript:void(0);" class="editimages_changeicon btn grey smaller edit">Change</a>
-                            <a href="#" class="editimages_deleteicon smaller remove">Remove</a>
+                            <a href="#" class="editimages_deleteicon smaller remove">remove</a>
                         </div>
                         
                         <!-- cancel upload icon button -->
-                        <div class="editimages_changeicon_cancel" style="display: none;">
-                            <div class="spacer_m"></div>
-                            <a href="javascript:void(0);">cancel</a>
+                        <div class="editimages_changeicon_cancel cancel-link" style="display: none;">
+                            <a href="javascript:void(0);" class="cancel">cancel</a>    
                         </div>
                                     
                         <div class="spacer-20"></div>
@@ -178,7 +167,7 @@
     
                     </form>    
                 </div>
-                <div class="notice notice-left right" style="width: 200px;"> <span>Lorem ipsum dolor sit amet, nec accusamus assentior in, per ea probo percipit ullamcorper. An mel animal menandri vituperata. Vis an solet ocurreret, sit laudem semper perfecto ex, vix an nibh tacimates. Ne usu duis ignota oblique.</span> </div>
+                <div class="notice notice-left right" style="width: 230px;"> <span>Lorem ipsum dolor sit amet, nec accusamus assentior in, per ea probo percipit ullamcorper. An mel animal menandri vituperata. Vis an solet ocurreret, sit laudem semper perfecto ex, vix an nibh tacimates. Ne usu duis ignota oblique.</span> </div>
                 <div class="spacer-0"></div>
             </div>
         </div>
@@ -202,7 +191,6 @@
 <script type="text/javascript">
     if (window.JSInterface && window.JSInterface != null){
         jQuery(document).ready(function(){
-            window.JSInterface.add("UI_editdisplay","EDIT_DISPLAY",{'DOMDoc':window.document}, window);
             window.JSInterface.add("UI_editimages","EDIT_IMAGES",{'DOMDoc':window.document}, window);
         });
     }
