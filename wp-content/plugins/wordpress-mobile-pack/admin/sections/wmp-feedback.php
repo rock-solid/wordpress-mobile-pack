@@ -15,7 +15,7 @@
         <input type="hidden" name="feedback_page" id="feedback_page" value="<?php echo ucfirst($current_page);?>" />
         <textarea name="feedback_message" id="feedback_message" placeholder="Your message" class="small"></textarea>
         <div id="error_message_container"></div>
-        <div class="spacer-5"></div>
+        <div class="spacer-10"></div>
         <a class="btn green smaller" href="javascript:void(0)" id="feedback_send_btn">Send</a>
     </form>
 </div>

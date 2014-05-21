@@ -11,11 +11,11 @@
     <h2>Join Our Newsletter</h2>
     <div class="spacer-10"></div>
     <p>Receive monthly freebies, Special Offers &amp; Access to Exclusive Subscriber Content.</p>
-    <div class="spacer-10"></div>
+    <div class="spacer-0"></div>
     <form id="wmp_newsletter_form" name="wmp_newsletter_form" action="<?php echo WMP_NEWSLETTER_PATH;?>" method="post">
         <input type="hidden" name="wmp_newsletter_page" id="wmp_newsletter_page" value="<?php echo ucfirst($current_page);?>" />
         <input type="text" name="wmp_newsletter_email" id="wmp_newsletter_email" placeholder="Your e-mail" class="small" />
-        <div id="error_email_container" class="field-message error"></div> 
+        <div id="error_email_container" class="field-message error"></div>
         <div class="spacer-10"></div>
         <a class="btn green smaller" href="javascript:void(0)" id="wmp_newsletter_send_btn">Subscribe</a>
     </form>
