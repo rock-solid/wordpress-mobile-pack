@@ -259,6 +259,8 @@ function SEND_FEEDBACK(){
 			var message = "Thank you for your message, we'll be in touch with you soon!";
 			JSInterface.Loader.display({message: message});
           
+		  	JSObject.form.reset();
+		  
 		} else {
 		  
 			// show message
