@@ -200,14 +200,8 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			
 			global $wmobile_pack;
 			
-			
-			// set settings
-			
-			
 			// load view
 			include(WMP_PLUGIN_PATH.'admin/wmp-admin-settings.php');
-
-			
 		}
         
   
@@ -255,79 +249,153 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
     
                             } else {
                                 
+                                /****************************************/
+                				/*										*/
+                				/* SET FILENAME, ALLOWED FORMATS AND SIZE */
+                				/*										*/
+                				/****************************************/
+                
                                 // make unique file name for the image
                                 $arrFilename = explode(".", $info['name']);
-                                $uniqueFilename = ($file == "editimages_icon" ? "icon" : "logo").'_'.time().'.'.end($arrFilename);
+                                $fileExtension = end($arrFilename);
                                 
-                                // upload to the default uploads folder
-                                $upload_overrides = array( 'test_form' => false );
-                                $movefile = wp_handle_upload( $info, $upload_overrides );
-                                
-                                if ($movefile) {
+                                if ($file == "editimages_icon") {
                                     
-                                    // copy file to the wmp uploads folder
-                                    if (copy($movefile['file'], WMP_FILES_UPLOADS_DIR.$uniqueFilename)){
+                                    $arrAllowedExtensions = array('jpg', 'jpeg', 'png');
+                                    $arrMaximumSize = array('width' => 256, 'height' => 256);
+                                     
+                                } else {
+                                    
+                                    $arrAllowedExtensions = array('png');
+                                    $arrMaximumSize = array('width' => 120, 'height' => 120);
+                                }
+                                
+                                // check file extension
+                                if (!in_array(strtolower($fileExtension), $arrAllowedExtensions)) {
+                                    
+                                    $arrResponse['messages'][] = "Error saving image, please add a  ".implode(' or ',$arrAllowedExtensions)." image for your ".($file == "editimages_icon" ? "icon" : "logo")."!";
+                                    
+                                } else {
+                                    
+                                    /****************************************/
+                    				/*										*/
+                    				/* UPLOAD IMAGE                         */
+                    				/*										*/
+                    				/****************************************/
+                                
+                                    $uniqueFilename = ($file == "editimages_icon" ? "icon" : "logo").'_'.time().'.'.$fileExtension;
+                                    
+                                    // upload to the default uploads folder
+                                    $upload_overrides = array( 'test_form' => false );
+                                    $movefile = wp_handle_upload( $info, $upload_overrides );
+                                    
+                                    if ($movefile) {
                                         
-                                        // delete previous icon / logo
-                                        $previous_file_path = WMobilePack::wmp_get_setting($file == "editimages_icon" ? "icon" : "logo");
+                                        /****************************************/
+                        				/*										*/
+                        				/* RESIZE AND COPY IMAGE                */
+                        				/*										*/
+                        				/****************************************/
+                                    
+                                        $copied_and_resized = false;
                                         
-                                        if ($previous_file_path != ''){
-                                            unlink(WMP_FILES_UPLOADS_DIR.$previous_file_path);
+                                        $blog_version = get_bloginfo('version');
+                                        
+                                        if ($blog_version < 3.5){
+                                            
+                                            // !!!!! THIS PART IS NOT TESTED
+                                            $image = image_resize( $movefile['file'], $arrMaximumSize['width'], $arrMaximumSize['height'], true, null, WMP_FILES_UPLOADS_DIR.$uniqueFilename );
+                                            
+                                            if (!is_wp_error( $image ) ) 
+                                                $copied_and_resized = true; 
+                                                
+                                        } else {
+                                            
+                                            $image = wp_get_image_editor( $movefile['file'] );
+                                            
+                                            if (!is_wp_error( $image ) ) {
+                                                
+                                                $image_size = $image->get_size();
+                                                
+                                                // if the image exceeds the size limits
+                                                if ($image_size['width'] > $arrMaximumSize['width'] || $image_size['height'] > $arrMaximumSize['height']) {
+                                                    
+                                                    // resize and copy to the wmp uploads folder
+                                                    $image->resize( 50, 50, true );
+                                                    $image->save( WMP_FILES_UPLOADS_DIR.$uniqueFilename );
+                                                    
+                                                    $copied_and_resized = true;
+                                                    
+                                                } else {
+                                                
+                                                    // copy file without resizing to the wmp uploads folder
+                                                    $copied_and_resized = copy($movefile['file'], WMP_FILES_UPLOADS_DIR.$uniqueFilename);
+                                                }
+                                                
+                                            } else {
+                                                
+                                                $arrResponse["messages"][] = "We encountered a problem resizing your ".($file == "editimages_icon" ? "icon" : "logo").". Please choose another image!";
+                                            }
                                         }
                                         
-                                        // save option
-                                        WMobilePack::wmp_update_settings($file == "editimages_icon" ? "icon" : "logo", $uniqueFilename);
+                                        /****************************************/
+                        				/*										*/
+                        				/* DELETE PREVIOUS IMAGE AND SET OPTION */
+                        				/*										*/
+                        				/****************************************/
                                         
-                                        // add path in the response
-                                        $arrResponse['status'] = 1;
-                                        $arrResponse['uploaded_'.($file == "editimages_icon" ? "icon" : "logo")] = WMP_FILES_UPLOADS_URL.$uniqueFilename;
-                                    }
-                                    
-                                    // remove file from the default uploads folder
-                                    unlink($movefile['file']);
+                                        if ($copied_and_resized) {
+                                                
+                                            // delete previous icon / logo
+                                            $previous_file_path = WMobilePack::wmp_get_setting($file == "editimages_icon" ? "icon" : "logo");
+                                            
+                                            if ($previous_file_path != ''){
+                                                unlink(WMP_FILES_UPLOADS_DIR.$previous_file_path);
+                                            }
+                                            
+                                            // save option
+                                            WMobilePack::wmp_update_settings($file == "editimages_icon" ? "icon" : "logo", $uniqueFilename);
+                                            
+                                            // add path in the response
+                                            $arrResponse['status'] = 1;
+                                            $arrResponse['uploaded_'.($file == "editimages_icon" ? "icon" : "logo")] = WMP_FILES_UPLOADS_URL.$uniqueFilename;
+                                        }
+                                        
+                                        // remove file from the default uploads folder
+                                        unlink($movefile['file']);
+                                    }   
                                 }
                             }
-                        }                           
+                        }                      
                     }
                     
                 } else
                     $arrResponse['messages'][] = "Error uploading images, the upload folder is not writable.";
                     
-                // set blog version
-                /* $blog_version = get_bloginfo('version');
-                
-                // to be finished
-                
-                // resize image
-                if($blog_version < 3.5) {
-                	image_resize($file['tmp_name'], 512, 512, false, '', '', 100);
-                } 
-                
-                
-                
-                // return uploaded file
-                if($blog_version > 3.5) {
-                	
-                	$this->wmp_resize_image();
-                
-                }
-                */
-                
             } elseif ($action == 'delete'){
                 
+                /****************************************/
+				/*										*/
+				/* DELETE ICON / LOGO        			*/
+				/*										*/
+				/****************************************/
+                        
+                // delete icon or logo, depending on the 'source' param
                 if (isset($_GET['source'])) {
                     if ($_GET['source'] == 'icon' || $_GET['source'] == 'logo'){
                         
                         $file = $_GET['source'];
                         
+                        // get the previous file name from the options table
                         $previous_file_path = WMobilePack::wmp_get_setting($file);
                                         
+                        // check if we have to delete the file and remove it
                         if ($previous_file_path != ''){
                             if (file_exists(WMP_FILES_UPLOADS_DIR.$previous_file_path))
                                 unlink(WMP_FILES_UPLOADS_DIR.$previous_file_path);
                         }
                         
-                        // save option
+                        // save option with an empty value
                         WMobilePack::wmp_update_settings($file, '');
                         
                         $arrResponse['status'] = 1;
@@ -346,73 +414,8 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			
 			global $wmobile_pack;
 			
-			
-			// set settings
 			// load view
 			include(WMP_PLUGIN_PATH.'admin/wmp-admin-upgrade.php'); 
-
-			
-		}
-		
-		
-		
-		/**
-		 * Method set the upload folder of the site logo
-		 * This method returns true if the folder is writable and false if it is not
-		 *
-		 */
-		public function wmp_upload_path() {
-			
-			//directory to import to	
-			$uploadDir = 'wp-content/uploads/wp-mobile-pack/';
-			
-			// if the directory doesn't exist, create it	
-			if(!file_exists(ABSPATH.$uploadDir)) {
-				mkdir(ABSPATH.$uploadDir,0777);
-			}
-			
-			return is_writable(ABSPATH.$uploadDir);
-			
-		}
-		
-		
-		/**
-		 * Method used to upload the logo on the set folder
-		 * This method returns true if the file was saved and false otherwise
-		 *
-		 */
-		public function wmp_save_image() {
-			
-			//
-			require_once(ABSPATH . 'wp-admin/includes/image.php');
-			
-			//directory to import to	
-			$uploadDir = ABSPATH.'wp-content/uploads/wp-mobile-pack/';
-			
-			
-			$file = $_FILES['site_logo'];
-			
-			
-			// set blog version
-			$blog_version = get_bloginfo('version');
-			
-			// to be finished
-			
-			// resize image
-			if($blog_version < 3.5) {
-				image_resize($file['tmp_name'], 512, 512, false, '', '', 100);
-			} 
-			
-			add_filter('upload_dir', uploadDir);
-			$uploaded_file = wp_handle_upload( $file, array('test_form' => false), '' );
-			remove_filter('upload_dir', 'wps_upload_dir');
-			
-			// return uploaded file
-			if($blog_version > 3.5) {
-				
-				$this->wmp_resize_image();
-			
-			}
 		}
 		
 	}
