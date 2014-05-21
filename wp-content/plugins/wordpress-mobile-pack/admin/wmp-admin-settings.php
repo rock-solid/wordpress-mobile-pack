@@ -22,7 +22,7 @@
             <!-- add settings -->
             <div class="details">
             	<div class="spacer-10"></div>
-            	<p>Lorem ipsum dolor sit amet, nec accusamus assentior in, per ea probo percipit ullamcorper. An mel animal menandri vituperata. Vis an solet ocurreret, sit laudem semper perfecto ex, vix an nibh tacimates. Ne usu duis ignota oblique.</p>
+            	<p>Edit the <strong>Display Mode</strong> of your app to enable or disabled it for your mobile readers. The <strong>Preview</strong> display mode lets you edit your app without it being visible to anyone else. <br/><br/>You can also personalize your app by adding <strong>your own logo and icon</strong>. The logo will be displayed on the home page of your mobile web app, while the icon will be used when readers add your app to their homescreen.</p>
             	<div class="spacer-20"></div>
             </div>
             <div class="spacer-15"></div>

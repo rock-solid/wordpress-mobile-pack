@@ -25,14 +25,16 @@ class WMobilePack {
 		if(!is_array(self::$wmp_options) || empty(self::$wmp_options)){
         
             self::$wmp_options = array(
+                'blog_name' => get_bloginfo( "name" ),
             	'theme' => 1,
             	'color_scheme' => 1,
-            	'font' => 'Arial',
-            	'logo' => '',
-            	'icon' => '',
-            	'blog_name' => get_bloginfo( "name" ),
+            	'font_headlines' => 'Roboto Condensed',
+                'font_subtitles' => 'Roboto Condensed',
+                'font_paragraphs' => 'Roboto Condensed',
                 'inactive_categories' => serialize(array()),
-                'display_mode' => 'normal'
+                'display_mode' => 'normal',
+            	'logo' => '',
+            	'icon' => ''
             );
         }
 	}
@@ -134,6 +136,15 @@ class WMobilePack {
         wp_enqueue_script('js_settings_editdisplay', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/EDIT_DISPLAY.js'), array(), WMP_VERSION);
     }
     
+    /**
+     * 
+     * Load specific javascript files for the Look and Feel submenu page
+     * 
+     */
+    public function load_theme_js(){
+        wp_enqueue_script('js_settings_edittheme', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Theming/EDIT_THEME.js'), array(), WMP_VERSION);
+    }
+    
     
 	/**
 	 * Method wmp_admin_menu  used to set the admin menu items of the plug-in
@@ -148,7 +159,9 @@ class WMobilePack {
 		// add menu and submenu hooks
 		add_menu_page( 'WP Mobile Pack', 'WP Mobile Pack', 'manage_options', 'wmp-options', '', WP_PLUGIN_URL . '/wordpress-mobile-pack/admin/images/appticles-logo.png',62 );
 		add_submenu_page( 'wmp-options', "What's New", "What's New", 'manage_options', 'wmp-options', array( &$WMobilePackAdmin, 'wmp_options' ) );
-		add_submenu_page( 'wmp-options', 'Look & Feel', 'Look & Feel', 'manage_options', 'wmp-options-theme', array( &$WMobilePackAdmin, 'wmp_theme_options') );
+		
+        $theme_page = add_submenu_page( 'wmp-options', 'Look & Feel', 'Look & Feel', 'manage_options', 'wmp-options-theme', array( &$WMobilePackAdmin, 'wmp_theme_options') );
+        add_action( 'load-' . $theme_page, array( &$this, 'load_theme_js' ) );   
         
 		$content_page = add_submenu_page( 'wmp-options', 'Content', 'Content', 'manage_options', 'wmp-options-content', array( &$WMobilePackAdmin, 'wmp_content_options') );
         add_action( 'load-' . $content_page, array( &$this, 'load_content_js' ) );   

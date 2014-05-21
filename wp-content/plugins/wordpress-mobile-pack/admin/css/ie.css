@@ -4,12 +4,4 @@
     min-height: auto;
     height: 100% !important;
   }
-  /* line 7, ../sass/ie.scss */
-  body #main #header {
-    min-height: 90px;
-  }
-  /* line 13, ../sass/ie.scss */
-  body #main #header .account-info .user-panel .avatar .notification {
-    top: 5px;
-  }
 }
