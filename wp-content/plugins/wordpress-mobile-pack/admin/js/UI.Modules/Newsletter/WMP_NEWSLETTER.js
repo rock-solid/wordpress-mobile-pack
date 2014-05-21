@@ -13,6 +13,8 @@ function WMP_NEWSLETTER(){
     this.form;
     this.DOMDoc;
 
+	this.submitURL;
+
 	/*****************************************************************************************************/
     /*                                                                                                   */
     /*                              FUNCTION INIT - called from JSInterface                              */
@@ -186,103 +188,60 @@ function WMP_NEWSLETTER(){
 
 	/*****************************************************************************************************/
 	/*                                                                                                   */
-	/*                       FUNCTION SUBMIT FORM  THROUGH an IFRAME as target                           */          
-	/*                                                                                                   */
-	/*****************************************************************************************************/
-	this.submitForm = function(){
-		return JSInterface.AjaxUpload.dosubmit(JSObject.form, {'onStart' : JSObject.startUploadingData, 'onComplete' : JSObject.completeUploadingData});
-	}
-	
-	
-	/*****************************************************************************************************/
-	/*                                                                                                   */
-	/*                                      FUNCTION SEND DATA                                           */          
+	/*                          FUNCTION SEND DATA   								                     */          
 	/*                                                                                                   */
 	/*****************************************************************************************************/
 	this.sendData = function(){
 		
-		jQuery("#"+this.form.id,this.DOMDoc).unbind("submit");
-		jQuery("#"+this.form.id,this.DOMDoc).bind("submit",function(){JSObject.submitForm();});
-		jQuery("#"+this.form.id,this.DOMDoc).submit();
+		JSInterface.Preloader.start();
 		
-		JSObject.disableButton(JSObject.send_btn);
-	}
-	
-	
-	/*****************************************************************************************************/
-	/*                                                                                                   */
-	/*                                FUNCTION START UPLOADING DATA                                      */          
-	/*                                                                                                   */
-	/*****************************************************************************************************/
-	this.startUploadingData = function(){
-		// make something useful before submit (onStart)
-		
-		//add preloader
-		var msg = 'Please wait...';
-		JSInterface.Preloader.start({message: msg});
-		
-		//disable form elements
-		setTimeout(function(){
-						var aElems = JSObject.form.elements;
-						nElems = aElems.length;
+		jQuery.ajax({
+				url: JSObject.submitURL,
+				type: 'post',
+				data: { 
+					'email': jQuery("#"+JSObject.type+"_email").val(), 
+					'page': jQuery("#"+JSObject.type+"_page").val()
+				},
+				dataType: 'jsonp',
+				success: function(responseJSON){
+					
+					JSInterface.Preloader.remove(100);
+					
+					JSON = eval (responseJSON);
+					response = Boolean(Number(String(JSON.status)));
+					
+					if(response == 0) {
 						
-						for (j=0; j<nElems; j++) {
-							aElems[j].disabled = true;
-						}
-					},300);
-		
-		jQuery('.wmp-newsletter',JSObject.DOMDoc).animate({opacity:0.4},300);
-		
-		return true;
-	}
-	
-	
-	
-	/*****************************************************************************************************/
-	/*                                                                                                   */
-	/*                              FUNCTION COMPLETE UPLOADING DATA                                     */          
-	/*                                                                                                   */
-	/*****************************************************************************************************/
-	this.completeUploadingData = function(responseJSON) {
-		
-		jQuery("#"+JSObject.form.id,JSObject.DOMDoc).unbind("submit");
-		jQuery("#"+JSObject.form.id,JSObject.DOMDoc).bind("submit",function(){return false;});
-        
-        //console.log(response)
-        
-      	JSON = eval ("("+responseJSON+")");
-		response = Boolean(Number(String(JSON.status)));
-       
-		// remove preloader
-		JSInterface.Preloader.remove(100);
-		
-		if (response){
-			
-            // success message								
-		   	JSInterface.Loader.display({message: JSON.message});
-          
-		  	JSObject.form.reset();
-		  
-		} else {
-		  
-			// show message
-			var message = 'There was an error. Please reload the page and try again in few seconds or contact the plugin administrator if the problem persists.';
-			JSInterface.Loader.display({message: message});	
-		}
-        
-		//enable form elements
-		setTimeout(function(){
-						var aElems = JSObject.form.elements;
-						nElems = aElems.length;
-						for (j=0; j<nElems; j++) {
-							aElems[j].disabled = false;
-						}
-					},300);
-		
-		//enable buttons
-		JSObject.addButtonsActions();
-		
-		jQuery('.wmp-newsletter',JSObject.DOMDoc).animate({opacity:1},300);
+						var message = 'There was an error. Please reload the page and try again in few seconds or contact the plugin administrator if the problem persists.';
+						JSInterface.Loader.display({message: message});	
+					
+					} else
+							JSInterface.Loader.display({message: JSON.message});
+					
+					
+					// reset form
+					JSObject.form.reset();
+					
+					//enable form elements
+					setTimeout(function(){
+									var aElems = JSObject.form.elements;
+									nElems = aElems.length;
+									for (j=0; j<nElems; j++) {
+										aElems[j].disabled = false;
+									}
+								},300);
+					
+					//enable buttons
+					JSObject.addButtonsActions();
+					
+					jQuery('.wmp-newsletter',JSObject.DOMDoc).animate({opacity:1},300);
+								
+			},
+			error: function(responseJSON){
+				//alert(result);
+			}
+		});
 		
 	}
+	
 }
