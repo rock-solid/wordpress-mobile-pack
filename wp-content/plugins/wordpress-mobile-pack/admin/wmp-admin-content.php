@@ -26,7 +26,7 @@
             <!-- add content form -->
             <div class="details">
             	<div class="spacer-10"></div>
-            	<p>Lorem ipsum dolor sit amet, nec accusamus assentior in, per ea probo percipit ullamcorper. An mel animal menandri vituperata. Vis an solet ocurreret, sit laudem semper perfecto ex, vix an nibh tacimates. Ne usu duis ignota oblique.</p>
+            	<p>You can choose what categories are displayed in your mobile web application from the section below. Click on the green/red bullets from the beginning of each row to deactivate/activate categories.</p>
             	<div class="spacer-20"></div>
                 <div class="spacer-20"></div>
                 
