@@ -33,11 +33,11 @@ if(isset($_GET["content"])) {
 		
 	}	elseif($_GET["content"] == 'savecomment' && isset($_GET["articleId"]) && is_numeric($_GET["articleId"])) {
 	
-		$_POST["author"] = 'Flori';
+		/*$_POST["author"] = 'Flori';
 		$_POST["email"] = 'florentina@webcrumbz.com';
 		$_POST["url"] = 'http://appticles.com';
 		$_POST["comment"] = 'I love the pohotos of the cats!!';
-		$_POST["comment_parent"] = 0;
+		$_POST["comment_parent"] = 0;*/
 		
 		
 		// save comment, mandatory get param is articleId
