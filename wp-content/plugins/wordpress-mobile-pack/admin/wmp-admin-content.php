@@ -85,13 +85,23 @@
                  	<img src="<?php echo plugins_url()."/".WMP_DOMAIN."/admin/images/content-icons.png";?>" alt="" class="left" />
                 </div>
                 <div class="waitlist">
-                	 <a class="btn blue smaller" href="#">Join Waitlist</a>
-                     <div class="spacer-0"></div>
-                     <p>and get notified when available</p>
+                    <!--<a class="btn blue smaller" href="#">Join Waitlist</a>
+                    <div class="spacer-0"></div>
+                    <p>and get notified when available</p>-->
+                    <!--<div class="info">
+                    	<input type="text" placeholder="your email" class="smaller" /> <a href="#" class="btn blue smallest">Ok</a>
+                    	<div class="spacer-15"></div>
+                	</div>-->
+                    <div class="added">
+                        <div class="switcher blue">
+                        	<div class="msg">ADDED TO WAITLIST</div>
+                            <div class="check"></div>
+                        </div>
+                        <div class="spacer-15"></div>
+                	</div>
                 </div> 
                 <div class="spacer-5"></div>
                 <div class="grey-line"></div>
-                <div class="spacer-20"></div>
                 <div class="spacer-20"></div> 
             </div>
         </div>
