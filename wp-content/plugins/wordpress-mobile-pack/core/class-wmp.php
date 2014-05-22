@@ -14,6 +14,9 @@ class WMobilePack {
 	
 	public static $wmp_options;
     public static $wmp_allowed_fonts = array('Roboto Condensed', 'Georgia', 'Times New Roman', 'Open Sans');
+    
+    // the oldest version that will enable the custom select
+    public static $wmp_customselect_enable = 3.6;
 		
 		
 	/* ----------------------------------*/
@@ -24,15 +27,15 @@ class WMobilePack {
 	public function __construct(){
 	
 		if(!is_array(self::$wmp_options) || empty(self::$wmp_options)){
-        
+            
             self::$wmp_options = array(
             
                 'blog_name'             => get_bloginfo( "name" ),
             	'theme'                 => 1,
             	'color_scheme'          => 1,
-            	'font_headlines'        => $wmp_allowed_fonts[0],
-                'font_subtitles'        => $wmp_allowed_fonts[0],
-                'font_paragraphs'       => $wmp_allowed_fonts[0],
+            	'font_headlines'        => self::$wmp_allowed_fonts[0],
+                'font_subtitles'        => self::$wmp_allowed_fonts[0],
+                'font_paragraphs'       => self::$wmp_allowed_fonts[0],
                 'inactive_categories'   => serialize(array()),
                 'display_mode'          => 'normal',
             	'logo'                  => '',
@@ -63,6 +66,7 @@ class WMobilePack {
 	 */
 	public function wmp_uninstall(){
 		
+        // remove uploaded images and uploads folder
         $logo_path = WMobilePack::wmp_get_setting('logo');
         
         if ($logo_path != '' && !file_exists(WMP_FILES_UPLOADS_DIR.$logo_path))
@@ -102,7 +106,13 @@ class WMobilePack {
 	 */	
 	public function wmp_enqueue_scripts() {
 		
-		// enqueue scripts
+		// enqueue styles
+		wp_enqueue_style('css_fonts', plugins_url(WMP_DOMAIN.'/admin/css/fonts.css'), array(), WMP_VERSION);
+        wp_enqueue_style('css_ie', plugins_url(WMP_DOMAIN.'/admin/css/ie.css'), array(), WMP_VERSION);
+        wp_enqueue_style('css_main', 'http://dev.webcrumbz.co/~raducu/dashboard-cutting/wp/resources/css/main.css', array(), WMP_VERSION);	
+        wp_enqueue_style('css_scrollbar', plugins_url(WMP_DOMAIN.'/admin/css/perfect-scrollbar.css'), array(), WMP_VERSION);
+        
+        // enqueue scripts
         wp_enqueue_script('js_validate', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/jquery.validate.min.js'), array('jquery-core', 'jquery-migrate'), '1.11.1');
         wp_enqueue_script('js_validate_additional', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/validate-additional-methods.min.js'), array('jquery-core', 'jquery-migrate'), '1.11.1');
         wp_enqueue_script('js_loader', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Loader.js'), array('jquery-core', 'jquery-migrate'), WMP_VERSION);
@@ -111,11 +121,6 @@ class WMobilePack {
 	    wp_enqueue_script('js_scrollbar', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/perfect-scrollbar.js'), array(), WMP_VERSION);	
 		wp_enqueue_script('js_feedback', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Feedback/SEND_FEEDBACK.js'), array(), WMP_VERSION);	
         wp_enqueue_script('js_newsletter', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Newsletter/WMP_NEWSLETTER.js'), array(), WMP_VERSION);
-		// enqueue styles
-		wp_enqueue_style('css_fonts', plugins_url(WMP_DOMAIN.'/admin/css/fonts.css'), array(), WMP_VERSION);
-        wp_enqueue_style('css_ie', plugins_url(WMP_DOMAIN.'/admin/css/ie.css'), array(), WMP_VERSION);
-        wp_enqueue_style('css_main', 'http://dev.webcrumbz.co/~raducu/dashboard-cutting/wp/resources/css/main.css', array(), WMP_VERSION);	
-        wp_enqueue_style('css_scrollbar', plugins_url(WMP_DOMAIN.'/admin/css/perfect-scrollbar.css'), array(), WMP_VERSION);
 	}
 	
 	
@@ -145,6 +150,15 @@ class WMobilePack {
      * 
      */
     public function load_theme_js(){
+        
+        $blog_version = floatval(get_bloginfo('version'));
+        
+        // activate custom select for newer wp versions
+        if ($blog_version >= self::$wmp_customselect_enable) {
+            wp_enqueue_style('css_select_box_it', plugins_url(WMP_DOMAIN.'/admin/css/jquery.selectBoxIt.css'), array(), '3.8.1');
+            wp_enqueue_script('js_select_box_it', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/jquery.selectBoxIt.min.js'), array('jquery','jquery-ui-core', 'jquery-ui-widget'), '3.8.1');
+        }
+        
         wp_enqueue_script('js_settings_edittheme', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Theming/EDIT_THEME.js'), array(), WMP_VERSION);
     }
     
@@ -160,7 +174,7 @@ class WMobilePack {
 		$WMobilePackAdmin = new WMobilePackAdmin;
 		
 		// add menu and submenu hooks
-		add_menu_page( 'WP Mobile Pack', 'WP Mobile Pack', 'manage_options', 'wmp-options', '', WP_PLUGIN_URL . '/wordpress-mobile-pack/admin/images/appticles-logo.png',62 );
+		add_menu_page( 'WP Mobile Pack', 'WP Mobile Pack', 'manage_options', 'wmp-options', '', WP_PLUGIN_URL . '/wordpress-mobile-pack/admin/images/appticles-logo.png' );
 		add_submenu_page( 'wmp-options', "What's New", "What's New", 'manage_options', 'wmp-options', array( &$WMobilePackAdmin, 'wmp_options' ) );
 		
         $theme_page = add_submenu_page( 'wmp-options', 'Look & Feel', 'Look & Feel', 'manage_options', 'wmp-options-theme', array( &$WMobilePackAdmin, 'wmp_theme_options') );

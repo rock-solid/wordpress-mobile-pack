@@ -14,6 +14,7 @@ function EDIT_THEME(){
     this.DOMDoc;
 
     this.send_btn;
+    this.enableCustomSelects = 0;
 	
 	
 	/*****************************************************************************************************/
@@ -39,49 +40,22 @@ function EDIT_THEME(){
             return;
         }
         
-        // custom validation for FORM's inputs
-        this.initValidation();
+        this.initCustomSelects();
     }
-
-
-
-
+    
     /*****************************************************************************************************/
     /*                                                                                                   */
-    /*                                  FUNCTION INIT VALIDATION                                         */
+    /*                                  FUNCTION ENABLE CUSTOM SELECTS                                   */
     /*                                                                                                   */
     /*****************************************************************************************************/
-    this.initValidation = function(){
+    this.initCustomSelects = function(){
 
-        /*******************************************************/
-		/*                    VALIDATION RULES                 */
-		/*******************************************************/
-		
-        // this is the object that handles the form validations
-	    this.validator = jQuery("#"+this.form.id, this.DOMDoc).validate({
-	
-            /*rules: {
-                editsettings_displaymode : {
-    				required    : true
-    			}
-            },
+        if (this.enableCustomSelects == 1){
             
-            messages: {
-                editsettings_displaymode : {
-    				required		: "Please choose an option."
-    			}
-            },
-            */
-	        // the errorPlacement has to take the table layout into account
-	        // all the errors must be handled by containers/divs with custom ids: Ex. "error_fullname_container"
-	        errorPlacement: function(error, element) {
-	            var id = (element[0].id.split("_").length > 1) ? element[0].id.split("_")[1] : element[0].id.split("_")[0];
-	            var errorContainer = jQuery("#error_"+id+"_container",JSObject.DOMDoc);
-	            error.appendTo( errorContainer );
-	        },
-            
-            errorElement: 'span'
-	    });
+            jQuery("#" + JSObject.type + "_fontheadlines").selectBoxIt();
+            jQuery("#" + JSObject.type + "_fontsubtitles").selectBoxIt();
+            jQuery("#" + JSObject.type + "_fontparagraphs").selectBoxIt();
+        }
     }
     
 
@@ -98,7 +72,7 @@ function EDIT_THEME(){
         jQuery(this.send_btn).unbind("click");
         jQuery(this.send_btn).bind("click",function(){
             JSObject.disableButton(this);
-            JSObject.validate();
+            JSObject.sendData();
         })
         JSObject.enableButton(this.send_btn);
 
@@ -125,59 +99,6 @@ function EDIT_THEME(){
         jQuery(btn).unbind("click");
         jQuery(btn).animate({opacity:0.4},100);
         jQuery(btn).css('cursor','default');
-    }
-
-
-    /*****************************************************************************************************/
-    /*                                                                                                   */
-    /*                                 FUNCTION SCROLL TO FIRST ERROR                                    */
-    /*                                                                                                   */
-    /*****************************************************************************************************/
-    this.scrollToError = function(yCoord){
-
-        var container = jQuery('html,body', JSObject.DOMDoc);
-        var scrollTop = parseInt(jQuery('html,body').scrollTop()) || parseInt(jQuery('body').scrollTop());
-        var containerHeight = container.get(0).clientHeight;
-        var top = parseInt(container.offset().top);
-
-        if (yCoord < scrollTop){
-            jQuery(container).animate({scrollTop: yCoord-20 }, 1000);
-        }
-        else if (yCoord > scrollTop + containerHeight){
-            jQuery(container).animate({scrollTop: scrollTop + containerHeight }, 1000);
-        }
-    }
-    
-
-    /*****************************************************************************************************/
-    /*                                                                                                   */
-    /*                                 FUNCTION VALIDATE INFORMATION                                     */
-    /*                                                                                                   */
-    /*****************************************************************************************************/
-    this.validate = function(){
-        jQuery(this.form).validate().form();
-
-        // y coordinates of error inputs
-        var arr_errorsYCoord = [];
-
-        // find the y coordinate for the errors
-        for (var name in this.validator.invalid){
-            var $input = jQuery(this.form[name]);
-            arr_errorsYCoord.push($input.offset().top);
-        }
-
-        // if there are no errors from syntax point of view, then send data
-        if (arr_errorsYCoord.length == 0){
-            this.sendData();
-        }
-        //move container(div) scroll to the first error
-        else{
-            arr_errorsYCoord.sort(function(a, b){ return (a-b); });
-            JSObject.scrollToError(arr_errorsYCoord[0]);
-
-            // add actions to send, cancel, ... buttons. At this moment the buttons are disabled.
-            JSObject.addButtonsActions();
-        }
     }
 
 

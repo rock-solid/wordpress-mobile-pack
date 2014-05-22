@@ -58,7 +58,6 @@ function EDIT_CATEGORIES(){
 				var currentStatus;
                 
                 var statusContainer = jQuery('.status',this);
-                console.log(statusContainer)
 				var categoryId = statusContainer.attr("data-category-id");
                 
 				if (statusContainer.hasClass("active") == false) {

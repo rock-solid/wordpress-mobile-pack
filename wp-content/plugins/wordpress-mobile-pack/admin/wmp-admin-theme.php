@@ -161,49 +161,92 @@
                         <p class="section-header">Fonts</p>
                         <div class="spacer-20"></div>
                         
+                        <?php 
+                        
+                            $enable_custom_selects = false;
+                            
+                            $blog_version = floatval(get_bloginfo('version')); 
+                            
+                            if ($blog_version >= WMobilePack::$wmp_customselect_enable)
+                                $enable_custom_selects = true;
+                        ?>
+                        
                         <!-- add radio buttons -->
                         <?php 
                             $font_headlines = WMobilePack::wmp_get_setting('font_headlines');
                             if ($font_headlines == '')
-                                $font_headlines = 'Roboto Condensed';
+                                $font_headlines = WMobilePack::$wmp_allowed_fonts[0];
                         ?>
                         
                         <label for="edittheme_fontheadlines">Headlines</label>
+                        
                         <select name="edittheme_fontheadlines" id="edittheme_fontheadlines">
-                        	<option value="Roboto Condensed" <?php if ($font_headlines == "Roboto Condensed") echo "selected";?>>Roboto Condensed</option>
-                            <option value="Georgia" <?php if ($font_headlines == "Georgia") echo "selected";?>>Georgia</option>
-                            <option value="Times New Roman" <?php if ($font_headlines == "Times New Roman") echo "selected";?>>Times New Roman</option>
-                            <option value="Open Sans" <?php if ($font_headlines == "Open Sans") echo "selected";?>>Open Sans</option>
+                        
+                            <?php 
+                                foreach (WMobilePack::$wmp_allowed_fonts as $font_family):
+                            
+                                    if ($enable_custom_selects):    
+                            ?>
+                                        <option value="<?php echo $font_family;?>" data-text='<span style="font-family:<?php echo $font_family;?>"><?php echo $font_family;?></span>' <?php if ($font_headlines == $font_family) echo "selected";?>></option>
+                                        
+                                    <?php else:?>
+                                    
+                                        <option value="<?php echo $font_family;?>" <?php if ($font_headlines == $font_family) echo "selected";?>><?php echo $font_family;?></option>
+                            <?php   
+                                    endif;                                        
+                                endforeach;
+                            ?>
                         </select>
+                                                
                         <div class="spacer-10"></div>
                         
                         <?php 
                             $font_subtitles = WMobilePack::wmp_get_setting('font_subtitles');
                             if ($font_subtitles == '')
-                                $font_subtitles = 'Roboto Condensed';
+                                $font_subtitles = WMobilePack::$wmp_allowed_fonts[0];
                         ?>
                         
                         <label for="edittheme_fontsubtitles">Subtitles</label>
                         <select name="edittheme_fontsubtitles" id="edittheme_fontsubtitles">
-                        	<option value="Roboto Condensed" <?php if ($font_subtitles == "Roboto Condensed") echo "selected";?>>Roboto Condensed</option>
-                            <option value="Georgia" <?php if ($font_subtitles == "Georgia") echo "selected";?>>Georgia</option>
-                            <option value="Times New Roman" <?php if ($font_subtitles == "Times New Roman") echo "selected";?>>Times New Roman</option>
-                            <option value="Open Sans" <?php if ($font_subtitles == "Open Sans") echo "selected";?>>Open Sans</option>
+                            <?php 
+                                foreach (WMobilePack::$wmp_allowed_fonts as $font_family):
+                            
+                                    if ($enable_custom_selects):    
+                            ?>
+                                        <option value="<?php echo $font_family;?>" data-text='<span style="font-family:<?php echo $font_family;?>"><?php echo $font_family;?></span>' <?php if ($font_subtitles == $font_family) echo "selected";?>></option>
+                                        
+                                    <?php else:?>
+                                    
+                                        <option value="<?php echo $font_family;?>" <?php if ($font_subtitles == $font_family) echo "selected";?>><?php echo $font_family;?></option>
+                            <?php   
+                                    endif;                                        
+                                endforeach;
+                            ?>
                         </select>
                         <div class="spacer-10"></div>
                         
                         <?php 
                             $font_paragraphs = WMobilePack::wmp_get_setting('font_paragraphs');
                             if ($font_paragraphs == '')
-                                $font_paragraphs = 'Roboto Condensed';
+                                $font_paragraphs = WMobilePack::$wmp_allowed_fonts[0];
                         ?>
                         
                         <label for="edittheme_fontparagraphs">Paragraphs</label>
                         <select name="edittheme_fontparagraphs" id="edittheme_fontparagraphs">
-                        	<option value="Roboto Condensed" <?php if ($font_paragraphs == "Roboto Condensed") echo "selected";?>>Roboto Condensed</option>
-                            <option value="Georgia" <?php if ($font_paragraphs == "Georgia") echo "selected";?>>Georgia</option>
-                            <option value="Times New Roman" <?php if ($font_paragraphs == "Times New Roman") echo "selected";?>>Times New Roman</option>
-                            <option value="Open Sans" <?php if ($font_paragraphs == "Open Sans") echo "selected";?>>Open Sans</option>
+                            <?php 
+                                foreach (WMobilePack::$wmp_allowed_fonts as $font_family):
+                            
+                                    if ($enable_custom_selects):    
+                            ?>
+                                        <option value="<?php echo $font_family;?>" data-text='<span style="font-family:<?php echo $font_family;?>"><?php echo $font_family;?></span>' <?php if ($font_paragraphs == $font_family) echo "selected";?>></option>
+                                        
+                                    <?php else:?>
+                                    
+                                        <option value="<?php echo $font_family;?>" <?php if ($font_paragraphs == $font_family) echo "selected";?>><?php echo $font_family;?></option>
+                            <?php   
+                                    endif;                                        
+                                endforeach;
+                            ?>
                         </select>
                         <div class="spacer-20"></div>        
                     </div>
@@ -235,7 +278,7 @@
     if (window.JSInterface && window.JSInterface != null){
         jQuery(document).ready(function(){
             
-            window.JSInterface.add("UI_customizetheme","EDIT_THEME",{'DOMDoc':window.document}, window);
+            window.JSInterface.add("UI_customizetheme","EDIT_THEME",{'DOMDoc':window.document, 'enableCustomSelects': <?php echo intval($enable_custom_selects);?>}, window);
         });
     }
 </script>

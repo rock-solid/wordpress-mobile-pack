@@ -357,7 +357,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                                         
                                             $copied_and_resized = false;
                                             
-                                            $blog_version = get_bloginfo('version');
+                                            $blog_version = floatval(get_bloginfo('version'));
                                             
                                             if ($blog_version < 3.5){
                                                 
