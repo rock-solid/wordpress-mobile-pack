@@ -84,15 +84,36 @@
                  	<p class="left">Add more content from </p>
                  	<img src="<?php echo plugins_url()."/".WMP_DOMAIN."/admin/images/content-icons.png";?>" alt="" class="left" />
                 </div>
-                <div class="waitlist">
-                    <!--<a class="btn blue smaller" href="#">Join Waitlist</a>
-                    <div class="spacer-0"></div>
-                    <p>and get notified when available</p>-->
-                    <!--<div class="info">
-                    	<input type="text" placeholder="your email" class="smaller" /> <a href="#" class="btn blue smallest">Ok</a>
-                    	<div class="spacer-15"></div>
-                	</div>-->
-                    <div class="added">
+                <?php
+                    $joined_content_waitlist = false;
+                     
+                    $joined_waitlists = unserialize(WMobilePack::wmp_get_setting('joined_waitlists'));
+                    
+                    if ($joined_waitlists != '' && in_array('content', $joined_waitlists))
+                        $joined_content_waitlist = true;
+                ?>
+                
+                <div class="waitlist" id="wmp_waitlist_container">
+                
+                    <?php if ($joined_content_waitlist == false):?>
+                        <div id="wmp_waitlist_action">
+                            <a href="javascript:void(0);" id="wmp_waitlist_display_btn" class="btn blue smaller">Join Waitlist</a>
+                            <div class="spacer-0"></div>
+                            <p>and get notified when available</p>
+                        </div>
+                    
+                        <form name="wmp_waitlist_form" id="wmp_waitlist_form" action="" method="post" style="display: none;">    
+                            <div class="info">
+                        	   <input name="wmp_waitlist_emailaddress" id="wmp_waitlist_emailaddress" type="text" placeholder="your email" class="smaller" />
+                               <a href="javascript: void(0);" id="wmp_waitlist_send_btn" class="btn blue smallest">Ok</a>
+                               <div class="spacer-5"></div>
+                               <div class="field-message error" id="error_emailaddress_container"></div>
+                        	   <div class="spacer-15"></div>
+                    	   </div>
+                        </form>
+                    <?php endif;?>
+                    
+                    <div id="wmp_waitlist_added" class="added" style="display: <?php echo $joined_content_waitlist ? 'block' : 'none'?>;">
                         <div class="switcher blue">
                         	<div class="msg">ADDED TO WAITLIST</div>
                             <div class="check"></div>
@@ -129,6 +150,20 @@
         jQuery(document).ready(function(){
             
             window.JSInterface.add("UI_editcategories","EDIT_CATEGORIES",{'DOMDoc':window.document}, window);
+            
+            <?php if ($joined_content_waitlist == false):?>
+            
+                window.JSInterface.add("UI_joinwaitlist",
+                    "WMP_WAITLIST",
+                    {
+                        'DOMDoc':       window.document,
+                        'container' :   window.document.getElementById('wmp_waitlist_container'),
+                        'submitURL' :   '<?php echo WMP_WAITLIST_PATH;?>',
+                        'listType' :    'content'
+                    }, 
+                    window
+                );
+            <?php endif;?>
         });
     }
 </script>

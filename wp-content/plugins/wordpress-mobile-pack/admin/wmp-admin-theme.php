@@ -26,10 +26,24 @@
                 <div class="spacer-20"></div>
             </div>
             <div class="spacer-10"></div>
+            
             <div class="details theming">
                 <h2 class="title">Choose Your Theme</h2>
                 <div class="spacer_15"></div>
                 <div class="spacer-15"></div>
+                <?php
+                    $joined_business_waitlist = false;
+                    $joined_lifestyle_waitlist = false;
+                     
+                    $joined_waitlists = unserialize(WMobilePack::wmp_get_setting('joined_waitlists'));
+                    
+                    if ($joined_waitlists != '' && in_array('businesstheme', $joined_waitlists))
+                        $joined_business_waitlist = true;
+                    
+                    if ($joined_waitlists != '' && in_array('lifestyletheme', $joined_waitlists))
+                        $joined_lifestyle_waitlist = true;
+                ?>
+                
                 <div class="themes">
                 	<div class="theme">
                     	<div class="corner relative active">
@@ -46,11 +60,12 @@
                             </div>
                         </div>
                         <div class="name">Blogish</div>
-                        <div class="content">Content type
+                        <div class="content">
+                            Content type
                         	<div class="wordpress-icon"></div>
                         </div>
                     </div>
-                    <div class="theme waitlist">
+                    <div class="theme waitlist <?php if ($joined_business_waitlist) echo 'added' ;?>">
                     	<div class="corner relative inactive">
                             <div class="indicator"></div>
                         </div>
@@ -62,14 +77,38 @@
                                     <div class="spacer-10"></div>
                                     <div class="text">Preview theme</div>
                                     <div class="spacer-5"></div>
-                                    <!--<a href="#" class="btn blue smaller">Join Waitlist</a>
-                                    <div class="text">
-                                    	And get notified when<br> available	
-                                    </div>-->
-                                    <div class="info">
-                                    	<input type="text" placeholder="your email" class="smaller" /> <a href="#" class="btn blue smallest">Ok</a>
+                                    
+                                    <div id="wmp_waitlist_business_container">
+                                    
+                                        <?php if ($joined_business_waitlist == false):?>
+                                        
+                                            <div id="wmp_waitlist_action">
+                                                <a href="javascript:void(0);" id="wmp_waitlist_display_btn" class="btn blue smaller">Join Waitlist</a>
+                                                <div class="text">
+                                                	And get notified when<br/> available	
+                                                </div>
+                                            </div>
+                                        
+                                            <form name="wmp_waitlist_form" id="wmp_waitlist_form" action="" method="post" style="display: none;">
+                                                <div class="info">
+                                            	   <input name="wmp_waitlist_emailaddress" id="wmp_waitlist_emailaddress" type="text" placeholder="your email" class="smaller" />
+                                                   <a href="javascript: void(0);" id="wmp_waitlist_send_btn" class="btn blue smallest">Ok</a>
+                                                   <div class="spacer-5"></div>
+                                                   <div class="field-message error" id="error_emailaddress_container"></div>
+                                        	   </div>
+                                            </form>
+                                        <?php endif;?>
+                                    
+                                        <div id="wmp_waitlist_added" style="display: <?php echo $joined_business_waitlist ? 'block' : 'none'?>;">
+                                        
+                                            <div class="spacer-15"></div>
+                                            <div class="text">
+        										<span>ADDED TO<br/>WAITLIST</span>                                    	
+                                            </div>
+                                    	</div>
                                     </div>
                                 </div>
+                                
                             </div>
                         </div>
                         <div class="name">Business</div>
@@ -79,16 +118,47 @@
                             <div class="rss-icon"></div>
                         </div>
                     </div>
-                    <div class="theme waitlist added">
+                    <div class="theme waitlist <?php if ($joined_lifestyle_waitlist) echo 'added' ;?>">
                     	<div class="corner relative inactive">
                             <div class="indicator"></div>
                         </div>
                         <div class="image" style="background:url(<?php echo plugins_url()."/".WMP_DOMAIN;?>/admin/images/theme-3.jpg);">
                         	<div class="relative">
                             	<div class="overlay">
-                                	<div class="spacer-70"></div>
-                                    <div class="text">
-										<span>ADDED TO<br>WAITLIST</span>                                    	
+                                    <div class="spacer-30"></div>
+                            		<div class="preview"></div>
+                                    <div class="spacer-10"></div>
+                                    <div class="text">Preview theme</div>
+                                    <div class="spacer-5"></div>
+                                    
+                                	<div id="wmp_waitlist_lifestyle_container">
+                                    
+                                        <?php if ($joined_lifestyle_waitlist == false):?>
+                                        
+                                            <div id="wmp_waitlist_action">
+                                                <a href="javascript:void(0);" id="wmp_waitlist_display_btn" class="btn blue smaller">Join Waitlist</a>
+                                                <div class="text">
+                                                	And get notified when<br/> available	
+                                                </div>
+                                            </div>
+                                        
+                                            <form name="wmp_waitlist_form" id="wmp_waitlist_form" action="" method="post" style="display: none;">
+                                                <div class="info">
+                                            	   <input name="wmp_waitlist_emailaddress" id="wmp_waitlist_emailaddress" type="text" placeholder="your email" class="smaller" />
+                                                   <a href="javascript: void(0);" id="wmp_waitlist_send_btn" class="btn blue smallest">Ok</a>
+                                                   <div class="spacer-5"></div>
+                                                   <div class="field-message error" id="error_emailaddress_container"></div>
+                                        	   </div>
+                                            </form>
+                                        <?php endif;?>
+                                    
+                                        <div id="wmp_waitlist_added" style="display: <?php echo $joined_lifestyle_waitlist ? 'block' : 'none'?>;">
+                                        
+                                            <div class="spacer-15"></div>
+                                            <div class="text">
+        										<span>ADDED TO<br/>WAITLIST</span>                                    	
+                                            </div>
+                                    	</div>
                                     </div>
                                 </div>
                             </div>
@@ -280,6 +350,34 @@
         jQuery(document).ready(function(){
             
             window.JSInterface.add("UI_customizetheme","EDIT_THEME",{'DOMDoc':window.document, 'enableCustomSelects': <?php echo intval($enable_custom_selects);?>}, window);
+            
+            <?php if ($joined_business_waitlist == false):?>
+            
+                window.JSInterface.add("UI_joinwaitlist_business",
+                    "WMP_WAITLIST",
+                    {
+                        'DOMDoc':       window.document,
+                        'container' :   window.document.getElementById('wmp_waitlist_business_container'),
+                        'submitURL' :   '<?php echo WMP_WAITLIST_PATH;?>',
+                        'listType' :    'businesstheme'
+                    }, 
+                    window
+                );
+            <?php endif;?>
+            
+            <?php if ($joined_lifestyle_waitlist == false):?>
+            
+                window.JSInterface.add("UI_joinwaitlist_lifestyle",
+                    "WMP_WAITLIST",
+                    {
+                        'DOMDoc':       window.document,
+                        'container' :   window.document.getElementById('wmp_waitlist_lifestyle_container'),
+                        'submitURL' :   '<?php echo WMP_WAITLIST_PATH;?>',
+                        'listType' :    'lifestyletheme'
+                    }, 
+                    window
+                );
+            <?php endif;?>
         });
     }
 </script>

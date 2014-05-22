@@ -37,6 +37,7 @@ class WMobilePack {
                 'font_subtitles'        => self::$wmp_allowed_fonts[0],
                 'font_paragraphs'       => self::$wmp_allowed_fonts[0],
                 'inactive_categories'   => serialize(array()),
+                'joined_waitlists'      => serialize(array()),
                 'display_mode'          => 'normal',
             	'logo'                  => '',
             	'icon'                  => ''
@@ -131,6 +132,7 @@ class WMobilePack {
      */
     public function load_content_js(){
         wp_enqueue_script('js_content_editcategories', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/EDIT_CATEGORIES.js'), array(), WMP_VERSION);
+        wp_enqueue_script('js_join_waitlist', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Waitlist/WMP_WAITLIST.js'), array(), WMP_VERSION);
     }
     
     
@@ -142,6 +144,7 @@ class WMobilePack {
     public function load_settings_js(){
         wp_enqueue_script('js_settings_editimages', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/EDIT_IMAGES.js'), array(), WMP_VERSION);
         wp_enqueue_script('js_settings_editdisplay', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/EDIT_DISPLAY.js'), array(), WMP_VERSION);
+        wp_enqueue_script('js_join_waitlist', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Waitlist/WMP_WAITLIST.js'), array(), WMP_VERSION);
     }
     
     /**
@@ -160,6 +163,7 @@ class WMobilePack {
         }
         
         wp_enqueue_script('js_settings_edittheme', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Theming/EDIT_THEME.js'), array(), WMP_VERSION);
+        wp_enqueue_script('js_join_waitlist', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Waitlist/WMP_WAITLIST.js'), array(), WMP_VERSION);
     }
     
     
