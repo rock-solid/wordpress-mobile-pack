@@ -218,6 +218,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
             
             if (isset($_POST) && is_array($_POST) && !empty($_POST)){
                 
+                // handle display mode (settings page)
                 if (isset($_POST['editsettings_displaymode']) && $_POST['editsettings_displaymode'] != ''){
                     if (in_array($_POST['editsettings_displaymode'], array('normal', 'preview', 'disabled'))){
                         
@@ -228,6 +229,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                     }
                 }
                 
+                // handle color schemes and fonts (look & feel page)
                 if (isset($_POST['edittheme_colorscheme']) && $_POST['edittheme_colorscheme'] != '' &&
                     isset($_POST['edittheme_fontheadlines']) && $_POST['edittheme_fontheadlines'] != '' &&
                     isset($_POST['edittheme_fontsubtitles']) && $_POST['edittheme_fontsubtitles'] != '' &&
@@ -247,6 +249,25 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                         WMobilePack::wmp_update_settings('font_paragraphs', $_POST['edittheme_fontparagraphs']);
                     }
                 }
+                
+                // handle joined waitlists
+                if (isset($_POST['joined_waitlist']) && $_POST['joined_waitlist'] != ''){
+                    
+                    if (in_array($_POST['joined_waitlist'], array('content', 'settings', 'lifestyletheme',  'businesstheme'))){
+                        
+                        $joined_waitlists = unserialize(WMobilePack::wmp_get_setting('joined_waitlists'));
+                        
+                        if (!in_array($_POST['joined_waitlist'], $joined_waitlists)) {
+                            
+                            $status = 1;
+                            
+                            $joined_waitlists[] = $_POST['joined_waitlist'];
+                            
+                            // save option
+                            WMobilePack::wmp_update_settings('joined_waitlists', serialize($joined_waitlists));
+                        }
+                    }
+                }        
             }
             
             echo $status;
@@ -357,7 +378,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                                         
                                             $copied_and_resized = false;
                                             
-                                            $blog_version = get_bloginfo('version');
+                                            $blog_version = floatval(get_bloginfo('version'));
                                             
                                             if ($blog_version < 3.5){
                                                 
