@@ -11,7 +11,22 @@ if(!empty($arrNews) && is_array($arrNews )):
         <div class="details" id="news_updates">
             <!-- start news and updates -->
             <?php foreach($arrNews as $news):?>
-                <p><?php echo substr($news["content"],0,152);?> <a href="<?php echo $news["link"];?>" target="_blank" title="read more">read more</a></p> 
+                <?php if(isset($news["title"]) && $news["title"] != ''):?>
+                	<p><strong><?php echo $news["title"];?></strong></p>
+                    <div class="spacer-2"></div>
+                <?php endif;?>
+                <p>
+					<?php 
+						$content_length = 152;
+						if(isset($news["title"]) && $news["title"] != ''){
+							$content_length = 120;
+						}
+					?>	
+					<?php echo substr($news["content"],0,$content_length);?> 
+                    <?php if(isset($news["link"]) && $news["link"] != ''):?>
+                    	<a href="<?php echo $news["link"];?>" target="_blank" title="read more">read more</a>
+                    <?php endif;?> 
+                </p> 
                 <div class="spacer-20"></div>
                 <div class="grey-dotted-line"></div>
                 <div class="spacer-20"></div>

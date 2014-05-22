@@ -628,7 +628,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 				}
 			}
 				
-			// return article json
+			// return comments json
 			return '{"comments":'.json_encode($arrComments)."}";
 			
 		} else
@@ -697,9 +697,9 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 									if(get_option('require_name_email')) {
 											
 										if ( $comment_author_email == '' || $comment_author == '' )
-											return '{"error":"Please fill the required fields (name, email)."}';
+											return '{"error":"Please fill the required fields (name, email).","status":0}';
 										elseif ( !is_email($comment_author_email))
-											return '{"error":"Please enter a valid e-mail address."}';
+											return '{"error":"Please enter a valid e-mail address.","status":0}';
 									}
 									
 									if ( $comment_content == '' )
@@ -711,20 +711,20 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 									$comment_id = wp_new_comment( $commentdata );
 									
 									if(is_numeric($comment_id) && get_option("comment_moderation") == 1)
-										return '{"success" : "Your comment is awaiting moderation."}';
+										return '{"success" : "Your comment is awaiting moderation.","status":2}';
 									elseif(is_numeric($comment_id))
-										return '{"success" : "Your comment was successfully added."}';
+										return '{"success" : "Your comment was successfully added.","status":1}';
 									
 								} else // return error
-									return '{"error":"Sorry, comments are closed for this item."}';
+									return '{"error":"Sorry, comments are closed for this item.","status":0}';
 									
 							}else
 								// return error
-								return '{"error":"Sorry, the post is not visible"}';
+								return '{"error":"Sorry, the post is not visible","status":0}';
 							
 						} else
 							// return error
-							return '{"error":"Sorry, the post is not available"}';
+							return '{"error":"Sorry, the post is not available","status":0}';
 							
 						// init articles array
 						$arrComments = array();
@@ -755,16 +755,12 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 								
 							}
 						}
-							
-						// return article json
-						return '{"comments":'.json_encode($arrComments)."}";
-						
 					}
 				}
 			}
 		} 
 			// return error
-			return '{"error":""}';
+			return '{"status":0}';
 	}
 	
 	
@@ -881,6 +877,5 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 	
      
   } // Export
-
 
 ?>

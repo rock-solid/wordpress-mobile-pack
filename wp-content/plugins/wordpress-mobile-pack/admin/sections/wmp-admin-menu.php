@@ -2,10 +2,13 @@
 // get current screen
 $screen = get_current_screen();
 // set current page
+
+
 if($screen->id !== '')
-	$current_page = str_replace('wp-mobile-pack_page_','',$screen->id);
+	$current_page = substr($screen->id, strpos($screen->id, "_page_") + 6);
 else
 	$current_page = '';
+	
 ?>
 <!-- add nav main menu -->
 <nav class="menu">
