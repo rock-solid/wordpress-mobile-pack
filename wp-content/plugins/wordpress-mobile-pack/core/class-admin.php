@@ -18,16 +18,53 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			
 			global $wmobile_pack;
 			
-			
-			// set settings
-			
-			
 			// load view
 			include(WMP_PLUGIN_PATH.'admin/wmp-admin-main.php');
 
 			
 		}
 		
+        /**
+		 * Static method used to request the content for the What's New page
+		 * Method return array containing the latest content or an empty array be default
+		 *
+		 */
+		public static function wmp_whatsnew_updates() {
+			
+			// jSON URL which should be requested
+			$json_url = WMP_WHATSNEW_UPDATES;
+			$send_curl = curl_init($json_url);
+			
+			// set curl options
+			curl_setopt($send_curl, CURLOPT_URL, $json_url);
+			curl_setopt($send_curl, CURLOPT_HEADER, false);
+			curl_setopt($send_curl, CURLOPT_CONNECTTIMEOUT, 2);
+			curl_setopt($send_curl, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($send_curl, CURLOPT_HTTPHEADER,array('Accept: application/json', "Content-type: application/json"));
+			curl_setopt($send_curl, CURLOPT_FAILONERROR, FALSE);
+			curl_setopt($send_curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+			curl_setopt($send_curl, CURLOPT_SSL_VERIFYHOST, FALSE);
+			$json_response = curl_exec($send_curl);
+			
+			// get request status
+			$status = curl_getinfo($send_curl, CURLINFO_HTTP_CODE);
+			curl_close($send_curl);
+			
+			if ($status == 200) {
+				// get response
+				$response = json_decode($json_response, true);
+			
+				if (isset($response["content"]) && is_array($response["content"]) && !empty($response["content"]))
+					// return response
+					return $response["content"];
+			}
+			
+			// by default return empty array
+			return array();
+		}
+		
+        
+        
 		/**
 		 * Method used to render the themes selection page from the admin area
 		 *
@@ -36,10 +73,6 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 		public function wmp_theme_options() {
 			
 			global $wmobile_pack;
-			
-			
-			// set settings
-			
 			
 			// load view
 			include(WMP_PLUGIN_PATH.'admin/wmp-admin-theme.php');
@@ -177,7 +210,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			$status = curl_getinfo($send_curl, CURLINFO_HTTP_CODE);
 			curl_close($send_curl);
 			
-			if($status == 200) {
+			if ($status == 200) {
 				// get response
 				$response = json_decode($json_response, true);
 				
