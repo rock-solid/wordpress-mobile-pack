@@ -17,6 +17,7 @@ if ( !defined( 'WMP_FILES_UPLOADS_DIR' ) && !defined( 'WMP_FILES_UPLOADS_URL' ) 
 
 define('WMP_FEEDBACK_EMAIL','florentina@webcrumbz.co');
 define('WMP_NEWS_UPDATES','https://s3-eu-west-1.amazonaws.com/appticles-wmpack/dashboard/news.json');
+define('WMP_WHATSNEW_UPDATES','https://s3-eu-west-1.amazonaws.com/appticles-wmpack/dashboard/whats_new/content.json');
 define('WMP_NEWSLETTER_PATH','http://gateway-dev.appticles.com/newsletter/api/subscribe');
 define('WMP_WAITLIST_PATH','http://gateway-dev.appticles.com/waitlist/api/subscribe');
 ?>
