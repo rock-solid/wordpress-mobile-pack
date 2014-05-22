@@ -33,12 +33,26 @@ if(isset($_GET["content"])) {
 		
 	}	elseif($_GET["content"] == 'savecomment' && isset($_GET["articleId"]) && is_numeric($_GET["articleId"])) {
 	
-		/*$_GET["author"] = 'Flori';
-		$_GET["email"] = 'florentina@webcrumbz.com';
-		$_GET["url"] = 'http://appticles.com';
-		$_GET["comment"] = 'Must be approved?';
-		$_GET["comment_parent"] = 0;
-		$_GET["code"] = 'M2I4YTViOTI4NzRiMmI2Y2ExOGZiY2I1ZDU4ZThiOTFfMTQwMDc3MTc1NA==';*/
+		//var_dump($_SERVER['HTTP_REFERER']);
+	
+		//var_dump($_SERVER);exit();
+		
+		$token = WMobilePack::wmp_set_token();
+		var_dump(WMobilePack::wmp_check_token($token));
+		
+		var_dump($token);exit();
+		
+		
+		
+		
+		// generate token
+		var_dump(base64_encode(get_bloginfo("wpurl").'_'));
+		var_dump(base64_decode(base64_encode(get_bloginfo("wpurl"))));exit();
+		/*$_POST["author"] = 'Flori';
+		$_POST["email"] = 'florentina@webcrumbz.com';
+		$_POST["url"] = 'http://appticles.com';
+		$_POST["comment"] = 'I love the pohotos of the cats!!';
+		$_POST["comment_parent"] = 0;*/
 		
 		
 		// save comment, mandatory get param is articleId

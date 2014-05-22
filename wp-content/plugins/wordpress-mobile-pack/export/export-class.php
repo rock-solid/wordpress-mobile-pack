@@ -31,7 +31,10 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 		
 		$config->set('HTML.SafeIframe',1);
 		$config->set('URI.SafeIframeRegexp','%^(https?:)?(http?:)?//(www\.youtube(?:-nocookie)?\.com/embed/|player.vimeo.com|www\.dailymotion.com|w.soundcloud.com|fast.wistia.net|fast.wistia.com|wi.st)%');
-			   
+		
+		// disable cache
+		$config->set('Cache.DefinitionImpl',null);
+		
 		$this->purifier  = new HTMLPurifier($config); 
 	
         $this->inactive_categories = unserialize(WMobilePack::wmp_get_setting('inactive_categories'));
@@ -637,21 +640,16 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
     * 
     *  - saveComment method used to add a comment to an article
 	*  - this metod returns a JSON with the success/ error message
-	*  - ex of post request : 
-	*	{
-	*	  "comments": {
-	*		"id": "53624b6981f58370a6968678",
-	*		"title": "#IJF14: Global developments in data journalism",
-	*		"timestamp": 1398960437,
-	*		"author": "",
-	*		"date": "Thu, May 01, 2014 04:07",
-	*		"link": "http://www.journalism.co.uk/news/-ijf14-global-patterns-in-data-journalism-/s2/a556612/",
-	*		"image": "",
-	*		"content": "<p>On the second day of the International Journalism Festival in Perugia, delegates were treated to a round up of data journalism trends and developments from around the world.</p>",
-	*		"category_id": 5,
-	*		"category_name": "News"
-	*	  }
-	*	}
+	*  - ex of get request : 
+	*	
+	*	"author": "Flori",
+	*	"email": "florentina@appticles.com",
+	*	"url": http://appticles.com,
+	*	"comment": " love the pohotos of the cats!!",
+	*	"comment_parent": "1",
+	*	"code": "7841da44befc5b8fa00a0c8daab49d21_1400771121",	
+	*	 
+	*	
     *  
 	*   
 	*    
@@ -660,99 +658,111 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 		
 		// check if the export call is correct
 		if(isset($_GET["content"]) && $_GET["content"] == 'savecomment' ) {
+			
+			if(!isset($_SERVER['HTTP_REFERER']) || strpos($_SERVER['HTTP_REFERER'],$_SERVER["HTTP_HOST"]) !== false) {
 		
-			// set articleId
-			$articleId = 0;			
-			if(isset($_GET["articleId"]) && is_numeric($_GET["articleId"])) {
-				$articleId = $_GET["articleId"];
-				
-			}
-				
-			// get post by article id
-			// get post by id
-			$post = get_post( $articleId);
-			
-			if($post != null && $post->post_type == 'post') {
-				
-				if($post->post_status == 'publish') {
-				
-					// check if the post accepts comments
-					if(comments_open( $articleId )) {
-						
-						// get post variables
-						$comment_post_ID = 		$articleId;		
-						$comment_author   = 	( isset($_POST['author']) )  ? trim(strip_tags($_POST['author'])) : '';
-						$comment_author_email = ( isset($_POST['email']) )   ? trim($_POST['email']) : '';
-						$comment_author_url   = ( isset($_POST['url']) )     ? trim($this->purifier->purify($_POST['url'])) : '';
-						$comment_content      = ( isset($_POST['comment']) ) ? trim($this->purifier->purify($_POST['comment'])) : '';
-						$comment_parent = 		isset($_POST['comment_parent']) ? absint($_POST['comment_parent']) : 0;
-						
-						// return errors for empty fields
-						if(get_option('require_name_email')) {
-								
-							if ( $comment_author_email == '' || $comment_author == '' )
-								return '{"error":"Please fill the required fields (name, email)."}';
-							elseif ( !is_email($comment_author_email))
-								return '{"error":"Please enter a valid e-mail address."}';
-						}
-						
-						if ( $comment_content == '' )
-							return '{"error":"Please type a comment."}';
-						
-						// set comment data
-						$commentdata = compact('comment_post_ID', 'comment_author', 'comment_author_email', 'comment_author_url', 'comment_content', 'comment_type', 'comment_parent', 'user_ID');
-						// get comment id
-						$comment_id = wp_new_comment( $commentdata );
-						
-						if(is_numeric($comment_id))
-							return '{"success" : "Your comment is awaiting moderation."}';
-						
-						
-					} else // return error
-						return '{"error":"Sorry, comments are closed for this item."}';
-						
-				}else
-					// return error
-					return '{"error":"Sorry, the post is not visible"}';
-				
-			} else
-				// return error
-				return '{"error":"Sorry, the post is not available"}';
-				
-			// init articles array
-			$arrComments = array();
-			
-			$args = array(
-							'parent' => '',
-							'post_id' => $articleId,
-							'post_type' => 'post',
-							'status' => 'approve',
-						);
-			
-			// get post by id
-			$comments = get_comments( $args);
-			
-			if(is_array($comments) && !empty($comments)) {
-				
-				foreach($comments as $comment) {
-					
-					$arrComments[] = array(
-										   	'id' => $comment->comment_ID,
-											'author' => ucfirst($comment->comment_author),
-											'author_url' => $comment->comment_author_url,
-											'date' => date("D, M d, Y, H:i", strtotime($comment->comment_date)),
-											'content' => $this->purifier->purify($comment->comment_content),
-											'article_id' => $comment->ID,
-											'article_title'=>$comment->post_title
-										   );
+				// set articleId
+				$articleId = 0;			
+				if(isset($_GET["articleId"]) && is_numeric($_GET["articleId"])) {
+					$articleId = $_GET["articleId"];
 					
 				}
+					
+				// check token
+				if(isset($_GET['code']) && $_GET["code"] !== '') {
+					
+					// if the token is valid, go ahead and save comment to the DB
+					if(WMobilePack::wmp_check_token($_GET['code'])) {
+						
+						// get post by article id
+						// get post by id
+						$post = get_post( $articleId);
+						
+						if($post != null && $post->post_type == 'post') {
+							
+							if($post->post_status == 'publish') {
+							
+								// check if the post accepts comments
+								if(comments_open( $articleId )) {
+									
+									// get post variables
+									$comment_post_ID = 		$articleId;		
+									$comment_author   = 	( isset($_GET['author']) )  ? trim(strip_tags($_GET['author'])) : '';
+									$comment_author_email = ( isset($_GET['email']) )   ? trim($_GET['email']) : '';
+									$comment_author_url   = ( isset($_GET['url']) )     ? trim($this->purifier->purify($_GET['url'])) : '';
+									$comment_content      = ( isset($_GET['comment']) ) ? trim($this->purifier->purify($_GET['comment'])) : '';
+									$comment_parent = 		isset($_GET['comment_parent']) ? absint($_GET['comment_parent']) : 0;
+									
+									// return errors for empty fields
+									if(get_option('require_name_email')) {
+											
+										if ( $comment_author_email == '' || $comment_author == '' )
+											return '{"error":"Please fill the required fields (name, email)."}';
+										elseif ( !is_email($comment_author_email))
+											return '{"error":"Please enter a valid e-mail address."}';
+									}
+									
+									if ( $comment_content == '' )
+										return '{"error":"Please type a comment."}';
+									
+									// set comment data
+									$commentdata = compact('comment_post_ID', 'comment_author', 'comment_author_email', 'comment_author_url', 'comment_content', 'comment_type', 'comment_parent', 'user_ID');
+									// get comment id
+									$comment_id = wp_new_comment( $commentdata );
+									
+									if(is_numeric($comment_id) && get_option("comment_moderation") == 1)
+										return '{"success" : "Your comment is awaiting moderation."}';
+									elseif(is_numeric($comment_id))
+										return '{"success" : "Your comment was successfully added."}';
+									
+								} else // return error
+									return '{"error":"Sorry, comments are closed for this item."}';
+									
+							}else
+								// return error
+								return '{"error":"Sorry, the post is not visible"}';
+							
+						} else
+							// return error
+							return '{"error":"Sorry, the post is not available"}';
+							
+						// init articles array
+						$arrComments = array();
+						
+						$args = array(
+										'parent' => '',
+										'post_id' => $articleId,
+										'post_type' => 'post',
+										'status' => 'approve',
+									);
+						
+						// get post by id
+						$comments = get_comments( $args);
+						
+						if(is_array($comments) && !empty($comments)) {
+							
+							foreach($comments as $comment) {
+								
+								$arrComments[] = array(
+														'id' => $comment->comment_ID,
+														'author' => ucfirst($comment->comment_author),
+														'author_url' => $comment->comment_author_url,
+														'date' => date("D, M d, Y, H:i", strtotime($comment->comment_date)),
+														'content' => $this->purifier->purify($comment->comment_content),
+														'article_id' => $comment->ID,
+														'article_title'=>$comment->post_title
+													   );
+								
+							}
+						}
+							
+						// return article json
+						return '{"comments":'.json_encode($arrComments)."}";
+						
+					}
+				}
 			}
-				
-			// return article json
-			return '{"comments":'.json_encode($arrComments)."}";
-			
-		} else
+		} 
 			// return error
 			return '{"error":""}';
 	}
