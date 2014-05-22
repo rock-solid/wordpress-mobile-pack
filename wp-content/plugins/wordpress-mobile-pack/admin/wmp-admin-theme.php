@@ -50,7 +50,7 @@
                         	<div class="wordpress-icon"></div>
                         </div>
                     </div>
-                    <div class="theme whitelist">
+                    <div class="theme waitlist">
                     	<div class="corner relative inactive">
                             <div class="indicator"></div>
                         </div>
@@ -62,12 +62,13 @@
                                     <div class="spacer-10"></div>
                                     <div class="text">Preview theme</div>
                                     <div class="spacer-5"></div>
-                                    <a href="#" class="btn blue smaller">Join Waitlist</a>
+                                    <!--<a href="#" class="btn blue smaller">Join Waitlist</a>
                                     <div class="text">
                                     	And get notified when<br> available	
+                                    </div>-->
+                                    <div class="info">
+                                    	<input type="text" placeholder="your email" class="smaller" /> <a href="#" class="btn blue smallest">Ok</a>
                                     </div>
-                                    
-                                	
                                 </div>
                             </div>
                         </div>
@@ -78,7 +79,7 @@
                             <div class="rss-icon"></div>
                         </div>
                     </div>
-                    <div class="theme whitelist added">
+                    <div class="theme waitlist added">
                     	<div class="corner relative inactive">
                             <div class="indicator"></div>
                         </div>

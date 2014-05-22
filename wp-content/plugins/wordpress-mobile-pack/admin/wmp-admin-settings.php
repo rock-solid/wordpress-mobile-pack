@@ -96,9 +96,15 @@
                                     <a href="#" class="btn grey smaller">Browse</a>
                                 </div>
                                 
-                                <div class="field-message error" id="error_logo_container"></div>
+                                
                                 <a href="javascript:void(0)" id="editimages_logo_removenew" class="remove" style="display: none;"></a>
                             </div> 
+                            
+                            <!-- cancel upload logo button -->
+                            <div class="editimages_changelogo_cancel cancel-link" style="display: none;">
+                                <a href="javascript:void(0);" class="cancel">cancel</a>
+                            </div>
+                            <div class="field-message error" id="error_logo_container"></div>
                         
                         </div>
                         
@@ -112,11 +118,6 @@
                             <a href="javascript:void(0);" class="editimages_changelogo btn grey smaller edit">Change</a>
                             <a href="#" class="editimages_deletelogo smaller remove">remove</a>
                             
-                        </div>
-                        
-                        <!-- cancel upload logo button -->
-                        <div class="editimages_changelogo_cancel cancel-link" style="display: none;">
-                            <a href="javascript:void(0);" class="cancel">cancel</a>
                         </div>
                                     
                         <div class="spacer-20"></div>
@@ -141,9 +142,13 @@
                                     <a href="#" class="btn grey smaller">Browse</a>
                                 </div>
                                 
-                                <div class="field-message error" id="error_icon_container"></div>
                                 <a href="javascript:void(0)" id="editimages_icon_removenew" class="remove" style="display: none;"></a>
                             </div> 
+                            <!-- cancel upload icon button -->
+                            <div class="editimages_changeicon_cancel cancel-link" style="display: none;">
+                                <a href="javascript:void(0);" class="cancel">cancel</a>    
+                            </div>
+                            <div class="field-message error" id="error_icon_container"></div>
                         
                         </div>
                         
@@ -156,11 +161,6 @@
                             <!-- edit/delete icon links -->
                             <a href="javascript:void(0);" class="editimages_changeicon btn grey smaller edit">Change</a>
                             <a href="#" class="editimages_deleteicon smaller remove">remove</a>
-                        </div>
-                        
-                        <!-- cancel upload icon button -->
-                        <div class="editimages_changeicon_cancel cancel-link" style="display: none;">
-                            <a href="javascript:void(0);" class="cancel">cancel</a>    
                         </div>
                                     
                         <div class="spacer-20"></div>

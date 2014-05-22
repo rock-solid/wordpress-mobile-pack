@@ -442,6 +442,8 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 	*		"description":"<p><b>Sport</b> (or <b>sports</b>) is all forms of usually <a href=\"http://en.wikipedia.org/wiki/Competition\">competitive</a> <a href=\"http://en.wikipedia.org/wiki/Physical_activity\">physical activity</a> which,<sup><a href=\"http://en.wikipedia.org/wiki/Sport#cite_note-sportaccord-1\">[1]</a></sup> through casual or organised participation, aim to use, maintain or improve physical ability and skills while...</p>",				  
 	*	    "content": "<p>On the second day of the International Journalism Festival in Perugia, delegates were treated to a round up of data journalism trends and developments from around the world.</p>",
 	*		"comment_status": "open",	** the values can be opened or closed	
+	*       "show_avatars" : true,
+	*		"require_name_email" : true,	
 	*		"category_id": 5,
 	*		"category_name": "News"
 	*	  }
@@ -516,18 +518,20 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
     				$description = Export::truncateHtml($content,$descriptionLength);
     				
     				$arrArticle = array(
-                        'id' 				=> $post->ID,
-                        "title" 			=> $post->post_title,
-                        "timestamp" 		=> strtotime($post->post_date),
-                        "author" 			=> get_the_author_meta( 'user_nicename' , $post->post_author ),
-                        "date" 			    => date("D, M d, Y, H:i", strtotime($post->post_date)),
-                        "link" 			    => $post->guid,
-                        "image" 			=> !empty($image_details) ? $image_details : "",
-                        "description"	    => $description,
-                        "content" 			=> $content,
-                        'comment_status'    => $post->comment_status,
-                        "category_id" 		=> $visible_category->term_id,
-                        "category_name" 	=> $visible_category->name
+                        'id' 					=> $post->ID,
+                        "title" 				=> $post->post_title,
+                        "timestamp" 			=> strtotime($post->post_date),
+                        "author" 				=> get_the_author_meta( 'user_nicename' , $post->post_author ),
+                        "date" 			    	=> date("D, M d, Y, H:i", strtotime($post->post_date)),
+                        "link" 			    	=> $post->guid,
+                        "image" 				=> !empty($image_details) ? $image_details : "",
+                        "description"	    	=> $description,
+                        "content" 				=> $content,
+                        "comment_status"    	=> ($post->comment_status == 'open' && get_option('comment_registration') == 0) ? 'open' : 'closed',
+                        "show_avatars"			=> get_option("show_avatars") == 1 ? true : false,// false
+						"require_name_email"	=> get_option("require_name_email") == 1 ? true : false,
+						"category_id" 			=> $visible_category->term_id,
+                        "category_name" 		=> $visible_category->name
 					 );
 				}
 			}
@@ -582,10 +586,12 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 			$arrComments = array();
 			
 			$args = array(
-							'parent' => '',
-							'post_id' => $articleId,
+							'parent' 	=> '',
+							'post_id' 	=> $articleId,
 							'post_type' => 'post',
-							'status' => 'approve',
+							'status' 	=> 'approve',
+							'orderby'	=> 'comment_date_gmt',
+							'order'		=> 'ASC'
 						);
 			
 			// get post by id
@@ -594,15 +600,26 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 			if(is_array($comments) && !empty($comments)) {
 				
 				foreach($comments as $comment) {
+					$get_avatar = '';
+					// get avatar only if the author wants it displayed
+					if(get_option("show_avatars")) {
+						
+						$get_avatar = get_avatar( $comment, 50);
+						preg_match("/src='(.*?)'/i", $get_avatar, $matches);
+						$avatar = $matches[1];
 					
+					} else
+						$avatar = '';
+						
 					$arrComments[] = array(
 										   	'id' => $comment->comment_ID,
-											'author' => ucfirst($comment->comment_author),
+											'author' => $comment->comment_author != '' ? ucfirst($comment->comment_author) : 'Anonymous',
 											'author_url' => $comment->comment_author_url,
 											'date' => date("D, M d, Y, H:i", strtotime($comment->comment_date)),
 											'content' => $this->purifier->purify($comment->comment_content),
 											'article_id' => $comment->ID,
-											'article_title'=>$comment->post_title
+											'article_title'=>$comment->post_title,
+											'avatar' => $avatar
 										   );
 					
 				}
