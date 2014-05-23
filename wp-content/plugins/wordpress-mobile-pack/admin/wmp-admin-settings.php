@@ -94,7 +94,7 @@
                     
                         <form name="wmp_waitlist_form" id="wmp_waitlist_form" action="" method="post" style="display: none;">    
                             <div class="info">
-                        	   <input name="wmp_waitlist_emailaddress" id="wmp_waitlist_emailaddress" type="text" placeholder="your email" class="smaller" />
+                        	   <input name="wmp_waitlist_emailaddress" id="wmp_waitlist_emailaddress" type="text" placeholder="your email" class="smaller" value="<?php echo get_option( 'admin_email' );?>" />
                                <a href="javascript: void(0);" id="wmp_waitlist_send_btn" class="btn blue smallest">Ok</a>
                                <div class="spacer-5"></div>
                                <div class="field-message error" id="error_emailaddress_container"></div>
@@ -114,120 +114,6 @@
                 <div class="spacer-20"></div>
             </div>
             <div class="spacer-15"></div>
-            
-            <div class="details branding">
-            	
-                <h2 class="title">Customize Your App's Logo and Icon</h2>
-                <div class="spacer-15"></div>
-                <div class="grey-line"></div>
-                <div class="spacer-15"></div>
-                <div class="spacer-20"></div>
-                <div class="left">
-                    <form name="editimages_form" id="editimages_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_editimages&type=upload" method="post" enctype="multipart/form-data">
-                       
-                        <?php
-                            $logo_path = WMobilePack::wmp_get_setting('logo');
-                            
-                            if (!file_exists(WMP_FILES_UPLOADS_DIR.$logo_path))
-                                $logo_path = '';    
-                        ?>
-    
-                        <!-- upload logo field -->
-                        <div class="editimages_uploadlogo" style="display: <?php echo $logo_path == '' ? 'block' : 'none';?>;">
-                        
-                            <label for="editimages_logo">Upload your app logo</label>
-                            
-                            <div class="custom-upload">
-                            
-                                <input type="file" id="editimages_logo" name="editimages_logo" />
-                                <div class="fake-file">
-                                    <input type="text" id="fakefilelogo" disabled="disabled" />
-                                    <a href="#" class="btn grey smaller">Browse</a>
-                                </div>
-                                
-                                
-                                <a href="javascript:void(0)" id="editimages_logo_removenew" class="remove" style="display: none;"></a>
-                            </div> 
-                            
-                            <!-- cancel upload logo button -->
-                            <div class="editimages_changelogo_cancel cancel-link" style="display: none;">
-                                <a href="javascript:void(0);" class="cancel">cancel</a>
-                            </div>
-                            <div class="field-message error" id="error_logo_container"></div>
-                        
-                        </div>
-                        
-                        <!-- logo image -->
-                        <div class="editimages_logocontainer display-logo" style="display: <?php echo $logo_path != '' ? 'block' : 'none';?>;">
-                        
-                            <label for="branding_logo">App logo</label>
-                            <div class="img" id="editimages_currentlogo" style="background:url(<?php echo WMP_FILES_UPLOADS_URL.$logo_path;?>); background-size:contain; background-repeat: no-repeat; background-position: center"></div>
-                            
-                            <!-- edit/delete logo links -->
-                            <a href="javascript:void(0);" class="editimages_changelogo btn grey smaller edit">Change</a>
-                            <a href="#" class="editimages_deletelogo smaller remove">remove</a>
-                            
-                        </div>
-                                    
-                        <div class="spacer-20"></div>
-                        
-                        <?php
-                            $icon_path = WMobilePack::wmp_get_setting('icon');
-                            
-                            if (!file_exists(WMP_FILES_UPLOADS_DIR.$icon_path))
-                                $icon_path = '';    
-                        ?>
-    
-                        <!-- upload icon field -->
-                        <div class="editimages_uploadicon" style="display: <?php echo $icon_path == '' ? 'block' : 'none';?>;">
-                        
-                            <label for="editimages_icon">Upload your app icon</label>
-                            
-                            <div class="custom-upload">
-                            
-                                <input type="file" id="editimages_icon" name="editimages_icon" />
-                                <div class="fake-file">
-                                    <input type="text" id="fakefileicon" disabled="disabled" />
-                                    <a href="#" class="btn grey smaller">Browse</a>
-                                </div>
-                                
-                                <a href="javascript:void(0)" id="editimages_icon_removenew" class="remove" style="display: none;"></a>
-                            </div> 
-                            <!-- cancel upload icon button -->
-                            <div class="editimages_changeicon_cancel cancel-link" style="display: none;">
-                                <a href="javascript:void(0);" class="cancel">cancel</a>    
-                            </div>
-                            <div class="field-message error" id="error_icon_container"></div>
-                        
-                        </div>
-                        
-                        <!-- icon image -->
-                        <div class="editimages_iconcontainer display-icon" style="display: <?php echo $icon_path != '' ? 'block' : 'none';?>;;">
-                        
-                            <label for="branding_icon">App icon</label>
-                            <img src="<?php echo WMP_FILES_UPLOADS_URL.$icon_path;?>" id="editimages_currenticon" />
-                            
-                            <!-- edit/delete icon links -->
-                            <a href="javascript:void(0);" class="editimages_changeicon btn grey smaller edit">Change</a>
-                            <a href="#" class="editimages_deleteicon smaller remove">remove</a>
-                        </div>
-                                    
-                        <div class="spacer-20"></div>
-                        
-                        <a href="javascript:void(0);" id="editimages_send_btn" class="btn green smaller">Save</a>
-    
-                    </form>    
-                </div>
-                
-                <div class="notice notice-left right" style="width: 230px;">
-                    <span>
-                        Please add your logo in a png image format with a transparent background.<br/><br/>
-                        Your icon should be square with a recommended size of 256 x 256 px.<br/><br/>
-                        The file size for uploaded images should not exceed 1MB.
-                    </span>
-                </div>
-                <div class="spacer-0"></div>
-            </div>
         </div>
     
         <div class="right-side">
@@ -250,7 +136,6 @@
     if (window.JSInterface && window.JSInterface != null){
         jQuery(document).ready(function(){
             window.JSInterface.add("UI_editdisplay","EDIT_DISPLAY",{'DOMDoc':window.document}, window);
-            window.JSInterface.add("UI_editimages","EDIT_IMAGES",{'DOMDoc':window.document}, window);
             
             <?php if ($joined_settings_waitlist == false):?>
             

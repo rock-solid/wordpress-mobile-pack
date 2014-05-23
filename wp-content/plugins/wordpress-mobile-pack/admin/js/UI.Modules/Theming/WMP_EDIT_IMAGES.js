@@ -4,11 +4,11 @@
 /*                                                                                                   */
 /*****************************************************************************************************/
 
-function EDIT_IMAGES(){
+function WMP_EDIT_IMAGES(){
 
     var JSObject = this;
 
-    this.type = "editimages";
+    this.type = "wmp_editimages";
 
     this.form;
     this.DOMDoc;
