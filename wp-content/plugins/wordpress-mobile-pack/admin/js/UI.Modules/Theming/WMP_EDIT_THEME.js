@@ -4,11 +4,11 @@
 /*                                                                                                   */
 /*****************************************************************************************************/
 
-function EDIT_THEME(){
+function WMP_EDIT_THEME(){
 
     var JSObject = this;
 
-    this.type = "edittheme";
+    this.type = "wmp_edittheme";
 
     this.form;
     this.DOMDoc;

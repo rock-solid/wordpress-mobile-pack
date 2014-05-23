@@ -16,6 +16,8 @@
 <div class="form-box feedback">
     <h2>Give Us Your Feedback</h2>
     <div class="spacer-10"></div>
+    <p>We're going to reply to your e-mail address <em><?php echo get_option( 'admin_email' );?></em> as soon as possible.</p>
+    <div class="spacer-10"></div>
     <form id="feedback_form" name="feedback_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_send_feedback" method="post">
         <input type="hidden" name="feedback_page" id="feedback_page" value="<?php echo ucfirst($current_page);?>" />
         <textarea name="feedback_message" id="feedback_message" placeholder="Your message" class="small"></textarea>

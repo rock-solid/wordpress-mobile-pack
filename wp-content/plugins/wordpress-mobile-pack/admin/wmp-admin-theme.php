@@ -91,7 +91,7 @@
                                         
                                             <form name="wmp_waitlist_form" id="wmp_waitlist_form" action="" method="post" style="display: none;">
                                                 <div class="info">
-                                            	   <input name="wmp_waitlist_emailaddress" id="wmp_waitlist_emailaddress" type="text" placeholder="your email" class="smaller" />
+                                            	   <input name="wmp_waitlist_emailaddress" id="wmp_waitlist_emailaddress" type="text" placeholder="your email" class="smaller" value="<?php echo get_option( 'admin_email' );?>" />
                                                    <a href="javascript: void(0);" id="wmp_waitlist_send_btn" class="btn blue smallest">Ok</a>
                                                    <div class="spacer-5"></div>
                                                    <div class="field-message error" id="error_emailaddress_container"></div>
@@ -144,7 +144,7 @@
                                         
                                             <form name="wmp_waitlist_form" id="wmp_waitlist_form" action="" method="post" style="display: none;">
                                                 <div class="info">
-                                            	   <input name="wmp_waitlist_emailaddress" id="wmp_waitlist_emailaddress" type="text" placeholder="your email" class="smaller" />
+                                            	   <input name="wmp_waitlist_emailaddress" id="wmp_waitlist_emailaddress" type="text" placeholder="your email" class="smaller" value="<?php echo get_option( 'admin_email' );?>" />
                                                    <a href="javascript: void(0);" id="wmp_waitlist_send_btn" class="btn blue smallest">Ok</a>
                                                    <div class="spacer-5"></div>
                                                    <div class="field-message error" id="error_emailaddress_container"></div>
@@ -174,12 +174,13 @@
             </div>
             <div class="spacer-10"></div>
             <div class="details">
-                <div class="spacer-10"></div>
-                <p>Customize your mobile web app theme by choosing different color schemes and fonts from the section below.</p>
-                <div class="spacer-20"></div>
+                <h2 class="title">Customize Color Schemes and Fonts</h2>
+                <div class="spacer-15"></div>
+                <div class="grey-line"></div>
+                <div class="spacer-15"></div>
                 <div class="spacer-20"></div>
                 
-                <form name="edittheme_form" id="edittheme_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_save" method="post" enctype="multipart/form-data">
+                <form name="wmp_edittheme_form" id="wmp_edittheme_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_save" method="post" enctype="multipart/form-data">
                 
                     <div class="color-schemes">
                         <p class="section-header">Color scheme</p>
@@ -190,7 +191,7 @@
                                 $color_scheme = 1;
                         ?>
                         <!-- add radio buttons -->
-                        <input type="radio" name="edittheme_colorscheme" id="edittheme_colorscheme" value="1" <?php if ($color_scheme == 1) echo "checked";?> />
+                        <input type="radio" name="wmp_edittheme_colorscheme" id="wmp_edittheme_colorscheme" value="1" <?php if ($color_scheme == 1) echo "checked";?> />
                         <div class="colors">
                         	<div class="color-1-1"></div>
                             <div class="color-1-2"></div>
@@ -202,7 +203,7 @@
                             <div class="color-1-8"></div>
                         </div>
                         <div class="spacer-20"></div>
-                        <input type="radio" name="edittheme_colorscheme" id="edittheme_colorscheme" value="2" <?php if ($color_scheme == 2) echo "checked";?> />
+                        <input type="radio" name="wmp_edittheme_colorscheme" id="wmp_edittheme_colorscheme" value="2" <?php if ($color_scheme == 2) echo "checked";?> />
                         <div class="colors">
                         	<div class="color-2-1"></div>
                             <div class="color-2-2"></div>
@@ -214,7 +215,7 @@
                             <div class="color-2-8"></div>
                         </div>
                         <div class="spacer-20"></div>
-                        <input type="radio" name="edittheme_colorscheme" id="edittheme_colorscheme" value="3" <?php if ($color_scheme == 3) echo "checked";?> />
+                        <input type="radio" name="wmp_edittheme_colorscheme" id="wmp_edittheme_colorscheme" value="3" <?php if ($color_scheme == 3) echo "checked";?> />
                         <div class="colors">
                         	<div class="color-3-1"></div>
                             <div class="color-3-2"></div>
@@ -249,9 +250,9 @@
                                 $font_headlines = WMobilePack::$wmp_allowed_fonts[0];
                         ?>
                         
-                        <label for="edittheme_fontheadlines">Headlines</label>
+                        <label for="wmp_edittheme_fontheadlines">Headlines</label>
                         
-                        <select name="edittheme_fontheadlines" id="edittheme_fontheadlines">
+                        <select name="wmp_edittheme_fontheadlines" id="wmp_edittheme_fontheadlines">
                         
                             <?php 
                                 foreach (WMobilePack::$wmp_allowed_fonts as $font_family):
@@ -277,8 +278,8 @@
                                 $font_subtitles = WMobilePack::$wmp_allowed_fonts[0];
                         ?>
                         
-                        <label for="edittheme_fontsubtitles">Subtitles</label>
-                        <select name="edittheme_fontsubtitles" id="edittheme_fontsubtitles">
+                        <label for="wmp_edittheme_fontsubtitles">Subtitles</label>
+                        <select name="wmp_edittheme_fontsubtitles" id="wmp_edittheme_fontsubtitles">
                             <?php 
                                 foreach (WMobilePack::$wmp_allowed_fonts as $font_family):
                             
@@ -302,8 +303,8 @@
                                 $font_paragraphs = WMobilePack::$wmp_allowed_fonts[0];
                         ?>
                         
-                        <label for="edittheme_fontparagraphs">Paragraphs</label>
-                        <select name="edittheme_fontparagraphs" id="edittheme_fontparagraphs">
+                        <label for="wmp_edittheme_fontparagraphs">Paragraphs</label>
+                        <select name="wmp_edittheme_fontparagraphs" id="wmp_edittheme_fontparagraphs">
                             <?php 
                                 foreach (WMobilePack::$wmp_allowed_fonts as $font_family):
                             
@@ -323,7 +324,122 @@
                     </div>
                 </form>
                 <div class="spacer-20"></div>
-                <a href="javascript:void(0);" id="edittheme_send_btn" class="btn green smaller" >Save</a> 
+                <a href="javascript:void(0);" id="wmp_edittheme_send_btn" class="btn green smaller" >Save</a> 
+            </div>
+            <div class="spacer-15"></div>
+            
+            <div class="details branding">
+            	
+                <h2 class="title">Customize Your App's Logo and Icon</h2>
+                <div class="spacer-15"></div>
+                <div class="grey-line"></div>
+                <div class="spacer-15"></div>
+                <div class="spacer-20"></div>
+                <div class="left">
+                    <form name="wmp_editimages_form" id="wmp_editimages_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_editimages&type=upload" method="post" enctype="multipart/form-data">
+                       
+                        <?php
+                            $logo_path = WMobilePack::wmp_get_setting('logo');
+                            
+                            if (!file_exists(WMP_FILES_UPLOADS_DIR.$logo_path))
+                                $logo_path = '';    
+                        ?>
+    
+                        <!-- upload logo field -->
+                        <div class="wmp_editimages_uploadlogo" style="display: <?php echo $logo_path == '' ? 'block' : 'none';?>;">
+                        
+                            <label for="wmp_editimages_logo">Upload your app logo</label>
+                            
+                            <div class="custom-upload">
+                            
+                                <input type="file" id="wmp_editimages_logo" name="wmp_editimages_logo" />
+                                <div class="fake-file">
+                                    <input type="text" id="fakefilelogo" disabled="disabled" />
+                                    <a href="#" class="btn grey smaller">Browse</a>
+                                </div>
+                                
+                                
+                                <a href="javascript:void(0)" id="wmp_editimages_logo_removenew" class="remove" style="display: none;"></a>
+                            </div> 
+                            
+                            <!-- cancel upload logo button -->
+                            <div class="wmp_editimages_changelogo_cancel cancel-link" style="display: none;">
+                                <a href="javascript:void(0);" class="cancel">cancel</a>
+                            </div>
+                            <div class="field-message error" id="error_logo_container"></div>
+                        
+                        </div>
+                        
+                        <!-- logo image -->
+                        <div class="wmp_editimages_logocontainer display-logo" style="display: <?php echo $logo_path != '' ? 'block' : 'none';?>;">
+                        
+                            <label for="branding_logo">App logo</label>
+                            <div class="img" id="wmp_editimages_currentlogo" style="background:url(<?php echo WMP_FILES_UPLOADS_URL.$logo_path;?>); background-size:contain; background-repeat: no-repeat; background-position: center"></div>
+                            
+                            <!-- edit/delete logo links -->
+                            <a href="javascript:void(0);" class="wmp_editimages_changelogo btn grey smaller edit">Change</a>
+                            <a href="#" class="wmp_editimages_deletelogo smaller remove">remove</a>
+                            
+                        </div>
+                                    
+                        <div class="spacer-20"></div>
+                        
+                        <?php
+                            $icon_path = WMobilePack::wmp_get_setting('icon');
+                            
+                            if (!file_exists(WMP_FILES_UPLOADS_DIR.$icon_path))
+                                $icon_path = '';    
+                        ?>
+    
+                        <!-- upload icon field -->
+                        <div class="wmp_editimages_uploadicon" style="display: <?php echo $icon_path == '' ? 'block' : 'none';?>;">
+                        
+                            <label for="wmp_editimages_icon">Upload your app icon</label>
+                            
+                            <div class="custom-upload">
+                            
+                                <input type="file" id="wmp_editimages_icon" name="wmp_editimages_icon" />
+                                <div class="fake-file">
+                                    <input type="text" id="fakefileicon" disabled="disabled" />
+                                    <a href="#" class="btn grey smaller">Browse</a>
+                                </div>
+                                
+                                <a href="javascript:void(0)" id="wmp_editimages_icon_removenew" class="remove" style="display: none;"></a>
+                            </div> 
+                            <!-- cancel upload icon button -->
+                            <div class="wmp_editimages_changeicon_cancel cancel-link" style="display: none;">
+                                <a href="javascript:void(0);" class="cancel">cancel</a>    
+                            </div>
+                            <div class="field-message error" id="error_icon_container"></div>
+                        
+                        </div>
+                        
+                        <!-- icon image -->
+                        <div class="wmp_editimages_iconcontainer display-icon" style="display: <?php echo $icon_path != '' ? 'block' : 'none';?>;;">
+                        
+                            <label for="branding_icon">App icon</label>
+                            <img src="<?php echo WMP_FILES_UPLOADS_URL.$icon_path;?>" id="wmp_editimages_currenticon" />
+                            
+                            <!-- edit/delete icon links -->
+                            <a href="javascript:void(0);" class="wmp_editimages_changeicon btn grey smaller edit">Change</a>
+                            <a href="#" class="wmp_editimages_deleteicon smaller remove">remove</a>
+                        </div>
+                                    
+                        <div class="spacer-20"></div>
+                        
+                        <a href="javascript:void(0);" id="wmp_editimages_send_btn" class="btn green smaller">Save</a>
+    
+                    </form>    
+                </div>
+                
+                <div class="notice notice-left right" style="width: 230px;">
+                    <span>
+                        Please add your logo in a png image format with a transparent background.<br/><br/>
+                        Your icon should be square with a recommended size of 256 x 256 px.<br/><br/>
+                        The file size for uploaded images should not exceed 1MB.
+                    </span>
+                </div>
+                <div class="spacer-0"></div>
             </div>
         </div>
     
@@ -349,7 +465,8 @@
     if (window.JSInterface && window.JSInterface != null){
         jQuery(document).ready(function(){
             
-            window.JSInterface.add("UI_customizetheme","EDIT_THEME",{'DOMDoc':window.document, 'enableCustomSelects': <?php echo intval($enable_custom_selects);?>}, window);
+            window.JSInterface.add("UI_customizetheme","WMP_EDIT_THEME",{'DOMDoc':window.document, 'enableCustomSelects': <?php echo intval($enable_custom_selects);?>}, window);
+            window.JSInterface.add("UI_editimages","WMP_EDIT_IMAGES",{'DOMDoc':window.document}, window);
             
             <?php if ($joined_business_waitlist == false):?>
             
