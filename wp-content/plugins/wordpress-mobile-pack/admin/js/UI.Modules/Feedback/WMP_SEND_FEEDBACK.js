@@ -15,13 +15,13 @@ function WMP_SEND_FEEDBACK(){
 
 	/*****************************************************************************************************/
     /*                                                                                                   */
-    /*                              FUNCTION INIT - called from JSInterface                              */
+    /*                              FUNCTION INIT - called from WMPJSInterface                              */
     /*                                                                                                   */
     /*****************************************************************************************************/
     this.init = function(){
 
-		// save a reference to JSInterface Object
-        JSInterface = window.parent.JSInterface;
+		// save a reference to WMPJSInterface Object
+        WMPJSInterface = window.parent.WMPJSInterface;
 
 		// save a reference to "SEND" Button
         this.send_btn = jQuery('#'+this.type+'_send_btn',this.DOMDoc).get(0);
@@ -188,7 +188,7 @@ function WMP_SEND_FEEDBACK(){
 	/*                                                                                                   */
 	/*****************************************************************************************************/
 	this.submitForm = function(){
-		return JSInterface.AjaxUpload.dosubmit(JSObject.form, {'onStart' : JSObject.startUploadingData, 'onComplete' : JSObject.completeUploadingData});
+		return WMPJSInterface.AjaxUpload.dosubmit(JSObject.form, {'onStart' : JSObject.startUploadingData, 'onComplete' : JSObject.completeUploadingData});
 	}
 	
 	
@@ -217,7 +217,7 @@ function WMP_SEND_FEEDBACK(){
 		
 		//add preloader
 		var msg = 'Please wait...';
-		JSInterface.Preloader.start({message: msg});
+		WMPJSInterface.Preloader.start({message: msg});
 		
 		//disable form elements
 		setTimeout(function(){
@@ -251,13 +251,13 @@ function WMP_SEND_FEEDBACK(){
       	response = Boolean(Number(String(response)));
        
 		// remove preloader
-		JSInterface.Preloader.remove(100);
+		WMPJSInterface.Preloader.remove(100);
 		
 		if (response){
 			
            // success message								
 			var message = "Thank you for your message, we'll be in touch with you soon!";
-			JSInterface.Loader.display({message: message});
+			WMPJSInterface.Loader.display({message: message});
           
 		  	JSObject.form.reset();
 		  
@@ -265,7 +265,7 @@ function WMP_SEND_FEEDBACK(){
 		  
 			// show message
 			var message = 'There was an error. Please reload the page and try again in few seconds or contact the plugin administrator if the problem persists.';
-			JSInterface.Loader.display({message: message});	
+			WMPJSInterface.Loader.display({message: message});	
 		}
         
 		//enable form elements

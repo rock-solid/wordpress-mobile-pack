@@ -29,10 +29,10 @@
 
 
 <script type="text/javascript">
-    if (window.JSInterface && window.JSInterface != null){
+    if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
             
-            window.JSInterface.add("UI_wmp_newsletter","WMP_NEWSLETTER",{'DOMDoc':window.document,'submitURL' : '<?php echo WMP_NEWSLETTER_PATH;?>'}, window);
+            window.WMPJSInterface.add("UI_wmp_newsletter","WMP_NEWSLETTER",{'DOMDoc':window.document,'submitURL' : '<?php echo WMP_NEWSLETTER_PATH;?>'}, window);
         });
     }
 </script>

@@ -15,7 +15,7 @@ if (window.console === undefined) {
 	var console = { log : function(param){ alert(param);} };
 }
 
-var JSInterface =  function(){
+var WMPJSInterface =  function(){
 	
 	var objects_arr = new Array();
 	
@@ -23,16 +23,16 @@ var JSInterface =  function(){
 		
 		localpath: '',				    		// domain path
 		
-		AjaxUpload: new AjaxUpload(),   		// object that makes the upload of a form without refreshin via AJAX
-		Preloader: new Preloader(),  			// the preloader object used for sending data to server through AJAX
-		Loader: new Loader(),   				// the object used to display AJAX error messages
+		AjaxUpload: new WMPAjaxUpload(),   		// object that makes the upload of a form without refreshin via AJAX
+		Preloader: new WMPPreloader(),  		// the preloader object used for sending data to server through AJAX
+		Loader: new WMPLoader(),   				// the object used to display AJAX error messages
 				
 		
 		/*****************************************************************************************/
 		/*                                      INIT INTERFACE                                   */
 		/*****************************************************************************************/
 		/**
-		 * initialize the JSInterface
+		 * initialize the WMPJSInterface
 		 * method type: LOCAL
 		 * params: none
 		 */
@@ -41,8 +41,8 @@ var JSInterface =  function(){
 			//when document is finish loaded, initialize the interface objects (UI_register, UI_users, UI_comments, etc)
 			jQuery(document).ready(function(){
 			 
-                JSInterface.Loader.init();
-				JSInterface.initObjects();
+                WMPJSInterface.Loader.init();
+				WMPJSInterface.initObjects();
                 
 			});	
 		},
@@ -53,7 +53,7 @@ var JSInterface =  function(){
 		/*                                      INIT INTERFACE OBJECTS                           */
 		/*****************************************************************************************/
 		/**
-		 * initialize the JSInterface objects
+		 * initialize the WMPJSInterface objects
 		 * method type: LOCAL
 		 * params: none
 		 */
@@ -68,9 +68,9 @@ var JSInterface =  function(){
 		/*                                   ADD INTERFACE OBJECT                                */
 		/*****************************************************************************************/
 		/**
-		 * add an object to the JSInterface
+		 * add an object to the WMPJSInterface
 		 * method type: LOCAL
-		 * params: @objName : the name of the object in the JSInterface
+		 * params: @objName : the name of the object in the WMPJSInterface
 		 *         @objType : object type like: REGISTER, USERS, COMMENTS, etc
 		 *         @params  : a JSON with params to pass to the new created object. Ex: {'name':'Johnson','age':24}
 		 */

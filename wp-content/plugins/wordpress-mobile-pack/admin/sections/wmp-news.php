@@ -8,7 +8,7 @@ if(!empty($arrNews) && is_array($arrNews )):
     <div class="updates">
         <h2>News &amp; Updates</h2> 
         <div class="spacer-20"></div>
-        <div class="details" id="news_updates">
+        <div class="details" id="wmp_news_updates">
             <!-- start news and updates -->
             <?php foreach($arrNews as $news):?>
                 <?php if(isset($news["title"]) && $news["title"] != ''):?>
@@ -49,6 +49,6 @@ if(!empty($arrNews) && is_array($arrNews )):
 
 <script type="text/javascript">
 	jQuery(document).ready(function(){
-		jQuery('#news_updates').perfectScrollbar();
+		jQuery('#wmp_news_updates').perfectScrollbar();
 	});
 </script>

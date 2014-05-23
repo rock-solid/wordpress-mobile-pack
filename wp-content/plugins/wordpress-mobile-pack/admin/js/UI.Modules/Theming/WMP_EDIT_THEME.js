@@ -19,13 +19,13 @@ function WMP_EDIT_THEME(){
 	
 	/*****************************************************************************************************/
     /*                                                                                                   */
-    /*                              FUNCTION INIT - called from JSInterface                              */
+    /*                              FUNCTION INIT - called from WMPJSInterface                              */
     /*                                                                                                   */
     /*****************************************************************************************************/
     this.init = function(){
 
-        // save a reference to JSInterface Object
-        JSInterface = window.parent.JSInterface;
+        // save a reference to WMPJSInterface Object
+        WMPJSInterface = window.parent.WMPJSInterface;
 
         // save a reference to "SEND" Button
         this.send_btn = jQuery('#'+this.type+'_send_btn',this.DOMDoc).get(0);
@@ -108,7 +108,7 @@ function WMP_EDIT_THEME(){
 	/*                                                                                                   */
 	/*****************************************************************************************************/
 	this.submitForm = function(){
-		return JSInterface.AjaxUpload.dosubmit(JSObject.form, {'onStart' : JSObject.startUploadingData, 'onComplete' : JSObject.completeUploadingData});
+		return WMPJSInterface.AjaxUpload.dosubmit(JSObject.form, {'onStart' : JSObject.startUploadingData, 'onComplete' : JSObject.completeUploadingData});
 	}
 	
 	
@@ -134,7 +134,7 @@ function WMP_EDIT_THEME(){
 	/*****************************************************************************************************/
 	this.startUploadingData = function(){
 
-		JSInterface.Preloader.start();
+		WMPJSInterface.Preloader.start();
 		
 		//disable form elements
 		setTimeout(function(){
@@ -162,7 +162,7 @@ function WMP_EDIT_THEME(){
 		jQuery("#"+JSObject.form.id,JSObject.DOMDoc).bind("submit",function(){return false;});
 	
 		// remove preloader
-		JSInterface.Preloader.remove(100);
+		WMPJSInterface.Preloader.remove(100);
 		
 		response = Boolean(Number(String(response)));
   
@@ -170,12 +170,12 @@ function WMP_EDIT_THEME(){
 			
             // show message
             var message = 'Your app has been successfully modified!';
-            JSInterface.Loader.display({message: message});
+            WMPJSInterface.Loader.display({message: message});
             
 		} else {
 			
 			var message = 'There was an error. Please reload the page and try again.';
-			JSInterface.Loader.display({message: message});
+			WMPJSInterface.Loader.display({message: message});
 		}
 
 		//enable form elements

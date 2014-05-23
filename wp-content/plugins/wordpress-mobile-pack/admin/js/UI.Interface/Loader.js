@@ -15,7 +15,7 @@
 /*                                         PRELOADER CLASS                                           */          
 /*                                                                                                   */
 /*****************************************************************************************************/ 
-function Preloader(){
+function WMPPreloader(){
 	
 	var JSObject = this;
 	
@@ -36,11 +36,11 @@ function Preloader(){
 		
 		this.defaultParams = jQuery.extend({}, this.defaultParams, params);
 		
-		jQuery('#preloader_container').remove();
-		jQuery('body *:first',document).before('<div id="preloader_container" style="position:fixed; z-index:999998; display:none;"><div class="preloader"></div><div style="position:fixed; background: #000;"><div id="preloader_table" align="center" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#FFF; padding:10px;">'+this.defaultParams.message+'<br><br><img src="'+JSInterface.localpath+'admin/images/loading_animation.gif" /></div></div></div>');
+		jQuery('#wmp_preloader_container').remove();
+		jQuery('body *:first',document).before('<div id="wmp_preloader_container" style="position:fixed; z-index:999998; display:none;"><div class="preloader"></div><div style="position:fixed; background: #000;"><div id="preloader_table" align="center" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#FFF; padding:10px;">'+this.defaultParams.message+'<br><br><img src="'+WMPJSInterface.localpath+'admin/images/loading_animation.gif" /></div></div></div>');
 		
-		var preloader_container = jQuery('#preloader_container');
-		var table = jQuery('#preloader_table',preloader_container);
+		var preloader_container = jQuery('#wmp_preloader_container');
+		var table = jQuery('#wmp_preloader_table',preloader_container);
 		var preloading_bg = jQuery('.preloader',preloader_container);
 		
 		var w = this.defaultParams.width;
@@ -74,8 +74,8 @@ function Preloader(){
 	 */
 	this.update = function(msg){
 		
-		var preloader_container = jQuery('#preloader_container');
-		var table = jQuery('#preloader_table',preloader_container);
+		var preloader_container = jQuery('#wmp_preloader_container');
+		var table = jQuery('#wmp_preloader_table',preloader_container);
 		table.get(0).rows[0].cells[0].innerHTML = msg;
 		
 	}
@@ -90,15 +90,15 @@ function Preloader(){
 	 */
 	this.remove = function(time){
 		
-		if (jQuery('#loading_container') != null){
-			jQuery('#loading_container').remove();	
+		if (jQuery('#wmp_loading_container') != null){
+			jQuery('#wmp_loading_container').remove();	
 		}
 		
 		if (time == null){
 			time = 100;	
 		}
 		
-        var preloader_container = jQuery('#preloader_container');
+        var preloader_container = jQuery('#wmp_preloader_container');
         preloader_container.stop();
         
         preloader_container.fadeOut({duration: time},function(){ preloader_container.remove(); });
@@ -111,7 +111,7 @@ function Preloader(){
 /*                                            MESSAGE CLASS                                          */          
 /*                                                                                                   */
 /*****************************************************************************************************/
-function Message(){
+function WMPMessage(){
 	var JSObject = this;
 	
 	this.defaultParams = {
@@ -140,12 +140,12 @@ function Message(){
 		this.defaultParams = jQuery.extend({}, this.defaultParams, params);
 		
 		// number of messages current displayed
-		var no_messages = jQuery('div[id="messageBox"]', this.parentContainer).get().length;
+		var no_messages = jQuery('div[id="wmpMessageBox"]', this.parentContainer).get().length;
 		
 		// add message box to the parent container
-		var html = '<div id="messageBox" class="loader" style="display:none;">';
-			html += 	'<div id="boxTable" align="left" style="background: #fefcd4;">';
-			html += 		'<div style="float:right; height:15px; padding-right:5px; padding-top:5px"><img id="closeMsg" src="'+JSInterface.localpath+'admin/images/btn_close_msg.png" border="0" style="cursor:pointer" /></div>';
+		var html = '<div id="wmpMessageBox" class="loader" style="display:none;">';
+			html += 	'<div id="wmpBoxTable" align="left" style="background: #fefcd4;">';
+			html += 		'<div style="float:right; height:15px; padding-right:5px; padding-top:5px"><img id="wmpCloseMsg" src="'+WMPJSInterface.localpath+'admin/images/btn_close_msg.png" border="0" style="cursor:pointer" /></div>';
 			html += 		'<div align="center" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#000; padding:15px;">' + this.defaultParams.message +'</div>';
 			html += 	'</div>';
 			html += '</div>';
@@ -153,9 +153,9 @@ function Message(){
 		
 		jQuery(this.parentContainer).append(html);
 						
-		this.container = jQuery('div[id="messageBox"]:eq('+no_messages+')', this.parentContainer);
-		var table = jQuery('#boxTable',this.container);
-		var close_btn = jQuery('#closeMsg',table);
+		this.container = jQuery('div[id="wmpMessageBox"]:eq('+no_messages+')', this.parentContainer);
+		var table = jQuery('#wmpBoxTable',this.container);
+		var close_btn = jQuery('#wmpCloseMsg',table);
 		
 		// set message table width
 		var w = this.defaultParams.width;
@@ -233,7 +233,7 @@ function Message(){
 /*                                            LOADER CLASS                                           */          
 /*                                                                                                   */
 /*****************************************************************************************************/ 
-function Loader(){
+function WMPLoader(){
 	
  	var JSObject = this;
 	
@@ -250,10 +250,10 @@ function Loader(){
 	 */
 	this.init = function(){
 		
-		jQuery('#messages_container').remove();
-		jQuery(jQuery('body').get(0)).append('<div align="center" id="messages_container" style="position:fixed; z-index:999999; width: 100%; display:block; top: 5px; margin: 0 auto;"></div>');
+		jQuery('#wmp_messages_container').remove();
+		jQuery(jQuery('body').get(0)).append('<div align="center" id="wmp_messages_container" style="position:fixed; z-index:999999; width: 100%; display:block; top: 5px; margin: 0 auto;"></div>');
 		
-		var messages_container = jQuery('#messages_container');
+		var messages_container = jQuery('#wmp_messages_container');
 				
 	}
 	
@@ -267,9 +267,9 @@ function Loader(){
 	 */
 	this.display = function(params){
 		
-		var messages_container = jQuery('#messages_container');
+		var messages_container = jQuery('#wmp_messages_container');
 		
-		var newMessage = new Message();
+		var newMessage = new WMPMessage();
 		newMessage.parentContainer = messages_container;
 		this.arr_messages.push(newMessage);
 		

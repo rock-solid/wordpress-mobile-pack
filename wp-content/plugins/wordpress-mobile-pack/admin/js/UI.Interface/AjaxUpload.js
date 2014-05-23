@@ -7,7 +7,7 @@
  * ionut@appticles.com
  *
  */
-function AjaxUpload(){
+function WMPAjaxUpload(){
  	var JSObject = this;
 	
 	

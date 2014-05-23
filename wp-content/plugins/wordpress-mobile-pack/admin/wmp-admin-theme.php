@@ -1,9 +1,9 @@
 <script type="text/javascript">
-    if (window.JSInterface && window.JSInterface != null){
+    if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
             
-            JSInterface.localpath = "<?php echo plugins_url()."/".WMP_DOMAIN."/"; ?>";
-            JSInterface.init();
+            WMPJSInterface.localpath = "<?php echo plugins_url()."/".WMP_DOMAIN."/"; ?>";
+            WMPJSInterface.init();
         });
     }
 </script>
@@ -333,7 +333,8 @@
                 <h2 class="title">Customize Your App's Logo and Icon</h2>
                 <div class="spacer-15"></div>
                 <div class="grey-line"></div>
-                <div class="spacer-15"></div>
+                <div class="spacer-20"></div>
+                <p>You can also personalize your app by adding <strong>your own logo and icon</strong>. The logo will be displayed on the home page of your mobile web app, while the icon will be used when readers add your app to their homescreen.</p>
                 <div class="spacer-20"></div>
                 <div class="left">
                     <form name="wmp_editimages_form" id="wmp_editimages_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_editimages&type=upload" method="post" enctype="multipart/form-data">
@@ -462,15 +463,15 @@
 </div>
     
 <script type="text/javascript">
-    if (window.JSInterface && window.JSInterface != null){
+    if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
             
-            window.JSInterface.add("UI_customizetheme","WMP_EDIT_THEME",{'DOMDoc':window.document, 'enableCustomSelects': <?php echo intval($enable_custom_selects);?>}, window);
-            window.JSInterface.add("UI_editimages","WMP_EDIT_IMAGES",{'DOMDoc':window.document}, window);
+            window.WMPJSInterface.add("UI_customizetheme","WMP_EDIT_THEME",{'DOMDoc':window.document, 'enableCustomSelects': <?php echo intval($enable_custom_selects);?>}, window);
+            window.WMPJSInterface.add("UI_editimages","WMP_EDIT_IMAGES",{'DOMDoc':window.document}, window);
             
             <?php if ($joined_business_waitlist == false):?>
             
-                window.JSInterface.add("UI_joinwaitlist_business",
+                window.WMPJSInterface.add("UI_joinwaitlist_business",
                     "WMP_WAITLIST",
                     {
                         'DOMDoc':       window.document,
@@ -484,7 +485,7 @@
             
             <?php if ($joined_lifestyle_waitlist == false):?>
             
-                window.JSInterface.add("UI_joinwaitlist_lifestyle",
+                window.WMPJSInterface.add("UI_joinwaitlist_lifestyle",
                     "WMP_WAITLIST",
                     {
                         'DOMDoc':       window.document,

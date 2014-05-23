@@ -1,9 +1,9 @@
 <script type="text/javascript">
-    if (window.JSInterface && window.JSInterface != null){
+    if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
             
-            JSInterface.localpath = "<?php echo plugins_url()."/".WMP_DOMAIN."/"; ?>";
-            JSInterface.init();
+            WMPJSInterface.localpath = "<?php echo plugins_url()."/".WMP_DOMAIN."/"; ?>";
+            WMPJSInterface.init();
         });
     }
 </script>
@@ -146,14 +146,14 @@
 </div>
     
 <script type="text/javascript">
-    if (window.JSInterface && window.JSInterface != null){
+    if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
             
-            window.JSInterface.add("UI_editcategories","WMP_EDIT_CATEGORIES",{'DOMDoc':window.document}, window);
+            window.WMPJSInterface.add("UI_editcategories","WMP_EDIT_CATEGORIES",{'DOMDoc':window.document}, window);
             
             <?php if ($joined_content_waitlist == false):?>
             
-                window.JSInterface.add("UI_joinwaitlist",
+                window.WMPJSInterface.add("UI_joinwaitlist",
                     "WMP_WAITLIST",
                     {
                         'DOMDoc':       window.document,

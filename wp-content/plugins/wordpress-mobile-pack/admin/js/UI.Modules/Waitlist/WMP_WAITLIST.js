@@ -23,13 +23,13 @@ function WMP_WAITLIST(){
 
 	/*****************************************************************************************************/
     /*                                                                                                   */
-    /*                              FUNCTION INIT - called from JSInterface                              */
+    /*                              FUNCTION INIT - called from WMPJSInterface                              */
     /*                                                                                                   */
     /*****************************************************************************************************/
     this.init = function(){
 
-		// save a reference to JSInterface Object
-        JSInterface = window.parent.JSInterface;
+		// save a reference to WMPJSInterface Object
+        WMPJSInterface = window.parent.WMPJSInterface;
 
 		// save references to buttons
         this.send_btn = jQuery('#'+this.type+'_send_btn',this.container).get(0);
@@ -196,7 +196,7 @@ function WMP_WAITLIST(){
 	/*****************************************************************************************************/
 	this.sendData = function(){
 		
-		JSInterface.Preloader.start();
+		WMPJSInterface.Preloader.start();
 		
 		jQuery.ajax({
 			url: JSObject.submitURL,
@@ -208,7 +208,7 @@ function WMP_WAITLIST(){
 			dataType: 'jsonp',
 			success: function(responseJSON){
 				
-                JSInterface.Preloader.remove(100);
+                WMPJSInterface.Preloader.remove(100);
                 
                 JSON = eval (responseJSON);
 				response = Boolean(Number(String(JSON.status)));
@@ -216,7 +216,7 @@ function WMP_WAITLIST(){
 				if (response == 0) {
 					
 					var message = 'There was an error. Please reload the page and try again in few seconds or contact the plugin administrator if the problem persists.';
-					JSInterface.Loader.display({message: message});	
+					WMPJSInterface.Loader.display({message: message});	
                     
                     // reset form
     				JSObject.form.reset();
@@ -236,7 +236,7 @@ function WMP_WAITLIST(){
 				} else { 
 				    
                     // successfully joined list (response = 1) or already joined (response = 2)
-                    JSInterface.Loader.display({message: JSON.message});
+                    WMPJSInterface.Loader.display({message: JSON.message});
             
                     jQuery(JSObject.form).hide();
                     jQuery("#"+JSObject.type + "_added", JSObject.container).show();

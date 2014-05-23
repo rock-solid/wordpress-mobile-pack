@@ -28,10 +28,9 @@
 </div>
 
 <script type="text/javascript">
-    if (window.JSInterface && window.JSInterface != null){
+    if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
-            
-            window.JSInterface.add("UI_feedback","WMP_SEND_FEEDBACK",{'DOMDoc':window.document}, window);
+            window.WMPJSInterface.add("UI_feedback","WMP_SEND_FEEDBACK",{'DOMDoc':window.document}, window);
         });
     }
 </script>

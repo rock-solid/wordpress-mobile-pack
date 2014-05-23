@@ -1,9 +1,9 @@
 <script type="text/javascript">
-    if (window.JSInterface && window.JSInterface != null){
+    if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
             
-            JSInterface.localpath = "<?php echo plugins_url()."/".WMP_DOMAIN."/"; ?>";
-            JSInterface.init();
+            WMPJSInterface.localpath = "<?php echo plugins_url()."/".WMP_DOMAIN."/"; ?>";
+            WMPJSInterface.init();
         });
     }
 </script>
@@ -23,8 +23,9 @@
             <div class="details">
             	<div class="spacer-10"></div>
             	<p>
-                    Edit the <strong>Display Mode</strong> of your app to enable or disabled it for your mobile readers. The <strong>Preview</strong> display mode lets you edit your app without it being visible to anyone else. <br/><br/>
-                    You can also personalize your app by adding <strong>your own logo and icon</strong>. The logo will be displayed on the home page of your mobile web app, while the icon will be used when readers add your app to their homescreen.
+                    Edit the <strong>Display Mode</strong> of your app to enable or disabled it for your mobile readers. The <strong>Preview</strong> display mode lets you edit your app without it being visible to anyone else.<br /><br />
+                    By adding your <strong>Google Analytics ID</strong>, you will be able to track the mobile web application's visitors directly in your Google Analytics account.
+                
                 </p>
             	<div class="spacer-20"></div>
             </div>
@@ -133,13 +134,13 @@
 </div>
 
 <script type="text/javascript">
-    if (window.JSInterface && window.JSInterface != null){
+    if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
-            window.JSInterface.add("UI_editdisplay","WMP_EDIT_DISPLAY",{'DOMDoc':window.document}, window);
+            window.WMPJSInterface.add("UI_editdisplay","WMP_EDIT_DISPLAY",{'DOMDoc':window.document}, window);
             
             <?php if ($joined_settings_waitlist == false):?>
             
-                window.JSInterface.add("UI_joinwaitlist",
+                window.WMPJSInterface.add("UI_joinwaitlist",
                     "WMP_WAITLIST",
                     {
                         'DOMDoc':       window.document,

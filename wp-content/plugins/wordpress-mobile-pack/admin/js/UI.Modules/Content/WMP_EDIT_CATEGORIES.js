@@ -17,13 +17,13 @@ function WMP_EDIT_CATEGORIES(){
 
 	/*****************************************************************************************************/
     /*                                                                                                   */
-    /*                              FUNCTION INIT - called from JSInterface                              */
+    /*                              FUNCTION INIT - called from WMPJSInterface                              */
     /*                                                                                                   */
     /*****************************************************************************************************/
     this.init = function(){
 
-        // save a reference to JSInterface Object
-        JSInterface = window.parent.JSInterface;
+        // save a reference to WMPJSInterface Object
+        WMPJSInterface = window.parent.WMPJSInterface;
 
         // save a reference to the FORM and remove the default submit action
         this.form = this.DOMDoc.getElementById(this.type+'_form');
@@ -68,7 +68,7 @@ function WMP_EDIT_CATEGORIES(){
 					
 				if (JSObject.changingStatus == false) {
 					
-                    JSInterface.Preloader.start();
+                    WMPJSInterface.Preloader.start();
                     
                     jQuery.post(
                         ajaxurl, 
@@ -80,7 +80,7 @@ function WMP_EDIT_CATEGORIES(){
                         function(response){
                             
                             JSObject.changingStatus = false;
-                            JSInterface.Preloader.remove(100);
+                            WMPJSInterface.Preloader.remove(100);
                             
                            	var response = Boolean(Number(String(response)));
 						 
@@ -94,7 +94,7 @@ function WMP_EDIT_CATEGORIES(){
                                 
 								// success message								
 								var message = 'The status of this category has been changed.';
-                                JSInterface.Loader.display({message: message});
+                                WMPJSInterface.Loader.display({message: message});
                                 
                                 // count remaining active categories
                                 var no_active_categories = jQuery( "li span.active", JSObject.form ).length;
@@ -108,7 +108,7 @@ function WMP_EDIT_CATEGORIES(){
 							
 								// error message
 								var message = 'There was an error. Please reload the page and try again in few seconds or contact the plugin administrator if the problem persists.';
-                                JSInterface.Loader.display({message: message});	
+                                WMPJSInterface.Loader.display({message: message});	
                                 
 							}
                         }
