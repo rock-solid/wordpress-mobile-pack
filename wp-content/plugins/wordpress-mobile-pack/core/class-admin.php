@@ -29,35 +29,53 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 		 */
 		public static function wmp_whatsnew_updates() {
 			
-			// jSON URL that should be requested
-			$json_url = WMP_WHATSNEW_UPDATES;
-			$send_curl = curl_init($json_url);
+			$json_data = get_transient("wmp_whats_new_updates");
+            
+			// the transient is not set or expired
+			if(!$json_data) {
 			
-			// set curl options
-			curl_setopt($send_curl, CURLOPT_URL, $json_url);
-			curl_setopt($send_curl, CURLOPT_HEADER, false);
-			curl_setopt($send_curl, CURLOPT_CONNECTTIMEOUT, 2);
-			curl_setopt($send_curl, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($send_curl, CURLOPT_HTTPHEADER, array('Accept: application/json', "Content-type: application/json"));
-			curl_setopt($send_curl, CURLOPT_FAILONERROR, FALSE);
-			curl_setopt($send_curl, CURLOPT_SSL_VERIFYPEER, FALSE);
-			curl_setopt($send_curl, CURLOPT_SSL_VERIFYHOST, FALSE);
-			$json_response = curl_exec($send_curl);
+    			// jSON URL which should be requested
+    			$json_url = WMP_WHATSNEW_UPDATES;
+    			$send_curl = curl_init($json_url);
 			
-			// get request status
-			$status = curl_getinfo($send_curl, CURLINFO_HTTP_CODE);
-			curl_close($send_curl);
-			
-			if ($status == 200) {
-			 
+				// set curl options
+				curl_setopt($send_curl, CURLOPT_URL, $json_url);
+				curl_setopt($send_curl, CURLOPT_HEADER, false);
+				curl_setopt($send_curl, CURLOPT_CONNECTTIMEOUT, 2);
+				curl_setopt($send_curl, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($send_curl, CURLOPT_HTTPHEADER,array('Accept: application/json', "Content-type: application/json"));
+				curl_setopt($send_curl, CURLOPT_FAILONERROR, FALSE);
+				curl_setopt($send_curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+				curl_setopt($send_curl, CURLOPT_SSL_VERIFYHOST, FALSE);
+				$json_response = curl_exec($send_curl);
+				
+				// get request status
+				$status = curl_getinfo($send_curl, CURLINFO_HTTP_CODE);
+				curl_close($send_curl);
+				
+				if ($status == 200) {
+					
+					// Store this data in a transient
+					set_transient( 'wmp_whats_new_updates', $json_response, 3600*24*7 );
+					
+					// get response
+					$response = json_decode($json_response, true);
+				
+					if (isset($response["content"]) && is_array($response["content"]) && !empty($response["content"]))
+						// return response
+						return $response["content"];
+				}
+				
+			} else {
+					
 				// get response
-				$response = json_decode($json_response, true);
+				$response = json_decode($json_data, true);
 			
 				if (isset($response["content"]) && is_array($response["content"]) && !empty($response["content"]))
 					// return response
 					return $response["content"];
 			}
-			
+            
 			// by default return empty array
 			return array();
 		}
@@ -188,29 +206,46 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 		 */
 		public static function wmp_news_updates() {
 			
-			// jSON URL which should be requested
-			$json_url = WMP_NEWS_UPDATES;
-			$send_curl = curl_init($json_url);
+			$json_data =  get_transient("wmp_newsupdates");
 			
-			// set curl options
-			curl_setopt($send_curl, CURLOPT_URL, $json_url);
-			curl_setopt($send_curl, CURLOPT_HEADER, false);
-			curl_setopt($send_curl, CURLOPT_CONNECTTIMEOUT, 2);
-			curl_setopt($send_curl, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($send_curl, CURLOPT_HTTPHEADER, array('Accept: application/json', "Content-type: application/json"));
-			curl_setopt($send_curl, CURLOPT_FAILONERROR, FALSE);
-			curl_setopt($send_curl, CURLOPT_SSL_VERIFYPEER, FALSE);
-			curl_setopt($send_curl, CURLOPT_SSL_VERIFYHOST, FALSE);
-			$json_response = curl_exec($send_curl);
+			if (!$json_data) {
 			
-			// get request status
-			$status = curl_getinfo($send_curl, CURLINFO_HTTP_CODE);
-			curl_close($send_curl);
+				// jSON URL which should be requested
+				$json_url = WMP_NEWS_UPDATES;
+				$send_curl = curl_init($json_url);
+				
+				// set curl options
+				curl_setopt($send_curl, CURLOPT_URL, $json_url);
+				curl_setopt($send_curl, CURLOPT_HEADER, false);
+				curl_setopt($send_curl, CURLOPT_CONNECTTIMEOUT, 2);
+				curl_setopt($send_curl, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($send_curl, CURLOPT_HTTPHEADER,array('Accept: application/json', "Content-type: application/json"));
+				curl_setopt($send_curl, CURLOPT_FAILONERROR, FALSE);
+				curl_setopt($send_curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+				curl_setopt($send_curl, CURLOPT_SSL_VERIFYHOST, FALSE);
+				$json_response = curl_exec($send_curl);
+				
+				// get request status
+				$status = curl_getinfo($send_curl, CURLINFO_HTTP_CODE);
+				curl_close($send_curl);
+				
+				if ($status == 200) {
+					
+					// Store this data in a transient
+					set_transient( 'wmp_newsupdates', $json_response, 3600*24*7 );
+					
+					// get response
+					$response = json_decode($json_response, true);
+					
+					if(isset($response["news"]) && is_array($response["news"]) && !empty($response["news"]))
+						// return response
+						return $response["news"];
+				} 
 			
-			if ($status == 200) {
-			 
+			} else {
+					
 				// get response
-				$response = json_decode($json_response, true);
+				$response = json_decode($json_data, true);
 				
 				if(isset($response["news"]) && is_array($response["news"]) && !empty($response["news"]))
 					// return response
