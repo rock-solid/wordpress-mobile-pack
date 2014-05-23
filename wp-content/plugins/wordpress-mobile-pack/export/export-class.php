@@ -94,12 +94,10 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 			
 			// init categories array	
 			$arrCategories = array();
-			
-			// set path to default image
-			$default_image = get_bloginfo('url').'/wp-content/plugins/wordpress-mobile-pack/img/category-default.jpg';
+			$args = array('hierarchical' => 0);
 			
 			// get categories
-			$categories = get_categories();
+			$categories = get_categories($args);
             
             // build array with the active categories ids
             $active_categories_ids = array();
@@ -128,11 +126,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
     											'id' => 0,
     											'order' => 1,
     											'name' => 'Latest',
-    											'image' => array(
-    															 'src' 		=> $default_image,
-    															 'width' 	=> 480,
-    															 'height' 	=> 270
-    															 )
+    											'image' => ""
     										  );		
                                               
                         // get current index of the array
@@ -165,7 +159,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
     											 );
     								
                                     // add the image to the category
-    								if ($arrCategories[$current_key]["image"]["src"] == $default_image ) {
+    								if (!is_array($arrCategories[$current_key]["image"])) {
     									$arrCategories[$current_key]["image"] = $image_details;
     								}
     							}
@@ -204,11 +198,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
     												'id' 	=> $category->term_id,
     												'order' => $key + 1,
     												'name' 	=> $category->name,
-    												'image' => array(
-														 'src' 		=> get_bloginfo('url').'/wp-content/plugins/wordpress-mobile-pack/img/category-default.jpg',
-														 'width' 	=> 480,
-														 'height' 	=> 270
-													 )
+    												'image' => ""
     											 );
     					
     					// get published articles for each category
@@ -240,7 +230,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
     												   "height" 	=> $image_data[2]
     												 );
     									
-    									if($arrCategories[$key + 1]["image"]["src"] == $default_image ) 
+    									if(!is_array($arrCategories[$key + 1]["image"]) ) 
     										// set arr category
     										$arrCategories[$key + 1]["image"] = $image_details;
     									

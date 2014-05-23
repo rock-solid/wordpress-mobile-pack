@@ -94,7 +94,7 @@
                     
                         <form name="wmp_waitlist_form" id="wmp_waitlist_form" action="" method="post" style="display: none;">    
                             <div class="info">
-                        	   <input name="wmp_waitlist_emailaddress" id="wmp_waitlist_emailaddress" type="text" placeholder="your email" class="smaller" value="<?php echo get_option( 'admin_email' );?>" />
+                        	   <input name="wmp_waitlist_emailaddress" id="wmp_waitlist_emailaddress" type="text" placeholder="your email" class="small" value="<?php echo get_option( 'admin_email' );?>" />
                                <a href="javascript: void(0);" id="wmp_waitlist_send_btn" class="btn blue smallest">Ok</a>
                                <div class="spacer-5"></div>
                                <div class="field-message error" id="error_emailaddress_container"></div>
