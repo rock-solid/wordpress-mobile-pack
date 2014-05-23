@@ -697,70 +697,52 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 									if(get_option('require_name_email')) {
 											
 										if ( $comment_author_email == '' || $comment_author == '' )
-											return '{"error":"Please fill the required fields (name, email).","status":0}';
+											return '{"status":0}'; //Please fill the required fields (name, email).
 										elseif ( !is_email($comment_author_email))
-											return '{"error":"Please enter a valid e-mail address.","status":0}';
+											return '{"status":0}'; // Please enter a valid e-mail address.
 									}
 									
 									if ( $comment_content == '' )
-										return '{"error":"Please type a comment."}';
+										return '{"status":0}'; // Please type a comment
 									
+									
+									// check if comment will be approved directly or will await moderation
+									$approved_comment = check_comment($comment_author,$comment_author_email,$comment_author_url,$comment_content,$_SERVER["REMOTE_ADDR"],$_SERVER['HTTP_USER_AGENT'],'user');
+									
+									if(wp_blacklist_check($comment_author,$comment_author_email,$comment_author_url,$comment_content,$_SERVER["REMOTE_ADDR"],$_SERVER['HTTP_USER_AGENT']))
+										$approved_comment = false;
 									// set comment data
 									$commentdata = compact('comment_post_ID', 'comment_author', 'comment_author_email', 'comment_author_url', 'comment_content', 'comment_type', 'comment_parent', 'user_ID');
+									
+									if(get_comment($commentdata))
+										return '{"status":0}'; // The comment alreaduy exists
+										
 									// get comment id
 									$comment_id = wp_new_comment( $commentdata );
 									
-									if(is_numeric($comment_id) && get_option("comment_moderation") == 1)
-										return '{"success" : "Your comment is awaiting moderation.","status":2}';
+									if(is_numeric($comment_id) && !$approved_comment)
+										return '{"status":2}'; // Your comment is awaiting moderation.
 									elseif(is_numeric($comment_id))
-										return '{"success" : "Your comment was successfully added.","status":1}';
+										return '{"status":1}';//Your comment was successfully added
 									
 								} else // return error
-									return '{"error":"Sorry, comments are closed for this item.","status":0}';
+									return '{"status":0}'; // Sorry, comments are closed for this item.
 									
 							}else
 								// return error
-								return '{"error":"Sorry, the post is not visible","status":0}';
+								return '{"status":0}'; // Sorry, the post is not visible
 							
 						} else
 							// return error
-							return '{"error":"Sorry, the post is not available","status":0}';
+							return '{"status":0}'; // Sorry, the post is not available
 							
-						// init articles array
-						$arrComments = array();
 						
-						$args = array(
-										'parent' => '',
-										'post_id' => $articleId,
-										'post_type' => 'post',
-										'status' => 'approve',
-									);
-						
-						// get post by id
-						$comments = get_comments( $args);
-						
-						if(is_array($comments) && !empty($comments)) {
-							
-							foreach($comments as $comment) {
-								
-								$arrComments[] = array(
-														'id' => $comment->comment_ID,
-														'author' => ucfirst($comment->comment_author),
-														'author_url' => $comment->comment_author_url,
-														'date' => date("D, M d, Y, H:i", strtotime($comment->comment_date)),
-														'content' => $this->purifier->purify($comment->comment_content),
-														'article_id' => $comment->ID,
-														'article_title'=>$comment->post_title
-													   );
-								
-							}
-						}
 					}
 				}
 			}
 		} 
 			// return error
-			return '{"status":0}';
+			return '{"status":0}'; // error status
 	}
 	
 	

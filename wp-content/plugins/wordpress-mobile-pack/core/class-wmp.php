@@ -478,7 +478,8 @@ class WMobilePack {
 	 */	
 	public static function wmp_set_token(){
 		
-		$token = md5(md5(get_bloginfo("wpurl")).CODE_KEY);
+		
+		$token = md5(md5(get_bloginfo("wpurl")).WMP_CODE_KEY);
 		
 		// encode token again
 		$token = base64_encode($token.'_'.strtotime('+1 hour'));
@@ -514,7 +515,7 @@ class WMobilePack {
 					if(time() < $arrParams[1]) {
 						
 						// get the generated encoded domain
-						$generated_url = md5(md5(get_bloginfo("wpurl")).CODE_KEY);
+						$generated_url = md5(md5(get_bloginfo("wpurl")).WMP_CODE_KEY);
 						// check encoded domain
 						if($arrParams[0] ==  $generated_url)
 							return true;
