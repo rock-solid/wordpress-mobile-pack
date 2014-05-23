@@ -1120,10 +1120,11 @@ body {
 #wmpack-admin .right-side {
   width: 252px;
   display: table-cell;
+  vertical-align: top;
 }
 /* line 259, ../sass/core/_core.scss */
 #wmpack-admin .right-side .updates {
-  padding: 15px;
+  padding: 15px 5px 15px 15px;
   background-color: white;
 }
 /* line 263, ../sass/core/_core.scss */
@@ -1136,12 +1137,13 @@ body {
 #wmpack-admin .right-side .updates p {
   font-size: 13px;
   color: #8c8d8d;
+  margin-right: 10px;
 }
-/* line 272, ../sass/core/_core.scss */
+/* line 273, ../sass/core/_core.scss */
 #wmpack-admin .right-side .updates a {
   font-size: 13px;
 }
-/* line 276, ../sass/core/_core.scss */
+/* line 277, ../sass/core/_core.scss */
 #wmpack-admin .right-side .appticles-updates {
   padding: 10px 15px;
   background-color: #2a2d33;
@@ -1151,19 +1153,19 @@ body {
   -moz-border-radius: 0px 0px 4px 4px;
   border-radius: 0px 0px 4px 4px;
 }
-/* line 283, ../sass/core/_core.scss */
+/* line 284, ../sass/core/_core.scss */
 #wmpack-admin .right-side .appticles-updates div {
   float: left;
 }
-/* line 286, ../sass/core/_core.scss */
+/* line 287, ../sass/core/_core.scss */
 #wmpack-admin .right-side .appticles-updates div p {
   margin: 0;
 }
-/* line 289, ../sass/core/_core.scss */
+/* line 290, ../sass/core/_core.scss */
 #wmpack-admin .right-side .appticles-updates div.social {
   float: right;
 }
-/* line 291, ../sass/core/_core.scss */
+/* line 292, ../sass/core/_core.scss */
 #wmpack-admin .right-side .appticles-updates div.social .facebook {
   width: 18px;
   height: 18px;
@@ -1185,12 +1187,12 @@ body {
   font-weight: normal !important;
   content: "f";
 }
-/* line 302, ../sass/core/_core.scss */
+/* line 303, ../sass/core/_core.scss */
 #wmpack-admin .right-side .appticles-updates div.social .facebook::before {
   left: 7px;
   top: -1px;
 }
-/* line 307, ../sass/core/_core.scss */
+/* line 308, ../sass/core/_core.scss */
 #wmpack-admin .right-side .appticles-updates div.social .twitter {
   width: 18px;
   height: 18px;
@@ -1212,12 +1214,12 @@ body {
   font-weight: normal !important;
   content: "t";
 }
-/* line 318, ../sass/core/_core.scss */
+/* line 319, ../sass/core/_core.scss */
 #wmpack-admin .right-side .appticles-updates div.social .twitter::before {
   left: 5px;
   top: -1px;
 }
-/* line 323, ../sass/core/_core.scss */
+/* line 324, ../sass/core/_core.scss */
 #wmpack-admin .right-side .appticles-updates div.social .google-plus {
   width: 18px;
   height: 18px;
@@ -1239,12 +1241,12 @@ body {
   font-weight: normal !important;
   content: "g";
 }
-/* line 334, ../sass/core/_core.scss */
+/* line 335, ../sass/core/_core.scss */
 #wmpack-admin .right-side .appticles-updates div.social .google-plus::before {
   left: 5px;
   top: -1px;
 }
-/* line 342, ../sass/core/_core.scss */
+/* line 343, ../sass/core/_core.scss */
 #wmpack-admin .right-side .white-paper {
   width: 252px;
   height: 250px;
@@ -1254,19 +1256,19 @@ body {
   vertical-align: middle;
   background-color: #fff;
 }
-/* line 351, ../sass/core/_core.scss */
+/* line 352, ../sass/core/_core.scss */
 #wmpack-admin .right-side .white-paper p {
   font-family: 'AcordeRegular', sans-serif;
   font-size: 20px;
   line-height: normal;
   color: #4b4b4b;
 }
-/* line 358, ../sass/core/_core.scss */
+/* line 359, ../sass/core/_core.scss */
 #wmpack-admin .right-side .form-box {
   padding: 15px;
   background-color: white;
 }
-/* line 362, ../sass/core/_core.scss */
+/* line 363, ../sass/core/_core.scss */
 #wmpack-admin .right-side .form-box p {
   font-size: 13px;
 }
@@ -1366,18 +1368,74 @@ body {
   outline: none;
   border: 1px solid #a4abae;
 }
-/* line 64, ../sass/core/_forms.scss */
+/* line 68, ../sass/core/_forms.scss */
+#wmpack-admin .selectboxit-container .selectboxit {
+  font-family: 'AcordeSemiBold', sans-serif;
+  width: 240px;
+  height: 36px;
+  background: #fafafa;
+  color: #2a2d33;
+  font-size: 14px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border: 1px solid #daddde;
+  padding: 0 15px;
+  width: 220px !important;
+}
+/* line 81, ../sass/core/_forms.scss */
+#wmpack-admin .selectboxit-container .selectboxit:focus {
+  outline: none;
+  border: 1px solid #a4abae;
+}
+/* line 86, ../sass/core/_forms.scss */
+#wmpack-admin .selectboxit-container .selectboxit span, #wmpack-admin .selectboxit-container .selectboxit .selectboxit-options a {
+  height: 36px;
+  line-height: 33px;
+}
+/* line 92, ../sass/core/_forms.scss */
+#wmpack-admin .selectboxit-container .selectboxit-arrow-container {
+  width: 25px;
+}
+/* line 96, ../sass/core/_forms.scss */
+#wmpack-admin .selectboxit-container .selectboxit-options {
+  border-radius: 0;
+  width: 220px;
+}
+/* line 100, ../sass/core/_forms.scss */
+#wmpack-admin .selectboxit-container .selectboxit-options .selectboxit-option {
+  height: 36px;
+  border-bottom: #daddde 1px solid;
+}
+/* line 105, ../sass/core/_forms.scss */
+#wmpack-admin .selectboxit-container .selectboxit-options a {
+  height: 36px;
+  line-height: 33px;
+}
+/* line 109, ../sass/core/_forms.scss */
+#wmpack-admin .selectboxit-container .selectboxit-options .selectboxit-option-first, #wmpack-admin .selectboxit-container .selectboxit-options .selectboxit-option-last {
+  border-radius: 0;
+}
+/* line 114, ../sass/core/_forms.scss */
+#wmpack-admin .selectboxit-container span {
+  height: 36px;
+  line-height: 33px;
+}
+/* line 120, ../sass/core/_forms.scss */
 #wmpack-admin input[type="radio"] {
   width: 16px;
   height: 16px;
   float: left;
   margin: 0 10px 0 30px;
 }
-/* line 70, ../sass/core/_forms.scss */
+/* line 126, ../sass/core/_forms.scss */
 #wmpack-admin input[type="radio"]::before {
   margin: 4px;
 }
-/* line 74, ../sass/core/_forms.scss */
+/* line 130, ../sass/core/_forms.scss */
 #wmpack-admin textarea {
   font-family: 'AcordeSemiBold', sans-serif;
   width: 240px;
@@ -1395,29 +1453,29 @@ body {
   padding: 15px;
   resize: none;
 }
-/* line 87, ../sass/core/_forms.scss */
+/* line 143, ../sass/core/_forms.scss */
 #wmpack-admin textarea.smaller {
   width: 120px;
 }
-/* line 90, ../sass/core/_forms.scss */
+/* line 146, ../sass/core/_forms.scss */
 #wmpack-admin textarea.small {
   width: 220px;
 }
-/* line 93, ../sass/core/_forms.scss */
+/* line 149, ../sass/core/_forms.scss */
 #wmpack-admin textarea.big {
   width: 320px;
 }
-/* line 96, ../sass/core/_forms.scss */
+/* line 152, ../sass/core/_forms.scss */
 #wmpack-admin textarea:focus {
   outline: none;
   border: 1px solid #a4abae;
 }
-/* line 100, ../sass/core/_forms.scss */
+/* line 156, ../sass/core/_forms.scss */
 #wmpack-admin textarea.error {
   border-color: #d0160a;
   background: #fef7f7;
 }
-/* line 106, ../sass/core/_forms.scss */
+/* line 162, ../sass/core/_forms.scss */
 #wmpack-admin label {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1427,27 +1485,27 @@ body {
   color: #2a2d33;
   font-size: 15px;
 }
-/* line 113, ../sass/core/_forms.scss */
+/* line 169, ../sass/core/_forms.scss */
 #wmpack-admin ::-webkit-input-placeholder {
   color: #b2b5bc;
   font-size: 13px;
 }
-/* line 117, ../sass/core/_forms.scss */
+/* line 173, ../sass/core/_forms.scss */
 #wmpack-admin :-moz-placeholder {
   color: #b2b5bc;
   font-size: 13px;
 }
-/* line 121, ../sass/core/_forms.scss */
+/* line 177, ../sass/core/_forms.scss */
 #wmpack-admin ::-moz-placeholder {
   color: #b2b5bc;
   font-size: 13px;
 }
-/* line 125, ../sass/core/_forms.scss */
+/* line 181, ../sass/core/_forms.scss */
 #wmpack-admin :-ms-input-placeholder {
   color: #b2b5bc;
   font-size: 13px;
 }
-/* line 130, ../sass/core/_forms.scss */
+/* line 186, ../sass/core/_forms.scss */
 #wmpack-admin .field-message {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1460,31 +1518,31 @@ body {
   background: transparent;
   border: 0;
 }
-/* line 137, ../sass/core/_forms.scss */
+/* line 193, ../sass/core/_forms.scss */
 #wmpack-admin .field-message span {
   font-family: "OpenSansRegular", sans-serif;
   font-size: 13px;
   line-height: 20px;
 }
-/* line 143, ../sass/core/_forms.scss */
+/* line 199, ../sass/core/_forms.scss */
 #wmpack-admin .field-message.error span {
   color: #d0160a;
 }
-/* line 148, ../sass/core/_forms.scss */
+/* line 204, ../sass/core/_forms.scss */
 #wmpack-admin .field-message.success span {
   color: #4cae4c;
 }
-/* line 153, ../sass/core/_forms.scss */
+/* line 209, ../sass/core/_forms.scss */
 #wmpack-admin .field-message.warning span {
   color: #f89406;
 }
-/* line 158, ../sass/core/_forms.scss */
+/* line 214, ../sass/core/_forms.scss */
 #wmpack-admin .message-container {
   display: block;
   text-align: left;
   width: 100%;
 }
-/* line 163, ../sass/core/_forms.scss */
+/* line 219, ../sass/core/_forms.scss */
 #wmpack-admin .message-container .wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1504,11 +1562,11 @@ body {
   padding: 25px 50px;
   margin: 10px 0;
 }
-/* line 171, ../sass/core/_forms.scss */
+/* line 227, ../sass/core/_forms.scss */
 #wmpack-admin .message-container .wrapper .relative {
   width: 100%;
 }
-/* line 175, ../sass/core/_forms.scss */
+/* line 231, ../sass/core/_forms.scss */
 #wmpack-admin .message-container .title {
   width: 100%;
   display: -webkit-box;
@@ -1521,7 +1579,7 @@ body {
   -ms-flex-direction: row !important;
   flex-direction: row !important;
 }
-/* line 180, ../sass/core/_forms.scss */
+/* line 236, ../sass/core/_forms.scss */
 #wmpack-admin .message-container .title h2 {
   font-family: 'OlRoundGothicLight', sans-serif;
   display: -webkit-box;
@@ -1536,13 +1594,13 @@ body {
   margin: 0 0 15px 0 !important;
   font-size: 25px;
 }
-/* line 188, ../sass/core/_forms.scss */
+/* line 244, ../sass/core/_forms.scss */
 #wmpack-admin .message-container span {
   font-family: "OpenSansRegular", sans-serif;
   font-size: 13px;
   line-height: 20px;
 }
-/* line 193, ../sass/core/_forms.scss */
+/* line 249, ../sass/core/_forms.scss */
 #wmpack-admin .message-container .close-x {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1574,87 +1632,87 @@ body {
   font-weight: normal !important;
   content: "\31";
 }
-/* line 205, ../sass/core/_forms.scss */
+/* line 261, ../sass/core/_forms.scss */
 #wmpack-admin .message-container .close-x:hover {
   cursor: pointer;
 }
-/* line 208, ../sass/core/_forms.scss */
+/* line 264, ../sass/core/_forms.scss */
 #wmpack-admin .message-container .close-x::before {
   width: 25px;
   height: 25px;
 }
-/* line 214, ../sass/core/_forms.scss */
+/* line 270, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.error .wrapper {
   border: 1px solid #ecc2c3;
   background: #fef7f7;
 }
-/* line 219, ../sass/core/_forms.scss */
+/* line 275, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.error .title h2 {
   color: #d0160a;
 }
-/* line 222, ../sass/core/_forms.scss */
+/* line 278, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.error .title h2.underlined {
   border-bottom: 1px solid #ecc2c3;
 }
-/* line 227, ../sass/core/_forms.scss */
+/* line 283, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.error span {
   color: #d0160a;
 }
-/* line 230, ../sass/core/_forms.scss */
+/* line 286, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.error .close-x {
   color: #ecc2c3;
 }
-/* line 233, ../sass/core/_forms.scss */
+/* line 289, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.error .close-x:hover {
   color: #e09b9d;
 }
-/* line 239, ../sass/core/_forms.scss */
+/* line 295, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.success .wrapper {
   border: 1px solid #5cb85c;
   background: #f7fef7;
 }
-/* line 244, ../sass/core/_forms.scss */
+/* line 300, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.success .title h2 {
   color: #4cae4c;
 }
-/* line 247, ../sass/core/_forms.scss */
+/* line 303, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.success .title h2.underlined {
   border-bottom: 1px solid #5cb85c;
 }
-/* line 252, ../sass/core/_forms.scss */
+/* line 308, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.success span {
   color: #4cae4c;
 }
-/* line 255, ../sass/core/_forms.scss */
+/* line 311, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.success .close-x {
   color: #5cb85c;
 }
-/* line 258, ../sass/core/_forms.scss */
+/* line 314, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.success .close-x:hover {
   color: #449d44;
 }
-/* line 264, ../sass/core/_forms.scss */
+/* line 320, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.warning .wrapper {
   border: 1px solid #ffd79e;
   background: #fffce1;
 }
-/* line 269, ../sass/core/_forms.scss */
+/* line 325, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.warning .title h2 {
   color: #f89406;
 }
-/* line 272, ../sass/core/_forms.scss */
+/* line 328, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.warning .title h2.underlined {
   border-bottom: 1px solid #ffd79e;
 }
-/* line 277, ../sass/core/_forms.scss */
+/* line 333, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.warning span {
   color: #f89406;
 }
-/* line 280, ../sass/core/_forms.scss */
+/* line 336, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.warning .close-x {
   color: #ffd79e;
 }
-/* line 283, ../sass/core/_forms.scss */
+/* line 339, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.warning .close-x:hover {
   color: #ffc26b;
 }
@@ -2051,42 +2109,122 @@ body {
   color: #8c8d8d;
   line-height: normal;
 }
-/* line 54, ../sass/modules/_settings.scss */
+/* line 52, ../sass/modules/_settings.scss */
+#wmpack-admin .settings .left-side .details.offline .waitlist .info {
+  margin: 0 auto;
+  width: 180px;
+}
+/* line 56, ../sass/modules/_settings.scss */
+#wmpack-admin .settings .left-side .details.offline .waitlist .info input[type="text"] {
+  float: left;
+  background: rgba(250, 250, 250, 0.8);
+}
+/* line 60, ../sass/modules/_settings.scss */
+#wmpack-admin .settings .left-side .details.offline .waitlist .info .btn {
+  float: left;
+  margin: 0 0 0 10px;
+}
+/* line 65, ../sass/modules/_settings.scss */
+#wmpack-admin .settings .left-side .details.offline .waitlist .added {
+  margin: 0 auto;
+  width: 190px;
+}
+/* line 69, ../sass/modules/_settings.scss */
+#wmpack-admin .settings .left-side .details.offline .waitlist .added .switcher {
+  width: 190px;
+}
+/* line 72, ../sass/modules/_settings.scss */
+#wmpack-admin .settings .left-side .details.offline .waitlist .added .switcher .msg {
+  font-family: 'AcordeSemiBold', sans-serif;
+  width: 150px;
+  height: 36px;
+  background: #fafafa;
+  color: #2a2d33;
+  font-size: 14px;
+  -webkit-border-radius: 3px 0 0 3px;
+  -moz-border-radius: 3px 0 0 3px;
+  border-radius: 3px 0 0 3px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  border: 1px solid #daddde;
+  border-right: 0px;
+  padding: 0 10px;
+  line-height: 38px;
+  text-align: center;
+  float: left;
+}
+/* line 88, ../sass/modules/_settings.scss */
+#wmpack-admin .settings .left-side .details.offline .waitlist .added .switcher .check {
+  -webkit-border-radius: 0 3px 3px 0;
+  -moz-border-radius: 0 3px 3px 0;
+  border-radius: 0 3px 3px 0;
+  height: 36px;
+  border: 1px solid #bfc4c6;
+  border-left: 0px;
+  width: 40px;
+  float: right;
+  color: #ffffff;
+}
+/* line 4, ../sass/mixins/_icon.scss */
+#wmpack-admin .settings .left-side .details.offline .waitlist .added .switcher .check:before {
+  position: relative;
+  text-align: center;
+  font-family: "Appticles" !important;
+  font-size: 17px !important;
+  font-weight: normal !important;
+  content: "\32";
+}
+/* line 98, ../sass/modules/_settings.scss */
+#wmpack-admin .settings .left-side .details.offline .waitlist .added .switcher .check::before {
+  height: 38px;
+  width: 40px;
+  right: 10px;
+  top: -2px;
+  line-height: 38px;
+}
+/* line 107, ../sass/modules/_settings.scss */
+#wmpack-admin .settings .left-side .details.offline .waitlist .added .switcher.blue .check {
+  background: #1ca8dd;
+  border: 1px solid #1686b0;
+  border-left: 0px;
+}
+/* line 117, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side .details .display-mode {
   float: left;
 }
-/* line 57, ../sass/modules/_settings.scss */
+/* line 120, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side .details .display-mode p, #wmpack-admin .settings .left-side .details .display-mode label {
   font-family: 'AcordeRegular', sans-serif;
   font-size: 15px;
   line-height: normal;
   color: #4b4b4b;
 }
-/* line 65, ../sass/modules/_settings.scss */
+/* line 128, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side .details.branding label, #wmpack-admin .settings .left-side .details.branding p {
   font-family: 'AcordeRegular', sans-serif;
   font-size: 15px;
   line-height: normal;
   color: black;
 }
-/* line 72, ../sass/modules/_settings.scss */
+/* line 135, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side .details.branding .custom-upload {
   position: relative;
   height: 36px;
   width: 450px;
   margin: 10px 0;
 }
-/* line 80, ../sass/modules/_settings.scss */
+/* line 143, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side .details.branding .custom-upload:hover .fake-file .btn {
   background: #e3e3e3;
   border: 1px solid #c9c9c9;
 }
-/* line 84, ../sass/modules/_settings.scss */
+/* line 147, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side .details.branding .custom-upload:hover .fake-file input {
   outline: none;
   border: 1px solid #a4abae;
 }
-/* line 90, ../sass/modules/_settings.scss */
+/* line 153, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side .details.branding .custom-upload .remove {
   position: absolute;
   top: 8px;
@@ -2110,13 +2248,13 @@ body {
   font-weight: normal !important;
   content: "\31";
 }
-/* line 103, ../sass/modules/_settings.scss */
+/* line 166, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side .details.branding .custom-upload .remove::before {
   top: -4px;
   left: 0px;
   display: block;
 }
-/* line 110, ../sass/modules/_settings.scss */
+/* line 173, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side .details.branding .custom-upload input[type=file] {
   outline: none;
   position: relative;
@@ -2128,7 +2266,7 @@ body {
   width: 430px;
   height: 100%;
 }
-/* line 119, ../sass/modules/_settings.scss */
+/* line 182, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side .details.branding .custom-upload .fake-file {
   position: relative;
   top: -38px;
@@ -2143,11 +2281,11 @@ body {
   display: -moz-box;
   display: box;
 }
-/* line 130, ../sass/modules/_settings.scss */
+/* line 193, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side .details.branding .custom-upload .fake-file .btn {
   margin: 0px 0px 0px 10px;
 }
-/* line 134, ../sass/modules/_settings.scss */
+/* line 197, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side .details.branding .custom-upload .fake-file input {
   width: 300px;
   font-family: 'AcordeSemiBold', sans-serif;
@@ -2155,24 +2293,24 @@ body {
   font-size: 14px;
   margin: 0;
 }
-/* line 141, ../sass/modules/_settings.scss */
+/* line 204, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side .details.branding .display-logo {
   text-align: left;
   height: 120px;
 }
-/* line 145, ../sass/modules/_settings.scss */
+/* line 208, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side .details.branding .display-logo .edit {
   margin: 47px 0 0 0;
   vertical-align: middle;
   text-align: center;
   float: left;
 }
-/* line 151, ../sass/modules/_settings.scss */
+/* line 214, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side .details.branding .display-logo .remove {
   display: inline-block;
   margin: 55px 0 0 10px;
 }
-/* line 155, ../sass/modules/_settings.scss */
+/* line 218, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side .details.branding .display-logo .img {
   width: 120px;
   height: 120px;
@@ -2180,14 +2318,14 @@ body {
   margin: 0 25px;
   float: left;
 }
-/* line 162, ../sass/modules/_settings.scss */
+/* line 225, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side .details.branding .display-logo label {
   width: 100px;
   display: inline;
   float: left;
   margin: 55px 0 0 0;
 }
-/* line 169, ../sass/modules/_settings.scss */
+/* line 232, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side .details.branding .display-icon {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2211,19 +2349,19 @@ body {
   text-align: left;
   height: 120px;
 }
-/* line 177, ../sass/modules/_settings.scss */
+/* line 240, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side .details.branding .display-icon .edit {
   margin: 47px 0 0 0;
   vertical-align: middle;
   text-align: center;
   float: left;
 }
-/* line 183, ../sass/modules/_settings.scss */
+/* line 246, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side .details.branding .display-icon .remove {
   display: inline-block;
   margin: 55px 0 0 10px;
 }
-/* line 187, ../sass/modules/_settings.scss */
+/* line 250, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side .details.branding .display-icon img {
   width: 120px;
   height: 120px;
@@ -2237,30 +2375,30 @@ body {
   margin: 0 25px;
   float: left;
 }
-/* line 196, ../sass/modules/_settings.scss */
+/* line 259, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side .details.branding .display-icon label {
   width: 100px;
   display: inline;
   float: left;
   margin: 55px 0 0 0;
 }
-/* line 203, ../sass/modules/_settings.scss */
+/* line 266, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side .details.branding .cancel-link {
   position: relative;
 }
-/* line 206, ../sass/modules/_settings.scss */
+/* line 269, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side .details.branding .cancel-link .cancel {
   position: absolute;
   top: -39px;
   right: -30px;
 }
-/* line 214, ../sass/modules/_settings.scss */
+/* line 277, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side ul.categories {
   list-style-type: none;
   width: 100%;
   display: block;
 }
-/* line 219, ../sass/modules/_settings.scss */
+/* line 282, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side ul.categories li {
   background-color: #fcfcfc;
   display: block;
@@ -2271,17 +2409,17 @@ body {
   cursor: pointer;
   vertical-align: middle;
 }
-/* line 229, ../sass/modules/_settings.scss */
+/* line 292, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side ul.categories li:hover {
   background-color: #e3f5fb;
   border-bottom: #d1eef9 1px solid;
 }
-/* line 233, ../sass/modules/_settings.scss */
+/* line 296, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side ul.categories li span {
   font-family: 'AcordeRegular', sans-serif;
   padding: 22px 0;
 }
-/* line 237, ../sass/modules/_settings.scss */
+/* line 300, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side ul.categories li span.status {
   margin-left: 20px;
   font-size: 12px;
@@ -2290,7 +2428,7 @@ body {
   display: block;
   float: left;
 }
-/* line 245, ../sass/modules/_settings.scss */
+/* line 308, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side ul.categories li span.status.active::before {
   content: '';
   position: absolute;
@@ -2304,7 +2442,7 @@ body {
   background-color: #9aca40;
   left: 19px;
 }
-/* line 256, ../sass/modules/_settings.scss */
+/* line 319, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side ul.categories li span.status.inactive::before {
   content: '';
   position: absolute;
@@ -2318,7 +2456,7 @@ body {
   background-color: #a60c00;
   left: 19px;
 }
-/* line 268, ../sass/modules/_settings.scss */
+/* line 331, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side ul.categories li span.title {
   font-size: 15px;
   color: #2a2d33;
@@ -2326,7 +2464,7 @@ body {
   display: block;
   float: left;
 }
-/* line 275, ../sass/modules/_settings.scss */
+/* line 338, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side ul.categories li span.posts {
   font-family: 'OpenSansItalic',sans-serif;
   color: #8c8d8d;
@@ -2821,50 +2959,54 @@ body {
 }
 
 /* line 2, ../sass/modules/_whats-new.scss */
-.whats-new .left-side {
+#wmpack-admin .whats-new {
+  display: table;
+}
+/* line 4, ../sass/modules/_whats-new.scss */
+#wmpack-admin .whats-new .left-side {
   width: 100%;
   display: table;
   vertical-align: top;
 }
-/* line 8, ../sass/modules/_whats-new.scss */
-.whats-new .left-side .details {
+/* line 10, ../sass/modules/_whats-new.scss */
+#wmpack-admin .whats-new .left-side .details {
   padding: 30px;
   background-color: white;
 }
-/* line 12, ../sass/modules/_whats-new.scss */
-.whats-new .left-side .details h2.title {
+/* line 14, ../sass/modules/_whats-new.scss */
+#wmpack-admin .whats-new .left-side .details h2.title {
   font-family: 'OlRoundGothicLight', sans-serif;
   font-size: 25px;
   line-height: normal;
   color: #4b4b4b;
 }
-/* line 18, ../sass/modules/_whats-new.scss */
-.whats-new .left-side .details .showcase {
+/* line 20, ../sass/modules/_whats-new.scss */
+#wmpack-admin .whats-new .left-side .details .showcase {
   width: 671px;
   margin: 0 auto;
 }
-/* line 23, ../sass/modules/_whats-new.scss */
-.whats-new .left-side .details .feature img {
+/* line 25, ../sass/modules/_whats-new.scss */
+#wmpack-admin .whats-new .left-side .details .feature img {
   height: 130px;
   width: 130px;
   float: left;
   margin: 0 30px 0 0;
 }
-/* line 30, ../sass/modules/_whats-new.scss */
-.whats-new .left-side .details .feature .text span {
+/* line 32, ../sass/modules/_whats-new.scss */
+#wmpack-admin .whats-new .left-side .details .feature .text span {
   font-family: "OpenSansRegular", sans-serif;
   font-size: 14px;
   color: #4b4b4b;
 }
-/* line 35, ../sass/modules/_whats-new.scss */
-.whats-new .left-side .details .feature .text span.title {
+/* line 37, ../sass/modules/_whats-new.scss */
+#wmpack-admin .whats-new .left-side .details .feature .text span.title {
   display: block;
   margin: 15px 0 8px 0;
   font-size: 18px;
   color: #333333;
 }
-/* line 44, ../sass/modules/_whats-new.scss */
-.whats-new .left-side .details .feature.right img {
+/* line 46, ../sass/modules/_whats-new.scss */
+#wmpack-admin .whats-new .left-side .details .feature.right img {
   float: right;
   margin: 0 0 0 30px;
 }

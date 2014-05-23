@@ -22,7 +22,7 @@ define('WMP_NEWSLETTER_PATH','http://gateway-dev.appticles.com/newsletter/api/su
 define('WMP_WAITLIST_PATH','http://gateway-dev.appticles.com/waitlist/api/subscribe');
 
 
-define('CODE_KEY','asdc%/dfr_A!8792*');
+define('WMP_CODE_KEY','asdc%/dfr_A!8792*');
 
 
 ?>

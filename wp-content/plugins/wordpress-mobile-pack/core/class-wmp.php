@@ -110,7 +110,7 @@ class WMobilePack {
 		// enqueue styles
 		wp_enqueue_style('css_fonts', plugins_url(WMP_DOMAIN.'/admin/css/fonts.css'), array(), WMP_VERSION);
         wp_enqueue_style('css_ie', plugins_url(WMP_DOMAIN.'/admin/css/ie.css'), array(), WMP_VERSION);
-        wp_enqueue_style('css_main', 'http://dev.webcrumbz.co/~raducu/dashboard-cutting/wp/resources/css/main.css', array(), WMP_VERSION);	
+        wp_enqueue_style('css_main', plugins_url(WMP_DOMAIN.'/admin/css/main.css'), array(), WMP_VERSION);	
         wp_enqueue_style('css_scrollbar', plugins_url(WMP_DOMAIN.'/admin/css/perfect-scrollbar.css'), array(), WMP_VERSION);
         
         // enqueue scripts
@@ -397,7 +397,7 @@ class WMobilePack {
 		public static function wmp_set_token(){
 			
 			
-			$token = md5(md5(get_bloginfo("wpurl")).CODE_KEY);
+			$token = md5(md5(get_bloginfo("wpurl")).WMP_CODE_KEY);
 			
 			// encode token again
 			$token = base64_encode($token.'_'.strtotime('+1 hour'));
@@ -433,7 +433,7 @@ class WMobilePack {
 						if(time() < $arrParams[1]) {
 							
 							// get the generated encoded domain
-							$generated_url = md5(md5(get_bloginfo("wpurl")).CODE_KEY);
+							$generated_url = md5(md5(get_bloginfo("wpurl")).WMP_CODE_KEY);
 							// check encoded domain
 							if($arrParams[0] ==  $generated_url)
 								return true;
