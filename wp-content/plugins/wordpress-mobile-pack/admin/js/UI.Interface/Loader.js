@@ -36,11 +36,11 @@ function WMPPreloader(){
 		
 		this.defaultParams = jQuery.extend({}, this.defaultParams, params);
 		
-		jQuery('#wmp_preloader_container').remove();
-		jQuery('body *:first',document).before('<div id="wmp_preloader_container" style="position:fixed; z-index:999998; display:none;"><div class="preloader"></div><div style="position:fixed; background: #000;"><div id="preloader_table" align="center" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#FFF; padding:10px;">'+this.defaultParams.message+'<br><br><img src="'+WMPJSInterface.localpath+'admin/images/loading_animation.gif" /></div></div></div>');
+		jQuery('#preloader_container').remove();
+		jQuery('body *:first',document).before('<div id="preloader_container" style="position:fixed; z-index:999998; display:none;"><div class="preloader"></div><div style="position:fixed; background: #000;"><div id="preloader_table" align="center" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#FFF; padding:10px;">'+this.defaultParams.message+'<br><br><img src="'+WMPJSInterface.localpath+'admin/images/loading_animation.gif" /></div></div></div>');
 		
-		var preloader_container = jQuery('#wmp_preloader_container');
-		var table = jQuery('#wmp_preloader_table',preloader_container);
+		var preloader_container = jQuery('#preloader_container');
+		var table = jQuery('#preloader_table',preloader_container);
 		var preloading_bg = jQuery('.preloader',preloader_container);
 		
 		var w = this.defaultParams.width;
@@ -74,8 +74,8 @@ function WMPPreloader(){
 	 */
 	this.update = function(msg){
 		
-		var preloader_container = jQuery('#wmp_preloader_container');
-		var table = jQuery('#wmp_preloader_table',preloader_container);
+		var preloader_container = jQuery('#preloader_container');
+		var table = jQuery('#preloader_table',preloader_container);
 		table.get(0).rows[0].cells[0].innerHTML = msg;
 		
 	}
@@ -90,15 +90,15 @@ function WMPPreloader(){
 	 */
 	this.remove = function(time){
 		
-		if (jQuery('#wmp_loading_container') != null){
-			jQuery('#wmp_loading_container').remove();	
+		if (jQuery('#loading_container') != null){
+			jQuery('#loading_container').remove();	
 		}
 		
 		if (time == null){
 			time = 100;	
 		}
 		
-        var preloader_container = jQuery('#wmp_preloader_container');
+        var preloader_container = jQuery('#preloader_container');
         preloader_container.stop();
         
         preloader_container.fadeOut({duration: time},function(){ preloader_container.remove(); });
