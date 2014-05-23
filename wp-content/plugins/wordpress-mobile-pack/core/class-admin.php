@@ -289,7 +289,14 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                     if (in_array($_POST['wmp_editsettings_displaymode'], array('normal', 'preview', 'disabled'))){
                         
                         $status = 1;
-                        
+                        // save google analytics id
+						if(isset($_POST["wmp_editsettings_ganalyticsid"]) && $_POST["wmp_editsettings_ganalyticsid"] != '') {
+							
+							// validate google analytics id
+							if(preg_match('/^ua-\d{4,9}-\d{1,4}$/i', strval($_POST["wmp_editsettings_ganalyticsid"])))
+								WMobilePack::wmp_update_settings('google_analytics_id', $_POST['wmp_editsettings_ganalyticsid']);
+							
+						}
                         // save option
                         WMobilePack::wmp_update_settings('display_mode', $_POST['wmp_editsettings_displaymode']);
                     }

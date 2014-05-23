@@ -53,7 +53,8 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                     'joined_waitlists'      => serialize(array()),
                     'display_mode'          => 'normal',
                 	'logo'                  => '',
-                	'icon'                  => ''
+                	'icon'                  => '',
+					'google_analytics_id'	=> ''
                     
                 );
             }

@@ -57,12 +57,24 @@ function WMP_EDIT_DISPLAY(){
 		/*                    VALIDATION RULES                 */
 		/*******************************************************/
 		
+		jQuery.validator.addMethod( "regex",function(value, element, regexp) {
+				
+				var re = new RegExp(regexp,"i");
+				
+            	return this.optional(element) || re.test(value);
+			},
+			"Your code is invalid"
+		);
+		
         // this is the object that handles the form validations
 	    this.validator = jQuery("#"+this.form.id, this.DOMDoc).validate({
 	
             rules: {
-                wmp_editsettings_displaymode : {
+                wmp_editsettings_displaymode : { 
     				required    : true
+    			},
+				 wmp_editsettings_ganalyticsid : {
+    				regex    :  '^ua-\\d{4,9}-\\d{1,4}$' 
     			}
             },
             
@@ -75,8 +87,9 @@ function WMP_EDIT_DISPLAY(){
 	        // the errorPlacement has to take the table layout into account
 	        // all the errors must be handled by containers/divs with custom ids: Ex. "error_fullname_container"
 	        errorPlacement: function(error, element) {
-	            var id = (element[0].id.split("_").length > 1) ? element[0].id.split("_")[1] : element[0].id.split("_")[0];
-	            var errorContainer = jQuery("#error_"+id+"_container",JSObject.DOMDoc);
+	            var id = (element[0].id.split("_").length > 1) ? element[0].id.split("_")[2] : element[0].id.split("_")[0];
+	            
+				var errorContainer = jQuery("#error_"+id+"_container",JSObject.DOMDoc);
 	            error.appendTo( errorContainer );
 	        },
             

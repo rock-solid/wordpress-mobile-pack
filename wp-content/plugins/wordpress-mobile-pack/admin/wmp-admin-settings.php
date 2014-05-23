@@ -53,9 +53,16 @@
                 		<div class="spacer-10"></div>
                         
                         <div class="field-message error" id="error_displaymode_container"></div>
+                        <div class="spacer-20"></div>
+                       
+                        <p>Google Analytics Id:</p>
                         <div class="spacer-10"></div>
-                        
+                        <input type="text" name="wmp_editsettings_ganalyticsid" id="wmp_editsettings_ganalyticsid" placeholder="UA-000000-01" class="small indent" value="<?php echo WMobilePack::wmp_get_setting('google_analytics_id');?>" />
+                        <div class="field-message error" id="error_ganalyticsid_container"></div>
+                        <div class="spacer-20"></div>
                         <a href="javascript:void(0)" id="wmp_editsettings_send_btn" class="btn green smaller">Save</a>
+                     
+                       
                     </form>
                 </div>
                 <div class="spacer-0"></div>
