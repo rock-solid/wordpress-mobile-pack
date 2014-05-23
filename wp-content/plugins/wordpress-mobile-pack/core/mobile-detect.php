@@ -21,7 +21,7 @@ if ( ! class_exists( 'WPMobileDetect' ) ) {
     		$load_app = false;
     		
     		require_once (WMP_PLUGIN_PATH.'libs/mobileesp/mdetect.php');
-    		$uagentObj = new uagent_info();
+    		$uagentObj = new UAgentInfo();
     		
     		$is_tablet = $uagentObj->DetectTierTablet();
     		$is_mobile = $uagentObj->DetectTierIphone();

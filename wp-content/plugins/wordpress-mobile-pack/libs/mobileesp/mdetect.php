@@ -55,7 +55,7 @@
 
 
 //**************************
-// The uagent_info class encapsulates information about
+// The UAgentInfo class encapsulates information about
 //   a browser's connection to your web site.
 //   You can use it to find out whether the browser asking for
 //   your site's content is probably running on a mobile device.
@@ -63,7 +63,7 @@
 //   For example, enquiring whether it's as specific as an iPod Touch or
 //   as general as a smartphone class device.
 //   The object's methods return 1 for true, or 0 for false.
-class uagent_info
+class UAgentInfo
 {
    var $useragent = "";
    var $httpaccept = "";
@@ -193,13 +193,13 @@ class uagent_info
    //The constructor. Allows the latest PHP (5.0+) to locate a constructor object and initialize the object.
    function __construct()
    {
-         $this->uagent_info();
+         $this->UAgentInfo();
    }
 
 
    //**************************
    //The object initializer. Initializes several default variables.
-   function uagent_info()
+   function UAgentInfo()
    {
          $this->useragent = isset($_SERVER['HTTP_USER_AGENT'])?strtolower($_SERVER['HTTP_USER_AGENT']):'';
          $this->httpaccept = isset($_SERVER['HTTP_ACCEPT'])?strtolower($_SERVER['HTTP_ACCEPT']):'';
