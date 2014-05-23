@@ -14,6 +14,7 @@ class WMobilePack {
 	
 	public static $wmp_options;
     public static $wmp_allowed_fonts = array('Roboto Condensed', 'Georgia', 'Times New Roman', 'Open Sans');
+    public static $wmp_basic_theme = 'base';
     
     // the oldest version that will enable the custom select
     public static $wmp_customselect_enable = 3.6;
@@ -56,8 +57,6 @@ class WMobilePack {
 		
 		// add settings to database
 		$this->wmp_save_settings(self::$wmp_options);
-		
-		
 	}
 		
 	/**
@@ -96,21 +95,21 @@ class WMobilePack {
 		add_action( 'admin_menu', array( &$this, 'wmp_admin_menu' ) );
         
 		// enqueue css and javascript for the admin area
-        add_action( 'admin_enqueue_scripts',array( &$this, 'wmp_enqueue_scripts' ) );
+        add_action( 'admin_enqueue_scripts',array( &$this, 'wmp_admin_enqueue_scripts' ) );
 	}
     
 	
 	/**
-	 * Method wmp_enqueue_scripts used to enqueue scripts for the admin area
+	 * Method wmp_admin_enqueue_scripts used to enqueue scripts for the admin area
 	 * 
 	 *
 	 */	
-	public function wmp_enqueue_scripts() {
+	public function wmp_admin_enqueue_scripts() {
 		
 		// enqueue styles
 		wp_enqueue_style('css_fonts', plugins_url(WMP_DOMAIN.'/admin/css/fonts.css'), array(), WMP_VERSION);
         wp_enqueue_style('css_ie', plugins_url(WMP_DOMAIN.'/admin/css/ie.css'), array(), WMP_VERSION);
-        wp_enqueue_style('css_main', 'http://dev.webcrumbz.co/~raducu/dashboard-cutting/wp/resources/css/main.css', array(), WMP_VERSION);	
+        wp_enqueue_style('css_main', plugins_url(WMP_DOMAIN.'/admin/css/main.css'), array(), WMP_VERSION);	
         wp_enqueue_style('css_scrollbar', plugins_url(WMP_DOMAIN.'/admin/css/perfect-scrollbar.css'), array(), WMP_VERSION);
         
         // enqueue scripts
@@ -130,7 +129,7 @@ class WMobilePack {
      * Load specific javascript files for the Content submenu page
      * 
      */
-    public function load_content_js(){
+    public function wmp_admin_load_content_js(){
         wp_enqueue_script('js_content_editcategories', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/EDIT_CATEGORIES.js'), array(), WMP_VERSION);
         wp_enqueue_script('js_join_waitlist', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Waitlist/WMP_WAITLIST.js'), array(), WMP_VERSION);
     }
@@ -141,7 +140,7 @@ class WMobilePack {
      * Load specific javascript files for the Settings submenu page
      * 
      */
-    public function load_settings_js(){
+    public function wmp_admin_load_settings_js(){
         wp_enqueue_script('js_settings_editimages', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/EDIT_IMAGES.js'), array(), WMP_VERSION);
         wp_enqueue_script('js_settings_editdisplay', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/EDIT_DISPLAY.js'), array(), WMP_VERSION);
         wp_enqueue_script('js_join_waitlist', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Waitlist/WMP_WAITLIST.js'), array(), WMP_VERSION);
@@ -152,7 +151,7 @@ class WMobilePack {
      * Load specific javascript files for the Look and Feel submenu page
      * 
      */
-    public function load_theme_js(){
+    public function wmp_admin_load_theme_js(){
         
         $blog_version = floatval(get_bloginfo('version'));
         
@@ -182,13 +181,13 @@ class WMobilePack {
 		add_submenu_page( 'wmp-options', "What's New", "What's New", 'manage_options', 'wmp-options', array( &$WMobilePackAdmin, 'wmp_options' ) );
 		
         $theme_page = add_submenu_page( 'wmp-options', 'Look & Feel', 'Look & Feel', 'manage_options', 'wmp-options-theme', array( &$WMobilePackAdmin, 'wmp_theme_options') );
-        add_action( 'load-' . $theme_page, array( &$this, 'load_theme_js' ) );   
+        add_action( 'load-' . $theme_page, array( &$this, 'wmp_admin_load_theme_js' ) );   
         
 		$content_page = add_submenu_page( 'wmp-options', 'Content', 'Content', 'manage_options', 'wmp-options-content', array( &$WMobilePackAdmin, 'wmp_content_options') );
-        add_action( 'load-' . $content_page, array( &$this, 'load_content_js' ) );   
+        add_action( 'load-' . $content_page, array( &$this, 'wmp_admin_load_content_js' ) );   
         
 		$settings_page = add_submenu_page( 'wmp-options', 'Settings', 'Settings', 'manage_options', 'wmp-options-settings', array( &$WMobilePackAdmin, 'wmp_settings_options') );
-        add_action( 'load-' . $settings_page, array( &$this, 'load_settings_js' ) ); 
+        add_action( 'load-' . $settings_page, array( &$this, 'wmp_admin_load_settings_js' ) ); 
         
 		add_submenu_page( 'wmp-options', 'Upgrade', 'Upgrade', 'manage_options', 'wmp-options-upgrade', array( &$WMobilePackAdmin, 'wmp_upgrade_options') );
 		
@@ -349,102 +348,183 @@ class WMobilePack {
 	}
 
 		
+	public function wmp_check_load(){
+		
+		$load_app = false;
+        
+        $desktop_mode = self::wmp_check_desktop_mode();
+        
+        if ($desktop_mode == false) {
+            
+            if (self::wmp_check_display_mode()) {
+    		
+        		if (!isset($_COOKIE["wmp_load_app"])) {
+        			
+        			// load admin class
+        			require_once(WMP_PLUGIN_PATH.'core/mobile-detect.php');
+        			$WMobileDetect = new WPMobileDetect;
+        			
+        			$load_app = $WMobileDetect->wmp_detect_device();
+        			
+        		} elseif (isset($_COOKIE["wmp_load_app"]) && $_COOKIE["wmp_load_app"] == 1)
+        			$load_app = true;	
+                    
+                if ($load_app)
+                    $this->wmp_load_app();
+            }
+            
+        } else {
+            
+            // add the option to view the app in the footer of the website
+        }
+	}
+    
+    
+    /**
+    *
+    * Check if the app display is enabled
+    * 
+    * Returns true if display mode is "normal" (enabled for all mobile users) or
+    * if display mode is "preview" and an admin is logged in, false otherwise.
+    *   
+    */
+    public function wmp_check_display_mode(){
+        
+        $display_mode = self::wmp_get_setting('display_mode');
+        
+        if ($display_mode == 'normal')
+            return true;
+            
+        elseif ($display_mode == 'preview') {
+            
+            if (is_user_logged_in() && current_user_can('create_users'))
+                return true;
+        }
+        
+        return false;
+    }
+    
+    /**
+     * 
+     * Check if the user selected to view the desktop mode or we can display the app
+     * 
+     * The GET/COOKIE "wmp_theme_mode" can have two values: 'desktop' or 'mobile'.
+     * 
+     * - Desktop mode can be activated from the app by selecting to return to desktop view.
+     * - Mobile mode can be activated from the footer of the website.
+     * 
+     */
+    public function wmp_check_desktop_mode(){
+        
+        $desktop_mode = false;
+        
+        if (isset($_GET['wmp_theme_mode']) && is_string($_GET['wmp_theme_mode'])){
+            
+            if ($_GET['wmp_theme_mode'] == "desktop" || $_GET['wmp_theme_mode'] == "mobile"){
+                setcookie("wmp_theme_mode", $_GET['wmp_theme_mode'], time()+3600*30*24,'/');
+            }
+            
+            if ($_GET['wmp_theme_mode'] == "desktop")
+                $desktop_mode = true;
+                
+        } else {
+            
+            if (isset($_COOKIE["wmp_theme_mode"]) && is_string($_COOKIE['wmp_theme_mode'])){
+                if ($_COOKIE['wmp_theme_mode'] == "desktop")
+                    $desktop_mode = true;
+            }
+        }
+        
+        return $desktop_mode;
+    }
+		
+	/**
+     * 
+     * Load Sencha Touch frontend application
+     * 
+     * The theme url and theme name are overwritten by the settings below
+     * 
+     */
+	public function wmp_load_app(){
+		
+		add_filter("stylesheet", array(&$this, "wmp_app_theme"));
+        add_filter("template", array(&$this, "wmp_app_theme"));
+    
+		add_filter( 'theme_root', array( &$this, 'wmp_app_theme_root' ) );
+		add_filter( 'theme_root_uri', array( &$this, 'wmp_app_theme_root' ) );			
+	}
+    
+    /**
+     * Return the theme name
+     */
+    public function wmp_app_theme() {
+		return self::$wmp_basic_theme;
+	}
+	
+    /**
+     * Return path to the mobile themes folder
+     */
+	public function wmp_app_theme_root() {
+		return WMP_PLUGIN_PATH . 'themes';
+	}
+ 	
+		
+	/**
+	 * Static Method wmp_set_token used to create a token for the comments form
+	 *
+	 *
+	 * The method return a string fromed from the encoded domain and a timestamp
+	 *
+	 */	
+	public static function wmp_set_token(){
+		
+		$token = md5(md5(get_bloginfo("wpurl")).CODE_KEY);
+		
+		// encode token again
+		$token = base64_encode($token.'_'.strtotime('+1 hour'));
+		
+		// generate token
+		return $token;
+		
+	}
 		
 		
+	/**
+	 * Static Method wmp_check_token used to check if a generated token is valid
+	 * 
+	 * @param $token - string
+	 * The method returns true if the token is valid and false otherwise
+	 *
+	 */	
+	public static function wmp_check_token($token){
 		
-		public function wmp_check_load(){
+		if(base64_decode($token,true)){
 			
-			$load_app = false;
+			// decode token to get timestamp and encoded url
+			$decoded_token = base64_decode($token,true);
 			
-			
-			if(!isset($_COOKIE["load_app"])) {
+			if(strpos($decoded_token, "_") !== FALSE) {
 				
-				// load admin class
-				require_once(WMP_PLUGIN_PATH.'core/mobile-detect.php');
-				$WMobileDetect = new WPMobileDetect;
+				// get params
+				$arrParams = explode('_',$decoded_token);
 				
-				$load_app = $WMobileDetect->wmp_detect_device();
-				
-				
-			} elseif(isset($_COOKIE["load_app"]) && $_COOKIE["load_app"] == 1)
-				$load_app = true;	
-			
-			
-			if($load_app) 
-				// load app
-			$this->wmp_load_app();
-			
-				
-		}
-		
-		
-		public function wmp_load_app(){
-			
-			
-			// enqeue javascripts and css for the app
-			//send params to the app
-			// load application
-			
-		}
-		
-		/**
-		 * Static Method wmp_set_token used to create a token for the comments form
-		 *
-		 *
-		 * The method return a string fromed from the encoded domain and a timestamp
-		 *
-		 */	
-		public static function wmp_set_token(){
-			
-			
-			$token = md5(md5(get_bloginfo("wpurl")).CODE_KEY);
-			
-			// encode token again
-			$token = base64_encode($token.'_'.strtotime('+1 hour'));
-			
-			// generate token
-			return $token;
-			
-		}
-		
-		
-		/**
-		 * Static Method wmp_check_token used to check if a generated token is valid
-		 * 
-		 * @param $token - string
-		 * The method returns true if the token is valid and false otherwise
-		 *
-		 */	
-		public static function wmp_check_token($token){
-			
-			if(base64_decode($token,true)){
-				
-				// decode token to get timestamp and encoded url
-				$decoded_token = base64_decode($token,true);
-				
-				if(strpos($decoded_token, "_") !== FALSE) {
+				if(is_array($arrParams) && !empty($arrParams) && count($arrParams) == 2) {
 					
-					// get params
-					$arrParams = explode('_',$decoded_token);
+					// check timestamp
+					if(time() < $arrParams[1]) {
+						
+						// get the generated encoded domain
+						$generated_url = md5(md5(get_bloginfo("wpurl")).CODE_KEY);
+						// check encoded domain
+						if($arrParams[0] ==  $generated_url)
+							return true;
 					
-					if(is_array($arrParams) && !empty($arrParams) && count($arrParams) == 2) {
-						
-						// check timestamp
-						if(time() < $arrParams[1]) {
-							
-							// get the generated encoded domain
-							$generated_url = md5(md5(get_bloginfo("wpurl")).CODE_KEY);
-							// check encoded domain
-							if($arrParams[0] ==  $generated_url)
-								return true;
-						
-						}
 					}
 				}
 			}
-			
-			// by default return false;
-			return false; 
 		}
+		
+		// by default return false;
+		return false; 
 	}
-
+}
