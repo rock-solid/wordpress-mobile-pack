@@ -1,6 +1,7 @@
 <?php
 	// get current screen
 	$screen = get_current_screen();
+    
 	// set current page
 	if ($screen->id !== '')
 		if ($screen->id == 'toplevel_page_wmp-options')

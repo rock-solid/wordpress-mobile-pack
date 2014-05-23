@@ -17,6 +17,7 @@ define('WMP_WHATSNEW_UPDATES','https://s3-eu-west-1.amazonaws.com/appticles-wmpa
 define('WMP_NEWSLETTER_PATH','http://gateway-dev.appticles.com/newsletter/api/subscribe');
 define('WMP_WAITLIST_PATH','http://gateway-dev.appticles.com/waitlist/api/subscribe');
 
+// define the string used for generating comments tokens (can be overwritten for increasing security)
 define('WMP_CODE_KEY','asdc%/dfr_A!8792*');
 
 ?>

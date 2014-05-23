@@ -1,17 +1,16 @@
 <?php
 if ( ! class_exists( 'WMobilePackAdmin' ) ) {
+    
 	/**
-	 * WMobilePackAdmin class for creating the admin area
+	 * WMobilePackAdmin class for creating the admin area for the Wordpress Mobile Pack plugin
 	 *
-	 * @package WMobilePackAdmin
-	 * @since 2.0
 	 */
 	class WMobilePackAdmin {
 
 		
 		/**
+         * 
 		 * Method used to render the main admin page
-		 *
 		 *
 		 */
 		public function wmp_options() {
@@ -20,18 +19,17 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			
 			// load view
 			include(WMP_PLUGIN_PATH.'admin/wmp-admin-main.php');
-
-			
 		}
 		
+        
         /**
-		 * Static method used to request the content for the What's New page
-		 * Method return array containing the latest content or an empty array be default
+		 * Static method used to request the content for the What's New page.
+		 * The method returns an array containing the latest content or an empty array by default.
 		 *
 		 */
 		public static function wmp_whatsnew_updates() {
 			
-			// jSON URL which should be requested
+			// jSON URL that should be requested
 			$json_url = WMP_WHATSNEW_UPDATES;
 			$send_curl = curl_init($json_url);
 			
@@ -40,7 +38,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			curl_setopt($send_curl, CURLOPT_HEADER, false);
 			curl_setopt($send_curl, CURLOPT_CONNECTTIMEOUT, 2);
 			curl_setopt($send_curl, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($send_curl, CURLOPT_HTTPHEADER,array('Accept: application/json', "Content-type: application/json"));
+			curl_setopt($send_curl, CURLOPT_HTTPHEADER, array('Accept: application/json', "Content-type: application/json"));
 			curl_setopt($send_curl, CURLOPT_FAILONERROR, FALSE);
 			curl_setopt($send_curl, CURLOPT_SSL_VERIFYPEER, FALSE);
 			curl_setopt($send_curl, CURLOPT_SSL_VERIFYHOST, FALSE);
@@ -51,6 +49,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			curl_close($send_curl);
 			
 			if ($status == 200) {
+			 
 				// get response
 				$response = json_decode($json_response, true);
 			
@@ -63,11 +62,10 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			return array();
 		}
 		
-        
-        
+
 		/**
+         * 
 		 * Method used to render the themes selection page from the admin area
-		 *
 		 *
 		 */
 		public function wmp_theme_options() {
@@ -76,14 +74,12 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			
 			// load view
 			include(WMP_PLUGIN_PATH.'admin/wmp-admin-theme.php');
-
-			
 		}
 
 		
 		/**
+         * 
 		 * Method used to render the content selection page from the admin area
-		 *
 		 *
 		 */
 		public function wmp_content_options() {
@@ -92,7 +88,6 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			
 			// load view
 			include(WMP_PLUGIN_PATH.'admin/wmp-admin-content.php');
-
 		}
 		
         /**
@@ -139,9 +134,9 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 		
 		/**
          * 
-         * Method used to send a feedback  e-mail from the admin 
+         * Method used to send a feedback e-mail from the admin 
          * 
-         * Handle request then generate response using WP_Ajax_Response
+         * Handle request then display 1 for success and 0 for error.
          * 
          */
         public function wmp_send_feedback() {
@@ -155,24 +150,25 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                     if (is_string($_POST['feedback_page']) && $_POST['feedback_page'] != '' && $_POST['feedback_message'] != '' ){
                       
 					  	// get admin e-mail and name
-					  	if(is_admin()) {
+					  	if (is_admin()) {
 							
 							// get admin e-mail address
 							$admin_email = get_option( 'admin_email' );
+                            
 							// filter e-mail														
-							if(filter_var($admin_email, FILTER_VALIDATE_EMAIL) !== false ) {
+							if (filter_var($admin_email, FILTER_VALIDATE_EMAIL) !== false ) {
 								 
 								// set e-mail variables
 								$message = "Message: ".strip_tags($_POST["feedback_message"])."\r\n \r\n Page: ".$_POST['feedback_page'];
 								$subject = 'New message from WP Mobile Pack admin';
 								$to = WMP_FEEDBACK_EMAIL;
+                                
 								// set headers
 								$headers = 'From:'.$admin_email."\r\nReply-To:".$admin_email;
+                                
 								// send e-mail		
-								if(mail($to, $subject, $message, $headers))
-									// change status 
+								if (mail($to, $subject, $message, $headers)) 
 									$status = 1;
-									
 							}
 						}
                     }
@@ -185,8 +181,9 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 		
 		
 		/**
-		 * Static method used to request the news and updates from an endpoint on a different domain
-		 * Method return array containing the latest news and updates or an empty array be default
+		 * Static method used to request the news and updates from an endpoint on a different domain.
+         * 
+		 * The method returns an array containing the latest news and updates or an empty array by default.
 		 *
 		 */
 		public static function wmp_news_updates() {
@@ -200,7 +197,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			curl_setopt($send_curl, CURLOPT_HEADER, false);
 			curl_setopt($send_curl, CURLOPT_CONNECTTIMEOUT, 2);
 			curl_setopt($send_curl, CURLOPT_RETURNTRANSFER, true);
-			curl_setopt($send_curl, CURLOPT_HTTPHEADER,array('Accept: application/json', "Content-type: application/json"));
+			curl_setopt($send_curl, CURLOPT_HTTPHEADER, array('Accept: application/json', "Content-type: application/json"));
 			curl_setopt($send_curl, CURLOPT_FAILONERROR, FALSE);
 			curl_setopt($send_curl, CURLOPT_SSL_VERIFYPEER, FALSE);
 			curl_setopt($send_curl, CURLOPT_SSL_VERIFYHOST, FALSE);
@@ -211,6 +208,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			curl_close($send_curl);
 			
 			if ($status == 200) {
+			 
 				// get response
 				$response = json_decode($json_response, true);
 				
@@ -225,8 +223,8 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 		
 		
 		/**
+         * 
 		 * Method used to render the settings selection page from the admin area
-		 *
 		 *
 		 */
 		public function wmp_settings_options() {
@@ -240,7 +238,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
   
         /**
          * 
-         * Method used to save the settings display mode
+         * Method used to save the settings display mode, color schemes and fonts or joined waitlists.
          * 
          */
         public function wmp_settings_save() {

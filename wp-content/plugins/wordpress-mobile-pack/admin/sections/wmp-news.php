@@ -35,6 +35,7 @@ if(!empty($arrNews) && is_array($arrNews )):
     </div>
     <div class="spacer-5"></div>
 <?php endif;?>
+
 <!-- add appticles social -->
 <div class="appticles-updates">
     <!-- add content -->
@@ -45,7 +46,6 @@ if(!empty($arrNews) && is_array($arrNews )):
         <a href="https://plus.google.com/+AppticlesCom/" target="_blank" title="Google +" class="google-plus"></a>
     </div>
 </div>
-
 
 <script type="text/javascript">
 	jQuery(document).ready(function(){

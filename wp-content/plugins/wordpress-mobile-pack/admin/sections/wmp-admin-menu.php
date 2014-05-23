@@ -1,9 +1,8 @@
 <?php
 // get current screen
 $screen = get_current_screen();
+
 // set current page
-
-
 if($screen->id !== '')
 	$current_page = substr($screen->id, strpos($screen->id, "_page_") + 6);
 else
