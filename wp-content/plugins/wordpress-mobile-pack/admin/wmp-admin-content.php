@@ -33,9 +33,9 @@
                 <!-- start categories list -->
                 <?php if (count($categories) > 0): ?>
                 
-                    <form name="editcategories_form" id="editcategories_form" action="" method="post">
+                    <form name="wmp_editcategories_form" id="wmp_editcategories_form" action="" method="post">
                         
-                        <div id="editcategories_warning" class="message-container warning" style="display: <?php echo count($inactive_categories) < count($categories) ? 'none' : 'block'?>;">
+                        <div id="wmp_editcategories_warning" class="message-container warning" style="display: <?php echo count($inactive_categories) < count($categories) ? 'none' : 'block'?>;">
                             <div class="wrapper">
                                 <div class="relative"><a class="close-x"></a></div>
                                 <span>Since you deactivated all your categories, no content will be displayed in your mobile web app!</span> 
@@ -149,7 +149,7 @@
     if (window.JSInterface && window.JSInterface != null){
         jQuery(document).ready(function(){
             
-            window.JSInterface.add("UI_editcategories","EDIT_CATEGORIES",{'DOMDoc':window.document}, window);
+            window.JSInterface.add("UI_editcategories","WMP_EDIT_CATEGORIES",{'DOMDoc':window.document}, window);
             
             <?php if ($joined_content_waitlist == false):?>
             

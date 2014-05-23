@@ -4,11 +4,11 @@
 /*                                                                                                   */
 /*****************************************************************************************************/
 
-function EDIT_CATEGORIES(){
+function WMP_EDIT_CATEGORIES(){
 
     var JSObject = this;
 
-    this.type = "editcategories";
+    this.type = "wmp_editcategories";
 
     this.form;
     this.DOMDoc;

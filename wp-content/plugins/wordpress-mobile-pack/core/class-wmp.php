@@ -134,7 +134,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
             wp_enqueue_script('js_ajax_upload', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/AjaxUpload.js'), array('jquery-core', 'jquery-migrate'), WMP_VERSION);
             wp_enqueue_script('js_interface', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/JSInterface.js'), array('jquery-core', 'jquery-migrate'), WMP_VERSION);	
     	    wp_enqueue_script('js_scrollbar', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/perfect-scrollbar.js'), array(), WMP_VERSION);	
-    		wp_enqueue_script('js_feedback', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Feedback/SEND_FEEDBACK.js'), array(), WMP_VERSION);	
+    		wp_enqueue_script('js_feedback', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Feedback/WMP_SEND_FEEDBACK.js'), array(), WMP_VERSION);	
             wp_enqueue_script('js_newsletter', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Newsletter/WMP_NEWSLETTER.js'), array(), WMP_VERSION);
     	}
     	
@@ -145,7 +145,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          * 
          */
         public function wmp_admin_load_content_js(){
-            wp_enqueue_script('js_content_editcategories', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/EDIT_CATEGORIES.js'), array(), WMP_VERSION);
+            wp_enqueue_script('js_content_editcategories', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_EDIT_CATEGORIES.js'), array(), WMP_VERSION);
             wp_enqueue_script('js_join_waitlist', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Waitlist/WMP_WAITLIST.js'), array(), WMP_VERSION);
         }
         
@@ -156,7 +156,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          * 
          */
         public function wmp_admin_load_settings_js(){
-            wp_enqueue_script('js_settings_editdisplay', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/EDIT_DISPLAY.js'), array(), WMP_VERSION);
+            wp_enqueue_script('js_settings_editdisplay', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/WMP_EDIT_DISPLAY.js'), array(), WMP_VERSION);
             wp_enqueue_script('js_join_waitlist', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Waitlist/WMP_WAITLIST.js'), array(), WMP_VERSION);
         }
         

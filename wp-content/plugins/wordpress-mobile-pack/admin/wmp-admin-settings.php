@@ -34,7 +34,7 @@
             	<div class="display-mode">
                  	<p>Choose display mode:</p>
                     <div class="spacer-20"></div>
-                    <form name="editsettings_form" id="editsettings_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_save" method="post" enctype="multipart/form-data">
+                    <form name="wmp_editsettings_form" id="wmp_editsettings_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_save" method="post" enctype="multipart/form-data">
                         <?php
                             $selected_value = WMobilePack::wmp_get_setting('display_mode');
                             if ($selected_value == '')
@@ -42,19 +42,19 @@
                         ?>
 
                         <!-- add radio buttons -->
-                        <input type="radio" name="editsettings_displaymode" id="editsettings_displaymode_normal" value="normal" <?php if ($selected_value == "normal") echo "checked" ;?> /><label for="editsettings_displaymode_normal"><strong>Normal</strong> (all mobile visitors)</label>
+                        <input type="radio" name="wmp_editsettings_displaymode" id="wmp_editsettings_displaymode_normal" value="normal" <?php if ($selected_value == "normal") echo "checked" ;?> /><label for="wmp_editsettings_displaymode_normal"><strong>Normal</strong> (all mobile visitors)</label>
                         <div class="spacer-10"></div>
                         
-                        <input type="radio" name="editsettings_displaymode" id="editsettings_displaymode_preview" value="preview" <?php if ($selected_value == "preview") echo "checked" ;?> /><label for="editsettings_displaymode_preview"><strong>Preview</strong> (logged in administrators)</label>
+                        <input type="radio" name="wmp_editsettings_displaymode" id="wmp_editsettings_displaymode_preview" value="preview" <?php if ($selected_value == "preview") echo "checked" ;?> /><label for="wmp_editsettings_displaymode_preview"><strong>Preview</strong> (logged in administrators)</label>
                         <div class="spacer-10"></div>
                         
-                        <input type="radio" name="editsettings_displaymode" id="editsettings_displaymode_disabled" value="disabled" <?php if ($selected_value == "disabled") echo "checked" ;?> /><label for="editsettings_modedisplay_disabled"><strong>Disabled</strong> (hidden for all)</label>
+                        <input type="radio" name="wmp_editsettings_displaymode" id="wmp_editsettings_displaymode_disabled" value="disabled" <?php if ($selected_value == "disabled") echo "checked" ;?> /><label for="wmp_editsettings_modedisplay_disabled"><strong>Disabled</strong> (hidden for all)</label>
                 		<div class="spacer-10"></div>
                         
                         <div class="field-message error" id="error_displaymode_container"></div>
                         <div class="spacer-10"></div>
                         
-                        <a href="javascript:void(0)" id="editsettings_send_btn" class="btn green smaller">Save</a>
+                        <a href="javascript:void(0)" id="wmp_editsettings_send_btn" class="btn green smaller">Save</a>
                     </form>
                 </div>
                 <div class="spacer-0"></div>
@@ -135,7 +135,7 @@
 <script type="text/javascript">
     if (window.JSInterface && window.JSInterface != null){
         jQuery(document).ready(function(){
-            window.JSInterface.add("UI_editdisplay","EDIT_DISPLAY",{'DOMDoc':window.document}, window);
+            window.JSInterface.add("UI_editdisplay","WMP_EDIT_DISPLAY",{'DOMDoc':window.document}, window);
             
             <?php if ($joined_settings_waitlist == false):?>
             

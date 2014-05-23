@@ -63,19 +63,19 @@ function WMP_EDIT_IMAGES(){
 	    this.validator = jQuery("#"+this.form.id, this.DOMDoc).validate({
 	
             rules: {
-                editimages_icon : {
+                wmp_editimages_icon : {
     				accept		: "png|jpg|jpeg"
     			},
-            	editimages_logo : {
+            	wmp_editimages_logo : {
     				accept		: "png"
     			}
             },
             
             messages: {
-                editimages_icon : {
+                wmp_editimages_icon : {
     				accept		: "Please a png, gif or jpeg image."
     			},
-    			editimages_logo: {
+    			wmp_editimages_logo: {
     				accept		: "Please a png image format with a transparent background.",
     			}
             },

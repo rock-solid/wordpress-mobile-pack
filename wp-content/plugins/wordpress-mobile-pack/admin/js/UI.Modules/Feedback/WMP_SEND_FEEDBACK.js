@@ -1,21 +1,18 @@
 /*****************************************************************************************************/
 /*                                                                                                   */
-/*                                    	'EDIT DISPLAY MODE'		                                     */
+/*                                    	'SEND FEEDBACK'				                             	 */
 /*                                                                                                   */
 /*****************************************************************************************************/
 
-function EDIT_DISPLAY(){
+function WMP_SEND_FEEDBACK(){
 
     var JSObject = this;
 
-    this.type = "editsettings";
+    this.type = "wmp_feedback";
 
     this.form;
     this.DOMDoc;
 
-    this.send_btn;
-	
-	
 	/*****************************************************************************************************/
     /*                                                                                                   */
     /*                              FUNCTION INIT - called from JSInterface                              */
@@ -23,52 +20,39 @@ function EDIT_DISPLAY(){
     /*****************************************************************************************************/
     this.init = function(){
 
-        // save a reference to JSInterface Object
+		// save a reference to JSInterface Object
         JSInterface = window.parent.JSInterface;
 
-        // save a reference to "SEND" Button
+		// save a reference to "SEND" Button
         this.send_btn = jQuery('#'+this.type+'_send_btn',this.DOMDoc).get(0);
-       
+
         // save a reference to the FORM and remove the default submit action
         this.form = this.DOMDoc.getElementById(this.type+'_form');
 
-        // add actions to send, cancel, ... buttons
-        this.addButtonsActions();
+		// add actions to send, cancel, ... buttons
+         this.addButtonsActions();
 
         if (this.form == null){
             return;
         }
-        
+
         // custom validation for FORM's inputs
         this.initValidation();
     }
 
-
-
-
-    /*****************************************************************************************************/
+	/*****************************************************************************************************/
     /*                                                                                                   */
     /*                                  FUNCTION INIT VALIDATION                                         */
     /*                                                                                                   */
     /*****************************************************************************************************/
     this.initValidation = function(){
 
-        /*******************************************************/
-		/*                    VALIDATION RULES                 */
-		/*******************************************************/
-		
         // this is the object that handles the form validations
 	    this.validator = jQuery("#"+this.form.id, this.DOMDoc).validate({
 	
             rules: {
-                editsettings_displaymode : {
-    				required    : true
-    			}
-            },
-            
-            messages: {
-                editsettings_displaymode : {
-    				required		: "Please choose an option."
+                wmp_feedback_message: {
+    		        required    : true
     			}
             },
             
@@ -80,10 +64,21 @@ function EDIT_DISPLAY(){
 	            error.appendTo( errorContainer );
 	        },
             
-            errorElement: 'span'
+            errorElement: 'span',
+            //errorClass: 'field-message error'
 	    });
+    	
+        
+        /*************  PLACEGOLDERS *************/
+        
+        var MessageInput = jQuery('#'+this.type+'_message',this.DOMDoc);        
+        MessageInput.data('holder',MessageInput.attr('placeholder'));
+
+        MessageInput.focusin(function(){jQuery(this).attr('placeholder','');}).focusout(function(){jQuery(this).attr('placeholder',jQuery(this).data('holder'));});
+                
+        /*******************************************/
     }
-    
+
 
 	/*****************************************************************************************************/
     /*                                                                                                   */
@@ -98,14 +93,15 @@ function EDIT_DISPLAY(){
         jQuery(this.send_btn).unbind("click");
         jQuery(this.send_btn).bind("click",function(){
             JSObject.disableButton(this);
+           
             JSObject.validate();
+            
         })
         JSObject.enableButton(this.send_btn);
-
+        
     }
-
-
-    /*****************************************************************************************************/
+	
+	/*****************************************************************************************************/
     /*                                                                                                   */
     /*                                 FUNCTION ENABLE BUTTON                                            */
     /*                                                                                                   */
@@ -113,6 +109,7 @@ function EDIT_DISPLAY(){
     this.enableButton = function(btn){
         jQuery(btn).css('cursor','pointer');
         jQuery(btn).animate({opacity:1},100);
+        
     }
 
 
@@ -155,6 +152,8 @@ function EDIT_DISPLAY(){
     /*                                                                                                   */
     /*****************************************************************************************************/
     this.validate = function(){
+    	
+    	
         jQuery(this.form).validate().form();
 
         // y coordinates of error inputs
@@ -162,13 +161,15 @@ function EDIT_DISPLAY(){
 
         // find the y coordinate for the errors
         for (var name in this.validator.invalid){
-            var $input = jQuery(this.form[name]);
-            arr_errorsYCoord.push($input.offset().top);
+            var input = jQuery(this.form[name]);
+            arr_errorsYCoord.push(input.offset().top);
         }
 
         // if there are no errors from syntax point of view, then send data
         if (arr_errorsYCoord.length == 0){
-            this.sendData();
+      	    
+            //send data
+            JSObject.sendData();
         }
         //move container(div) scroll to the first error
         else{
@@ -178,10 +179,10 @@ function EDIT_DISPLAY(){
             // add actions to send, cancel, ... buttons. At this moment the buttons are disabled.
             JSObject.addButtonsActions();
         }
-    }
+    }	
 
 
-    /*****************************************************************************************************/
+	/*****************************************************************************************************/
 	/*                                                                                                   */
 	/*                       FUNCTION SUBMIT FORM  THROUGH an IFRAME as target                           */          
 	/*                                                                                                   */
@@ -212,8 +213,11 @@ function EDIT_DISPLAY(){
 	/*                                                                                                   */
 	/*****************************************************************************************************/
 	this.startUploadingData = function(){
-
-		JSInterface.Preloader.start();
+		// make something useful before submit (onStart)
+		
+		//add preloader
+		var msg = 'Please wait...';
+		JSInterface.Preloader.start({message: msg});
 		
 		//disable form elements
 		setTimeout(function(){
@@ -225,6 +229,8 @@ function EDIT_DISPLAY(){
 						}
 					},300);
 		
+		jQuery('.feedback',JSObject.DOMDoc).animate({opacity:0.4},300);
+		
 		return true;
 	}
 	
@@ -235,28 +241,33 @@ function EDIT_DISPLAY(){
 	/*                              FUNCTION COMPLETE UPLOADING DATA                                     */          
 	/*                                                                                                   */
 	/*****************************************************************************************************/
-	this.completeUploadingData = function(response){
+	this.completeUploadingData = function(response) {
 		
 		jQuery("#"+JSObject.form.id,JSObject.DOMDoc).unbind("submit");
 		jQuery("#"+JSObject.form.id,JSObject.DOMDoc).bind("submit",function(){return false;});
-	
+        
+        //console.log(response)
+        
+      	response = Boolean(Number(String(response)));
+       
 		// remove preloader
 		JSInterface.Preloader.remove(100);
 		
-		response = Boolean(Number(String(response)));
-  
-		if (response == true){
+		if (response){
 			
-            // show message
-            var message = 'Your app has been successfully modified!';
-            JSInterface.Loader.display({message: message});
-            
-		} else {
-			
-			var message = 'There was an error. Please reload the page and try again.';
+           // success message								
+			var message = "Thank you for your message, we'll be in touch with you soon!";
 			JSInterface.Loader.display({message: message});
+          
+		  	JSObject.form.reset();
+		  
+		} else {
+		  
+			// show message
+			var message = 'There was an error. Please reload the page and try again in few seconds or contact the plugin administrator if the problem persists.';
+			JSInterface.Loader.display({message: message});	
 		}
-
+        
 		//enable form elements
 		setTimeout(function(){
 						var aElems = JSObject.form.elements;
@@ -269,6 +280,7 @@ function EDIT_DISPLAY(){
 		//enable buttons
 		JSObject.addButtonsActions();
 		
+		jQuery('.feedback',JSObject.DOMDoc).animate({opacity:1},300);
+		
 	}
-
 }

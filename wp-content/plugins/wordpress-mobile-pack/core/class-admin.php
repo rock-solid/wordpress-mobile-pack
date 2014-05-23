@@ -285,34 +285,34 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
             if (isset($_POST) && is_array($_POST) && !empty($_POST)){
                 
                 // handle display mode (settings page)
-                if (isset($_POST['editsettings_displaymode']) && $_POST['editsettings_displaymode'] != ''){
-                    if (in_array($_POST['editsettings_displaymode'], array('normal', 'preview', 'disabled'))){
+                if (isset($_POST['wmp_editsettings_displaymode']) && $_POST['wmp_editsettings_displaymode'] != ''){
+                    if (in_array($_POST['wmp_editsettings_displaymode'], array('normal', 'preview', 'disabled'))){
                         
                         $status = 1;
                         
                         // save option
-                        WMobilePack::wmp_update_settings('display_mode', $_POST['editsettings_displaymode']);
+                        WMobilePack::wmp_update_settings('display_mode', $_POST['wmp_editsettings_displaymode']);
                     }
                 }
                 
                 // handle color schemes and fonts (look & feel page)
-                if (isset($_POST['edittheme_colorscheme']) && $_POST['edittheme_colorscheme'] != '' &&
-                    isset($_POST['edittheme_fontheadlines']) && $_POST['edittheme_fontheadlines'] != '' &&
-                    isset($_POST['edittheme_fontsubtitles']) && $_POST['edittheme_fontsubtitles'] != '' &&
-                    isset($_POST['edittheme_fontparagraphs']) && $_POST['edittheme_fontparagraphs'] != ''){
+                if (isset($_POST['wmp_edittheme_colorscheme']) && $_POST['wmp_edittheme_colorscheme'] != '' &&
+                    isset($_POST['wmp_edittheme_fontheadlines']) && $_POST['wmp_edittheme_fontheadlines'] != '' &&
+                    isset($_POST['wmp_edittheme_fontsubtitles']) && $_POST['wmp_edittheme_fontsubtitles'] != '' &&
+                    isset($_POST['wmp_edittheme_fontparagraphs']) && $_POST['wmp_edittheme_fontparagraphs'] != ''){
                     
-                    if (in_array($_POST['edittheme_colorscheme'], array(1,2,3)) && 
-                        in_array($_POST['edittheme_fontheadlines'], WMobilePack::$wmp_allowed_fonts) && 
-                        in_array($_POST['edittheme_fontsubtitles'], WMobilePack::$wmp_allowed_fonts) &&
-                        in_array($_POST['edittheme_fontparagraphs'], WMobilePack::$wmp_allowed_fonts)){
+                    if (in_array($_POST['wmp_edittheme_colorscheme'], array(1,2,3)) && 
+                        in_array($_POST['wmp_edittheme_fontheadlines'], WMobilePack::$wmp_allowed_fonts) && 
+                        in_array($_POST['wmp_edittheme_fontsubtitles'], WMobilePack::$wmp_allowed_fonts) &&
+                        in_array($_POST['wmp_edittheme_fontparagraphs'], WMobilePack::$wmp_allowed_fonts)){
                         
                         $status = 1;
                         
                         // save options
-                        WMobilePack::wmp_update_settings('color_scheme', $_POST['edittheme_colorscheme']);
-                        WMobilePack::wmp_update_settings('font_headlines', $_POST['edittheme_fontheadlines']);
-                        WMobilePack::wmp_update_settings('font_subtitles', $_POST['edittheme_fontsubtitles']);
-                        WMobilePack::wmp_update_settings('font_paragraphs', $_POST['edittheme_fontparagraphs']);
+                        WMobilePack::wmp_update_settings('color_scheme', $_POST['wmp_edittheme_colorscheme']);
+                        WMobilePack::wmp_update_settings('font_headlines', $_POST['wmp_edittheme_fontheadlines']);
+                        WMobilePack::wmp_update_settings('font_subtitles', $_POST['wmp_edittheme_fontsubtitles']);
+                        WMobilePack::wmp_update_settings('font_paragraphs', $_POST['wmp_edittheme_fontparagraphs']);
                     }
                 }
                 
@@ -385,12 +385,12 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                                 if ($info['error'] >= 1 || $info['size'] <= 0) {
         
                                 	$arrResponse['status'] = 0;
-                                	$arrResponse["messages"][] = "We encountered a problem processing your ".($file == "editimages_icon" ? "icon" : "logo").". Please choose another image!";
+                                	$arrResponse["messages"][] = "We encountered a problem processing your ".($file == "wmp_editimages_icon" ? "icon" : "logo").". Please choose another image!";
         
                                 } elseif ( $info['size'] > 1048576 ){
         
                                 	$arrResponse['status'] = 0;
-                                	$arrResponse["messages"][] = "Your ".($file == "editimages_icon" ? "icon" : "logo")." size is greater than 1Mb!";
+                                	$arrResponse["messages"][] = "Your ".($file == "wmp_editimages_icon" ? "icon" : "logo")." size is greater than 1Mb!";
         
                                 } else {
                                     
@@ -404,7 +404,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                                     $arrFilename = explode(".", $info['name']);
                                     $fileExtension = end($arrFilename);
                                     
-                                    if ($file == "editimages_icon") {
+                                    if ($file == "wmp_editimages_icon") {
                                         
                                         $arrAllowedExtensions = array('jpg', 'jpeg', 'png');
                                         $arrMaximumSize = array('width' => 256, 'height' => 256);
@@ -418,7 +418,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                                     // check file extension
                                     if (!in_array(strtolower($fileExtension), $arrAllowedExtensions)) {
                                         
-                                        $arrResponse['messages'][] = "Error saving image, please add a ".implode(' or ',$arrAllowedExtensions)." image for your ".($file == "editimages_icon" ? "icon" : "logo")."!";
+                                        $arrResponse['messages'][] = "Error saving image, please add a ".implode(' or ',$arrAllowedExtensions)." image for your ".($file == "wmp_editimages_icon" ? "icon" : "logo")."!";
                                         
                                     } else {
                                         
@@ -428,7 +428,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                         				/*										*/
                         				/****************************************/
                                     
-                                        $uniqueFilename = ($file == "editimages_icon" ? "icon" : "logo").'_'.time().'.'.$fileExtension;
+                                        $uniqueFilename = ($file == "wmp_editimages_icon" ? "icon" : "logo").'_'.time().'.'.$fileExtension;
                                         
                                         // upload to the default uploads folder
                                         $upload_overrides = array( 'test_form' => false );
@@ -479,7 +479,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                                                     
                                                 } else {
                                                     
-                                                    $arrResponse["messages"][] = "We encountered a problem resizing your ".($file == "editimages_icon" ? "icon" : "logo").". Please choose another image!";
+                                                    $arrResponse["messages"][] = "We encountered a problem resizing your ".($file == "wmp_editimages_icon" ? "icon" : "logo").". Please choose another image!";
                                                 }
                                             }
                                             
@@ -492,18 +492,18 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                                             if ($copied_and_resized) {
                                                     
                                                 // delete previous icon / logo
-                                                $previous_file_path = WMobilePack::wmp_get_setting($file == "editimages_icon" ? "icon" : "logo");
+                                                $previous_file_path = WMobilePack::wmp_get_setting($file == "wmp_editimages_icon" ? "icon" : "logo");
                                                 
                                                 if ($previous_file_path != ''){
                                                     unlink(WMP_FILES_UPLOADS_DIR.$previous_file_path);
                                                 }
                                                 
                                                 // save option
-                                                WMobilePack::wmp_update_settings($file == "editimages_icon" ? "icon" : "logo", $uniqueFilename);
+                                                WMobilePack::wmp_update_settings($file == "wmp_editimages_icon" ? "icon" : "logo", $uniqueFilename);
                                                 
                                                 // add path in the response
                                                 $arrResponse['status'] = 1;
-                                                $arrResponse['uploaded_'.($file == "editimages_icon" ? "icon" : "logo")] = WMP_FILES_UPLOADS_URL.$uniqueFilename;
+                                                $arrResponse['uploaded_'.($file == "wmp_editimages_icon" ? "icon" : "logo")] = WMP_FILES_UPLOADS_URL.$uniqueFilename;
                                             }
                                             
                                             // remove file from the default uploads folder

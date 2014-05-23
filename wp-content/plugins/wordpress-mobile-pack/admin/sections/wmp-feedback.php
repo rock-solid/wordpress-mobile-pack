@@ -18,12 +18,12 @@
     <div class="spacer-10"></div>
     <p>We're going to reply to your e-mail address <em><?php echo get_option( 'admin_email' );?></em> as soon as possible.</p>
     <div class="spacer-10"></div>
-    <form id="feedback_form" name="feedback_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_send_feedback" method="post">
-        <input type="hidden" name="feedback_page" id="feedback_page" value="<?php echo ucfirst($current_page);?>" />
-        <textarea name="feedback_message" id="feedback_message" placeholder="Your message" class="small"></textarea>
+    <form id="wmp_feedback_form" name="wmp_feedback_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_send_feedback" method="post">
+        <input type="hidden" name="wmp_feedback_page" id="wmp_feedback_page" value="<?php echo ucfirst($current_page);?>" />
+        <textarea name="wmp_feedback_message" id="wmp_feedback_message" placeholder="Your message" class="small"></textarea>
         <div id="error_message_container" class="field-message error"></div>
         <div class="spacer-10"></div>
-        <a class="btn green smaller" href="javascript:void(0)" id="feedback_send_btn">Send</a>
+        <a class="btn green smaller" href="javascript:void(0)" id="wmp_feedback_send_btn">Send</a>
     </form>
 </div>
 
@@ -31,7 +31,7 @@
     if (window.JSInterface && window.JSInterface != null){
         jQuery(document).ready(function(){
             
-            window.JSInterface.add("UI_feedback","SEND_FEEDBACK",{'DOMDoc':window.document}, window);
+            window.JSInterface.add("UI_feedback","WMP_SEND_FEEDBACK",{'DOMDoc':window.document}, window);
         });
     }
 </script>
