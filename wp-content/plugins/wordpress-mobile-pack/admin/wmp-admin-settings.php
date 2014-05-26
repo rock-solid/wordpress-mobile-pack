@@ -23,8 +23,7 @@
             <div class="details">
             	<div class="spacer-10"></div>
             	<p>
-                    Edit the <strong>Display Mode</strong> of your app to enable or disabled it for your mobile readers. The <strong>Preview</strong> display mode lets you edit your app without it being visible to anyone else.<br /><br />
-                    By adding your <strong>Google Analytics ID</strong>, you will be able to track the mobile web application's visitors directly in your Google Analytics account.
+                    Edit the <strong>Display Mode</strong> of your app to enable/disable it for your mobile readers. The <strong>Preview mode</strong> lets you edit your app without it being visible to anyone else.
                 
                 </p>
             	<div class="spacer-20"></div>
@@ -35,7 +34,7 @@
             	<div class="display-mode">
                  	<p>Choose display mode:</p>
                     <div class="spacer-20"></div>
-                    <form name="wmp_editsettings_form" id="wmp_editsettings_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_save" method="post" enctype="multipart/form-data">
+                    <form name="wmp_editsettings_form" id="wmp_editsettings_form" class="left" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_save" method="post" enctype="multipart/form-data">
                         <?php
                             $selected_value = WMobilePack::wmp_get_setting('display_mode');
                             if ($selected_value == '')
@@ -64,6 +63,13 @@
                      
                        
                     </form>
+                     <div class="notice notice-left right" style="width: 475px; margin: 95px 0 15px 0;">
+                        <span>
+                            By adding your Google Analytics ID, you will be able to track the mobile web application's visitors directly in your Google Analytics account.
+                        </span>
+                    </div>
+                    
+                    
                 </div>
                 <div class="spacer-0"></div>
             </div>
@@ -71,12 +77,12 @@
             
             <div class="details offline">
             	<div class="offline-mode"> 
-                 	<p>Offline mode:</p>
+                 	<p>Have your mobile web application available in offline mode?</p>
                     <div class="spacer-20"></div>
                  	<!-- add radio buttons -->
-                    <input type="radio" name="offline" id="on" disabled="disabled" /><label for="on">On</label>
+                    <input type="radio" name="offline" id="on" disabled="disabled" /><label for="on">ON</label>
                     <div class="spacer-10"></div>
-                    <input type="radio" name="offline" id="off" disabled="disabled" checked="checked" /><label for="off">Off</label>
+                    <input type="radio" name="offline" id="off" disabled="disabled" checked="checked" /><label for="off">OFF</label>
                 </div>
                 
                 <?php

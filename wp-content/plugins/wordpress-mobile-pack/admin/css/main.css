@@ -2196,10 +2196,7 @@ body {
   border: 1px solid #1686b0;
   border-left: 0px;
 }
-/* line 117, ../sass/modules/_settings.scss */
-#wmpack-admin .settings .left-side .details .display-mode {
-  float: left;
-}
+
 /* line 120, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side .details .display-mode p, #wmpack-admin .settings .left-side .details .display-mode label {
   font-family: 'AcordeRegular', sans-serif;
