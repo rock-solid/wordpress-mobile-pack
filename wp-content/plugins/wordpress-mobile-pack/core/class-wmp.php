@@ -138,7 +138,6 @@ if ( ! class_exists( 'WMobilePack' ) ) {
             wp_enqueue_script('js_interface', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/JSInterface.js'), array('jquery-core', 'jquery-migrate'), WMP_VERSION);	
     	    wp_enqueue_script('js_scrollbar', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/perfect-scrollbar.js'), array(), WMP_VERSION);	
     		wp_enqueue_script('js_feedback', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Feedback/WMP_SEND_FEEDBACK.js'), array(), WMP_VERSION);	
-            wp_enqueue_script('js_newsletter', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Newsletter/WMP_NEWSLETTER.js'), array(), WMP_VERSION);
     	}
     	
     	
@@ -208,7 +207,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     		$settings_page = add_submenu_page( 'wmp-options', 'Settings', 'Settings', 'manage_options', 'wmp-options-settings', array( &$WMobilePackAdmin, 'wmp_settings_options') );
             add_action( 'load-' . $settings_page, array( &$this, 'wmp_admin_load_settings_js' ) ); 
             
-    		add_submenu_page( 'wmp-options', 'Upgrade', 'Upgrade', 'manage_options', 'wmp-options-upgrade', array( &$WMobilePackAdmin, 'wmp_upgrade_options') ); 
+    		add_submenu_page( 'wmp-options', 'More...', 'More...', 'manage_options', 'wmp-options-upgrade', array( &$WMobilePackAdmin, 'wmp_upgrade_options') ); 
     	}
     		
          	

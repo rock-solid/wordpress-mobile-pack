@@ -22,7 +22,7 @@
             <!-- add content form -->
             <div class="details">
                 <div class="spacer-10"></div>
-                <p>Lorem ipsum dolor sit amet, nec accusamus assentior in, per ea probo percipit ullamcorper. An mel animal menandri vituperata. Vis an solet ocurreret, sit laudem semper perfecto ex, vix an nibh tacimates. Ne usu duis ignota oblique.</p>
+                <p>Currently there's only one theme available, but we're working on others so you're welcome to join the waitlist. You can choose from the below color schemes & fonts, add your logo & app icon. The default theme comes with 6 abstract covers that are randomly displayed on the loading screen to give your app a magazine flavor.</p>
                 <div class="spacer-20"></div>
             </div>
             <div class="spacer-10"></div>
@@ -433,10 +433,10 @@
                     </form>    
                 </div>
                 
-                <div class="notice notice-left right" style="width: 230px;">
+                <div class="notice notice-left right" style="width: 280px;">
                     <span>
-                        Please add your logo in a png image format with a transparent background.<br/><br/>
-                        Your icon should be square with a recommended size of 256 x 256 px.<br/><br/>
+                        Add your logo in a .png format with a transparent background. This will be displayed on the cover of your app.<br /><br /> 
+                        Your icon should be square with a recommended size of 256 x 256 px. This will be displayed when the app will be added to the homescreen.<br /><br /> 
                         The file size for uploaded images should not exceed 1MB.
                     </span>
                 </div>
@@ -446,14 +446,6 @@
     
         <div class="right-side">
         
-            <!-- add news and updates -->
-            <?php include_once('sections/wmp-news.php'); ?>
-            <div class="spacer-15"></div>
-
-			<!-- add newsletter box -->
-            <?php include_once('sections/wmp-newsletter.php'); ?>
-            <div class="spacer-15"></div>
-            
             <!-- add feedback form -->
             <?php include_once('sections/wmp-feedback.php'); ?>
         </div>

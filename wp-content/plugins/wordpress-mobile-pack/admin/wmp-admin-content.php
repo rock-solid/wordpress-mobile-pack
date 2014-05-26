@@ -26,7 +26,7 @@
             <!-- add content form -->
             <div class="details">
             	<div class="spacer-10"></div>
-            	<p>You can choose what categories are displayed in your mobile web application from the section below. Click on the rows to deactivate/activate categories.</p>
+                <p>Choose what categories to be displayed in your mobile web application. Click on the rows to below to <em>show/hide</em> categories.</p>
             	<div class="spacer-20"></div>
                 <div class="spacer-20"></div>
                 
@@ -129,14 +129,6 @@
     
         <div class="right-side">
         
-            <!-- add news and updates -->
-            <?php include_once('sections/wmp-news.php'); ?>
-            <div class="spacer-15"></div>
-
-			<!-- add newsletter box -->
-            <?php include_once('sections/wmp-newsletter.php'); ?>
-            <div class="spacer-15"></div>
-            
             <!-- add feedback form -->
             <?php include_once('sections/wmp-feedback.php'); ?>
         </div>

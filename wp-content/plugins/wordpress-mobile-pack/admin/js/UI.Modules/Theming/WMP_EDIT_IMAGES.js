@@ -83,8 +83,9 @@ function WMP_EDIT_IMAGES(){
 	        // the errorPlacement has to take the table layout into account
 	        // all the errors must be handled by containers/divs with custom ids: Ex. "error_fullname_container"
 	        errorPlacement: function(error, element) {
-	            var id = (element[0].id.split("_").length > 1) ? element[0].id.split("_")[1] : element[0].id.split("_")[0];
-	            var errorContainer = jQuery("#error_"+id+"_container",JSObject.DOMDoc);
+	            var split_name = element[0].id.split("_");
+                var id = (split_name.length > 1) ? split_name[ split_name.length - 1] : split_name[0];
+                var errorContainer = jQuery("#error_"+id+"_container",JSObject.DOMDoc);
 	            error.appendTo( errorContainer );
 	        },
             
@@ -203,7 +204,7 @@ function WMP_EDIT_IMAGES(){
 			$DeleteIconLink.click(
 				function(){		
 				
-					var isConfirmed = confirm("Are you sure you want to delete the app icon?");
+					var isConfirmed = confirm("This app icon is used when the app is added to the homescreen. Are you sure you want to remove it?");
 	
 					if (isConfirmed) {
 						
@@ -360,7 +361,7 @@ function WMP_EDIT_IMAGES(){
 			$DeleteLogoLink.click(
 				function(){		
 				
-					var isConfirmed = confirm("Are you sure you want to delete the app logo?");
+					var isConfirmed = confirm("This app logo is used on the cover of your app. Are you sure you want to remove it?");
 	
 					if (isConfirmed) {
 									

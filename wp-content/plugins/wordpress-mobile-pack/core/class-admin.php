@@ -32,7 +32,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			$json_data = get_transient("wmp_whats_new_updates");
             
 			// the transient is not set or expired
-			if(!$json_data) {
+			if (!$json_data) {
 			
     			// jSON URL which should be requested
     			$json_url = WMP_WHATSNEW_UPDATES;
@@ -163,22 +163,25 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
            
             if (isset($_POST) && is_array($_POST) && !empty($_POST)){
                  
-                if (isset($_POST['feedback_page']) && isset($_POST['feedback_message'])){
+                if (isset($_POST['wmp_feedback_page']) && isset($_POST['wmp_feedback_name']) && isset($_POST['wmp_feedback_email']) && isset($_POST['wmp_feedback_message'])){
                     
-                    if (is_string($_POST['feedback_page']) && $_POST['feedback_page'] != '' && $_POST['feedback_message'] != '' ){
+                    if (is_string($_POST['wmp_feedback_page']) && $_POST['wmp_feedback_page'] != '' && $_POST['wmp_feedback_name'] != "" && $_POST['wmp_feedback_email'] && $_POST['wmp_feedback_message'] != '' ){
                       
 					  	// get admin e-mail and name
 					  	if (is_admin()) {
 							
-							// get admin e-mail address
-							$admin_email = get_option( 'admin_email' );
+							$admin_email = $_POST['wmp_feedback_email'];
                             
 							// filter e-mail														
-							if (filter_var($admin_email, FILTER_VALIDATE_EMAIL) !== false ) {
+							if (filter_var($admin_email, FILTER_VALIDATE_EMAIL) !== false ){
 								 
 								// set e-mail variables
-								$message = "Message: ".strip_tags($_POST["feedback_message"])."\r\n \r\n Page: ".$_POST['feedback_page'];
-								$subject = 'New message from WP Mobile Pack admin';
+                                $message = "Name: ".strip_tags($_POST["wmp_feedback_name"])."\r\n \r\n";
+                                $message .= "E-mail: ".$_POST["wmp_feedback_email"]."\r\n \r\n";
+								$message .= "Message: ".strip_tags($_POST["wmp_feedback_message"])."\r\n \r\n";
+                                $message .= "Page: ".stripslashes(strip_tags($_POST['wmp_feedback_page']));
+                                
+								$subject = 'WP Mobile Pack Feeback';
 								$to = WMP_FEEDBACK_EMAIL;
                                 
 								// set headers
@@ -186,7 +189,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                                 
 								// send e-mail		
 								if (mail($to, $subject, $message, $headers)) 
-									$status = 1;
+                                    $status = 1;
 							}
 						}
                     }
@@ -207,8 +210,8 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 		public static function wmp_news_updates() {
 			
 			$json_data =  get_transient("wmp_newsupdates");
-			
-			if (!$json_data) {
+            
+            if (!$json_data) {
 			
 				// jSON URL which should be requested
 				$json_url = WMP_NEWS_UPDATES;
@@ -328,8 +331,14 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                     
                     if (in_array($_POST['joined_waitlist'], array('content', 'settings', 'lifestyletheme',  'businesstheme'))){
                         
-                        $joined_waitlists = unserialize(WMobilePack::wmp_get_setting('joined_waitlists'));
+                        $option_waitlists = WMobilePack::wmp_get_setting('joined_waitlists');
                         
+                        if ($option_waitlists != '')
+                            $joined_waitlists = unserialize(WMobilePack::wmp_get_setting('joined_waitlists'));
+                        
+                        if ($joined_waitlists == null || !is_array($joined_waitlists))
+                            $joined_waitlists = array();
+                            
                         if (!in_array($_POST['joined_waitlist'], $joined_waitlists)) {
                             
                             $status = 1;

@@ -78,8 +78,9 @@ function WMP_WAITLIST(){
 	        // the errorPlacement has to take the table layout into account
 	        // all the errors must be handled by containers/divs with custom ids: Ex. "error_fullname_container"
 	        errorPlacement: function(error, element) {
-	            var id = (element[0].id.split("_").length > 2) ? element[0].id.split("_")[2] : element[0].id.split("_")[0];
-	            var errorContainer = jQuery("#error_"+id+"_container",JSObject.container);
+	            var split_name = element[0].id.split("_");
+                var id = (split_name.length > 1) ? split_name[ split_name.length - 1] : split_name[0];
+                var errorContainer = jQuery("#error_"+id+"_container",JSObject.DOMDoc);
 	            error.appendTo( errorContainer );
 	        },
             
@@ -208,6 +209,7 @@ function WMP_WAITLIST(){
 			dataType: 'jsonp',
 			success: function(responseJSON){
 				
+                console.log(responseJSON)
                 WMPJSInterface.Preloader.remove(100);
                 
                 JSON = eval (responseJSON);

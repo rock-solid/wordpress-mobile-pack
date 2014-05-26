@@ -51,6 +51,13 @@ function WMP_SEND_FEEDBACK(){
 	    this.validator = jQuery("#"+this.form.id, this.DOMDoc).validate({
 	
             rules: {
+                wmp_feedback_email: {
+    		        required    : true,
+                    email       : true
+    			},
+                wmp_feedback_name: {
+    		        required    : true
+    			},
                 wmp_feedback_message: {
     		        required    : true
     			}
@@ -59,8 +66,10 @@ function WMP_SEND_FEEDBACK(){
 	        // the errorPlacement has to take the table layout into account
 	        // all the errors must be handled by containers/divs with custom ids: Ex. "error_fullname_container"
 	        errorPlacement: function(error, element) {
-	            var id = (element[0].id.split("_").length > 1) ? element[0].id.split("_")[1] : element[0].id.split("_")[0];
-	            var errorContainer = jQuery("#error_"+id+"_container",JSObject.DOMDoc);
+	           
+                var split_name = element[0].id.split("_");
+                var id = (split_name.length > 1) ? split_name[ split_name.length - 1] : split_name[0];
+                var errorContainer = jQuery("#error_"+id+"_container",JSObject.DOMDoc);
 	            error.appendTo( errorContainer );
 	        },
             
@@ -71,10 +80,22 @@ function WMP_SEND_FEEDBACK(){
         
         /*************  PLACEGOLDERS *************/
         
-        var MessageInput = jQuery('#'+this.type+'_message',this.DOMDoc);        
-        MessageInput.data('holder',MessageInput.attr('placeholder'));
+        var $NameInput = jQuery('#'+this.type+'_name',this.DOMDoc);        
+        $NameInput.data('holder', $NameInput.attr('placeholder'));
 
-        MessageInput.focusin(function(){jQuery(this).attr('placeholder','');}).focusout(function(){jQuery(this).attr('placeholder',jQuery(this).data('holder'));});
+        $NameInput.focusin(function(){jQuery(this).attr('placeholder','');}).focusout(function(){jQuery(this).attr('placeholder',jQuery(this).data('holder'));});
+         
+         
+        var $EmailInput = jQuery('#'+this.type+'_email',this.DOMDoc);        
+        $EmailInput.data('holder',$EmailInput.attr('placeholder'));
+
+        $EmailInput.focusin(function(){jQuery(this).attr('placeholder','');}).focusout(function(){jQuery(this).attr('placeholder',jQuery(this).data('holder'));});
+          
+          
+        var $MessageInput = jQuery('#'+this.type+'_message',this.DOMDoc);        
+        $MessageInput.data('holder',$MessageInput.attr('placeholder'));
+
+        $MessageInput.focusin(function(){jQuery(this).attr('placeholder','');}).focusout(function(){jQuery(this).attr('placeholder',jQuery(this).data('holder'));});
                 
         /*******************************************/
     }
@@ -264,8 +285,8 @@ function WMP_SEND_FEEDBACK(){
 		} else {
 		  
 			// show message
-			var message = 'There was an error. Please reload the page and try again in few seconds or contact the plugin administrator if the problem persists.';
-			WMPJSInterface.Loader.display({message: message});	
+			var message = 'We were unable to send the message because your mail() function is probably disabled. Please send your message directly to <a href="mailto:feedback@appticles.com">feedback@appticles.com</a>';
+			WMPJSInterface.Loader.display({message: message, time: 15000});	
 		}
         
 		//enable form elements

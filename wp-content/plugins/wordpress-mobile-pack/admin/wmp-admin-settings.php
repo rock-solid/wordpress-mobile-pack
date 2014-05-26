@@ -126,14 +126,6 @@
     
         <div class="right-side">
         
-            <!-- add news and updates -->
-            <?php include_once('sections/wmp-news.php'); ?>
-            <div class="spacer-15"></div>
-
-			<!-- add newsletter box -->
-            <?php include_once('sections/wmp-newsletter.php'); ?>
-            <div class="spacer-15"></div>
-            
             <!-- add feedback form -->
             <?php include_once('sections/wmp-feedback.php'); ?>
         </div>
