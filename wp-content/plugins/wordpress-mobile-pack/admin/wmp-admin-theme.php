@@ -217,7 +217,20 @@
                             <div class="color-3-4" title="Buttons"></div>
                             <div class="color-3-5" title="Article header & detail background"></div>
                         </div>
-                        <div class="spacer-20"></div>
+                        <div class="spacer-30"></div>
+                        <!-- start notice -->
+                        <div class="notice notice-top left" style="width: 300px;">
+                            <span>
+                                The above color scheme will impact the following sections within the mobile web application:<br/><br/>
+			
+                                1. Headlines and texts<br/>
+                                2. Category label<br/>
+                                3. Forms<br/>
+                                4. Buttons<br/>
+                                5. Article header & detail background<br/>
+                            </span>
+                        </div>
+                        <div class="spacer-10"></div>
                     </div>
                     
                     <div class="font-chooser">
@@ -314,6 +327,7 @@
                         <div class="spacer-20"></div>        
                     </div>
                 </form>
+                
                 <div class="spacer-20"></div>
                 <a href="javascript:void(0);" id="wmp_edittheme_send_btn" class="btn green smaller" >Save</a> 
             </div>
