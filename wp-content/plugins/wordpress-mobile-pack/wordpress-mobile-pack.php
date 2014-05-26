@@ -28,6 +28,9 @@ if ( class_exists( 'WMobilePack' ) && class_exists( 'WMobilePackAdmin' ) ) {
         
 	if (is_admin()) {
 		
+		//setcookie("wmp_theme_mode", 'desktop', time()+3600*30*24,'/');
+		//setcookie("wmp_load_app", 1, time()+3600*30*24,'/');
+		
 		$wmobile_pack->wmp_admin_init();
 		
 		add_action( 'wp_ajax_wmp_content_save', array( &$wmobile_pack_admin, 'wmp_content_save' ) );

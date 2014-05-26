@@ -84,18 +84,22 @@ if ( ! class_exists( 'WMobilePack' ) ) {
             // remove uploaded images and uploads folder
             $logo_path = WMobilePack::wmp_get_setting('logo');
             
-            if ($logo_path != '' && !file_exists(WMP_FILES_UPLOADS_DIR.$logo_path))
+            if ($logo_path != '' && file_exists(WMP_FILES_UPLOADS_DIR.$logo_path))
                 unlink(WMP_FILES_UPLOADS_DIR.$logo_path);  
             
             $icon_path = WMobilePack::wmp_get_setting('icon');
             
-            if ($icon_path != '' && !file_exists(WMP_FILES_UPLOADS_DIR.$icon_path))
+            if ($icon_path != '' && file_exists(WMP_FILES_UPLOADS_DIR.$icon_path))
                 unlink(WMP_FILES_UPLOADS_DIR.$icon_path);  
                 
             rmdir( WMP_FILES_UPLOADS_DIR );
             
     		// remove settings from database
     		$this->wmp_delete_settings(self::$wmp_options);
+			
+			// remove the cookies
+			setcookie("wmp_theme_mode", "", time()-3600);
+			setcookie("wmp_load_app", "", time()-3600);
     	}
     	
     		
@@ -221,7 +225,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     	 * otherwise it will return only the requested option value.
     	 *
     	 */		
-    	public function wmp_get_setting($option) {
+    	public static function wmp_get_setting($option) {
     		
     		// if the passed param is an array, return an array with all the settings
     		if (is_array($option)) {
@@ -243,7 +247,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     				$wmp_setting = self::$wmp_options[$option];
     			} else
     				$wmp_setting = get_option( 'wmpack_' . $option );
-    				
+    			
     			return $wmp_setting;
     		}
     	}
@@ -407,7 +411,24 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                 
             } else {
                 
+				// check if the load app cookie is 1 or the user came form a mobile device
+				if (!isset($_COOKIE["wmp_load_app"])) {
+            			
+					// load admin class
+					require_once(WMP_PLUGIN_PATH.'core/mobile-detect.php');
+					$WMobileDetect = new WPMobileDetect;
+					
+					$load_app = $WMobileDetect->wmp_detect_device();
+					
+				} elseif (isset($_COOKIE["wmp_load_app"]) && $_COOKIE["wmp_load_app"] == 1)
+					$load_app = true;
+				
                 // add the option to view the app in the footer of the website
+				if($load_app) {
+					
+					// add hook in footer
+					add_action('wp_footer', array(&$this,'wmp_show_footer_box'));	
+				}
             }
     	}
         
@@ -567,5 +588,23 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     		// by default return false;
     		return false; 
     	}
+		
+		
+		
+		 /**
+          * 
+          * Method used to display a box on the footer of the theme 
+		  * 
+		  * This method is called from wmp_check_load()
+		  * The box containes a link that sets the cookie and loads the app 
+          *		  
+          */
+		public function wmp_show_footer_box(){
+			
+			// load view
+			include(WMP_PLUGIN_PATH.'admin/sections/wmp-show-mobile.php'); 
+			
+			
+		}
     }
 }
