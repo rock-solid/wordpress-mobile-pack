@@ -81,7 +81,7 @@
                 <div class="spacer-15"></div>
                 <div class="spacer-20"></div>
                 <div class="more-content">
-                 	<p class="left">Add more content from </p>
+                 	<p class="left">Want to add more content?</p>
                  	<img src="<?php echo plugins_url()."/".WMP_DOMAIN."/admin/images/content-icons.png";?>" alt="" class="left" />
                 </div>
                 <?php

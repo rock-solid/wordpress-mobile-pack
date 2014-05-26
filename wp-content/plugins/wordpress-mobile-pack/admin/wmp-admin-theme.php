@@ -193,38 +193,29 @@
                         <!-- add radio buttons -->
                         <input type="radio" name="wmp_edittheme_colorscheme" id="wmp_edittheme_colorscheme" value="1" <?php if ($color_scheme == 1) echo "checked";?> />
                         <div class="colors">
-                        	<div class="color-1-1"></div>
-                            <div class="color-1-2"></div>
-                            <div class="color-1-3"></div>
-                            <div class="color-1-4"></div>
-                            <div class="color-1-5"></div>
-                            <div class="color-1-6"></div>
-                            <div class="color-1-7"></div>
-                            <div class="color-1-8"></div>
+                        	<div class="color-1-1" title="Headlines and texts"></div>
+                            <div class="color-1-2" title="Category label"></div>
+                            <div class="color-1-3" title="Forms"></div>
+                            <div class="color-1-4" title="Buttons"></div>
+                            <div class="color-1-5" title="Article header & detail background"></div>
                         </div>
                         <div class="spacer-20"></div>
                         <input type="radio" name="wmp_edittheme_colorscheme" id="wmp_edittheme_colorscheme" value="2" <?php if ($color_scheme == 2) echo "checked";?> />
                         <div class="colors">
-                        	<div class="color-2-1"></div>
-                            <div class="color-2-2"></div>
-                            <div class="color-2-3"></div>
-                            <div class="color-2-4"></div>
-                            <div class="color-2-5"></div>
-                            <div class="color-2-6"></div>
-                            <div class="color-2-7"></div>
-                            <div class="color-2-8"></div>
+                        	<div class="color-2-1" title="Headlines and texts"></div>
+                            <div class="color-2-2" title="Category label"></div>
+                            <div class="color-2-3" title="Forms"></div>
+                            <div class="color-2-4" title="Buttons"></div>
+                            <div class="color-2-5" title="Article header & detail background"></div>
                         </div>
                         <div class="spacer-20"></div>
                         <input type="radio" name="wmp_edittheme_colorscheme" id="wmp_edittheme_colorscheme" value="3" <?php if ($color_scheme == 3) echo "checked";?> />
                         <div class="colors">
-                        	<div class="color-3-1"></div>
-                            <div class="color-3-2"></div>
-                            <div class="color-3-3"></div>
-                            <div class="color-3-4"></div>
-                            <div class="color-3-5"></div>
-                            <div class="color-3-6"></div>
-                            <div class="color-3-7"></div>
-                            <div class="color-3-8"></div>
+                        	<div class="color-3-1" title="Headlines and texts"></div>
+                            <div class="color-3-2" title="Category label"></div>
+                            <div class="color-3-3" title="Forms"></div>
+                            <div class="color-3-4" title="Buttons"></div>
+                            <div class="color-3-5" title="Article header & detail background"></div>
                         </div>
                         <div class="spacer-20"></div>
                     </div>
