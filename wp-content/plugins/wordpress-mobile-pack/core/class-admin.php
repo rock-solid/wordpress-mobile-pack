@@ -56,7 +56,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 				if ($status == 200) {
 					
 					// Store this data in a transient
-					set_transient( 'wmp_whats_new_updates', $json_response, 3600*24*7 );
+					set_transient( 'wmp_whats_new_updates', $json_response, 3600*24 );
 					
 					// get response
 					$response = json_decode($json_response, true);
@@ -206,7 +206,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
          * 
 		 * The method returns an array containing the latest news and updates or an empty array by default.
 		 *
-		 */
+		 */ 
 		public static function wmp_news_updates() {
 			
 			$json_data =  get_transient("wmp_newsupdates");
@@ -235,7 +235,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 				if ($status == 200) {
 					
 					// Store this data in a transient
-					set_transient( 'wmp_newsupdates', $json_response, 3600*24*7 );
+					set_transient( 'wmp_newsupdates', $json_response, 3600*24*2 );
 					
 					// get response
 					$response = json_decode($json_response, true);
@@ -581,7 +581,6 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			// load view
 			include(WMP_PLUGIN_PATH.'admin/wmp-admin-upgrade.php'); 
 		}
-		
 	}
 
 }

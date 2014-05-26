@@ -3,14 +3,14 @@
 $arrNews = WMobilePackAdmin::wmp_news_updates(); 
 
 if(!empty($arrNews) && is_array($arrNews )):
-	// if the news array is empty this section will not be displayed	
+	// if the news array is empty this section will not be displayed
 ?>
     <div class="updates">
         <h2>News &amp; Resources</h2> 
         <div class="spacer-20"></div>
         <div class="details" id="wmp_news_updates">
             <!-- start news and updates -->
-            <?php foreach($arrNews as $news):?>
+            <?php foreach($arrNews as $key => $news):?>
                 <?php if(isset($news["title"]) && $news["title"] != ''):?>
                 	<p><strong><?php echo $news["title"];?></strong></p>
                     <div class="spacer-2"></div>
@@ -23,7 +23,9 @@ if(!empty($arrNews) && is_array($arrNews )):
                 </p> 
                 <div class="spacer-20"></div>
                 <div class="grey-dotted-line"></div>
-                <div class="spacer-20"></div>
+                <?php if($key < (count($arrNews) - 1)):?>
+                	<div class="spacer-20"></div>
+                <?php endif;?>
             <?php endforeach;?>    
         </div>
     </div>
