@@ -25,9 +25,12 @@
                 <div class="details">
                     <div class="spacer-10"></div>
                     
-                    <?php if (array_key_exists('text', $page_content['header'])):?>
-                        <?php echo $page_content['header']['text'];?>
-                        <div class="spacer-20"></div>
+                    <?php if (array_key_exists('title', $page_content['header'])):?>
+                        <?php echo $page_content['header']['title'];?>
+                    <?php endif;?>
+                    
+                    <?php if (array_key_exists('subtitle', $page_content['header'])):?>
+                        <?php echo $page_content['header']['subtitle'];?>
                     <?php endif;?>
                     
                     <?php if (array_key_exists('banner', $page_content['header'])):?>
@@ -35,6 +38,10 @@
                         	<img src="<?php echo $page_content['header']['banner'];?>" />
                         </div>
                         <div class="spacer-20"></div>
+                    <?php endif;?>
+                    
+                    <?php if (array_key_exists('devices', $page_content['header'])):?>
+                        <?php echo $page_content['header']['devices'];?>
                     <?php endif;?>
                     
                     <div class="spacer-20"></div>
@@ -62,8 +69,6 @@
                             $pos = 'left';
                             
                             foreach ($page_content['features']['list'] as $feature):
-                                
-                        
                         ?>
                         
                             <div class="feature <?php echo $pos;?>">

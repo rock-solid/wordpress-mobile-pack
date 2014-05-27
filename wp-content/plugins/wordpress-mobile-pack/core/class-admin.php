@@ -17,6 +17,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			
 			global $wmobile_pack;
 			
+            echo mktime();
 			// load view
 			include(WMP_PLUGIN_PATH.'admin/wmp-admin-main.php');
 		}
@@ -32,7 +33,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			$json_data = get_transient("wmp_whats_new_updates");
             
 			// the transient is not set or expired
-			if (!$json_data) {
+			if (!$json_data || 1) {
 			
     			// jSON URL which should be requested
     			$json_url = WMP_WHATSNEW_UPDATES;
