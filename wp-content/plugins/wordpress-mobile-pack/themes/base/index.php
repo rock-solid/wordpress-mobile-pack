@@ -2,6 +2,12 @@
 <html manifest="" lang="en-US">
 <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="apple-touch-icon-precomposed" href="" />
+    
     <title><?php echo get_bloginfo("name");?></title>
     <style type="text/css">
          /**
@@ -42,7 +48,7 @@
              -webkit-border-radius: 8px;
             -moz-border-radius: 8px;
             border-radius: 8px;
-            margin: 0 3px;
+            margin: 0 2px;
             opacity: 0.8;
         }
 
@@ -71,6 +77,8 @@
         }
     </style>
     <?php
+        $theme_path = plugins_url()."/".WMP_DOMAIN."/themes/".WMobilePack::wmp_app_theme()."/";
+        
         // check if logo exists
         $logo_path = WMobilePack::wmp_get_setting('logo');
         
@@ -86,12 +94,41 @@
             $icon_path = ''; 
         else
             $icon_path = WMP_FILES_UPLOADS_URL.$icon_path;   
+            
+        // check color scheme
+        $color_scheme = WMobilePack::wmp_get_setting('color_scheme');
+        if ($color_scheme == '')
+            $color_scheme = 1;
+            
+        // check fonts
+        $arrLoadedFonts = array();
+        
+        $font_headlines = array_search(WMobilePack::wmp_get_setting('font_headlines'), WMobilePack::$wmp_allowed_fonts) + 1;
+        if (!$font_headlines)
+            $font_headlines = 1;
+            
+        $arrLoadedFonts[] = $font_headlines;
+            
+        $font_subtitles = array_search(WMobilePack::wmp_get_setting('font_subtitles'), WMobilePack::$wmp_allowed_fonts) + 1;
+        if (!$font_subtitles)
+            $font_subtitles = 1;
+            
+        if (!in_array($font_subtitles, $arrLoadedFonts))
+            $arrLoadedFonts[] = $font_subtitles;
+            
+        $font_paragraphs = array_search(WMobilePack::wmp_get_setting('font_paragraphs'), WMobilePack::$wmp_allowed_fonts) + 1;
+        if (!$font_paragraphs)
+            $font_paragraphs = 1;
+            
+        if (!in_array($font_paragraphs, $arrLoadedFonts))
+            $arrLoadedFonts[] = $font_paragraphs;
     ?>
-                        
+           
     <script type="text/javascript">
 		var appticles = {
 			exportPath: "<?php echo plugins_url()."/".WMP_DOMAIN."/export/";?>",
-			creditsPath: "<?php echo plugins_url()."/".WMP_DOMAIN."/themes/".WMobilePack::wmp_app_theme()."/includes/credits.json";?>",
+			creditsPath: "<?php echo $theme_path."includes/credits.json";?>",
+            defaultCoversPath: "<?php echo $theme_path;?>includes/resources/images/",
 			logo: "<?php echo $logo_path;?>",
 			icon: "<?php echo $icon_path;?>",
 			websiteUrl: '<?php echo get_site_url();?>?wmp_theme_mode=desktop',
@@ -99,8 +136,22 @@
 		};
 	</script>
 
-    <!-- The line below must be kept intact for Sencha Command to build your application -->
-    <script id="microloader" type="text/javascript" src="<?php echo plugins_url()."/".WMP_DOMAIN."/themes/".WMobilePack::wmp_app_theme();?>/app/.sencha/app/microloader/development.js"></script>
+    <!-- core -->
+	<link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/phone.css" type="text/css">
+    <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/fonts.css" type="text/css">
+    
+    <!-- custom fonts -->
+    <?php foreach ($arrLoadedFonts as $font_no):?>
+        <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/font-<?php echo $font_no;?>.css" type="text/css">
+    <?php endforeach;?>
+    
+    <!-- theming -->
+    <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/headlines-f<?php echo $font_headlines;?>.css" type="text/css">
+    <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/paragraphs-f<?php echo $font_subtitles;?>.css" type="text/css">
+    <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/subtitles-f<?php echo $font_paragraphs;?>.css" type="text/css">
+    <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/theme-<?php echo $color_scheme;?>.css" type="text/css">
+    
+    <script type="text/javascript" src="<?php echo $theme_path;?>includes/app.js"></script> 
     
     <?php
         // check if google analytics id was set

@@ -273,7 +273,7 @@
                             
                                     if ($enable_custom_selects):    
                             ?>
-                                        <option value="<?php echo $font_family;?>" data-text='<span style="font-family:<?php echo $font_family;?>"><?php echo $font_family;?></span>' <?php if ($font_headlines == $font_family) echo "selected";?>></option>
+                                        <option value="<?php echo $font_family;?>" data-text='<span style="font-family:<?php echo str_replace(" ", "", $font_family);?>"><?php echo $font_family;?></span>' <?php if ($font_headlines == $font_family) echo "selected";?>></option>
                                         
                                     <?php else:?>
                                     
@@ -299,7 +299,7 @@
                             
                                     if ($enable_custom_selects):    
                             ?>
-                                        <option value="<?php echo $font_family;?>" data-text='<span style="font-family:<?php echo $font_family;?>"><?php echo $font_family;?></span>' <?php if ($font_subtitles == $font_family) echo "selected";?>></option>
+                                        <option value="<?php echo $font_family;?>" data-text='<span style="font-family:<?php echo str_replace(" ", "", $font_family);?>"><?php echo $font_family;?></span>' <?php if ($font_subtitles == $font_family) echo "selected";?>></option>
                                         
                                     <?php else:?>
                                     
@@ -324,7 +324,7 @@
                             
                                     if ($enable_custom_selects):    
                             ?>
-                                        <option value="<?php echo $font_family;?>" data-text='<span style="font-family:<?php echo $font_family;?>"><?php echo $font_family;?></span>' <?php if ($font_paragraphs == $font_family) echo "selected";?>></option>
+                                        <option value="<?php echo $font_family;?>" data-text='<span style="font-family:<?php echo str_replace(" ", "", $font_family);?>"><?php echo $font_family;?></span>' <?php if ($font_paragraphs == $font_family) echo "selected";?>></option>
                                         
                                     <?php else:?>
                                     

@@ -21,13 +21,13 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     	/* ----------------------------------*/
     	
     	public static $wmp_options;
-        public static $wmp_allowed_fonts = array('Roboto Condensed', 'Georgia', 'Times New Roman', 'Open Sans');
+        public static $wmp_allowed_fonts = array('Roboto Light Condensed', 'Crimson Roman', 'Open Sans Condensed Light');
         public static $wmp_basic_theme = 'base';
         
         // the oldest version that will enable the custom select
         public static $wmp_customselect_enable = 3.6;
     		
-    		
+   		 
     	/* ----------------------------------*/
     	/* Methods							 */
     	/* ----------------------------------*/
@@ -186,6 +186,9 @@ if ( ! class_exists( 'WMobilePack' ) ) {
             if ($blog_version >= self::$wmp_customselect_enable) {
                 wp_enqueue_style('css_select_box_it', plugins_url(WMP_DOMAIN.'/admin/css/jquery.selectBoxIt.css'), array(), '3.8.1');
                 wp_enqueue_script('js_select_box_it', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/jquery.selectBoxIt.min.js'), array('jquery','jquery-ui-core', 'jquery-ui-widget'), '3.8.1');
+                
+                foreach (self::$wmp_allowed_fonts as $key => $font_family)
+                    wp_enqueue_style('css_font'.($key+1), plugins_url(WMP_DOMAIN.'/themes/'.self::wmp_app_theme().'/includes/resources/css/font-'.($key+1).'.css'), array(), WMP_VERSION);
             }
             
             wp_enqueue_script('js_settings_edittheme', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Theming/WMP_EDIT_THEME.js'), array(), WMP_VERSION);
