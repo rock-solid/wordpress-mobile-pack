@@ -76,6 +76,11 @@
             <div class="spacer-15"></div>
             
             <div class="details offline">
+                <h2 class="title">Coming Soon</h2>
+           		<div class="spacer-15"></div>
+                <div class="grey-line"></div>
+                <div class="spacer-15"></div>
+                
             	<div class="offline-mode"> 
                  	<p>Have your mobile web application available in offline mode?</p>
                     <div class="spacer-20"></div>
@@ -125,9 +130,11 @@
                         <div class="spacer-15"></div>
                 	</div>
                 </div>
-                <div class="spacer-20"></div>
+                <div class="spacer-5"></div>
+                <div class="grey-line"></div>
+                <div class="spacer-20"></div> 
             </div>
-            <div class="spacer-15"></div>
+            
         </div>
     
         <div class="right-side">

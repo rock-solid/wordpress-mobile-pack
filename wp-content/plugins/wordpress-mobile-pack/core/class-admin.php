@@ -17,6 +17,8 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			
 			global $wmobile_pack;
 			
+            WMobilePack::wmp_update_settings('whats_new_updated', 0);
+            
 			// load view
 			include(WMP_PLUGIN_PATH.'admin/wmp-admin-main.php');
 		}
@@ -32,7 +34,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			$json_data = get_transient("wmp_whats_new_updates");
             
 			// the transient is not set or expired
-			if (!$json_data || 1) {
+			if (!$json_data) {
 			
     			// jSON URL which should be requested
     			$json_url = WMP_WHATSNEW_UPDATES;
@@ -56,14 +58,28 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 				if ($status == 200) {
 					
 					// Store this data in a transient
-					set_transient( 'wmp_whats_new_updates', $json_response, 3600*24 );
+					set_transient( 'wmp_whats_new_updates', $json_response, 3600*24*2 );
 					
 					// get response
 					$response = json_decode($json_response, true);
-
-					if (isset($response["content"]) && is_array($response["content"]) && !empty($response["content"]))
+			
+					if (isset($response["content"]) && is_array($response["content"]) && !empty($response["content"])){
+					   
+                        if (isset($response['content']['last_updated']) && is_numeric($response['content']['last_updated'])){
+                            
+                            $last_updated = intval($response['content']['last_updated']);  
+                            $option_last_updated = intval(WMobilePack::wmp_get_setting('whats_new_last_updated'));
+                            
+                            if ($last_updated > $option_last_updated){
+                                
+                                WMobilePack::wmp_update_settings('whats_new_last_updated', $last_updated);
+                                WMobilePack::wmp_update_settings('whats_new_updated', 1);
+                            }
+                        }
+                        
 						// return response
 						return $response["content"];
+                    }
 				}
 				
 			} else {
@@ -72,7 +88,6 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 				$response = json_decode($json_data, true);
 			
 				if (isset($response["content"]) && is_array($response["content"]) && !empty($response["content"]))
-					// return response
 					return $response["content"];
 			}
             
@@ -240,9 +255,11 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 					// get response
 					$response = json_decode($json_response, true);
 					
-					if(isset($response["news"]) && is_array($response["news"]) && !empty($response["news"]))
-						// return response
-						return $response["news"];
+					if ( (isset($response["news"]) && is_array($response["news"]) && !empty($response["news"])) || 
+                        (isset($response["whitepaper"]) && is_array($response["whitepaper"]) && !empty($response["whitepaper"])) ) {
+                            
+                        return $response;    
+                    }
 				} 
 			
 			} else {
@@ -250,9 +267,11 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 				// get response
 				$response = json_decode($json_data, true);
 				
-				if(isset($response["news"]) && is_array($response["news"]) && !empty($response["news"]))
-					// return response
-					return $response["news"];
+                if ( (isset($response["news"]) && is_array($response["news"]) && !empty($response["news"])) || 
+                    (isset($response["whitepaper"]) && is_array($response["whitepaper"]) && !empty($response["whitepaper"])) ) {
+                    
+                    return $response;
+                }
 			}
 			
 			// by default return empty array

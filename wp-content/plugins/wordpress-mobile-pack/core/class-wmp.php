@@ -54,8 +54,9 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                     'display_mode'          => 'normal',
                 	'logo'                  => '',
                 	'icon'                  => '',
-					'google_analytics_id'	=> ''
-                    
+					'google_analytics_id'	=> '',
+                    'whats_new_updated'     => 0,
+                    'whats_new_last_updated' => 0
                 );
             }
     	}
@@ -203,9 +204,24 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     		// load admin class
     		require_once(WMP_PLUGIN_PATH.'core/class-admin.php');
     		$WMobilePackAdmin = new WMobilePackAdmin;
-    		
-    		// add menu and submenu hooks
-    		add_menu_page( 'WP Mobile Pack', 'WP Mobile Pack', 'manage_options', 'wmp-options', '', WP_PLUGIN_URL . '/wordpress-mobile-pack/admin/images/appticles-logo-updates.png' );
+
+            // check if we need to request updates for the what's new section
+            if (!isset($_COOKIE['wmp_check_updates'])) {
+            
+                WMobilePackAdmin::wmp_whatsnew_updates();    
+                
+                // set next update request after 2 days
+                setcookie("wmp_check_updates", 1, time()+3600*24*2,'/');
+            }
+            
+            // display notify icon if the what's new section was updated or there's a new plugin version available
+            $display_notify_icon = false;
+            if (WMobilePack::wmp_get_setting('whats_new_updated') == 1 || self::wmp_new_plugin_version() !== null){
+                $display_notify_icon = true;
+            }
+            
+           	// add menu and submenu hooks
+    		add_menu_page( 'WP Mobile Pack', 'WP Mobile Pack', 'manage_options', 'wmp-options', '', WP_PLUGIN_URL . '/wordpress-mobile-pack/admin/images/appticles-logo'.($display_notify_icon == true ? '-updates' : '').'.png' );
     		add_submenu_page( 'wmp-options', "What's New", "What's New", 'manage_options', 'wmp-options', array( &$WMobilePackAdmin, 'wmp_options' ) );
     		
             $theme_page = add_submenu_page( 'wmp-options', 'Look & Feel', 'Look & Feel', 'manage_options', 'wmp-options-theme', array( &$WMobilePackAdmin, 'wmp_theme_options') );
@@ -250,9 +266,10 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                 // check if the option is added in the db 
     			if ( get_option( 'wmpack_' . $option ) === false ) { 
     				$wmp_setting = self::$wmp_options[$option];
-    			} else
+    			} else {
     				$wmp_setting = get_option( 'wmpack_' . $option );
-    			
+                }
+        			
     			return $wmp_setting;
     		}
     	}
@@ -616,35 +633,36 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 		
 		/**
           * 
-          * Method wmp_new_plugin_verion used to search the transient for a new version of wordpress mobile pacl plugin
+          * Method wmp_new_plugin_version used to search the transient for a new version of wordpress mobile pack plugin.
 		  * 
-		  * This method returns true if a new version was detected or false otherwise
-		  * The transient is updates every 12 hours
+		  * This method returns the new version number if it exists, null otherwise. 
+		  * The transient is updated every 12 hours.
           *		  
           */
-		public function wmp_new_plugin_version(){
+		public static function wmp_new_plugin_version(){
 			
 			// get update plugins transient
 			$update_plugins = get_site_transient("update_plugins");
 			
-			if($update_plugins) {
+			if ($update_plugins) {
 				
 				// check the plugins tthat have updates
-				if(is_array($update_plugins->response) && !empty ($update_plugins->response)) {
+				if (is_array($update_plugins->response) && !empty ($update_plugins->response)) {
 					
 					foreach($update_plugins->response as $new_version) {
 						
 						// check if wordpress mobile pack is in the list
-						if($new_version->plugin == 'wordpress-mobile-pack/wordpress-mobile-pack.php')
-							// return true, because the plugin has a new version
-							return true;
+						if ($new_version->plugin == 'wordpress-mobile-pack/wordpress-mobile-pack.php'){
+						  
+							// return the new version number
+							return $new_version->new_version;
+                        }
 					}
 				}
 			}
 			
-			//by default return false
-			return false;
-			
-		}
-    }
+			//by default return null
+			return null;		
+        }
+   }
 }
