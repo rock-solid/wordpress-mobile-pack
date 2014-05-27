@@ -1,0 +1,66 @@
+.social-panel{
+	margin: 0;
+	padding: 0;
+	background: wbz_theme_image("social-bg.jpg") left top repeat #2c2d32;
+
+	& > .x-dock{
+	padding: 0 40px 10px 0;
+	
+		& > .x-dock-body{
+			@include border-radius(0px 0px 5px 5px);
+			background: #fafafa;
+			overflow: hidden; 
+		}
+	}
+	.tab-bar{
+		width: 75px;
+		border: 0;
+		padding: 40px 0 0 0;
+		margin: 0;
+		background: none;
+	
+		.x-tab{
+			width: 75px;
+			height: 58px;
+			border-width: 1px 0 1px 0;
+			border-top-color: #1d1d22;
+			border-bottom-color: #3c3c40;
+			border-style: solid;
+			background: none;
+		
+			.x-button-icon{
+				display: block;
+				width: 75px;
+				height: 58px;
+				border: 0;
+				
+				&.facebook{
+					background: wbz_theme_image("pictos/social-facebook.png") center center no-repeat transparent;
+				}
+				&.twitter{
+					background: wbz_theme_image("pictos/social-twitter.png") center center no-repeat transparent;
+				}
+				&.flattr{
+					background: wbz_theme_image("pictos/social-flattr.png") center center no-repeat transparent;
+				}
+			}
+			.x-button-label{
+				display: none;
+			}
+			&.x-tab-active{
+				border-top: 1px solid transparent;
+				background: wbz_theme_image("pictos/social-light.png") -42px center no-repeat rgba(0,0,0,0.2);
+			
+				.facebook{
+					background: wbz_theme_image("pictos/social-facebook-sel.png") center center no-repeat transparent;
+				}
+				.twitter{
+					background: wbz_theme_image("pictos/social-twitter-sel.png") center center no-repeat transparent;
+				}
+				.flattr{
+					background: wbz_theme_image("pictos/social-flattr-sel.png") center center no-repeat transparent;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,106 @@
+.cover-box{
+	background: none; 
+	width: 100%;
+	height: 100%;
+	//@include wbz-box-shadow(inset 0 0 35px 15px rgba(100, 100, 100, 0.05));
+	/* IE10 Consumer Preview */ 
+	background-image: -ms-radial-gradient(center, circle farthest-side, #FFFFFF 0%, rgba(229,232,227,0) 90%, rgba(229,232,227,0) 100%);
+	/* Mozilla Firefox */ 
+	background-image: -moz-radial-gradient(center, circle farthest-side, #FFFFFF 0%, rgba(229,232,227,0) 90%, rgba(229,232,227,0) 100%);
+	/* Opera */ 
+	background-image: -o-radial-gradient(center, circle farthest-side, #FFFFFF 0%, rgba(229,232,227,0) 90%, rgba(229,232,227,0) 100%);
+	/* Webkit (Safari/Chrome 10) */ 
+	background-image: -webkit-gradient(radial, center center, 0, center center, 487, color-stop(0, #FFFFFF), color-stop(0.9, rgba(229,232,227,0)), color-stop(1, rgba(229,232,227,0)));
+	/* Webkit (Chrome 11+) */ 
+	background-image: -webkit-radial-gradient(center, circle farthest-side, #FFFFFF 0%, rgba(229,232,227,0) 90%, rgba(229,232,227,0) 100%);
+	/* W3C Markup, IE10 Release Preview */ 
+	background-image: radial-gradient(circle farthest-side at center, #FFFFFF 0%, rgba(229,232,227,0) 90%, rgba(229,232,227,0) 100%);
+	@include background(radial-gradient(center, circle farthest-side, #FFFFFF 0%, rgba(229,232,227,0) 90%, rgba(229,232,227,0) 100%));
+
+	
+	.x-innerhtml{
+		height: 100%;
+		
+		.cover{
+			height: 100%;
+			
+			.bg{
+				@include wbz-display-box();
+				@include wbz-box-orient(vertical);
+				@include wbz-box-pack(justify);
+				@include wbz-box-align(stretch); 
+				@include background(linear-gradient(top, rgba(0,0,0, 0.4), rgba(0,0,0, 0.35) 85px, rgba(0,0,0, 0.35) 86px, rgba(0,0,0, 0)));
+				background: -ms-linear-gradient(top, rgba(0,0,0, 0.4) 0%, rgba(0,0,0, 0.35) 75px, rgba(0,0,0, 0.35) 86px, rgba(0,0,0, 0)); /* IE10+ */
+				padding: 15px;
+				width: 100%;
+				height: 100%;
+				
+				.cover-article{
+					@include wbz-display-box();
+					@include wbz-box-orient(vertical);
+					@include wbz-box-align(start);
+					@include wbz-box-pack(start);
+					@include wbz-box-flex(1);
+				
+					.title{
+						font-family: "RobotoRegularCondensed", sans-serif;
+						font-size: 23px;
+						line-height: 25px;
+						color: $cover-title-color;
+						text-shadow: 0px 1px rgba(57,57,57,0.7), 0px 0px 16px rgba(57,57,57,0.5);
+						width: 100%;
+						
+						.x-windowsphone &{
+							font-size: 21px;
+						}
+					}
+					.date{
+						font-family: "RobotoLightCondensed", sans-serif;
+						font-size: 13px;
+						color: $info-color;
+						text-shadow: 0px 1px rgba(57,57,57,0.7), 0px 0px 8px rgba(57,57,57,0.5);
+						
+						.x-windowsphone &{
+							font-size: 11px; 
+						} 
+					}
+				}
+				.logo-box{
+					@include wbz-display-box();
+					@include wbz-box-align(center);
+					@include wbz-box-pack(center);
+					
+					img{
+						max-width:120px;
+						max-height:100px;
+					}
+				}
+			}
+			&.has-cover{
+				.cover-article{
+					.title{
+						text-shadow: 0px 1px rgba(57,57,57,0.7), 0px 0px 16px rgba(57,57,57,0.5);
+						color: $cover-title-color;
+					}
+					.date{
+						text-shadow: 0px 1px rgba(57,57,57,0.7), 0px 0px 8px rgba(57,57,57,0.5);
+						color: $info-color;
+					}
+				}
+			}
+			&.pressed{
+				.bg{
+					background: rgba(0,0,0, 0.4);
+				}
+				.cover-article{
+					.title{
+						color: darken($cover-title-color,10%);
+					}
+					.date{
+						color: darken($info-color,10%);
+					}
+				}
+			}
+		}
+	}
+}

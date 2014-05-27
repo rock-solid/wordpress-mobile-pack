@@ -1,0 +1,130 @@
+.buttons-panel{
+	.x-button{
+		.x-button-icon{
+			&.x-hidden{
+				@include wbz-display-box();
+			}
+		}
+	}
+	.like-button{
+		width: 58px;
+		height: 47px;
+		@include border-radius(0px);
+		border-width: 0 0 0 1px;
+		border-style: solid;
+		border-color: #efefef;
+		background: #fafafa;
+		min-height: 47px;
+		padding: 0px;
+		margin: 1px 1px;
+		@include box-shadow(1px 0 #fff inset);
+		
+		.like{
+			@include wbz-inline-icon(like, 24px);
+			color: #9b9ea3;
+			background-color: transparent;
+			width: 25px;
+			height: 25px;
+		}
+		&.pressed{
+			background: #efefef;
+		}
+		&.liked{
+			.like{
+				color: #4e69a2;	
+			}
+		}
+		&.pending{
+			.x-button-icon{
+				&.x-hidden.like{
+					display:none;
+				}
+			}
+			.x-button-label{
+				@include wbz-display-box();
+				@include wbz-box-align(center);
+				@include wbz-box-pack(center);
+			}
+		}
+		.x-button-label{
+			display: none;
+		}
+		&.x-hasbadge{
+			.x-badge{
+				@include wbz-display-box();
+				background-image:none;
+				background-color:#d61673;
+				@include border-radius(3);
+				@include wbz-box-shadow(none);
+				border:none;
+				color:#ffffff;
+				font-size: 12px;
+				line-height:12px;
+				height:14px;
+				min-width:1px;
+				top:-8px;
+				right:1px;
+				padding:3px 4px 0px 4px;
+				font-family: "HelveticaNeue77BoldCondensed", arial;
+				font-weight:normal;
+				
+				.x-windows.x-ie & {
+					padding:3px 3px 2px 3px;
+				}
+			}
+		}
+	}
+}
+.facebook-dock{
+	.likes-list{
+		padding:10px 0;
+		
+		.x-innerhtml{
+			border-left:1px solid #eaeaea;
+		}
+	}
+	.x-dock{
+		.x-dock-body{
+			.x-panel-inner{
+				z-index:0;
+			}
+		}
+	}
+	.likes-box{
+		width:138px;
+		padding:8px 18px;
+		display:block;
+		
+		.images{
+			display:inline-block;
+			
+			div{
+				float:left;
+				height:33px;
+			}
+			.img{
+				@include wbz-display-inline-box();
+				margin:0 1px 1px 0;
+				background-size:cover;
+				background-position:50%;
+				width:33px;
+				height:33px;
+			}
+		}
+		.content{
+			span{
+				font-family: "HelveticaNeue47LightCondensed", arial;
+				font-size:12px;
+			}
+			.icon-like{
+				display:inline-block;
+				@include wbz-inline-icon(like-empty, 14px);
+				position:relative;
+				color: #4e69a2;
+				background-color: transparent;
+				width: 18px;
+				height: 12px;
+			}	
+		}
+	}
+}

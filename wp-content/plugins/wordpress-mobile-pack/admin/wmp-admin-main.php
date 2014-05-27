@@ -25,15 +25,20 @@
                 <div class="details">
                     <div class="spacer-10"></div>
                     
-                    <?php if (array_key_exists('title', $page_content['header'])):?>
-                        <?php echo $page_content['header']['title'];?>
+					<?php if (array_key_exists('title', $page_content['header'])):?>
+                        <h1><?php echo $page_content['header']['title'];?></h1>
+                         
+						 <?php if (array_key_exists('subtitle', $page_content['header'])):?>
+                         	<div class="spacer-10"></div>
+                            <h1><?php echo $page_content['header']['subtitle'];?></h1>
+                        <?php endif;?>
+                        
+                        <div class="spacer-20"></div>
+                        <p class="upgrade-message"><a href="#">WP Mobile Pack 2.1</a> is available. Please <a href="#">update</a> now.</p>
+                        <div class="spacer-20"></div>
                     <?php endif;?>
-                    
-                    <?php if (array_key_exists('subtitle', $page_content['header'])):?>
-                        <?php echo $page_content['header']['subtitle'];?>
-                    <?php endif;?>
-                    
-                    <?php if (array_key_exists('banner', $page_content['header'])):?>
+                
+                   	<?php if (array_key_exists('banner', $page_content['header'])):?>
                         <div class="showcase">
                         	<img src="<?php echo $page_content['header']['banner'];?>" />
                         </div>

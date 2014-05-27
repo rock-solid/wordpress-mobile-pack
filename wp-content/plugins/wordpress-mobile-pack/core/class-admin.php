@@ -17,7 +17,6 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			
 			global $wmobile_pack;
 			
-            echo mktime();
 			// load view
 			include(WMP_PLUGIN_PATH.'admin/wmp-admin-main.php');
 		}
@@ -53,7 +52,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 				// get request status
 				$status = curl_getinfo($send_curl, CURLINFO_HTTP_CODE);
 				curl_close($send_curl);
-				
+                
 				if ($status == 200) {
 					
 					// Store this data in a transient
@@ -61,7 +60,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 					
 					// get response
 					$response = json_decode($json_response, true);
-				
+
 					if (isset($response["content"]) && is_array($response["content"]) && !empty($response["content"]))
 						// return response
 						return $response["content"];

@@ -1,0 +1,18 @@
+.flattr-dock{
+	background: none;
+	
+	.x-panel-inner{
+		@include wbz-display-box();
+		@include wbz-box-orient(vertical);
+		@include wbz-box-pack(center);
+		@include wbz-box-align(center);
+	}
+	.x-innerhtml{
+		text-align: center;
+		font-family: "HelveticaNeue77BoldCondensed", arial;
+		font-size: 24px;
+		color: #dddddd;
+		@include text-shadow(0px 1px #fff);
+		text-transform: uppercase;
+	}
+}	

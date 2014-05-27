@@ -107,6 +107,9 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
                     $active_categories_ids[] = $category->cat_ID;
             }
 			
+			// remove inline style for the photos types of posts
+			add_filter( 'use_default_gallery_style', '__return_false' );
+			
 			if (count($active_categories_ids) > 0) {
 				 
                  // activate latest category only if we have at least 2 visible categories
@@ -334,6 +337,9 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
             // if the selected category is active
             $activeCategory = false;
             
+			// remove inline style for the photos types of posts
+			add_filter( 'use_default_gallery_style', '__return_false' );
+			
 			if ($categoryId != 0) {
 			 
 				$args["cat"] = $categoryId;
