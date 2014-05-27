@@ -704,8 +704,11 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 									// set comment data
 									$commentdata = compact('comment_post_ID', 'comment_author', 'comment_author_email', 'comment_author_url', 'comment_content', 'comment_type', 'comment_parent', 'user_ID');
 									
-									if(get_comment($commentdata))
-										return '{"status":0}'; // The comment alreaduy exists
+									// add a hook for duplicate comments
+									add_action("comment_duplicate_trigger",array(&$this,wmp_duplicate));
+									
+									//if(get_comment($commentdata))
+									//	return '{"status":0}'; // The comment alreaduy exists
 										
 									// get comment id
 									$comment_id = wp_new_comment( $commentdata );
@@ -847,7 +850,26 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 		return $truncate;
 	}
 	
-     
+    
+	
+	/**
+	 * 
+	 * Method wmp_duplicate called when a duplicate comment is detected.
+	 *
+	 *  the method is uest to echo a JSon with and error and applies an exit to prevent wp_die()
+	 */
+	 public function wmp_duplicate(){
+		 
+		// display the json 
+		echo $_GET['callback'] . '({"status":0})';
+		
+		// end 
+		exit();
+	}
+	 
+	 
+	 
+	 
   } // Export
 
 ?>

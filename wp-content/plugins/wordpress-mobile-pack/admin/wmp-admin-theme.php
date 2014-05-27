@@ -190,6 +190,16 @@
                             if ($color_scheme == '')
                                 $color_scheme = 1;
                         ?>
+                        
+                        <!-- add label -->
+                        <div class="colors description">
+                        	<div class="color-" title="Headlines and texts">1</div>
+                            <div class="color-" title="Category label">2</div>
+                            <div class="color-" title="Forms">3</div>
+                            <div class="color-" title="Buttons">4</div>
+                            <div class="color-" title="Article header & detail background">5</div>
+                        </div>
+                        <div class="spacer-15"></div>
                         <!-- add radio buttons -->
                         <input type="radio" name="wmp_edittheme_colorscheme" id="wmp_edittheme_colorscheme" value="1" <?php if ($color_scheme == 1) echo "checked";?> />
                         <div class="colors">
@@ -219,15 +229,15 @@
                         </div>
                         <div class="spacer-30"></div>
                         <!-- start notice -->
-                        <div class="notice notice-top left" style="width: 300px;">
+                        <div class="notice notice-top left" style="width: 345px;">
                             <span>
                                 The above color scheme will impact the following sections within the mobile web application:<br/><br/>
 			
-                                1. Headlines and texts<br/>
-                                2. Category label<br/>
-                                3. Forms<br/>
-                                4. Buttons<br/>
-                                5. Article header & detail background<br/>
+                                1.&nbsp;Headlines and texts<br/>
+                                2.&nbsp;Category label<br/>
+                                3.&nbsp;Forms<br/>
+                                4.&nbsp;Buttons<br/>
+                                5.&nbsp;Article header & detail background<br/>
                             </span>
                         </div>
                         <div class="spacer-10"></div>
