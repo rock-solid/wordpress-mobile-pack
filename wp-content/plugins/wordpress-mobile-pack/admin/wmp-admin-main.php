@@ -42,7 +42,7 @@
                         
                         if ($new_version !== null):
                     ?>
-                        <p class="upgrade-message"><a href="<?php echo admin_url( 'plugins.php' );?>">WP Mobile Pack <?php echo $new_version;?> is available. Please update now.</a></p>
+                        <p class="upgrade-message"><a href="<?php echo admin_url( 'plugins.php' );?>"><u>WP Mobile Pack <?php echo $new_version;?> is available. Please update now.</u></a></p>
                         <div class="spacer-20"></div>
                         
                     <?php endif;?>
