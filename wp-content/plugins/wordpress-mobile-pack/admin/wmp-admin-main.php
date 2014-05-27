@@ -73,7 +73,7 @@
                         
                             <div class="feature <?php echo $pos;?>">
                                 <?php if (array_key_exists('image', $feature)):?>
-                            	   <img src="<?php echo $feature['image'];?>" />
+                            	   <img src="<?php echo $feature['image'];?>" title="<?php echo array_key_exists('title', $feature) ? $feature['title'] : '';?>" />
                                 <?php endif;?>
                                 
                                 <div class="text">
@@ -105,7 +105,6 @@
         <div class="right-side"> 
             <!-- add news and updates -->
             <?php include_once('sections/wmp-news.php'); ?>
-            <div class="spacer-15"></div>
 
             <!-- add feedback form -->
             <?php include_once('sections/wmp-feedback.php'); ?>

@@ -85,7 +85,7 @@
                                             <div id="wmp_waitlist_action">
                                                 <a href="javascript:void(0);" id="wmp_waitlist_display_btn" class="btn blue smaller">Join Waitlist</a>
                                                 <div class="text">
-                                                	And get notified when<br/> available	
+                                                	<em>and get notified when<br/> available</em>	
                                                 </div>
                                             </div>
                                         
@@ -138,7 +138,7 @@
                                             <div id="wmp_waitlist_action">
                                                 <a href="javascript:void(0);" id="wmp_waitlist_display_btn" class="btn blue smaller">Join Waitlist</a>
                                                 <div class="text">
-                                                	And get notified when<br/> available	
+                                                	<em>and get notified when<br/> available</em>
                                                 </div>
                                             </div>
                                         
