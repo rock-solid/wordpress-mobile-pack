@@ -1,0 +1,199 @@
+.articles-panel{
+	.article-card{
+		padding: 0px;
+		background: #fff;
+
+		.x-inner{
+			overflow:hidden;
+		}
+		.x-inner.x-html, .x-inner .x-html{
+			padding:0;
+			margin:0;
+		}
+		.image-container{
+			@include wbz-display-box();
+			@include wbz-box-orient(vertical);
+			@include wbz-box-pack(end);
+		}
+		.headline{
+			@include wbz-display-box();
+			@include wbz-box-orient(vertical);
+			@include wbz-box-pack(end);
+			@include background(linear-gradient(bottom, rgba(255,255,255, 1), rgba(255,255,255, 0.8) 70%, rgba(255,255,255, 0.7)));
+			background: -ms-linear-gradient(bottom, rgba(255,255,255, 1) 0%, rgba(255,255,255, 0.8) 70%, rgba(255,255,255, 0.7)); /* IE10+ */ 
+			min-height: 43px;
+			padding: 4px 15px 0 15px;
+			
+			.category-name{
+				font-size: 12px; 
+				font-family: "RobotoRegularCondensed", sans-serif;
+				color: $category-color;
+				font-weight: 600; 
+				color: #ffffff;
+				background: $category-color;
+				padding: 1px 3px;
+				
+				.x-windowsphone &{
+					display: inline-table;;
+				}
+			}
+			h1{
+				@include wbz-display-box();
+				font-family: "RobotoRegularCondensed", sans-serif;
+				color: #1a1a1a;
+				font-weight: normal;
+				margin: 0px;
+				text-align: left;
+				padding: 2px 0 0 0;
+				
+				$font-size: 20px;
+				$lines-to-show: 2;
+				
+				margin: 0 auto;
+				font-size: $font-size;
+				line-height: 20px;
+				-webkit-line-clamp: $lines-to-show;
+				-webkit-box-orient: vertical;
+				overflow: hidden;
+				text-overflow: ellipsis;	
+			}
+			h3{
+				font-family: "RobotoLightCondensed", sans-serif;
+				font-size: 11px;
+				color: lighten($text-color, 50%);
+				font-weight: normal;
+				line-height: 14px;
+			}
+		}
+		h1{
+			font-family: "RobotoLightCondensed", sans-serif;
+			font-size: 18px;
+			color: $text-color;
+			font-weight: normal;
+			line-height: 23px;
+			margin-bottom: 10px;
+			padding: 0;
+		}
+		h2{
+			font-family: "RobotoLightCondensed", sans-serif;
+			font-size: 16px;
+			color: $text-color;
+			font-weight: normal;
+			line-height: 21px;
+			margin-bottom: 10px;
+			padding: 0;
+		}
+		h3, h4, h5, h6{
+			font-family: "RobotoLightCondensed", sans-serif;
+			font-size: 15px;
+			color: $text-color;
+			font-weight: normal;
+			line-height: 20px;
+			margin-bottom: 10px;
+			padding: 0;
+		}
+		p, ul, ol, li{
+			font-family: "RobotoLightCondensed", sans-serif;
+			font-size: 14px;
+			color: $text-color;
+			font-weight: normal;
+			line-height: 18px;
+			margin-bottom: 10px;
+			padding: 0px;
+			
+			strong{
+				font-family: "RobotoBoldCondensed", sans-serif;
+				font-weight: normal;
+			}
+		}
+		blockquote{
+			margin: 0px 0px 10px 0px;
+			color: #666666;
+			font-style: italic;
+			font-family: "RobotoLightCondensed", sans-serif;
+			font-size: 14px;
+			font-weight: normal;
+			line-height: 18px;
+			padding: 0px 10px;
+
+			cite{
+				color: #1a1a1a;
+				display: block;
+				text-align: right;
+				width: 100%;
+				margin: 0px;
+				padding: 0px;
+				font-style: italic;
+			}
+		}
+		ul, ol{
+			margin-right:0px;
+		}
+		li{
+			margin-left:20px;
+			margin-bottom:10px;
+			line-height:18px;
+		}
+		img{
+			margin:0;
+			padding:0;
+			font-size:0;
+			margin-bottom:10px;
+			display:block;
+		}
+		.article-image{
+			background: #f6f6f6;
+
+			&>div{
+				margin-bottom: 0px;
+				background-position:center top;
+				background-repeat:no-repeat;
+				@include background-size(auto 101%);
+			}
+		}
+		.article-image-media{
+			margin-bottom: 10px;
+			background: #f6f6f6;
+
+			&>div:first-child{
+				margin-bottom: 0px;
+				background-position:center center;
+				background-repeat:no-repeat;
+				@include background-size(100% auto);
+				background-color: #fff;
+			}
+		}
+		.article-media{
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			background-image: wbz_theme_image("pictos/play-button.png");
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-color: transparent;
+		}
+		.article-media-default{
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			background-image: wbz_theme_image("pictos/play-button.png");
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-color: transparent;
+		}
+		.content{
+			padding: 0 15px 15px 15px;
+			font-family: "RobotoLightCondensed", sans-serif;
+			font-size: 14px;
+			color: $text-color;
+			font-weight: normal;
+			line-height: 18px;
+			margin-bottom: 10px;
+			
+			strong{
+				font-family: "RobotoBoldCondensed", sans-serif;
+				font-weight: normal;
+			}
+		}
+	}
+}

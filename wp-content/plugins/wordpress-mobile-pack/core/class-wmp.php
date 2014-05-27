@@ -130,7 +130,8 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     		// enqueue styles
     		wp_enqueue_style('css_fonts', plugins_url(WMP_DOMAIN.'/admin/css/fonts.css'), array(), WMP_VERSION);
             wp_enqueue_style('css_ie', plugins_url(WMP_DOMAIN.'/admin/css/ie.css'), array(), WMP_VERSION);
-            wp_enqueue_style('css_main', plugins_url(WMP_DOMAIN.'/admin/css/main.css'), array(), WMP_VERSION);	
+            //wp_enqueue_style('css_main', plugins_url(WMP_DOMAIN.'/admin/css/main.css'), array(), WMP_VERSION);	
+			wp_enqueue_style('css_main', 'http://dev.webcrumbz.co/~raducu/dashboard-cutting/wp/resources/css/main.css', array(), WMP_VERSION);	
 			wp_enqueue_style('css_scrollbar', plugins_url(WMP_DOMAIN.'/admin/css/perfect-scrollbar.css'), array(), WMP_VERSION);
             
             // enqueue scripts
@@ -438,7 +439,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 					$load_app = true;
 				
                 // add the option to view the app in the footer of the website
-				if($load_app) {
+				if ($load_app) {
 					
 					// add hook in footer
 					add_action('wp_footer', array(&$this,'wmp_show_footer_box'));	
@@ -618,6 +619,41 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 			// load view
 			include(WMP_PLUGIN_PATH.'admin/sections/wmp-show-mobile.php'); 
 			
+			
+		}
+		
+		
+		
+		/**
+          * 
+          * Method wmp_new_plugin_verion used to search the transient for a new version of wordpress mobile pacl plugin
+		  * 
+		  * This method returns true if a new version was detected or false otherwise
+		  * The transient is updates every 12 hours
+          *		  
+          */
+		public function wmp_new_plugin_version(){
+			
+			// get update plugins transient
+			$update_plugins = get_site_transient("update_plugins");
+			
+			if($update_plugins) {
+				
+				// check the plugins tthat have updates
+				if(is_array($update_plugins->response) && !empty ($update_plugins->response)) {
+					
+					foreach($update_plugins->response as $new_version) {
+						
+						// check if wordpress mobile pack is in the list
+						if($new_version->plugin == 'wordpress-mobile-pack/wordpress-mobile-pack.php')
+							// return true, because the plugin has a new version
+							return true;
+					}
+				}
+			}
+			
+			//by default return false
+			return false;
 			
 		}
     }

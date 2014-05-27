@@ -1,0 +1,68 @@
+/**
+ * Includes an icon to be used on Button or Tab components. The $name is the name of the icon, or the character
+ * of the font being used.
+ *
+ *     @include icon('attachment');
+ *
+ * @param {string} $name The name of the icon to be included.
+ * @param {string} $font-family The `font-family` used for this icon. Defaults to the `Pictos` font.
+ */
+
+@mixin wbz-inline-icon($name, $font-size: 15px, $font-family: 'WBZ-Pictos') {
+  $character: wbz-icon-character-for-name($name);
+
+  &:before {
+      @include absolute-position;
+      text-align: center;
+      font-family: $font-family!important;
+      font-size: $font-size!important;
+      font-weight: normal!important;
+
+      @if $character {
+          content: "#{$character}";
+      } @else {
+          content: "#{$name}";
+      }
+  }
+}
+
+
+@function wbz-icon-character-for-name($name) {
+    // http://pictos.cc/font/
+
+    // Row 1
+    @if ($name == "back") { @return "\41"; }
+    @else if ($name == "more") { @return "\42"; }
+	@else if ($name == "more-2") { @return "\62"; }
+    @else if ($name == "closex") { @return "\43"; }
+    @else if ($name == "default-theme") { @return "\44"; }
+    @else if ($name == "action") { @return "\45"; }
+    @else if ($name == "star") { @return "\46"; }
+    @else if ($name == "star-filled") { @return "\47"; }
+    @else if ($name == "user") { @return "\49"; }
+    @else if ($name == "hyperlink") { @return "\4a"; }
+    @else if ($name == "twitter") { @return "\4b"; }
+    @else if ($name == "facebook") { @return "\4c"; }
+	@else if ($name == "twitter-round") { @return "\32"; }
+    @else if ($name == "facebook-round") { @return "\31"; }
+	@else if ($name == "google-plus") { @return "\67"; }
+    @else if ($name == "info") { @return "\4d"; }
+    @else if ($name == "power") { @return "\4e"; }
+    @else if ($name == "login") { @return "\4f"; }
+    @else if ($name == "share") { @return "\50"; }
+    @else if ($name == "x") { @return "\51"; }
+    @else if ($name == "heart") { @return "\52"; }
+    @else if ($name == "user2") { @return "\53"; }
+	@else if ($name == "default-user") { @return "\75"; }
+	@else if ($name == "arrow-up") { @return "^"; } 
+	@else if ($name == "like-empty") { @return "\33"; }
+	@else if ($name == "like") { @return "\34"; }
+	@else if ($name == "share-2") { @return "\36"; }
+	@else if ($name == "comment") { @return "\35"; }
+    
+
+    @else {
+        // @debug "#icon: icon with name '#{$name}' not found.";
+        @return false;
+    }
+}

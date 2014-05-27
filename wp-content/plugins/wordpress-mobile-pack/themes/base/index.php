@@ -74,7 +74,7 @@
         // check if logo exists
         $logo_path = WMobilePack::wmp_get_setting('logo');
         
-        if (!file_exists(WMP_FILES_UPLOADS_DIR.$logo_path))
+        if ($logo_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$logo_path))
             $logo_path = '';    
         else
             $logo_path = WMP_FILES_UPLOADS_URL.$logo_path;
@@ -82,7 +82,7 @@
         // check if icon exists
         $icon_path = WMobilePack::wmp_get_setting('icon');
         
-        if (!file_exists(WMP_FILES_UPLOADS_DIR.$icon_path))
+        if ($icon_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$icon_path))
             $icon_path = ''; 
         else
             $icon_path = WMP_FILES_UPLOADS_URL.$icon_path;   
@@ -100,7 +100,7 @@
 	</script>
 
     <!-- The line below must be kept intact for Sencha Command to build your application -->
-    <script id="microloader" type="text/javascript" src=".sencha/app/microloader/development.js"></script>
+    <script id="microloader" type="text/javascript" src="<?php echo plugins_url()."/".WMP_DOMAIN."/themes/".WMobilePack::wmp_app_theme();?>/app/.sencha/app/microloader/development.js"></script>
     
     <?php
         // check if google analytics id was set

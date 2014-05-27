@@ -1,0 +1,397 @@
+.account-panel{
+	
+	&.x-panel.x-floating{
+		
+		.x-dock.x-sized{
+			
+			.top-bar{
+				padding: 0px;
+				overflow: visible;
+				border-bottom: 1px solid #b2b2b2;
+				margin: 0px 20px;
+				background: #fff;
+				
+				.x-title.x-floating{
+					.x-innerhtml{
+						color: #b2b2b2;
+						font-size: 24px;
+						font-family: "HelveticaNeue47LightCondensed";
+						text-shadow: 0px 0px #fff;
+						padding-top: 5px;
+						font-weight: normal;
+					}
+				}
+				.close-x {
+					position: absolute;
+					margin-left: 100%;
+					top: 0;
+					left: -40px;
+					@include border-radius(0px);
+					border: 0px;
+					@include background(linear-gradient(right top, rgba(#747474, 0.3), rgba(#747474, 0.3) 0.394, rgba(0,0,0,0.2) 0.394, rgba(0,0,0,0.3) 0.4, transparent 0.4, transparent), transparent);
+					background: -ms-linear-gradient(right top, rgba(116,116,116, 0.3) 0%,rgba(116,116,116, 0.3) 39%,rgba(0,0,0,0.2) 39%,rgba(0,0,0,0.3) 40%,rgba(0,0,0,0) 40%,rgba(0,0,0,0) 100%); /* IE10+ */
+					
+                    padding: 0px;
+					@include wbz-display-box();
+					@include wbz-box-orient(vertical);
+					@include wbz-box-pack(start);
+					@include wbz-box-align(end);
+					z-index: 100;
+					
+					&.pressed{
+						@include background(linear-gradient(right top, rgba(#747474, 0.5), rgba(#747474, 0.5) 0.394, rgba(0,0,0,0.4) 0.394, rgba(0,0,0,0.5) 0.4, transparent 0.4, transparent), transparent);
+					    background: -ms-linear-gradient(right top, rgba(116,116,116, 0.5) 0%,rgba(116,116,116, 0.5) 39%,rgba(0,0,0,0.4) 39%,rgba(0,0,0,0.5) 40%,rgba(0,0,0,0) 40%,rgba(0,0,0,0) 100%); /* IE10+ */
+					
+                    }
+					.close{
+						width: 26px;
+						height: 27px;
+						@include wbz-inline-icon(closex, 23px);
+						color: #fff;
+						background-color: transparent;
+						margin-right: 5px;
+						margin-top: 5px;
+					}
+				}
+			}
+			.x-dock-body > .x-panel-inner{
+				@include border-radius(0);
+				background: transparent; 
+				
+				.accounts-box{
+					height: 100%;
+					
+					& > * > * > .x-panel-inner{
+						padding: 20px 40px 10px 40px;
+						@include wbz-display-box();
+						@include wbz-box-orient(horizontal);
+						@include wbz-box-pack(start);
+						@include wbz-box-align(start);
+					}
+				}
+			}
+		}
+		.account-box{
+			width: 200px;
+			height: 250px;
+			border: 1px solid #fff;
+			@include box-shadow(0 2px 6px rgba(0,0,0,0.3));
+			@include background(linear-gradient(top, #f6f6f6, #d8d8d8));
+            background: -ms-linear-gradient(top, rgba(246,246,246, 1) 0%,rgba(216,216,216, 1) 100%); /* IE10+ */
+                
+			margin-right: 25px;
+			
+			.x-panel-inner{
+				@include border-radius(0px);
+				background: none;
+			}
+			.no-user-box{
+				& > .x-panel-inner{
+					@include border-radius(0px);
+					background: none;
+				}
+				.top-box{
+					width: 190px;
+					height: 50px;
+					@include wbz-display-box();
+					@include wbz-box-orient(horizontal);
+					@include wbz-box-pack(justify);
+					@include wbz-box-align(center);
+					padding: 10px 5px;
+					margin: 0 5px;
+					border-bottom: 1px solid rgba(116,116,116,0.4);
+					@include box-shadow(0 1px #fff);
+				
+					.icon{
+						width: 30px;
+						height: 30px;
+						@include border-radius(3px);
+						background: #3b5998;
+						color: #fff;
+						margin-right: 10px;
+						
+						&::before{
+							text-align: left;
+						}
+					}
+					.name{
+						width: 140px;
+						overflow: hidden;
+						white-space: nowrap;
+						text-overflow: ellipsis;
+						max-width: 100%;
+						text-transform: uppercase;
+						color: #747474;
+						font-size: 16px;
+						line-height: 20px;
+						font-family: "HelveticaNeue47LightCondensed",arial;
+						text-shadow: 0 1px #fff;
+						padding-top: 5px;
+                        font-weight:normal;
+					}
+				}
+				.user-image{
+					width: 200px;
+					height: 155px;
+					@include wbz-display-box();
+					@include wbz-box-orient(horizontal);
+					@include wbz-box-pack(center);
+					@include wbz-box-align(center);
+					padding-top: 5px;
+			
+					.image{
+						width: 128px;
+						height: 128px;
+						@include border-radius(5px);
+						@include box-shadow(0 2px 6px rgba(0,0,0,0.3));
+						background: #747474;
+						@include wbz-inline-icon(user2, 139px);
+						color: #e8e8e8;
+						
+						&::before{
+							line-height: 144px;
+							top: 62px;
+							left: 2px;
+						}
+					}
+				}
+			}
+			.user-box{
+				& > .x-panel-inner{
+					@include border-radius(0px);
+					background: none;
+				}
+				.top-box{
+					width: 190px;
+					height: 50px;
+					@include wbz-display-box();
+					@include wbz-box-orient(horizontal);
+					@include wbz-box-pack(justify);
+					@include wbz-box-align(center);
+					padding: 10px 5px;
+					margin: 0 5px;
+					border-bottom: 1px solid rgba(116,116,116,0.4);
+					@include box-shadow(0 1px #fff);
+			
+					.icon{
+						width: 30px;
+						height: 30px;
+						@include border-radius(3px);
+						background: #3b5998;
+						color: #fff;
+						margin-right: 10px;
+					
+						&::before{
+							text-align: left;
+						}
+					}
+					.name{
+						width: 140px;
+						overflow: hidden;
+						white-space: nowrap;
+						text-overflow: ellipsis;
+						max-width: 100%;
+						text-transform: uppercase;
+						color: #747474;
+						font-size: 16px;
+						line-height: 20px;
+						font-family: "HelveticaNeue47LightCondensed",arial;
+						text-shadow: 0 1px #fff;
+						padding-top: 5px;
+                        font-weight:normal;
+					}
+				}
+				.user-image{
+					width: 200px;
+					height: 155px;
+					@include wbz-display-box();
+					@include wbz-box-orient(horizontal);
+					@include wbz-box-pack(center);
+					@include wbz-box-align(center);
+					padding-top: 5px;
+			
+					img{
+						max-width: 128px;
+						max-height: 128px;
+						@include border-radius(5px);
+						@include box-shadow(0 2px 6px rgba(0,0,0,0.3));
+					}
+				}
+			}
+			.login-button{
+				@include background(linear-gradient(top, #3ab729, #4a8b1a));
+				background: -ms-linear-gradient(top, rgba(58,183,41,1) 0%,rgba(74,139,26,1) 100%); /* IE10+ */
+            
+                border: 1px solid #1c7a0c;
+				@include border-radius(1px);
+				padding: 0;
+				height: 35px;
+				width: 126px;
+				margin: 0 auto;
+				@include box-shadow(0 1px rgba(255,255,255,0.5) inset);
+				
+				&.pressed{
+					@include background(linear-gradient(bottom, #3ab729, #4a8b1a));
+                    background: -ms-linear-gradient(bottom, rgba(58,183,41,1) 0%,rgba(74,139,26,1) 100%); /* IE10+ */ 
+				}
+				.twitter{
+					background: rgba(255,255,255,0.7);
+					width: 20px;
+					height: 20px;
+					@include wbz-inline-icon(twitter, 15px);
+					color: #40a422;
+					margin-right: 8px;
+					@include border-radius(2px);
+					margin-top: 2px;
+					@include box-shadow(0 1px #1c7a0c);
+			
+					&::before{
+						line-height: 19px;
+						top: 2px;
+						left: 2px;
+					}
+				}
+				.facebook{
+					background: rgba(255,255,255,0.7);
+					width: 20px;
+					height: 20px;
+					@include wbz-inline-icon(facebook, 15px);
+					color: #40a422;
+					margin-right: 8px;
+					@include border-radius(2px);
+					margin-top: 2px;
+					@include box-shadow(0 1px #1c7a0c);
+					
+					&::before{
+						line-height: 19px;
+						top: 3px;
+						left: 5px;
+					}
+				}
+				.x-badge{
+					border: 0;
+				}
+				.x-button-label{
+					text-align: left;
+					color: #fff;
+					text-shadow: 0px 1px #1c7a0c;
+					font-size: 15px;
+					line-height: 19px;
+					font-family: "HelveticaNeue47LightCondensed",arial;
+					font-weight: normal;
+					margin: 0;
+					padding: 1px 0 0;
+					@include wbz-display-inline-box();
+					text-transform: uppercase;
+				}
+			}
+			.logout-button{
+				@include background(linear-gradient(top, #e8e8e8, #dbdbdb));
+                background: -ms-linear-gradient(top, rgba(232,232,232,1) 0%,rgba(219,219,219,1) 100%); /* IE10+ */ 
+				border: 1px solid #bcbcbc;
+				@include border-radius(1px);
+				padding: 0;
+				height: 35px;
+				width: 126px;
+				margin: 0 auto;
+				@include box-shadow(0 1px rgba(255,255,255,0.5) inset);
+				
+				&.pressed{
+					@include background(linear-gradient(bottom, #e8e8e8, #dbdbdb));
+                    background: -ms-linear-gradient(bottom, rgba(232,232,232,1) 0%,rgba(219,219,219,1) 100%); /* IE10+ */ 
+				}
+				.twitter{
+					background: #bcbcbc;
+					width: 20px;
+					height: 20px;
+					@include wbz-inline-icon(twitter, 15px);
+					color: #e8e8e8;
+					margin-right: 8px;
+					@include border-radius(2px);
+					margin-top: 2px;
+			
+					&::before{
+						line-height: 19px;
+						top: 2px;
+						left: 2px;
+					}
+				}
+				.facebook{
+					background: #bcbcbc;
+					width: 20px;
+					height: 20px;
+					@include wbz-inline-icon(facebook, 15px);
+					color: #e8e8e8;
+					margin-right: 8px;
+					@include border-radius(2px);
+					margin-top: 2px;
+			
+					&::before{
+						line-height: 19px;
+						top: 3px;
+						left: 5px;
+					}
+				}
+				.x-badge{
+					border: 0;
+				}
+				.x-button-label{
+					text-align: left;
+					color: #777;
+					text-shadow: 0px 1px rgba(255,255,255,0.5);
+					font-size: 15px;
+					line-height: 19px;
+					font-family: "HelveticaNeue47LightCondensed",arial;
+					font-weight: normal;
+					margin: 0;
+					padding: 1px 0 0;
+					@include wbz-display-inline-box();
+					text-transform: uppercase;
+				}
+			}
+			.tw-user-panel{
+				width: 100%;
+				height: 100%;
+				background: none;
+				
+				& > .x-panel-inner{
+					@include wbz-display-box();
+					@include wbz-box-orient(vertical);
+					@include wbz-box-pack(start);
+					@include wbz-box-align(stretch);
+					@include border-radius(0px);
+					background: none;
+				}
+				&.loading{
+					background: wbz_theme_image("ajax-loader-phone2.gif") center center no-repeat transparent;
+				}
+				.user-box{
+					.icon{
+						background: #00aced;
+						@include wbz-inline-icon(twitter, 21px);
+				
+						&::before{
+							line-height: 25px;
+							top: 13px;
+							left: 15px;
+							text-align:left;
+						}
+					}
+				}
+				.no-user-box{
+					.icon{
+						background: #00aced;
+						@include wbz-inline-icon(twitter, 21px);  
+					
+						&::before{
+							line-height: 25px;
+							top: 13px;
+							left: 15px;
+							text-align:left;
+						}
+					}
+				}
+			}
+		}
+	}
+}
