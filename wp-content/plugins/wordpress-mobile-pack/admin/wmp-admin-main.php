@@ -34,8 +34,17 @@
                         <?php endif;?>
                         
                         <div class="spacer-20"></div>
-                        <p class="upgrade-message"><a href="#">WP Mobile Pack 2.1</a> is available. Please <a href="#">update</a> now.</p>
+                        
+                    <?php endif;?>
+                    
+                    <?php 
+                        $new_version = WMobilePack::wmp_new_plugin_version();
+                        
+                        if ($new_version !== null):
+                    ?>
+                        <p class="upgrade-message"><a href="<?php echo admin_url( 'plugins.php' );?>">WP Mobile Pack <?php echo $new_version;?> is available. Please update now.</a></p>
                         <div class="spacer-20"></div>
+                        
                     <?php endif;?>
                 
                    	<?php if (array_key_exists('banner', $page_content['header'])):?>
@@ -47,9 +56,9 @@
                     
                     <?php if (array_key_exists('devices', $page_content['header'])):?>
                         <?php echo $page_content['header']['devices'];?>
+                        <div class="spacer-20"></div>
                     <?php endif;?>
                     
-                    <div class="spacer-20"></div>
                 </div>
                 <div class="spacer-10"></div>
             <?php endif;?>

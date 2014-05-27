@@ -209,7 +209,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
             
             // display notify icon if the what's new section was updated or there's a new plugin version available
             $display_notify_icon = false;
-            if (WMobilePack::wmp_get_setting('whats_new_updated') == 1){
+            if (WMobilePack::wmp_get_setting('whats_new_updated') == 1 || self::wmp_new_plugin_version() !== null){
                 $display_notify_icon = true;
             }
             
@@ -626,35 +626,36 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 		
 		/**
           * 
-          * Method wmp_new_plugin_verion used to search the transient for a new version of wordpress mobile pacl plugin
+          * Method wmp_new_plugin_version used to search the transient for a new version of wordpress mobile pack plugin.
 		  * 
-		  * This method returns true if a new version was detected or false otherwise
-		  * The transient is updates every 12 hours
+		  * This method returns the new version number if it exists, null otherwise. 
+		  * The transient is updated every 12 hours.
           *		  
           */
-		public function wmp_new_plugin_version(){
+		public static function wmp_new_plugin_version(){
 			
 			// get update plugins transient
 			$update_plugins = get_site_transient("update_plugins");
 			
-			if($update_plugins) {
+			if ($update_plugins) {
 				
 				// check the plugins tthat have updates
-				if(is_array($update_plugins->response) && !empty ($update_plugins->response)) {
+				if (is_array($update_plugins->response) && !empty ($update_plugins->response)) {
 					
 					foreach($update_plugins->response as $new_version) {
 						
 						// check if wordpress mobile pack is in the list
-						if($new_version->plugin == 'wordpress-mobile-pack/wordpress-mobile-pack.php')
-							// return true, because the plugin has a new version
-							return true;
+						if ($new_version->plugin == 'wordpress-mobile-pack/wordpress-mobile-pack.php'){
+						  
+							// return the new version number
+							return $new_version->new_version;
+                        }
 					}
 				}
 			}
 			
-			//by default return false
-			return false;
-			
-		}
-    }
+			//by default return null
+			return null;		
+        }
+   }
 }
