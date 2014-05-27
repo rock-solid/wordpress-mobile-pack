@@ -130,19 +130,26 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     		// enqueue styles
     		wp_enqueue_style('css_fonts', plugins_url(WMP_DOMAIN.'/admin/css/fonts.css'), array(), WMP_VERSION);
             wp_enqueue_style('css_ie', plugins_url(WMP_DOMAIN.'/admin/css/ie.css'), array(), WMP_VERSION);
-            //wp_enqueue_style('css_main', plugins_url(WMP_DOMAIN.'/admin/css/main.css'), array(), WMP_VERSION);	
-			wp_enqueue_style('css_main', 'http://dev.webcrumbz.co/~raducu/dashboard-cutting/wp/resources/css/main.css', array(), WMP_VERSION);	
+            wp_enqueue_style('css_main', plugins_url(WMP_DOMAIN.'/admin/css/main.css'), array(), WMP_VERSION);	
+			//wp_enqueue_style('css_main', 'http://dev.webcrumbz.co/~raducu/dashboard-cutting/wp/resources/css/main.css', array(), WMP_VERSION);	
 			wp_enqueue_style('css_scrollbar', plugins_url(WMP_DOMAIN.'/admin/css/perfect-scrollbar.css'), array(), WMP_VERSION);
             
             // enqueue scripts
-            wp_enqueue_script('js_validate', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/jquery.validate.min.js'), array('jquery-core', 'jquery-migrate'), '1.11.1');
-            wp_enqueue_script('js_validate_additional', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/validate-additional-methods.min.js'), array('jquery-core', 'jquery-migrate'), '1.11.1');
-            wp_enqueue_script('js_loader', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Loader.js'), array('jquery-core', 'jquery-migrate'), WMP_VERSION);
-            wp_enqueue_script('js_ajax_upload', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/AjaxUpload.js'), array('jquery-core', 'jquery-migrate'), WMP_VERSION);
-            wp_enqueue_script('js_interface', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/JSInterface.js'), array('jquery-core', 'jquery-migrate'), WMP_VERSION);	
-    	    wp_enqueue_script('js_scrollbar', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/perfect-scrollbar.js'), array(), WMP_VERSION);	
+        	if(WMP_BLOG_VERSION < 3.6) 
+				$dependencies = array('jquery');
+			else 
+				$dependencies = array('jquery-core', 'jquery-migrate');
+			
+		    // enqueue scripts
+		    wp_enqueue_script('js_validate', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/jquery.validate.min.js'), $dependencies, '1.11.1');
+			wp_enqueue_script('js_validate_additional', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/validate-additional-methods.min.js'), $dependencies, '1.11.1');
+			wp_enqueue_script('js_loader', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Loader.js'), $dependencies, WMP_VERSION);
+			wp_enqueue_script('js_ajax_upload', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/AjaxUpload.js'), $dependencies, WMP_VERSION);
+			wp_enqueue_script('js_interface', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/JSInterface.js'), $dependencies, WMP_VERSION);	
+		    wp_enqueue_script('js_scrollbar', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/perfect-scrollbar.js'), array(), WMP_VERSION);	
     		wp_enqueue_script('js_feedback', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Feedback/WMP_SEND_FEEDBACK.js'), array(), WMP_VERSION);	
-    	}
+    	
+		}
     	
     	
     	/**

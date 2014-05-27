@@ -16,6 +16,9 @@ define('WMP_NEWS_UPDATES','https://s3-eu-west-1.amazonaws.com/appticles-wmpack/d
 define('WMP_WHATSNEW_UPDATES','https://s3-eu-west-1.amazonaws.com/appticles-wmpack/dashboard/whats_new/content.json');
 define('WMP_WAITLIST_PATH','http://gateway-dev.appticles.com/waitlist/api/subscribe');
 
+// define blog version
+define('WMP_BLOG_VERSION',get_bloginfo('version'));
+
 // define the string used for generating comments tokens (can be overwritten for increasing security)
 define('WMP_CODE_KEY','asdc%/dfr_A!8792*');
 

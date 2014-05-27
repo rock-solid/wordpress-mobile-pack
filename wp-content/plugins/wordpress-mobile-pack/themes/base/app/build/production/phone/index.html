@@ -1,0 +1,115 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" href="">
+    
+    <title>WP</title>
+    <style type="text/css">
+         /**
+         * Example of an initial loading indicator.
+         * It is recommended to keep this as minimal as possible to provide instant feedback
+         * while other resources are still being loaded for the first time
+         */
+        html, body {
+            height: 100%;
+			width: 100%;
+			margin: 0;
+			padding: 0;
+            background-color: #e5e8e3;
+        }
+
+        #appLoadingIndicator {
+            position: absolute;
+            top: 50%;
+            margin-top: -8px;
+            text-align: center;
+            width: 100%;
+            height: 16px;
+            -webkit-animation-name: appLoadingIndicator;
+            -webkit-animation-duration: 0.5s;
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animation-direction: linear;
+            animation-name: appLoadingIndicator;
+            animation-duration: 0.5s;
+            animation-iteration-count: infinite;
+            animation-direction: linear;
+        }
+
+        #appLoadingIndicator > * {
+            background-color: #c6cdbe;
+            display: inline-block;
+            height: 16px;
+			width: 16px;
+             -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 8px;
+            margin: 0 2px;
+            opacity: 0.8;
+        }
+
+        @-webkit-keyframes appLoadingIndicator{
+            0% {
+                opacity: 0.8
+            }
+            50% {
+                opacity: 0
+            }
+            100% {
+                opacity: 0.8
+            }
+        }
+        
+        @keyframes appLoadingIndicator{
+            0% {
+                opacity: 0.8
+            }
+            50% {
+                opacity: 0
+            }
+            100% {
+                opacity: 0.8
+            }
+        }
+    </style>
+    <script type="text/javascript">
+		var appticles = {
+			exportPath: "http://dev.webcrumbz.co/~flori/blog/wp-content/plugins/wordpress-mobile-pack/export/",
+			creditsPath: "http://cdn-kits.appticles.com/app1/v2.3.3/",
+			defaultCoversPath: "resources/themes/images/",
+			logo: "http://cdn-kits.appticles.com/app1/v2.3.0/resources/images/logo.png",
+			icon: "http://cdn-kits.appticles.com/app1/v2.3.0/resources/images/logo.png",
+			websiteUrl: 'http://webcrumbz.co/~flori/Appticles/',
+			commentsToken: "M2I4YTViOTI4NzRiMmI2Y2ExOGZiY2I1ZDU4ZThiOTFfMTQwMTEyMDYzMQ=="
+		};
+	</script>
+	
+    <!-- core -->
+	<link rel="stylesheet" href="resources/css/phone.css" type="text/css">
+    <link rel="stylesheet" href="resources/css/fonts.css" type="text/css">
+    
+    <!-- custom fonts -->
+    <link rel="stylesheet" href="resources/css/font-1.css" type="text/css">
+    <!--<link rel="stylesheet" href="resources/css/font-2.css" type="text/css">-->
+    <!--<link rel="stylesheet" href="resources/css/font-3.css" type="text/css">-->
+    
+    <!-- theming -->
+    <link rel="stylesheet" href="resources/css/headlines-f1.css" type="text/css">
+    <link rel="stylesheet" href="resources/css/paragraphs-f1.css" type="text/css">
+    <link rel="stylesheet" href="resources/css/subtitles-f1.css" type="text/css">
+    <link rel="stylesheet" href="resources/css/theme-1.css" type="text/css">
+    
+    <script type="text/javascript" src="app.js"></script>    
+</head>
+<body>
+    <div id="appLoadingIndicator">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</body>
+</html>

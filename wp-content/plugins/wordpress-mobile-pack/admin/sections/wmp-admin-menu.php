@@ -27,7 +27,7 @@ else
         <li <?php echo $current_page == 'wmp-options-upgrade' ? 'class="selected"' : '';?>>
         	<div class="ribbon relative">
                 <div class="indicator"></div>
-            </div>
+            </div> 
             <a href="<?php echo add_query_arg(array('page'=>'wmp-options-upgrade'), network_admin_url('admin.php'));?>">More ...</a>
         </li>
     </ul>
