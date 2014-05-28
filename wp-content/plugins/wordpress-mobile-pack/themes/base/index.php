@@ -127,7 +127,7 @@
     <script type="text/javascript">
 		var appticles = {
 			exportPath: "<?php echo plugins_url()."/".WMP_DOMAIN."/export/";?>",
-			creditsPath: "<?php echo $theme_path."includes/credits.json";?>",
+			creditsPath: "<?php echo $theme_path."includes/";?>",
             defaultCoversPath: "<?php echo $theme_path;?>includes/resources/images/",
 			logo: "<?php echo $logo_path;?>",
 			icon: "<?php echo $icon_path;?>",
