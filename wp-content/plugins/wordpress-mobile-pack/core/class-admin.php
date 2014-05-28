@@ -589,6 +589,65 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			// load view
 			include(WMP_PLUGIN_PATH.'admin/wmp-admin-upgrade.php'); 
 		}
+        
+        /**
+		 * Static method used to request the content for the More page.
+		 * The method returns an array containing the latest content or an empty array by default.
+		 *
+		 */
+		public static function wmp_more_updates() {
+			
+			$json_data = get_transient("wmp_more_updates");
+            
+			// the transient is not set or expired
+			if (!$json_data) {
+			
+    			// jSON URL which should be requested
+    			$json_url = WMP_MORE_UPDATES;
+    			$send_curl = curl_init($json_url);
+			
+				// set curl options
+				curl_setopt($send_curl, CURLOPT_URL, $json_url);
+				curl_setopt($send_curl, CURLOPT_HEADER, false);
+				curl_setopt($send_curl, CURLOPT_CONNECTTIMEOUT, 2);
+				curl_setopt($send_curl, CURLOPT_RETURNTRANSFER, true);
+				curl_setopt($send_curl, CURLOPT_HTTPHEADER,array('Accept: application/json', "Content-type: application/json"));
+				curl_setopt($send_curl, CURLOPT_FAILONERROR, FALSE);
+				curl_setopt($send_curl, CURLOPT_SSL_VERIFYPEER, FALSE);
+				curl_setopt($send_curl, CURLOPT_SSL_VERIFYHOST, FALSE);
+				$json_response = curl_exec($send_curl);
+				
+				// get request status
+				$status = curl_getinfo($send_curl, CURLINFO_HTTP_CODE);
+				curl_close($send_curl);
+                
+				if ($status == 200) {
+					
+					// Store this data in a transient
+					set_transient( 'wmp_more_updates', $json_response, 3600*24*2 );
+					
+					// get response
+					$response = json_decode($json_response, true);
+			
+					if (isset($response["content"]) && is_array($response["content"]) && !empty($response["content"])){
+					   
+						// return response
+						return $response["content"];
+                    }
+				}
+				
+			} else {
+					
+				// get response
+				$response = json_decode($json_data, true);
+			
+				if (isset($response["content"]) && is_array($response["content"]) && !empty($response["content"]))
+					return $response["content"];
+			}
+            
+			// by default return empty array
+			return array();
+		}
 	}
 
 }

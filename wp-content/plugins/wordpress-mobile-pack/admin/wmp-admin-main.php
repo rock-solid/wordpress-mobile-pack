@@ -27,16 +27,15 @@
                     
 					<?php if (array_key_exists('title', $page_content['header'])):?>
                         <h1><?php echo $page_content['header']['title'];?></h1>
-                         
-						 <?php if (array_key_exists('subtitle', $page_content['header'])):?>
-                         	<div class="spacer-10"></div>
-                            <h1><?php echo $page_content['header']['subtitle'];?></h1>
-                        <?php endif;?>
-                        
-                        <div class="spacer-20"></div>
-                        
+                    <?php endif;?>
+                      
+				    <?php if (array_key_exists('subtitle', $page_content['header'])):?>
+                     	<div class="spacer-10"></div>
+                        <h1><?php echo $page_content['header']['subtitle'];?></h1>
                     <?php endif;?>
                     
+                    <div class="spacer-20"></div>
+                        
                     <?php 
                         $new_version = WMobilePack::wmp_new_plugin_version();
                         
