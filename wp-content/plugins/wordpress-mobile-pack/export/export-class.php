@@ -118,12 +118,14 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
                     // set latest category with de articles
                     $latest_args = array(
                         'numberposts'  => $limit,
-                        'category'     => implode(', ', $active_categories_ids) 
+                        'cat' 		   => implode(', ', $active_categories_ids),
+						"posts_per_page" => $limit,
+    			  		'post_status' => 'publish'
                     );
                     
-                    $latest_posts = get_posts( $latest_args );
-                    
-                    if (count($latest_posts) > 0) {
+					$posts_query = new WP_Query ( $latest_args );
+    			    
+                    if ($posts_query->have_posts() ) {
     					 
     					$arrCategories[] = array(
     											'id' => 0,
@@ -135,7 +137,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
                         // get current index of the array
                         $current_key = key($arrCategories);
                         
-                        foreach ($latest_posts as $post) {
+                        foreach ($posts_query->posts as $post) {
     						
     						// get post category
     						$category = get_the_category($post->ID);
@@ -196,8 +198,10 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 					
                     if (in_array($category->cat_ID, $active_categories_ids)){
                         
+						
+						
     					// add details to category array
-    					$arrCategories[] = array(
+    					$arrCategories[$key + 1] = array(
     												'id' 	=> $category->term_id,
     												'order' => $key + 1,
     												'name' 	=> $category->name,
@@ -207,14 +211,17 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
     					// get published articles for each category
     					$args = array(
     						'numberposts'      => $limit,
-    						'category'         => $category->term_id
+							'category__in'	   => $category->cat_ID,
+							"posts_per_page" => $limit,
+    			  			'post_status' => 'publish'
 						);
     					
-    					$posts_array = get_posts( $args );
-    					
-    					if (count($posts_array > 0)) {
-    					
-    						foreach($posts_array as $post) {
+    					$cat_posts_query = new WP_Query ( $args );
+    			    
+                    	if ($cat_posts_query->have_posts() ) {
+							
+							
+    						foreach($cat_posts_query->posts as $post) {
     							
     							// featured image details
     							$image_details = array();
@@ -265,7 +272,8 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
                     }
 				}
 			}
-			
+			// reset array keys
+			$arrCategories = array_values($arrCategories);
 			return '{"categories":'.json_encode($arrCategories)."}";
 		
 		} else
