@@ -38,6 +38,9 @@
                 </div>
             </div>
             <div class="spacer-10"></div>
+            <div class="ribbon relative">
+                <div class="indicator"></div>
+            </div> 
             <div class="details go-premium">
             	<div class="spacer-10"></div>
                 <h1>MONETI$E Your Mobile <br />&amp; Tablet Web Application</h1>
