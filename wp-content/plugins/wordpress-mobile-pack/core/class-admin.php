@@ -312,11 +312,13 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                         
                         $status = 1;
                         // save google analytics id
-						if(isset($_POST["wmp_editsettings_ganalyticsid"]) && $_POST["wmp_editsettings_ganalyticsid"] != '') {
+						if (isset($_POST["wmp_editsettings_ganalyticsid"])) {
 							
 							// validate google analytics id
-							if(preg_match('/^ua-\d{4,9}-\d{1,4}$/i', strval($_POST["wmp_editsettings_ganalyticsid"])))
+							if (preg_match('/^ua-\d{4,9}-\d{1,4}$/i', strval($_POST["wmp_editsettings_ganalyticsid"])))
 								WMobilePack::wmp_update_settings('google_analytics_id', $_POST['wmp_editsettings_ganalyticsid']);
+                            elseif ($_POST["wmp_editsettings_ganalyticsid"] == "")
+                                WMobilePack::wmp_update_settings('google_analytics_id', "");
 							
 						}
                         // save option
@@ -479,43 +481,30 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                                         
                                             $copied_and_resized = false;
                                             
-                                            $blog_version = floatval(get_bloginfo('version'));
+                                            $image = wp_get_image_editor( $movefile['file'] );
                                             
-                                            if ($blog_version < 3.5){
+                                            if (!is_wp_error( $image ) ) {
                                                 
-                                                // !!!!! THIS PART IS NOT TESTED
-                                                $image = image_resize( $movefile['file'], $arrMaximumSize['width'], $arrMaximumSize['height'], true, null, WMP_FILES_UPLOADS_DIR.$uniqueFilename );
+                                                $image_size = $image->get_size();
                                                 
-                                                if (!is_wp_error( $image ) ) 
-                                                    $copied_and_resized = true; 
+                                                // if the image exceeds the size limits
+                                                if ($image_size['width'] > $arrMaximumSize['width'] || $image_size['height'] > $arrMaximumSize['height']) {
                                                     
-                                            } else {
-                                                
-                                                $image = wp_get_image_editor( $movefile['file'] );
-                                                
-                                                if (!is_wp_error( $image ) ) {
+                                                    // resize and copy to the wmp uploads folder
+                                                    $image->resize( $arrMaximumSize['width'], $image_size['height'] );
+                                                    $image->save( WMP_FILES_UPLOADS_DIR.$uniqueFilename );
                                                     
-                                                    $image_size = $image->get_size();
-                                                    
-                                                    // if the image exceeds the size limits
-                                                    if ($image_size['width'] > $arrMaximumSize['width'] || $image_size['height'] > $arrMaximumSize['height']) {
-                                                        
-                                                        // resize and copy to the wmp uploads folder
-                                                        $image->resize( $arrMaximumSize['width'], $image_size['height'] );
-                                                        $image->save( WMP_FILES_UPLOADS_DIR.$uniqueFilename );
-                                                        
-                                                        $copied_and_resized = true;
-                                                        
-                                                    } else {
-                                                    
-                                                        // copy file without resizing to the wmp uploads folder
-                                                        $copied_and_resized = copy($movefile['file'], WMP_FILES_UPLOADS_DIR.$uniqueFilename);
-                                                    }
+                                                    $copied_and_resized = true;
                                                     
                                                 } else {
-                                                    
-                                                    $arrResponse["messages"][] = "We encountered a problem resizing your ".($file == "wmp_editimages_icon" ? "icon" : "logo").". Please choose another image!";
+                                                
+                                                    // copy file without resizing to the wmp uploads folder
+                                                    $copied_and_resized = copy($movefile['file'], WMP_FILES_UPLOADS_DIR.$uniqueFilename);
                                                 }
+                                                
+                                            } else {
+                                                
+                                                $arrResponse["messages"][] = "We encountered a problem resizing your ".($file == "wmp_editimages_icon" ? "icon" : "logo").". Please choose another image!";
                                             }
                                             
                                             /****************************************/

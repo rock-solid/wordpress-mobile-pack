@@ -43,8 +43,6 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                 
                 self::$wmp_options = array(
                 
-                    'blog_name'             => get_bloginfo( "name" ),
-                	'theme'                 => 1,
                 	'color_scheme'          => 1,
                 	'font_headlines'        => self::$wmp_allowed_fonts[0],
                     'font_subtitles'        => self::$wmp_allowed_fonts[0],
