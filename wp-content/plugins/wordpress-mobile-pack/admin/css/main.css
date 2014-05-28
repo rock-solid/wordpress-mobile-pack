@@ -2990,17 +2990,30 @@ body {
   display: table;
 }
 /* line 5, ../sass/modules/_more.scss */
+#wmpack-admin .more .ribbon {
+  width: 100%;
+}
+/* line 8, ../sass/modules/_more.scss */
+#wmpack-admin .more .ribbon .indicator {
+  background: url(../images/ribbon-premium.png);
+  width: 67px;
+  height: 68px;
+  position: absolute;
+  top: -4px;
+  right: -6px;
+}
+/* line 18, ../sass/modules/_more.scss */
 #wmpack-admin .more .left-side {
   width: 100%;
   display: table;
   vertical-align: top;
 }
-/* line 10, ../sass/modules/_more.scss */
+/* line 23, ../sass/modules/_more.scss */
 #wmpack-admin .more .left-side .details {
   padding: 30px;
   background-color: white;
 }
-/* line 14, ../sass/modules/_more.scss */
+/* line 27, ../sass/modules/_more.scss */
 #wmpack-admin .more .left-side .details h1 {
   font-family: 'OlRoundGothicLight', sans-serif;
   font-size: 40px;
@@ -3009,16 +3022,16 @@ body {
   text-align: center;
   letter-spacing: 0.5px;
 }
-/* line 22, ../sass/modules/_more.scss */
+/* line 35, ../sass/modules/_more.scss */
 #wmpack-admin .more .left-side .details .upgrade-message {
   text-align: center;
 }
-/* line 25, ../sass/modules/_more.scss */
+/* line 38, ../sass/modules/_more.scss */
 #wmpack-admin .more .left-side .details .try-it {
   width: 120px;
   margin: 0 auto;
 }
-/* line 29, ../sass/modules/_more.scss */
+/* line 42, ../sass/modules/_more.scss */
 #wmpack-admin .more .left-side .details .try-it p {
   font-family: 'OpenSansItalic',sans-serif;
   font-size: 14px;
@@ -3026,47 +3039,47 @@ body {
   line-height: normal;
   text-align: center;
 }
-/* line 37, ../sass/modules/_more.scss */
+/* line 50, ../sass/modules/_more.scss */
 #wmpack-admin .more .left-side .details h2.title {
   font-family: 'OlRoundGothicLight', sans-serif;
   font-size: 25px;
   line-height: normal;
   color: #4b4b4b;
 }
-/* line 43, ../sass/modules/_more.scss */
+/* line 56, ../sass/modules/_more.scss */
 #wmpack-admin .more .left-side .details .showcase {
   width: 671px;
   margin: 0 auto;
 }
-/* line 47, ../sass/modules/_more.scss */
+/* line 60, ../sass/modules/_more.scss */
 #wmpack-admin .more .left-side .details .subtitle {
   font-family: "AcordeRegular", sans-serif;
   font-size: 20px;
   color: #4b4b4b;
   text-align: center;
 }
-/* line 53, ../sass/modules/_more.scss */
+/* line 66, ../sass/modules/_more.scss */
 #wmpack-admin .more .left-side .details.go-premium {
   background: #fdf7d3;
 }
-/* line 56, ../sass/modules/_more.scss */
+/* line 69, ../sass/modules/_more.scss */
 #wmpack-admin .more .left-side .details.go-premium .features {
   display: table;
 }
-/* line 59, ../sass/modules/_more.scss */
+/* line 72, ../sass/modules/_more.scss */
 #wmpack-admin .more .left-side .details.go-premium .features .feature {
   display: table-cell;
   width: 33%;
   text-align: center;
   padding: 0 10px;
 }
-/* line 65, ../sass/modules/_more.scss */
+/* line 78, ../sass/modules/_more.scss */
 #wmpack-admin .more .left-side .details.go-premium .features .feature img {
   text-align: center;
   width: 90px;
   height: 90px;
 }
-/* line 70, ../sass/modules/_more.scss */
+/* line 83, ../sass/modules/_more.scss */
 #wmpack-admin .more .left-side .details.go-premium .features .feature p {
   text-align: left;
 }

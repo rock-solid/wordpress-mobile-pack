@@ -61,6 +61,9 @@
             
             <?php if (array_key_exists('features', $page_content)):?>
             
+                <div class="ribbon relative">
+                    <div class="indicator"></div>
+                </div> 
                 <div class="details go-premium">
                 	<div class="spacer-10"></div>
                     
