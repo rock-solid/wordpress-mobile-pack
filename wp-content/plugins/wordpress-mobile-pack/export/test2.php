@@ -3,7 +3,7 @@
 require_once("../../../../wp-config.php");
 require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 /* -------------------------------------------------------------------------*/
-/* Export class with different export 										*/
+/* Test class with different export 										*/
 /* methods for categories, articles and comments							*/
 /* -------------------------------------------------------------------------*/
 
@@ -107,20 +107,20 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
                     $active_categories_ids[] = $category->cat_ID;
             }
 			
+			// remove inline style for the photos types of posts
+			add_filter( 'use_default_gallery_style', '__return_false' );
+			
 			if (count($active_categories_ids) > 0) {
 				 
                  // activate latest category only if we have at least 2 visible categories
                  if (count($active_categories_ids) > 1){
                     
                     // set latest category with de articles
-			        $latest_args = array(
+                    $latest_args = array(
                         'numberposts'  => $limit,
                         'category'     => implode(', ', $active_categories_ids) 
                     );
                     
-					// remove inline style for the photos types of posts
-					add_filter( 'use_default_gallery_style', '__return_false' );
-					
                     $latest_posts = get_posts( $latest_args );
                     
                     if (count($latest_posts) > 0) {
@@ -141,9 +141,8 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
     						$category = get_the_category($post->ID);
     						
     						// get content
-    						$description = apply_filters("the_content",$this->purifier->purify($post->post_content));
-    						
-							$description = Test::truncateHtml($content,$descriptionLength);
+    						$content = apply_filters("the_content",$this->purifier->purify($post->post_content));
+    						$description = Test::truncateHtml($content,$descriptionLength);
     						
     						// featured image details
     						$image_details = array();
@@ -188,16 +187,19 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
     					}
                     }
                 }
+				 
 				
 				// reset array keys
 				$categories = array_values($categories);
 				
 				foreach ($categories as $key => $category) {
 					
+					
                     if (in_array($category->cat_ID, $active_categories_ids)){
-                        
-    					// add details to category array
-    					$arrCategories[] = array(
+                    	
+						//var_dump($key);
+						// add details to category array
+    					$arrCategories[$key + 1] = array(
     												'id' 	=> $category->term_id,
     												'order' => $key + 1,
     												'name' 	=> $category->name,
@@ -266,6 +268,10 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 				}
 			}
 			
+			//var_dump($arrCategories);exit();
+			// reset array keys
+			$arrCategories = array_values($arrCategories);
+			
 			return '{"categories":'.json_encode($arrCategories)."}";
 		
 		} else
@@ -322,6 +328,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 				$descriptionLength = $_GET["descriptionLength"];
 			
 			// set limit
+
 			$limit = 7;
 			if(isset($_GET["limit"]) && is_numeric($_GET["limit"]))
 				$limit = $_GET["limit"];
@@ -337,6 +344,9 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
             // if the selected category is active
             $activeCategory = false;
             
+			// remove inline style for the photos types of posts
+			add_filter( 'use_default_gallery_style', '__return_false' );
+			
 			if ($categoryId != 0) {
 			 
 				$args["cat"] = $categoryId;
@@ -366,9 +376,6 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
             
             if ($activeCategory){
                 
-				// remove inline style for the photos types of posts
-				add_filter( 'use_default_gallery_style', '__return_false' );
-				
     			$posts_query = new WP_Query ( $args );
     			
     			if ($posts_query->have_posts() ) {
@@ -397,7 +404,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
     						
     					// get content
     					$content = apply_filters("the_content",$this->purifier->purify($post->post_content));
-    					$description = Export::truncateHtml($content,$descriptionLength);	
+    					$description = Test::truncateHtml($content,$descriptionLength);	
     						
     					$arrArticles[] = array(
                             'id' 				=> $post->ID,
@@ -514,7 +521,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
     				$content = $this->purifier->purify($content);
     				
     				// get the description
-    				$description = Export::truncateHtml($content,$descriptionLength);
+    				$description = Test::truncateHtml($content,$descriptionLength);
     				
     				$arrArticle = array(
                         'id' 					=> $post->ID,
@@ -666,7 +673,6 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 					
 				// check token
 				if(isset($_GET['code']) && $_GET["code"] !== '') {
-
 					
 					// if the token is valid, go ahead and save comment to the DB
 					if(WMobilePack::wmp_check_token($_GET['code'])) {
@@ -765,11 +771,9 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 		
 		if ($considerHtml) {
 			
-			// if stripTags is true, remove all tags from the content
+			// if no_images is true, remove all images from the content
 			if($stripTags)
 				$text = strip_tags( $text, '<p><a><span><br><i><u><strong><b><sup><em>');
-			
-			
 			
 			// if the plain text is shorter than the maximum length, return the whole text
 			if (strlen(preg_replace('/<.*?>/', '', $text)) <= $length) {
@@ -879,6 +883,6 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 	 
 	 
 	 
-  } // Export
+  } // Test
 
 ?>
