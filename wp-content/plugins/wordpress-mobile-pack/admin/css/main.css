@@ -1089,7 +1089,7 @@ body {
 }
 /* line 225, ../sass/core/_core.scss */
 #wmpack-admin .left-side nav.menu ul li {
-  min-width: 160px;
+  min-width: 162px;
   height: 68px;
   display: table-cell;
   background-color: #f5f7f7;
@@ -1838,13 +1838,24 @@ body {
   border: 1px solid #116382;
 }
 /* line 69, ../sass/core/_buttons.scss */
+#wmpack-admin .btn.orange {
+  background: #ffbb42;
+  color: #ffffff;
+  border: 1px solid #ffa90f;
+}
+/* line 74, ../sass/core/_buttons.scss */
+#wmpack-admin .btn.orange:hover {
+  background: #ffa90f;
+  border: 1px solid #db8c00;
+}
+/* line 79, ../sass/core/_buttons.scss */
 #wmpack-admin .btn.grey {
   background: #fcfcfc;
   color: #939494;
   text-transform: uppercase;
   border: 1px solid #e3e3e3;
 }
-/* line 75, ../sass/core/_buttons.scss */
+/* line 85, ../sass/core/_buttons.scss */
 #wmpack-admin .btn.grey:hover {
   background: #e3e3e3;
   border: 1px solid #c9c9c9;
@@ -1989,6 +2000,7 @@ body {
 }
 /* line 107, ../sass/modules/_content.scss */
 #wmpack-admin .content .left-side .details .waitlist .added .switcher.blue .check {
+
   background: #1ca8dd;
   border: 1px solid #1686b0;
   border-left: 0px;
@@ -2971,4 +2983,90 @@ body {
 #wmpack-admin .whats-new .left-side .details .feature.right img {
   float: right;
   margin: 0 0 0 30px;
+}
+
+/* line 2, ../sass/modules/_more.scss */
+#wmpack-admin .more {
+  display: table;
+}
+/* line 5, ../sass/modules/_more.scss */
+#wmpack-admin .more .left-side {
+  width: 100%;
+  display: table;
+  vertical-align: top;
+}
+/* line 10, ../sass/modules/_more.scss */
+#wmpack-admin .more .left-side .details {
+  padding: 30px;
+  background-color: white;
+}
+/* line 14, ../sass/modules/_more.scss */
+#wmpack-admin .more .left-side .details h1 {
+  font-family: 'OlRoundGothicLight', sans-serif;
+  font-size: 40px;
+  line-height: 40px;
+  color: #4b4b4b;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+/* line 22, ../sass/modules/_more.scss */
+#wmpack-admin .more .left-side .details .upgrade-message {
+  text-align: center;
+}
+/* line 25, ../sass/modules/_more.scss */
+#wmpack-admin .more .left-side .details .try-it {
+  width: 120px;
+  margin: 0 auto;
+}
+/* line 29, ../sass/modules/_more.scss */
+#wmpack-admin .more .left-side .details .try-it p {
+  font-family: 'OpenSansItalic',sans-serif;
+  font-size: 14px;
+  color: #8c8d8d;
+  line-height: normal;
+  text-align: center;
+}
+/* line 37, ../sass/modules/_more.scss */
+#wmpack-admin .more .left-side .details h2.title {
+  font-family: 'OlRoundGothicLight', sans-serif;
+  font-size: 25px;
+  line-height: normal;
+  color: #4b4b4b;
+}
+/* line 43, ../sass/modules/_more.scss */
+#wmpack-admin .more .left-side .details .showcase {
+  width: 671px;
+  margin: 0 auto;
+}
+/* line 47, ../sass/modules/_more.scss */
+#wmpack-admin .more .left-side .details .subtitle {
+  font-family: "AcordeRegular", sans-serif;
+  font-size: 20px;
+  color: #4b4b4b;
+  text-align: center;
+}
+/* line 53, ../sass/modules/_more.scss */
+#wmpack-admin .more .left-side .details.go-premium {
+  background: #fdf7d3;
+}
+/* line 56, ../sass/modules/_more.scss */
+#wmpack-admin .more .left-side .details.go-premium .features {
+  display: table;
+}
+/* line 59, ../sass/modules/_more.scss */
+#wmpack-admin .more .left-side .details.go-premium .features .feature {
+  display: table-cell;
+  width: 33%;
+  text-align: center;
+  padding: 0 10px;
+}
+/* line 65, ../sass/modules/_more.scss */
+#wmpack-admin .more .left-side .details.go-premium .features .feature img {
+  text-align: center;
+  width: 90px;
+  height: 90px;
+}
+/* line 70, ../sass/modules/_more.scss */
+#wmpack-admin .more .left-side .details.go-premium .features .feature p {
+  text-align: left;
 }
