@@ -22,13 +22,10 @@ if ( class_exists( 'WMobilePack' ) && class_exists( 'WMobilePackAdmin' ) ) {
 	register_activation_hook( __FILE__, array( &$wmobile_pack, 'wmp_install' ) );
 	register_deactivation_hook( __FILE__, array( &$wmobile_pack, 'wmp_uninstall' ) );
 
-    // Initialize the MobilePress check logic and rendering
-    $wmobile_pack->wmp_check_load();
+    // Initialize the Wordpress Mobile Pack check logic and rendering
+    add_action('plugins_loaded',array( &$wmobile_pack, 'wmp_check_load' ));
         
 	if (is_admin()) {
-		
-		//setcookie("wmp_theme_mode", 'desktop', time()+3600*30*24,'/');
-		//setcookie("wmp_load_app", 1, time()+3600*30*24,'/');
 		
 		$wmobile_pack->wmp_admin_init();
 		

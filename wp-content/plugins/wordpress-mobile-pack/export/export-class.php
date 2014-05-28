@@ -597,26 +597,31 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 							'post_id' 	=> $articleId,
 							'post_type' => 'post',
 							'status' 	=> 'approve',
-							'orderby'	=> 'comment_date_gmt',
-							'order'		=> 'ASC'
 						);
+			
+			// order comments
+			if(WMP_BLOG_VERSION >= 3.6) {
+				$args['orderby'] = 'comment_date_gmt';
+				$args['order'] = 'ASC';
+			}
 			
 			// get post by id
 			$comments = get_comments( $args);
+			
 			
 			if(is_array($comments) && !empty($comments)) {
 				
 				foreach($comments as $comment) {
 					$get_avatar = '';
+					$avatar = '';
 					// get avatar only if the author wants it displayed
 					if(get_option("show_avatars")) {
 						
 						$get_avatar = get_avatar( $comment, 50);
 						preg_match("/src='(.*?)'/i", $get_avatar, $matches);
-						$avatar = $matches[1];
-					
-					} else
-						$avatar = '';
+						if(isset($matches[1]))
+							$avatar = $matches[1];
+					} 
 						
 					$arrComments[] = array(
 										   	'id' => $comment->comment_ID,
@@ -695,6 +700,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 									$comment_author_email = ( isset($_GET['email']) )   ? trim($_GET['email']) : '';
 									$comment_author_url   = ( isset($_GET['url']) )     ? trim($this->purifier->purify($_GET['url'])) : '';
 									$comment_content      = ( isset($_GET['comment']) ) ? trim($this->purifier->purify($_GET['comment'])) : '';
+									$comment_type = 		'comment';
 									$comment_parent = 		isset($_GET['comment_parent']) ? absint($_GET['comment_parent']) : 0;
 									
 									// return errors for empty fields
@@ -719,7 +725,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 									$commentdata = compact('comment_post_ID', 'comment_author', 'comment_author_email', 'comment_author_url', 'comment_content', 'comment_type', 'comment_parent', 'user_ID');
 									
 									// add a hook for duplicate comments
-									add_action("comment_duplicate_trigger",array(&$this,wmp_duplicate));
+									add_action("comment_duplicate_trigger",array(&$this,'wmp_duplicate'));
 									
 									//if(get_comment($commentdata))
 									//	return '{"status":0}'; // The comment alreaduy exists
