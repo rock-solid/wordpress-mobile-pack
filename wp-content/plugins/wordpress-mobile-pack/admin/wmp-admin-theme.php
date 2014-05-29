@@ -44,6 +44,8 @@
                         $joined_lifestyle_waitlist = true;
                 ?>
                 
+                <a href="<?php echo plugins_url()."/".WMP_DOMAIN;?>/themes/base/snapshots/1-preview-phone-cover.png" class="thickbox">thickbox</a>
+                
                 <div class="themes">
                 	<div class="theme">
                     	<div class="corner relative active">
