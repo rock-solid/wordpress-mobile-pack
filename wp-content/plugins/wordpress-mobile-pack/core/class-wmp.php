@@ -133,7 +133,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 			wp_enqueue_style('css_scrollbar', plugins_url(WMP_DOMAIN.'/admin/css/perfect-scrollbar.css'), array(), WMP_VERSION);
             
             // enqueue scripts
-        	if(WMP_BLOG_VERSION < 3.6) 
+        	if (WMP_BLOG_VERSION < 3.6) 
 				$dependencies = array('jquery');
 			else 
 				$dependencies = array('jquery-core', 'jquery-migrate');
@@ -189,7 +189,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                     wp_enqueue_style('css_font'.($key+1), plugins_url(WMP_DOMAIN.'/themes/'.self::wmp_app_theme().'/includes/resources/css/font-'.($key+1).'.css'), array(), WMP_VERSION);
             }
             
-            wp_enqueue_script('js_settings_edittheme', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Theming/WMP_EDIT_THEME.js'), array(), WMP_VERSION);
+            wp_enqueue_script('js_settings_edittheme', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Theming/WMP_EDIT_THEME.js'), array('thickbox'), WMP_VERSION);
             wp_enqueue_script('js_settings_editimages', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Theming/WMP_EDIT_IMAGES.js'), array(), WMP_VERSION);
             wp_enqueue_script('js_join_waitlist', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Waitlist/WMP_WAITLIST.js'), array(), WMP_VERSION);
         }
