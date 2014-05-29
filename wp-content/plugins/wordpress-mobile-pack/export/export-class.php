@@ -404,9 +404,11 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 
 						if($categoryId > 0)
 							$category = get_category($categoryId);
-						else
-							$category = get_the_category($post->ID);
-    						
+						else {
+							
+							$cat = get_the_category($post->ID);
+							$category = $cat[0];
+						}
     					// get content
     					$content = apply_filters("the_content",$this->purifier->purify($post->post_content));
     					$description = Export::truncateHtml($content,$descriptionLength);	
@@ -421,8 +423,8 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
                             "image" 			=> !empty($image_details) ? $image_details : "",
                             "description"		=> $description,
                             "content" 			=> '',
-                            "category_id" 		=> $category[0]->term_id,
-                            "category_name" 	=> $category[0]->name
+                            "category_id" 		=> $category->term_id,
+                            "category_name" 	=> $category->name
                         );
     					
     				}
