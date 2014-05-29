@@ -267,8 +267,6 @@ function WMP_SEND_FEEDBACK(){
 		jQuery("#"+JSObject.form.id,JSObject.DOMDoc).unbind("submit");
 		jQuery("#"+JSObject.form.id,JSObject.DOMDoc).bind("submit",function(){return false;});
         
-        //console.log(response)
-        
       	response = Boolean(Number(String(response)));
        
 		// remove preloader

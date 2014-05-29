@@ -44,8 +44,6 @@
                         $joined_lifestyle_waitlist = true;
                 ?>
                 
-                <a href="<?php echo plugins_url()."/".WMP_DOMAIN;?>/themes/base/snapshots/1-preview-phone-cover.png" class="thickbox">thickbox</a>
-                
                 <div class="themes">
                 	<div class="theme">
                     	<div class="corner relative active">
@@ -55,7 +53,7 @@
                         	<div class="relative">
                             	<div class="overlay">
                                 	<div class="spacer-70"></div>
-                            		<div class="preview"></div>
+                            		<div class="preview" id="wmp_themes_gallery_base"></div>
                                     <div class="spacer-10"></div>
                                     <div class="text">Preview theme</div>
                             	</div>
@@ -67,6 +65,7 @@
                         	<div class="wordpress-icon"></div>
                         </div>
                     </div>
+                    
                     <div class="theme waitlist <?php if ($joined_business_waitlist) echo 'added' ;?>">
                     	<div class="corner relative inactive">
                             <div class="indicator"></div>
@@ -75,7 +74,7 @@
                         	<div class="relative">
                             	<div class="overlay">
                                 	<div class="spacer-30"></div>
-                            		<div class="preview"></div>
+                            		<div class="preview" id="wmp_themes_gallery_business"></div>
                                     <div class="spacer-10"></div>
                                     <div class="text">Preview theme</div>
                                     <div class="spacer-5"></div>
@@ -128,7 +127,7 @@
                         	<div class="relative">
                             	<div class="overlay">
                                     <div class="spacer-30"></div>
-                            		<div class="preview"></div>
+                            		<div class="preview" id="wmp_themes_gallery_lifestyle"></div>
                                     <div class="spacer-10"></div>
                                     <div class="text">Preview theme</div>
                                     <div class="spacer-5"></div>
@@ -475,6 +474,7 @@
     if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
             
+            window.WMPJSInterface.add("UI_previewthemesgallery","WMP_THEMES_GALLERY",{'DOMDoc':window.document, 'baseThemeUrl': '<?php echo plugins_url()."/".WMP_DOMAIN.'/themes/'.WMobilePack::$wmp_basic_theme;?>'}, window);
             window.WMPJSInterface.add("UI_customizetheme","WMP_EDIT_THEME",{'DOMDoc':window.document, 'enableCustomSelects': <?php echo intval($enable_custom_selects);?>}, window);
             window.WMPJSInterface.add("UI_editimages","WMP_EDIT_IMAGES",{'DOMDoc':window.document}, window);
             
