@@ -129,7 +129,6 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     		wp_enqueue_style('css_fonts', plugins_url(WMP_DOMAIN.'/admin/css/fonts.css'), array(), WMP_VERSION);
             wp_enqueue_style('css_ie', plugins_url(WMP_DOMAIN.'/admin/css/ie.css'), array(), WMP_VERSION);
             wp_enqueue_style('css_main', plugins_url(WMP_DOMAIN.'/admin/css/main.css'), array(), WMP_VERSION);	
-			//wp_enqueue_style('css_main', 'http://dev.webcrumbz.co/~raducu/dashboard-cutting/wp/resources/css/main.css', array(), WMP_VERSION);	
 			wp_enqueue_style('css_scrollbar', plugins_url(WMP_DOMAIN.'/admin/css/perfect-scrollbar.css'), array(), WMP_VERSION);
             
             // enqueue scripts
