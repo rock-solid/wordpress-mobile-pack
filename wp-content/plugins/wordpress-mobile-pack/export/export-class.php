@@ -401,7 +401,11 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
     					} 
     					
     					// get post category
-    					$category = get_the_category($post->ID);
+
+						if($categoryId > 0)
+							$category = get_category($categoryId);
+						else
+							$category = get_the_category($post->ID);
     						
     					// get content
     					$content = apply_filters("the_content",$this->purifier->purify($post->post_content));
