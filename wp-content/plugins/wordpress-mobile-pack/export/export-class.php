@@ -484,7 +484,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 			$arrArticle = array();
 			
 			// get post by id
-			$post = get_post( $articleId);
+		    $post = get_post( $articleId);
 			
 			if ($post != null && $post->post_type == 'post') {
 				
@@ -529,7 +529,9 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
     				
     				// get the description
     				$description = Export::truncateHtml($content,$descriptionLength);
-    				
+    				// get comments status
+                    $comment_status = $this->comment_closed($post);
+                    
     				$arrArticle = array(
                         'id' 					=> $post->ID,
                         "title" 				=> $post->post_title,
@@ -540,7 +542,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
                         "image" 				=> !empty($image_details) ? $image_details : "",
                         "description"	    	=> $description,
                         "content" 				=> $content,
-                        "comment_status"    	=> ($post->comment_status == 'open' && get_option('comment_registration') == 0) ? 'open' : 'closed',
+                        "comment_status"    	=> $comment_status,
                         "show_avatars"			=> get_option("show_avatars") == 1 ? true : false,// false
 						"require_name_email"	=> get_option("require_name_email") == 1 ? true : false,
 						"category_id" 			=> $visible_category->term_id,
@@ -739,7 +741,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 									// get comment id
 									$comment_id = wp_new_comment( $commentdata );
 									
-									if(is_numeric($comment_id) && !$approved_comment)
+									if(is_numeric($comment_id) && (!$approved_comment || in_array('akismet/akismet.php',get_option("active_plugins"))))
 										return '{"status":2}'; // Your comment is awaiting moderation.
 									elseif(is_numeric($comment_id))
 										return '{"status":1}';//Your comment was successfully added
@@ -893,7 +895,44 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 		exit();
 	}
 	 
-	 
+     
+     
+     /**
+	 * 
+	 * Method comment_closed used to determine the comment status for an article
+	 *
+	 *  The method returns 'open' if the users can comment and 'closed' otherwise
+	 */
+	 private function comment_closed( $post ) {
+        
+        // set initial status for comments
+        if ($post->comment_status == 'open' && get_option('comment_registration') == 0)
+            $comment_status ='open';
+        else 
+            $comment_status = 'closed';
+            
+        // if the option close_comments_for_old_posts is not set, teturn the status for comments
+    	if ( !get_option('close_comments_for_old_posts') )
+    		return $comment_status;
+    
+        // if the number of ol days is not set return comment_status
+    	$days_old = (int) get_option('close_comments_days_old');
+    	if ( !$days_old )
+    		return $comment_status;
+    
+    	$post = get_post($post->ID);
+    
+    	/** This filter is documented in wp-includes/comment.php */
+    	$post_types = apply_filters( 'close_comments_for_post_types', array( 'post' ) );
+    	if ( ! in_array( $post->post_type, $post_types ) )
+    		$comment_status ='open';
+        
+        // if the post is older than the number of days set, change comment_status to false
+    	if ( time() - strtotime( $post->post_date_gmt ) > ( $days_old * DAY_IN_SECONDS ) )
+    		$comment_status = 'closed';
+            
+    	return $comment_status;
+    }
 	 
 	 
   } // Export
