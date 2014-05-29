@@ -209,7 +209,6 @@ function WMP_WAITLIST(){
 			dataType: 'jsonp',
 			success: function(responseJSON){
 				
-                console.log(responseJSON)
                 WMPJSInterface.Preloader.remove(100);
                 
                 JSON = eval (responseJSON);
@@ -246,8 +245,6 @@ function WMP_WAITLIST(){
                     // display check sign (only for themes)
                     if (JSObject.listType == 'businesstheme' || JSObject.listType == 'lifestyletheme'){
                         
-                        console.log(jQuery(JSObject.form).closest('div.theme.waitlist', JSObject.DOMDoc))
-                        
                         jQuery(JSObject.form).closest('div.theme.waitlist', JSObject.DOMDoc).addClass("added");
                         
                     }
@@ -262,7 +259,6 @@ function WMP_WAITLIST(){
                                 'joined_waitlist': JSObject.listType
                             }, 
                             function(response1){
-                                console.log(response1)
                             }
                         );
                     }

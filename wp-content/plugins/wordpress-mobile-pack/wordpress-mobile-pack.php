@@ -3,6 +3,8 @@
  * Plugin Name:  WordPress Mobile Pack
  * Plugin URI:  http://wordpress.org/plugins/wordpress-mobile-pack/
  * Description: With WordPress Mobile Pack,  you can easily build your own stylish, cross-platform mobile web application out of your existing content.
+ * Author: Appticles.com
+ * Author URI: http://www.appticles.com/
  * Version: 2.0
  * Copyright (c) 2009 – 2014 James Pearce, mTLD Top Level Domain Limited, ribot, Forum Nokia, Appticles.com
  * License: The WordPress Mobile Pack is Licensed under the Apache License, Version 2.0
