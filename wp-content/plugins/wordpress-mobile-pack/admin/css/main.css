@@ -1289,6 +1289,11 @@ body {
   font-size: 13px;
 }
 
+/* line 390, ../sass/core/_core.scss */
+.wp-admin .mfp-bg, .wp-admin .mfp-wrap {
+  z-index: 10000;
+}
+
 /* line 2, ../sass/core/_forms.scss */
 #wmpack-admin form {
   text-align: left;
@@ -1447,18 +1452,22 @@ body {
   height: 36px;
   line-height: 33px;
 }
-/* line 124, ../sass/core/_forms.scss */
+/* line 125, ../sass/core/_forms.scss */
+#wmpack-admin .selectboxit-container .selectboxit-list > .selectboxit-focus > .selectboxit-option-anchor {
+  background: #e3e3e3;
+}
+/* line 132, ../sass/core/_forms.scss */
 #wmpack-admin input[type="radio"] {
   width: 16px;
   height: 16px;
   float: left;
   margin: 0 10px 0 30px;
 }
-/* line 130, ../sass/core/_forms.scss */
+/* line 138, ../sass/core/_forms.scss */
 #wmpack-admin input[type="radio"]::before {
   margin: 4px;
 }
-/* line 134, ../sass/core/_forms.scss */
+/* line 142, ../sass/core/_forms.scss */
 #wmpack-admin textarea {
   font-family: 'AcordeSemiBold', sans-serif;
   width: 240px;
@@ -1476,29 +1485,29 @@ body {
   padding: 10px 15px;
   resize: none;
 }
-/* line 147, ../sass/core/_forms.scss */
+/* line 155, ../sass/core/_forms.scss */
 #wmpack-admin textarea.smaller {
   width: 120px;
 }
-/* line 150, ../sass/core/_forms.scss */
+/* line 158, ../sass/core/_forms.scss */
 #wmpack-admin textarea.small {
   width: 220px;
 }
-/* line 153, ../sass/core/_forms.scss */
+/* line 161, ../sass/core/_forms.scss */
 #wmpack-admin textarea.big {
   width: 320px;
 }
-/* line 156, ../sass/core/_forms.scss */
+/* line 164, ../sass/core/_forms.scss */
 #wmpack-admin textarea:focus {
   outline: none;
   border: 1px solid #a4abae;
 }
-/* line 160, ../sass/core/_forms.scss */
+/* line 168, ../sass/core/_forms.scss */
 #wmpack-admin textarea.error {
   border-color: #d0160a;
   background: #fef7f7;
 }
-/* line 166, ../sass/core/_forms.scss */
+/* line 174, ../sass/core/_forms.scss */
 #wmpack-admin label {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1508,30 +1517,30 @@ body {
   color: #2a2d33;
   font-size: 15px;
 }
-/* line 173, ../sass/core/_forms.scss */
+/* line 181, ../sass/core/_forms.scss */
 #wmpack-admin ::-webkit-input-placeholder {
   padding: 2px 0 0 0;
   color: #b2b5bc;
   font-size: 13px;
 }
-/* line 178, ../sass/core/_forms.scss */
+/* line 186, ../sass/core/_forms.scss */
 #wmpack-admin :-moz-placeholder {
   padding: 2px 0 0 0;
   color: #b2b5bc;
   font-size: 13px;
 }
-/* line 183, ../sass/core/_forms.scss */
+/* line 191, ../sass/core/_forms.scss */
 #wmpack-admin ::-moz-placeholder {
   padding: 2px 0 0 0;
   color: #b2b5bc;
   font-size: 13px;
 }
-/* line 188, ../sass/core/_forms.scss */
+/* line 196, ../sass/core/_forms.scss */
 #wmpack-admin :-ms-input-placeholder {
   color: #b2b5bc !important;
   font-size: 13px;
 }
-/* line 193, ../sass/core/_forms.scss */
+/* line 201, ../sass/core/_forms.scss */
 #wmpack-admin .field-message {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1544,31 +1553,31 @@ body {
   background: transparent;
   border: 0;
 }
-/* line 200, ../sass/core/_forms.scss */
+/* line 208, ../sass/core/_forms.scss */
 #wmpack-admin .field-message span {
   font-family: "OpenSansRegular", sans-serif;
   font-size: 13px;
   line-height: 20px;
 }
-/* line 206, ../sass/core/_forms.scss */
+/* line 214, ../sass/core/_forms.scss */
 #wmpack-admin .field-message.error span {
   color: #d0160a;
 }
-/* line 211, ../sass/core/_forms.scss */
+/* line 219, ../sass/core/_forms.scss */
 #wmpack-admin .field-message.success span {
   color: #4cae4c;
 }
-/* line 216, ../sass/core/_forms.scss */
+/* line 224, ../sass/core/_forms.scss */
 #wmpack-admin .field-message.warning span {
   color: #f89406;
 }
-/* line 221, ../sass/core/_forms.scss */
+/* line 229, ../sass/core/_forms.scss */
 #wmpack-admin .message-container {
   display: block;
   text-align: left;
   width: 100%;
 }
-/* line 226, ../sass/core/_forms.scss */
+/* line 234, ../sass/core/_forms.scss */
 #wmpack-admin .message-container .wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1588,11 +1597,11 @@ body {
   padding: 25px 50px;
   margin: 10px 0;
 }
-/* line 234, ../sass/core/_forms.scss */
+/* line 242, ../sass/core/_forms.scss */
 #wmpack-admin .message-container .wrapper .relative {
   width: 100%;
 }
-/* line 238, ../sass/core/_forms.scss */
+/* line 246, ../sass/core/_forms.scss */
 #wmpack-admin .message-container .title {
   width: 100%;
   display: -webkit-box;
@@ -1605,7 +1614,7 @@ body {
   -ms-flex-direction: row !important;
   flex-direction: row !important;
 }
-/* line 243, ../sass/core/_forms.scss */
+/* line 251, ../sass/core/_forms.scss */
 #wmpack-admin .message-container .title h2 {
   font-family: 'OlRoundGothicLight', sans-serif;
   display: -webkit-box;
@@ -1620,13 +1629,13 @@ body {
   margin: 0 0 15px 0 !important;
   font-size: 25px;
 }
-/* line 251, ../sass/core/_forms.scss */
+/* line 259, ../sass/core/_forms.scss */
 #wmpack-admin .message-container span {
   font-family: "OpenSansRegular", sans-serif;
   font-size: 13px;
   line-height: 20px;
 }
-/* line 256, ../sass/core/_forms.scss */
+/* line 264, ../sass/core/_forms.scss */
 #wmpack-admin .message-container .close-x {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1658,87 +1667,87 @@ body {
   font-weight: normal !important;
   content: "\31";
 }
-/* line 268, ../sass/core/_forms.scss */
+/* line 276, ../sass/core/_forms.scss */
 #wmpack-admin .message-container .close-x:hover {
   cursor: pointer;
 }
-/* line 271, ../sass/core/_forms.scss */
+/* line 279, ../sass/core/_forms.scss */
 #wmpack-admin .message-container .close-x::before {
   width: 25px;
   height: 25px;
 }
-/* line 277, ../sass/core/_forms.scss */
+/* line 285, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.error .wrapper {
   border: 1px solid #ecc2c3;
   background: #fef7f7;
 }
-/* line 282, ../sass/core/_forms.scss */
+/* line 290, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.error .title h2 {
   color: #d0160a;
 }
-/* line 285, ../sass/core/_forms.scss */
+/* line 293, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.error .title h2.underlined {
   border-bottom: 1px solid #ecc2c3;
 }
-/* line 290, ../sass/core/_forms.scss */
+/* line 298, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.error span {
   color: #d0160a;
 }
-/* line 293, ../sass/core/_forms.scss */
+/* line 301, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.error .close-x {
   color: #ecc2c3;
 }
-/* line 296, ../sass/core/_forms.scss */
+/* line 304, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.error .close-x:hover {
   color: #e09b9d;
 }
-/* line 302, ../sass/core/_forms.scss */
+/* line 310, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.success .wrapper {
   border: 1px solid #5cb85c;
   background: #f7fef7;
 }
-/* line 307, ../sass/core/_forms.scss */
+/* line 315, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.success .title h2 {
   color: #4cae4c;
 }
-/* line 310, ../sass/core/_forms.scss */
+/* line 318, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.success .title h2.underlined {
   border-bottom: 1px solid #5cb85c;
 }
-/* line 315, ../sass/core/_forms.scss */
+/* line 323, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.success span {
   color: #4cae4c;
 }
-/* line 318, ../sass/core/_forms.scss */
+/* line 326, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.success .close-x {
   color: #5cb85c;
 }
-/* line 321, ../sass/core/_forms.scss */
+/* line 329, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.success .close-x:hover {
   color: #449d44;
 }
-/* line 327, ../sass/core/_forms.scss */
+/* line 335, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.warning .wrapper {
   border: 1px solid #ffd79e;
   background: #fffce1;
 }
-/* line 332, ../sass/core/_forms.scss */
+/* line 340, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.warning .title h2 {
   color: #f89406;
 }
-/* line 335, ../sass/core/_forms.scss */
+/* line 343, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.warning .title h2.underlined {
   border-bottom: 1px solid #ffd79e;
 }
-/* line 340, ../sass/core/_forms.scss */
+/* line 348, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.warning span {
   color: #f89406;
 }
-/* line 343, ../sass/core/_forms.scss */
+/* line 351, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.warning .close-x {
   color: #ffd79e;
 }
-/* line 346, ../sass/core/_forms.scss */
+/* line 354, ../sass/core/_forms.scss */
 #wmpack-admin .message-container.warning .close-x:hover {
   color: #ffc26b;
 }
@@ -2000,7 +2009,6 @@ body {
 }
 /* line 107, ../sass/modules/_content.scss */
 #wmpack-admin .content .left-side .details .waitlist .added .switcher.blue .check {
-
   background: #1ca8dd;
   border: 1px solid #1686b0;
   border-left: 0px;
@@ -2682,7 +2690,7 @@ body {
 }
 /* line 334, ../sass/modules/_look-and-feel.scss */
 #wmpack-admin .look-and-feel .left-side .details.theming .themes .theme.waitlist .overlay {
-  background: #8bc4da;
+  background: rgba(139, 196, 218, 0.9);
 }
 /* line 337, ../sass/modules/_look-and-feel.scss */
 #wmpack-admin .look-and-feel .left-side .details.theming .themes .theme.waitlist .overlay .text {
