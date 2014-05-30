@@ -903,6 +903,8 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 	 * Method comment_closed used to determine the comment status for an article
 	 *
 	 *  The method returns 'open' if the users can comment and 'closed' otherwise
+	 *
+	 * @param $post - object containing the post details 
 	 */
 	 public function comment_closed( $post ) {
         
