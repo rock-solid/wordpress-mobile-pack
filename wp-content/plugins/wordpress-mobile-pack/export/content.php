@@ -1,5 +1,8 @@
 <?php 
 
+//Disable error reporting becasue these methods are used as callbacks by the mobile web app
+error_reporting(0);
+
 require_once("export-class.php");
 
 header("Content-Type: application/json; charset=UTF-8");
