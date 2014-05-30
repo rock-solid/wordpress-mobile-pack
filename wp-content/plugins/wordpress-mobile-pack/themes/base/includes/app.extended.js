@@ -74798,7 +74798,7 @@ Ext.define("WP.view.phone.articles.ArticleCard", {
 				parseContent: function(content, boxWidth){
 					boxWidth = boxWidth - 30;
 					
-					var newContent = content.replace(/\<img\s/g, "<img style='max-width: "+boxWidth+"px;' ");
+					var newContent = content.replace(/\<img\s/g, "<img style='max-width: "+boxWidth+"px; display: block; margin: 0 auto;' ");
 					var iframes = 0;
 					newContent = newContent.replace(/\<iframe\s/g, function(){
 						return "<iframe data-index=\""+(iframes++)+"\" ";	
@@ -75150,11 +75150,11 @@ Ext.define("WP.view.phone.articles.comments.CommentsList", {
 		variableHeights: true,
 		itemTpl: new Ext.XTemplate(
 			'<div class="comment-box">',
-				'<div class="comment-left">',
-					'<tpl if="avatar &amp;&amp; avatar.length &gt; 0">',
+				'<tpl if="avatar &amp;&amp; avatar.length &gt; 0">',
+					'<div class="comment-left">',
 						'<div class="img" style="background-image:url(\'{avatar}\');"></div>',
-					'</tpl>',
-				'</div>',
+					'</div>',
+				'</tpl>',
 				'<div class="comment-right">',
 					'<div class="header">',
 						'<span>{author}&nbsp;</span>',
@@ -75510,7 +75510,6 @@ Ext.define("WP.view.phone.articles.comments.CommentsPanel", {
 		// css properties
 		iconCls: 'comments',
 		cls: 'comments-box',
-		//floatingCls: '',
 		width: '100%',
 		height: '100%',
 		top: 0,
@@ -75636,6 +75635,11 @@ Ext.define("WP.view.phone.articles.comments.CommentsPanel", {
 	
 	onClosePanel: function(){
 		this.hide();
+		
+		var me = this;
+		Ext.defer(function(){
+			me.destroy();	
+		}, 400);
 	},
 		
 	onCloseBtnTap: function(){
