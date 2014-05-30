@@ -682,7 +682,6 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 				$articleId = 0;			
 				if(isset($_GET["articleId"]) && is_numeric($_GET["articleId"])) {
 					$articleId = $_GET["articleId"];
-					
 				}
 					
 				// check token
@@ -691,7 +690,6 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 					// if the token is valid, go ahead and save comment to the DB
 					if(WMobilePack::wmp_check_token($_GET['code'])) {
 						
-						// get post by article id
 						// get post by id
 						$post = get_post( $articleId);
 						
@@ -722,8 +720,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 									
 									if ( $comment_content == '' )
 										return '{"status":0}'; // Please type a comment
-									
-									
+																		
 									// check if comment will be approved directly or will await moderation
 									$approved_comment = check_comment($comment_author,$comment_author_email,$comment_author_url,$comment_content,$_SERVER["REMOTE_ADDR"],$_SERVER['HTTP_USER_AGENT'],'user');
 									
@@ -734,17 +731,22 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 									
 									// add a hook for duplicate comments
 									add_action("comment_duplicate_trigger",array(&$this,'wmp_duplicate'));
-									
-									//if(get_comment($commentdata))
-									//	return '{"status":0}'; // The comment alreaduy exists
 										
 									// get comment id
 									$comment_id = wp_new_comment( $commentdata );
 									
-									if(is_numeric($comment_id) && (!$approved_comment || in_array('akismet/akismet.php',get_option("active_plugins"))))
-										return '{"status":2}'; // Your comment is awaiting moderation.
-									elseif(is_numeric($comment_id))
-										return '{"status":1}';//Your comment was successfully added
+									// get status
+									if(is_numeric($comment_id)) {
+										
+										// get comment
+										$comment = get_comment($comment_id);
+										// set status by comment status
+										if($comment->comment_approved == 1)
+											return '{"status":1}';//Your comment was successfully added
+										else
+											return '{"status":2}'; // Your comment is awaiting moderation.
+									
+									}
 									
 								} else // return error
 									return '{"status":0}'; // Sorry, comments are closed for this item.
@@ -757,7 +759,6 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 							// return error
 							return '{"status":0}'; // Sorry, the post is not available
 							
-						
 					}
 				}
 			}
@@ -903,7 +904,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 	 *
 	 *  The method returns 'open' if the users can comment and 'closed' otherwise
 	 */
-	 private function comment_closed( $post ) {
+	 public function comment_closed( $post ) {
         
         // set initial status for comments
         if ($post->comment_status == 'open' && get_option('comment_registration') == 0)
@@ -930,7 +931,8 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
         // if the post is older than the number of days set, change comment_status to false
     	if ( time() - strtotime( $post->post_date_gmt ) > ( $days_old * DAY_IN_SECONDS ) )
     		$comment_status = 'closed';
-            
+          
+		 // return comment status 
     	return $comment_status;
     }
 	 
