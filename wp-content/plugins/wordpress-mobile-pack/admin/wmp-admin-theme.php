@@ -49,7 +49,7 @@
                     	<div class="corner relative active">
                             <div class="indicator"></div>
                         </div>
-                        <div class="image" style="background:url(<?php echo plugins_url()."/".WMP_DOMAIN;?>/admin/images/theme-1.jpg);">
+                        <div class="image" style="background:url(<?php echo plugins_url()."/".WMP_DOMAIN;?>/admin/images/theme-3.jpg);">
                         	<div class="relative">
                             	<div class="overlay">
                                 	<div class="spacer-70"></div>
@@ -70,7 +70,7 @@
                     	<div class="corner relative inactive">
                             <div class="indicator"></div>
                         </div>
-                        <div class="image" style="background:url(<?php echo plugins_url()."/".WMP_DOMAIN;?>/admin/images/theme-2.jpg);">
+                        <div class="image" style="background:url(<?php echo plugins_url()."/".WMP_DOMAIN;?>/admin/images/theme-1.jpg);">
                         	<div class="relative">
                             	<div class="overlay">
                                 	<div class="spacer-30"></div>
@@ -123,7 +123,7 @@
                     	<div class="corner relative inactive">
                             <div class="indicator"></div>
                         </div>
-                        <div class="image" style="background:url(<?php echo plugins_url()."/".WMP_DOMAIN;?>/admin/images/theme-3.jpg);">
+                        <div class="image" style="background:url(<?php echo plugins_url()."/".WMP_DOMAIN;?>/admin/images/theme-2.jpg);">
                         	<div class="relative">
                             	<div class="overlay">
                                     <div class="spacer-30"></div>
