@@ -2,6 +2,9 @@
 
 require_once("export-class.php");
 
+//Disable error reporting becasue these methods are used as callbacks by the mobile web app
+error_reporting(0);
+
 header("Content-Type: application/json; charset=UTF-8");
 
 if(isset($_GET["content"])) {
@@ -33,14 +36,6 @@ if(isset($_GET["content"])) {
 		
 	}	elseif($_GET["content"] == 'savecomment' && isset($_GET["articleId"]) && is_numeric($_GET["articleId"])) {
 	
-		/*$_GET["author"] = 'Flori';
-		$_GET["email"] = 'florentina@webcrumbz.com';
-		$_GET["url"] = 'http://appticles.com';
-		$_GET["comment"] = 'Must be approved?';
-		$_GET["comment_parent"] = 0;
-		$_GET["code"] = 'M2I4YTViOTI4NzRiMmI2Y2ExOGZiY2I1ZDU4ZThiOTFfMTQwMDc3MTc1NA==';*/
-		
-		
 		// save comment, mandatory get param is articleId
 		$export = new Export();
 		//echo $export->saveComment();

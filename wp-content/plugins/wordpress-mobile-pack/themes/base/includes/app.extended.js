@@ -11283,6 +11283,7 @@ Ext.define('Ext.env.Feature', {
  * * \* any element
  * * E an element with the tag E
  * * E F All descendant elements of E that have the tag F
+
  * * E > F or E/F all direct children elements of E that have the tag F
  * * E + F all elements with the tag F that are immediately preceded by an element with the tag E
  * * E ~ F all elements with the tag F that are preceded by a sibling element with the tag E
@@ -16493,6 +16494,7 @@ Ext.define('Ext.mixin.Observable', {
         else {
             for (oldName in events) {
                 if (events.hasOwnProperty(oldName)) {
+
                     newName = prefix + events[oldName];
 
                     object.addListener(oldName, this.createEventRelayer(newName), this);
@@ -16996,6 +16998,7 @@ Ext.define('Ext.util.HashMap', {
         this.callParent();
 
         this.mixins.observable.constructor.call(this);
+
 
         this.clear(true);
     },
@@ -28945,6 +28948,7 @@ Ext.define("Ext.util.Sortable", {
      *
      * Internally, Store converts the passed arguments into an array of {@link Ext.util.Sorter} instances, and delegates
      * the actual sorting to its internal {@link Ext.util.MixedCollection}.
+
      *
      * When passing a single string argument to sort, Store maintains a ASC/DESC toggler per field, so this code:
      *
@@ -33561,6 +33565,7 @@ Ext.define('Ext.Container', {
         }
     },
 
+
     show:function(){
         this.callParent(arguments);
 
@@ -35041,6 +35046,7 @@ Ext.define('Ext.Sheet', {
 
         /**
          * @cfg
+
          * @inheritdoc
          */
         hideAnimation: !Ext.browser.is.AndroidStock2 ? {
@@ -35296,6 +35302,7 @@ Ext.define('Ext.data.Connection', {
          * @param {Ext.data.Connection} conn This Connection object.
          * @param {Object} response The XHR object containing the response data.
          * See [The XMLHttpRequest Object](http://www.w3.org/TR/XMLHttpRequest/) for details.
+
          * @param {Object} options The options config object passed to the {@link #request} method.
          */
         /**
@@ -44330,6 +44337,7 @@ Ext.define('Ext.mixin.Filterable', {
      * This method removes all the filters in a passed array.
      * @param {Array} filters Each value in the array can be a string (property name),
      * function (sorterFn), an object containing a property and value keys or
+
      * {@link Ext.util.Sorter Sorter} instance.
      */
     removeFilters: function(filters) {
@@ -54589,6 +54597,7 @@ Ext.define('Ext.data.Store', {
      * @param {Ext.data.Operation} operation The associated operation.
      */
 
+
     /**
      * @event write
      * Fires whenever a successful write has been made via the configured {@link #proxy Proxy}
@@ -62527,6 +62536,7 @@ Ext.define('Ext.util.DelayedTask', {
         //cancel any existing queued functions
         me.cancel();
 
+
         //set all the new configurations
 
         if (Ext.isNumber(delay)) {
@@ -68606,6 +68616,7 @@ Ext.define('Ext.fx.runner.CssTransition', {
             data.toPropertyNames = toPropertyNames = [];
 
             for (name in to) {
+
                 if (to.hasOwnProperty(name)) {
                     to[name] = toFormattedValue = this.formatValue(to[name], name);
                     formattedName = this.formatName(name);
@@ -74269,13 +74280,13 @@ Ext.define("WP.view.phone.categories.CategoriesCarousel", {
 			var coverArticleId = this.down("#cover").getData()[0].id;
 			var firstArticleId = articles.getAt(0).getData().id;
 			var hiddenArticles = articles.getCount() - layouts.get("displayedArticlesIds").length - ((firstArticleId == coverArticleId) ? 1 : 0);
-			console.log(hiddenArticles)
+			
 			if (hiddenArticles != 0){
 				// build category's cards
 				carousel.fireEvent("buildcards", category.get("id"));	
 			}
 			else if (!layouts.get("noMoreArticles")){
-				console.log("load more articles")
+				
 				categoriesController.loadArticles({categoryId: category.get("id")});
 			}
 		}
@@ -74323,7 +74334,7 @@ Ext.define("WP.view.phone.categories.CategoriesCarousel", {
 				
 		// number of articles to show on different layouts
 		var dif = totalArticles - displayedArticles - ((firstArticleId == coverArticleId) ? 1 : 0);
-		//console.log(totalArticles, displayedArticles, dif)	
+			
 		// there are new articles to show
 		if (dif != 0){
 			var layoutsPath = this.getLayoutsPath();
@@ -74367,10 +74378,10 @@ Ext.define("WP.view.phone.categories.CategoriesCarousel", {
 					}
 					break;
 			}
-			//console.log(pages, nextLayoutIndex)
+			
 			// for each new page create a card
 			for (var i=0; i<pages.length; i++){
-				//console.log("i: "+i);
+				
 				var noOfArticles = pages[i];
 				var index = currentLayouts.length;
 				var itemId = categoryId + "_" + index;
@@ -74419,10 +74430,7 @@ Ext.define("WP.view.phone.categories.CategoriesCarousel", {
 				layouts.set("displayedArticlesIds", currentDisplayedArticlesIds);
 				layouts.set("nextLayoutIndex", nextLayoutIndex);
 				
-				//categoriesCarousel.insert(firstPos+i, card);
 				this.add(card);
-				
-				//console.log(firstPos, i, noOfArticles, index, itemId, layouts, nextLayoutIndex, layoutsCategory.get('cardsLayout')) 
 			}
 		}
 	},
