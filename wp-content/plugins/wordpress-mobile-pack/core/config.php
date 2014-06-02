@@ -15,7 +15,7 @@ define('WMP_FEEDBACK_EMAIL','feedback@appticles.com');
 define('WMP_NEWS_UPDATES','https://s3-eu-west-1.amazonaws.com/appticles-wmpack/dashboard/news.json');
 define('WMP_WHATSNEW_UPDATES','https://s3-eu-west-1.amazonaws.com/appticles-wmpack/dashboard/whats_new/content.json');
 define('WMP_MORE_UPDATES','https://s3-eu-west-1.amazonaws.com/appticles-wmpack/dashboard/more/content.json');
-define('WMP_WAITLIST_PATH','http://gateway-dev.appticles.com/waitlist/api/subscribe');
+define('WMP_WAITLIST_PATH','http://gateway.appticles.com/waitlist/api/subscribe');
 
 // define blog version
 define('WMP_BLOG_VERSION',get_bloginfo('version'));

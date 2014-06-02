@@ -112,7 +112,7 @@
                                 
                             </div>
                         </div>
-                        <div class="name">Business</div>
+                        <div class="name">Theme #2</div>
                         <div class="content">Content type
                         	<div class="facebook-icon"></div>
                             <div class="twitter-icon"></div>
@@ -164,7 +164,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="name">Lifestyle</div>
+                        <div class="name">Theme #3</div>
                         <div class="content">Content type
                         	<div class="facebook-icon"></div>
                             <div class="twitter-icon"></div>

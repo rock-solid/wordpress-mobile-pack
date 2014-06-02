@@ -1,21 +1,42 @@
 === WordPress Mobile Pack ===
 Contributors: jamesgpearce, andreatrasatti, edent, appticles.com
-Tags: mobile, mobile web, mobile internet, smartphone, iphone, android, windows 8, webkit, chrome, safari, mobile web app, sencha touch
+Tags: mobile, mobile web, mobile internet, smartphone, iphone, android, windows 8, webkit, chrome, safari, mobile web app, html5, sencha touch, responsive ui
 Requires at least: 3.5
 Tested up to: 3.9.1
 Stable tag: 2.0
+License: GPLv2 or later
 
-With WordPress Mobile Pack, you can easily build your own stylish, cross-platform mobile web application out of your existing content.
+The NEW WordPress Mobile Pack allows you to 'package' your existing content into a cross-platform mobile web application.
 
 == Description ==
 
-**NEW in Version 2.0**: Completely rebuilt using a mobile web app for the frontend and new admin panel. 
+**The WordPress Mobile Pack 2.0 has been completely rebuilt from the ground up to empower bloggers to go beyond responsiveness and 'appify' the content of their blog.**
 
-**NEW in Version 1.2.2**: Support for WordPress v3.0
+WordPress Mobile Pack 2.0 is **supported on**: iPhones, Android smartphones, Windows Phone 8. **Compatible browsers**: Safari, Google Chrome, Android - Native Browser and Internet Explorer 10.
 
-**NEW in Version 1.2.1**: Native integration with WP Super Cache. Read more at [Go mobile with WP Super Cache and the Mobile Pack](http://blog.trasatti.it/2010/05/go-mobile-with-wp-super-cache-and.html)
+The pack has been tested on WordPress 3.5 and later. 
 
-**NEW in Version 1.2.0**: The Mobile Pack now displays advanced themes for Nokia and WebKit devices. There are three grades of theme designed for low-, mid-, and high-end Nokia devices, the latter of which also provides full support for WebKit browsers, including those on Android, iPhone and Palm devices. The development of this feature has been kindly sponsored by Forum Nokia.
+The WordPress Mobile Pack 2.0 eliminates the hassle of dealing with high development costs, approval processes with various app stores, poor discoverability due to the closed environment of native apps and finally, one of the biggest injustices aimed towards the publishing industry in general - the shared revenue constraint.
+
+What the WordPress Mobile Pack 2.0 enables you to do: 
+
+* **Cross-platform mobile web applications**. All it takes for a mobile web application to run is a modern mobile browser (HTML5 compatible), thus allowing readers to instantly have access to your content, without needing to go through an app store, download & install the app.
+ 
+* **Responsive UI**. The mobile web application is sensitive to various screen sizes and orientation changes: landscape, portrait. In other words, the look and feel of the mobile web app seamlessly morphs into the screen size of users' devices.
+
+* **Theming**. You can offer your users an exceptional reading experience by giving them a mobile web application with a native app-like look & feel. The default theme comes with 6 abstract covers that are randomly displayed on the loading screen to give the app a magazine flavour. 
+
+* **Customize appearance**. Once a favourite theme has been selected, you can customize the colors & fonts, add your logo and graphic elements that can relate to your blog's identity.
+
+* **Posts Sync**. The posts inside the mobile web application are organized into their corresponding categories, thus readers can simply swipe through articles and jump from category to category in a seamless way. 
+
+* **Comments Sync**. All the comments that are displayed in the blog are also synchronized into the mobile web application. On top of that, comments that are posted from within the app are also displayed on the blog.
+
+* **Analytics**. WordPress Mobile Pack 2.0 easily integrates with Google Analytics. 
+
+* **Add to Homescreen**. Readers can add the mobile web application to their homescreen and run it in full-screen mode. 
+
+For previous versions, check out the 'Change log' page.
 
 We enjoy writing and maintaining this plugin. If you like it too, please rate us. But if you don't, let us know how we can improve it.
 
@@ -32,7 +53,7 @@ Have fun on your mobile adventures.
 
 = Comprehensive setup =
 
-A more comprehensive setup process and guide to configuration is as follows. If you are installing the plugin through the admin dashboard, you'll be able to skip most of the early steps.
+A more comprehensive setup process and guide to configuration is as follows.
 
 1. Locate your WordPress install on the file system
 1. Extract the contents of `wordpress-mobile-pack.zip` into `wp-content/plugins`
@@ -48,21 +69,37 @@ A more comprehensive setup process and guide to configuration is as follows. If 
 
 = Testing your installation =
 
-Ideally, use a real mobile device to access your (public) site address and check that the switching and theme work correctly.
+Ideally, use a real mobile device to access your (public) site address and check that the switching and mobile web app work correctly.
 
 You can also download a number of mobile emulators that can run on a desktop PC and simulate mobile devices.
 
-Please note that the mobile web app will be enabled only on supported devices: iOS, Android and Windows 8. Only Webkit browsers are compatible: Safari, Google Chrome, Android - Native Browser and Internet Explorer 10 (Firefox is not supported for now). 
-
-If you use the Firefox Browser, the 'User-Agent Switcher' add-on can be configured to send mobile headers and crudely simulate a mobile device's request.
+Please note that the mobile web app will be enabled only on supported devices: iPhones, Android smartphones and Windows Phone 8. Only Webkit browsers are compatible: Safari, Google Chrome, Android - Native Browser and Internet Explorer 10 (Firefox is not supported for now). 
 
 == Frequently Asked Questions ==
 
+= What devices and operating systems are supported by my mobile web application? =
+WordPress Mobile Pack 2.0 is supported on: iPhones, Android smartphones, Windows Phone 8. Compatible browsers: Safari, Google Chrome, Android - Native Browser and Internet Explorer 10.
+Support for other mobile browsers such as Firefox will be added in later releases.
+
+= How can my readers switch back to the desktop theme from my mobile web application? =
+The side menu of the mobile web application contains a 'Switch to website' button that will take readers back to the desktop theme. Their option will be remembered the next time they visit your blog.
+
+= How can my readers switch back to the mobile web application from the desktop theme? =
+A link called 'Switch to mobile version' will be displayed in the footer of your desktop theme, only for readers that are viewing the site from a supported device and browser. Their option will be remembered the next time they visit your blog.
+
+= I want to temporarily deactivate my mobile web application. What steps must I follow? =
+The mobile web application can be deactivated from the "Settings" page of the admin panel. This option will not delete any settings that you have done so far, like customizing the look & feel of your application, but mobile readers will no longer be able to see it on their devices.
+
+= What is the difference between my new mobile web application and a mobile friendly site? = 
+The short answer is that a mobile web application is an enriched version of a mobile-friendly site; it's not only about screen size, it's also about functionality (offline mode, for example). The long answer comes in a form of an article, you can check it out here: http://www.appticles.com/blog/2014/05/mobile-web-dying-shifting/.
+
+= What is the difference between my mobile web application and a responsive theme? =  
+A responsive theme is all about design - it loads the same styling as the desktop view, adjusting it to fit a smaller screen. A mobile web application combines the versatility of the web with the functionality of touch-enabled devices and can contain features that your desktop website doesn't have (like offline mode for example). A mobile web app is similar to a native app in terms of look & feel, with the only difference being that it runs in the browser.
 
 == Changelog ==
 
 = 2.0 =
-* Enterily rebuilt to use Sencha Touch for the mobile web application and a separate admin panel. No backwards compatibility with v1.2.5.
+* Enterily rebuilt to use Sencha Touch for the mobile web application and a separate admin panel. NO backwards compatibility with v1.2.5.
 
 = 1.2.5 =
 * Removed [PercentMobile](http://percentmobile.com) analytics and XSS issue.
@@ -137,44 +174,33 @@ Two major issues were introduced in beta 1, now solved:
 * PHP4 support
 * Numerous minor bug fixes
 
-[Full ticket list](http://www.assembla.com/spaces/wordpress-mobile-pack/milestones/95962)
-
-
 = 1.0.8223 =
 * Initial release
 
 
 == Upgrade Notice ==
 
-= 1.2.0 =
-* Includes advanced themes for Nokia and WebKit devices, and mobile analytics and integration with [PercentMobile](http://percentmobile.com)
-
+= 2.0 =
+* Completely rebuilt from the ground up to empower you to go beyond responsiveness and 'appify' the content of your blog.
 
 
 == Screenshots ==
 
+1. Cover of the mobile web app. A default cover is used if your last blog entry doesn't contain a large enough featured image.
+2. Articles within a category. 
+3. Side menu with all the enabled categories. 
+4. Article details.
+5. Comments panel for an article.
+6. "What's New" page from the admin panel. Displays latest updates and news.
+7. "Look & Feel" page from the admin panel. Customize theme by choosing colors, fonts and adding your own app icon & logo.
+8. "Content" page from the admin panel. Show/hide categories of articles in the mobile web app.
+9. "Settings" page from the admin panel. Set display mode and add your Google Analytics Id.
+10. "More" page from the admin panel. Other capabilities offered in the premium hosted platform.
 
 
+== Known issues and limitations for v2.0 ==
 
-== Documentation ==
-
-
-
-= Mobile switcher =
-
-
-= Base mobile theme =
-
-
-= Transcoding and device adaptation =
-
-
-= Mobile admin panel =
-
-
-== Known issues ==
-
-* On a WordPress MU installation, it is not possible to configure the favicon for each site independently within the single mobile theme. You are advised to create multiple derived themes from the mobile base theme, and configure the favicons separately for each.
-* Note that if you use a desktop theme that provides unusual, additional page templates, the default mobile theme will not have the corresponding logic. The mobile theme will fall back to showing a default posting list. However, you are able to create new mobile templates just as for the desktop theme. (Copy archives.php as a simple example of an auxiliary page template.)
-* If you are using a desktop domain and a mobile domain, it is not currently possible to host them on different sub-directory locations (eg `http://mysite.com/blog/` but `http://mysite.mobi/`). Both versions of the site must either be at the top-level of the domain or in the same sub-directory.
-* W3 Total Cache does not play well with mobile plugins, you can read how to make it work at [Getting W3 Total cache to work with WordPress Mobile Pack](http://blog.trasatti.it/2010/04/getting-w3-total-cache-to-work-with.html) until a new release comes (very soon!)
+* V2.0 of the mobile web app doesn't display the Pages from your blog, only categories and posts.
+* The mobile web app doesn't include user authentication. If your blog settings enable comments only for logged in users, they will be disabled in the mobile web app.
+* For now, supported mobile browsers include Safari, Google Chrome, Android's native browser and Internet Explorer 10. Firefox support will be added in later versions.
+* Only featured images from your blog posts are used to generate the cover of the mobile web app and images for the list of posts. Images integrated in a post's content are displayed only on the details page for that post.
