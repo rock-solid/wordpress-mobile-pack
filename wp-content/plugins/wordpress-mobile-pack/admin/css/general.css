@@ -1935,7 +1935,7 @@ body {
 /* line 5, ../sass/modules/_content.scss */
 #wmpack-admin .content .left-side {
   width: 100%;
-  display: table;
+  display: table-cell;
   vertical-align: top;
 }
 /* line 10, ../sass/modules/_content.scss */
@@ -2155,7 +2155,7 @@ body {
 /* line 5, ../sass/modules/_settings.scss */
 #wmpack-admin .settings .left-side {
   width: 100%;
-  display: table;
+  display: table-cell;
   vertical-align: top;
 }
 /* line 10, ../sass/modules/_settings.scss */
@@ -3067,7 +3067,7 @@ body {
 /* line 18, ../sass/modules/_more.scss */
 #wmpack-admin .more .left-side {
   width: 100%;
-  display: table;
+  display: table-cell;
   vertical-align: top;
 }
 /* line 23, ../sass/modules/_more.scss */

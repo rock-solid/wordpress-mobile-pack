@@ -274,6 +274,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 			}
 			// reset array keys
 			$arrCategories = array_values($arrCategories);
+			// return json
 			return '{"categories":'.json_encode($arrCategories)."}";
 		
 		} else
@@ -763,8 +764,8 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
 				}
 			}
 		} 
-			// return error
-			return '{"status":0}'; // error status
+		// return error
+		return '{"status":0}'; // error status
 	}
 	
 	

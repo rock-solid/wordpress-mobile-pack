@@ -39,7 +39,7 @@ if(isset($_GET["content"])) {
 		echo $_GET['callback'] . '('.$export->saveComment().')';
 	
 	} else
-		echo $_GET['callback'] . '({"error":"No export requested"})';	
+		echo $_GET['callback'] . '({"error":"No export requested"})';
 }
 
 ?>
