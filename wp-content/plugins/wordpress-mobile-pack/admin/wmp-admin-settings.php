@@ -8,7 +8,7 @@
     }
 </script>
 <div id="wmpack-admin">
-	<div class="spacer-20"></div>
+	<div class="spacer-60"></div>
     <!-- set title -->
     <h1><?php echo WMP_PLUGIN_NAME;?></h1>
 	<div class="spacer-20"></div>
@@ -63,7 +63,7 @@
                      
                        
                     </form>
-                     <div class="notice notice-left right" style="width: 475px; margin: 95px 0 15px 0;">
+                     <div class="notice notice-left right" style="width: 465px; margin: 95px 0 15px 0;">
                         <span>
                             By adding your Google Analytics ID, you will be able to track the mobile web application's visitors directly in your Google Analytics account.
                         </span>

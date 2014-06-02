@@ -8,7 +8,7 @@
     }
 </script>
 <div id="wmpack-admin">
-	<div class="spacer-20"></div>
+	<div class="spacer-60"></div>
     <!-- set title -->
     <h1><?php echo WMP_PLUGIN_NAME; ?></h1>
 	<div class="spacer-20"></div>
