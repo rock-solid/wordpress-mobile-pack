@@ -96,6 +96,15 @@ The short answer is that a mobile web application is an enriched version of a mo
 = What is the difference between my mobile web application and a responsive theme? =  
 A responsive theme is all about design - it loads the same styling as the desktop view, adjusting it to fit a smaller screen. A mobile web application combines the versatility of the web with the functionality of touch-enabled devices and can contain features that your desktop website doesn't have (like offline mode for example). A mobile web app is similar to a native app in terms of look & feel, with the only difference being that it runs in the browser.
 
+= Am I able to use my own theme or customize the existing one? =  
+V2.0 is based on a Javascript framework called Sencha Touch, that mimics a native app interface. Because of that, the themes used are not regular PHP based themes that can be easily customized by editing the source. It is still possible to make small CSS changes, but changing the theme structure will not work.
+
+= Am I able to add Javascript code inside the theme? =
+Adding tracking scripts in the source is possible if you place them in the <head> section of the theme files. However, code that is placed inside the posts will not be executed. The theme is implemented enterily in Javascript and that would mean Javascript code inside another Javascript code.
+
+= Am I able to integrate my own advertisement? =
+Support for various ad networks will be added in future releases. These will be managed enterily from the admin panel, so you won't have to modify the source to integrate ads.
+
 == Changelog ==
 
 = 2.0 =
@@ -200,6 +209,7 @@ Two major issues were introduced in beta 1, now solved:
 
 == Known issues and limitations for v2.0 ==
 
+* A new version will be released next week to solve the issue caused by the curl package being disabled on some servers.
 * V2.0 of the mobile web app doesn't display the Pages from your blog, only categories and posts.
 * The mobile web app doesn't include user authentication. If your blog settings enable comments only for logged in users, they will be disabled in the mobile web app.
 * For now, supported mobile browsers include Safari, Google Chrome, Android's native browser and Internet Explorer 10. Firefox support will be added in later versions.
