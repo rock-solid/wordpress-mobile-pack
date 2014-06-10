@@ -11283,7 +11283,6 @@ Ext.define('Ext.env.Feature', {
  * * \* any element
  * * E an element with the tag E
  * * E F All descendant elements of E that have the tag F
-
  * * E > F or E/F all direct children elements of E that have the tag F
  * * E + F all elements with the tag F that are immediately preceded by an element with the tag E
  * * E ~ F all elements with the tag F that are preceded by a sibling element with the tag E
@@ -16494,7 +16493,6 @@ Ext.define('Ext.mixin.Observable', {
         else {
             for (oldName in events) {
                 if (events.hasOwnProperty(oldName)) {
-
                     newName = prefix + events[oldName];
 
                     object.addListener(oldName, this.createEventRelayer(newName), this);
@@ -16998,7 +16996,6 @@ Ext.define('Ext.util.HashMap', {
         this.callParent();
 
         this.mixins.observable.constructor.call(this);
-
 
         this.clear(true);
     },
@@ -28948,7 +28945,6 @@ Ext.define("Ext.util.Sortable", {
      *
      * Internally, Store converts the passed arguments into an array of {@link Ext.util.Sorter} instances, and delegates
      * the actual sorting to its internal {@link Ext.util.MixedCollection}.
-
      *
      * When passing a single string argument to sort, Store maintains a ASC/DESC toggler per field, so this code:
      *
@@ -33565,7 +33561,6 @@ Ext.define('Ext.Container', {
         }
     },
 
-
     show:function(){
         this.callParent(arguments);
 
@@ -35046,7 +35041,6 @@ Ext.define('Ext.Sheet', {
 
         /**
          * @cfg
-
          * @inheritdoc
          */
         hideAnimation: !Ext.browser.is.AndroidStock2 ? {
@@ -35302,7 +35296,6 @@ Ext.define('Ext.data.Connection', {
          * @param {Ext.data.Connection} conn This Connection object.
          * @param {Object} response The XHR object containing the response data.
          * See [The XMLHttpRequest Object](http://www.w3.org/TR/XMLHttpRequest/) for details.
-
          * @param {Object} options The options config object passed to the {@link #request} method.
          */
         /**
@@ -44337,7 +44330,6 @@ Ext.define('Ext.mixin.Filterable', {
      * This method removes all the filters in a passed array.
      * @param {Array} filters Each value in the array can be a string (property name),
      * function (sorterFn), an object containing a property and value keys or
-
      * {@link Ext.util.Sorter Sorter} instance.
      */
     removeFilters: function(filters) {
@@ -54597,7 +54589,6 @@ Ext.define('Ext.data.Store', {
      * @param {Ext.data.Operation} operation The associated operation.
      */
 
-
     /**
      * @event write
      * Fires whenever a successful write has been made via the configured {@link #proxy Proxy}
@@ -62536,7 +62527,6 @@ Ext.define('Ext.util.DelayedTask', {
         //cancel any existing queued functions
         me.cancel();
 
-
         //set all the new configurations
 
         if (Ext.isNumber(delay)) {
@@ -68616,7 +68606,6 @@ Ext.define('Ext.fx.runner.CssTransition', {
             data.toPropertyNames = toPropertyNames = [];
 
             for (name in to) {
-
                 if (to.hasOwnProperty(name)) {
                     to[name] = toFormattedValue = this.formatValue(to[name], name);
                     formattedName = this.formatName(name);
@@ -71511,8 +71500,8 @@ Ext.define("WP.model.Article", {
 			{name: 'description', 			type: 'string'},
 			{name: 'content', 				type: 'string'},
 			{name: 'timestamp',				type: 'int'},
-			{name: 'comment_status',		type: 'string'},					// open or closed
-			{name: 'require_name_email',	type: 'boolean'},					// for comments				
+			{name: 'comment_status',		type: 'string'},			// open, closed (closed but with comments), disabled (closed with no comments)
+			{name: 'require_name_email',	type: 'boolean'},			// for comments				
 			{name: 'category_id',			type: 'int'},
 			{name: 'category_name',			type: 'string'}
 		]
@@ -71784,6 +71773,8 @@ Ext.define("WP.view.BackButton", {
 	   
 	config: {
 		
+		itemId: "backBtn",
+		
 		// custom properties
 		action: 'back',
 		
@@ -71803,6 +71794,47 @@ Ext.define("WP.view.BackButton", {
 
 	initialize: function(){
         this.callParent(arguments);
+		
+		this.on("showbtn", this.onShowBtn, this);
+		this.on("hidebtn", this.onHideBtn, this);
+	},
+	
+	
+	onShowBtn: function(){
+		var duration = 0.4;
+		
+		// slide in
+		var to = 0;
+		this.setStyle({
+			'-webkit-transition': 'all ' + duration + 's ease',
+			'-moz-transition': 'all ' + duration + 's ease',
+			'-o-transition': 'all ' + duration + 's ease',
+			'transition': 'all ' + duration + 's ease',
+			'-webkit-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'-moz-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'-ms-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'-o-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'transform': 'translate3d(0px, ' + to + 'px, 0px)'
+		});
+	},
+	
+	
+	onHideBtn: function(){
+		var duration = 0.4;
+		
+		// slide in
+		var to = -70;
+		this.setStyle({
+			'-webkit-transition': 'all ' + duration + 's ease',
+			'-moz-transition': 'all ' + duration + 's ease',
+			'-o-transition': 'all ' + duration + 's ease',
+			'transition': 'all ' + duration + 's ease',
+			'-webkit-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'-moz-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'-ms-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'-o-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'transform': 'translate3d(0px, ' + to + 'px, 0px)'
+		});
 	}
 });
 
@@ -71886,7 +71918,7 @@ Ext.define('WP.controller.Main', {
 			
 			if (categoriesStore.getCount() > 0){
 				var firstCategory = categoriesStore.getAt(0);
-				var categoryName = firstCategory.get("name").replace(/\s/g,"-");
+				var categoryName = firstCategory.get("name_slug").replace(/\s/g,"-");
 				var categoryId = firstCategory.get("id");
 				
 				// show first category
@@ -71920,8 +71952,8 @@ Ext.define('WP.controller.Main', {
 	str2slug: function(str) {
 		
 		// remove accents, swap ñ for n, etc
-		var from = "àáäâèéëêìíïîòóöôùúüûñç" + "àáäâèéëêìíïîòóöôùúüûñç".toUpperCase();
-		var to   = "aaaaeeeeiiiioooouuuunc" + "aaaaeeeeiiiioooouuuunc".toUpperCase();
+		var from = "àáäâåèéëêœìíïîòóöőôøùúüûñçșțÿ" + "àáäâåèéëêœìíïîòóöőôøùúüûñçșțÿ".toUpperCase();
+		var to   = "aaaaaeeeeeiiiioooooouuuuncsty" + "aaaaaeeeeeiiiioooooouuuuncsty".toUpperCase();
 		for (var i=0, l=from.length ; i<l ; i++) {
 			str = str.replace(
 				new RegExp(from.charAt(i), 'g'),
@@ -71930,12 +71962,15 @@ Ext.define('WP.controller.Main', {
 		}
 		
 		// remove invalid chars
-		var from = "'!@#$%^&*:~";
+		var from = "'!@#$€%^&*:~.,;(){}[]?><|+/=` ";
 		var to   = "-";
 		for (var i=0, l=from.length ; i<l ; i++) {
 			var c = '\\'+from.charAt(i);
 			str = str.replace(new RegExp(c, 'g'), to);
 		}
+		
+		str = str.replace(/(\-){2,}/g,"-");
+		str = str.replace(/(^\-)|(\-$)/g,"");
 		
 		return str;
 	}
@@ -72274,7 +72309,6 @@ Ext.define('WP.controller.Categories', {
 			var layouts = categoriesPanel.getStore().findRecord("id", categoryId, 0, false, true, true);
 			var firstCard = categoriesCarousel.child("#"+layouts.get("cardsIds")[0]);
 			categoriesCarousel.setActiveItem(firstCard);
-			//categoriesCarousel.animateActiveItem(firstCard, {type: "slide", direction: "left"});
 		}
 	},
 	
@@ -72442,7 +72476,7 @@ Ext.define('WP.controller.Articles', {
 					// add and show article
 					articlesPanel.fireEvent("addarticle", article);
 					articlesPanel.fireEvent("buildcard", article);
-					articlesPanel.fireEvent("showarticle", articleId);
+					articlesPanel.fireEvent("showarticle", article);
 				}
 				else{
 					// remove record from articles Store
@@ -72526,7 +72560,7 @@ Ext.define('WP.controller.Articles', {
 					// add and show the article
 					articlesPanel.fireEvent("addarticle", record);
 					articlesPanel.fireEvent("buildcard", record);
-					articlesPanel.fireEvent("showarticle", record.get("id"));
+					articlesPanel.fireEvent("showarticle", record);
 				}
 			}
 		});
@@ -72564,12 +72598,14 @@ Ext.define('WP.controller.Articles', {
 				card.onPainted();	
 			}
 			
-			card.fireEvent("addcontent");
+			card.fireEvent("setactions");
 		}
 	},
 	
 	
-	onShowArticle: function(articleId){
+	onShowArticle: function(article){
+		
+		var articleId = article.get("id");
 		
 		// get reference
 		var articlesPanel = this.getArticlesPanel();
@@ -72585,6 +72621,16 @@ Ext.define('WP.controller.Articles', {
 		}
 		else{
 			articlesPanel.animateActiveItem(articleCard, {type: "slide", direction: "right"});
+		}
+		
+		// show or hide comments button
+		var commentsBtn = articlesPanel.down("#commentsBtn");
+		
+		if (article.get("comment_status") == "disabled"){
+			commentsBtn.hide();
+		}
+		else{
+			commentsBtn.show();	
 		}
 	},
 	
@@ -72768,7 +72814,14 @@ Ext.define('WP.controller.Actions', {
 		// add categories in the store
 		var categoriesList = this.getCategoriesList();
 		var records = categoriesStore.getRange();
+		
+		// hide the "Latest" category from the categories list
+		if (records.length > 0 && categoriesStore.first().get("id") == 0){
+			records.shift();
+		}
 		categoriesList.getStore().add(records);
+		
+		// set categories list height
 		categoriesList.setHeight(categoriesList.getItemHeight() * records.length + 10 + (records.length * 3)); 
 	},
 	
@@ -73472,6 +73525,7 @@ Ext.define("WP.view.phone.categories.CategoryTemplates", {
 					newTxt = newTxt.trim();
 					newTxt = newTxt.replace(/\%br\/\%\%br\/\%/g, "<br/><br/>");
 					newTxt = newTxt.replace(/^\<br(|\/)\>\<br(|\/)\>/g, "");
+					newTxt = newTxt.replace(/\<br(|\/)\>\<br(|\/)\>$/g, "");
 					return newTxt;	
 				},
 				hasSpaceForDescription: function(){
@@ -74280,13 +74334,13 @@ Ext.define("WP.view.phone.categories.CategoriesCarousel", {
 			var coverArticleId = this.down("#cover").getData()[0].id;
 			var firstArticleId = articles.getAt(0).getData().id;
 			var hiddenArticles = articles.getCount() - layouts.get("displayedArticlesIds").length - ((firstArticleId == coverArticleId) ? 1 : 0);
-			
+			console.log(hiddenArticles)
 			if (hiddenArticles != 0){
 				// build category's cards
 				carousel.fireEvent("buildcards", category.get("id"));	
 			}
 			else if (!layouts.get("noMoreArticles")){
-				
+				console.log("load more articles")
 				categoriesController.loadArticles({categoryId: category.get("id")});
 			}
 		}
@@ -74334,7 +74388,7 @@ Ext.define("WP.view.phone.categories.CategoriesCarousel", {
 				
 		// number of articles to show on different layouts
 		var dif = totalArticles - displayedArticles - ((firstArticleId == coverArticleId) ? 1 : 0);
-			
+		//console.log(totalArticles, displayedArticles, dif)	
 		// there are new articles to show
 		if (dif != 0){
 			var layoutsPath = this.getLayoutsPath();
@@ -74378,10 +74432,10 @@ Ext.define("WP.view.phone.categories.CategoriesCarousel", {
 					}
 					break;
 			}
-			
+			//console.log(pages, nextLayoutIndex)
 			// for each new page create a card
 			for (var i=0; i<pages.length; i++){
-				
+				//console.log("i: "+i);
 				var noOfArticles = pages[i];
 				var index = currentLayouts.length;
 				var itemId = categoryId + "_" + index;
@@ -74430,7 +74484,10 @@ Ext.define("WP.view.phone.categories.CategoriesCarousel", {
 				layouts.set("displayedArticlesIds", currentDisplayedArticlesIds);
 				layouts.set("nextLayoutIndex", nextLayoutIndex);
 				
+				//categoriesCarousel.insert(firstPos+i, card);
 				this.add(card);
+				
+				//console.log(firstPos, i, noOfArticles, index, itemId, layouts, nextLayoutIndex, layoutsCategory.get('cardsLayout')) 
 			}
 		}
 	},
@@ -74701,6 +74758,9 @@ Ext.define("WP.view.phone.articles.ArticleCard", {
 		// custom properties
 		record: null,
 		isFilled: false,								// a flag indicates if the card was filled with content
+		scrolling: false,								// a flag indicating if the content of the card is scrolling
+		backBtn: null,									// a reference of the back button
+		commentsBtn: null,								// a reference of the comments button
 		
 		// css properties
 		cls: 'article-card',
@@ -74719,7 +74779,70 @@ Ext.define("WP.view.phone.articles.ArticleCard", {
 		
 		// add events
 		this.on("repaint", this.onPainted, this);
+		this.on("setactions", this.onSetActions, this);
 		this.on("addcontent", this.onAddContent, this);
+		
+		var scroller = this.getScrollable().getScroller();
+		scroller.on("scroll", this.onScrollableChange, this);
+		
+		this.element.on("touchstart", this.onTouchStart, this);
+		this.element.on("touchend", this.onTouchEnd, this);
+		this.element.on("tap", this.onTap, this);
+	},
+	
+	
+	onSetActions: function(){
+		
+		// add content
+		this.fireEvent("addcontent");
+		
+		// show/hide back button when scrolling up or down
+		var backBtn = this.getParent().down("#backBtn");
+		this.setBackBtn(backBtn);
+		
+		// show/hide comments button when scrolling up or down
+		var commentsBtn = this.getParent().down("#commentsBtn");
+		this.setCommentsBtn(commentsBtn);
+	},
+	
+	onTouchStart: function(){
+		this.setScrolling(true);
+	},
+	
+	onTouchEnd: function(){
+		this.setScrolling(false);
+	},
+	
+	onTap: function(){
+		var backBtn = this.getBackBtn(); 
+		var commentsBtn = this.getCommentsBtn();
+			
+		backBtn.fireEvent("showbtn");
+		commentsBtn.fireEvent("showbtn");
+	},
+	
+	onScrollableChange: function(scroller, scrollX, scrollY){
+		var scrolling = this.getScrolling();
+		
+		if (scrolling){
+			var backBtn = this.getBackBtn(); 
+			var commentsBtn = this.getCommentsBtn();
+			
+			this.deltaY = (this.lastScrollY) ? scrollY - this.lastScrollY : 0;
+			
+			// scroll down
+			if (this.deltaY > 0){
+				backBtn.fireEvent("hidebtn");
+				commentsBtn.fireEvent("hidebtn");
+			}
+			// scroll up
+			else if (this.deltaY < 0){
+				backBtn.fireEvent("showbtn");
+				commentsBtn.fireEvent("showbtn");
+			}
+			
+			this.lastScrollY = scrollY;
+		}
 	},
 	
 	
@@ -74982,6 +75105,8 @@ Ext.define("WP.view.phone.articles.comments.CommentsBtn", {
 	initialize: function(){
        	
 		// add events
+		this.on("showbtn", this.onShowBtn, this);
+		this.on("hidebtn", this.onHideBtn, this);
 		this.on("tap", this.onBtnTap, this);
 					   
 	    this.callParent(arguments);
@@ -74989,7 +75114,45 @@ Ext.define("WP.view.phone.articles.comments.CommentsBtn", {
 	
 	onBtnTap: function(){
 		articlesController.openCommentsPanel();
-	}
+	},
+	
+	
+	onShowBtn: function(){
+		var duration = 0.4;
+		
+		// slide in
+		var to = 0;
+		this.setStyle({
+			'-webkit-transition': 'all ' + duration + 's ease',
+			'-moz-transition': 'all ' + duration + 's ease',
+			'-o-transition': 'all ' + duration + 's ease',
+			'transition': 'all ' + duration + 's ease',
+			'-webkit-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'-moz-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'-ms-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'-o-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'transform': 'translate3d(0px, ' + to + 'px, 0px)'
+		});
+	},
+	
+	
+	onHideBtn: function(){
+		var duration = 0.4;
+		
+		// slide in
+		var to = 70;
+		this.setStyle({
+			'-webkit-transition': 'all ' + duration + 's ease',
+			'-moz-transition': 'all ' + duration + 's ease',
+			'-o-transition': 'all ' + duration + 's ease',
+			'transition': 'all ' + duration + 's ease',
+			'-webkit-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'-moz-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'-ms-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'-o-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'transform': 'translate3d(0px, ' + to + 'px, 0px)'
+		});
+	},
 });
 
 Ext.define("WP.model.Comment", {
