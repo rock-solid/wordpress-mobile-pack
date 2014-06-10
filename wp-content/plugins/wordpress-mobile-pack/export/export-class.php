@@ -533,6 +533,16 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
     				// get comments status
                     $comment_status = $this->comment_closed($post);
                     
+					if($comment_status == 'closed') {
+						
+						// check if there is at least a  comment
+						$comment_count = wp_count_comments( $articleId );					
+						if($comment_count)
+							if($comments_count->approved == 0)
+								$comment_status = 'disabled';
+					}
+					
+					
     				$arrArticle = array(
                         'id' 					=> $post->ID,
                         "title" 				=> $post->post_title,

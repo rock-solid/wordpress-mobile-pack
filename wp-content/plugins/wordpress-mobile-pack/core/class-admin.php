@@ -23,7 +23,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			include(WMP_PLUGIN_PATH.'admin/wmp-admin-main.php');
 		}
 		
-        
+         
         /**
 		 * Static method used to request the content for the What's New page.
 		 * The method returns an array containing the latest content or an empty array by default.
@@ -31,31 +31,18 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 		 */
 		public static function wmp_whatsnew_updates() {
 			
-			$json_data = get_transient("wmp_whats_new_updates");
+			$json_data = get_transient("wmp_whats_new_updates"); 
             
 			// the transient is not set or expired
 			if (!$json_data) {
 			
     			// jSON URL which should be requested
     			$json_url = WMP_WHATSNEW_UPDATES;
-    			$send_curl = curl_init($json_url);
-			
-				// set curl options
-				curl_setopt($send_curl, CURLOPT_URL, $json_url);
-				curl_setopt($send_curl, CURLOPT_HEADER, false);
-				curl_setopt($send_curl, CURLOPT_CONNECTTIMEOUT, 2);
-				curl_setopt($send_curl, CURLOPT_RETURNTRANSFER, true);
-				curl_setopt($send_curl, CURLOPT_HTTPHEADER,array('Accept: application/json', "Content-type: application/json"));
-				curl_setopt($send_curl, CURLOPT_FAILONERROR, FALSE);
-				curl_setopt($send_curl, CURLOPT_SSL_VERIFYPEER, FALSE);
-				curl_setopt($send_curl, CURLOPT_SSL_VERIFYHOST, FALSE);
-				$json_response = curl_exec($send_curl);
+    			
+				// get response
+				$json_response = self::wmp_read_data(WMP_WHATSNEW_UPDATES);
 				
-				// get request status
-				$status = curl_getinfo($send_curl, CURLINFO_HTTP_CODE);
-				curl_close($send_curl);
-                
-				if ($status == 200) {
+				if($json_response !== false && $json_response != '') {
 					
 					// Store this data in a transient
 					set_transient( 'wmp_whats_new_updates', $json_response, 3600*24*2 );
@@ -80,6 +67,15 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 						// return response
 						return $response["content"];
                     }
+					
+				} elseif($json_response == false) {
+					
+					// set error message
+					$message = 'We were unable to display the info on this page due to the fact that both cURL and fopen are disabled';
+					// Store this data in a transient
+					set_transient( 'wmp_whats_new_updates', $message, 3600*24*2 );
+					// return message
+					return $message;	
 				}
 				
 			} else {
@@ -230,24 +226,11 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			
 				// jSON URL which should be requested
 				$json_url = WMP_NEWS_UPDATES;
-				$send_curl = curl_init($json_url);
 				
-				// set curl options
-				curl_setopt($send_curl, CURLOPT_URL, $json_url);
-				curl_setopt($send_curl, CURLOPT_HEADER, false);
-				curl_setopt($send_curl, CURLOPT_CONNECTTIMEOUT, 2);
-				curl_setopt($send_curl, CURLOPT_RETURNTRANSFER, true);
-				curl_setopt($send_curl, CURLOPT_HTTPHEADER,array('Accept: application/json', "Content-type: application/json"));
-				curl_setopt($send_curl, CURLOPT_FAILONERROR, FALSE);
-				curl_setopt($send_curl, CURLOPT_SSL_VERIFYPEER, FALSE);
-				curl_setopt($send_curl, CURLOPT_SSL_VERIFYHOST, FALSE);
-				$json_response = curl_exec($send_curl);
+				// get response
+				$json_response = self::wmp_read_data(WMP_NEWS_UPDATES);
 				
-				// get request status
-				$status = curl_getinfo($send_curl, CURLINFO_HTTP_CODE);
-				curl_close($send_curl);
-				
-				if ($status == 200) {
+				if($json_response !== false && $json_response != '') {
 					
 					// Store this data in a transient
 					set_transient( 'wmp_newsupdates', $json_response, 3600*24*2 );
@@ -256,10 +239,10 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 					$response = json_decode($json_response, true);
 					
 					if ( (isset($response["news"]) && is_array($response["news"]) && !empty($response["news"])) || 
-                        (isset($response["whitepaper"]) && is_array($response["whitepaper"]) && !empty($response["whitepaper"])) ) {
-                            
-                        return $response;    
-                    }
+						(isset($response["whitepaper"]) && is_array($response["whitepaper"]) && !empty($response["whitepaper"])) ) {
+							
+						return $response;    
+					}
 				} 
 			
 			} else {
@@ -604,7 +587,62 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			
     			// jSON URL which should be requested
     			$json_url = WMP_MORE_UPDATES;
-    			$send_curl = curl_init($json_url);
+    		
+				// get response
+				$json_response = self::wmp_read_data(WMP_MORE_UPDATES);
+				
+				if($json_response !== false && $json_response != '') {
+					
+					// Store this data in a transient
+					set_transient( 'wmp_more_updates', $json_response, 3600*24*2 );
+					
+					// get response
+					$response = json_decode($json_response, true);
+			
+					if (isset($response["content"]) && is_array($response["content"]) && !empty($response["content"])){
+					   
+						// return response
+						return $response["content"];
+                    }
+					
+				} elseif($json_response == false) {
+					
+					// set error message
+					$message = 'We were unable to display the info on this page due to the fact that both cURL and fopen are disabled.';
+					
+					// Store this data in a transient
+					set_transient( 'wmp_more_updates', $message, 3600*24*2 );
+					// return message
+					return $message;	
+				}
+				
+			} else {
+					
+				// get response
+				$response = json_decode($json_data, true);
+			
+				if (isset($response["content"]) && is_array($response["content"]) && !empty($response["content"]))
+					return $response["content"];
+			}
+            
+			// by default return empty array
+			return array();
+		}
+	
+	
+	
+		/**
+		 * Static method used to request the content of different pages using curl or fopen
+		 * This method returns false if both curl and fopen are dissabled and an empty string ig the json could not be read
+		 *
+		 */
+		public static function wmp_read_data($json_url) {
+			
+			
+			// check if curl is enabled
+			if(extension_loaded('curl')) {
+				
+				$send_curl = curl_init($json_url);
 			
 				// set curl options
 				curl_setopt($send_curl, CURLOPT_URL, $json_url);
@@ -620,34 +658,39 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 				// get request status
 				$status = curl_getinfo($send_curl, CURLINFO_HTTP_CODE);
 				curl_close($send_curl);
-                
-				if ($status == 200) {
+				
+				// return json if success
+				if ($status == 200)
+					return $json_response;
+				
+			} elseif(ini_get( 'allow_url_fopen' )) { // check if allow_url_fopen is enabled
+				
+				// open file
+				$json_file = fopen( $json_url, 'rb' );
+				
+				if($json_file) {
 					
-					// Store this data in a transient
-					set_transient( 'wmp_more_updates', $json_response, 3600*24*2 );
-					
-					// get response
-					$response = json_decode($json_response, true);
-			
-					if (isset($response["content"]) && is_array($response["content"]) && !empty($response["content"])){
-					   
-						// return response
-						return $response["content"];
-                    }
+					$json_response = '';
+					// read conetnts of file
+					while (!feof($json_file)) {
+						
+						$json_response .= fgets($json_file);
+					}
 				}
 				
-			} else {
+				/// return json response
+				if($json_response)
+					return $json_response;
 					
-				// get response
-				$response = json_decode($json_data, true);
+			} else 
+				// both curl and fopen are disabled
+				return false;
 			
-				if (isset($response["content"]) && is_array($response["content"]) && !empty($response["content"]))
-					return $response["content"];
-			}
-            
-			// by default return empty array
-			return array();
+			// by default return an empty string
+    		return '';	
+    		
 		}
 	}
+	
 
 }
