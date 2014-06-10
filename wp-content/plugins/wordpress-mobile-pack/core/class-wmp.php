@@ -276,6 +276,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
         			
     			return $wmp_setting;
     		}
+            
     	}
     
     
@@ -291,31 +292,35 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     	 */
     	public function wmp_save_settings( $option, $option_value = '' ) {
     		
-    		if (is_array($option) && !empty($option)) {
-    		
-    			// set option not saved variable
-    			$option_not_saved = false;
-    		
-    			foreach($option as $option_name => $option_value) {
-    				
-    				if (array_key_exists( $option_name , self::$wmp_options))
-    					add_option( 'wmpack_' . $option_name, $option_value );
-    				else
-    					$option_not_saved = true; // there is at least one option not in the default list
-    			}
-    		
-    			if (!$option_not_saved)
-    				return true;
-    			else
-    				return false; // there was an error
-    				
-    		} elseif (is_string($option) && $option_value != '') {
-    
-    			if (array_key_exists( $option , self::$wmp_options))
-    				return add_option( 'wmpack_' . $option, $option_value );
-    			
-    		}
-    		
+            if (current_user_can( 'manage_options' )){
+                
+        		if (is_array($option) && !empty($option)) {
+        		
+        			// set option not saved variable
+        			$option_not_saved = false;
+        		
+        			foreach($option as $option_name => $option_value) {
+        				
+        				if (array_key_exists( $option_name , self::$wmp_options))
+        					add_option( 'wmpack_' . $option_name, $option_value );
+        				else
+        					$option_not_saved = true; // there is at least one option not in the default list
+        			}
+        		
+        			if (!$option_not_saved)
+        				return true;
+        			else
+        				return false; // there was an error
+        				
+        		} elseif (is_string($option) && $option_value != '') {
+        
+        			if (array_key_exists( $option , self::$wmp_options))
+        				return add_option( 'wmpack_' . $option, $option_value );
+        			
+        		}
+      		
+            }
+            
     		return false;
     		
     	}
@@ -332,34 +337,37 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     	 */
     	public function wmp_update_settings( $option, $option_value = null ) {
     	
-    		if (is_array($option) && !empty($option)) {
-    			
-    			foreach ($option as $option_name => $option_value) {
-    				
-    				// set option not saved variable
-    				$option_not_updated = false;
-    				
-    				if ( array_key_exists( $option_name , self::$wmp_options ) )
-    					update_option( 'wmpack_' . $option_name, $option_value );
-    				else
-    					$option_not_updated = true; // there is at least one option not in the default list
-    					
-    				if (!$option_not_updated)
-    					return true;
-    				else
-    					return false; // there was an error
-    				
-    			}
-    		
-    			return true;
-    			
-    		} elseif (is_string($option) && $option_value !== null) {
-    			
-    			if ( array_key_exists( $option , self::$wmp_options ) )
-    				return update_option( 'wmpack_' . $option, $option_value );
-    			
+            if (current_user_can( 'manage_options' )){
+                
+        		if (is_array($option) && !empty($option)) {
+        			
+        			foreach ($option as $option_name => $option_value) {
+        				
+        				// set option not saved variable
+        				$option_not_updated = false;
+        				
+        				if ( array_key_exists( $option_name , self::$wmp_options ) )
+        					update_option( 'wmpack_' . $option_name, $option_value );
+        				else
+        					$option_not_updated = true; // there is at least one option not in the default list
+        					
+        				if (!$option_not_updated)
+        					return true;
+        				else
+        					return false; // there was an error
+        				
+        			}
+        		
+        			return true;
+        			
+        		} elseif (is_string($option) && $option_value !== null) {
+        			
+        			if ( array_key_exists( $option , self::$wmp_options ) )
+        				return update_option( 'wmpack_' . $option, $option_value );
+        			
+        		}
     		}
-    		
+            
     		return false;
     	}
     	
@@ -375,27 +383,30 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     	 */
     	public function wmp_delete_settings( $option ) {
     	
-    		if (is_array($option) && !empty($option)) {
-    			
-    			foreach($option as $option_name => $option_value) {
-    				
-    				// set option not saved variable
-    				$option_not_updated = false;
-    				
-    				
-    				if ( array_key_exists( $option_name , self::$wmp_options ) )
-    					delete_option( 'wmpack_' . $option_name );
-    				
-    			}
-    		
-    			return true;
-    			
-    		} elseif (is_string($option)) {
-    			
-    			if ( array_key_exists( $option , self::$wmp_options ) )
-    				return delete_option( 'wmpack_' . $option );
-    			
-    		}
+            if (current_user_can( 'manage_options' )){
+                
+        		if (is_array($option) && !empty($option)) {
+        			
+        			foreach($option as $option_name => $option_value) {
+        				
+        				// set option not saved variable
+        				$option_not_updated = false;
+        				
+        				
+        				if ( array_key_exists( $option_name , self::$wmp_options ) )
+        					delete_option( 'wmpack_' . $option_name );
+        				
+        			}
+        		
+        			return true;
+        			
+        		} elseif (is_string($option)) {
+        			
+        			if ( array_key_exists( $option , self::$wmp_options ) )
+        				return delete_option( 'wmpack_' . $option );
+        			
+        		}
+            }
     	}
     
     
