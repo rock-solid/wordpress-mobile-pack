@@ -1,6 +1,0 @@
-# App Theme Name: app2
-# Version 2.0.0
-# Sencha Touch 2.3.1
-# date: DD.MM.YYYY
-# OS: iOs, Android
-# Devices: Phones, Tablets

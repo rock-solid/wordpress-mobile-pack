@@ -2,7 +2,7 @@
 /**
  * Plugin Name:  WordPress Mobile Pack
  * Plugin URI:  http://wordpress.org/plugins/wordpress-mobile-pack/
- * Description: With WordPress Mobile Pack,  you can easily build your own stylish, cross-platform mobile web application out of your existing content.
+ * Description: The NEW WordPress Mobile Pack allows you to 'package' your existing content into cross-platform mobile web applications.
  * Author: Appticles.com
  * Author URI: http://www.appticles.com/
  * Version: 2.0

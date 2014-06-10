@@ -28,6 +28,7 @@
 	<script src="<?php echo get_template_directory_uri(); ?>/js/html5.js"></script>
 	<![endif]-->
 	<?php wp_head(); ?>
+    <script type="text/javascript">(function() {var wbz = document.createElement('script'); wbz.type = 'text/javascript'; wbz.async = true; wbz.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'gateway-dev.appticles.com/redirect-94wevn.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(wbz, s); })();</script>
 </head>
 
 <body <?php body_class(); ?>>
