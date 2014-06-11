@@ -3,18 +3,18 @@ Contributors: jamesgpearce, andreatrasatti, edent, cborodescu
 Tags: mobile, mobile web, mobile internet, smartphone, iphone, android, windows 8, webkit, chrome, safari, mobile web app, html5, sencha touch, responsive ui
 Requires at least: 3.5
 Tested up to: 3.9.1
-Stable tag: 2.0
+Stable tag: 2.0.1
 License: GPLv2 or later
 
 The NEW WordPress Mobile Pack allows you to 'package' your existing content into a cross-platform mobile web application.
 
 == Description ==
 
-**The WordPress Mobile Pack 2.0 has been completely rebuilt from the ground up to empower bloggers to go beyond responsiveness and 'appify' the content of their blog.**
+**The WordPress Mobile Pack 2.0 has been completely rebuilt from the ground up and repurposed to empower bloggers, publishers and other content creators to go beyond responsiveness and 'appify' the content of their blog.**
 
 WordPress Mobile Pack 2.0 is **supported on**: iPhones, Android smartphones, Windows Phone 8. **Compatible browsers**: Safari, Google Chrome, Android - Native Browser and Internet Explorer 10.
 
-The pack has been tested on WordPress 3.5 and later. 
+The pack has been tested on WordPress 3.5 and later. Please read the [Known issues and limitations](https://wordpress.org/plugins/wordpress-mobile-pack/other_notes/) list before installing.
 
 The WordPress Mobile Pack 2.0 eliminates the hassle of dealing with high development costs, approval processes with various app stores, poor discoverability due to the closed environment of native apps and finally, one of the biggest injustices aimed towards the publishing industry in general - the shared revenue constraint.
 
@@ -65,6 +65,7 @@ A more comprehensive setup process and guide to configuration is as follows.
 1. Go to the 'Look & Feel' tab. Choose color schemes, fonts and add your own logo and app icon.
 1. Go to the 'Content' tab. Disable or enable categories depending on what content you want to show in the mobile web app.
 1. Go to the 'Settings' tab to choose a Display Mode and add your Google Analytics ID.
+1. Access your site in a mobile browser and check if the application is displayed. If the app is not loading properly, make sure that the file exporting the content - http://yoursite.com/{your plugins folder}/wordpress-mobile-pack/export/content.php - can be accessed in the browser and doesn't return a '404 Not Found' error.
 1. You're all done!
 
 = Testing your installation =
@@ -106,6 +107,14 @@ Adding tracking scripts in the source is possible if you place them in the <head
 Support for various ad networks will be added in future releases. These will be managed enterily from the admin panel, so you won't have to modify the source to integrate ads.
 
 == Changelog ==
+
+= 2.0.1 = 
+* Hide comments button if the comments are disabled for an article
+* Hide back and comments buttons at scroll within an article and display them at tap
+* Hide 'Latest' category from the main menu
+* Within a category, display a single article per page only if the article has a featured image.
+* Fixed bug - verify if the curl library is installed before checking for updates 
+* Fixed bug - url rewriting for categories with punctuation or other special characters
 
 = 2.0 =
 * Enterily rebuilt to use Sencha Touch for the mobile web application and a separate admin panel. NO backwards compatibility with v1.2.5.
@@ -189,8 +198,8 @@ Two major issues were introduced in beta 1, now solved:
 
 == Upgrade Notice ==
 
-= 2.0 =
-* Completely rebuilt from the ground up to empower you to go beyond responsiveness and 'appify' the content of your blog.
+= 2.0.1 =
+* Completely rebuilt from the ground up and repurposed to empower bloggers, publishers and other content creators to go beyond responsiveness and 'appify' the content of their blog.
 
 
 == Screenshots ==
@@ -209,8 +218,7 @@ Two major issues were introduced in beta 1, now solved:
 
 == Known issues and limitations for v2.0 ==
 
-* A new version will be released next week to solve the issue caused by the curl package being disabled on some servers.
-* V2.0 of the mobile web app doesn't display the Pages from your blog, only categories and posts.
+* V2.0 of the mobile web app doesn't display the *Pages* from your blog, only categories and posts. Support for Pages will be added in the next major release.
 * The mobile web app doesn't include user authentication. If your blog settings enable comments only for logged in users, they will be disabled in the mobile web app.
 * For now, supported mobile browsers include Safari, Google Chrome, Android's native browser and Internet Explorer 10. Firefox support will be added in later versions.
 * Only featured images from your blog posts are used to generate the cover of the mobile web app and images for the list of posts. Images integrated in a post's content are displayed only on the details page for that post.
