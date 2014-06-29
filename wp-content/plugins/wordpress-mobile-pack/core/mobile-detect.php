@@ -27,9 +27,8 @@ if ( ! class_exists( 'WPMobileDetect' ) ) {
     		$is_mobile = $uagentObj->DetectTierIphone();
     		$is_webkit = $uagentObj->DetectWebkit();
     		$is_windows_mobile = $uagentObj->DetectWindowsPhone8();
-            $is_android_phone = $uagentObj->DetectAndroidPhone();
-    		
-    		if($is_mobile && !$is_tablet && ($is_webkit || $is_windows_mobile || $is_android_phone)) {
+
+    		if ($is_mobile && !$is_tablet /*&& ($is_webkit || $is_windows_mobile)*/) {
     			
     			// set load app cookie	
     			setcookie("wmp_load_app", 1, time()+3600*7*24,'/');
