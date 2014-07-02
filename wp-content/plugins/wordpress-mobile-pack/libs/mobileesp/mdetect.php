@@ -161,6 +161,8 @@ class UAgentInfo
    var $uplink = 'up.link';
    var $engineTelecaQ = 'teleca q'; //a modern feature phone browser
    var $engineObigo = 'obigo'; //W 10 is a modern feature phone browser
+   var $engineFirefox = 'firefox'; //A new global variable
+   
    
    var $devicePda = 'pda'; //some devices report themselves as PDAs
    var $mini = 'mini';  //Some mobile browsers put 'mini' in their names.
@@ -1141,6 +1143,30 @@ class UAgentInfo
       else
          return $this->false;
    }
-     
-
+    
+   //**************************
+   // The quick way to detect Firefox OS Phone
+   //   
+	function DetectFirefoxOsPhone()
+	{
+	   if ((stripos($this->useragent, $this->engineFirefox) > -1) &&
+		  (stripos($this->useragent, $this->mobile) > -1) && 
+		  (stripos($this->useragent, $this->deviceAndroid) == false)) //and no index
+		  return $this->true; 
+	   else
+		  return $this->false; 
+	}
+	
+	//**************************
+    // The quick way to detect Firefox OS Phone
+    //   
+	function DetectFirefoxPhone()
+	{
+	   
+	   if ((stripos($this->useragent, $this->engineFirefox) > -1) &&
+		  (stripos($this->useragent, $this->mobile) > -1)) 
+		  return $this->true; 
+	   else
+		  return $this->false; 
+	}
 }

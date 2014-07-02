@@ -42,7 +42,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 				// get response
 				$json_response = self::wmp_read_data(WMP_WHATSNEW_UPDATES);
 				
-				if($json_response !== false && $json_response != '') {
+				if ($json_response !== false && $json_response != '') {
 					
 					// Store this data in a transient
 					set_transient( 'wmp_whats_new_updates', $json_response, 3600*24*2 );
@@ -70,16 +70,18 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 					
 				} elseif($json_response == false) {
 					
-					// set error message
-					$message = 'We were unable to display the info on this page due to the fact that both cURL and fopen are disabled';
 					// Store this data in a transient
-					set_transient( 'wmp_whats_new_updates', $message, 3600*24*2 );
+					set_transient('wmp_whats_new_updates', 'warning', 3600*24*2 );
+                    
 					// return message
-					return $message;	
+					return 'warning';	
 				}
 				
 			} else {
 					
+                if ($json_data == 'warning')
+                    return $json_data;
+                    
 				// get response
 				$response = json_decode($json_data, true);
 			
@@ -241,7 +243,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 				if($json_response !== false && $json_response != '') {
 					
 					// Store this data in a transient
-					set_transient( 'wmp_newsupdates', $json_response, 3600*24*2 );
+					set_transient('wmp_newsupdates', $json_response, 3600*24*2);
 					
 					// get response
 					$response = json_decode($json_response, true);
@@ -623,17 +625,18 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 					
 				} elseif($json_response == false) {
 					
-					// set error message
-					$message = 'We were unable to display the info on this page due to the fact that both cURL and fopen are disabled.';
-					
 					// Store this data in a transient
-					set_transient( 'wmp_more_updates', $message, 3600*24*2 );
+					set_transient('wmp_more_updates', 'warning', 3600*24*2 );
+                    
 					// return message
-					return $message;	
+					return 'warning';	
 				}
 				
 			} else {
-					
+			     
+                if ($json_data == 'warning')
+                    return $json_data;
+                    
 				// get response
 				$response = json_decode($json_data, true);
 			

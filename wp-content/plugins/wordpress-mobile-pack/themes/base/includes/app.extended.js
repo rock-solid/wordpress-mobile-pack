@@ -74388,7 +74388,7 @@ Ext.define("WP.view.phone.categories.CategoriesCarousel", {
 				
 		// number of articles to show on different layouts
 		var dif = totalArticles - displayedArticles - ((firstArticleId == coverArticleId) ? 1 : 0);
-		//console.log(totalArticles, displayedArticles, dif)	
+		
 		// there are new articles to show
 		if (dif != 0){
 			var layoutsPath = this.getLayoutsPath();
@@ -74404,24 +74404,47 @@ Ext.define("WP.view.phone.categories.CategoriesCarousel", {
 			switch (dif){
 				 
 				case 1: 
-					//layouts.set("noMoreArticles", true);
 					nextLayout = 1;
 					pages.push(nextLayout);
 					dif -= nextLayout;
 					break;
 				
 				default: 
-					var i=nextLayoutIndex;
+					var startFrom = currentDisplayedArticlesIds.length + ((firstArticleId == coverArticleId) ? 1 : 0);
+					var i = nextLayoutIndex;
+					
 					while (dif > 0 && pages.length < 3){
+						
 						if (dif - nextLayout >= 0){
-							pages.push(nextLayout);
-							dif -= nextLayout;
+							
+							if (nextLayout == 1){
+								var article = articles.getAt(startFrom);
+								var nextArticle = articles.getAt(startFrom+1) || null;
+								
+								// try to avoid the case with a single article with no image on a card 
+								if ((article.get("image").src != null && article.get("image").src.length > 0) || nextArticle == null){
+									pages.push(nextLayout);
+									dif -= nextLayout;
+									startFrom += nextLayout;
+								}
+								else{
+									nextLayout = 2;
+									pages.push(nextLayout);
+									dif -= nextLayout;
+									startFrom += nextLayout;	
+								}
+							}
+							else{
+								pages.push(nextLayout);
+								dif -= nextLayout;
+								startFrom += nextLayout;
+							}
 						}
 						else if (dif == 1){
-							//layouts.set("noMoreArticles", true);	
 							nextLayout = 1;
 							pages.push(nextLayout);
 							dif -= nextLayout;
+							startFrom += nextLayout;
 						}
 						i++;
 						if (i > layoutsPath.length-1){
@@ -74432,7 +74455,7 @@ Ext.define("WP.view.phone.categories.CategoriesCarousel", {
 					}
 					break;
 			}
-			//console.log(pages, nextLayoutIndex)
+			
 			// for each new page create a card
 			for (var i=0; i<pages.length; i++){
 				//console.log("i: "+i);

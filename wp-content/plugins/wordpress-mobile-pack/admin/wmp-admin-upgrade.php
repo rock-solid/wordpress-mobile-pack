@@ -104,12 +104,19 @@
                         <?php endif;?>
                     </div>
                 <?php endif;?>
-            <?php else:?>
+            <?php elseif ($page_content == 'warning'):?>
             	<div class="details">
                     <div class="spacer-10"></div>
-                    <p><?php echo $page_content;?></p>
+                    <div class="message-container warning">
+                        <div class="wrapper">
+                            <div class="title">
+                                <h2 class="underlined">Can't check for updates!</h2>
+                            </div>
+                            <span>We are unable to display the updates on this page due to the fact that both <a href="https://php.net/manual/en/book.curl.php" target="_blank">cURL</a> and <a href="http://www.php.net/manual/en/function.fopen.php" target="_blank">fopen</a> are disabled.</span> 
+                        </div>
+                    </div>
                 	<div class="spacer-10"></div>
-                </div>    
+                </div> 
             <?php endif;?>
         </div>
         <div class="right-side"> 
