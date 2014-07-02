@@ -1,7 +1,8 @@
 <?php
 
 require_once("../../../../wp-config.php");
-require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.auto.php';
+require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php';
+
 /* -------------------------------------------------------------------------*/
 /* Export class with different export 										*/
 /* methods for categories, articles and comments							*/
