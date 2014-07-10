@@ -1,4 +1,3 @@
-
 <script type="text/javascript">
     if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
@@ -47,7 +46,14 @@
                         <?php if (array_key_exists('button_text', $page_content['tablets']) && array_key_exists('button_link', $page_content['tablets'])):?>
                         
                             <div class="try-it">
-                                <a href="<?php echo $page_content['tablets']['button_link'];?>" class="btn blue smaller" target="_blank"><?php echo $page_content['tablets']['button_text'];?></a>
+                            	<?php
+									$feed_url = '';
+									if(get_bloginfo('rss2_url') != null && get_bloginfo('rss2_url') != '')
+										$feed_url = '&feedurl='.urlencode(get_bloginfo('rss2_url'));
+									
+								?>
+                            
+                                <a href="<?php echo $page_content['tablets']['button_link'].$feed_url;?>" class="btn blue smaller" target="_blank"><?php echo $page_content['tablets']['button_text'];?></a>
                                 <div class="spacer-5"></div>
                                 <?php if (array_key_exists('button_subtext', $page_content['tablets'])):?>
                                     <p><?php echo $page_content['tablets']['button_subtext'];?></p>
