@@ -52,6 +52,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                     'display_mode'          => 'normal',
                 	'logo'                  => '',
                 	'icon'                  => '',
+					'cover'					=> '',
 					'google_analytics_id'	=> '',
                     'whats_new_updated'     => 0,
                     'whats_new_last_updated' => 0
@@ -90,6 +91,12 @@ if ( ! class_exists( 'WMobilePack' ) ) {
             
             if ($icon_path != '' && file_exists(WMP_FILES_UPLOADS_DIR.$icon_path))
                 unlink(WMP_FILES_UPLOADS_DIR.$icon_path);  
+				
+				
+			$cover_path = WMobilePack::wmp_get_setting('cover');
+            
+            if ($cover_path != '' && file_exists(WMP_FILES_UPLOADS_DIR.$cover_path))
+                unlink(WMP_FILES_UPLOADS_DIR.$cover_path);  
                 
             rmdir( WMP_FILES_UPLOADS_DIR );
             
@@ -194,6 +201,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
             
             wp_enqueue_script('js_settings_edittheme', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Theming/WMP_EDIT_THEME.min.js'), array(), WMP_VERSION);
             wp_enqueue_script('js_settings_editimages', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Theming/WMP_EDIT_IMAGES.min.js'), array(), WMP_VERSION);
+            wp_enqueue_script('js_settings_editcover', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Theming/WMP_EDIT_COVER.min.js'), array(), WMP_VERSION);
             wp_enqueue_script('js_join_waitlist', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Waitlist/WMP_WAITLIST.min.js'), array(), WMP_VERSION);
         }
         
