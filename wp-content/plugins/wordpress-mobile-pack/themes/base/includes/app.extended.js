@@ -633,22 +633,22 @@
  * method to perform comparison. See also: {@link Ext.Version#compare compare}. Example:
  *
  *     var version = new Ext.Version('1.0.2beta');
- *     console.log("Version is " + version); // Version is 1.0.2beta
+ *      // Version is 1.0.2beta
  *
- *     console.log(version.getMajor()); // 1
- *     console.log(version.getMinor()); // 0
- *     console.log(version.getPatch()); // 2
- *     console.log(version.getBuild()); // 0
- *     console.log(version.getRelease()); // beta
+ *      // 1
+ *      // 0
+ *      // 2
+ *      // 0
+ *      // beta
  *
- *     console.log(version.isGreaterThan('1.0.1')); // true
- *     console.log(version.isGreaterThan('1.0.2alpha')); // true
- *     console.log(version.isGreaterThan('1.0.2RC')); // false
- *     console.log(version.isGreaterThan('1.0.2')); // false
- *     console.log(version.isLessThan('1.0.2')); // true
+ *      // true
+ *      // true
+ *      // false
+ *      // false
+ *      // true
  *
- *     console.log(version.match(1.0)); // true
- *     console.log(version.match('1.0.2')); // true
+ *      // true
+ *      // true
  */
 (function() {
 
@@ -812,10 +812,10 @@ var version = '2.3.1.410', Version;
          * Returns whether this version matches the supplied argument. Example:
          *
          *     var version = new Ext.Version('1.0.2beta');
-         *     console.log(version.match(1)); // true
-         *     console.log(version.match(1.0)); // true
-         *     console.log(version.match('1.0.2')); // true
-         *     console.log(version.match('1.0.2RC')); // false
+         *      // true
+         *      // true
+         *      // true
+         *      // false
          *
          * @param {String/Number} target The version to compare with.
          * @return {Boolean} `true` if this version matches the target, `false` otherwise.
@@ -1458,7 +1458,7 @@ Ext.urlAppend = Ext.String.urlAppend;
          *     var countries = ['Vietnam', 'Singapore', 'United States', 'Russia'];
          *
          *     Ext.Array.each(countries, function(name, index, countriesItSelf) {
-         *         console.log(name);
+         *         
          *     });
          *
          *     var sum = function() {
@@ -2731,7 +2731,7 @@ var ExtObject = Ext.Object = {
      *     };
      *
      *     Ext.Object.each(person, function(key, value, myself) {
-     *         console.log(key + ":" + value);
+     *         
      *
      *         if (key === 'hairColor') {
      *             return false; // stop the iteration
@@ -4661,13 +4661,13 @@ var noArgs = [],
          *
          *      Ext.define('Ext.some.Class', {
          *          method: function () {
-         *              console.log('Good');
+         *              
          *          }
          *      });
          *
          *      Ext.define('Ext.some.DerivedClass', {
          *          method: function () {
-         *              console.log('Bad');
+         *              
          *
          *              // ... logic but with a bug ...
          *
@@ -4682,7 +4682,7 @@ var noArgs = [],
          *          override: 'Ext.some.DerivedClass',
          *
          *          method: function () {
-         *              console.log('Fixed');
+         *              
          *
          *              // ... logic but with bug fixed ...
          *
@@ -7160,7 +7160,7 @@ var noArgs = [],
      *     Ext.define('Logger', {
      *         singleton: true,
      *         log: function(msg) {
-     *             console.log(msg);
+     *             
      *         }
      *     });
      *
@@ -7269,7 +7269,7 @@ var noArgs = [],
          *          someProperty: 'something',
          *
          *          someMethod: function(s) {
-         *              console.log(s + this.someProperty);
+         *              
          *          }
          *      });
          *
@@ -10120,7 +10120,7 @@ Ext.apply(Ext, {
             }
         });
 
-        console.log(leaks);
+        
     },
 
     /**
@@ -10603,7 +10603,7 @@ Ext.define('Ext.env.Browser', {
      *         // WebKit specific code here
      *     }
      *
-     *     console.log("Version " + Ext.browser.version);
+     *     
      *
      * For a full list of supported values, refer to {@link #is} property/method.
      *
@@ -10849,7 +10849,7 @@ Ext.define('Ext.env.OS', {
      *         // iPad, iPod, iPhone, etc.
      *     }
      *
-     *     console.log("Version " + Ext.os.version);
+     *     
      *
      * For a full list of supported values, refer to the {@link #is} property/method.
      *
@@ -12784,7 +12784,7 @@ Ext.dom.Element.addStatics({
      * for background-color and one for color.
      *
      *     var css = 'background-color: red;color: blue; ';
-     *     console.log(Ext.dom.Element.parseStyles(css));
+     *     
      *
      * @static
      * @param {String} styles A CSS string
@@ -15780,7 +15780,7 @@ Ext.define('Ext.mixin.Mixin', {
  *         listeners: {
  *             quit: function() { // This function will be called when the 'quit' event is fired
  *                 // By default, "this" will be the object that fired the event.
- *                 console.log(this.getFullName() + " has quit!");
+ *                 
  *             }
  *         }
  *     });
@@ -15940,12 +15940,12 @@ Ext.define('Ext.mixin.Observable', {
      * Firstly, we set up a listener for our new event.
      *
      *     this.on('myevent', function(arg1, arg2, arg3, arg4, options, e) {
-     *         console.log(arg1); // true
-     *         console.log(arg2); // 2
-     *         console.log(arg3); // { test: 'foo' }
-     *         console.log(arg4); // 14
-     *         console.log(options); // the options added when adding the listener
-     *         console.log(e); // the event object with information about the event
+     *          // true
+     *          // 2
+     *          // { test: 'foo' }
+     *          // 14
+     *          // the options added when adding the listener
+     *          // the event object with information about the event
      *     });
      *
      * And then we can fire off the event.
@@ -16942,7 +16942,7 @@ Ext.define('Ext.AbstractComponent', {
  *     map.add('key3', 3);
  *
  *     map.each(function(key, value, length){
- *         console.log(key, value, length);
+ *         
  *     });
  *
  * The HashMap is an unordered class, there is no guarantee when iterating over the items that they will be in
@@ -17649,9 +17649,9 @@ Format  Description                                                             
  *     // 'Wed Jan 10 2007 15:05:01 GMT-0600 (Central Standard Time)'
  *
  *     var dt = new Date('1/10/2007 03:05:01 PM GMT-0600');
- *     console.log(Ext.Date.format(dt, 'Y-m-d'));                          // 2007-01-10
- *     console.log(Ext.Date.format(dt, 'F j, Y, g:i a'));                  // January 10, 2007, 3:05 pm
- *     console.log(Ext.Date.format(dt, 'l, \\t\\he jS \\of F Y h:i:s A')); // Wednesday, the 10th of January 2007 03:05:01 PM
+ *                               // 2007-01-10
+ *                       // January 10, 2007, 3:05 pm
+ *      // Wednesday, the 10th of January 2007 03:05:01 PM
  *
  * Here are some standard date/time patterns that you might find helpful.  They
  * are not part of the source of Ext.Date, but to use them you can simply copy this
@@ -18836,13 +18836,13 @@ Ext.DateExtras = {
      *     var orig = new Date('10/1/2006');
      *     var copy = orig;
      *     copy.setDate(5);
-     *     console.log(orig);  // returns 'Thu Oct 05 2006'!
+     *       // returns 'Thu Oct 05 2006'!
      *
      *     // correct way:
      *     var orig = new Date('10/1/2006'),
      *         copy = Ext.Date.clone(orig);
      *     copy.setDate(5);
-     *     console.log(orig);  // returns 'Thu Oct 01 2006'
+     *       // returns 'Thu Oct 01 2006'
      *
      * @param {Date} date The date.
      * @return {Date} The new Date instance.
@@ -35325,7 +35325,7 @@ Ext.define('Ext.data.Connection', {
      *             console.dir(obj);
      *         },
      *         failure: function(response, opts) {
-     *             console.log('server-side failure with status code ' + response.status);
+     *             
      *         }
      *     });
      *
@@ -39982,7 +39982,7 @@ Ext.define('Ext.MessageBox', {
      *         'Welcome!',
      *         'What\'s your name going to be today?',
      *         function (buttonId, value) {
-     *             console.log(value);
+     *             
      *         },
      *         null,
      *         false,
@@ -48609,11 +48609,11 @@ Ext.define('Ext.data.Types', {
  *
  *     var ed = Ext.create('User', {name: 'Ed Spencer'});
  *
- *     console.log(ed.get('firstName')); //logs 'Ed', based on our convert function
+ *      //logs 'Ed', based on our convert function
  *
  * In fact, if we log out all of the data inside ed, we'll see this:
  *
- *     console.log(ed.data);
+ *     
  *
  *     //outputs this:
  *     {
@@ -50191,10 +50191,10 @@ Ext.define('Ext.data.proxy.Ajax', {
  *     Ext.onReady(function(){
  *         MyApp.model.Group.load(10, {
  *             success: function(group){
- *                 console.log(group.getGroup().get('name'));
+ *                 
  *
  *                 group.groups().each(function(rec){
- *                     console.log(rec.get('name'));
+ *                     
  *                 });
  *             }
  *         });
@@ -50813,7 +50813,7 @@ Ext.define('Ext.data.association.HasMany', {
          *         hasMany: 'User'
          *     });
          *     var group = new Group();
-         *     console.log(group.users());
+         *     
          *
          *     // The method to retrieve the users will now be getUserList
          *     Ext.define('Group', {
@@ -50822,7 +50822,7 @@ Ext.define('Ext.data.association.HasMany', {
          *         hasMany: {model: 'User', name: 'getUserList'}
          *     });
          *     var group = new Group();
-         *     console.log(group.getUserList());
+         *     
          */
 
         /**
@@ -52290,7 +52290,7 @@ Ext.define('Ext.data.Validations', {
  *     //Uses the configured RestProxy to make a GET request to /users/123
  *     User.load(123, {
  *         success: function(user) {
- *             console.log(user.getId()); //logs 123
+ *              //logs 123
  *         }
  *     });
  *
@@ -52302,14 +52302,14 @@ Ext.define('Ext.data.Validations', {
  *     //tells the Proxy to save the Model. In this case it will perform a PUT request to /users/123 as this Model already has an id
  *     user.save({
  *         success: function() {
- *             console.log('The User was updated');
+ *             
  *         }
  *     });
  *
  *     //tells the Proxy to destroy the Model. Performs a DELETE request to /users/123
  *     user.erase({
  *         success: function() {
- *             console.log('The User was destroyed!');
+ *             
  *         }
  *     });
  *
@@ -55578,7 +55578,7 @@ Ext.define('Ext.data.Store', {
      *     });
      *
      *     store.each(function (item, index, length) {
-     *         console.log(item.get('firstName'), index);
+     *         
      *     });
      *
      * @param {Function} fn The function to call. Returning `false` aborts and exits the iteration.
@@ -56170,7 +56170,7 @@ Ext.define('Ext.data.Store', {
      *     store.load({
      *         callback: function(records, operation, success) {
      *             // the {@link Ext.data.Operation operation} object contains all of the details of the load operation
-     *             console.log(records);
+     *             
      *         },
      *         scope: this
      *     });
@@ -56178,7 +56178,7 @@ Ext.define('Ext.data.Store', {
      * If only the callback and scope options need to be specified, then one can call it simply like so:
      *
      *     store.load(function(records, operation, success) {
-     *         console.log('loaded records');
+     *         
      *     }, this);
      *
      * @param {Object/Function} [options] config object, passed into the {@link Ext.data.Operation} object before loading.
@@ -62449,7 +62449,7 @@ Ext.define('Ext.dataview.List', {
  *     //create the delayed task instance with our callback
  *     var task = Ext.create('Ext.util.DelayedTask', {
  *          fn: function() {
- *             console.log('callback!');
+ *             
  *          }
  *     });
  *
@@ -71044,21 +71044,6 @@ Ext.define('Ext.viewport.Android', {
     }
 });
 
-// a hack used for Android (4+) browsers, to handle the Viewport's orientation change event
-
-Ext.define('WP.util.Viewport', {
-	override: 'Ext.viewport.Android',
-	onReady: function() {
-		if (this.getAutoRender()) {
-			this.render();
-			//this.updateSize(); // added this
-		}
-		if (Ext.browser.name == 'ChromeiOS') {
-			this.setHeight('-webkit-calc(100% - ' + ((window.outerHeight - window.innerHeight) / 2) + 'px)');
-		}
-	}
-});
-
 /**
  * @private
  * iOS version of viewport.
@@ -72227,9 +72212,7 @@ Ext.define('WP.controller.Categories', {
 			callback: function(records, operation){
 				
 				// if the number of items received is less than the number of items requested, then set the flag for category
-				console.log(records.length, limit)
-				if (records.length < limit){
-					layouts.set("noMoreArticles", true);	
+					
 				}
 				
 				// sync articles for all categories, except the "Latest" category
@@ -72869,6 +72852,12 @@ Ext.define('WP.controller.Actions', {
 			// show mask
 			mask.show();
 		}, 100);
+		
+		
+		// cancel cover auto slideing event
+		var categoriesPanel = this.getCategoriesPanel();
+		var carousel = categoriesPanel.getCurrentCarousel();
+		carousel.fireEvent("cancelautoslide");
 	},
 	
 		
@@ -73137,7 +73126,7 @@ Ext.define("WP.view.phone.actions.CreditsPanel", {
                 cls: 'top-bar',
 				docked: 'top',
                 title: 'Credits',
-                height: 40,
+                height: 60,
                 items: [
                     {
                         xtype: "button",
@@ -73360,13 +73349,16 @@ Ext.define("WP.view.phone.categories.Cover", {
 		// properties
 		scrollable: null,
 		tpl: new Ext.XTemplate(
-            '<div class="has-cover cover image" data-index="1" data-article-id="{[values[0].id]}" style="{[ this.getBackgroundProperties(values[0].image) ]};">',
+            '<div class="cover has-cover image" data-index="1" data-article-id="{[values[0].id]}" style="{[ this.getBackgroundProperties(values[0].image) ]};">',
 				'<div class="bg">',
-					'<div class="cover-article">',
+					'<div class="article">',
 						'<div class="title">{[values[0].title]}</div>',
 						'<tpl if="values[0].date &amp;&amp; values[0].date.length &gt; 0">',
 							'<div class="date">{[values[0].date]}</div>',
 						'</tpl>',
+						'<div class="swipe-box">',
+							'<div class="swipe"></div>',
+						'</div>',
 					'</div>',
 					'<tpl if="'+appticles.logo.length+' &gt; 0">',
 						'<div class="logo-box"><img src="'+appticles.logo+'" style="width:100px;" /></div>',
@@ -73375,18 +73367,38 @@ Ext.define("WP.view.phone.categories.Cover", {
 			'</div>',
             {
                 getBackgroundProperties: function(image){
-                    if (image && image.src.length > 0 && image.width > 0 && image.height > 0){
-                       	return  'background-image: url(\'' + image.src + '\');' + 'background-size:cover;'+ 'background-position:center; background-repeat:no-repeat;';
+                    
+					// use a custom cover
+					if (appticles.userCover){
+						return  'background-image: url(\'' + appticles.defaultCover + '\');' + 'background-size:cover;'+ 'background-position:center; background-repeat:no-repeat;';
 					}
+					// show the article image as a cover or a default cover
 					else{
-						// generate a random cover
-						var rand = Math.floor(Math.random()*6+1);
-						var coverImg = appticles.defaultCoversPath + "pattern-"+rand+".jpg";
-						return  'background-image: url(\'' + coverImg + '\');' + 'background-size:cover;'+ 'background-position:center; background-repeat:no-repeat;';
+						if (image && image.src.length > 0 && image.width > 0 && image.height > 0){
+							return  'background-image: url(\'' + image.src + '\');' + 'background-size:cover;'+ 'background-position:center; background-repeat:no-repeat;';
+						}
+						else{
+							return  'background-image: url(\'' + appticles.defaultCover + '\');' + 'background-size:cover;'+ 'background-position:center; background-repeat:no-repeat;';
+						}
 					}
-                }
+				}
             }
-        )
+        ),
+		
+		items: [
+			{
+				xtype: "button",
+				action: 'view-actions-panel',
+				iconCls: 'menu',
+				html: '&nbsp;',
+				cls: 'actions-panel-button',
+				pressedCls: 'pressed',
+				width: 60,
+				height: 60,
+				top: 0,
+				right: 0
+			}
+		]
 	},
 	
 	
@@ -73430,7 +73442,7 @@ Ext.define("WP.view.phone.categories.Cover", {
 	onSetActions: function(){
 				
 		// attach tap event for each article items on this card
-		var articleItems = this.element.query("div[class^=has-cover]");
+		var articleItems = this.element.query("div[class^=cover]");
 		
 		for (var k=0; k<articleItems.length; k++){
 			var articleItem = Ext.get(articleItems[k]);
@@ -73443,7 +73455,7 @@ Ext.define("WP.view.phone.categories.Cover", {
 	
 	onArticleItemTap: function(event, item){
 		
-		var articleItem = (Ext.get(item).hasCls("has-cover")) ? Ext.get(item) : Ext.get(item).up("div[class^=has-cover]");
+		var articleItem = (Ext.get(item).hasCls("cover")) ? Ext.get(item) : Ext.get(item).up("div[class^=cover]");
 		var articleId = articleItem.getAttribute("data-article-id");
 		
 		// redirect to article details page
@@ -73453,7 +73465,7 @@ Ext.define("WP.view.phone.categories.Cover", {
 	
 	onArticleItemTouchStart: function(event, item){
 		
-		var articleItem = Ext.get(item).hasCls("has-cover") ? Ext.get(item) : Ext.get(item).up("div[class^=has-cover]");
+		var articleItem = Ext.get(item).hasCls("cover") ? Ext.get(item) : Ext.get(item).up("div[class^=cover]");
 		var articleId = articleItem.getAttribute("data-article-id");
 		
 		articleItem.un("touchmove", this.onArticleItemTouchMove);
@@ -73469,7 +73481,7 @@ Ext.define("WP.view.phone.categories.Cover", {
 	
 	onArticleItemTouchMove: function(event, item){
 		
-		var articleItem = Ext.get(item).hasCls("has-cover") ? Ext.get(item) : Ext.get(item).up("div[class^=has-cover]");
+		var articleItem = Ext.get(item).hasCls("cover") ? Ext.get(item) : Ext.get(item).up("div[class^=cover]");
 		
 		if (articleItem){
 			var articleId = articleItem.getAttribute("data-article-id");
@@ -73481,6 +73493,11 @@ Ext.define("WP.view.phone.categories.Cover", {
 			articleItem.removeCls(this.getPressedCls());
 			
 			articleItem.un("touchmove", this.onArticleItemTouchMove);
+			
+			
+			// cancel cover auto slideing event
+			var carousel = this.getParent()
+			carousel.fireEvent("cancelautoslide");
 		}
 	}
 });
@@ -74076,8 +74093,7 @@ Ext.define("WP.view.phone.categories.CategoryCard", {
 		this.on('setactions', this.onSetActions, this);
 				
 		this.fireEvent("settemplate");
-		this.fireEvent("updatebar");
-		
+				
 		this.callParent(arguments);
 	},
 	
@@ -74180,6 +74196,8 @@ Ext.define("WP.view.phone.categories.CategoriesCarousel", {
 			innerWidth: 0,
 			innerHeight: 0
 		},
+		taskSlideIn: Ext.emptyFn,									// delayed task used to auto slide in the cover
+		taskSlideOut: Ext.emptyFn,									// delayed task used to auto slide out the cover
 		
 		// css properties
 		cls: 'carousel',
@@ -74217,6 +74235,9 @@ Ext.define("WP.view.phone.categories.CategoriesCarousel", {
 		this.on("activeitemchange",this.onActiveItemChange, this);
 		this.on("buildcards",this.onBuildCards, this);
 		this.on("removealllisteners", this.onRemoveAllListeners, this);
+		this.on("autoslidein", this.onAutoSlideIn, this);
+        this.on("autoslideout", this.onAutoSlideOut, this);
+		this.on("cancelautoslide", this.onCancelAutoSlide, this);
 		
 		this.fireEvent("setsizes");
 	},
@@ -74281,6 +74302,44 @@ Ext.define("WP.view.phone.categories.CategoriesCarousel", {
 		this.insert(noOfDefaultItems, cover);
 		
 		this.setNoOfDefaultItems(noOfDefaultItems+1);
+		
+		
+		// auto swipe the cover (40px to the left)
+		var categoriesPanel = this.getCategoriesPanel();
+		var carousel = this;
+		var firstTimeSwipeAnim = categoriesPanel.getFirstTimeSwipeAnim();
+		
+		if (firstTimeSwipeAnim == false){
+			
+			// slide in Task
+			var taskSlideIn = Ext.create('Ext.util.DelayedTask', function() {
+				var mainView = categoriesPanel.up("#mainView");
+								
+				if (mainView.getActiveItem() == categoriesPanel && carousel.getActiveItem() == cover){
+					// slide in
+					carousel.fireEvent("autoslidein");
+										
+					// slide out
+					taskSlideOut.delay(400);
+				}
+			});	
+			
+			// slide out Task
+			var taskSlideOut = Ext.create('Ext.util.DelayedTask', function() {
+				carousel.fireEvent("autoslideout");
+				
+				firstTimeSwipeAnim = categoriesPanel.getFirstTimeSwipeAnim();
+				
+				if (firstTimeSwipeAnim == false){				
+					taskSlideIn.delay(6000);
+				}
+			});
+			
+			taskSlideIn.delay(3000);
+			
+			this.setTaskSlideIn(taskSlideIn);
+			this.setTaskSlideOut(taskSlideOut);
+		}
 	},
 	
 	onActiveItemChange: function(carousel, newCard, oldCard){
@@ -74334,14 +74393,10 @@ Ext.define("WP.view.phone.categories.CategoriesCarousel", {
 			var coverArticleId = this.down("#cover").getData()[0].id;
 			var firstArticleId = articles.getAt(0).getData().id;
 			var hiddenArticles = articles.getCount() - layouts.get("displayedArticlesIds").length - ((firstArticleId == coverArticleId) ? 1 : 0);
-			console.log(hiddenArticles)
-			if (hiddenArticles != 0){
-				// build category's cards
-				carousel.fireEvent("buildcards", category.get("id"));	
+				
 			}
 			else if (!layouts.get("noMoreArticles")){
-				console.log("load more articles")
-				categoriesController.loadArticles({categoryId: category.get("id")});
+				
 			}
 		}
 		
@@ -74458,7 +74513,7 @@ Ext.define("WP.view.phone.categories.CategoriesCarousel", {
 			
 			// for each new page create a card
 			for (var i=0; i<pages.length; i++){
-				//console.log("i: "+i);
+				//
 				var noOfArticles = pages[i];
 				var index = currentLayouts.length;
 				var itemId = categoryId + "_" + index;
@@ -74510,18 +74565,7 @@ Ext.define("WP.view.phone.categories.CategoriesCarousel", {
 				//categoriesCarousel.insert(firstPos+i, card);
 				this.add(card);
 				
-				//console.log(firstPos, i, noOfArticles, index, itemId, layouts, nextLayoutIndex, layoutsCategory.get('cardsLayout')) 
-			}
-		}
-	},
-	
-	
-	/* on Android Tablets (al least on 4.0 version) "landscape" and "portrait" are reversed
-	   because the detection is made on window orientation property and not on window screen sizes
-	   the function fixes that */
-	getOrientation: function(){
-		if (!Ext.os.is.Android){
-			return 	Ext.Viewport.getOrientation();
+				//
 		}
 		
 		return Ext.Viewport.getWindowWidth() > Ext.Viewport.getWindowHeight() ? "landscape" : "portrait";
@@ -74550,6 +74594,61 @@ Ext.define("WP.view.phone.categories.CategoriesCarousel", {
 		this.un("activeitemchange",this.onActiveItemChange);
 		this.un("buildcards",this.onBuildCards);
 		this.un("removealllisteners", this.onRemoveAllListeners);	
+	},
+	
+	
+	onAutoSlideIn: function(){
+		var translateValue = -40;
+		var time = 0.3;
+		
+		// show the entire carousel
+		this.element.query("div[class$=x-carousel-inner]")[0].style.overflow = "visible";
+		
+		this.setStyle({
+            '-webkit-transition': 'all '+time+'s ease',
+            '-moz-transition': 'all '+time+'s ease',
+            '-o-transition': 'all '+time+'s ease',
+            'transition': 'all '+time+'s ease',
+            '-webkit-transform': 'translate3d(' + translateValue + 'px, 0px, 0px)',
+            '-moz-transform': 'translate3d(' + translateValue + 'px, 0px, 0px)',
+            '-ms-transform': 'translate3d(' + translateValue + 'px, 0px, 0px)',
+            '-o-transform': 'translate3d(' + translateValue + 'px, 0px, 0px)',
+            'transform': 'translate3d(' + translateValue + 'px, 0px, 0px)'
+        });
+	},
+	
+	onAutoSlideOut: function(){
+		var carousel = this;
+		var time = 0.3;
+		
+        this.setStyle({
+            '-webkit-transition': 'all '+time+'s ease',
+            '-moz-transition': 'all '+time+'s ease',
+            '-o-transition': 'all '+time+'s ease',
+            'transition': 'all '+time+'s ease',
+            '-webkit-transform': 'translate3d(0px, 0px, 0px)',
+            '-moz-transform': 'translate3d(0px, 0px, 0px)',
+            '-ms-transform': 'translate3d(0px, 0px, 0px)',
+            '-o-transform': 'translate3d(0px, 0px, 0px)',
+            'transform': 'translate3d(0px, 0px, 0px)'
+        });
+		
+		
+		Ext.defer(function(){
+			carousel.element.query("div[class$=x-carousel-inner]")[0].style.overflow = "hidden";
+		}, 300);
+	},
+	
+	
+	onCancelAutoSlide: function(){
+		var categoriesPanel = this.getCategoriesPanel();
+		var firstTimeSwipeAnim = categoriesPanel.getFirstTimeSwipeAnim();
+		
+		if (firstTimeSwipeAnim == false){
+			categoriesPanel.setFirstTimeSwipeAnim(true);
+			this.getTaskSlideIn().cancel();
+			this.getTaskSlideOut().getFn().call();
+		}	
 	}
 
 });
@@ -74570,6 +74669,7 @@ Ext.define("WP.view.phone.categories.CategoriesPanel", {
 		lastCarousel: null,											// the last carousel that was displayed
 		currentCarousel: null,										// the current carousel that will be displayed
 		coverArticleId: null,										// the id of the first article posted on cover
+		firstTimeSwipeAnim: false,									// a flag indicating if cover made a swipe animation
 		
 		// css properties
 		cls: "categories-panel",
@@ -76079,7 +76179,7 @@ Ext.application({
 
                
                          
-		                  
+		                    
       
 
     profiles: 		['Phone'],
@@ -76101,19 +76201,19 @@ Ext.application({
 
     isIconPrecomposed: true,
 
-    /*startupImage: {
-        '320x460': ((appticles.hasStartups) ? appticles.appPath : appticles.defaultPath) +'resources/startup/320x460.png',
-		'320x480': ((appticles.hasStartups) ? appticles.appPath : appticles.defaultPath) +'resources/startup/320x480.png',
-        '640x920': ((appticles.hasStartups) ? appticles.appPath : appticles.defaultPath) +'resources/startup/640x920.png',
-		'640x960': ((appticles.hasStartups) ? appticles.appPath : appticles.defaultPath) +'resources/startup/640x960.png',
-		'640x1136': ((appticles.hasStartups) ? appticles.appPath : appticles.defaultPath) +'resources/startup/640x1136.png',
-        '768x1004': ((appticles.hasStartups) ? appticles.appPath : appticles.defaultPath) +'resources/startup/768x1004.png',
-		'768x1024': ((appticles.hasStartups) ? appticles.appPath : appticles.defaultPath) +'resources/startup/768x1024.png',
-        '748x1024': ((appticles.hasStartups) ? appticles.appPath : appticles.defaultPath) +'resources/startup/748x1024.png',
-        '1496x2048': ((appticles.hasStartups) ? appticles.appPath : appticles.defaultPath) +'resources/startup/1496x2048.png',
-		'1536x2008': ((appticles.hasStartups) ? appticles.appPath : appticles.defaultPath) +'resources/startup/1536x2008.png',
-        '1536x2048': ((appticles.hasStartups) ? appticles.appPath : appticles.defaultPath) +'resources/startup/1536x2048.png'
-    },*/
+    startupImage: {
+        '320x460': appticles.defaultCover,
+		'320x480': appticles.defaultCover,
+        '640x920': appticles.defaultCover,
+		'640x960': appticles.defaultCover,
+		'640x1136': appticles.defaultCover,
+        '768x1004': appticles.defaultCover,
+		'768x1024': appticles.defaultCover,
+        '748x1024': appticles.defaultCover,
+        '1496x2048': appticles.defaultCover,
+		'1536x2008': appticles.defaultCover,
+        '1536x2048': appticles.defaultCover
+    },
 
     launch: function() {
         // Destroy the #appLoadingIndicator element
@@ -76121,6 +76221,14 @@ Ext.application({
 		
 		// a hack used for Android (4+) browsers, to handle the Viewport's orientation change event
 		Ext.Viewport.bodyElement.on('resize', Ext.emptyFn, this, { buffer: 1});
+		if (Ext.versions.touch.major >= 2 && Ext.versions.touch.minor > 0 && Ext.os.is.Android) {
+           	Ext.Viewport.getWindowWidth = function() {return window.innerWidth;};
+            Ext.Viewport.getWindowHeight = function() {return window.innerHeight;};
+            Ext.Viewport.addWindowListener('resize', Ext.Function.bind(Ext.Viewport.onResize, Ext.Viewport));
+			
+			Ext.Viewport.updateSize();                                      //added
+            Ext.Viewport.orientation = Ext.Viewport.determineOrientation(); //added
+		}
 
         // save current profile
 		appticles.profile = this.getCurrentProfile().getName().toLowerCase();
@@ -76140,5 +76248,5 @@ Ext.application({
 });
 
 // @tag full-page
-// @require C:\wamp\www\Appticles\Wordpress\app.js
+// @require C:\wamp\www\Appticles\Wordpress\dev\app1\app.js
 
