@@ -458,6 +458,84 @@
                 </div>
                 <div class="spacer-0"></div>
             </div>
+            
+            
+            <div class="spacer-15"></div>
+            
+            <div class="details branding">
+            	
+                <h2 class="title">Customize Your App's Cover</h2>
+                <div class="spacer-15"></div>
+                <div class="grey-line"></div>
+                <div class="spacer-20"></div>
+                <p>Lorem ipsum</p>
+                <div class="spacer-20"></div>
+                <div class="left">
+                    <form name="wmp_editcover_form" id="wmp_editcover_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_editcover&type=upload" method="post" enctype="multipart/form-data">
+                       
+                        <?php
+                            $cover_path = WMobilePack::wmp_get_setting('cover');
+                            
+                            if (!file_exists(WMP_FILES_UPLOADS_DIR.$cover_path))
+                                $cover_path = '';    
+                        ?>
+    
+                        <!-- upload cover field -->
+                        <div class="wmp_editcover_uploadcover" style="display: <?php echo $cover_path == '' ? 'block' : 'none';?>;">
+                        
+                            <label for="wmp_editcover_cover">Upload your app cover</label>
+                            
+                            <div class="custom-upload">
+                            
+                                <input type="file" id="wmp_editcover_cover" name="wmp_editcover_cover" />
+                                <div class="fake-file">
+                                    <input type="text" id="fakefilecover" disabled="disabled" />
+                                    <a href="#" class="btn grey smaller">Browse</a>
+                                </div>
+                                
+                                
+                                <a href="javascript:void(0)" id="wmp_editcover_cover_removenew" class="remove" style="display: none;"></a>
+                            </div> 
+                            
+                            <!-- cancel upload cover button -->
+                            <div class="wmp_editcover_changecover_cancel cancel-link" style="display: none;">
+                                <a href="javascript:void(0);" class="cancel">cancel</a>
+                            </div>
+                            <div class="field-message error" id="error_cover_container"></div>
+                        
+                        </div>
+                        
+                        <!-- cover image -->
+                        <div class="wmp_editcover_covercontainer display-logo" style="display: <?php echo $cover_path != '' ? 'block' : 'none';?>;">
+                        
+                            <label for="branding_cover">App cover</label>
+                            <div class="img" id="wmp_editcover_currentcover" style="background:url(<?php echo WMP_FILES_UPLOADS_URL.$cover_path;?>); background-size:contain; background-repeat: no-repeat; background-position: center"></div>
+                            
+                            <!-- edit/delete cover links -->
+                            <a href="javascript:void(0);" class="wmp_editcover_changecover btn grey smaller edit">Change</a>
+                            <a href="#" class="wmp_editcover_deletecover smaller remove">remove</a>
+                            
+                        </div>
+                                    
+                        <div class="spacer-20"></div>
+                        
+                        
+                        
+                        <a href="javascript:void(0);" id="wmp_editcover_send_btn" class="btn green smaller">Save</a>
+    
+                    </form>    
+                </div>
+                
+                <div class="notice notice-left right" style="width: 280px;">
+                    <span>
+                       The file size for uploaded images should not exceed 1MB.
+                    </span>
+                </div>
+                <div class="spacer-0"></div>
+            </div>
+            
+            
+            
         </div>
     
         <div class="right-side">
@@ -477,6 +555,7 @@
             window.WMPJSInterface.add("UI_previewthemesgallery","WMP_THEMES_GALLERY",{'DOMDoc':window.document, 'baseThemeUrl': '<?php echo plugins_url()."/".WMP_DOMAIN.'/themes/'.WMobilePack::$wmp_basic_theme;?>'}, window);
             window.WMPJSInterface.add("UI_customizetheme","WMP_EDIT_THEME",{'DOMDoc':window.document, 'enableCustomSelects': <?php echo intval($enable_custom_selects);?>}, window);
             window.WMPJSInterface.add("UI_editimages","WMP_EDIT_IMAGES",{'DOMDoc':window.document}, window);
+            window.WMPJSInterface.add("UI_editcover","WMP_EDIT_COVER",{'DOMDoc':window.document}, window);
             
             <?php if ($joined_business_waitlist == false):?>
             

@@ -579,6 +579,212 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
             
             exit();
         }
+		
+		
+		/**
+         * 
+         * Method used to save the cover
+         * 
+         */
+         public function wmp_settings_editcover() {
+		
+            if (current_user_can( 'manage_options' )){
+                
+                $action = null;
+                
+                if (!empty($_GET) && isset($_GET['type']))
+                    if ($_GET['type'] == 'upload' || $_GET['type'] == 'delete')
+                        $action = $_GET['type'];
+                        
+                $arrResponse = array(
+                    'status' => 0,
+                    'messages' => array()
+                );
+                
+                if ($action == 'upload'){
+              
+                    if (!empty($_FILES) && sizeof($_FILES) > 0){
+                           
+                        require_once(ABSPATH . 'wp-admin/includes/image.php');
+                        
+                        if (!function_exists( 'wp_handle_upload' ) ) 
+                            require_once( ABSPATH . 'wp-admin/includes/file.php' );
+                        
+                        // check if the upload folder is writable
+            			if (!is_writable(WMP_FILES_UPLOADS_DIR)){
+                            
+                            $arrResponse['messages'][] = "Error uploading images, the upload folder is not writable.";
+                        
+                        } else {
+                            
+                            $has_uploaded_files = false;
+                            
+                            foreach ($_FILES as $file => $info) {
+                                
+                                if (!empty($info['name'])){
+            
+                                    $has_uploaded_files = true;
+                                    
+                                    if ($info['error'] >= 1 || $info['size'] <= 0) {
+            
+                                    	$arrResponse['status'] = 0;
+                                    	$arrResponse["messages"][] = "We encountered a problem processing your cover. Please choose another image!";
+            
+                                    } elseif ( $info['size'] > 1048576 ){
+            
+                                    	$arrResponse['status'] = 0;
+                                    	$arrResponse["messages"][] = "Your cover size is greater than 1Mb!";
+            
+                                    } else {
+                                        
+                                        /****************************************/
+                        				/*										*/
+                        				/* SET FILENAME, ALLOWED FORMATS AND SIZE */
+                        				/*										*/
+                        				/****************************************/
+                        
+                                        // make unique file name for the image
+                                        $arrFilename = explode(".", $info['name']);
+                                        $fileExtension = end($arrFilename);
+                                        
+                                        if ($file == "wmp_editcover_cover") {
+                                            
+                                            $arrAllowedExtensions = array('jpg', 'jpeg', 'png');
+                                            $arrMaximumSize = array('width' => 1000, 'height' => 1000);
+                                             
+                                        } 
+                                           
+                                        
+                                        // check file extension
+                                        if (!in_array(strtolower($fileExtension), $arrAllowedExtensions)) {
+                                            
+                                            $arrResponse['messages'][] = "Error saving image, please add a ".implode(' or ',$arrAllowedExtensions)." image for your cover!";
+                                            
+                                        } else {
+                                            
+                                            /****************************************/
+                            				/*										*/
+                            				/* UPLOAD IMAGE                         */
+                            				/*										*/
+                            				/****************************************/
+                                        
+                                            $uniqueFilename = 'cover_'.time().'.'.$fileExtension;
+                                            
+                                            // upload to the default uploads folder
+                                            $upload_overrides = array( 'test_form' => false );
+                                            $movefile = wp_handle_upload( $info, $upload_overrides );
+                                            
+                                            if ($movefile) {
+                                                
+                                                /****************************************/
+                                				/*										*/
+                                				/* RESIZE AND COPY IMAGE                */
+                                				/*										*/
+                                				/****************************************/
+                                            
+                                                $copied_and_resized = false;
+                                                
+                                                $image = wp_get_image_editor( $movefile['file'] );
+                                                
+                                                if (!is_wp_error( $image ) ) {
+                                                    
+                                                    $image_size = $image->get_size();
+                                                    
+                                                    // if the image exceeds the size limits
+                                                    if ($image_size['width'] > $arrMaximumSize['width'] || $image_size['height'] > $arrMaximumSize['height']) {
+                                                        
+                                                        // resize and copy to the wmp uploads folder
+                                                        $image->resize( $arrMaximumSize['width'], $image_size['height'] );
+                                                        $image->save( WMP_FILES_UPLOADS_DIR.$uniqueFilename );
+                                                        
+                                                        $copied_and_resized = true;
+                                                        
+                                                    } else {
+                                                    
+                                                        // copy file without resizing to the wmp uploads folder
+                                                        $copied_and_resized = copy($movefile['file'], WMP_FILES_UPLOADS_DIR.$uniqueFilename);
+                                                    }
+                                                    
+                                                } else {
+                                                    
+                                                    $arrResponse["messages"][] = "We encountered a problem resizing your cover. Please choose another image!";
+                                                }
+                                                
+                                                /****************************************/
+                                				/*										*/
+                                				/* DELETE PREVIOUS IMAGE AND SET OPTION */
+                                				/*										*/
+                                				/****************************************/
+                                                
+                                                if ($copied_and_resized) {
+                                                        
+                                                    // delete previous cover
+                                                    $previous_file_path = WMobilePack::wmp_get_setting("cover");
+                                                    
+                                                    if ($previous_file_path != ''){
+                                                        unlink(WMP_FILES_UPLOADS_DIR.$previous_file_path);
+                                                    }
+                                                    
+                                                    // save option
+                                                    WMobilePack::wmp_update_settings("cover", $uniqueFilename);
+                                                    
+                                                    // add path in the response
+                                                    $arrResponse['status'] = 1;
+                                                    $arrResponse['uploaded_cover'] = WMP_FILES_UPLOADS_URL.$uniqueFilename;
+                                                }
+                                                
+                                                // remove file from the default uploads folder
+                                                unlink($movefile['file']);
+                                            }   
+                                        }
+                                    }
+                                }                      
+                            }
+                            
+                            if ($has_uploaded_files == false){
+                                $arrResponse['messages'][] = "Please add at least one image!";
+                            }
+                        }
+                    } 
+                        
+                } elseif ($action == 'delete'){
+                    
+                    /****************************************/
+    				/*										*/
+    				/* DELETE ICON / LOGO        			*/
+    				/*										*/
+    				/****************************************/
+                            
+                    // delete cover, depending on the 'source' param
+                    if (isset($_GET['source'])) {
+                        if ($_GET['source'] == 'cover'){
+                            
+                            $file = $_GET['source'];
+                            
+                            // get the previous file name from the options table
+                            $previous_file_path = WMobilePack::wmp_get_setting($file);
+                                            
+                            // check if we have to delete the file and remove it
+                            if ($previous_file_path != ''){
+                                if (file_exists(WMP_FILES_UPLOADS_DIR.$previous_file_path))
+                                    unlink(WMP_FILES_UPLOADS_DIR.$previous_file_path);
+                            }
+                            
+                            // save option with an empty value
+                            WMobilePack::wmp_update_settings($file, '');
+                            
+                            $arrResponse['status'] = 1;
+                        }
+                    }
+                }
+                
+                echo json_encode($arrResponse);
+            }
+            
+            exit();
+        }
+		
+		
         
 		/**
 		 * Method used to render the upgrade page from the admin area

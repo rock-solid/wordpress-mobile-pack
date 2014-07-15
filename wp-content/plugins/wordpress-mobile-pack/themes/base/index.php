@@ -93,8 +93,8 @@
         if ($icon_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$icon_path))
             $icon_path = ''; 
         else
-            $icon_path = WMP_FILES_UPLOADS_URL.$icon_path;   
-            
+            $icon_path = WMP_FILES_UPLOADS_URL.$icon_path;  
+		    
         // check color scheme
         $color_scheme = WMobilePack::wmp_get_setting('color_scheme');
         if ($color_scheme == '')
@@ -122,13 +122,40 @@
             
         if (!in_array($font_paragraphs, $arrLoadedFonts))
             $arrLoadedFonts[] = $font_paragraphs;
+			
+			
+		// check if cover exists
+        $cover_path = WMobilePack::wmp_get_setting('cover');
+        $useCover = false;
+		
+        if ($cover_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$cover_path))
+            $cover_path = ''; 
+        else {
+            $cover_path = WMP_FILES_UPLOADS_URL.$cover_path;  	
+			$useCover = true;
+		}
+			
+		if(!$useCover) {
+		
+			// get random cover from default covers
+			$defaultPath = $theme_path."includes/resources/images/";
+			$images = glob($defaultPath . '*.{jpg,jpeg,png,gif}', GLOB_BRACE);
+
+			$cover_path = $images[array_rand($images)]; // See comments
+			
+			
+		}	
+			
+			
+			
     ?>
            
     <script type="text/javascript">
 		var appticles = {
 			exportPath: "<?php echo plugins_url()."/".WMP_DOMAIN."/export/";?>",
 			creditsPath: "<?php echo $theme_path."includes/";?>",
-            defaultCoversPath: "<?php echo $theme_path;?>includes/resources/images/",
+            defaultCover: "<?php echo $cover_path;?>",
+   			userCover: <?php echo $useCover;?>,
 			logo: "<?php echo $logo_path;?>",
 			icon: "<?php echo $icon_path;?>",
 			websiteUrl: '<?php echo home_url();?>?wmp_theme_mode=desktop',
