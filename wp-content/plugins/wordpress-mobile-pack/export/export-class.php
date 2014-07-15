@@ -26,7 +26,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 		// set HTML Purifier
 		$config = HTMLPurifier_Config::createDefault();
 		$config->set('Core.Encoding', 'UTF-8'); 									
-		$config->set('HTML.Allowed','a[href],p,ol,li,ul,img[src],blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe[frameborder|marginheight|marginwidth|scrolling|src|width|height|webkitAllowFullScreen|mozallowfullscreen|allowFullScreen]');
+		$config->set('HTML.Allowed','a[href],p,ol,li,ul,img[src],blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe[frameborder|marginheight|marginwidth|scrolling|src|width|height]');
 		$config->set('Attr.AllowedFrameTargets', '_blank, _parent, _self, _top');
 		$config->set('HTML.ForbiddenElements', 'style,class');
 		
@@ -144,9 +144,10 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
     						$category = get_the_category($post->ID);
     						
     						// get content
-    						$content = apply_filters("the_content",$this->purifier->purify($post->post_content));
-    						$description = Export::truncateHtml($content,$descriptionLength);
-    						
+    						$content = apply_filters("the_content",$post->post_content);    						
+							$description = Export::truncateHtml($content,$descriptionLength);    						
+							$description = $this->purifier->purify($description);
+							
     						// featured image details
     						$image_details = array();
                             
@@ -249,8 +250,9 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
     							} 
     							
     							// get content
-    							$content = apply_filters("the_content",$this->purifier->purify($post->post_content));
-    							$description = Export::truncateHtml($content,$descriptionLength);
+    							$content = apply_filters("the_content",$post->post_content);
+								$description = Export::truncateHtml($content,$descriptionLength);
+								$description = $this->purifier->purify($description);
     						
     							// set article details
     							$arrCategories[$key + 1]["articles"][] = array(
@@ -412,16 +414,17 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 							$category = $cat[0];
 						}
     					// get content
-    					$content = apply_filters("the_content",$this->purifier->purify($post->post_content));
-    					$description = Export::truncateHtml($content,$descriptionLength);	
+    					$content = apply_filters("the_content",$post->post_content);
+						$description = Export::truncateHtml($content,$descriptionLength);
+						$description = $this->purifier->purify($description);
     						
     					$arrArticles[] = array(
                             'id' 				=> $post->ID,
                             "title" 			=> $post->post_title,
                             "timestamp" 		=> strtotime($post->post_date),
                             "author" 			=> get_the_author_meta( 'user_nicename' , $post->post_author ),
-                            "date" 			=> date("D, M d, Y, H:i", strtotime($post->post_date)),
-                            "link" 			=> $post->guid,
+                            "date" 				=> date("D, M d, Y, H:i", strtotime($post->post_date)),
+                            "link" 				=> $post->guid,
                             "image" 			=> !empty($image_details) ? $image_details : "",
                             "description"		=> $description,
                             "content" 			=> '',
@@ -527,8 +530,15 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
     				
     				// filter the content
     				$content = apply_filters( 'the_content', $post->post_content );
+					// remove script tags
+					$content = self::removeScriptTags($content);
+					
     				$content = $this->purifier->purify($content);
     				
+					// remove all url's from attachment images
+					$content = preg_replace( array('{<a(.*?)(wp-att|wp-content\/uploads|attachment)[^>]*><img}', '{ wp-image-[0-9]*" /></a>}'), array('<img','" />'), $content);
+					
+					
     				// get the description
     				$description = Export::truncateHtml($content,$descriptionLength);
     				// get comments status
@@ -539,7 +549,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 						// check if there is at least a  comment
 						$comment_count = wp_count_comments( $articleId );					
 						if($comment_count)
-							if($comments_count->approved == 0)
+							if($comment_count->approved == 0)
 								$comment_status = 'disabled';
 					}
 					
@@ -799,6 +809,9 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 		
 		if ($considerHtml) {
 			
+			// remove all unwanted script tags
+			$text = self::removeScriptTags($text);
+			
 			// if no_images is true, remove all images from the content
 			if($stripTags)
 				$text = strip_tags( $text, '<p><a><span><br><i><u><strong><b><sup><em>');
@@ -892,6 +905,18 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 	}
 	
     
+	/**
+	 * Method used to remove script tags and everything in between them
+	 */
+	public static function removeScriptTags($text) {
+     
+	 $text = preg_replace("/<\s*script[^>]*>[\s\S]*?(<\s*\/script[^>]*>|$)/i"," ",$text);
+	 // return clean text
+	 return $text;
+	  
+	}
+	
+	
 	
 	/**
 	 * 

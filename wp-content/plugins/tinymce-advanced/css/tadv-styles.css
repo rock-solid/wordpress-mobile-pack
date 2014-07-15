@@ -1,0 +1,384 @@
+body {
+	height: 100%;
+}
+
+.tadvitem div {
+	width: 20px;
+	height: 20px;
+	background: url(../images/icons.gif) no-repeat 20px 20px;
+	float: left;
+	margin: 0;
+}
+
+#tadvpalette .tadvmodule div {
+	margin: 1px 4px 0 3px;
+}
+
+#fontsizeselect {
+	background: url(../images/fontsizeselect.png) no-repeat 0 0;
+	width: 94px;
+}
+
+#fontselect {
+	background: url(../images/fontselect.png) no-repeat 0 0;
+	width: 94px;
+}
+
+#formatselect {
+	background: url(../images/formatselect.png) no-repeat 0 0;
+	width: 94px;
+}
+
+#layer {
+	background: url(../images/layer.gif) no-repeat 0 0;
+	width: 88px;
+}
+
+#styleselect {
+	background: url(../images/styleselect.png) no-repeat 0 0;
+	width: 94px;
+}
+
+#tablecontrols {
+	background: url(../images/tablecontrols.gif) no-repeat 0 0;
+	width: 285px;
+}
+
+#wp_adv {
+	background: url(../images/wp_adv.gif) no-repeat 0 0;
+}
+
+#wp_more {
+	background: url(../images/wp_more.gif) no-repeat 0 0;
+}
+
+#wp_page {
+	background: url(../images/wp_page.gif) no-repeat 0 0;
+}
+
+#fontsizeselect,
+#fontselect,
+#formatselect,
+#styleselect {
+	border: 1px solid #ccc;
+}
+
+#tadvpalettediv #fontsizeselect,
+#tadvpalettediv #fontselect,
+#tadvpalettediv #formatselect,
+#tadvpalettediv #styleselect {
+	border: 0;
+}
+
+/* Theme */
+#bold {background-position:0 0}
+#italic {background-position:-60px 0}
+#underline {background-position:-140px 0}
+#strikethrough {background-position:-120px 0}
+#undo {background-position:-160px 0}
+#redo {background-position:-100px 0}
+#cleanup {background-position:-40px 0}
+#bullist {background-position:-20px 0}
+#numlist {background-position:-80px 0}
+#justifyleft {background-position:-460px 0}
+#justifyright {background-position:-480px 0}
+#justifycenter {background-position:-420px 0}
+#justifyfull {background-position:-440px 0}
+#anchor {background-position:-200px 0}
+#indent {background-position:-400px 0}
+#outdent {background-position:-540px 0}
+#link {background-position:-500px 0}
+#unlink {background-position:-640px 0}
+#sub {background-position:-600px 0}
+#sup {background-position:-620px 0}
+#removeformat {background-position:-580px 0}
+#newdocument {background-position:-520px 0}
+#image {background-position:-380px 0}
+#wp_help {background-position:-340px 0}
+#code {background-position:-260px 0}
+#hr {background-position:-360px 0}
+#visualaid {background-position:-660px 0}
+#charmap {background-position:-240px 0}
+#paste {background-position:-560px 0}
+#copy {background-position:-700px 0}
+#cut {background-position:-680px 0}
+#blockquote {background-position:-220px 0}
+#forecolor {background-position:-720px 0}
+#backcolor {background-position:-760px 0}
+
+/* Plugins */
+#advhr {background-position:-0px -20px}
+#ltr {background-position:-20px -20px}
+#rtl {background-position:-40px -20px}
+#emotions {background-position:-60px -20px}
+#fullpage {background-position:-80px -20px}
+#fullscreen {background-position:-100px -20px}
+#iespell {background-position:-120px -20px}
+#insertdate {background-position:-140px -20px}
+#inserttime {background-position:-160px -20px}
+#absolute {background-position:-180px -20px}
+#backward {background-position:-200px -20px}
+#forward {background-position:-220px -20px}
+#insert_layer {background-position:-240px -20px}
+#insertlayer {background-position:-260px -20px}
+#movebackward {background-position:-280px -20px}
+#moveforward {background-position:-300px -20px}
+#media {background-position:-320px -20px}
+#nonbreaking {background-position:-340px -20px}
+#pastetext {background-position:-360px -20px}
+#pasteword {background-position:-380px -20px}
+#selectall {background-position:-400px -20px}
+#preview {background-position:-420px -20px}
+#print {background-position:-440px -20px}
+#cancel {background-position:-460px -20px}
+#save {background-position:-480px -20px}
+#replace {background-position:-500px -20px}
+#search {background-position:-520px -20px}
+#styleprops {background-position:-560px -20px}
+#table {background-position:-580px -20px}
+#cell_props {background-position:-600px -20px}
+#delete_table {background-position:-620px -20px}
+#delete_col {background-position:-640px -20px}
+#delete_row {background-position:-660px -20px}
+#col_after {background-position:-680px -20px}
+#col_before {background-position:-700px -20px}
+#row_after {background-position:-720px -20px}
+#row_before {background-position:-740px -20px}
+#merge_cells {background-position:-760px -20px}
+#table_props {background-position:-980px -20px}
+#row_props {background-position:-780px -20px}
+#split_cells {background-position:-800px -20px}
+#template {background-position:-820px -20px}
+#visualchars {background-position:-840px -20px}
+#abbr {background-position:-860px -20px}
+#acronym {background-position:-880px -20px}
+#attribs {background-position:-900px -20px}
+#cite {background-position:-920px -20px}
+#del {background-position:-940px -20px}
+#ins {background-position:-960px -20px}
+#pagebreak {background-position:0 -40px}
+#restoredraft {background-position:-20px -40px}
+#spellchecker {background-position:-540px -20px}
+
+label.tadv-box {
+	margin: 0 5px;
+	padding: 2px 4px;
+	background-color: #eee;
+	line-height: 28px;
+	border: 1px solid #ccc;
+	vertical-align: baseline;
+	background-color: rgba(50, 50, 50, 0.05);
+}
+
+form#tadvadmin {
+	margin-left: 17px;
+}
+
+#tadvadmin p {
+	margin: 6px 0;
+}
+
+.separator, .tadvmodule {
+	position: relative;
+	top: 0px;
+	left: 0px;
+	z-index: 0;
+}
+
+#tadvadmin, #tadvzones, #tadvpalette {
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;
+}
+
+#tadvadmin p.submit {
+	padding-right: 10px;
+}
+
+#tadvadmin #save {
+	float: right;
+}
+
+#tadvzones {
+	margin-right: 280px;
+}
+
+.tadvdropzone {
+	float: left;
+	width: 99.99%;
+	padding: 0;
+	height: 40px;
+	margin: 8px 0;
+	z-index: -1;
+}
+.tadvdropzone .descr {
+	display: none;
+}
+
+#tadvpalettediv .tadvitem {
+	background-color: #eee;
+}
+
+.tadvdropzone .tadvmodule .tadvitem {
+	display: block;
+	height: 20px;
+	margin: 1px;
+	padding: 1px 2px;
+	width: 20px;
+}
+
+.tadvdropzone ul {
+	height: 30px;
+	width: 99%;
+	float: left;
+	margin: 0;
+	padding: 2px 4px;
+	border: 1px solid #ccc;
+	background: #e5e5e5;
+}
+
+#tadvadmin .tadvmodule {
+	cursor: move;
+	position: relative;
+}
+
+.tadvdropzone .tadvmodule {
+	width: 29px;
+	height: 27px;
+	margin: 2px 0 0;
+	padding: 0;	
+	float: left;
+}
+
+#tadvpalette li,
+.tadvdropzone li {
+	float: left;
+	margin: 0;
+	padding: 0;
+	border: none;
+	margin-bottom: 0;
+}
+
+#tadvpalette {
+	border: 1px solid #ccc;
+	background-color: #f3f3f3;
+	height: 64px;
+	padding: 4px;
+	margin: 8px 0;
+}
+
+#tadvpalette .tadvmodule .tadvitem {
+	display: block;
+	height: 22px;
+	width: 134px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	margin: 4px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+#tadvpalette .tadvmodule .descr {
+	display: inline;
+	font-size: 12px;
+	line-height: 21px;
+}
+
+* html #tadvpalette .tadvmodule img {
+	vertical-align: middle;
+}
+
+#pre_formatselect.tadvmodule .tadvitem,
+#pre_styleselect.tadvmodule .tadvitem,
+#pre_fontsizeselect.tadvmodule .tadvitem,
+#pre_fontselect.tadvmodule .tadvitem {
+	width: 98px;
+}
+
+#pre_tablecontrols.tadvmodule .tadvitem {
+	width: 335px;
+}
+
+#pre_vipersvideoquicktags.tadvmodule .tadvitem {
+	width: 305px;
+}
+
+.tadvdropzone #pre_formatselect,
+.tadvdropzone #pre_styleselect,
+.tadvdropzone #pre_fontsizeselect,
+.tadvdropzone #pre_fontselect {
+	width: 101px;
+}
+
+.tadvdropzone #pre_formatselect .tadvitem,
+.tadvdropzone #pre_styleselect .tadvitem,
+.tadvdropzone #pre_fontsizeselect .tadvitem,
+.tadvdropzone #pre_fontselect .tadvitem {
+	width: 92px;
+}
+
+.tadvdropzone #pre_tablecontrols {
+	width: 294px;
+}
+
+.tadvdropzone #pre_tablecontrols .tadvitem {
+	width: 285px;
+}
+
+.tadvdropzone #pre_layer {
+	width: 97px;
+}
+
+.tadvdropzone #pre_layer .tadvitem {
+	width: 88px;
+}
+
+#tadvpalette .separator,
+.tadvdropzone .separator {
+	float: left;
+	cursor: crosshair;
+}
+
+.separator .tadvitem {
+	background: #333333 none repeat scroll 0%;
+	display: block;
+	height: 26px;
+	margin: 0 2px;
+	width: 1px;
+}
+
+#tadvpalette .separator .tadvitem {
+	background-color: #e5e5e5;
+	border: 1px solid #AAAAAA;
+	display: block;
+	height: 20px;
+	margin: 4px;
+	padding: 1px 3px;
+}
+
+.tadvdropzone .separator {
+	background: transparent;
+	display: block;
+	height: 28px;
+	margin: 2px 1px 0pt 0pt;
+}
+
+#tadvWarnmsg,
+#tadvWarnmsg2 {
+	color: #ff0000;
+	font-weight: bold;
+	height: 26px;
+	line-height: 26px;
+}
+
+#tadv_uninst_div {
+	display: none;
+	background: #FFFFE0;
+	border: 1px solid #E6DB55;
+	padding: 8px;
+	margin-left: 20px;
+}
+
+.tadv_btn.button-primary {
+	margin: 0 10px;
+}

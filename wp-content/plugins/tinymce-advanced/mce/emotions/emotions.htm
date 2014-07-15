@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>{#emotions.emotions_desc}</title>
+<script type="text/javascript" type="text/javascript" src="../../tiny_mce_popup.js?v=3211"></script>
+<script type="text/javascript" type="text/javascript">
+var EmotionsDialog = {
+	init : function(ed) {
+		tinyMCEPopup.resizeToInnerSize();
+	},
+
+	insert : function insertEmotion(code) {
+    	tinyMCEPopup.execCommand('mceInsertContent', false, code);
+		tinyMCEPopup.close();
+	}
+};
+tinyMCEPopup.onInit.add(EmotionsDialog.init, EmotionsDialog);
+
+document.write('<base href="'+tinymce.baseURL+'" />');
+</script>
+<style type="text/css">
+	table#emotions {border:0;}
+	#emotions img {border:0;margin:4px;}
+</style>
+<base target="_self" />
+</head>
+<body style="display: none">
+	<div align="center">
+		<div class="title">{#emotions.emotions_desc}:<br /><br /></div>
+
+		<table id="emotions">
+		  <tr>
+			<td><a href="javascript:EmotionsDialog.insert(' 8-) ');">
+            <img src="../images/smilies/icon_cool.gif" width="15" height="15" alt="8-)" title="8-)" /></a></td>
+            
+			<td><a href="javascript:EmotionsDialog.insert(' :cry: ');">
+            <img src="../images/smilies/icon_cry.gif" width="15" height="15" alt=":cry:" title=":cry:" /></a></td>
+            
+			<td><a href="javascript:EmotionsDialog.insert(' :oops: ');">
+            <img src="../images/smilies/icon_redface.gif" width="15" height="15" alt=":oops:" title=":oops:" /></a></td>
+
+			<td><a href="javascript:EmotionsDialog.insert(' :mrgreen: ');">
+            <img src="../images/smilies/icon_mrgreen.gif" width="15" height="15" alt=":mrgreen:" title=":mrgreen:" /></a></td>
+            
+		    <td><a href="javascript:EmotionsDialog.insert(' :-( ');">
+            <img src="../images/smilies/icon_sad.gif" width="15" height="15" alt=":-(" title=":-(" /></a></td>
+
+			<td><a href="javascript:EmotionsDialog.insert(' :twisted: ');">
+            <img src="../images/smilies/icon_twisted.gif" width="15" height="15" alt=":twisted:" title=":twisted:" /></a></td>
+          </tr>
+
+		  <tr>
+			<td><a href="javascript:EmotionsDialog.insert(' :evil: ');">
+            <img src="../images/smilies/icon_evil.gif" width="15" height="15" alt=":evil:" title=":evil:" /></a></td>
+
+			<td><a href="javascript:EmotionsDialog.insert(' :lol: ');">
+            <img src="../images/smilies/icon_lol.gif" width="15" height="15" alt=":lol:" title=":lol:" /></a></td>
+            
+		  <td><a href="javascript:EmotionsDialog.insert(' :roll: ');">
+            <img src="../images/smilies/icon_rolleyes.gif" width="15" height="15" alt=":roll:" title=":roll:" /></a></td>
+
+			<td><a href="javascript:EmotionsDialog.insert(' :-? ');">
+            <img src="../images/smilies/icon_confused.gif" width="15" height="15" alt=":-?" title=":-?" /></a></td>
+
+			<td><a href="javascript:EmotionsDialog.insert(' :-) ');">
+            <img src="../images/smilies/icon_smile.gif" width="15" height="15" alt=":-)" title=":-)" /></a></td>
+
+			<td><a href="javascript:EmotionsDialog.insert(' :-o ');">
+            <img src="../images/smilies/icon_surprised.gif" width="15" height="15" alt=":-o" title=":-o" /></a></td>
+          </tr>
+
+		  <tr>
+			<td><a href="javascript:EmotionsDialog.insert(' :-P ');">
+            <img src="../images/smilies/icon_razz.gif" width="15" height="15" alt=":-P" title=":-P" /></a></td>
+
+			<td><a href="javascript:EmotionsDialog.insert(' :-| ');">
+            <img src="../images/smilies/icon_neutral.gif" width="15" height="15" alt=":-|" title=":-|" /></a></td>
+
+			<td><a href="javascript:EmotionsDialog.insert(' ;-) ');">
+            <img src="../images/smilies/icon_wink.gif" width="15" height="15" alt=";-)" title=";-)" /></a></td>
+
+			<td><a href="javascript:EmotionsDialog.insert(' :-x ');">
+            <img src="../images/smilies/icon_mad.gif" width="15" height="15" alt=":-x" title=":-x" /></a></td>
+
+		    <td><a href="javascript:EmotionsDialog.insert(' 8-O ');">
+            <img src="../images/smilies/icon_eek.gif" width="15" height="15" alt="8-O" title="8-O" /></a></td>
+
+            <td><a href="javascript:EmotionsDialog.insert(' :-D ');">
+            <img src="../images/smilies/icon_biggrin.gif" width="15" height="15" alt=":-D" title=":-D" /></a></td>
+		  </tr>
+		</table>
+	</div>
+</body>
+</html>

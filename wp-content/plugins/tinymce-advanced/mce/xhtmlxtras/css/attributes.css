@@ -1,0 +1,13 @@
+.panel_wrapper div.current {
+	min-height: 290px;
+	height: auto;
+}
+
+#events_panel input,
+#id, #style, #title, #dir, #hreflang, #lang, #classlist, #tabindex, #accesskey {
+	width: 200px;
+}
+
+.mceActionPanel {
+	margin: 5px 0;
+}

@@ -131,7 +131,7 @@
             defaultCoversPath: "<?php echo $theme_path;?>includes/resources/images/",
 			logo: "<?php echo $logo_path;?>",
 			icon: "<?php echo $icon_path;?>",
-			websiteUrl: '<?php echo get_site_url();?>?wmp_theme_mode=desktop',
+			websiteUrl: '<?php echo home_url();?>?wmp_theme_mode=desktop',
 			commentsToken: "<?php echo WMobilePack::wmp_set_token();?>"
 		};
 	</script>
