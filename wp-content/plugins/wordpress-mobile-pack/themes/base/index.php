@@ -126,7 +126,9 @@
 			
 		// check if cover exists
         $cover_path = WMobilePack::wmp_get_setting('cover');
-        $useCover = false;
+       
+		
+		$useCover = false;
 		
         if ($cover_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$cover_path))
             $cover_path = ''; 
@@ -136,17 +138,9 @@
 		}
 			
 		if(!$useCover) {
-		
 			// get random cover from default covers
-			$defaultPath = $theme_path."includes/resources/images/";
-			$images = glob($defaultPath . '*.{jpg,jpeg,png,gif}', GLOB_BRACE);
-
-			$cover_path = $images[array_rand($images)]; // See comments
-			
-			
+			$cover_path = $theme_path."includes/resources/images/pattern-".rand(1, 6).".jpg";
 		}	
-			
-			
 			
     ?>
            
@@ -155,7 +149,7 @@
 			exportPath: "<?php echo plugins_url()."/".WMP_DOMAIN."/export/";?>",
 			creditsPath: "<?php echo $theme_path."includes/";?>",
             defaultCover: "<?php echo $cover_path;?>",
-   			userCover: <?php echo $useCover;?>,
+   			userCover: "<?php echo $useCover;?>",
 			logo: "<?php echo $logo_path;?>",
 			icon: "<?php echo $icon_path;?>",
 			websiteUrl: '<?php echo home_url();?>?wmp_theme_mode=desktop',
