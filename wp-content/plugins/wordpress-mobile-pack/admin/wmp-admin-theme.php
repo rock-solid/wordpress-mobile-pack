@@ -449,7 +449,7 @@
                     </form>    
                 </div>
                 
-                <div class="notice notice-left right" style="width: 280px;">
+                <div class="notice notice-left right" style="width: 265px;">
                     <span>
                         Add your logo in a .png format with a transparent background. This will be displayed on the cover of your app.<br /><br /> 
                         Your icon should be square with a recommended size of 256 x 256 px. This will be displayed when the app will be added to the homescreen.<br /><br /> 
@@ -468,7 +468,7 @@
                 <div class="spacer-15"></div>
                 <div class="grey-line"></div>
                 <div class="spacer-20"></div>
-                <p>Lorem ipsum</p>
+                <p>The default theme comes with 6 abstract covers that are randomly displayed on the loading screen to give your app a magazine flavor. You can further personalize your mobile web application by uploading your own cover.</p>
                 <div class="spacer-20"></div>
                 <div class="left">
                     <form name="wmp_editcover_form" id="wmp_editcover_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_editcover&type=upload" method="post" enctype="multipart/form-data">
@@ -526,7 +526,7 @@
                     </form>    
                 </div>
                 
-                <div class="notice notice-left right" style="width: 280px;">
+                <div class="notice notice-left right" style="width: 265px;">
                     <span>
                        The file size for uploaded images should not exceed 1MB.
                     </span>
