@@ -16,7 +16,7 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define('DB_NAME', 'blog-flori');
+define('DB_NAME', 'blog-alexandra');
 
 /** MySQL database username */
 define('DB_USER', 'root');
@@ -81,6 +81,7 @@ define('WPLANG', '');
 define('WP_DEBUG', true);
 
 /* That's all, stop editing! Happy blogging. */
+define('SCRIPT_DEBUG', true);
 
 /** Absolute path to the WordPress directory. */
 if ( !defined('ABSPATH') )
