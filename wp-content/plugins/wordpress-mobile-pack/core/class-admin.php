@@ -442,7 +442,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                                         
                                         if ($file == "wmp_editimages_icon") {
                                             
-                                            $arrAllowedExtensions = array('jpg', 'jpeg', 'png');
+                                            $arrAllowedExtensions = array('jpg', 'jpeg', 'png','gif');
                                             $arrMaximumSize = array('width' => 256, 'height' => 256);
                                              
                                         } else {
@@ -649,7 +649,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                                         
                                         if ($file == "wmp_editcover_cover") {
                                             
-                                            $arrAllowedExtensions = array('jpg', 'jpeg', 'png');
+                                            $arrAllowedExtensions = array('jpg', 'jpeg', 'png','gif');
                                             $arrMaximumSize = array('width' => 1000, 'height' => 1000);
                                              
                                         } 
@@ -742,7 +742,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                             }
                             
                             if ($has_uploaded_files == false){
-                                $arrResponse['messages'][] = "Please add at least one image!";
+                                $arrResponse['messages'][] = "Please add a image!";
                             }
                         }
                     } 

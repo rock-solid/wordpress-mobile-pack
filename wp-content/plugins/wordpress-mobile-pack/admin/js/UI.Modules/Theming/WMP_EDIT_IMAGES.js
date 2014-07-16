@@ -64,7 +64,7 @@ function WMP_EDIT_IMAGES(){
 	
             rules: {
                 wmp_editimages_icon : {
-    				accept		: "png|jpg|jpeg"
+    				accept		: "png|jpg|jpeg|gif"
     			},
             	wmp_editimages_logo : {
     				accept		: "png"
