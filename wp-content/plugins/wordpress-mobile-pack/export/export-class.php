@@ -26,7 +26,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 		// set HTML Purifier
 		$config = HTMLPurifier_Config::createDefault();
 		$config->set('Core.Encoding', 'UTF-8'); 									
-		$config->set('HTML.Allowed','a[href],p,ol,li,ul,img[src],blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe[frameborder|marginheight|marginwidth|scrolling|src|width|height]');
+		$config->set('HTML.Allowed','a[href|target],p,ol,li,ul,img[src],blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe[frameborder|marginheight|marginwidth|scrolling|src|width|height]');
 		$config->set('Attr.AllowedFrameTargets', '_blank, _parent, _self, _top');
 		$config->set('HTML.ForbiddenElements', 'style,class');
 		
