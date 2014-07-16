@@ -3,7 +3,7 @@ Contributors: jamesgpearce, andreatrasatti, edent, cborodescu
 Tags: mobile, mobile web, mobile internet, smartphone, iphone, android, windows 8, webkit, chrome, safari, mobile web app, html5, sencha touch, responsive ui
 Requires at least: 3.5
 Tested up to: 3.9.1
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 License: GPLv2 or later
 
 The NEW WordPress Mobile Pack allows you to 'package' your existing content into a cross-platform mobile web application.
@@ -12,7 +12,7 @@ The NEW WordPress Mobile Pack allows you to 'package' your existing content into
 
 **The WordPress Mobile Pack 2.0 has been completely rebuilt from the ground up and repurposed to empower bloggers, publishers and other content creators to go beyond responsiveness and 'appify' the content of their blog.**
 
-WordPress Mobile Pack 2.0 is **supported on**: iPhones, Android smartphones, Windows Phone 8. **Compatible browsers**: Safari, Google Chrome, Android - Native Browser and Internet Explorer 10.
+WordPress Mobile Pack 2.0 is **supported on**: iPhones, Android smartphones, Windows Phone 8, Firefox OS. **Compatible browsers**: Safari, Google Chrome, Android - Native Browser, Internet Explorer 10 and Firefox.
 
 The pack has been tested on WordPress 3.5 and later. Please read the [Known issues and limitations](https://wordpress.org/plugins/wordpress-mobile-pack/other_notes/) list before installing.
 
@@ -74,13 +74,12 @@ Ideally, use a real mobile device to access your (public) site address and check
 
 You can also download a number of mobile emulators that can run on a desktop PC and simulate mobile devices.
 
-Please note that the mobile web app will be enabled only on supported devices: iPhones, Android smartphones and Windows Phone 8. Only Webkit browsers are compatible: Safari, Google Chrome, Android - Native Browser and Internet Explorer 10 (Firefox is not supported for now). 
+Please note that the mobile web app will be enabled only on supported devices: iPhones, Android smartphones, Windows Phone 8 and Firefox OS. Only the following browsers are compatible: Safari, Google Chrome, Android - Native Browser, Internet Explorer 10 and Firefox (as of 2.0.2). 
 
 == Frequently Asked Questions ==
 
 = What devices and operating systems are supported by my mobile web application? =
-WordPress Mobile Pack 2.0 is supported on: iPhones, Android smartphones, Windows Phone 8. Compatible browsers: Safari, Google Chrome, Android - Native Browser and Internet Explorer 10.
-Support for other mobile browsers such as Firefox will be added in later releases.
+WordPress Mobile Pack 2.0 is supported on: iPhones, Android smartphones, Windows Phone 8 and Firefox OS. Compatible browsers: Safari, Google Chrome, Android - Native Browser, Internet Explorer 10 and Firefox.
 
 = How can my readers switch back to the desktop theme from my mobile web application? =
 The side menu of the mobile web application contains a 'Switch to website' button that will take readers back to the desktop theme. Their option will be remembered the next time they visit your blog.
@@ -107,6 +106,16 @@ Adding tracking scripts in the source is possible if you place them in the <head
 Support for various ad networks will be added in future releases. These will be managed enterily from the admin panel, so you won't have to modify the source to integrate ads.
 
 == Changelog ==
+
+= 2.0.2 = 
+* Added support for Firefox and Firefox OS
+* Added support for customizing the home page cover
+* Added animation and arrow on the home page to suggest to readers that they have to swipe the screen to see the content
+* Added menu button on the home page / cover
+* Fixed bug - Filter content to remove script tags. The code from script tags was wrongly displayed as content.
+* Fixed bug - Filter content to remove default image links added by Wordpress. The links were opening an image in a new window and messing up the scrolling of the content.
+* Fixed bug - Using 'home_url' instead of 'site_url' for redirecting to the home page.
+* Fixed bug - Switching from portrait to landscape on the native Android browser was not working properly on some smartphones (HTC One).
 
 = 2.0.1 = 
 * Hide comments button if the comments are disabled for an article
@@ -198,8 +207,8 @@ Two major issues were introduced in beta 1, now solved:
 
 == Upgrade Notice ==
 
-= 2.0.1 =
-* Completely rebuilt from the ground up and repurposed to empower bloggers, publishers and other content creators to go beyond responsiveness and 'appify' the content of their blog.
+= 2.0.2 =
+* Completely rebuilt from the ground up and repurposed to empower bloggers, publishers and other content creators to go beyond responsiveness and 'appify' the content of their blog. The latest version includes support for Firefox and cover customization.
 
 
 == Screenshots ==
@@ -210,7 +219,7 @@ Two major issues were introduced in beta 1, now solved:
 4. Article details.
 5. Comments panel for an article.
 6. "What's New" page from the admin panel. Displays latest updates and news.
-7. "Look & Feel" page from the admin panel. Customize theme by choosing colors, fonts and adding your own app icon & logo.
+7. "Look & Feel" page from the admin panel. Customize theme by choosing colors, fonts and adding your own app icon, logo & cover.
 8. "Content" page from the admin panel. Show/hide categories of articles in the mobile web app.
 9. "Settings" page from the admin panel. Set display mode and add your Google Analytics Id.
 10. "More" page from the admin panel. Other capabilities offered in the premium hosted platform.
@@ -220,5 +229,5 @@ Two major issues were introduced in beta 1, now solved:
 
 * V2.0 of the mobile web app doesn't display the *Pages* from your blog, only categories and posts. Support for Pages will be added in the next major release.
 * The mobile web app doesn't include user authentication. If your blog settings enable comments only for logged in users, they will be disabled in the mobile web app.
-* For now, supported mobile browsers include Safari, Google Chrome, Android's native browser and Internet Explorer 10. Firefox support will be added in later versions.
-* Only featured images from your blog posts are used to generate the cover of the mobile web app and images for the list of posts. Images integrated in a post's content are displayed only on the details page for that post.
+* For now, supported mobile browsers include Safari, Google Chrome, Android's native browser, Internet Explorer 10 and Firefox (as of 2.0.2). Support for other mobile browsers such as Opera will be added in the following versions.
+* Only featured images from your blog posts are displayed as thumbnails in the list of posts. Images integrated in a post's content are displayed only on the details page for that post.

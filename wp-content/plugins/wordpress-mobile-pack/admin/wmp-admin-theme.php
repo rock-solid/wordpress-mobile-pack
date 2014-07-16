@@ -22,7 +22,7 @@
             <!-- add content form -->
             <div class="details">
                 <div class="spacer-10"></div>
-                <p>Currently there's only one theme available, but we're working on others so you're welcome to join the waitlist. You can choose from the below color schemes & fonts, add your logo & app icon. The default theme comes with 6 abstract covers that are randomly displayed on the loading screen to give your app a magazine flavor.</p>
+                <p>Currently there's only one theme available, but we're working on others so you're welcome to join the waitlist. You can choose from the below color schemes & fonts, add your logo & app icon. The default theme comes with 6 abstract covers that are randomly displayed on the loading screen to give your app a magazine flavor. You can further personalize your mobile web application by uploading your own cover.</p>
                 <div class="spacer-20"></div>
             </div>
             <div class="spacer-10"></div>
@@ -528,6 +528,8 @@
                 
                 <div class="notice notice-left right" style="width: 265px;">
                     <span>
+                       Your cover will be used in portrait and landscape modes, so choose something that will look good on different screen sizes.<br /><br />
+                       We recommend using a square image of minimum 500 x 500 px.<br /><br />
                        The file size for uploaded images should not exceed 1MB.
                     </span>
                 </div>
