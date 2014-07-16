@@ -48,9 +48,11 @@
                             <div class="try-it">
                             	<?php
 									$feed_url = '';
-									if(get_bloginfo('rss2_url') != null && get_bloginfo('rss2_url') != '')
-										$feed_url = '&feedurl='.urlencode(get_bloginfo('rss2_url'));
-									
+                                    
+                                    if (get_bloginfo('atom_url') != null && get_bloginfo('atom_url') != '')
+                                        $feed_url = '&feedurl='.urlencode(get_bloginfo('atom_url'));
+                                    elseif (get_bloginfo('rss2_url') != null && get_bloginfo('rss2_url') != '')
+										$feed_url = '&feedurl='.urlencode(get_bloginfo('rss2_url'));	
 								?>
                             
                                 <a href="<?php echo $page_content['tablets']['button_link'].$feed_url;?>" class="btn blue smaller" target="_blank"><?php echo $page_content['tablets']['button_text'];?></a>
