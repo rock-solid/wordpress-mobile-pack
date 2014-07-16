@@ -63,7 +63,7 @@ function WMP_EDIT_COVER(){
 	
             rules: {
                 wmp_editcover_cover : {
-    				accept		: "png|jpg|jpeg"
+    				accept		: "png|jpg|jpeg|gif"
     			}
             },
             
