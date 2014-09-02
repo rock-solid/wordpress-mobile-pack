@@ -18,7 +18,7 @@ else
         <li <?php echo $current_page == 'wmp-options-theme' ? 'class="selected"' : '';?>>
         	<a href="<?php echo add_query_arg(array('page'=>'wmp-options-theme'), network_admin_url('admin.php'));?>">Look & Feel</a>
         </li>
-        <li <?php echo $current_page == 'wmp-options-content' ? 'class="selected"' : '';?>>
+        <li <?php echo ($current_page == 'wmp-options-content' || $current_page == 'wmp-page-details') ? 'class="selected"' : '';?>>
         	<a href="<?php echo add_query_arg(array('page'=>'wmp-options-content'), network_admin_url('admin.php'));?>">Content</a>
         </li>
         <li <?php echo $current_page == 'wmp-options-settings' ? 'class="selected"' : '';?>>

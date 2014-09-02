@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 class WPtouchProThree {
 	// Set to true when the user is surfing on a supported mobile device
@@ -93,6 +93,8 @@ class WPtouchProThree {
 		// Check to see if we should initialize WPtouch Pro - can be used by certain other plugins to disable WPtouch Pro
 		// When not initialized, WPtouch Pro is effectively disabled
 		$should_init = apply_filters( 'wptouch_should_init_pro', true );
+		
+		
 		if ( !$should_init ) {
 			return false;
 		}

@@ -39,6 +39,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 		$this->purifier  = new HTMLPurifier($config); 
 	
         $this->inactive_categories = unserialize(WMobilePack::wmp_get_setting('inactive_categories'));
+		$this->inactive_pages = unserialize(WMobilePack::wmp_get_setting('inactive_pages'));
 	}
 
    
@@ -116,14 +117,16 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
                  // activate latest category only if we have at least 2 visible categories
                  if (count($active_categories_ids) > 1){
                     
-                    // set latest category with de articles
+					// set latest category with de articles
                     $latest_args = array(
                         'numberposts'  => $limit,
                         'cat' 		   => implode(', ', $active_categories_ids),
 						"posts_per_page" => $limit,
-    			  		'post_status' => 'publish'
+    			  		'post_status' => 'publish',
+						'post_password' => ''
                     );
                     
+					
 					$posts_query = new WP_Query ( $latest_args );
     			    
                     if ($posts_query->have_posts() ) {
@@ -140,54 +143,56 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
                         
                         foreach ($posts_query->posts as $post) {
     						
-    						// get post category
-    						$category = get_the_category($post->ID);
-    						
-    						// get content
-    						$content = apply_filters("the_content",$post->post_content);    						
-							$description = Export::truncateHtml($content,$descriptionLength);    						
-							$description = $this->purifier->purify($description);
+							if($post->post_password == '') {
 							
-    						// featured image details
-    						$image_details = array();
-                            
-    						// get featured image and add it to the category
-    						if ( has_post_thumbnail($post->ID) ) { // check if the post has a Post Thumbnail assigned to it.
-    						  
-    							$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ),'large');
-    							
-    							if(is_array($image_data) && !empty($image_data)) {
-    								
-    								// set image details
-    								$image_details = array(
-    											   "src" 		=> $image_data[0],
-    											   "width" 		=> $image_data[1],
-    											   "height" 	=> $image_data[2]
-    											 );
-    								
-                                    // add the image to the category
-    								if (!is_array($arrCategories[$current_key]["image"])) {
-    									$arrCategories[$current_key]["image"] = $image_details;
-    								}
-    							}
-    						} 
-    						
-    						// set article details
-    						$arrCategories[$current_key]["articles"][] = array(
-    																	 'id' 				=> $post->ID,
-    																	 "title" 			=> $post->post_title,
-    																	 "timestamp" 		=> strtotime($post->post_date),
-    																	 "author" 			=>  get_the_author_meta( 'user_nicename' , $post->post_author ),
-    																	 "date" 			=>  date("D, M d, Y, H:i", strtotime($post->post_date)),
-    																	 "link" 			=> $post->guid,
-    																	 "image" 			=> !empty($image_details) ? $image_details : "",
-    																	 "description"		=> $description,
-    																	 "content" 			=> '',
-    																	 "category_id" 		=> $category[0]->term_id,
-    																	 "category_name" 	=> $category[0]->name
-    																	 );
+								// get post category
+								$category = get_the_category($post->ID);
+								
+								// get content
+								$content = apply_filters("the_content",$post->post_content);    						
+								$description = Export::truncateHtml($content,$descriptionLength);    						
+								$description = $this->purifier->purify($description);
+								
+								// featured image details
+								$image_details = array();
+								
+								// get featured image and add it to the category
+								if ( has_post_thumbnail($post->ID) ) { // check if the post has a Post Thumbnail assigned to it.
+								  
+									$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ),'large');
+									
+									if(is_array($image_data) && !empty($image_data)) {
+										
+										// set image details
+										$image_details = array(
+													   "src" 		=> $image_data[0],
+													   "width" 		=> $image_data[1],
+													   "height" 	=> $image_data[2]
+													 );
+										
+										// add the image to the category
+										if (!is_array($arrCategories[$current_key]["image"])) {
+											$arrCategories[$current_key]["image"] = $image_details;
+										}
+									}
+								} 
+								
+								// set article details
+								$arrCategories[$current_key]["articles"][] = array(
+																			 'id' 				=> $post->ID,
+																			 "title" 			=> $post->post_title,
+																			 "timestamp" 		=> strtotime($post->post_date),
+																			 "author" 			=>  get_the_author_meta( 'user_nicename' , $post->post_author ),
+																			 "date" 			=>  date("D, M d, Y, H:i", strtotime($post->post_date)),
+																			 "link" 			=> $post->guid,
+																			 "image" 			=> !empty($image_details) ? $image_details : "",
+																			 "description"		=> $description,
+																			 "content" 			=> '',
+																			 "category_id" 		=> $category[0]->term_id,
+																			 "category_name" 	=> $category[0]->name
+																			 );
     					
-    					
+							}
     					}
                     }
                 }
@@ -215,9 +220,10 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
     						'numberposts'      => $limit,
 							'category__in'	   => $category->cat_ID,
 							"posts_per_page" => $limit,
-    			  			'post_status' => 'publish'
+    			  			'post_status' => 'publish',
+							'post_password' => ''
 						);
-    					
+    							
     					$cat_posts_query = new WP_Query ( $args );
     			    
                     	if ($cat_posts_query->have_posts() ) {
@@ -225,52 +231,54 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 							
     						foreach($cat_posts_query->posts as $post) {
     							
-    							// featured image details
-    							$image_details = array();
-                                
-    							// get features image and add it to the category
-    							if ( has_post_thumbnail($post->ID) ) { // check if the post has a Post Thumbnail assigned to it.
-    							  
-    								$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ),'large');
-    								
-    								if(is_array($image_data) && !empty($image_data)) {
-    									
-    									// set image details
-    									$image_details = array(
-    												   "src" 		=> $image_data[0],
-    												   "width" 		=> $image_data[1],
-    												   "height" 	=> $image_data[2]
-    												 );
-    									
-    									if(!is_array($arrCategories[$key + 1]["image"]) ) 
-    										// set arr category
-    										$arrCategories[$key + 1]["image"] = $image_details;
-    									
-    								}
-    							} 
-    							
-    							// get content
-    							$content = apply_filters("the_content",$post->post_content);
-								$description = Export::truncateHtml($content,$descriptionLength);
-								$description = $this->purifier->purify($description);
-    						
-    							// set article details
-    							$arrCategories[$key + 1]["articles"][] = array(
-    																		 'id' 				=> $post->ID,
-    																		 "title" 			=> $post->post_title,
-    																		 "timestamp" 		=> strtotime($post->post_date),
-    																		 "author" 			=> get_the_author_meta( 'user_nicename' , $post->post_author ),
-    																		 "date" 			=> date("D, M d, Y, H:i", strtotime($post->post_date)),
-    																		 "link" 			=> $post->guid,
-    																		 "image" 			=> !empty($image_details) ? $image_details : "",
-    																		 "description"		=> $description,
-    																		 "content" 			=> '',
-    																		 "category_id" 		=> $category->term_id,
-    																		 "category_name" 	=> $category->name	
-    																		 
-    																		 
-    																		 );
-    						}
+								if($post->post_password == '') {
+									// featured image details
+									$image_details = array();
+									
+									// get features image and add it to the category
+									if ( has_post_thumbnail($post->ID) ) { // check if the post has a Post Thumbnail assigned to it.
+									  
+										$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ),'large');
+										
+										if(is_array($image_data) && !empty($image_data)) {
+											
+											// set image details
+											$image_details = array(
+														   "src" 		=> $image_data[0],
+														   "width" 		=> $image_data[1],
+														   "height" 	=> $image_data[2]
+														 );
+											
+											if(!is_array($arrCategories[$key + 1]["image"]) ) 
+												// set arr category
+												$arrCategories[$key + 1]["image"] = $image_details;
+											
+										}
+									} 
+									
+									// get content
+									$content = apply_filters("the_content",$post->post_content);
+									$description = Export::truncateHtml($content,$descriptionLength);
+									$description = $this->purifier->purify($description);
+								
+									// set article details
+									$arrCategories[$key + 1]["articles"][] = array(
+																				 'id' 				=> $post->ID,
+																				 "title" 			=> $post->post_title,
+																				 "timestamp" 		=> strtotime($post->post_date),
+																				 "author" 			=> get_the_author_meta( 'user_nicename' , $post->post_author ),
+																				 "date" 			=> date("D, M d, Y, H:i", strtotime($post->post_date)),
+																				 "link" 			=> $post->guid,
+																				 "image" 			=> !empty($image_details) ? $image_details : "",
+																				 "description"		=> $description,
+																				 "content" 			=> '',
+																				 "category_id" 		=> $category->term_id,
+																				 "category_name" 	=> $category->name	
+																				 
+																				 
+																				 );
+								}
+							}
     					}
                     }
 				}
@@ -343,7 +351,8 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
     			  'date_query' => array('before' => $lastTimestamp),
     			  'numberposts' => $limit,
     			  "posts_per_page" => $limit,
-    			  'post_status' => 'publish'
+    			  'post_status' => 'publish',
+				  'post_password' => ''
             );
 			
             // if the selected category is active
@@ -386,52 +395,54 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
     			if ($posts_query->have_posts() ) {
     				
     				foreach($posts_query->posts as $post) {
-    					
-    					// check if features image
-    					$image_details = array();
-    					// get features image and add it to the category
-    					if ( has_post_thumbnail($post->ID) ) { // check if the post has a Post Thumbnail assigned to it.
-    					  
-    						$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ),'large');
-    						
-    						if(is_array($image_data) && !empty($image_data)) 
-    							// set image details
-    							$image_details = array(
-    												   "src" 		=> $image_data[0],
-    												   "width" 		=> $image_data[1],
-    												   "height" 	=> $image_data[2]
-    												 );
-    						
-    					} 
-    					
-    					// get post category
-
-						if($categoryId > 0)
-							$category = get_category($categoryId);
-						else {
+    					// add only the posts that are not password protected
+						if($post->post_password == '') {
+						
+							// check if features image
+							$image_details = array();
+							// get features image and add it to the category
+							if ( has_post_thumbnail($post->ID) ) { // check if the post has a Post Thumbnail assigned to it.
+							  
+								$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ),'large');
+								
+								if(is_array($image_data) && !empty($image_data)) 
+									// set image details
+									$image_details = array(
+														   "src" 		=> $image_data[0],
+														   "width" 		=> $image_data[1],
+														   "height" 	=> $image_data[2]
+														 );
+								
+							} 
 							
-							$cat = get_the_category($post->ID);
-							$category = $cat[0];
+							// get post category
+	
+							if($categoryId > 0)
+								$category = get_category($categoryId);
+							else {
+								
+								$cat = get_the_category($post->ID);
+								$category = $cat[0];
+							}
+							// get content
+							$content = apply_filters("the_content",$post->post_content);
+							$description = Export::truncateHtml($content,$descriptionLength);
+							$description = $this->purifier->purify($description);
+								
+							$arrArticles[] = array(
+								'id' 				=> $post->ID,
+								"title" 			=> $post->post_title,
+								"timestamp" 		=> strtotime($post->post_date),
+								"author" 			=> get_the_author_meta( 'user_nicename' , $post->post_author ),
+								"date" 				=> date("D, M d, Y, H:i", strtotime($post->post_date)),
+								"link" 				=> $post->guid,
+								"image" 			=> !empty($image_details) ? $image_details : "",
+								"description"		=> $description,
+								"content" 			=> '',
+								"category_id" 		=> $category->term_id,
+								"category_name" 	=> $category->name
+							);
 						}
-    					// get content
-    					$content = apply_filters("the_content",$post->post_content);
-						$description = Export::truncateHtml($content,$descriptionLength);
-						$description = $this->purifier->purify($description);
-    						
-    					$arrArticles[] = array(
-                            'id' 				=> $post->ID,
-                            "title" 			=> $post->post_title,
-                            "timestamp" 		=> strtotime($post->post_date),
-                            "author" 			=> get_the_author_meta( 'user_nicename' , $post->post_author ),
-                            "date" 				=> date("D, M d, Y, H:i", strtotime($post->post_date)),
-                            "link" 				=> $post->guid,
-                            "image" 			=> !empty($image_details) ? $image_details : "",
-                            "description"		=> $description,
-                            "content" 			=> '',
-                            "category_id" 		=> $category->term_id,
-                            "category_name" 	=> $category->name
-                        );
-    					
     				}
     			}
 			}
@@ -491,7 +502,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 			// get post by id
 		    $post = get_post( $articleId);
 			
-			if ($post != null && $post->post_type == 'post') {
+			if ($post != null && $post->post_type == 'post' && $post->post_password == '') {
 				
                 // get post categories
 				$categories = get_the_category($post->ID);
@@ -792,6 +803,245 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 	
 	
 	
+	/**
+    * 
+    *  - exportPages method used for the export of a number of articels for each category
+	*  - this metod returns a JSON with the specific content
+	*  - ex : 
+	*	{
+	*		"pages": [
+	*			{
+	*			  "id": "53624b6981f58370a6968678",
+	*			  "title": "#IJF14: Global developments in data journalism",
+	*			  "timestamp": 1398950385,
+	*			  "author": "",
+	*			  "date": "Thu, May 01, 2014 01:19",
+	*			  "link": "http://www.journalism.co.uk/news/-ijf14-global-patterns-in-data-journalism-/s2/a556612/",
+	*			  "image": "",
+	*			  "description":"<p><b>Sport</b> (or <b>sports</b>) is all forms of usually <a href=\"http://en.wikipedia.org/wiki/Competition\">competitive</a> <a href=\"http://en.wikipedia.org/wiki/Physical_activity\">physical activity</a> which,<sup><a href=\"http://en.wikipedia.org/wiki/Sport#cite_note-sportaccord-1\">[1]</a></sup> through casual or organised participation, aim to use, maintain or improve physical ability and skills while...</p>",				  
+	*			  "content": ''
+	*			},
+	*		]
+	*	}
+    *
+	*    
+    */
+	public function exportPages() {
+		
+		if(isset($_GET["content"]) && $_GET["content"] == 'exportpages') {
+		
+			// init pages array
+			$arrPages = array();
+			
+			// set last timestamp
+			$lastTimestamp = date("Y-m-d H:i:s");
+			if(isset($_GET["lastTimestamp"]) && is_numeric($_GET["lastTimestamp"]))
+				$lastTimestamp = date("Y-m-d H:i:s",$_GET["lastTimestamp"]);
+			
+			
+			$descriptionLength = 200;
+			if(isset($_GET["descriptionLength"]) && is_numeric($_GET["descriptionLength"]))
+				$descriptionLength = $_GET["descriptionLength"];
+			
+			// set limit
+			$limit = 7;
+			if(isset($_GET["limit"]) && is_numeric($_GET["limit"]))
+				$limit = $_GET["limit"];
+			
+			
+			// build array with the active categories ids
+            $active_pages_ids = array();
+            
+            foreach ($categories as $category){
+                if (!in_array($category->cat_ID, $this->inactive_categories))
+                    $active_categories_ids[] = $category->cat_ID;
+            }
+			
+			// set args for pages
+			$args = array(
+    			  'post__not_in' => $this->inactive_pages,
+    			  'numberposts' => $limit,
+    			  "posts_per_page" => $limit,
+    			  'post_status' => 'publish',
+				  'post_type' => 'page',
+				  'post_password'	 => ''
+            );
+			
+           
+			// remove inline style for the photos types of posts
+			add_filter( 'use_default_gallery_style', '__return_false' );
+			
+			$pages_query = new WP_Query ( $args );
+            
+    		if ($pages_query->have_posts() ) {
+    				
+    			foreach($pages_query->posts as $page) {
+    					
+					// add only the pages that are not password protected
+					if($page->post_password == '') {
+					
+						// check if features image
+						$image_details = array();
+						// get features image and add it to the category
+						if ( has_post_thumbnail($page->ID) ) { // check if the post has a Post Thumbnail assigned to it.
+						  
+							$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $page->ID ),'large');
+							
+							if(is_array($image_data) && !empty($image_data)) 
+								// set image details
+								$image_details = array(
+													   "src" 		=> $image_data[0],
+													   "width" 		=> $image_data[1],
+													   "height" 	=> $image_data[2]
+													 );
+							
+						} 
+						
+						// for the content, first check if the admin edited the content for this page
+						if(get_option( 'wmpack_page_' .$page->ID  ) === false)
+							$content = apply_filters("the_content",$page->post_content);
+						else
+							$content = apply_filters("the_content",get_option( 'wmpack_page_' .$page->ID  ));
+						
+						$description = Export::truncateHtml($content,$descriptionLength);
+						$description = $this->purifier->purify($description);
+							
+						$arrPages[] = array(
+							'id' 				=> $page->ID,
+							"title" 			=> $page->post_title,
+							"timestamp" 		=> strtotime($page->post_date),
+							"author" 			=> get_the_author_meta( 'user_nicename' , $page->post_author ),
+							"date" 				=> date("D, M d, Y, H:i", strtotime($page->post_date)),
+							"image" 			=> !empty($image_details) ? $image_details : "",
+							"content" 			=> ''
+						);
+					}
+				}
+			}
+			
+            
+			return '{"pages":'.json_encode($arrPages)."}";
+		
+		} else
+			return '{"error":""}';
+	}
+	
+	
+	/**
+    * 
+    *  - exportPage method used for the export of a page
+	*  - this metod returns a JSON with the specific content
+	*  - ex : 
+	*	{
+	*	  "article": {
+	*		"id": "53624b6981f58370a6968678",
+	*		"title": "#IJF14: Global developments in data journalism",
+	*		"timestamp": 1398960437,
+	*		"author": "",
+	*		"date": "Thu, May 01, 2014 04:07",
+	*		"link": "http://www.journalism.co.uk/news/-ijf14-global-patterns-in-data-journalism-/s2/a556612/",
+	*		"image": "",
+	*		"description":"<p><b>Sport</b> (or <b>sports</b>) is all forms of usually <a href=\"http://en.wikipedia.org/wiki/Competition\">competitive</a> <a href=\"http://en.wikipedia.org/wiki/Physical_activity\">physical activity</a> which,<sup><a href=\"http://en.wikipedia.org/wiki/Sport#cite_note-sportaccord-1\">[1]</a></sup> through casual or organised participation, aim to use, maintain or improve physical ability and skills while...</p>",				  
+	*	    "content": "<p>On the second day of the International Journalism Festival in Perugia, delegates were treated to a round up of data journalism trends and developments from around the world.</p>",
+	*	  }
+	*	}
+    *  
+	*   @params $pageId - the id of the page
+	*    
+    */
+	public function exportPage() {
+		
+		// check if the export call is correct
+		if(isset($_GET["content"]) && $_GET["content"] == 'exportpage' ) {
+		
+			// set pageId
+			$pageId = 0;			
+			if(isset($_GET["pageId"]) && is_numeric($_GET["pageId"])) {
+				$pageId = $_GET["pageId"];
+			}
+			
+			$descriptionLength = 200;
+			if(isset($_GET["descriptionLength"]) && is_numeric($_GET["descriptionLength"]))
+				$descriptionLength = $_GET["descriptionLength"];
+			
+			// init page array
+			$arrPage = array();
+			
+			// get page by id
+		    $page = get_page( $pageId);
+			
+			if ($page != null && $page->post_type == 'page' && $page->post_password == '') {
+				
+			  	// check if page is visible
+			   $is_visible = false;
+                   
+				if (!in_array($page->ID, $this->inactive_pages))
+					$is_visible = true;
+              
+                
+                if ($is_visible){
+                
+    				// featured image details
+    				$image_details = array();
+                    				
+    				// get features image
+    				if ( has_post_thumbnail($page->ID) ) { // check if the post has a Post Thumbnail assigned to it.
+    				  
+    					$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $page->ID ),'large');
+    					
+    					if(is_array($image_data) && !empty($image_data)) 
+    						// set image src
+    						$image_details = array(
+    												   "src" 		=> $image_data[0],
+    												   "width" 		=> $image_data[1],
+    												   "height" 	=> $image_data[2]
+    												 );
+    					
+    				} 
+    				
+					
+					// for the content, first check if the admin edited the content for this page
+					if(get_option( 'wmpack_page_' .$page->ID  ) === false)
+						$content = apply_filters("the_content",$page->post_content);
+					else
+						$content = apply_filters("the_content",get_option( 'wmpack_page_' .$page->ID  ));
+    				
+					// remove script tags
+					$content = self::removeScriptTags($content);
+					
+    				$content = $this->purifier->purify($content);
+    				
+					// remove all url's from attachment images
+					$content = preg_replace( array('{<a(.*?)(wp-att|wp-content\/uploads|attachment)[^>]*><img}', '{ wp-image-[0-9]*" /></a>}'), array('<img','" />'), $content);
+					
+					
+    				// get the description
+    				$description = Export::truncateHtml($content,$descriptionLength);
+    				
+    				$arrPage = array(
+                        'id' 					=> $page->ID,
+                        "title" 				=> $page->post_title,
+                        "timestamp" 			=> strtotime($page->post_date),
+                        "author" 				=> get_the_author_meta( 'user_nicename' , $page->post_author ),
+                        "date" 			    	=> date("D, M d, Y, H:i", strtotime($post->page)),
+                        "link" 			    	=> $page->guid,
+                        "image" 				=> !empty($image_details) ? $image_details : "",
+                        "description"	    	=> $description,
+                        "content" 				=> $content
+					 );
+				}
+			}
+				
+			// return page json
+			return '{"page":'.json_encode($arrPage)."}";
+			
+		} else
+			// return error
+			return '{"error":""}';
+	}
+	
+	
+	
 	
 	/**
 	 * truncateHtml can truncate a string up to a number of characters while preserving whole words and HTML tags
@@ -977,5 +1227,10 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 	 
 	 
   } // Export
+  
+  
+	  
+	  
+  
 
 ?>

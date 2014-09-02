@@ -9,7 +9,13 @@
 </script>
 <?php 
     $inactive_categories = unserialize(WMobilePack::wmp_get_setting('inactive_categories'));
+	$order_categories = unserialize(WMobilePack::wmp_get_setting('ordered_categories'));
     $categories = get_categories();
+
+	$inactive_pages = unserialize(WMobilePack::wmp_get_setting('inactive_pages'));
+	$order_pages = unserialize(WMobilePack::wmp_get_setting('ordered_pages'));
+	$pages = get_pages();
+	
 ?>
 <div id="wmpack-admin">
 	<div class="spacer-60"></div>
@@ -26,6 +32,10 @@
             <!-- add content form -->
             <div class="details">
             	<div class="spacer-10"></div>
+                <h2 class="title">Categories</h2>
+           		<div class="spacer-15"></div>
+                <div class="grey-line"></div>
+                <div class="spacer-15"></div>
                 <p>Choose what categories to be displayed in your mobile web application. Click on the rows to below to <em>show/hide</em> categories.</p>
             	<div class="spacer-20"></div>
                 <div class="spacer-20"></div>
@@ -43,16 +53,43 @@
                             <div class="spacer-10"></div>
                         </div>
                 
-                        <ul class="categories">
-                            <?php 
-                                foreach ($categories as $category):
+                        <ul class="categories" id="categories">
+                            <?php
+								$arrCategories = array();
+								if(is_array($order_categories) && !empty($order_categories)){
+									// order categories
+									foreach($categories as $category) {
+									
+										$index = array_search($category->cat_ID,$order_categories);
+										
+										// create new index for new categories
+										$new_index = count($order_categories) + 1;
+										$last_key = count($arrCategories) > 0 ? max(array_keys($arrCategories)) : 0;
+										
+										if(is_numeric($index))
+											$arrCategories[$index] = $category;
+										elseif($new_index > $last_key)
+											$arrCategories[$new_index] = $category;
+										else
+											$arrCategories[$last_key+1] = $category;
+									
+									}
+									// sort categories	
+									ksort($arrCategories);
+									
+								} else
+									$arrCategories = $categories;
+									
+							?>
+							<?php 
+                                foreach ($arrCategories as $key => $category):
                             
                                     $status = 'active';
                                     if (in_array($category->cat_ID, $inactive_categories))
                                         $status = 'inactive';
                             ?>
-                        	<li>
-                            	<span class="status <?php echo $status;?>" data-category-id="<?php echo $category->cat_ID;?>"><?php echo $status;?></span>
+                        	<li data-category-id="<?php echo $category->cat_ID;?>" data-order="<?php echo $key;?>">
+                            	<span class="status <?php echo $status;?>"><?php echo $status;?></span>
                                 <span class="title"><?php echo $category->name;?></span>
                                 <span class="posts"><?php echo $category->category_count != 1 ? $category->category_count.' posts' : '1 post';?> published</span>
                             </li>
@@ -72,6 +109,96 @@
                     </div>
                         
                 <?php endif;?>
+                
+             </div> 
+             <div class="spacer-10"></div>  
+             <div class="details" id="editpages_container">   
+                <div class="spacer-10"></div>
+                <h2 class="title">Pages</h2>
+           		<div class="spacer-15"></div>
+                <div class="grey-line"></div>
+                <div class="spacer-15"></div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sed imperdiet dui. Phasellus nisi justo, posuere eget pharetra in, accumsan a augue. Nulla aliquet, diam non aliquam fermentum, sem libero scelerisque velit, sit amet mollis libero mauris sit amet ligula. Aliquam nec dolor mollis, sollicitudin est vel, faucibus velit. Vivamus justo odio, mollis vel purus non, tempus euismod nibh. Praesent aliquam ornare nisl non facilisis.</p>
+            	<p>If you have at least two pages, you can rearrange their order by drag & drop.</p>
+                <div class="spacer-20"></div>
+                <!-- start pages list -->
+                <?php if (count($pages) > 0): ?>
+                
+                    <form name="wmp_editpages_form" id="wmp_editpages_form" action="" method="post">
+                        
+                        <div id="wmp_editpages_warning" class="message-container warning" style="display: <?php echo count($inactive_pages) < count($pages) ? 'none' : 'block'?>;">
+                            <div class="wrapper">
+                                <div class="relative"><a class="close-x"></a></div>
+                                <span>You deactivated all your pages, no content will be displayed in your mobile web app!</span> 
+                            </div>
+                            <div class="spacer-10"></div>
+                        </div>
+                
+                        <ul class="categories pages">
+                            <?php
+								$arrPages = array();
+								if(is_array($order_pages) && !empty($order_pages)){
+									// order pages
+									foreach($pages as $key => $page) {
+											
+										$index = array_search($page->ID,$order_pages);
+										
+										// create new index for new pages
+										$new_index = count($order_pages) + 1;
+										$last_key = count($arrPages) > 0 ? max(array_keys($arrPages)) : 0;
+										
+										// set index for pages
+										if(is_numeric($index))
+											$arrPages[$index] = $page;
+										elseif($new_index > $last_key)
+											$arrPages[$new_index] = $page;
+										else
+											$arrPages[$last_key+1] = $page;
+									}
+									
+									// sort pages	
+									ksort($arrPages);
+								
+								} else
+									$arrPages = $pages;
+								
+								
+							?>
+							<?php 
+                                foreach ($arrPages as $key =>  $page):
+                            
+                                    $status = 'active';
+                                    if (in_array($page->ID, $inactive_pages))
+                                        $status = 'inactive';
+									
+                            ?>
+                        	<li data-page-id="<?php echo $page->ID;?>" data-order="<?php echo  $key;?>">
+                            	<div class="row">
+                                    <span class="status <?php echo $status;?>"><?php echo $status;?></span>
+                                    <span class="title"><?php echo $page->post_title;?></span>
+                                </div>
+                                <div class="buttons">
+                                    <a href="<?php echo admin_url('admin.php?page=wmp-page-details&id='.$page->ID);?>" class="edit" title="Edit page"></a> 
+                                    <span class="delete" title="Delete page" style="display: none;"></span>
+                                </div>
+                            </li>
+                            <?php endforeach;?>
+                        </ul>
+                    </form>
+                <?php else: ?>
+                
+                    <div class="message-container warning">
+                        <div class="wrapper">
+                            <div class="title">
+                                <h2 class="underlined">No pages to display!</h2>
+                            </div>
+                            <span>You don't have any pages to be displayed in your mobile web app!</span> 
+                        </div>
+                    </div>
+                        
+                <?php endif;?>
+                
+                
             </div>
             <div class="spacer-10"></div>
             <div class="details">
@@ -136,12 +263,13 @@
 
 
 </div>
-    
+
 <script type="text/javascript">
     if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
             
             window.WMPJSInterface.add("UI_editcategories","WMP_EDIT_CATEGORIES",{'DOMDoc':window.document}, window);
+            window.WMPJSInterface.add("UI_editpages","WMP_EDIT_PAGES",{'DOMDoc':window.document}, window);
             
             <?php if ($joined_content_waitlist == false):?>
             

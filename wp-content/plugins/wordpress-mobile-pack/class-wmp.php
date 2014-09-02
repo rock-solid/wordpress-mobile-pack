@@ -20,7 +20,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     	/* Properties						 */
     	/* ----------------------------------*/
     	
-    	public static $wmp_options; 
+    	public static $wmp_options;
         public static $wmp_allowed_fonts = array('Roboto Light Condensed', 'Crimson Roman', 'Open Sans Condensed Light');
         public static $wmp_basic_theme = 'base';
         
@@ -34,7 +34,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     
         /**
          * 
-         * Construct method that initializes the plugin's options 
+         * Construct method that initializes the plugin's options
          * 
          */
     	public function __construct(){
@@ -49,8 +49,6 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                     'font_paragraphs'       => self::$wmp_allowed_fonts[0],
                     'inactive_categories'   => serialize(array()),
 					'inactive_pages'   		=> serialize(array()),
-					'ordered_categories'    => serialize(array()),
-					'ordered_pages'   		=> serialize(array()),
                     'joined_waitlists'      => serialize(array()),
                     'display_mode'          => 'normal',
                 	'logo'                  => '',
@@ -106,24 +104,6 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     		// remove settings from database
     		$this->wmp_delete_settings(self::$wmp_options);
 			
-			// remove transients
-			if(get_transient("wmp_more_updates") !== false)
-				delete_transient('wmp_more_updates');
-				
-			if(get_transient("wmp_whats_new_updates") !== false)
-				delete_transient('wmp_whats_new_updates');
-			
-			if(get_transient("wmp_newsupdates") !== false)
-				delete_transient('wmp_newsupdates');	
-			
-			// remove pages
-			//???????//delete_option( 'wmpack_page_' . $option_name );
-			
-			
-			
-			
-			
-			
 			// remove the cookies
 			setcookie("wmp_theme_mode", "", time()-3600);
 			setcookie("wmp_load_app", "", time()-3600);
@@ -142,7 +122,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
             
     		// enqueue css and javascript for the admin area
             add_action( 'admin_enqueue_scripts',array( &$this, 'wmp_admin_enqueue_scripts' ) );
-		}
+    	}
         
     	
     	/**
@@ -154,12 +134,15 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     	public function wmp_admin_enqueue_scripts() {
     		
     		// enqueue styles
-			//wp_enqueue_style('css_general', plugins_url(WMP_DOMAIN.'/admin/css/general-min.css'), array(), WMP_VERSION);
+			wp_enqueue_style('css_general', plugins_url(WMP_DOMAIN.'/admin/css/general-min.css'), array(), WMP_VERSION);
             
 			wp_enqueue_style('css_main', 'http://dev.webcrumbz.co/~raducu/dashboard-cutting/wp/resources/css/main.css', array(), WMP_VERSION);
             wp_enqueue_style('css_fonts', 'http://dev.webcrumbz.co/~raducu/dashboard-cutting/wp/resources/css/fonts.css', array(), WMP_VERSION);
             wp_enqueue_style('css_ie', 'http://dev.webcrumbz.co/~raducu/dashboard-cutting/wp/resources/css/ie.css', array(), WMP_VERSION);
             
+			
+			
+			
 			
             // enqueue scripts
         	if (WMP_BLOG_VERSION < 3.6) 
@@ -178,12 +161,9 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 			
 			//wp_enqueue_script('js_general', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Default/GENERAL.min.js'), $dependencies, '1.11.1');	
 			wp_enqueue_script('js_feedback', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Feedback/WMP_SEND_FEEDBACK.min.js'), array(), WMP_VERSION);	
-    		//wp_enqueue_script( 'jquery-ui-dialog' );
-		
-            
+    	
 		}
-		
-		
+    	
     	
     	/**
          * 
@@ -191,28 +171,14 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          * 
          */
         public function wmp_admin_load_content_js(){
-
+            
+			wp_enqueue_script('js_jquery_ui', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/jquery-ui-1.10.3.custom.min.js'), array(), '0.9.9');
+            
 			wp_enqueue_script('js_content_editcategories', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_EDIT_CATEGORIES.min.js'), array(), WMP_VERSION);
             wp_enqueue_script('js_content_editpages', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_EDIT_PAGES.js'), array(), WMP_VERSION);
-            wp_enqueue_script('js_content_pagepopup', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_PAGE_DETAILS.js'), array(), WMP_VERSION);
+            wp_enqueue_script('js_content_pagepopup', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_PAGE_POPUP.js'), array(), WMP_VERSION);
 			wp_enqueue_script('js_join_waitlist', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Waitlist/WMP_WAITLIST.min.js'), array(), WMP_VERSION);
-        	
-			wp_enqueue_script('jquery-ui-sortable');
-			//wp_enqueue_script('jquery-ui-draggable');
-		}
-		
-		
-		/**
-         * 
-         * Load specific javascript files for the admin Content submenu page
-         * 
-         */
-        public function wmp_admin_load_page_js(){
-
-			wp_enqueue_script('js_content_pagedetails', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_PAGE_DETAILS.js'), array(), WMP_VERSION);
-			
-		}
-		
+        }
         
         
         /**
@@ -294,12 +260,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
             add_action( 'load-' . $settings_page, array( &$this, 'wmp_admin_load_settings_js' ) ); 
             
     		add_submenu_page( 'wmp-options', 'More...', 'More...', 'manage_options', 'wmp-options-upgrade', array( &$WMobilePackAdmin, 'wmp_upgrade_options') ); 
-    	
-			// fake submenu since it is not visible
-			$pages_page = add_submenu_page( null, 'More...', 'Details', 'manage_options', 'wmp-page-details', array( &$WMobilePackAdmin, 'wmp_page_content') ); 
-    		add_action( 'load-' . $pages_page, array( &$this, 'wmp_admin_load_page_js' ) ); 
-		
-		}
+    	}
     		
          	
     	/**
@@ -351,7 +312,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          * @return bool
     	 *
     	 */
-    	public static function wmp_save_settings( $option, $option_value = '' ) {
+    	public function wmp_save_settings( $option, $option_value = '' ) {
     		
             if (current_user_can( 'manage_options' )){
                 
@@ -396,7 +357,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          * @return bool
     	 *
     	 */
-    	public static function wmp_update_settings( $option, $option_value = null ) {
+    	public function wmp_update_settings( $option, $option_value = null ) {
     	
             if (current_user_can( 'manage_options' )){
                 
@@ -442,7 +403,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          * @return bool
     	 *
     	 */
-    	public static function wmp_delete_settings( $option ) {
+    	public function wmp_delete_settings( $option ) {
     	
             if (current_user_can( 'manage_options' )){
                 

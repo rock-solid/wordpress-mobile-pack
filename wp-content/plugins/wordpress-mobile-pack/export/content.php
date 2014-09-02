@@ -38,6 +38,18 @@ if(isset($_GET["content"])) {
 		$export = new Export();
 		echo $_GET['callback'] . '('.$export->saveComment().')';
 	
+	}	elseif($_GET["content"] == 'exportpages') {
+	
+		// export pages
+		$export = new Export();		
+		echo $_GET['callback'] . '('.$export->exportPages().')';
+	
+	}   elseif($_GET["content"] == 'exportpage' && isset($_GET["pageId"]) && is_numeric($_GET["pageId"])) {
+	
+		// save export page, manadatory param is pageId
+		$export = new Export();
+		echo $_GET['callback'] . '('.$export->exportPage().')';
+	
 	} else
 		echo $_GET['callback'] . '({"error":"No export requested"})';
 }
