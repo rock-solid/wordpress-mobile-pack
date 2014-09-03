@@ -118,7 +118,8 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 			
 			// remove pages
 			//???????//delete_option( 'wmpack_page_' . $option_name );
-			
+			global $wpdb;
+    		$wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE 'wmpack_page_%'" );
 			
 			
 			
@@ -193,8 +194,8 @@ if ( ! class_exists( 'WMobilePack' ) ) {
         public function wmp_admin_load_content_js(){
 
 			wp_enqueue_script('js_content_editcategories', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_EDIT_CATEGORIES.min.js'), array(), WMP_VERSION);
-            wp_enqueue_script('js_content_editpages', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_EDIT_PAGES.js'), array(), WMP_VERSION);
-            wp_enqueue_script('js_content_pagepopup', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_PAGE_DETAILS.js'), array(), WMP_VERSION);
+            wp_enqueue_script('js_content_editpages', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_EDIT_PAGES.min.js'), array(), WMP_VERSION);
+            wp_enqueue_script('js_content_pagepopup', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_PAGE_DETAILS.min.js'), array(), WMP_VERSION);
 			wp_enqueue_script('js_join_waitlist', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Waitlist/WMP_WAITLIST.min.js'), array(), WMP_VERSION);
         	
 			wp_enqueue_script('jquery-ui-sortable');

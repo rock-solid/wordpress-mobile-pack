@@ -38,7 +38,7 @@
                 <div class="spacer-15"></div>
                 <p>Choose what categories to be displayed in your mobile web application. Click on the rows to below to <em>show/hide</em> categories.</p>
             	<div class="spacer-20"></div>
-                <div class="spacer-20"></div>
+                <div class="spacer-20"></div> 
                 
                 <!-- start categories list -->
                 <?php if (count($categories) > 0): ?>

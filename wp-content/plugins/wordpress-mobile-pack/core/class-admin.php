@@ -145,12 +145,11 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 							
 							$config = HTMLPurifier_Config::createDefault();
 							$config->set('Core.Encoding', 'UTF-8'); 									
-							$config->set('HTML.Allowed','a[href|target],p,ol,li,ul,img[src],blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe[frameborder|marginheight|marginwidth|scrolling|src|width|height]');
+							$config->set('HTML.Allowed','a[href|target],p,ol,li,ul,img[src|class],blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe[frameborder|marginheight|marginwidth|scrolling|src|width|height]');
 							$config->set('Attr.AllowedFrameTargets', '_blank, _parent, _self, _top');
-							$config->set('HTML.ForbiddenElements', 'style,class');
 							
 							$config->set('HTML.SafeIframe',1);
-							$config->set('URI.SafeIframeRegexp','%^(https?:)?(http?:)?//(www\.youtube(?:-nocookie)?\.com/embed/|player.vimeo.com|www\.dailymotion.com|w.soundcloud.com|fast.wistia.net|fast.wistia.com|wi.st|'.$_SERVER['HTTP_HOST'].')%');
+							$config->set('Filter.Custom', array( new HTMLPurifier_Filter_Iframe()));
 							
 							// disable cache
 							$config->set('Cache.DefinitionImpl',null);
@@ -163,7 +162,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 								$content = apply_filters("the_content",$page->post_content);
 							else
 								$content = apply_filters("the_content",get_option( 'wmpack_page_' .$page->ID  ));
-							$content = $purifier->purify($content);
+							$content = $purifier->purify(stripslashes($content));
 							
 							// load view
 							include(WMP_PLUGIN_PATH.'admin/wmp-admin-page-details.php');
@@ -347,23 +346,21 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 							include(WMP_PLUGIN_PATH.'libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php');
 							$config = HTMLPurifier_Config::createDefault();
 							$config->set('Core.Encoding', 'UTF-8'); 									
-							$config->set('HTML.Allowed','a[href|target],p,ol,li,ul,img[src],blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe[frameborder|marginheight|marginwidth|scrolling|src|width|height]');
+							$config->set('HTML.Allowed','a[href|target],p,ol,li,ul,img[src|class],blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe[frameborder|marginheight|marginwidth|scrolling|src|width|height]');
 							$config->set('Attr.AllowedFrameTargets', '_blank, _parent, _self, _top');
-							$config->set('HTML.ForbiddenElements', 'style,class');
 							
 							$config->set('HTML.SafeIframe',1);
-							$config->set('URI.SafeIframeRegexp','%^(https?:)?(http?:)?//(www\.youtube(?:-nocookie)?\.com/embed/|player.vimeo.com|www\.dailymotion.com|w.soundcloud.com|fast.wistia.net|fast.wistia.com|wi.st|'.$_SERVER['HTTP_HOST'].')%');
+							$config->set('Filter.Custom', array( new HTMLPurifier_Filter_Iframe()));
 							
 							// disable cache
 							$config->set('Cache.DefinitionImpl',null);
 							
 							$purifier  = new HTMLPurifier($config); 
 							
-							
                             $status = 1;
-                             
+                            
                             $page_id = intval($_POST['wmp_pageedit_id']);
-                            $page_content = $purifier->purify(($_POST['wmp_pageedit_content']));
+                            $page_content = $purifier->purify(stripslashes($_POST['wmp_pageedit_content']));
                             
                             // save option in the db
 							update_option( 'wmpack_page_' . $page_id, $page_content );

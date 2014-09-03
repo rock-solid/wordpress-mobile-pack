@@ -12,7 +12,7 @@
     <!-- set title -->
     <h1><?php echo WMP_PLUGIN_NAME;?></h1>
 	<div class="spacer-20"></div>
-	<div class="settings">
+	<div class="content">
         <div class="left-side">
             
             <!-- add nav menu -->
@@ -30,33 +30,31 @@
             <div class="spacer-15"></div>
             
             <div class="details">
-            	
-                 	
-                <div class="spacer-20"></div>
+            	<h2 class="title"><?php echo $page->post_title;?></h2>
+                 <div class="spacer-15"></div>
+                <div class="grey-line"></div>
+                <div class="spacer-15"></div>
                 <form name="wmp_pageedit_form" id="wmp_pageedit_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_content_pagedetails" method="post">
                     <input type="hidden" name="wmp_pageedit_id" id="wmp_pageedit_id" value="<?php echo $page->ID;?>" />
                     <div class="message-container error" id="pageedit_message_container"></div>
                     
-                    
-                    <label for="wmp_pageedit_content">Content* <span class="info" title="Please specify the title of your news category (max. 30 characters). Only letters, spaces, hyphens(-) and dots(.) are allowed."></span></label>
-                    
-					<?php $args = array("textarea_name" => "wmp_pageedit_content");?>
+                    <?php $args = array("textarea_name" => "wmp_pageedit_content");?>
                     <?php wp_editor( $content, 'wmp_pageedit_content',$args);?>
                     
                     <div class="field-message error" id="error_content_container"></div> 
                                             
                     <div class="spacer-20"></div>
-                    <a href="javascript:void(0);" id="wmp_pageedit_send_btn" class="btn blue smaller" style="cursor: pointer; opacity: 1;">Save</a>
-                        
+                    <div class="inline-btns-container">
+                    <a href="javascript:void(0);" id="wmp_pageedit_send_btn" class="btn blue smaller spaced-right" style="cursor: pointer; opacity: 1;">Save</a>
+                    <a href="<?php echo add_query_arg(array('page'=>'wmp-options-content'), network_admin_url('admin.php'));?>" class="btn grey smaller" style="cursor: pointer; opacity: 1;">Back</a>
+                    </div>    
                 </form>
                     
                     
-                    
-                
                 <div class="spacer-0"></div>
             </div>
             <div class="spacer-15"></div>
-            
+         </div>   
             
     
         <div class="right-side">

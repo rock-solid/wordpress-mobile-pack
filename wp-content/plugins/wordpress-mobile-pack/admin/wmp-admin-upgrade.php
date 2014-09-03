@@ -82,7 +82,7 @@
                         <?php endif;?>
                         
                         <?php if (array_key_exists('list', $page_content['features'])): ?>
-                            
+                             
                             <div class="features">
                                 <?php foreach ($page_content['features']['list'] as $feature_item):?>
                                 

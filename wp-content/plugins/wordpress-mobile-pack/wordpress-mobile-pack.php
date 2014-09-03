@@ -35,7 +35,6 @@ if ( class_exists( 'WMobilePack' ) && class_exists( 'WMobilePackAdmin' ) ) {
 		add_action( 'wp_ajax_wmp_content_pagestatus', array( &$wmobile_pack_admin, 'wmp_content_pagestatus' ) );
         add_action( 'wp_ajax_wmp_content_pagedetails', array( &$wmobile_pack_admin, 'wmp_content_pagedetails' ) );
 		add_action( 'wp_ajax_wmp_content_order', array( &$wmobile_pack_admin, 'wmp_content_order' ) );
-		//add_action( 'wp_ajax_wmp_page_content', array( &$wmobile_pack_admin, 'wmp_page_content' ) );
 		
 		add_action( 'wp_ajax_wmp_settings_editimages', array( &$wmobile_pack_admin, 'wmp_settings_editimages' ) );
 		add_action( 'wp_ajax_wmp_settings_editcover', array( &$wmobile_pack_admin, 'wmp_settings_editcover' ) );

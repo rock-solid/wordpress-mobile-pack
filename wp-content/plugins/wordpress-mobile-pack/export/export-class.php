@@ -109,6 +109,9 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
                     $active_categories_ids[] = $category->cat_ID;
             }
 			
+			// get categories order
+			$order_categories = unserialize(WMobilePack::wmp_get_setting('ordered_categories'));
+			
 			// remove inline style for the photos types of posts
 			add_filter( 'use_default_gallery_style', '__return_false' );
 			
@@ -130,8 +133,8 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 					$posts_query = new WP_Query ( $latest_args );
     			    
                     if ($posts_query->have_posts() ) {
-    					 
-    					$arrCategories[] = array(
+    					                      
+                        $arrCategories[] = array(
     											'id' => 0,
     											'order' => 1,
     											'name' => 'Latest',
@@ -140,7 +143,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
                                               
                         // get current index of the array
                         $current_key = key($arrCategories);
-                        
+						
                         foreach ($posts_query->posts as $post) {
     						
 							if($post->post_password == '') {
@@ -205,10 +208,22 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 					
                     if (in_array($category->cat_ID, $active_categories_ids)){
                         
+						$index_order = array_search($category->cat_ID,$order_categories);
 						
+						// create new index for new categories
+						$new_index = count($order_categories) + 1;
+						$last_key = count($arrCategories) > 0 ? max(array_keys($arrCategories)) : 0;
+						
+						if(is_numeric($index_order))
+							$current_key = $index_order;
+						elseif($new_index > $last_key)
+							$current_key = $new_index;
+						else
+							$current_key = $last_key+1;
+						 
 						
     					// add details to category array
-    					$arrCategories[$key + 1] = array(
+    					$arrCategories[$current_key + 1] = array(
     												'id' 	=> $category->term_id,
     												'order' => $key + 1,
     												'name' 	=> $category->name,
@@ -249,9 +264,9 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 														   "height" 	=> $image_data[2]
 														 );
 											
-											if(!is_array($arrCategories[$key + 1]["image"]) ) 
+											if(!is_array($arrCategories[$current_key + 1]["image"]) ) 
 												// set arr category
-												$arrCategories[$key + 1]["image"] = $image_details;
+												$arrCategories[$current_key + 1]["image"] = $image_details;
 											
 										}
 									} 
@@ -262,7 +277,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 									$description = $this->purifier->purify($description);
 								
 									// set article details
-									$arrCategories[$key + 1]["articles"][] = array(
+									$arrCategories[$current_key + 1]["articles"][] = array(
 																				 'id' 				=> $post->ID,
 																				 "title" 			=> $post->post_title,
 																				 "timestamp" 		=> strtotime($post->post_date),
@@ -283,7 +298,11 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
                     }
 				}
 			}
+			
 			// reset array keys
+			ksort($arrCategories);
+			
+			
 			$arrCategories = array_values($arrCategories);
 			// return json
 			return '{"categories":'.json_encode($arrCategories)."}";
@@ -868,6 +887,9 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
             );
 			
            
+		   // get pages order
+			$order_pages = unserialize(WMobilePack::wmp_get_setting('ordered_pages'));
+		   
 			// remove inline style for the photos types of posts
 			add_filter( 'use_default_gallery_style', '__return_false' );
 			
@@ -897,16 +919,21 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 							
 						} 
 						
-						// for the content, first check if the admin edited the content for this page
-						if(get_option( 'wmpack_page_' .$page->ID  ) === false)
-							$content = apply_filters("the_content",$page->post_content);
-						else
-							$content = apply_filters("the_content",get_option( 'wmpack_page_' .$page->ID  ));
+						$index_order = array_search($page->ID,$order_pages);
 						
-						$description = Export::truncateHtml($content,$descriptionLength);
-						$description = $this->purifier->purify($description);
-							
-						$arrPages[] = array(
+						// create new index for new categories
+						$new_index = count($order_pages) + 1;
+						$last_key = count($arrPages) > 0 ? max(array_keys($arrPages)) : 0;
+						
+						if(is_numeric($index_order))
+							$current_key = $index_order;
+						elseif($new_index > $last_key)
+							$current_key = $new_index;
+						else
+							$current_key = $last_key+1;
+						
+						
+						$arrPages[$current_key] = array(
 							'id' 				=> $page->ID,
 							"title" 			=> $page->post_title,
 							"timestamp" 		=> strtotime($page->post_date),
@@ -919,7 +946,9 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 				}
 			}
 			
-            
+			// sort pages by key
+            ksort($arrPages);
+			
 			return '{"pages":'.json_encode($arrPages)."}";
 		
 		} else

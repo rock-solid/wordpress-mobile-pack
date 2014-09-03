@@ -252,8 +252,9 @@ function timer_stop( $display = 0, $precision = 3 ) {
  * @since 3.0.0
  */
 function wp_debug_mode() {
+	return;
 	if ( WP_DEBUG ) {
-		error_reporting( E_ALL );
+		error_reporting( E_ERROR | E_WARNING | E_PARSE & ~E_DEPRECATED & ~E_STRICT );
 
 		if ( WP_DEBUG_DISPLAY )
 			ini_set( 'display_errors', 1 );

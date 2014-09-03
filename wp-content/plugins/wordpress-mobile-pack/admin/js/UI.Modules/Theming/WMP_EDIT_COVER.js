@@ -69,7 +69,7 @@ function WMP_EDIT_COVER(){
             
             messages: {
                 wmp_editcover_cover : {
-    				accept		: "Please a png, gif or jpeg image."
+    				accept		: "Please add a png, gif or jpeg image."
     			}
             },
             
