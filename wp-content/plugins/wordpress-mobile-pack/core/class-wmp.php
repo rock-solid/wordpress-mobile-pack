@@ -155,11 +155,11 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     	public function wmp_admin_enqueue_scripts() {
     		
     		// enqueue styles
-			//wp_enqueue_style('css_general', plugins_url(WMP_DOMAIN.'/admin/css/general-min.css'), array(), WMP_VERSION);
+			wp_enqueue_style('css_general', plugins_url(WMP_DOMAIN.'/admin/css/general-min.css'), array(), WMP_VERSION);
             
-			wp_enqueue_style('css_main', 'http://dev.webcrumbz.co/~raducu/dashboard-cutting/wp/resources/css/main.css', array(), WMP_VERSION);
-            wp_enqueue_style('css_fonts', 'http://dev.webcrumbz.co/~raducu/dashboard-cutting/wp/resources/css/fonts.css', array(), WMP_VERSION);
-            wp_enqueue_style('css_ie', 'http://dev.webcrumbz.co/~raducu/dashboard-cutting/wp/resources/css/ie.css', array(), WMP_VERSION);
+			//wp_enqueue_style('css_main', 'http://dev.webcrumbz.co/~raducu/dashboard-cutting/wp/resources/css/main.css', array(), WMP_VERSION);
+            //wp_enqueue_style('css_fonts', 'http://dev.webcrumbz.co/~raducu/dashboard-cutting/wp/resources/css/fonts.css', array(), WMP_VERSION);
+            //wp_enqueue_style('css_ie', 'http://dev.webcrumbz.co/~raducu/dashboard-cutting/wp/resources/css/ie.css', array(), WMP_VERSION);
             
 			
             // enqueue scripts
