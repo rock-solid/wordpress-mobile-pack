@@ -145,7 +145,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 							
 							$config = HTMLPurifier_Config::createDefault();
 							$config->set('Core.Encoding', 'UTF-8'); 									
-							$config->set('HTML.Allowed','a[href|target],p,ol,li,ul,img[src|class],blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe[frameborder|marginheight|marginwidth|scrolling|src|width|height]');
+							$config->set('HTML.Allowed','a[href|target],p,ol,li,ul,img[src|class|width|height],blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe[frameborder|marginheight|marginwidth|scrolling|src|width|height]');
 							$config->set('Attr.AllowedFrameTargets', '_blank, _parent, _self, _top');
 							
 							$config->set('HTML.SafeIframe',1);
@@ -346,7 +346,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 							include(WMP_PLUGIN_PATH.'libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php');
 							$config = HTMLPurifier_Config::createDefault();
 							$config->set('Core.Encoding', 'UTF-8'); 									
-							$config->set('HTML.Allowed','a[href|target],p,ol,li,ul,img[src|class],blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe[frameborder|marginheight|marginwidth|scrolling|src|width|height]');
+							$config->set('HTML.Allowed','a[href|target],p,ol,li,ul,img[src|class|width|height],blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe[frameborder|marginheight|marginwidth|scrolling|src|width|height]');
 							$config->set('Attr.AllowedFrameTargets', '_blank, _parent, _self, _top');
 							
 							$config->set('HTML.SafeIframe',1);

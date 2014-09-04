@@ -20,7 +20,8 @@ class HTMLPurifier_Filter_Iframe extends HTMLPurifier_Filter
     {
         
 		$html = preg_replace('#<iframe#i', '<img class="Iframe"', $html);
-        $html = preg_replace('#</iframe>#i', '</img>', $html);
+        $html = preg_replace('#</iframe>#i', '', $html);
+	  
         return $html;
     }
 
@@ -33,7 +34,8 @@ class HTMLPurifier_Filter_Iframe extends HTMLPurifier_Filter
      */
     public function postFilter($html, $config, $context)
     {
-        $post_regex = '#<img class="Iframe"([^>]+?)>#';
+       
+		$post_regex = '#<img class="Iframe"([^>]+?)>#';
         return preg_replace_callback($post_regex, array($this, 'postFilterCallback'), $html);
     }
 
@@ -47,7 +49,7 @@ class HTMLPurifier_Filter_Iframe extends HTMLPurifier_Filter
         $Match = preg_match('%src="(https?:)?(http?:)?//(www\.youtube(?:-nocookie)?\.com/embed/|player.vimeo.com|www\.dailymotion.com|w.soundcloud.com|fast.wistia.net|fast.wistia.com|wi.st|'.$_SERVER['HTTP_HOST'].')%', $matches[1]);
         
 		if ($Match) {
-            $extra = ' frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen width="640" height="480"';
+            $extra = ' frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen';
             
             return '<iframe ' . $matches[1] . $extra . '></iframe>';
         } else {
