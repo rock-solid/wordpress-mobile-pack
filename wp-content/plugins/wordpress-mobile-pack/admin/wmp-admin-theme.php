@@ -31,19 +31,6 @@
                 <h2 class="title">Choose Your Theme</h2>
                 <div class="spacer_15"></div>
                 <div class="spacer-15"></div>
-                <?php
-                    $joined_business_waitlist = false;
-                    $joined_lifestyle_waitlist = false;
-                     
-                    $joined_waitlists = unserialize(WMobilePack::wmp_get_setting('joined_waitlists'));
-                    
-                    if ($joined_waitlists != '' && in_array('businesstheme', $joined_waitlists))
-                        $joined_business_waitlist = true;
-                    
-                    if ($joined_waitlists != '' && in_array('lifestyletheme', $joined_waitlists))
-                        $joined_lifestyle_waitlist = true;
-                ?>
-                
                 <div class="themes">
                 	<div class="theme">
                     	<div class="corner relative active">
@@ -61,13 +48,22 @@
                         </div>
                         <div class="name">Blogish</div>
                         <div class="content">
-                            Content type
+                            <span>Content type</span>
                         	<div class="wordpress-icon"></div>
                         </div>
                     </div>
                     
-                    <div class="theme waitlist <?php if ($joined_business_waitlist) echo 'added' ;?>">
-                    	<div class="corner relative inactive">
+                    <?php
+						$feed_url = '';
+						
+						if (get_bloginfo('atom_url') != null && get_bloginfo('atom_url') != '')
+							$feed_url = '&feedurl='.urlencode(get_bloginfo('atom_url'));
+						elseif (get_bloginfo('rss2_url') != null && get_bloginfo('rss2_url') != '')
+							$feed_url = '&feedurl='.urlencode(get_bloginfo('rss2_url'));	
+					?>
+                    
+                    <div class="theme premium">
+                    	<div class="corner relative">
                             <div class="indicator"></div>
                         </div>
                         <div class="image" style="background:url(<?php echo plugins_url()."/".WMP_DOMAIN;?>/admin/images/theme-1.jpg);">
@@ -75,52 +71,34 @@
                             	<div class="overlay">
                                 	<div class="spacer-30"></div>
                             		<div class="preview" id="wmp_themes_gallery_business"></div>
-                                    <div class="spacer-10"></div>
+                                    <div class="spacer-20"></div>
                                     <div class="text">Preview theme</div>
-                                    <div class="spacer-5"></div>
+                                    <div class="spacer-10"></div>
                                     
                                     <div id="wmp_waitlist_business_container">
-                                    
-                                        <?php if ($joined_business_waitlist == false):?>
-                                        
-                                            <div id="wmp_waitlist_action">
-                                                <a href="javascript:void(0);" id="wmp_waitlist_display_btn" class="btn blue smaller">Join Waitlist</a>
-                                                <div class="text">
-                                                	<em>and get notified when<br/> available</em>	
-                                                </div>
-                                            </div>
-                                        
-                                            <form name="wmp_waitlist_form" id="wmp_waitlist_form" action="" method="post" style="display: none;">
-                                                <div class="info">
-                                            	   <input name="wmp_waitlist_emailaddress" id="wmp_waitlist_emailaddress" type="text" placeholder="your email" class="smaller" value="<?php echo get_option( 'admin_email' );?>" />
-                                                   <a href="javascript: void(0);" id="wmp_waitlist_send_btn" class="btn blue smallest">Ok</a>
-                                                   <div class="spacer-5"></div>
-                                                   <div class="field-message error" id="error_emailaddress_container"></div>
-                                        	   </div>
-                                            </form>
-                                        <?php endif;?>
-                                    
-                                        <div id="wmp_waitlist_added" style="display: <?php echo $joined_business_waitlist ? 'block' : 'none'?>;">
-                                        
-                                            <div class="spacer-15"></div>
+                                    	<div id="wmp_waitlist_action">
+                                            <a href="<?php echo WMP_GO_PREMIUM_PATH.$feed_url;?>" target="_blank" class="btn orange smaller">Go Premium</a>
                                             <div class="text">
-        										<span>ADDED TO<br/>WAITLIST</span>                                    	
+                                                <em></em>	
                                             </div>
-                                    	</div>
+                                        </div>
                                     </div>
                                 </div>
                                 
                             </div>
                         </div>
                         <div class="name">Theme #2</div>
-                        <div class="content">Content type
-                        	<div class="facebook-icon"></div>
+                        <div class="content">
+                        	<span>Content type</span>
+                        	<div class="wordpress-icon"></div>
+                            <div class="tumblr-icon"></div>
+                        	<div class="rss-icon"></div>
+                            <div class="facebook-icon"></div>
                             <div class="twitter-icon"></div>
-                            <div class="rss-icon"></div>
                         </div>
                     </div>
-                    <div class="theme waitlist <?php if ($joined_lifestyle_waitlist) echo 'added' ;?>">
-                    	<div class="corner relative inactive">
+                    <div class="theme premium">
+                    	<div class="corner relative">
                             <div class="indicator"></div>
                         </div>
                         <div class="image" style="background:url(<?php echo plugins_url()."/".WMP_DOMAIN;?>/admin/images/theme-2.jpg);">
@@ -128,47 +106,29 @@
                             	<div class="overlay">
                                     <div class="spacer-30"></div>
                             		<div class="preview" id="wmp_themes_gallery_lifestyle"></div>
-                                    <div class="spacer-10"></div>
+                                    <div class="spacer-20"></div>
                                     <div class="text">Preview theme</div>
-                                    <div class="spacer-5"></div>
+                                    <div class="spacer-10"></div>
                                     
                                 	<div id="wmp_waitlist_lifestyle_container">
-                                    
-                                        <?php if ($joined_lifestyle_waitlist == false):?>
-                                        
-                                            <div id="wmp_waitlist_action">
-                                                <a href="javascript:void(0);" id="wmp_waitlist_display_btn" class="btn blue smaller">Join Waitlist</a>
-                                                <div class="text">
-                                                	<em>and get notified when<br/> available</em>
-                                                </div>
-                                            </div>
-                                        
-                                            <form name="wmp_waitlist_form" id="wmp_waitlist_form" action="" method="post" style="display: none;">
-                                                <div class="info">
-                                            	   <input name="wmp_waitlist_emailaddress" id="wmp_waitlist_emailaddress" type="text" placeholder="your email" class="smaller" value="<?php echo get_option( 'admin_email' );?>" />
-                                                   <a href="javascript: void(0);" id="wmp_waitlist_send_btn" class="btn blue smallest">Ok</a>
-                                                   <div class="spacer-5"></div>
-                                                   <div class="field-message error" id="error_emailaddress_container"></div>
-                                        	   </div>
-                                            </form>
-                                        <?php endif;?>
-                                    
-                                        <div id="wmp_waitlist_added" style="display: <?php echo $joined_lifestyle_waitlist ? 'block' : 'none'?>;">
-                                        
-                                            <div class="spacer-15"></div>
+                                    	<div id="wmp_waitlist_action">
+                                            <a href="<?php echo WMP_GO_PREMIUM_PATH.$feed_url;?>" target="_blank" class="btn orange smaller">Go Premium</a>
                                             <div class="text">
-        										<span>ADDED TO<br/>WAITLIST</span>                                    	
+                                                <em></em>
                                             </div>
-                                    	</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="name">Theme #3</div>
-                        <div class="content">Content type
-                        	<div class="facebook-icon"></div>
+                        <div class="content">
+                        	<span>Content type</span>
+                        	<div class="wordpress-icon"></div>
+                            <div class="tumblr-icon"></div>
+                        	<div class="rss-icon"></div>
+                            <div class="facebook-icon"></div>
                             <div class="twitter-icon"></div>
-                            <div class="rss-icon"></div>
                         </div>
                     </div>
                 </div>
@@ -194,39 +154,51 @@
                         
                         <!-- add label -->
                         <div class="colors description">
-                        	<div class="color-" title="Headlines and texts">1</div>
-                            <div class="color-" title="Category label">2</div>
-                            <div class="color-" title="Forms">3</div>
-                            <div class="color-" title="Buttons">4</div>
-                            <div class="color-" title="Article header & detail background">5</div>
+                        	<div class="color-" title="Headlines and primary texts">1</div>
+                            <div class="color-" title="Article background">2</div>
+                            <div class="color-" title="Article border">3</div>
+                            <div class="color-" title="Secondary texts">4</div>
+                            <div class="color-" title="Category label">5</div>
+                            <div class="color-" title="Buttons">6</div>
+                            <div class="color-" title="Menu">7</div>
+                            <div class="color-" title="Forms">8</div>
                         </div>
                         <div class="spacer-15"></div>
                         <!-- add radio buttons -->
                         <input type="radio" name="wmp_edittheme_colorscheme" id="wmp_edittheme_colorscheme" value="1" <?php if ($color_scheme == 1) echo "checked";?> />
                         <div class="colors">
                         	<div class="color-1-1" title="Headlines and texts"></div>
-                            <div class="color-1-2" title="Category label"></div>
-                            <div class="color-1-3" title="Forms"></div>
-                            <div class="color-1-4" title="Buttons"></div>
-                            <div class="color-1-5" title="Article header & detail background"></div>
+                            <div class="color-1-2" title="Article background"></div>
+                            <div class="color-1-3" title="Article border"></div>
+                            <div class="color-1-4" title="Secondary texts"></div>
+                            <div class="color-1-5" title="Category label"></div>
+                            <div class="color-1-6" title="Buttons"></div>
+                            <div class="color-1-7" title="Menu"></div>
+                            <div class="color-1-8" title="Forms"></div>
                         </div>
                         <div class="spacer-20"></div>
                         <input type="radio" name="wmp_edittheme_colorscheme" id="wmp_edittheme_colorscheme" value="2" <?php if ($color_scheme == 2) echo "checked";?> />
                         <div class="colors">
                         	<div class="color-2-1" title="Headlines and texts"></div>
-                            <div class="color-2-2" title="Category label"></div>
-                            <div class="color-2-3" title="Forms"></div>
-                            <div class="color-2-4" title="Buttons"></div>
-                            <div class="color-2-5" title="Article header & detail background"></div>
+                            <div class="color-2-2" title="Article background"></div>
+                            <div class="color-2-3" title="Article border"></div>
+                            <div class="color-2-4" title="Secondary texts"></div>
+                            <div class="color-2-5" title="Category label"></div>
+                            <div class="color-2-6" title="Buttons"></div>
+                            <div class="color-2-7" title="Menu"></div>
+                            <div class="color-2-8" title="Forms"></div>
                         </div>
                         <div class="spacer-20"></div>
                         <input type="radio" name="wmp_edittheme_colorscheme" id="wmp_edittheme_colorscheme" value="3" <?php if ($color_scheme == 3) echo "checked";?> />
                         <div class="colors">
                         	<div class="color-3-1" title="Headlines and texts"></div>
-                            <div class="color-3-2" title="Category label"></div>
-                            <div class="color-3-3" title="Forms"></div>
-                            <div class="color-3-4" title="Buttons"></div>
-                            <div class="color-3-5" title="Article header & detail background"></div>
+                            <div class="color-3-2" title="Article background"></div>
+                            <div class="color-3-3" title="Article border"></div>
+                            <div class="color-3-4" title="Secondary texts"></div>
+                            <div class="color-3-5" title="Category label"></div>
+                            <div class="color-3-6" title="Buttons"></div>
+                            <div class="color-3-7" title="Menu"></div>
+                            <div class="color-3-8" title="Forms"></div>
                         </div>
                         <div class="spacer-30"></div>
                         <!-- start notice -->
@@ -234,11 +206,14 @@
                             <span>
                                 The above color scheme will impact the following sections within the mobile web application:<br/><br/>
 			
-                                1.&nbsp;Headlines and texts<br/>
-                                2.&nbsp;Category label<br/>
-                                3.&nbsp;Forms<br/>
-                                4.&nbsp;Buttons<br/>
-                                5.&nbsp;Article header & detail background<br/>
+                                1.&nbsp;Headlines and primary texts<br/>
+                                2.&nbsp;Article background<br/>
+                                3.&nbsp;Article border<br/>
+                                4.&nbsp;Secondary texts<br/>
+                                5.&nbsp;Category label<br/>
+                                6.&nbsp;Buttons<br/>
+                                7.&nbsp;Menu<br/>
+                                8.&nbsp;Forms<br/>
                             </span>
                         </div>
                         <div class="spacer-10"></div>
@@ -541,7 +516,8 @@
         </div>
     
         <div class="right-side">
-        
+        	<!-- add waitlist form -->
+            <?php include_once('sections/wmp-waitlist.php'); ?>
             <!-- add feedback form -->
             <?php include_once('sections/wmp-feedback.php'); ?>
         </div>
@@ -559,33 +535,6 @@
             window.WMPJSInterface.add("UI_editimages","WMP_EDIT_IMAGES",{'DOMDoc':window.document}, window);
             window.WMPJSInterface.add("UI_editcover","WMP_EDIT_COVER",{'DOMDoc':window.document}, window);
             
-            <?php if ($joined_business_waitlist == false):?>
-            
-                window.WMPJSInterface.add("UI_joinwaitlist_business",
-                    "WMP_WAITLIST",
-                    {
-                        'DOMDoc':       window.document,
-                        'container' :   window.document.getElementById('wmp_waitlist_business_container'),
-                        'submitURL' :   '<?php echo WMP_WAITLIST_PATH;?>',
-                        'listType' :    'businesstheme'
-                    }, 
-                    window
-                );
-            <?php endif;?>
-            
-            <?php if ($joined_lifestyle_waitlist == false):?>
-            
-                window.WMPJSInterface.add("UI_joinwaitlist_lifestyle",
-                    "WMP_WAITLIST",
-                    {
-                        'DOMDoc':       window.document,
-                        'container' :   window.document.getElementById('wmp_waitlist_lifestyle_container'),
-                        'submitURL' :   '<?php echo WMP_WAITLIST_PATH;?>',
-                        'listType' :    'lifestyletheme'
-                    }, 
-                    window
-                );
-            <?php endif;?>
         });
     }
 </script>

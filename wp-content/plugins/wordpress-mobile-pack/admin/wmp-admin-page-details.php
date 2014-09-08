@@ -58,7 +58,8 @@
             
     
         <div class="right-side">
-        
+        	<!-- add waitlist form -->
+            <?php include_once('sections/wmp-waitlist.php'); ?>
             <!-- add feedback form -->
             <?php include_once('sections/wmp-feedback.php'); ?>
         </div>

@@ -555,7 +555,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                     // handle joined waitlists
                     if (isset($_POST['joined_waitlist']) && $_POST['joined_waitlist'] != ''){
                         
-                        if (in_array($_POST['joined_waitlist'], array('content', 'settings', 'lifestyletheme',  'businesstheme'))){
+                        if (in_array($_POST['joined_waitlist'], array('content', 'settings', 'lifestyletheme',  'businesstheme','themes_features'))){
                             
                             $option_waitlists = WMobilePack::wmp_get_setting('joined_waitlists');
                             

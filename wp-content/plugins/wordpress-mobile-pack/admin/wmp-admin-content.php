@@ -36,7 +36,7 @@
            		<div class="spacer-15"></div>
                 <div class="grey-line"></div>
                 <div class="spacer-15"></div>
-                <p>Choose what categories to be displayed in your mobile web application. Click on the rows to below to <em>show/hide</em> categories.</p>
+                <p>Choose what categories to be displayed in your mobile web application. Click on the rows to below to show/hide categories and order them by dragging the corresponding row on the desired position.</p>
             	<div class="spacer-20"></div>
                 <div class="spacer-20"></div> 
                 
@@ -118,8 +118,7 @@
            		<div class="spacer-15"></div>
                 <div class="grey-line"></div>
                 <div class="spacer-15"></div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam sed imperdiet dui. Phasellus nisi justo, posuere eget pharetra in, accumsan a augue. Nulla aliquet, diam non aliquam fermentum, sem libero scelerisque velit, sit amet mollis libero mauris sit amet ligula. Aliquam nec dolor mollis, sollicitudin est vel, faucibus velit. Vivamus justo odio, mollis vel purus non, tempus euismod nibh. Praesent aliquam ornare nisl non facilisis.</p>
-            	<p>If you have at least two pages, you can rearrange their order by drag & drop.</p>
+                <p>Choose what pages you want to display on your mobile web application. You can edit, show/hide different pages and, if you have at least two pages, you can rearrange their order by drag &amp; drop.</p>
                 <div class="spacer-20"></div>
                 <!-- start pages list -->
                 <?php if (count($pages) > 0): ?>
@@ -197,65 +196,69 @@
                     </div>
                         
                 <?php endif;?>
-                
-                
             </div>
-            <div class="spacer-10"></div>
-            <div class="details">
-            	<h2 class="title">Coming Soon</h2>
-           		<div class="spacer-15"></div>
-                <div class="grey-line"></div>
-                <div class="spacer-15"></div>
-                <div class="spacer-20"></div>
-                <div class="more-content">
-                 	<p class="left">Want to add more content?</p>
-                 	<img src="<?php echo plugins_url()."/".WMP_DOMAIN."/admin/images/content-icons.png";?>" alt="" class="left" />
+            
+            <?php if(0):?>
+                <div class="spacer-10"></div>
+                <div class="details">
+                    <h2 class="title">Coming Soon</h2>
+                    <div class="spacer-15"></div>
+                    <div class="grey-line"></div>
+                    <div class="spacer-15"></div>
+                    <div class="spacer-20"></div>
+                    <div class="more-content">
+                        <p class="left">Want to add more content?</p>
+                        <img src="<?php echo plugins_url()."/".WMP_DOMAIN."/admin/images/content-icons.png";?>" alt="" class="left" />
+                    </div>
+                    <?php
+                        $joined_content_waitlist = false;
+                         
+                        $joined_waitlists = unserialize(WMobilePack::wmp_get_setting('joined_waitlists'));
+                        
+                        if ($joined_waitlists != '' && in_array('content', $joined_waitlists))
+                            $joined_content_waitlist = true;
+                    ?>
+                    
+                    <div class="waitlist" id="wmp_waitlist_container">
+                    
+                        <?php if ($joined_content_waitlist == false):?>
+                            <div id="wmp_waitlist_action">
+                                <a href="javascript:void(0);" id="wmp_waitlist_display_btn" class="btn blue smaller">Join Waitlist</a>
+                                <div class="spacer-0"></div>
+                                <p>and get notified when available</p>
+                            </div>
+                        
+                            <form name="wmp_waitlist_form" id="wmp_waitlist_form" action="" method="post" style="display: none;">    
+                                <div class="info">
+                                   <input name="wmp_waitlist_emailaddress" id="wmp_waitlist_emailaddress" type="text" placeholder="your email" class="small" value="<?php echo get_option( 'admin_email' );?>" />
+                                   <a href="javascript: void(0);" id="wmp_waitlist_send_btn" class="btn blue smallest">Ok</a>
+                                   <div class="spacer-5"></div>
+                                   <div class="field-message error" id="error_emailaddress_container"></div>
+                                   <div class="spacer-15"></div>
+                               </div>
+                            </form>
+                        <?php endif;?>
+                        
+                        <div id="wmp_waitlist_added" class="added" style="display: <?php echo $joined_content_waitlist ? 'block' : 'none'?>;">
+                            <div class="switcher blue">
+                                <div class="msg">ADDED TO WAITLIST</div>
+                                <div class="check"></div>
+                            </div>
+                            <div class="spacer-15"></div>
+                        </div>
+                    </div> 
+                    <div class="spacer-5"></div>
+                    <div class="grey-line"></div>
+                    <div class="spacer-20"></div> 
                 </div>
-                <?php
-                    $joined_content_waitlist = false;
-                     
-                    $joined_waitlists = unserialize(WMobilePack::wmp_get_setting('joined_waitlists'));
-                    
-                    if ($joined_waitlists != '' && in_array('content', $joined_waitlists))
-                        $joined_content_waitlist = true;
-                ?>
-                
-                <div class="waitlist" id="wmp_waitlist_container">
-                
-                    <?php if ($joined_content_waitlist == false):?>
-                        <div id="wmp_waitlist_action">
-                            <a href="javascript:void(0);" id="wmp_waitlist_display_btn" class="btn blue smaller">Join Waitlist</a>
-                            <div class="spacer-0"></div>
-                            <p>and get notified when available</p>
-                        </div>
-                    
-                        <form name="wmp_waitlist_form" id="wmp_waitlist_form" action="" method="post" style="display: none;">    
-                            <div class="info">
-                        	   <input name="wmp_waitlist_emailaddress" id="wmp_waitlist_emailaddress" type="text" placeholder="your email" class="small" value="<?php echo get_option( 'admin_email' );?>" />
-                               <a href="javascript: void(0);" id="wmp_waitlist_send_btn" class="btn blue smallest">Ok</a>
-                               <div class="spacer-5"></div>
-                               <div class="field-message error" id="error_emailaddress_container"></div>
-                        	   <div class="spacer-15"></div>
-                    	   </div>
-                        </form>
-                    <?php endif;?>
-                    
-                    <div id="wmp_waitlist_added" class="added" style="display: <?php echo $joined_content_waitlist ? 'block' : 'none'?>;">
-                        <div class="switcher blue">
-                        	<div class="msg">ADDED TO WAITLIST</div>
-                            <div class="check"></div>
-                        </div>
-                        <div class="spacer-15"></div>
-                	</div>
-                </div> 
-                <div class="spacer-5"></div>
-                <div class="grey-line"></div>
-                <div class="spacer-20"></div> 
-            </div>
+        	<?php endif;?>
+            
         </div>
     
         <div class="right-side">
-        
+        	<!-- add waitlist form -->
+            <?php include_once('sections/wmp-waitlist.php'); ?>
+            
             <!-- add feedback form -->
             <?php include_once('sections/wmp-feedback.php'); ?>
         </div>
@@ -270,20 +273,6 @@
             
             window.WMPJSInterface.add("UI_editcategories","WMP_EDIT_CATEGORIES",{'DOMDoc':window.document}, window);
             window.WMPJSInterface.add("UI_editpages","WMP_EDIT_PAGES",{'DOMDoc':window.document}, window);
-            
-            <?php if ($joined_content_waitlist == false):?>
-            
-                window.WMPJSInterface.add("UI_joinwaitlist",
-                    "WMP_WAITLIST",
-                    {
-                        'DOMDoc':       window.document,
-                        'container' :   window.document.getElementById('wmp_waitlist_container'),
-                        'submitURL' :   '<?php echo WMP_WAITLIST_PATH;?>',
-                        'listType' :    'content'
-                    }, 
-                    window
-                );
-            <?php endif;?>
         });
     }
 </script>

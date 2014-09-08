@@ -27,7 +27,7 @@ function WMP_WAITLIST(){
     /*                                                                                                   */
     /*****************************************************************************************************/
     this.init = function(){
-
+console.log("here");
 		// save a reference to WMPJSInterface Object
         WMPJSInterface = window.parent.WMPJSInterface;
 
@@ -241,14 +241,7 @@ function WMP_WAITLIST(){
             
                     jQuery(JSObject.form).hide();
                     jQuery("#"+JSObject.type + "_added", JSObject.container).show();
-                            
-                    // display check sign (only for themes)
-                    if (JSObject.listType == 'businesstheme' || JSObject.listType == 'lifestyletheme'){
-                        
-                        jQuery(JSObject.form).closest('div.theme.waitlist', JSObject.DOMDoc).addClass("added");
-                        
-                    }
-                    
+                      
                     // make request to settings endpoint to mark the wailist as joined
                     if (response == 1) {
                         

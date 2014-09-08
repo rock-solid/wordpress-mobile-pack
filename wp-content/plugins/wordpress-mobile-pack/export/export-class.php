@@ -25,13 +25,13 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 		
 		// set HTML Purifier
 		$config = HTMLPurifier_Config::createDefault();
+		$config = HTMLPurifier_Config::createDefault();
 		$config->set('Core.Encoding', 'UTF-8'); 									
-		$config->set('HTML.Allowed','a[href|target],p,ol,li,ul,img[src],blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe[frameborder|marginheight|marginwidth|scrolling|src|width|height]');
+		$config->set('HTML.Allowed','a[href|target],p,ol,li,ul,img[src|class|width|height],blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe[frameborder|marginheight|marginwidth|scrolling|src|width|height]');
 		$config->set('Attr.AllowedFrameTargets', '_blank, _parent, _self, _top');
-		$config->set('HTML.ForbiddenElements', 'style,class');
 		
 		$config->set('HTML.SafeIframe',1);
-		$config->set('URI.SafeIframeRegexp','%^(https?:)?(http?:)?//(www\.youtube(?:-nocookie)?\.com/embed/|player.vimeo.com|www\.dailymotion.com|w.soundcloud.com|fast.wistia.net|fast.wistia.com|wi.st|'.$_SERVER['HTTP_HOST'].')%');
+		$config->set('Filter.Custom', array( new HTMLPurifier_Filter_Iframe()));
 		
 		// disable cache
 		$config->set('Cache.DefinitionImpl',null);
@@ -224,11 +224,11 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 						
     					// add details to category array
     					$arrCategories[$current_key + 1] = array(
-    												'id' 	=> $category->term_id,
-    												'order' => $key + 1,
-    												'name' 	=> $category->name,
-    												'image' => ""
-    											 );
+														'id' 	=> $category->term_id,
+														'order' => $key + 1,
+														'name' 	=> $category->name,
+														'image' => ""
+													 );
     					
     					// get published articles for each category
     					$args = array(
@@ -242,7 +242,6 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
     					$cat_posts_query = new WP_Query ( $args );
     			    
                     	if ($cat_posts_query->have_posts() ) {
-							
 							
     						foreach($cat_posts_query->posts as $post) {
     							
@@ -295,6 +294,11 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 								}
 							}
     					}
+						
+						// check if the category has at lease on e post
+						if(!isset($arrCategories[$current_key + 1]["articles"]) || empty($arrCategories[$current_key + 1]["articles"]))
+							unset($arrCategories[$current_key + 1]);
+						
                     }
 				}
 			}
