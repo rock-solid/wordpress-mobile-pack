@@ -73,10 +73,10 @@ function WMP_EDIT_IMAGES(){
             
             messages: {
                 wmp_editimages_icon : {
-    				accept		: "Please a png, gif or jpeg image."
+    				accept		: "Please add a png, gif or jpeg image."
     			},
     			wmp_editimages_logo: {
-    				accept		: "Please a png image format with a transparent background.",
+    				accept		: "Please add a png image format with a transparent background.",
     			}
             },
             

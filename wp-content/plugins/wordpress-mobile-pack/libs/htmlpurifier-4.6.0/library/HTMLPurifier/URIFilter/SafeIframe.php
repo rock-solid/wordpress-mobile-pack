@@ -32,7 +32,7 @@ class HTMLPurifier_URIFilter_SafeIframe extends HTMLPurifier_URIFilter
      */
     public function prepare($config)
     {
-        $this->regexp = $config->get('URI.SafeIframeRegexp');
+		$this->regexp = $config->get('URI.SafeIframeRegexp');
         return true;
     }
 

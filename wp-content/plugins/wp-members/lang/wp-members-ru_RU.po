@@ -1,0 +1,1442 @@
+# Copyright (C) 2012 WP-Members
+# This file is distributed under the same license as the WP-Members package.
+msgid ""
+msgstr ""
+"Project-Id-Version: WP-Members 2.9.3\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/wp-members\n"
+"POT-Creation-Date: 2014-07-08 10:47-0600\n"
+"PO-Revision-Date: 2014-07-22 12:05-0600\n"
+"Last-Translator: \n"
+"Language-Team: Dmitrii Krasnov <krasnov@findadventure.ru>\n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 1.6.4\n"
+
+#: admin/admin.php:60 admin/admin.php:129
+msgid "Settings"
+msgstr "Настройки"
+
+#: admin/admin.php:187
+msgid "Options"
+msgstr "Настройки"
+
+#: admin/admin.php:188
+msgid "Fields"
+msgstr "Поля"
+
+#: admin/admin.php:189
+msgid "Dialogs"
+msgstr "Диалоги"
+
+#: admin/admin.php:190
+msgid "Emails"
+msgstr "Сообщения"
+
+#: admin/dialogs.php:109
+msgid ""
+"Your WP settings allow anyone to register - this is not the recommended "
+"setting."
+msgstr ""
+"Ваш WP-Members настроен на разрешение всем зарегистрироваться - это "
+"нерекомендуемая настройка."
+
+#: admin/dialogs.php:110
+#, php-format
+msgid ""
+"You can %s change this here %s making sure the box next to \"Anyone can "
+"register\" is unchecked."
+msgstr ""
+"Вы можете %s изменить ее здесь%s, сняв галочку в чекбоксе \"Любой может "
+"зарегистрироваться\"."
+
+#: admin/dialogs.php:111
+msgid ""
+"This setting allows a link on the /wp-login.php page to register using the "
+"WP native registration process thus circumventing any registration you are "
+"using with WP-Members. In some cases, this may suit the users wants/needs, "
+"but most users should uncheck this option. If you do not change this "
+"setting, you can choose to ignore these warning messages under WP-Members "
+"Settings."
+msgstr ""
+"Эта настройка включает ссылку на /wp-login.php page для регистрации с "
+"использованием стандартного процесса регистрации WP, минуя механизм "
+"регистрации WP-Members. В некоторых случаях это может удовлетворить "
+"потребности пользователя, но большинству пользователей следует отключить эту "
+"опцию. Если вы не будете менять эту настройку, вы можете включить "
+"игнорирование этих предупреждений в настройках WP-Members."
+
+#: admin/dialogs.php:117
+msgid ""
+"Your WP settings allow anyone to comment - this is not the recommended "
+"setting."
+msgstr ""
+"Ваш WP-Members настроен на разрешение всем оставлять комментарии - это "
+"нерекомендуемая настройка."
+
+#: admin/dialogs.php:118
+#, php-format
+msgid ""
+"You can %s change this here %s by checking the box next to \"Users must be "
+"registered and logged in to comment.\""
+msgstr ""
+"Вы можете %s изменить ее здесь%s, поставив галочку в чекбоксе \"Пользователи "
+"должны быть зарегистрированы и авторизованы для комментирования.\""
+
+#: admin/dialogs.php:119
+msgid ""
+"This setting allows any users to comment, whether or not they are "
+"registered. Depending on how you are using WP-Members will determine whether "
+"you should change this setting or not. If you do not change this setting, "
+"you can choose to ignore these warning messages under WP-Members Settings."
+msgstr ""
+"Этот параметр позволяет любому пользователю комментировать, зарегистрированы "
+"они или нет. В зависимости от того, как вы используете WP-Members, следует "
+"определить, изменить эту настройку или нет. Если вы не измените этот "
+"параметр, вы можете игнорировать эти предупреждения в настройках WP-Members."
+
+#: admin/dialogs.php:125
+msgid ""
+"Your WP settings allow full text rss feeds - this is not the recommended "
+"setting."
+msgstr ""
+"Ваш WP-Members настроен на разрешение полнотекстовых rss-лент - это "
+"нерекомендуемая настройка."
+
+#: admin/dialogs.php:126
+#, php-format
+msgid ""
+"You can %s change this here %s by changing \"For each article in a feed, show"
+"\" to \"Summary.\""
+msgstr ""
+"Вы можете %s изменить ее здесь%s, указав для параметра \"Для каждой статьи в "
+"ленте отображать\" значенин \"Анонс\""
+
+#: admin/dialogs.php:127
+msgid ""
+"Leaving this set to full text allows anyone to read your protected content "
+"in an RSS reader. Changing this to Summary prevents this as your feeds will "
+"only show summary text."
+msgstr ""
+"Оставляя эту настройку со значением \"весь текст\", вы позволяете всем "
+"видеть защищенное вами содержимое в лентах RSS. Изменение настройки на "
+"\"Аннотация\" защитит от этого"
+
+#: admin/dialogs.php:133
+msgid "You have set WP-Members to hold registrations for approval"
+msgstr "Вы настроили WP-Members на задержку регистрации до подтверждения"
+
+#: admin/dialogs.php:134
+msgid ""
+"but you have not changed the default message for \"Registration Completed\" "
+"under \"WP-Members Dialogs and Error Messages.\"  You should change this "
+"message to let users know they are pending approval."
+msgstr ""
+", но вы не изменили сообщение по умолчанию \"Регистрация завершена\" в "
+"разделе \"WP-Members Диалоги и сообщения об ошибках.\"  Вам следует изменить "
+"это сообщение, чтобы пользователи знали, что они ожидают утверждения "
+"модератором."
+
+#: admin/dialogs.php:140
+msgid "You have set WP-Members to turn off the registration process"
+msgstr "Вы отключили регистрацию в WP-Members"
+
+#: admin/dialogs.php:141
+msgid ""
+"but you also set to moderate and/or email admin new registrations.  You will "
+"need to set up a registration page for users to register."
+msgstr ""
+", но вы так же включили модерацию и/или отправку сообщений администратору о "
+"новых регистрациях.  Вам необходимо настроить страницу регистрации для новых "
+"пользователей."
+
+#: admin/dialogs.php:147
+msgid "You have turned on reCAPTCHA"
+msgstr "Вы включили reCAPTHA"
+
+#: admin/dialogs.php:148
+msgid ""
+"but you have not entered API keys.  You will need both a public and private "
+"key.  The CAPTCHA will not display unless a valid API key is included."
+msgstr ""
+", но вы не ввели API-ключи. Необходимо ввести открытый и закрытый ключи. "
+"CAPTCHA не будет отображаться пока не будет введен корректный API-ключ"
+
+#: admin/dialogs.php:171
+msgid "Version:"
+msgstr "Версия:"
+
+#: admin/dialogs.php:172
+#, fuzzy
+msgid "Quick Start Guide"
+msgstr "Пользователь обновлен"
+
+#: admin/dialogs.php:173
+#, fuzzy
+msgid "Online User Guide"
+msgstr "Пользователь обновлен"
+
+#: admin/dialogs.php:174
+msgid "FAQs"
+msgstr ""
+
+#: admin/dialogs.php:181
+#, fuzzy
+msgid "Thank you for using WP-Members"
+msgstr "Спасибо за использование WP-Members! Вы пользуетесь версией %s"
+
+#: admin/dialogs.php:182
+msgid "A plugin developed by"
+msgstr ""
+
+#: admin/dialogs.php:183
+msgid "Follow"
+msgstr "Следите в "
+
+#: admin/dialogs.php:200 admin/dialogs.php:204
+msgid "Latest from RocketGeek"
+msgstr ""
+
+#: admin/dialogs.php:221 admin/dialogs.php:234
+msgid "Latest from ButlerBlog"
+msgstr ""
+
+#: admin/post.php:36 admin/post.php:38
+#, fuzzy
+msgid "Block"
+msgstr "Блокировать записи по умолчанию"
+
+#: admin/post.php:37 admin/post.php:39
+msgid "Unblock"
+msgstr ""
+
+#: admin/post.php:120
+#, fuzzy, php-format
+msgid "%s posts %sed."
+msgstr "Блокировать записи по умолчанию"
+
+#: admin/post.php:138
+#, fuzzy
+msgid "Post Restriction"
+msgstr "Новая регистрация"
+
+#: admin/post.php:145
+#, fuzzy
+msgid "Page Restriction"
+msgstr "Новая регистрация"
+
+#: admin/post.php:263 admin/post.php:295
+#, fuzzy
+msgid "Unblocked?"
+msgstr ""
+"Примечание: каждая запись может быть заблокирована/разблокирована отдельно "
+"от остальных"
+
+#: admin/post.php:263 admin/post.php:295
+#, fuzzy
+msgid "Blocked?"
+msgstr ""
+"Примечание: каждая запись может быть заблокирована/разблокирована отдельно "
+"от остальных"
+
+#: admin/tab-captcha.php:35 admin/tab-dialogs.php:44 admin/tab-emails.php:113
+#: admin/tab-fields.php:45 admin/tab-options.php:37
+msgid "Need help?"
+msgstr ""
+
+#: admin/tab-captcha.php:46
+msgid "Manage reCAPTCHA Options"
+msgstr "Изменить настройки reCAPTCHA"
+
+#: admin/tab-captcha.php:60
+msgid ""
+"reCAPTCHA is a free, accessible CAPTCHA service that helps to digitize books "
+"while blocking spam on your blog."
+msgstr ""
+"reCAPTCHA - это свободный и оступный CAPTCHA-сервис, помогающий блокировать "
+"спам в вашем блоге."
+
+#: admin/tab-captcha.php:61
+#, php-format
+msgid ""
+"reCAPTCHA asks commenters to retype two words scanned from a book to prove "
+"that they are a human. This verifies that they are not a spambot while also "
+"correcting the automatic scans of old books. So you get less spam, and the "
+"world gets accurately digitized books. Everybody wins! For details, visit "
+"the %s reCAPTCHA website%s"
+msgstr ""
+"reCAPTCHA просит комментирующего набрать два слова, отсканированных из "
+"книги, чтобы подтвердить, что комментирующий - человек. Это позволяет с "
+"одной стороны проверить, что пишущий не спамбот, а с другой - "
+"откорректировать автоматическое сканирование старых книг. В итоге вы "
+"получаете меньше спама, а мир обретает более точно оцифрованные книги. Все "
+"выигрывают! За подробностями обращайтесть на сайт %s reCAPTCHA%s"
+
+#: admin/tab-captcha.php:66
+msgid "reCAPTCHA Keys"
+msgstr "Ключи reCAPTCHA"
+
+#: admin/tab-captcha.php:68
+#, php-format
+msgid ""
+"reCAPTCHA requires an API key, consisting of a \"public\" and a \"private\" "
+"key. You can sign up for a %s free reCAPTCHA key%s"
+msgstr ""
+"Для reCAPTCHA нужнен API-ключ, состоящий из \"открытого\" и \"закрытого\" "
+"ключа. Вы можете зарегистрироваться для получения %s бесплатного ключа "
+"reCAPTHA%s"
+
+#: admin/tab-captcha.php:69
+msgid "Public Key"
+msgstr "Публичный ключ"
+
+#: admin/tab-captcha.php:70
+msgid "Private Key"
+msgstr "Закрытый ключ"
+
+#: admin/tab-captcha.php:74
+msgid "Choose Theme"
+msgstr "Выберите тему"
+
+#: admin/tab-captcha.php:77
+msgid "Red"
+msgstr "Красная"
+
+#: admin/tab-captcha.php:78
+msgid "White"
+msgstr "Белая"
+
+#: admin/tab-captcha.php:79
+msgid "Black Glass"
+msgstr "Черный глянец"
+
+#: admin/tab-captcha.php:80
+msgid "Clean"
+msgstr "Чистая"
+
+#: admin/tab-captcha.php:112
+msgid "Characters for image"
+msgstr ""
+
+#: admin/tab-captcha.php:116
+msgid "Number of characters"
+msgstr ""
+
+#: admin/tab-captcha.php:120
+msgid "Image dimensions"
+msgstr ""
+
+#: admin/tab-captcha.php:124
+msgid "Font color of characters"
+msgstr ""
+
+#: admin/tab-captcha.php:128
+msgid "Background color of image"
+msgstr ""
+
+#: admin/tab-captcha.php:132
+msgid "Font size"
+msgstr ""
+
+#: admin/tab-captcha.php:136
+msgid "Width between characters"
+msgstr ""
+
+#: admin/tab-captcha.php:140
+#, fuzzy
+msgid "Image type"
+msgstr "Tip polja"
+
+#: admin/tab-captcha.php:154
+msgid ""
+"To use Really Simple CAPTCHA, you must have the Really Simple CAPTCHA plugin "
+"installed and activated."
+msgstr ""
+
+#: admin/tab-captcha.php:166
+#, fuzzy
+msgid "Update CAPTCHA Settings"
+msgstr "Update postavki"
+
+#: admin/tab-captcha.php:230
+msgid "CAPTCHA was updated for WP-Members"
+msgstr "CAPTCHA je updatovano za  WP-Members"
+
+#: admin/tab-dialogs.php:29
+msgid "Restricted post (or page), displays above the login/registration form"
+msgstr ""
+"Запись (или страница) с ограниченным доступом (будет отображаться перед "
+"формами входа/регистрации)"
+
+#: admin/tab-dialogs.php:30
+msgid "Username is taken"
+msgstr "Имя уже используется"
+
+#: admin/tab-dialogs.php:31
+msgid "Email is registered"
+msgstr "Email зарегистрирован"
+
+#: admin/tab-dialogs.php:32
+msgid "Registration completed"
+msgstr "Регистрация завершена"
+
+#: admin/tab-dialogs.php:33
+msgid "User update"
+msgstr "Пользователь обновлен"
+
+#: admin/tab-dialogs.php:34
+msgid "Passwords did not match"
+msgstr "Пароли не совпадают"
+
+#: admin/tab-dialogs.php:35
+msgid "Password changes"
+msgstr "Пароль изменен"
+
+#: admin/tab-dialogs.php:36
+msgid "Username or email do not exist when trying to reset forgotten password"
+msgstr ""
+"Имя пользователя или email не найдены при попытке сбросить забытый пароль"
+
+#: admin/tab-dialogs.php:37
+msgid "Password reset"
+msgstr "Пароль сброшен"
+
+#: admin/tab-dialogs.php:54
+msgid "Dialogs and Error Messages"
+msgstr "Диалоги и Сообщения об ошибках"
+
+#: admin/tab-dialogs.php:56
+#, php-format
+msgid ""
+"You can customize the text for dialogs and error messages. Simple HTML is "
+"allowed %s etc."
+msgstr ""
+"Вы можете подстроить тексты диалогов и сообщений об ошибках. Допускается "
+"простой HTML %s и т.д."
+
+#: admin/tab-dialogs.php:69
+msgid "Terms of Service (TOS)"
+msgstr "Условия предоставления услуг"
+
+#: admin/tab-dialogs.php:76
+msgid "Update Dialogs"
+msgstr "Обновить Диалоги"
+
+#: admin/tab-dialogs.php:115
+msgid "WP-Members dialogs were updated"
+msgstr "Диалоги WP-Members были обновлены"
+
+#: admin/tab-emails.php:30
+msgid "New Registration"
+msgstr "Новая регистрация"
+
+#: admin/tab-emails.php:34
+msgid "Registration is Moderated"
+msgstr "Регистрация прошла модерацию"
+
+#: admin/tab-emails.php:35
+msgid "Registration is Moderated, User is Approved"
+msgstr "Регистрация прошла модерацию, пользователь активирован"
+
+#: admin/tab-emails.php:40
+msgid "Password Reset"
+msgstr "Сбросить пароль"
+
+#: admin/tab-emails.php:45
+msgid "Admin Notification"
+msgstr "Уведомление администратора"
+
+#: admin/tab-emails.php:50
+msgid "Email Signature"
+msgstr "Подпись"
+
+#: admin/tab-emails.php:57
+msgid "Email Messages"
+msgstr "Сообщения"
+
+#: admin/tab-emails.php:60
+msgid "You can customize the content of the emails sent by the plugin."
+msgstr "Вы можете отредактировать содержимое писем, отсылаемых плагином."
+
+#: admin/tab-emails.php:62
+msgid "A list of shortcodes is available here."
+msgstr "Список shortcode`ов доступен здесь."
+
+#: admin/tab-emails.php:69
+msgid "Set a custom email address"
+msgstr "Указать другой email address"
+
+#: admin/tab-emails.php:70 admin/tab-emails.php:74 admin/tab-emails.php:97
+msgid "(optional)"
+msgstr "(необязательно)"
+
+#: admin/tab-emails.php:73
+msgid "Set a custom email name"
+msgstr "Указать другую подпись"
+
+#: admin/tab-emails.php:84
+msgid "Subject"
+msgstr "Тема"
+
+#: admin/tab-emails.php:88
+msgid "Body"
+msgstr "Сообщение"
+
+#: admin/tab-emails.php:105
+msgid "Update Emails"
+msgstr "Обновить сообщения"
+
+#: admin/tab-emails.php:161
+msgid "WP-Members emails were updated"
+msgstr "Сообщения WP-Members были обновлены"
+
+#: admin/tab-fields.php:166
+msgid "WP-Members fields were updated"
+msgstr "Поля WP-Members были обновлены"
+
+#: admin/tab-fields.php:176
+msgid "Field Label is required for adding a new field. Nothing was updated."
+msgstr ""
+"Метку поля необходимо заполнить при создании нового поля. Обновление не "
+"произведено."
+
+#: admin/tab-fields.php:177
+msgid "Option Name is required for adding a new field. Nothing was updated."
+msgstr ""
+"Идентификатор поля необходимо заполнить при создании нового поля. Обновление "
+"не произведено."
+
+#: admin/tab-fields.php:184
+msgid "A field with that option name already exists"
+msgstr ""
+
+#: admin/tab-fields.php:201
+#, fuzzy
+msgid "Checked value is required for checkboxes. Nothing was updated."
+msgstr ""
+"Метку поля необходимо заполнить при создании нового поля. Обновление не "
+"произведено."
+
+#: admin/tab-fields.php:223
+#, fuzzy
+msgid "field was added"
+msgstr "Метка поля"
+
+#: admin/tab-fields.php:241
+#, fuzzy
+msgid "field was updated"
+msgstr "Поля WP-Members были обновлены"
+
+#: admin/tab-fields.php:289 admin/tab-fields.php:385
+#, fuzzy
+msgid "Edit Field"
+msgstr "Редактирование ваших данных"
+
+#: admin/tab-fields.php:289
+#, fuzzy
+msgid "Add a Field"
+msgstr "Добавить/удалить"
+
+#: admin/tab-fields.php:295 admin/tab-fields.php:416
+msgid "Field Label"
+msgstr "Метка поля"
+
+#: admin/tab-fields.php:297
+msgid "The name of the field as it will be displayed to the user."
+msgstr ""
+
+#: admin/tab-fields.php:300 admin/tab-fields.php:417
+msgid "Option Name"
+msgstr "Имя поля"
+
+#: admin/tab-fields.php:306
+msgid ""
+"The database meta value for the field. It must be unique and contain no "
+"spaces (underscores are ok)."
+msgstr ""
+
+#: admin/tab-fields.php:310 admin/tab-fields.php:418
+msgid "Field Type"
+msgstr "Тип поля"
+
+#: admin/tab-fields.php:316
+msgid "text"
+msgstr "текст"
+
+#: admin/tab-fields.php:317
+msgid "textarea"
+msgstr "поле для ввода"
+
+#: admin/tab-fields.php:318
+msgid "checkbox"
+msgstr "чекбокс"
+
+#: admin/tab-fields.php:319
+msgid "dropdown"
+msgstr "список"
+
+#: admin/tab-fields.php:320
+msgid "password"
+msgstr "пароль"
+
+#: admin/tab-fields.php:325 admin/tab-fields.php:419
+msgid "Display?"
+msgstr "Оботражать?"
+
+#: admin/tab-fields.php:329 admin/tab-fields.php:420
+msgid "Required?"
+msgstr "Обязательно?"
+
+#: admin/tab-fields.php:334
+#, fuzzy
+msgid "Additional information for checkbox fields"
+msgstr "WP-Members Дополнительные поля"
+
+#: admin/tab-fields.php:337
+#, fuzzy
+msgid "Checked by default?"
+msgstr "Отмечено?"
+
+#: admin/tab-fields.php:341
+#, fuzzy
+msgid "Stored value if checked:"
+msgstr "Отмечено?"
+
+#: admin/tab-fields.php:347
+#, fuzzy
+msgid "Additional information for dropdown fields"
+msgstr "WP-Members Дополнительные поля"
+
+#: admin/tab-fields.php:350
+msgid "For dropdown, array of values:"
+msgstr "Массив значений для выпадающего списка:"
+
+#: admin/tab-fields.php:375
+msgid "Options should be Option Name|option_value,"
+msgstr "Варианты должны быть вида \"Метка\"|\"значение\","
+
+#: admin/tab-fields.php:379
+msgid "Visit plugin site for more information"
+msgstr "Посетите сайт плагина для получения большей информации"
+
+#: admin/tab-fields.php:385
+#, fuzzy
+msgid "Add Field"
+msgstr "Добавить/удалить"
+
+#: admin/tab-fields.php:407
+msgid "Manage Fields"
+msgstr "Изменить поля"
+
+#: admin/tab-fields.php:409
+msgid ""
+"Determine which fields will display and which are required.  This includes "
+"all fields, both native WP fields and WP-Members custom fields."
+msgstr ""
+"Определите, какие поля следует отображать, и какие должны быть "
+"обязательными. Этот список содержит все поля, как WordPress`а, так и WP-"
+"Members"
+
+#: admin/tab-fields.php:410
+msgid "(Note: Email is always mandatory and cannot be changed.)"
+msgstr "(Beleška: Email je uvek obavezan i ne može se promeniti.)"
+
+#: admin/tab-fields.php:415
+msgid "Add/Delete"
+msgstr "Добавить/удалить"
+
+#: admin/tab-fields.php:421
+msgid "Checked?"
+msgstr "Отмечено?"
+
+#: admin/tab-fields.php:423
+#, fuzzy
+msgid "Users Screen"
+msgstr "Выгрузить"
+
+#: admin/tab-fields.php:435
+msgid "Delete"
+msgstr "Удалить"
+
+#: admin/tab-fields.php:447
+msgid "(Email cannot be removed)"
+msgstr "(Email не может быть удален)"
+
+#: admin/tab-fields.php:467
+#, fuzzy
+msgid "Registration Date"
+msgstr "Регистрация завершена"
+
+#: admin/tab-fields.php:470
+#, fuzzy
+msgid "native"
+msgstr ""
+"Определите, какие поля следует отображать, и какие должны быть "
+"обязательными. Этот список содержит все поля, как WordPress`а, так и WP-"
+"Members"
+
+#: admin/tab-fields.php:480
+#, fuzzy
+msgid "Active"
+msgstr "Активировать"
+
+#: admin/tab-fields.php:492
+#, fuzzy
+msgid "Registration IP"
+msgstr "IP при регистрации"
+
+#: admin/tab-fields.php:527
+msgid "Update Fields"
+msgstr "Обновить поля"
+
+#: admin/tab-options.php:48
+msgid "Manage Options"
+msgstr "Изменить настройки"
+
+#: admin/tab-options.php:54
+msgid "Block Posts by default"
+msgstr "Блокировать записи по умолчанию"
+
+#: admin/tab-options.php:54
+msgid ""
+"Note: Posts can still be individually blocked or unblocked at the article "
+"level"
+msgstr ""
+"Примечание: каждая запись может быть заблокирована/разблокирована отдельно "
+"от остальных"
+
+#: admin/tab-options.php:55
+msgid "Block Pages by default"
+msgstr "Блокировать страницы по умолчанию"
+
+#: admin/tab-options.php:55
+msgid ""
+"Note: Pages can still be individually blocked or unblocked at the article "
+"level"
+msgstr ""
+"Примечание: каждая страница может быть заблокирована/разблокирована отдельно "
+"от остальных"
+
+#: admin/tab-options.php:56
+msgid "Show excerpts"
+msgstr "Показать анонс"
+
+#: admin/tab-options.php:56
+msgid ""
+"Shows excerpted content above the login/registration on both Posts and Pages"
+msgstr ""
+"Отображаение над формой входа в систему содержимого записи/страцницы до тега "
+"\"more\" "
+
+#: admin/tab-options.php:57
+msgid "Notify admin"
+msgstr "Уведомить администратора"
+
+#: admin/tab-options.php:57
+#, fuzzy, php-format
+msgid "Notify %s for each new registration? %s"
+msgstr "Отсылать email о каждой новой регистрации администратору?"
+
+#: admin/tab-options.php:58
+msgid "Moderate registration"
+msgstr "Модерировать регистрацию"
+
+#: admin/tab-options.php:58
+msgid "Holds new registrations for admin approval"
+msgstr "Подтверждение регистрации администратором"
+
+#: admin/tab-options.php:91
+#, fuzzy
+msgid "Enable CAPTCHA"
+msgstr "Uključi  CAPTCHA za registraciju"
+
+#: admin/tab-options.php:59
+msgid "Turns on CAPTCHA for registration"
+msgstr "Использовать reCAPTCHA при регистрации"
+
+#: admin/tab-options.php:60
+#, fuzzy
+msgid "Hide registration"
+msgstr "Регистрация завершена"
+
+#: admin/tab-options.php:60
+msgid "Removes the registration form from blocked content"
+msgstr ""
+
+#: admin/tab-options.php:62
+msgid "Time-based expiration"
+msgstr "Срок действия по дате"
+
+#: admin/tab-options.php:62
+msgid "Allows for access to expire"
+msgstr "Включение ограничения доступа по сроку"
+
+#: admin/tab-options.php:63
+msgid "Trial period"
+msgstr "Ознакомительный период"
+
+#: admin/tab-options.php:63
+msgid "Allows for a trial period"
+msgstr "Допускает пробный период"
+
+#: admin/tab-options.php:64
+msgid "Ignore warning messages"
+msgstr "Игнорировать предупреждения"
+
+#: admin/tab-options.php:64
+msgid "Ignores WP-Members warning messages in the admin panel"
+msgstr "Скрывает предупреждения WP-Members в консоли администратора"
+
+#: admin/tab-options.php:81
+msgid "Attribution"
+msgstr ""
+
+#: admin/tab-options.php:83
+msgid ""
+"Attribution is appreciated!  Display \"powered by\" link on register form?"
+msgstr ""
+
+#: admin/tab-options.php:87
+#, fuzzy
+msgid "Auto Excerpt:"
+msgstr "Показать анонс"
+
+#: admin/tab-options.php:88
+#, fuzzy
+msgid "Number of words in excerpt:"
+msgstr "Показать анонс"
+
+#: admin/tab-options.php:88 admin/tab-options.php:108
+#: admin/tab-options.php:118 admin/tab-options.php:132
+msgid "Optional"
+msgstr "Необязательно"
+
+#: admin/tab-options.php:88
+#, fuzzy
+msgid "Automatically creates an excerpt"
+msgstr "Показать анонс"
+
+#: admin/tab-options.php:103
+#, fuzzy
+msgid "User Profile Page:"
+msgstr "Пользователь обновлен"
+
+#: admin/tab-options.php:106
+msgid "For creating a forgot password link in the login form"
+msgstr ""
+
+#: admin/tab-options.php:113
+#, fuzzy
+msgid "Register Page:"
+msgstr "URL страницы регистрации:"
+
+#: admin/tab-options.php:116
+msgid "For creating a register link in the login form"
+msgstr ""
+
+#: admin/tab-options.php:126
+msgid "Select a stylesheet or specify a custom stylesheet below"
+msgstr ""
+
+#: admin/tab-options.php:131
+#, fuzzy
+msgid "Custom Stylesheet:"
+msgstr "Пользовательский"
+
+#: admin/tab-options.php:136
+msgid "Update Settings"
+msgstr "Обновить настройки"
+
+#: admin/tab-options.php:246
+msgid "WP-Members settings were updated"
+msgstr "Настройки WP_Members были обновлены"
+
+#: admin/tab-options.php:296
+#, fuzzy
+msgid "Select a page"
+msgstr "Новая регистрация"
+
+#: admin/tab-options.php:304
+msgid "USE CUSTOM URL BELOW"
+msgstr ""
+
+#: admin/user-export.php:57 admin/user-export.php:172
+msgid "Activated?"
+msgstr "Активирован?"
+
+#: admin/user-export.php:61 admin/user-export.php:175
+msgid "Subscription"
+msgstr "Подписка"
+
+#: admin/user-export.php:61 admin/user-export.php:175
+msgid "Expires"
+msgstr "Истекает"
+
+#: admin/user-export.php:64 admin/user-export.php:178
+msgid "Registered"
+msgstr "Зарегистрирован"
+
+#: admin/user-export.php:65 admin/user-export.php:179
+msgid "IP"
+msgstr "IP"
+
+#: admin/user-profile.php:46
+msgid "WP-Members Additional Fields"
+msgstr "WP-Members Дополнительные поля"
+
+#: admin/user-profile.php:66 native-registration.php:36
+#: native-registration.php:159 users.php:62
+#, fuzzy
+msgid "(required)"
+msgstr "Potrbno?"
+
+#: admin/user-profile.php:98
+msgid "Activate this user?"
+msgstr "Активировать этого пользователя?"
+
+#: admin/user-profile.php:103
+msgid "Reactivate this user?"
+msgstr "Активировать пользователя?"
+
+#: admin/user-profile.php:108
+msgid "Deactivate this user?"
+msgstr "Заблокировать пользователя?"
+
+#: admin/user-profile.php:129
+msgid "IP @ registration"
+msgstr "IP при регистрации"
+
+#: admin/users.php:45 admin/users.php:49
+msgid "Export"
+msgstr "Выгрузить"
+
+#: admin/users.php:50 admin/users.php:91
+#, fuzzy
+msgid "Export All Users"
+msgstr "Выгрузить"
+
+#: forms.php:95
+#, fuzzy
+msgid "Existing Users Log In"
+msgstr "Войти"
+
+#: forms.php:161 wp-members-dialogs.php:192
+msgid "Change Password"
+msgstr "Сменить пароль"
+
+#: forms.php:163
+msgid "Update Password"
+msgstr "Обновить пароль"
+
+#: forms.php:227
+msgid "Reset Forgotten Password"
+msgstr "Сбросить забытый пароль"
+
+#: forms.php:403
+msgid "Forgot password?"
+msgstr "Забыли пароль?"
+
+#: forms.php:403
+msgid "Click here to reset"
+msgstr "Нажмите для сброса"
+
+#: forms.php:418
+msgid "New User?"
+msgstr "Новый пользователь?"
+
+#: forms.php:418
+msgid "Click here to register"
+msgstr "Нажмите здесь для регистрации"
+
+#: forms.php:515
+msgid "Required field"
+msgstr "Обязательно для заполнения"
+
+#: forms.php:521
+#, fuzzy
+msgid "Reset Form"
+msgstr "Произошла ошибка в форма CAPTCHA."
+
+#: forms.php:523
+#, fuzzy
+msgid "Update Profile"
+msgstr "Пользователь обновлен"
+
+#: forms.php:561
+msgid "Choose a Username"
+msgstr "Введите имя пользоателя"
+
+#: forms.php:683 native-registration.php:65
+#, php-format
+msgid "Please indicate that you agree to the %s TOS %s"
+msgstr "Подтвердите свое согласие с %s TOS %s"
+
+#: forms.php:852
+#, fuzzy
+msgid "New User Registration"
+msgstr "Новый пользователь?"
+
+#: forms.php:1018
+msgid "Input the code:"
+msgstr ""
+
+#: users.php:38
+#, fuzzy
+msgid "Additional Information"
+msgstr "WP-Members Дополнительные поля"
+
+#: wp-members-core.php:118 wp-members-core.php:245
+msgid "There was an error with the CAPTCHA form."
+msgstr "Произошла ошибка в форма CAPTCHA."
+
+#: wp-members-core.php:287 wp-members-dialogs.php:338
+msgid "Edit Your Information"
+msgstr "Редактирование ваших данных"
+
+#: wp-members-core.php:544
+msgid "<strong>ERROR</strong>: User has not been activated."
+msgstr "<strong>ОШИБКА</strong>: Пользователь не был активирован."
+
+#: wp-members-core.php:903 wp-members-register.php:93
+#, php-format
+msgid "Sorry, %s is a required field."
+msgstr "%s обязательно для ввода."
+
+#: wp-members-dialogs.php:42
+msgid "Login Failed!"
+msgstr "Ошибка входа!"
+
+#: wp-members-dialogs.php:45
+msgid "You entered an invalid username or password."
+msgstr "Неверное имя пользователя или пароль."
+
+#: wp-members-dialogs.php:47
+msgid "Click here to continue."
+msgstr "Нажмите для продолжения."
+
+#: wp-members-dialogs.php:191
+msgid "Edit My Information"
+msgstr "Изменить информацию обо мне"
+
+#: wp-members-dialogs.php:206 wp-members-dialogs.php:224
+#: wp-members-dialogs.php:239 wp-members-sidebar.php:46
+#: wp-members-sidebar.php:246
+#, php-format
+msgid "You are logged in as %s"
+msgstr "Вы вошли как %s"
+
+#: wp-members-dialogs.php:208
+#, fuzzy
+msgid "Click to log out."
+msgstr "Войти"
+
+#: wp-members-dialogs.php:209
+msgid "Begin using the site."
+msgstr "Начать пользоваться сайтом."
+
+#: wp-members-dialogs.php:225
+#, fuzzy
+msgid "Click to log out"
+msgstr "Войти"
+
+#: wp-members-dialogs.php:240 wp-members-sidebar.php:47
+#, fuzzy
+msgid "click to log out"
+msgstr "Войти"
+
+#: wp-members-dialogs.php:271
+msgid "Password fields cannot be empty"
+msgstr "Поля \"Ппроль\" не могут быть пустыми"
+
+#: wp-members-register.php:51
+#, fuzzy
+msgid "There was an error processing the form."
+msgstr "Произошла ошибка в форма CAPTCHA."
+
+#: wp-members-register.php:110
+msgid "Sorry, username is a required field"
+msgstr "Имя пользователя обязательно для ввода."
+
+#: wp-members-register.php:111
+msgid "The username cannot include non-alphanumeric characters."
+msgstr "Имя пользователя не может содержать несимвольные знаки."
+
+#: wp-members-register.php:112 wp-members-register.php:282
+msgid "You must enter a valid email address."
+msgstr "Введите правильный email"
+
+#: wp-members-register.php:119
+#, fuzzy
+msgid "Passwords did not match."
+msgstr "Šifra se ne slaže"
+
+#: wp-members-register.php:120 wp-members-register.php:286
+#, fuzzy
+msgid "Emails did not match."
+msgstr "Пароли не совпадают"
+
+#: wp-members-register.php:127
+msgid "You must complete the CAPTCHA form."
+msgstr "Необходимо заполнить форму CAPTCHA."
+
+#: wp-members-register.php:377
+msgid "We were unable to validate the public key."
+msgstr "Публичный ключ не прошел валидацию."
+
+#: wp-members-register.php:381
+msgid "We were unable to validate the private key."
+msgstr "Закрытый ключ не прошел валидацию."
+
+#: wp-members-register.php:385
+#, fuzzy
+msgid "The challenge parameter of the verify script was incorrect."
+msgstr "Izazovni parametar verifikovanog skripta nisu tačni."
+
+#: wp-members-register.php:389
+msgid "The CAPTCHA solution was incorrect."
+msgstr "Модуль CAPTCHA некорректен."
+
+#: wp-members-register.php:393
+msgid "The parameters to verify were incorrect"
+msgstr "Параметры для проверки некорректны"
+
+#: wp-members-register.php:397
+msgid ""
+"reCAPTCHA API keys are tied to a specific domain name for security reasons."
+msgstr ""
+"reCAPTCHA API-ключи привязаны к доменному имени из соображений безопасности."
+
+#: wp-members-register.php:401
+msgid "The reCAPTCHA server was not reached.  Please try to resubmit."
+msgstr "Сервер reCAPTCHA недоступен.  Пожалуйста, попробуйте еще раз."
+
+#: wp-members-register.php:405
+msgid "You have entered an incorrect code value. Please try again."
+msgstr ""
+
+#: wp-members-sidebar.php:117
+msgid "Login Failed!<br />You entered an invalid username or password."
+msgstr "Ошибка!<br/>Неверное имя пользователя или пароль"
+
+#: wp-members-sidebar.php:118
+#, fuzzy
+msgid "You are not logged in."
+msgstr "Ulogovani ste kao %s"
+
+#: wp-members-sidebar.php:169
+msgid "log in"
+msgstr "логин"
+
+#: wp-members-sidebar.php:180
+msgid "Forgot?"
+msgstr "Забыли?"
+
+#: wp-members-sidebar.php:247
+msgid "click here to log out"
+msgstr "выйти"
+
+#: wp-members-sidebar.php:279
+msgid "Displays the WP-Members sidebar login."
+msgstr ""
+
+#: wp-members-sidebar.php:294 wp-members-sidebar.php:333
+msgid "Login Status"
+msgstr "Статус логина"
+
+#: wp-members-sidebar.php:299
+msgid "Title:"
+msgstr "Заголовок:"
+
+#: wp-members-tos.php:24
+msgid "Terms of Service"
+msgstr "Условия использования"
+
+#: wp-members-tos.php:36
+#, php-format
+msgid "%sclose%s"
+msgstr "%sclose%s"
+
+#: wp-members-tos.php:38
+#, php-format
+msgid "%sprint%s"
+msgstr "%sprint%s"
+
+#: STRINGS THAT ARE NOT SPECIFICALLY CONTAINED IN THE PLUGIN Custom Field
+#: Strings wp-members-install.php:49
+msgid "First Name"
+msgstr "Имя"
+
+#: wp-members-install.php:50
+msgid "Last Name"
+msgstr "Фамилия"
+
+#: wp-members-install.php:51
+msgid "Address 1"
+msgstr "Адрес 1"
+
+#: wp-members-install.php:52
+msgid "Address 2"
+msgstr "Адрес 2"
+
+#: wp-members-install.php:53
+msgid "City"
+msgstr "Город"
+
+#: wp-members-install.php:54
+msgid "State"
+msgstr "Область"
+
+#: wp-members-install.php:55
+msgid "Zip"
+msgstr "Индекс"
+
+#: wp-members-install.php:56
+msgid "Country"
+msgstr "Страна"
+
+#: wp-members-install.php:57
+msgid "Day Phone"
+msgstr "Рабочий телефон"
+
+#: wp-members-install.php:59
+msgid "Website"
+msgstr "Сайт"
+
+#: wp-members-install.php:60
+msgid "AIM"
+msgstr "AIM"
+
+#: wp-members-install.php:61
+msgid "Yahoo IM"
+msgstr "Yahoo IM"
+
+#: wp-members-install.php:62
+msgid "Jabber/Google Talk"
+msgstr "Jabber/Google Talk"
+
+#: wp-members-install.php:63
+msgid "Biographical Info"
+msgstr "О себе"
+
+#: wp-members-install.php:64 wp-members-install.php:211
+msgid "TOS"
+msgstr "TOS"
+
+#: Error message dialog strings wp-members-install.php:96
+#, fuzzy
+msgid ""
+"This content is restricted to site members.  If you are an existing user, "
+"please log in.  New users may register below."
+msgstr ""
+"Эта часть сайта только для зарегистрированных пользователей. Если вы "
+"зарегистрированы, пожалуйста, войдите. Новые пользователи могут "
+"зарегистрироваться ниже."
+
+#: wp-members-install.php:97
+msgid "Sorry, that username is taken, please try another."
+msgstr "Извините, имя пользователя уже используется, введите другое."
+
+#: wp-members-install.php:98
+msgid ""
+"Sorry, that email address already has an account.<br />Please try another."
+msgstr "Извините, этот email уже зарегистрирован.<br />Введите другой email."
+
+#: wp-members-install.php:99
+#, fuzzy
+msgid ""
+"Congratulations! Your registration was successful.<br /><br />You may now "
+"log in using the password that was emailed to you."
+msgstr ""
+"Поздравляем! Регистрация прошла успешно.<br /><br />Вы можете теперь войти, "
+"используя высланный на почту пароль."
+
+#: wp-members-install.php:100
+msgid "Your information was updated!"
+msgstr "Информация обновлена!"
+
+#: wp-members-install.php:101
+msgid "Passwords did not match.<br /><br />Please try again."
+msgstr "Неверный пароль.<br /><br />Попробуйте еще раз."
+
+#: wp-members-install.php:102
+msgid ""
+"Password successfully changed!<br /><br />You will need to re-login with "
+"your new password."
+msgstr ""
+"Пароль успешно изменен!<br /><br />Необходимо перезайти с новым паролем."
+
+#: wp-members-install.php:103
+msgid "Either the username or email address do not exist in our records."
+msgstr "Имя пользователя или email не указаны в наших списках."
+
+#: wp-members-install.php:104
+msgid ""
+"Password successfully reset!<br /><br />An email containing a new password "
+"has been sent to the email address on file for your account. You may change "
+"this random password then re-login with your new password."
+msgstr ""
+"Пароль успешно сброшен!<br /><br />Письмо с новым паролем отправлено на "
+"почту, указанную при регистрации. Вы можете изменить высланный пароль."
+
+#~ msgid "Yes"
+#~ msgstr "Да"
+
+#~ msgid "WP-Members"
+#~ msgstr "WP-Members"
+
+#~ msgid "Custom"
+#~ msgstr "Пользовательский"
+
+#, fuzzy
+#~ msgid "edit"
+#~ msgstr "Редактирование ваших данных"
+
+#, fuzzy
+#~ msgid "Edit"
+#~ msgstr "Редактирование ваших данных"
+
+#~ msgid "Use reCAPTCHA"
+#~ msgstr "Использовать reCAPTCHA"
+
+#, fuzzy
+#~ msgid "Pages"
+#~ msgstr "Блокировать страницы по умолчанию"
+
+#~ msgid "No"
+#~ msgstr "Нет"
+
+#~ msgid "Activate"
+#~ msgstr "Активировать"
+
+#~ msgid "Username"
+#~ msgstr "Имя пользователя"
+
+#~ msgid "Password"
+#~ msgstr "Пароль"
+
+#~ msgid "Log In"
+#~ msgstr "Войти"
+
+#~ msgid "New Password"
+#~ msgstr "Новый пароль"
+
+#~ msgid "Repeat Password"
+#~ msgstr "Повторите пароль"
+
+#~ msgid "Email"
+#~ msgstr "Email"
+
+#~ msgid "Reset Password"
+#~ msgstr "Сбросить пароль"
+
+#~ msgid "Remember me"
+#~ msgstr "Запомнить меня"
+
+#~ msgid "Register"
+#~ msgstr "Регистрация"
+
+#~ msgid "Turn off registration"
+#~ msgstr "Отключить регистрацию"
+
+#~ msgid "Turns off the registration process, only allows login"
+#~ msgstr ""
+#~ "Отключает форму регистрации, разрешен вход только уже зарегистрированным "
+#~ "пользователям"
+
+#~ msgid "Legacy forms"
+#~ msgstr "Старые формы"
+
+#~ msgid ""
+#~ "Uses the pre-2.5.1 table-based forms (leave off to use CSS table-less "
+#~ "forms)"
+#~ msgstr ""
+#~ "Использование pre-2.5.1 табличных форм (не отмечайте, чтобы использовать "
+#~ "CSS формы без применения таблиц)"
+
+#~ msgid "Members Area URL:"
+#~ msgstr "URL области для зарегистрированных пользователей:"
+
+#~ msgid "Add"
+#~ msgstr "Добавить"
+
+#~ msgid "WP-Members expiration periods were updated"
+#~ msgstr "Периоды времени доступа WP-Members был обновлены"
+
+#~ msgid ""
+#~ "Settings were saved, but you have required fields that are not set to "
+#~ "display!"
+#~ msgstr ""
+#~ "Настройки сохранены, но есть обязательные поля, не настроенные на "
+#~ "отображение на форме!"
+
+#~ msgid ""
+#~ "Note: This will not cause an error for the end user, as only displayed "
+#~ "fields are validated.  However, you should still check that your "
+#~ "displayed and required fields match up.  Mismatched fields are "
+#~ "highlighted below."
+#~ msgstr ""
+#~ "Примечание: Это не приведет к ошибке для конечных пользователей, так как "
+#~ "проверяются только отображенные поля. Однако вы все же должны проверить, "
+#~ "что ваши обязательные и отображаемые поля совпадают."
+
+#~ msgid "If you find this plugin useful, please consider making a donation"
+#~ msgstr ""
+#~ "Если вы считаете этот плагин полезным, сделайте, пожалуйста, пожертвование"
+
+#~ msgid "Subscriptions"
+#~ msgstr "Подписки"
+
+#~ msgid "PayPal Settings"
+#~ msgstr "Настройки PayPal"
+
+#~ msgid "If you find this plugin useful, please consider a %s donation %s"
+#~ msgstr ""
+#~ "Если вы считаете этот плагин полезным, сделайте, пожалуйста, %s "
+#~ "пожертвование %s"
+
+#~ msgid "%d users were activated."
+#~ msgstr "%d пользователь(я/ей) был активирован."
+
+#~ msgid ""
+#~ "Users ready to export, %s click here %s to generate and download a CSV."
+#~ msgstr ""
+#~ "Список пользователей готов для выгрузки, %s нажмите сюда %s для выгрузки "
+#~ "в CSV."
+
+#~ msgid "WP-Members Users"
+#~ msgstr "Пользователи WP-Members"
+
+#~ msgid "Add New"
+#~ msgstr "Добавить нового"
+
+#~ msgid "No users matched your criteria"
+#~ msgstr "Нет пользователей, удовлетворяющих заданному критерию"
+
+#~ msgid "Bulk Actions"
+#~ msgstr "Массовые действия"
+
+#~ msgid "Apply"
+#~ msgstr "Применить"
+
+#~ msgid "Indicates a required field"
+#~ msgstr "Признак обязательного поля"
+
+#~ msgid "Login"
+#~ msgstr "Войти"
+
+#~ msgid "Clear Form"
+#~ msgstr "Очистить форму"
+
+#~ msgid "Submit"
+#~ msgstr "Подтвердить"
+
+#~ msgid "Cheatin&#8217; uh?"
+#~ msgstr "Мошенничаете?"
+
+#~ msgid "there was an error and no users were exported"
+#~ msgstr "Произошла ошибка при выгрузке пользователей"
+
+#~ msgid "login"
+#~ msgstr "логин"

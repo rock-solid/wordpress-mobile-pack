@@ -1,0 +1,210 @@
+/**
+ * WP-Members Styles CSS
+ *
+ * CSS for the WP-Members plugin using Twenty Fourteen Theme, no float
+ * 
+ * This file is part of the WP-Members plugin by Chad Butler
+ * You can find out more about this plugin at http://rocketgeek.com
+ * Copyright (c) 2006-2014 Chad Butler
+ * WP-Members(tm) is a trademark of butlerblog.com
+ *
+ * @package WordPress
+ * @subpackage WP-Members
+ * @author Chad Butler 
+ * @copyright 2006-2014
+ */
+
+/*	
+This stylesheet is designed to integrate WP-Members with the Twenty Fourteen theme.
+There are quite a few examples in here of what you can do to style the forms.  
+You can build off of this or start from scratch and set your own 
+custom css for the plugin (set the location in the admin panel).
+
+See http://rocketgeek.com/tips-and-tricks/setting-up-a-custom-wp-members-stylesheet/
+for information on how to set up the plugin with a custom stylesheet.
+
+For information how to load custom stylesheets with wp_enqueue_style,
+see http://rocketgeek.com/tips-and-tricks/load-a-custom-stylesheet/
+*/
+
+
+/* Error and Dialog Messages */
+
+#wpmem_msg, .wpmem_msg {
+	background: #F9F9F9;
+	border:1px solid lightGrey;
+	border-radius: 3px;
+	padding: 20px 0 0 0;
+}
+#wpmem_msg {
+	width: 100%;
+}
+.wpmem_msg {
+	width: 74%;
+}
+
+
+/* Sidebar Login Widget */
+
+#wp-members  { 
+	width: 100%;
+}
+#wp-members fieldset {
+	border:none;
+	padding:0px
+}
+#wp-members input {
+	font-family: inherit;
+}
+#wp-members input[type="text"],
+#wp-members input[type="password"]{
+	margin: 0 0 4px 0;
+}
+#wp-members input[type="submit"] {
+	padding: 5px 6px 4px;
+	margin: 0 4px 0 0;
+}
+#wp-members .button_div { 
+	margin-top:4px; 
+}
+#wp-members .err {
+	width:100%;
+    padding: 5px;
+	font-family: inherit;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+
+/* Login Form and Registration Form */
+
+#wpmem_reg fieldset, #wpmem_login fieldset {
+	border: none;
+	padding: 0;
+	margin: 40px 0;
+}
+#wpmem_reg legend, #wpmem_login legend {
+	font-size: 24px;
+	line-height: 1;
+	font-weight: 700;
+	margin-bottom: 10px;
+}
+#wpmem_reg .form, #wpmem_login .form {
+	margin:0;
+	padding:0;
+}
+#wpmem_reg .clear, #wpmem_login .clear {
+	clear:both;
+}
+#wpmem_reg .holder, #wpmem_login .holder {
+	background-color:#fff;
+}
+#wpmem_reg .div_text, #wpmem_reg .div_textarea, 
+#wpmem_reg .div_select, #wpmem_login .div_text,
+#wpmem_reg .div_checkbox { 
+	width:74%;
+	margin:0 0 14px 0;
+}
+#wpmem_login input[type="checkbox"] {
+	margin: 12px 2px;
+}
+#wpmem_reg .div_textarea textarea,
+#wpmem_reg .textbox, #wpmem_login .textbox,
+#wpmem_reg .username, #wpmem_login .username,
+#wpmem_reg .password, #wpmem_login .password {
+	width:100%;
+}
+#wpmem_reg .dropdown {
+	width:100%;
+	padding: 8px 10px 7px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 2px;
+	color: rgb(43, 43, 43);
+	margin: 5px 0;
+}
+#wpmem_reg .dropdown:focus {
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	outline: 0;
+}
+#wpmem_reg .textbox:focus, #wpmem_reg .textbox:hover, #wpmem_login .textbox:focus, #wpmem_login .textbox:hover,
+#wpmem_reg .username:focus, #wpmem_reg .username:hover, #wpmem_login .username:focus, #wpmem_login .username:hover,
+#wpmem_reg .password:focus, #wpmem_reg .password:hover, #wpmem_login .password:focus, #wpmem_login .password:hover {
+	background-color:inherit;
+}
+#wpmem_reg textarea {
+	height:185px;
+}
+#wpmem_reg .req { 
+	color: #bd3500;
+	font-size: 22px;
+	line-height: 50%;
+}
+
+#wpmem_reg .req-text {
+	margin: 20px 0px 0px 5px;
+}
+
+#wpmem_reg .noinput {
+	width:93%;
+	padding: 8px 10px 7px;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 2px;
+	color: rgb(43, 43, 43);
+	margin: 5px 0;
+}
+
+#wpmem_reg .captcha {
+	width: 74%;
+	margin: 5px 0px; 
+}
+#wpmem_reg .captcha table{
+	line-height: 0px;
+}
+#wpmem_login .link-text {
+	width: 74%;
+}
+
+#tos {
+	margin-right:5px;
+}
+
+
+/* Buttons */
+
+#wpmem_reg .button_div, #wpmem_login .button_div {
+	width:74%;
+	height:35px;
+	padding: 6px 0;
+	text-align: right;
+}
+
+
+/** for smaller screens */
+
+@media screen and (max-width: 720px) {
+	#wpmem_reg label.text, #wpmem_reg label.checkbox, 
+	#wpmem_reg label.textarea , #wpmem_reg label.select,
+	#wpmem_login label, #wpmem_reg .div_text, #wpmem_reg .div_textarea, 
+	#wpmem_reg .div_select, #wpmem_login .div_text,
+	#wpmem_reg .div_checkbox, #wpmem_reg .button_div, #wpmem_login .button_div {
+		float: none;
+	}
+	
+	#wpmem_reg label.text, #wpmem_reg label.checkbox, 
+	#wpmem_reg label.textarea , #wpmem_reg label.select,
+	#wpmem_login label {
+		width: 90%;
+		padding: 5px 0 0 0;
+	}
+	#wpmem_reg label.textarea {
+		height: 26px;
+	}
+	#wpmem_reg .div_text, #wpmem_reg .div_textarea, 
+	#wpmem_reg .div_select, #wpmem_login .div_text,
+	#wpmem_reg .div_checkbox {
+		width: 98%;
+	}
+	#wpmem_msg, .wpmem_msg {
+		width: 100%;
+	}
+}

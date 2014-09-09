@@ -221,3 +221,6 @@ require_once $__dir . '/HTMLPurifier/URIScheme/news.php';
 require_once $__dir . '/HTMLPurifier/URIScheme/nntp.php';
 require_once $__dir . '/HTMLPurifier/VarParser/Flexible.php';
 require_once $__dir . '/HTMLPurifier/VarParser/Native.php';
+
+
+require_once $__dir . '/HTMLPurifier/Filter/Iframe.php';

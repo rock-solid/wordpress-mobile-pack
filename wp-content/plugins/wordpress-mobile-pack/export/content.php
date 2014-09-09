@@ -7,7 +7,7 @@ require_once("export-class.php");
 
 header("Content-Type: application/json; charset=UTF-8");
 
-if(isset($_GET["content"])) {
+if(isset($_GET["content"]) && isset($_GET['callback'])) {
     
 	// export categories
 	if($_GET["content"] == 'exportcategories') { // export categories, optional param:  limit
@@ -37,6 +37,18 @@ if(isset($_GET["content"])) {
 		// save comment, mandatory get param is articleId
 		$export = new Export();
 		echo $_GET['callback'] . '('.$export->saveComment().')';
+	
+	}	elseif($_GET["content"] == 'exportpages') {
+	
+		// export pages
+		$export = new Export();		
+		echo $_GET['callback'] . '('.$export->exportPages().')';
+	
+	}   elseif($_GET["content"] == 'exportpage' && isset($_GET["pageId"]) && is_numeric($_GET["pageId"])) {
+	
+		// save export page, manadatory param is pageId
+		$export = new Export();
+		echo $_GET['callback'] . '('.$export->exportPage().')';
 	
 	} else
 		echo $_GET['callback'] . '({"error":"No export requested"})';

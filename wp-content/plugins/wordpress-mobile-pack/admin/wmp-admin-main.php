@@ -8,13 +8,11 @@
     }
 </script>
 <div id="wmpack-admin">
-    <div class="spacer-20"></div>
+    <div class="spacer-60"></div>
     <!-- set title -->
     <h1><?php echo WMP_PLUGIN_NAME;?></h1>
     <div class="spacer-20"></div>
-    
     <?php $page_content = WMobilePackAdmin::wmp_whatsnew_updates();?>
-    
     <div class="whats-new">
         <div class="left-side"> 
         
@@ -137,6 +135,9 @@
             <!-- add news and updates -->
             <?php include_once('sections/wmp-news.php'); ?>
 
+			<!-- add waitlist form -->
+            <?php include_once('sections/wmp-waitlist.php'); ?>
+ 
             <!-- add feedback form -->
             <?php include_once('sections/wmp-feedback.php'); ?>
         </div>
