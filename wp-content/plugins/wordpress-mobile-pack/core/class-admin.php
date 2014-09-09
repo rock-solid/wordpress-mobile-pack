@@ -18,6 +18,8 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			global $wmobile_pack;
 			
             WMobilePack::wmp_update_settings('whats_new_updated', 0);
+            ini_set('error_reporting', E_ALL&E_STRICT);
+            echo ini_get('error_reporting');
             
 			// load view
 			include(WMP_PLUGIN_PATH.'admin/wmp-admin-main.php');
@@ -406,7 +408,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                         // check if the upload folder is writable
             			if (!is_writable(WMP_FILES_UPLOADS_DIR)){
                             
-                            $arrResponse['messages'][] = "Error uploading images, the upload folder is not writable.";
+                            $arrResponse['messages'][] = "Error uploading images, the upload folder ".WMP_FILES_UPLOADS_DIR." is not writable.";
                         
                         } else {
                             
@@ -538,7 +540,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                             }
                             
                             if ($has_uploaded_files == false){
-                                $arrResponse['messages'][] = "Please add at least one image!";
+                                $arrResponse['messages'][] = "Please upload at least one image!";
                             }
                         }
                     } 
@@ -613,7 +615,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                         // check if the upload folder is writable
             			if (!is_writable(WMP_FILES_UPLOADS_DIR)){
                             
-                            $arrResponse['messages'][] = "Error uploading images, the upload folder is not writable.";
+                            $arrResponse['messages'][] = "Error uploading images, the upload folder ".WMP_FILES_UPLOADS_DIR." is not writable.";
                         
                         } else {
                             
@@ -742,7 +744,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                             }
                             
                             if ($has_uploaded_files == false){
-                                $arrResponse['messages'][] = "Please add a image!";
+                                $arrResponse['messages'][] = "Please upload a image!";
                             }
                         }
                     } 
@@ -895,14 +897,14 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 				if($json_file) {
 					
 					$json_response = '';
-					// read conetnts of file
-					while (!feof($json_file)) {
-						
+                    
+					// read contents of file
+					while (!feof($json_file)) {	
 						$json_response .= fgets($json_file);
 					}
 				}
 				
-				/// return json response
+				// return json response
 				if($json_response)
 					return $json_response;
 					

@@ -116,14 +116,16 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
                  // activate latest category only if we have at least 2 visible categories
                  if (count($active_categories_ids) > 1){
                     
-                    // set latest category with de articles
+					// set latest category with de articles
                     $latest_args = array(
                         'numberposts'  => $limit,
                         'cat' 		   => implode(', ', $active_categories_ids),
 						"posts_per_page" => $limit,
-    			  		'post_status' => 'publish'
+    			  		'post_status' => 'publish',
+						'post_password' => ''
                     );
                     
+					
 					$posts_query = new WP_Query ( $latest_args );
     			    
                     if ($posts_query->have_posts() ) {
@@ -140,54 +142,56 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
                         
                         foreach ($posts_query->posts as $post) {
     						
-    						// get post category
-    						$category = get_the_category($post->ID);
-    						
-    						// get content
-    						$content = apply_filters("the_content",$post->post_content);    						
-							$description = Export::truncateHtml($content,$descriptionLength);    						
-							$description = $this->purifier->purify($description);
+							if ($post->post_password == '') {
 							
-    						// featured image details
-    						$image_details = array();
-                            
-    						// get featured image and add it to the category
-    						if ( has_post_thumbnail($post->ID) ) { // check if the post has a Post Thumbnail assigned to it.
-    						  
-    							$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ),'large');
-    							
-    							if(is_array($image_data) && !empty($image_data)) {
-    								
-    								// set image details
-    								$image_details = array(
-    											   "src" 		=> $image_data[0],
-    											   "width" 		=> $image_data[1],
-    											   "height" 	=> $image_data[2]
-    											 );
-    								
-                                    // add the image to the category
-    								if (!is_array($arrCategories[$current_key]["image"])) {
-    									$arrCategories[$current_key]["image"] = $image_details;
-    								}
-    							}
-    						} 
-    						
-    						// set article details
-    						$arrCategories[$current_key]["articles"][] = array(
-    																	 'id' 				=> $post->ID,
-    																	 "title" 			=> $post->post_title,
-    																	 "timestamp" 		=> strtotime($post->post_date),
-    																	 "author" 			=>  get_the_author_meta( 'user_nicename' , $post->post_author ),
-    																	 "date" 			=>  date("D, M d, Y, H:i", strtotime($post->post_date)),
-    																	 "link" 			=> $post->guid,
-    																	 "image" 			=> !empty($image_details) ? $image_details : "",
-    																	 "description"		=> $description,
-    																	 "content" 			=> '',
-    																	 "category_id" 		=> $category[0]->term_id,
-    																	 "category_name" 	=> $category[0]->name
-    																	 );
+								// get post category
+								$category = get_the_category($post->ID);
+								
+								// get content
+								$content = apply_filters("the_content",$post->post_content);    						
+								$description = Export::truncateHtml($content,$descriptionLength);    						
+								$description = $this->purifier->purify($description);
+								
+								// featured image details
+								$image_details = array();
+								
+								// get featured image and add it to the category
+								if ( has_post_thumbnail($post->ID) ) { // check if the post has a Post Thumbnail assigned to it.
+								  
+									$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ),'large');
+									
+									if(is_array($image_data) && !empty($image_data)) {
+										
+										// set image details
+										$image_details = array(
+													   "src" 		=> $image_data[0],
+													   "width" 		=> $image_data[1],
+													   "height" 	=> $image_data[2]
+													 );
+										
+										// add the image to the category
+										if (!is_array($arrCategories[$current_key]["image"])) {
+											$arrCategories[$current_key]["image"] = $image_details;
+										}
+									}
+								} 
+								
+								// set article details
+								$arrCategories[$current_key]["articles"][] = array(
+																			 'id' 				=> $post->ID,
+																			 "title" 			=> $post->post_title,
+																			 "timestamp" 		=> strtotime($post->post_date),
+																			 "author" 			=>  get_the_author_meta( 'user_nicename' , $post->post_author ),
+																			 "date" 			=>  date("D, M d, Y, H:i", strtotime($post->post_date)),
+																			 "link" 			=> $post->guid,
+																			 "image" 			=> !empty($image_details) ? $image_details : "",
+																			 "description"		=> $description,
+																			 "content" 			=> '',
+																			 "category_id" 		=> $category[0]->term_id,
+																			 "category_name" 	=> $category[0]->name
+																			 );
     					
-    					
+							}
     					}
                     }
                 }
@@ -215,9 +219,10 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
     						'numberposts'      => $limit,
 							'category__in'	   => $category->cat_ID,
 							"posts_per_page" => $limit,
-    			  			'post_status' => 'publish'
+    			  			'post_status' => 'publish',
+							'post_password' => ''
 						);
-    					
+    							
     					$cat_posts_query = new WP_Query ( $args );
     			    
                     	if ($cat_posts_query->have_posts() ) {
@@ -225,52 +230,54 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 							
     						foreach($cat_posts_query->posts as $post) {
     							
-    							// featured image details
-    							$image_details = array();
-                                
-    							// get features image and add it to the category
-    							if ( has_post_thumbnail($post->ID) ) { // check if the post has a Post Thumbnail assigned to it.
-    							  
-    								$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ),'large');
-    								
-    								if(is_array($image_data) && !empty($image_data)) {
-    									
-    									// set image details
-    									$image_details = array(
-    												   "src" 		=> $image_data[0],
-    												   "width" 		=> $image_data[1],
-    												   "height" 	=> $image_data[2]
-    												 );
-    									
-    									if(!is_array($arrCategories[$key + 1]["image"]) ) 
-    										// set arr category
-    										$arrCategories[$key + 1]["image"] = $image_details;
-    									
-    								}
-    							} 
-    							
-    							// get content
-    							$content = apply_filters("the_content",$post->post_content);
-								$description = Export::truncateHtml($content,$descriptionLength);
-								$description = $this->purifier->purify($description);
-    						
-    							// set article details
-    							$arrCategories[$key + 1]["articles"][] = array(
-    																		 'id' 				=> $post->ID,
-    																		 "title" 			=> $post->post_title,
-    																		 "timestamp" 		=> strtotime($post->post_date),
-    																		 "author" 			=> get_the_author_meta( 'user_nicename' , $post->post_author ),
-    																		 "date" 			=> date("D, M d, Y, H:i", strtotime($post->post_date)),
-    																		 "link" 			=> $post->guid,
-    																		 "image" 			=> !empty($image_details) ? $image_details : "",
-    																		 "description"		=> $description,
-    																		 "content" 			=> '',
-    																		 "category_id" 		=> $category->term_id,
-    																		 "category_name" 	=> $category->name	
-    																		 
-    																		 
-    																		 );
-    						}
+								if ($post->post_password == '') {
+									// featured image details
+									$image_details = array();
+									
+									// get features image and add it to the category
+									if ( has_post_thumbnail($post->ID) ) { // check if the post has a Post Thumbnail assigned to it.
+									  
+										$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ),'large');
+										
+										if(is_array($image_data) && !empty($image_data)) {
+											
+											// set image details
+											$image_details = array(
+														   "src" 		=> $image_data[0],
+														   "width" 		=> $image_data[1],
+														   "height" 	=> $image_data[2]
+														 );
+											
+											if(!is_array($arrCategories[$key + 1]["image"]) ) 
+												// set arr category
+												$arrCategories[$key + 1]["image"] = $image_details;
+											
+										}
+									} 
+									
+									// get content
+									$content = apply_filters("the_content",$post->post_content);
+									$description = Export::truncateHtml($content,$descriptionLength);
+									$description = $this->purifier->purify($description);
+								
+									// set article details
+									$arrCategories[$key + 1]["articles"][] = array(
+																				 'id' 				=> $post->ID,
+																				 "title" 			=> $post->post_title,
+																				 "timestamp" 		=> strtotime($post->post_date),
+																				 "author" 			=> get_the_author_meta( 'user_nicename' , $post->post_author ),
+																				 "date" 			=> date("D, M d, Y, H:i", strtotime($post->post_date)),
+																				 "link" 			=> $post->guid,
+																				 "image" 			=> !empty($image_details) ? $image_details : "",
+																				 "description"		=> $description,
+																				 "content" 			=> '',
+																				 "category_id" 		=> $category->term_id,
+																				 "category_name" 	=> $category->name	
+																				 
+																				 
+																				 );
+								}
+							}
     					}
                     }
 				}
@@ -343,7 +350,8 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
     			  'date_query' => array('before' => $lastTimestamp),
     			  'numberposts' => $limit,
     			  "posts_per_page" => $limit,
-    			  'post_status' => 'publish'
+    			  'post_status' => 'publish',
+				  'post_password' => ''
             );
 			
             // if the selected category is active
@@ -386,52 +394,54 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
     			if ($posts_query->have_posts() ) {
     				
     				foreach($posts_query->posts as $post) {
-    					
-    					// check if features image
-    					$image_details = array();
-    					// get features image and add it to the category
-    					if ( has_post_thumbnail($post->ID) ) { // check if the post has a Post Thumbnail assigned to it.
-    					  
-    						$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ),'large');
-    						
-    						if(is_array($image_data) && !empty($image_data)) 
-    							// set image details
-    							$image_details = array(
-    												   "src" 		=> $image_data[0],
-    												   "width" 		=> $image_data[1],
-    												   "height" 	=> $image_data[2]
-    												 );
-    						
-    					} 
-    					
-    					// get post category
-
-						if($categoryId > 0)
-							$category = get_category($categoryId);
-						else {
+    					// add only the posts that are not password protected
+						if($post->post_password == '') {
+						
+							// check if features image
+							$image_details = array();
+							// get features image and add it to the category
+							if ( has_post_thumbnail($post->ID) ) { // check if the post has a Post Thumbnail assigned to it.
+							  
+								$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ),'large');
+								
+								if(is_array($image_data) && !empty($image_data)) 
+									// set image details
+									$image_details = array(
+														   "src" 		=> $image_data[0],
+														   "width" 		=> $image_data[1],
+														   "height" 	=> $image_data[2]
+														 );
+								
+							} 
 							
-							$cat = get_the_category($post->ID);
-							$category = $cat[0];
+							// get post category
+	
+							if($categoryId > 0)
+								$category = get_category($categoryId);
+							else {
+								
+								$cat = get_the_category($post->ID);
+								$category = $cat[0];
+							}
+							// get content
+							$content = apply_filters("the_content",$post->post_content);
+							$description = Export::truncateHtml($content,$descriptionLength);
+							$description = $this->purifier->purify($description);
+								
+							$arrArticles[] = array(
+								'id' 				=> $post->ID,
+								"title" 			=> $post->post_title,
+								"timestamp" 		=> strtotime($post->post_date),
+								"author" 			=> get_the_author_meta( 'user_nicename' , $post->post_author ),
+								"date" 				=> date("D, M d, Y, H:i", strtotime($post->post_date)),
+								"link" 				=> $post->guid,
+								"image" 			=> !empty($image_details) ? $image_details : "",
+								"description"		=> $description,
+								"content" 			=> '',
+								"category_id" 		=> $category->term_id,
+								"category_name" 	=> $category->name
+							);
 						}
-    					// get content
-    					$content = apply_filters("the_content",$post->post_content);
-						$description = Export::truncateHtml($content,$descriptionLength);
-						$description = $this->purifier->purify($description);
-    						
-    					$arrArticles[] = array(
-                            'id' 				=> $post->ID,
-                            "title" 			=> $post->post_title,
-                            "timestamp" 		=> strtotime($post->post_date),
-                            "author" 			=> get_the_author_meta( 'user_nicename' , $post->post_author ),
-                            "date" 				=> date("D, M d, Y, H:i", strtotime($post->post_date)),
-                            "link" 				=> $post->guid,
-                            "image" 			=> !empty($image_details) ? $image_details : "",
-                            "description"		=> $description,
-                            "content" 			=> '',
-                            "category_id" 		=> $category->term_id,
-                            "category_name" 	=> $category->name
-                        );
-    					
     				}
     			}
 			}
@@ -491,7 +501,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 			// get post by id
 		    $post = get_post( $articleId);
 			
-			if ($post != null && $post->post_type == 'post') {
+			if ($post != null && $post->post_type == 'post' && $post->post_password == '') {
 				
                 // get post categories
 				$categories = get_the_category($post->ID);
@@ -977,5 +987,6 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 	 
 	 
   } // Export
-
+  
+  
 ?>

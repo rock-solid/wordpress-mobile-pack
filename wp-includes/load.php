@@ -252,9 +252,12 @@ function timer_stop( $display = 0, $precision = 3 ) {
  * @since 3.0.0
  */
 function wp_debug_mode() {
+    return;
 	if ( WP_DEBUG ) {
 		error_reporting( E_ALL );
 
+        ini_set('error_reporting', E_ALL&E_STRICT);
+        
 		if ( WP_DEBUG_DISPLAY )
 			ini_set( 'display_errors', 1 );
 		elseif ( null !== WP_DEBUG_DISPLAY )
@@ -268,7 +271,7 @@ function wp_debug_mode() {
 		error_reporting( E_CORE_ERROR | E_CORE_WARNING | E_COMPILE_ERROR | E_ERROR | E_WARNING | E_PARSE | E_USER_ERROR | E_USER_WARNING | E_RECOVERABLE_ERROR );
 	}
 	if ( defined( 'XMLRPC_REQUEST' ) )
-		ini_set( 'display_errors', 0 );
+	   ini_set( 'display_errors', 0 );
 }
 
 /**
