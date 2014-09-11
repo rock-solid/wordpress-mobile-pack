@@ -872,14 +872,6 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 				$limit = $_GET["limit"];
 			
 			
-			// build array with the active categories ids
-            $active_pages_ids = array();
-            
-            foreach ($categories as $category){
-                if (!in_array($category->cat_ID, $this->inactive_categories))
-                    $active_categories_ids[] = $category->cat_ID;
-            }
-			
 			// set args for pages
 			$args = array(
     			  'post__not_in' => $this->inactive_pages,
@@ -938,11 +930,8 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 						
 						
 						$arrPages[$current_key] = array(
-							'id' 				=> $page->ID,
-							"title" 			=> $page->post_title,
-							"timestamp" 		=> strtotime($page->post_date),
-							"author" 			=> get_the_author_meta( 'user_nicename' , $page->post_author ),
-							"date" 				=> date("D, M d, Y, H:i", strtotime($page->post_date)),
+							'id' 				=> $page->ID,							
+							"title" 			=> $page->post_title,							
 							"image" 			=> !empty($image_details) ? $image_details : "",
 							"content" 			=> ''
 						);
@@ -952,7 +941,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 			
 			// sort pages by key
             ksort($arrPages);
-			
+			$arrPages = array_values($arrPages);
 			return '{"pages":'.json_encode($arrPages)."}";
 		
 		} else
@@ -1054,12 +1043,8 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
     				$arrPage = array(
                         'id' 					=> $page->ID,
                         "title" 				=> $page->post_title,
-                        "timestamp" 			=> strtotime($page->post_date),
-                        "author" 				=> get_the_author_meta( 'user_nicename' , $page->post_author ),
-                        "date" 			    	=> date("D, M d, Y, H:i", strtotime($post->page)),
                         "link" 			    	=> $page->guid,
                         "image" 				=> !empty($image_details) ? $image_details : "",
-                        "description"	    	=> $description,
                         "content" 				=> $content
 					 );
 				}
