@@ -25,10 +25,10 @@ if ( class_exists( 'WMobilePack' ) && class_exists( 'WMobilePackAdmin' ) ) {
 	register_deactivation_hook( __FILE__, array( &$wmobile_pack, 'wmp_uninstall' ) );
 
     // Initialize the Wordpress Mobile Pack check logic and rendering 
-    add_action('plugins_loaded',array( &$wmobile_pack, 'wmp_check_load' ));
+    add_action('plugins_loaded',array( &$wmobile_pack, 'wmp_check_load' )); 
         
 	if (is_admin()) {
-		
+		  
 		$wmobile_pack->wmp_admin_init();
 		
 		add_action( 'wp_ajax_wmp_content_save', array( &$wmobile_pack_admin, 'wmp_content_save' ) );
@@ -40,6 +40,9 @@ if ( class_exists( 'WMobilePack' ) && class_exists( 'WMobilePackAdmin' ) ) {
 		add_action( 'wp_ajax_wmp_settings_editcover', array( &$wmobile_pack_admin, 'wmp_settings_editcover' ) );
         add_action( 'wp_ajax_wmp_settings_save', array( &$wmobile_pack_admin, 'wmp_settings_save' ) );
 		add_action( 'wp_ajax_wmp_send_feedback', array( &$wmobile_pack_admin, 'wmp_send_feedback' ) );
+		
+		add_action( 'wp_ajax_wmp_premium_save', array( &$wmobile_pack_admin, 'wmp_premium_save' ) );
+		add_action( 'wp_ajax_wmp_premium_disconnect', array( &$wmobile_pack_admin, 'wmp_premium_disconnect' ) );
 		
 		add_action( 'wp_admin_wmp_page_details', array( &$wmobile_pack_admin, 'wmp_page_content' ) );
         

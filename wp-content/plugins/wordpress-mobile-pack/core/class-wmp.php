@@ -1,9 +1,9 @@
 <?php
 
-if ( ! class_exists( 'WMobilePack' ) ) { 
+if ( ! class_exists( 'WMobilePack' ) ) {  
 
-    /**
-     * WMobilePack 
+    /** 
+     * WMobilePack  
      * 
      * Main class for the Wordpress Mobile Pack plugin. This class handles:
      * 
@@ -23,11 +23,10 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     	public static $wmp_options; 
         public static $wmp_allowed_fonts = array('Roboto Light Condensed', 'Crimson Roman', 'Open Sans Condensed Light');
         public static $wmp_basic_theme = 'base';
-        
+		public static $wmp_premium_theme = 'premium';
         // the oldest version that will enable the custom select
         public static $wmp_customselect_enable = 3.6;
-    		
-   		 
+    	 
     	/* ----------------------------------*/
     	/* Methods							 */
     	/* ----------------------------------*/
@@ -43,22 +42,25 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                 
                 self::$wmp_options = array(
                 
-                	'color_scheme'          => 1,
-                	'font_headlines'        => self::$wmp_allowed_fonts[0],
-                    'font_subtitles'        => self::$wmp_allowed_fonts[0],
-                    'font_paragraphs'       => self::$wmp_allowed_fonts[0],
-                    'inactive_categories'   => serialize(array()),
-					'inactive_pages'   		=> serialize(array()),
-					'ordered_categories'    => serialize(array()),
-					'ordered_pages'   		=> serialize(array()),
-                    'joined_waitlists'      => serialize(array()),
-                    'display_mode'          => 'normal',
-                	'logo'                  => '',
-                	'icon'                  => '',
-					'cover'					=> '',
-					'google_analytics_id'	=> '',
-                    'whats_new_updated'     => 0,
-                    'whats_new_last_updated' => 0					
+                	'color_scheme'           => 1,
+                	'font_headlines'         => self::$wmp_allowed_fonts[0],
+                    'font_subtitles'         => self::$wmp_allowed_fonts[0],
+                    'font_paragraphs'        => self::$wmp_allowed_fonts[0],
+                    'inactive_categories'    => serialize(array()),
+					'inactive_pages'   		 => serialize(array()),
+					'ordered_categories'     => serialize(array()),
+					'ordered_pages'   		 => serialize(array()),
+                    'joined_waitlists'       => serialize(array()),
+                    'display_mode'           => 'normal',
+                	'logo'                   => '',
+                	'icon'                   => '',
+					'cover'					 => '',
+					'google_analytics_id'	 => '',
+                    'whats_new_updated'      => 0,
+                    'whats_new_last_updated' => 0,
+					'premium_api_key'		 => '',
+					'premium_config_path'	 => '',
+					'premium_active'		 => 0
                 );
             }
     	}
@@ -122,9 +124,6 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     		$wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE 'wmpack_page_%'" );
 			
 			
-			
-			
-			
 			// remove the cookies
 			setcookie("wmp_theme_mode", "", time()-3600);
 			setcookie("wmp_load_app", "", time()-3600);
@@ -175,9 +174,11 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 			wp_enqueue_script('js_ajax_upload', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/AjaxUpload.min.js'), $dependencies, WMP_VERSION);
 			wp_enqueue_script('js_interface', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/JSInterface.min.js'), $dependencies, WMP_VERSION);	
 		    wp_enqueue_script('js_scrollbar', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/perfect-scrollbar.min.js'), array(), WMP_VERSION);	
+    		wp_enqueue_script('js_cookie', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/jquery.cookie.js'), $dependencies, WMP_VERSION);	
     		
 			
 			//wp_enqueue_script('js_general', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Default/GENERAL.min.js'), $dependencies, '1.11.1');	
+			wp_enqueue_script('js_join_waitlist', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Waitlist/WMP_WAITLIST.min.js'), array(), WMP_VERSION);
 			wp_enqueue_script('js_feedback', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Feedback/WMP_SEND_FEEDBACK.min.js'), array(), WMP_VERSION);	
     		//wp_enqueue_script( 'jquery-ui-dialog' );
 		
@@ -195,9 +196,8 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 
 			wp_enqueue_script('js_content_editcategories', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_EDIT_CATEGORIES.min.js'), array(), WMP_VERSION);
             wp_enqueue_script('js_content_editpages', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_EDIT_PAGES.min.js'), array(), WMP_VERSION);
-            wp_enqueue_script('js_content_pagepopup', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_PAGE_DETAILS.min.js'), array(), WMP_VERSION);
-			wp_enqueue_script('js_join_waitlist', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Waitlist/WMP_WAITLIST.min.js'), array(), WMP_VERSION);
-        	
+            wp_enqueue_script('js_content_pagedetails', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_PAGE_DETAILS.min.js'), array(), WMP_VERSION);
+			
 			wp_enqueue_script('jquery-ui-sortable');
 			//wp_enqueue_script('jquery-ui-draggable');
 		}
@@ -223,10 +223,11 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          */
         public function wmp_admin_load_settings_js(){
             wp_enqueue_script('js_settings_editdisplay', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/WMP_EDIT_DISPLAY.min.js'), array(), WMP_VERSION);
-            wp_enqueue_script('js_join_waitlist', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Waitlist/WMP_WAITLIST.min.js'), array(), WMP_VERSION);
+			wp_enqueue_script('js_settings_connect', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/WMP_CONNECT.js'), array(), WMP_VERSION);
         }
         
-        /**
+        
+		/**
          * 
          * Load specific javascript files for the admin Look & Feel submenu page
          * 
@@ -251,9 +252,20 @@ if ( ! class_exists( 'WMobilePack' ) ) {
             wp_enqueue_script('js_settings_edittheme', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Theming/WMP_EDIT_THEME.min.js'), array(), WMP_VERSION);
             wp_enqueue_script('js_settings_editimages', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Theming/WMP_EDIT_IMAGES.min.js'), array(), WMP_VERSION);
             wp_enqueue_script('js_settings_editcover', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Theming/WMP_EDIT_COVER.min.js'), array(), WMP_VERSION);
-            wp_enqueue_script('js_join_waitlist', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Waitlist/WMP_WAITLIST.min.js'), array(), WMP_VERSION);
+            
         }
         
+		/**
+         * 
+         * Load specific javascript files for the admin Content submenu page
+         * 
+         */
+        public function wmp_admin_load_premium_js(){
+
+			wp_enqueue_script('js_content_premium', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/WMP_DISCONNECT.js'), array(), WMP_VERSION);
+			
+		}
+		
         
     	/**
     	 * 
@@ -266,40 +278,51 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     		require_once(WMP_PLUGIN_PATH.'core/class-admin.php');
     		$WMobilePackAdmin = new WMobilePackAdmin;
 
-            // check if we need to request updates for the what's new section
-            if (!isset($_COOKIE['wmp_check_updates'])) {
-            
-                WMobilePackAdmin::wmp_whatsnew_updates();    
-                
-                // set next update request after 2 days
-                setcookie("wmp_check_updates", 1, time()+3600*24*2,'/');
-            }
-            
-            // display notify icon if the what's new section was updated or there's a new plugin version available
-            $display_notify_icon = false;
-            if (WMobilePack::wmp_get_setting('whats_new_updated') == 1 || self::wmp_new_plugin_version() !== null){
-                $display_notify_icon = true;
-            }
-            
-           	// add menu and submenu hooks
-    		add_menu_page( 'WP Mobile Pack', 'WP Mobile Pack', 'manage_options', 'wmp-options', '', WP_PLUGIN_URL . '/wordpress-mobile-pack/admin/images/appticles-logo'.($display_notify_icon == true ? '-updates' : '').'.png' );
-    		add_submenu_page( 'wmp-options', "What's New", "What's New", 'manage_options', 'wmp-options', array( &$WMobilePackAdmin, 'wmp_options' ) );
-    		
-            $theme_page = add_submenu_page( 'wmp-options', 'Look & Feel', 'Look & Feel', 'manage_options', 'wmp-options-theme', array( &$WMobilePackAdmin, 'wmp_theme_options') );
-            add_action( 'load-' . $theme_page, array( &$this, 'wmp_admin_load_theme_js' ) );   
-            
-    		$content_page = add_submenu_page( 'wmp-options', 'Content', 'Content', 'manage_options', 'wmp-options-content', array( &$WMobilePackAdmin, 'wmp_content_options') );
-            add_action( 'load-' . $content_page, array( &$this, 'wmp_admin_load_content_js' ) );   
-            
-    		$settings_page = add_submenu_page( 'wmp-options', 'Settings', 'Settings', 'manage_options', 'wmp-options-settings', array( &$WMobilePackAdmin, 'wmp_settings_options') );
-            add_action( 'load-' . $settings_page, array( &$this, 'wmp_admin_load_settings_js' ) ); 
-            
-    		add_submenu_page( 'wmp-options', 'More...', 'More...', 'manage_options', 'wmp-options-upgrade', array( &$WMobilePackAdmin, 'wmp_upgrade_options') ); 
-    	
-			// fake submenu since it is not visible
-			$pages_page = add_submenu_page( null, 'More...', 'Details', 'manage_options', 'wmp-page-details', array( &$WMobilePackAdmin, 'wmp_page_content') ); 
-    		add_action( 'load-' . $pages_page, array( &$this, 'wmp_admin_load_page_js' ) ); 
-		
+			
+			// check menu 
+			if(self::wmp_get_setting('premium_active') == 1 && self::wmp_get_setting('premium_api_key') != '') {
+					
+				// add menu and submenu hooks
+				$menu_premium = add_menu_page( 'WP Mobile Pack', 'WP Mobile Pack', 'manage_options', 'wmp-options-premium', '', WP_PLUGIN_URL . '/wordpress-mobile-pack/admin/images/appticles-logo.png' );
+				add_submenu_page( 'wmp-options', "What's New", "What's New", 'manage_options', 'wmp-options-premium', array( &$WMobilePackAdmin, 'wmp_premium_options' ) );
+				add_action( 'load-' . $menu_premium, array( &$this, 'wmp_admin_load_premium_js' ) );   
+																					 
+			} else {
+
+				// check if we need to request updates for the what's new section
+				if (!isset($_COOKIE['wmp_check_updates'])) {
+				
+					WMobilePackAdmin::wmp_whatsnew_updates();    
+					
+					// set next update request after 2 days
+					setcookie("wmp_check_updates", 1, time()+3600*24*2,'/');
+				}
+				
+				// display notify icon if the what's new section was updated or there's a new plugin version available
+				$display_notify_icon = false;
+				if (WMobilePack::wmp_get_setting('whats_new_updated') == 1 || self::wmp_new_plugin_version() !== null){
+					$display_notify_icon = true;
+				}
+				
+				// add menu and submenu hooks
+				add_menu_page( 'WP Mobile Pack', 'WP Mobile Pack', 'manage_options', 'wmp-options', '', WP_PLUGIN_URL . '/wordpress-mobile-pack/admin/images/appticles-logo'.($display_notify_icon == true ? '-updates' : '').'.png' );
+				add_submenu_page( 'wmp-options', "What's New", "What's New", 'manage_options', 'wmp-options', array( &$WMobilePackAdmin, 'wmp_options' ) );
+				
+				$theme_page = add_submenu_page( 'wmp-options', 'Look & Feel', 'Look & Feel', 'manage_options', 'wmp-options-theme', array( &$WMobilePackAdmin, 'wmp_theme_options') );
+				add_action( 'load-' . $theme_page, array( &$this, 'wmp_admin_load_theme_js' ) );   
+				
+				$content_page = add_submenu_page( 'wmp-options', 'Content', 'Content', 'manage_options', 'wmp-options-content', array( &$WMobilePackAdmin, 'wmp_content_options') );
+				add_action( 'load-' . $content_page, array( &$this, 'wmp_admin_load_content_js' ) );   
+				
+				$settings_page = add_submenu_page( 'wmp-options', 'Settings', 'Settings', 'manage_options', 'wmp-options-settings', array( &$WMobilePackAdmin, 'wmp_settings_options') );
+				add_action( 'load-' . $settings_page, array( &$this, 'wmp_admin_load_settings_js' ) ); 
+				
+				add_submenu_page( 'wmp-options', 'More...', 'More...', 'manage_options', 'wmp-options-upgrade', array( &$WMobilePackAdmin, 'wmp_upgrade_options') ); 
+			
+				// fake submenu since it is not visible
+				$pages_page = add_submenu_page( null, 'More...', 'Details', 'manage_options', 'wmp-page-details', array( &$WMobilePackAdmin, 'wmp_page_content') ); 
+				add_action( 'load-' . $pages_page, array( &$this, 'wmp_admin_load_page_js' ) ); 
+			}
 		}
     		
          	
@@ -493,16 +516,37 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                 
                 if (self::wmp_check_display_mode()) {
         		
-            		if (!isset($_COOKIE["wmp_load_app"])) {
-            			
-            			// load admin class
-            			require_once(WMP_PLUGIN_PATH.'core/mobile-detect.php');
-            			$WMobileDetect = new WPMobileDetect;
-            			
-            			$load_app = $WMobileDetect->wmp_detect_device();
-            			
-            		} elseif (isset($_COOKIE["wmp_load_app"]) && $_COOKIE["wmp_load_app"] == 1)
-            			$load_app = true;	
+					$visible_app = true; // set app visible by default
+				
+					/// for premium, check if the web app is still visible
+					$json_config_premium = self::wmp_set_premium_config();
+					
+					if($json_config_premium !== false) {
+						
+						$arrConfig = json_decode($json_config_premium);
+						
+						if(isset($arrConfig->settings->status) && $arrConfig->settings->status == 'hidden') {
+							
+							$load_app = false; // the app will not be loaded since the status is hidden
+							$visible_app = false; // setting it to false will skip the detection
+						
+						}
+					}
+				
+					if($visible_app) {
+						
+						if (!isset($_COOKIE["wmp_load_app"])) {
+								
+							// load admin class
+							require_once(WMP_PLUGIN_PATH.'core/mobile-detect.php');
+							$WMobileDetect = new WPMobileDetect;
+							
+							$load_app = $WMobileDetect->wmp_detect_device();
+							
+							
+						} elseif (isset($_COOKIE["wmp_load_app"]) && $_COOKIE["wmp_load_app"] == 1)
+							$load_app = true;	
+					}
                         
                     if ($load_app)
                         $this->wmp_load_app();
@@ -614,7 +658,10 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          * Return the theme name
          */
         public static function wmp_app_theme() {
-    		return self::$wmp_basic_theme;
+    		if(self::wmp_get_setting('premium_active') == 1 && self::wmp_get_setting('premium_api_key') != '')
+				return self::$wmp_premium_theme;
+			else
+				return self::$wmp_basic_theme;
     	}
     	
         /**
@@ -624,7 +671,76 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     		return WMP_PLUGIN_PATH . 'themes';
     	}
      	
-    		
+    	
+		/**
+		 * Method used to read the config js for premium dashboards and add them to a transient
+		 *
+		 */
+		public static function wmp_set_premium_config() { 
+			
+			if(self::wmp_get_setting('premium_active') == 1 && self::wmp_get_setting('premium_api_key') != '') {
+				
+				// get config path
+				$config_path = self::wmp_get_setting('premium_config_path');
+				
+				if($config_path != '') { // check if config path is set
+				
+					$json_data = get_transient("wmp_premium_config_path"); 
+					
+					if(!$json_data) {
+						
+						$delete_premium = false;
+						
+						// check if config path is a valid url
+						//$pattern = '%^http:\/\/cdn.appticles.com\/[a-z0-9]{6,7}\/config\.json%';
+						$pattern = '%^http:\/\/cdn-dev.appticles.com\/[a-z0-9]{6,7}\/config\.json%';
+						
+						if(preg_match($pattern,$config_path,$matches) === 1) {
+							
+							// get response
+							$json_response = WMobilePackAdmin::wmp_read_data($config_path);
+							
+							if ($json_response !== false && $json_response != '') {							
+								// Store this data in a transient
+								set_transient( 'wmp_premium_config_path', $json_response, 3600*30 ); // transient expires every half an hour
+							
+								return $json_response;
+							
+							} else
+								$delete_premium = true;
+								
+							if($delete_premium) { // the dashboards were disconnected
+								
+								$arrData = array(
+													'premium_api_key' => '',
+													'premium_active'  => 0,
+													'premium_config_path' => ''
+												 );	
+								// save options
+								self::wmp_update_settings($arrData);
+								
+								
+							}	
+						}
+						
+					}
+					
+					return $json_data;
+				}
+			}
+			
+			return false;
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
          /**
           * 
           * Method used to create a token for the comments form.
@@ -741,5 +857,23 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 			//by default return null
 			return null;		
         }
+		
+		 /**
+          * 
+          * Method used to check if the device is a tablet or a mobile phone 
+		  * 
+		  * This method is called from index.php of the premium theme
+          *		  
+          */
+		public static function wmp_is_tablet(){
+			
+			// load admin class
+			require_once(WMP_PLUGIN_PATH.'core/mobile-detect.php');
+			$WMobileDetect = new WPMobileDetect;
+			
+			return $WMobileDetect->wmp_is_tablet();
+			
+			
+		}
    }
 }

@@ -146,7 +146,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 						
                         foreach ($posts_query->posts as $post) {
     						
-							if($post->post_password == '') {
+							if ($post->post_password == '') {
 							
 								// get post category
 								$category = get_the_category($post->ID);
@@ -245,7 +245,8 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 							
     						foreach($cat_posts_query->posts as $post) {
     							
-								if($post->post_password == '') {
+								if ($post->post_password == '') {
+								    
 									// featured image details
 									$image_details = array();
 									
@@ -263,10 +264,9 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 														   "height" 	=> $image_data[2]
 														 );
 											
-											if(!is_array($arrCategories[$current_key + 1]["image"]) ) 
+											if (!is_array($arrCategories[$current_key + 1]["image"]) ) 
 												// set arr category
 												$arrCategories[$current_key + 1]["image"] = $image_details;
-											
 										}
 									} 
 									
@@ -872,14 +872,6 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 				$limit = $_GET["limit"];
 			
 			
-			// build array with the active categories ids
-            $active_pages_ids = array();
-            
-            foreach ($categories as $category){
-                if (!in_array($category->cat_ID, $this->inactive_categories))
-                    $active_categories_ids[] = $category->cat_ID;
-            }
-			
 			// set args for pages
 			$args = array(
     			  'post__not_in' => $this->inactive_pages,
@@ -904,7 +896,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
     			foreach($pages_query->posts as $page) {
     					
 					// add only the pages that are not password protected
-					if($page->post_password == '') {
+					if($page->post_password == '' && strip_tags(trim($page->post_title)) != '') {
 					
 						// check if features image
 						$image_details = array();
@@ -938,11 +930,9 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 						
 						
 						$arrPages[$current_key] = array(
-							'id' 				=> $page->ID,
-							"title" 			=> $page->post_title,
-							"timestamp" 		=> strtotime($page->post_date),
-							"author" 			=> get_the_author_meta( 'user_nicename' , $page->post_author ),
-							"date" 				=> date("D, M d, Y, H:i", strtotime($page->post_date)),
+							'id' 				=> $page->ID,	
+							'order'				=> $current_key,
+							"title" 			=> strip_tags(trim($page->post_title)),							
 							"image" 			=> !empty($image_details) ? $image_details : "",
 							"content" 			=> ''
 						);
@@ -952,7 +942,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 			
 			// sort pages by key
             ksort($arrPages);
-			
+			$arrPages = array_values($arrPages);
 			return '{"pages":'.json_encode($arrPages)."}";
 		
 		} else
@@ -1003,7 +993,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 			// get page by id
 		    $page = get_page( $pageId);
 			
-			if ($page != null && $page->post_type == 'page' && $page->post_password == '') {
+			if ($page != null && $page->post_type == 'page' && $page->post_password == '' && strip_tags(trim($page->post_title)) != '') {
 				
 			  	// check if page is visible
 			   $is_visible = false;
@@ -1054,12 +1044,8 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
     				$arrPage = array(
                         'id' 					=> $page->ID,
                         "title" 				=> $page->post_title,
-                        "timestamp" 			=> strtotime($page->post_date),
-                        "author" 				=> get_the_author_meta( 'user_nicename' , $page->post_author ),
-                        "date" 			    	=> date("D, M d, Y, H:i", strtotime($post->page)),
                         "link" 			    	=> $page->guid,
                         "image" 				=> !empty($image_details) ? $image_details : "",
-                        "description"	    	=> $description,
                         "content" 				=> $content
 					 );
 				}
@@ -1094,7 +1080,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 			
 			// remove all unwanted script tags
 			$text = self::removeScriptTags($text);
-			
+			$text = self::removeTableTags($text);
 			// if no_images is true, remove all images from the content
 			if($stripTags)
 				$text = strip_tags( $text, '<p><a><span><br><i><u><strong><b><sup><em>');
@@ -1199,6 +1185,17 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 	  
 	}
 	
+	/**
+	 * Method used to remove table tags and everything in between them
+	 */
+	public static function removeTableTags($text) {
+     
+	 $text = preg_replace("/<\s*table[^>]*>[\s\S]*?(<\s*\/table[^>]*>|$)/i"," ",$text);
+	 // return clean text
+	 return $text;
+	  
+	}
+	
 	
 	
 	/**
@@ -1261,9 +1258,4 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 	 
   } // Export
   
-  
-	  
-	  
-  
-
 ?>

@@ -73,6 +73,24 @@
                 </div>
                 <div class="spacer-0"></div>
             </div>
+            <div class="spacer-15"></div>
+            <div class="details">
+            	<div class="display-mode">
+                 	<h2 class="title">Connect with Appticles</h2>
+                    <div class="spacer-20"></div>
+                    <form name="wmp_connect_form" id="wmp_connect_form" class="left" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_premium_save" method="post">
+                        <input type="hidden" name="wmp_connect_settings" id="wmp_connect_settings"  value="<?php echo plugins_url()."/".WMP_DOMAIN.'/api/content.php?content=exportsettings';?>" />
+                        <input type="text" name="wmp_connect_apikey" id="wmp_connect_apikey" placeholder="api key*" class="small indent" value="" />
+                        <div class="field-message error" id="error_apikey_container"></div>
+                        <div class="spacer-20"></div>
+                        <a href="javascript:void(0)" id="wmp_connect_send_btn" class="btn green smaller">Save</a>
+                     
+                       
+                    </form>
+                    
+                </div>
+                <div class="spacer-0"></div>
+            </div>
         </div>
     
         <div class="right-side">
@@ -88,6 +106,14 @@
     if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
             window.WMPJSInterface.add("UI_editdisplay","WMP_EDIT_DISPLAY",{'DOMDoc':window.document}, window);
+			window.WMPJSInterface.add("UI_connect",
+                    "WMP_CONNECT",
+                    {
+                        'DOMDoc':       window.document,
+                        'submitURL' :   'http://dev.webcrumbz.co/content/wpconnect',
+                    }, 
+                    window
+                );
         });
     }
 </script>

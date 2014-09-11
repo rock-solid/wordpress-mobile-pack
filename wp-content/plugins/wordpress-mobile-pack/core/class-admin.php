@@ -23,6 +23,22 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			include(WMP_PLUGIN_PATH.'admin/wmp-admin-main.php');
 		}
 		
+		
+		/**
+         * 
+		 * Method used to render the main admin page for th premium dashboard
+		 *
+		 */
+		public function wmp_premium_options() {
+			
+			global $wmobile_pack;
+			
+            WMobilePack::wmp_update_settings('whats_new_updated', 0);
+            
+			// load view
+			include(WMP_PLUGIN_PATH.'admin/wmp-admin-premium.php'); 
+		}
+		
          
         /**
 		 * Static method used to request the content for the What's New page.
@@ -581,8 +597,95 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                 echo $status;
             }
             
+            exit(); 
+        }
+		
+		/**
+         * 
+         * Method used to save the premium settings
+         * 
+         */
+        public function wmp_premium_save() {
+            
+            if (current_user_can( 'manage_options' )){
+                
+                global $wmobile_pack;
+            	
+                $status = 0;
+                
+                if (isset($_POST) && is_array($_POST) && !empty($_POST)){
+                    
+                    if (isset($_POST['api_key']) && isset($_POST['valid'])  && isset($_POST['config_path'])){
+                        
+						$pattern = '%^http:\/\/cdn-dev.appticles.com\/[a-z0-9]{6,7}\/config\.json%';
+						
+                        if (
+								preg_match('/^[a-zA-Z0-9]+$/', $_POST['api_key']) && 
+								($_POST['valid'] == '0' || $_POST['status'] == '1') && 
+								($_POST['config_path'] != '' && preg_match($pattern,$_POST['config_path'],$matches) === 1)
+								){
+                            
+                            $status = 1;
+                                
+							$arrData = array(
+											 	'premium_api_key' => $_POST['api_key'],
+												'premium_active'  => $_POST['valid'],
+												'premium_config_path' => $_POST['config_path']
+											 );	
+								
+                            // save options
+                            WMobilePack::wmp_update_settings($arrData);
+                        }
+                    }    
+                }
+                
+                echo $status;
+            }
+            
             exit();
         }
+		
+		
+		
+		/**
+         * 
+         * Method used to disconnect the dashboard from Appticles and rever to basic theme
+         * 
+         */
+        public function wmp_premium_disconnect() {
+            
+            if (current_user_can( 'manage_options' )){
+                
+                global $wmobile_pack;
+            	
+                $status = 0;
+                
+                if (isset($_POST) && is_array($_POST) && !empty($_POST)){
+                    
+                    if (isset($_POST['api_key']) && isset($_POST['active'])){
+                        
+                        if (preg_match('/^[a-zA-Z0-9]+$/', $_POST['api_key']) && $_POST['active'] == 0){
+                            
+                            $status = 1;
+                                
+							$arrData = array(
+											 	'premium_api_key' => '',
+												'premium_active'  => 0,
+												'premium_config_path' => ''
+											 );	
+								
+                            // save options
+                            WMobilePack::wmp_update_settings($arrData);
+                        }
+                    }    
+                }
+                
+                echo $status;
+            }
+            
+            exit();
+        }
+		
         
         /**
          * 
