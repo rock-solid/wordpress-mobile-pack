@@ -1,13 +1,11 @@
 <?php
 
 	$json_config_premium = WMobilePack::wmp_set_premium_config(); 
+	
 	$arrConfig = null;
 	if($json_config_premium !== false) {
-						
-		$arr_config_premium = json_decode($json_config_premium,true);
+		$arrConfig = json_decode($json_config_premium,true);
 	
-		if(!empty($arr_config_premium) && isset($arr_config_premium['settings']))
-			$arrConfig = $arr_config_premium['settings'];
 	}
 
 
@@ -105,10 +103,10 @@
         
         $cover = '';
         
-        if ($is_tablet == 0 && $arrConfig['cover_smartphones_path'] != '')
+        if ($is_tablet == 0 && isset($arrConfig['cover_smartphones_path'] ) && $arrConfig['cover_smartphones_path'] != '')
             $cover = $arrConfig['cover_smartphones_path'];
             
-        if ($is_tablet == 1 && $arrConfig['cover_tablets_path'] != '')
+        if ($is_tablet == 1 && isset($arrConfig['cover_tablets_path'] ) && $arrConfig['cover_tablets_path'] != '')
             $cover = $arrConfig['cover_tablets_path'];
             
     ?>
@@ -125,9 +123,9 @@
            // socialApiPath: "http://api.appticles.com/social1/",
 			socialApiPath: "http://dev.webcrumbz.com/social/",
             
-            logo: '<?php echo $arrConfig['logo_path'] != '' ? $app_files_path.$arrConfig['logo_path'] : $kits_path."resources/images/logo.png";?>',
-            hasIcons: <?php echo intval($arrConfig['icon_path'] != "");?>,
-            hasStartups: <?php echo intval($arrConfig['logo_path'] != "");?>,
+            logo: '<?php echo isset($arrConfig['logo_path']) && $arrConfig['logo_path'] != '' ? $app_files_path.$arrConfig['logo_path'] : $kits_path."resources/images/logo.png";?>',
+            hasIcons: <?php echo intval(isset($arrConfig['icon_path']) &&$arrConfig['icon_path'] != "");?>,
+            hasStartups: <?php echo intval(isset($arrConfig['logo_path']) && $arrConfig['logo_path'] != "");?>,
             
             userCover: <?php echo $cover == "" ? 'false' : 'true' ;?>,
             defaultCover: "<?php echo $cover == "" ? 'http://cdn-kits1.appticles.com/others/covers/'.($is_tablet ? 'tablet' : 'phone').'/pattern-'.rand(1,8).'.jpg' : $app_files_path.$cover ;?>",
@@ -200,14 +198,36 @@
     <link rel="stylesheet" href="<?php echo $kits_path;?>resources/css/fonts.css" type="text/css" />
     
     <?php
-    
-        $arrLoadedFonts[] = $arrConfig['font_headlines'];
-            
+    	
+		$theme_details = array(							
+							'color_scheme'      => 1,
+							'font_headlines'    => 1,
+							'font_subtitles'    => 1,
+							'font_paragraphs'   => 1
+						);
+	
+	
+		if(!isset($arrConfig['font_headlines'])) 
+			$arrConfig['font_headlines'] = $theme_details['font_headlines'];
+			
+		if(!isset($arrConfig['font_subtitles'])) 
+			$arrConfig['font_subtitles'] = $theme_details['font_subtitles'];
+			
+		if(!isset($arrConfig['font_paragraphs'])) 
+			$arrConfig['font_paragraphs'] = $theme_details['font_paragraphs'];
+     
+        if(!isset($arrConfig['color_scheme'])) 
+			$arrConfig['color_scheme'] = $theme_details['color_scheme'];  
+		  
+		$arrLoadedFonts[] = $theme_details['font_headlines'];  
+		  
         if (!in_array($arrConfig['font_subtitles'], $arrLoadedFonts))
             $arrLoadedFonts[] = $arrConfig['font_subtitles'];
             
         if (!in_array($arrConfig['font_paragraphs'], $arrLoadedFonts))
             $arrLoadedFonts[] = $arrConfig['font_paragraphs'];
+			
+		
     ?>
     
     <?php foreach ($arrLoadedFonts as $font_no):?>
@@ -224,7 +244,7 @@
    
    	<?php
         // check if google analytics id was set
-        $google_analytics_id = $arrConfig['google_analytics_id'];        
+        $google_analytics_id = isset($arrConfig['google_analytics_id']) ? $arrConfig['google_analytics_id'] : '';        
         if ($google_analytics_id != ''):
     ?>
     

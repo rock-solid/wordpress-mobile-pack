@@ -22,7 +22,7 @@
                 
                 <div class="spacer-20"></div>
                 <div class="showcase">
-                	<img src="https://s3-eu-west-1.amazonaws.com/appticles-wmpack/dashboard/whats_new/images/whats-new.png">
+                	<img src="http://http://cdn-wpmp.appticles.com/dashboard/whats_new/images/whats-new.png">
                 </div>
                 <div class="spacer-20"></div>
                 

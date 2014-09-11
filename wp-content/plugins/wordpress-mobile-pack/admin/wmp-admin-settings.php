@@ -78,15 +78,24 @@
             	<div class="display-mode">
                  	<h2 class="title">Connect with Appticles</h2>
                     <div class="spacer-20"></div>
+                    <p> Extend your WP Mobile Pack with the Premium version by connecting with Appticles.com. Fill in the provided API Key to enable your Premium account.</p>
+                    <p>
+[5:55:25 PM] Ciprian Borodescu: Your WP Mobile Pack is now connected with Appticles.com and your Premium version is enabled. You can manage everything by simply logging in to the Dashboard. </p>
+                    <div class="spacer-20"></div>
                     <form name="wmp_connect_form" id="wmp_connect_form" class="left" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_premium_save" method="post">
                         <input type="hidden" name="wmp_connect_settings" id="wmp_connect_settings"  value="<?php echo plugins_url()."/".WMP_DOMAIN.'/export/content.php?content=exportsettings';?>" />
-                        <input type="text" name="wmp_connect_apikey" id="wmp_connect_apikey" placeholder="api key*" class="small indent" value="" />
+                        <p>Api Key:</p>
+                        <div class="spacer-10"></div>
+                        <input type="text" name="wmp_connect_apikey" id="wmp_connect_apikey" class="small indent" value="" />
                         <div class="field-message error" id="error_apikey_container"></div>
                         <div class="spacer-20"></div>
                         <a href="javascript:void(0)" id="wmp_connect_send_btn" class="btn green smaller">Save</a>
-                     
-                       
-                    </form>
+                     </form>
+                    <div class="notice notice-left right" style="width: 465px; margin: 0px 0 15px 0;">
+                        <span>
+                            Extend your WP Mobile Pack with the Premium version by connecting with Appticles.com. Fill in the provided API Key to enable your Premium account.
+                        </span>
+                    </div>
                     
                 </div>
                 <div class="spacer-0"></div>

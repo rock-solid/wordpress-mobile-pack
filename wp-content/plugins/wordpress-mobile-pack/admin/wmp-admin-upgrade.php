@@ -29,9 +29,18 @@
                             <h1><?php echo $page_content['premium']['title'];?></h1>
                             <div class="spacer-20"></div>
                         <?php endif;?>
-                       <?php if (array_key_exists('showcase_image',$page_content['premium'])):?>
+                       <?php
+							$feed_url = '';
+							
+							if (get_bloginfo('atom_url') != null && get_bloginfo('atom_url') != '')
+								$feed_url = '&feedurl='.urlencode(get_bloginfo('atom_url'));
+							elseif (get_bloginfo('rss2_url') != null && get_bloginfo('rss2_url') != '')
+								$feed_url = '&feedurl='.urlencode(get_bloginfo('rss2_url'));	
+						?>
+					   
+					   <?php if (array_key_exists('showcase_image',$page_content['premium'])):?>
                              <div class="showcase">
-                                <a href="<?php echo $page_content['premium']['showcase_url'];?>" target="_blank"><img src="<?php echo $page_content['premium']['showcase_image'];?>" width="671"></a>
+                                <a href="<?php echo $page_content['premium']['button_link'].$feed_url.'&wmp_v=21';?>" target="_blank"><img src="<?php echo $page_content['premium']['showcase_image'];?>" width="671"></a>
                             </div>
                         <?php endif;?>
                         <div class="spacer-20"></div>
@@ -66,15 +75,6 @@
                                 </div>
                             <?php endif;?>
                             
-                            <?php
-								$feed_url = '';
-								
-								if (get_bloginfo('atom_url') != null && get_bloginfo('atom_url') != '')
-									$feed_url = '&feedurl='.urlencode(get_bloginfo('atom_url'));
-								elseif (get_bloginfo('rss2_url') != null && get_bloginfo('rss2_url') != '')
-									$feed_url = '&feedurl='.urlencode(get_bloginfo('rss2_url'));	
-							?>
-                        
                         <div class="spacer-20"></div>
                         <?php if (array_key_exists('button_text', $page_content['premium']) && array_key_exists('button_link', $page_content['premium'])):?>
                             <div class="try-it">
