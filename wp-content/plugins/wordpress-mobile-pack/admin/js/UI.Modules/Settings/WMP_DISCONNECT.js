@@ -116,7 +116,7 @@ function WMP_DISCONNECT(){
 					
 					} else { 
 					   
-						// make request to settings endpoint to mark the wailist as joined
+						// make request to settings endpoint to remove premium dashboard and theme
 					   
 						jQuery.post(
 							ajaxurl, 
@@ -124,7 +124,6 @@ function WMP_DISCONNECT(){
 								'action': 'wmp_premium_disconnect',
 								'api_key': jQuery("#"+JSObject.type+"_apikey", JSObject.DOMDoc).val(),
 								'active': '0'
-								// ?? it should be tha path to json with settings
 							}, 
 							function(response1){
 								console.log(response1);
@@ -136,9 +135,7 @@ function WMP_DISCONNECT(){
 									WMPJSInterface.Loader.display({message: message});	
 								}
 							}
-						);
-					
-								
+						);	
 					}
 							
 				},
@@ -148,9 +145,5 @@ function WMP_DISCONNECT(){
 		}
 		
 	}
-	
-	
-	
-	
 
 }

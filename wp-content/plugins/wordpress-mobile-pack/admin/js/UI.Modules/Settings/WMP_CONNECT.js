@@ -16,6 +16,7 @@ function WMP_CONNECT(){
     this.send_btn;
 	
 	this.submitURL;
+	this.redirectTo;
 	
 	/*****************************************************************************************************/
     /*                                                                                                   */
@@ -193,77 +194,106 @@ function WMP_CONNECT(){
 	/*****************************************************************************************************/
 	this.sendData = function(){
 		
-		// set cookie with api key to be used by the api endpoint
-		jQuery.cookie("apiKey", jQuery("#"+JSObject.type+"_apikey", JSObject.DOMDoc).val(), { expires : 1 });
-		
-		
 		WMPJSInterface.Preloader.start();
 		
-		jQuery.ajax({
-			url: JSObject.submitURL,
-			type: 'get',
-			data: { 
-				'apiKey':    jQuery("#"+JSObject.type+"_apikey", JSObject.DOMDoc).val(),
-				'settingsPath' : jQuery("#"+JSObject.type+"_settings", JSObject.DOMDoc).val()
-			},
-			//dataType: 'jsonp',
-			success: function(responseJSON){
-				console.log(responseJSON)
-                WMPJSInterface.Preloader.remove(100);
-                
-                JSON = eval (responseJSON);
-				response = Boolean(Number(String(JSON.status)));
-				
-				if (response == 0) {
-					
-					var message = 'There was an error. Please reload the page and try again in few seconds or contact the plugin administrator if the problem persists.';
-					WMPJSInterface.Loader.display({message: message});	
-                    
-                    // reset form
-    				JSObject.form.reset();
-    				
-    				//enable form elements
-    				setTimeout(function(){
-    								var aElems = JSObject.form.elements;
-    								nElems = aElems.length;
-    								for (j=0; j<nElems; j++) {
-    									aElems[j].disabled = false;
-    								}
-    							},300);
-    				
-    				//enable buttons
-    				JSObject.addButtonsActions();
-				
-				} else { 
-				    
-                    // successfully merged dashboards
-                    WMPJSInterface.Loader.display({message: JSON.message});
-              
-                    // make request to settings endpoint to mark the wailist as joined
-                    if (response == 1) {
-                        
-                        jQuery.post(
-                            ajaxurl, 
-                            {
-                                'action': 'wmp_premium_save',
-                                'api_key': jQuery("#"+JSObject.type+"_apikey", JSObject.DOMDoc).val(),
-								'valid' : JSON.valid
-								// ?? it should be tha path to json with settings
-                            }, 
-                            function(response1){
-								
-								// reload the page
-								
-                            }
-                        );
-                    }
-            				
-                }
+		jQuery.post(
+					ajaxurl, 
+					{
+						'action': 'wmp_premium_save',
+						'api_key': jQuery("#"+JSObject.type+"_apikey", JSObject.DOMDoc).val()
+					}, 
+					function(response){
 						
-			},
-			error: function(responseJSON){
-			}
-        });
+						jQuery.ajax({
+							url: JSObject.submitURL,
+							type: 'get',
+							data: { 
+								'apiKey':    jQuery("#"+JSObject.type+"_apikey", JSObject.DOMDoc).val(),
+								'settingsPath' : jQuery("#"+JSObject.type+"_settings", JSObject.DOMDoc).val()
+							},
+							//dataType: 'jsonp',
+							success: function(responseJSON){
+								WMPJSInterface.Preloader.remove(100);
+								
+								JSON = eval (responseJSON);
+								status = Boolean(Number(String(JSON.status)));
+								
+								if (status) {
+									
+									console.log(status,"status")	
+									jQuery.post(
+										ajaxurl, 
+										{
+											'action': 'wmp_premium_connect',
+											'api_key': jQuery("#"+JSObject.type+"_apikey", JSObject.DOMDoc).val(),
+											'valid' : 1,
+											'config_path' : JSON.config_path
+										}, 
+										function(response1){
+											console.log(response1);
+											response1 = Boolean(Number(String(response1)));
+											
+											if(response1) {
+												// reload the page - redirect to premium  
+												window.location.href = JSObject.redirectTo;
+												
+											} else {
+											
+												
+												var message = 'There was an error. Please try again later';
+												WMPJSInterface.Loader.display({message: message});	
+											
+												// reset form
+												JSObject.form.reset();
+												
+												//enable form elements
+												setTimeout(function(){
+																var aElems = JSObject.form.elements;
+																nElems = aElems.length;
+																for (j=0; j<nElems; j++) {
+																	aElems[j].disabled = false;
+																}
+															},300);
+												
+												//enable buttons
+												JSObject.addButtonsActions();
+														
+												
+											}
+											
+										}
+									);
+									
+								} else {
+									
+									WMPJSInterface.Loader.display({message: JSON.message});	
+									
+									// reset form
+									JSObject.form.reset();
+									
+									//enable form elements
+									setTimeout(function(){
+													var aElems = JSObject.form.elements;
+													nElems = aElems.length;
+													for (j=0; j<nElems; j++) {
+														aElems[j].disabled = false;
+													}
+												},300);
+									
+									//enable buttons
+									JSObject.addButtonsActions();
+									
+								}
+										
+							},
+							error: function(responseJSON){
+							}
+						});
+						
+					}
+			);
+		
+		
 		
 	}
 	

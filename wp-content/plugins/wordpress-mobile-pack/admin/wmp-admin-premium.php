@@ -58,7 +58,7 @@
                     "WMP_DISCONNECT",
                     {
                         'DOMDoc':       window.document,
-                        'submitURL' :   'http://dev.webcrumbz.co/content/wpdisconnect',
+                        'submitURL' :   '<?php echo WMP_APPTICLES_DISCONNECT;?>',
 						'redirectTo' :  '<?php echo admin_url('admin.php?page=wmp-options');?>'
                     }, 
                     window

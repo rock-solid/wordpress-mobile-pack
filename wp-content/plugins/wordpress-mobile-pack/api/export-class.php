@@ -40,14 +40,7 @@ class Export {
 			
 			$arrSettings = array();
 			
-			$apiKey = '';
-			var_dump($_COOKIE);exit();
-			if(isset($_COOKIE["apiKey"]) && $_COOKIE['apiKey'] != '' && preg_match('/^[a-zA-Z0-9]+$/', $_COOKIE['apiKey'])) {
-				
-				$apiKey = $_COOKIE["apiKey"];
-			
-			
-				if(isset($_GET["apiKey"]) && $_GET["apiKey"] == WMobilePack::wmp_get_setting('premium_api_key')) {
+			if(isset($_POST["apiKey"]) && $_POST["apiKey"] == WMobilePack::wmp_get_setting('premium_api_key')) {
 				
 					if(WMobilePack::wmp_get_setting('premium_active') == 0) {
 						
@@ -70,18 +63,15 @@ class Export {
 						if ($cover_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$cover_path))
 							$cover_path = ''; 
 						else
-							$icon_path = WMP_FILES_UPLOADS_URL.$cover_path;
+							$cover_path = WMP_FILES_UPLOADS_URL.$cover_path;
 						
 						
 						// set settings
 						$arrSettings = array(
-											'color_scheme' => WMobilePack::wmp_get_setting('color_scheme'),
-											'font_headlines' => WMobilePack::wmp_get_setting('font_headlines'),
-											'font_subtitles' => WMobilePack::wmp_get_setting('font_subtitles'),
-											'font_paragraphs' => WMobilePack::wmp_get_setting('font_paragraphs'),
 											'logo' => $logo_path,
 											'icon' => $icon_path,
-											'cover' => $cover_path
+											'cover' => $cover_path,
+											'status' => 1
 										 );
 					
 						// return json
@@ -89,13 +79,13 @@ class Export {
 					
 					}
 				} 
-			} 
+			 
 				
 			// by default assume the api key is not valid	
-			return '{"error":"The api key provided is not valid."}';
+			return '{"error":"The api key provided is not valid.","status" : 0}';
 			
 		} else
-			return '{"error":""}';
+			return '{"error":"","status" : 0}';
 	}
 	
   } // Export

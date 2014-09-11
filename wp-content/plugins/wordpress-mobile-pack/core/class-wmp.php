@@ -426,24 +426,22 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                 
         		if (is_array($option) && !empty($option)) {
         			
+					$option_not_updated = false;
+					
         			foreach ($option as $option_name => $option_value) {
         				
-        				// set option not saved variable
-        				$option_not_updated = false;
-        				
+						// set option not saved variable
         				if ( array_key_exists( $option_name , self::$wmp_options ) )
         					update_option( 'wmpack_' . $option_name, $option_value );
         				else
         					$option_not_updated = true; // there is at least one option not in the default list
-        					
-        				if (!$option_not_updated)
-        					return true;
-        				else
-        					return false; // there was an error
         				
         			}
         		
-        			return true;
+        			if (!$option_not_updated)
+						return true;
+					else
+						return false; // there was an error
         			
         		} elseif (is_string($option) && $option_value !== null) {
         			

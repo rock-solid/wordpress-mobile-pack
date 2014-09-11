@@ -34,9 +34,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 		public function wmp_premium_options() {
 			
 			global $wmobile_pack;
-			
-            WMobilePack::wmp_update_settings('whats_new_updated', 0);
-            
+			 
 			// load view
 			include(WMP_PLUGIN_PATH.'admin/wmp-admin-premium.php'); 
 		}
@@ -604,7 +602,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 		
 		/**
          * 
-         * Method used to save the premium settings
+         * Method used to save the api key
          * 
          */
         public function wmp_premium_save() {
@@ -617,26 +615,13 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                 
                 if (isset($_POST) && is_array($_POST) && !empty($_POST)){
                     
-                    if (isset($_POST['api_key']) && isset($_POST['valid'])  && isset($_POST['config_path'])){
+                    if (isset($_POST['api_key'])){
                         
-						$pattern = '%^http:\/\/cdn-dev.appticles.com\/[a-z0-9]{6,7}\/config\.json%';
-						
-                        if (
-								preg_match('/^[a-zA-Z0-9]+$/', $_POST['api_key']) && 
-								($_POST['valid'] == '0' || $_POST['status'] == '1') && 
-								($_POST['config_path'] != '' && preg_match($pattern,$_POST['config_path'],$matches) === 1)
-								){
-                            
-                            $status = 1;
-                                
-							$arrData = array(
-											 	'premium_api_key' => $_POST['api_key'],
-												'premium_active'  => $_POST['valid'],
-												'premium_config_path' => $_POST['config_path']
-											 );	
-								
+                        if (preg_match('/^[a-zA-Z0-9]+$/', $_POST['api_key']) ){
+                        
                             // save options
-                            WMobilePack::wmp_update_settings($arrData);
+                            if(WMobilePack::wmp_update_settings('premium_api_key',$_POST['api_key']))
+								$status = 1;
                         }
                     }    
                 }
@@ -648,6 +633,54 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
         }
 		
 		
+		
+		/**
+         * 
+         * Method used to save the premium settings
+         * 
+         */
+        public function wmp_premium_connect() {
+            
+            if (current_user_can( 'manage_options' )){
+                
+                global $wmobile_pack;
+            	
+                $status = 0;
+                
+                if (isset($_POST) && is_array($_POST) && !empty($_POST)){
+                    
+                    if (isset($_POST['api_key']) && isset($_POST['valid'])  && isset($_POST['config_path'])){
+                        
+						
+						$pattern = '%^http:\/\/cdn-dev.appticles.com\/[a-z0-9]{6,7}\/config\.json%';
+						
+                        if (
+								preg_match('/^[a-zA-Z0-9]+$/', $_POST['api_key']) && 
+								($_POST['valid'] == '0' || $_POST['valid'] == '1') && 
+								($_POST['config_path'] != '' && preg_match($pattern,$_POST['config_path'],$matches) === 1)
+							){
+                            
+                            if($_POST['api_key'] == WMobilePack::wmp_get_setting('premium_api_key')) {
+							
+								$arrData = array(
+											 	'premium_api_key' => $_POST['api_key'],
+												'premium_active'  => $_POST['valid'],
+												'premium_config_path' => $_POST['config_path']
+											 );	
+								
+								// save options
+								if(WMobilePack::wmp_update_settings($arrData))
+									$status = 1;
+							}  
+                        }
+                    }    
+                }
+                
+                echo $status;
+            }
+            
+            exit();
+        }
 		
 		/**
          * 
@@ -667,8 +700,6 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                     if (isset($_POST['api_key']) && isset($_POST['active'])){
                         
                         if (preg_match('/^[a-zA-Z0-9]+$/', $_POST['api_key']) && $_POST['active'] == 0){
-                            
-                            $status = 1;
                                 
 							$arrData = array(
 											 	'premium_api_key' => '',
@@ -677,7 +708,9 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 											 );	
 								
                             // save options
-                            WMobilePack::wmp_update_settings($arrData);
+                           if( WMobilePack::wmp_update_settings($arrData))	
+						   	$status = 1;
+							
                         }
                     }    
                 }

@@ -110,7 +110,8 @@
                     "WMP_CONNECT",
                     {
                         'DOMDoc':       window.document,
-                        'submitURL' :   'http://dev.webcrumbz.co/content/wpconnect',
+                        'submitURL' :   '<?php echo WMP_APPTICLES_CONNECT;?>',
+						'redirectTo' :  '<?php echo admin_url('admin.php?page=wmp-options-premium');?>'
                     }, 
                     window
                 );
