@@ -1,13 +1,13 @@
 <?php 
 
-require_once("export-class.php");
+header("Content-Type: application/json; charset=UTF-8");
 
 // Disable error reporting because these methods are used as callbacks by the mobile web app
 // error_reporting(0);
 
-header("Content-Type: application/json; charset=UTF-8");
-
-if(isset($_GET["content"]) && isset($_GET['callback'])) {
+if (isset($_GET["content"]) && isset($_GET['callback'])) {
+    
+    require_once("export-class.php");
     
 	// export categories
 	if($_GET["content"] == 'exportcategories') { // export categories, optional param:  limit
@@ -52,6 +52,7 @@ if(isset($_GET["content"]) && isset($_GET['callback'])) {
 	
 	} else
 		echo $_GET['callback'] . '({"error":"No export requested"})';
-}
-
+        
+} else
+    echo '({"error":"No export requested"})';
 ?>

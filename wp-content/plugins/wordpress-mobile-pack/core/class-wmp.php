@@ -180,8 +180,8 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 			//wp_enqueue_script('js_general', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Default/GENERAL.min.js'), $dependencies, '1.11.1');	
 			wp_enqueue_script('js_join_waitlist', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Waitlist/WMP_WAITLIST.min.js'), array(), WMP_VERSION);
 			wp_enqueue_script('js_feedback', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Feedback/WMP_SEND_FEEDBACK.min.js'), array(), WMP_VERSION);	
-    		//wp_enqueue_script( 'jquery-ui-dialog' );
-		
+    		wp_enqueue_script('js_join_waitlist', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Waitlist/WMP_WAITLIST.min.js'), array(), WMP_VERSION);
+        	
             
 		}
 		
@@ -197,7 +197,6 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 			wp_enqueue_script('js_content_editcategories', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_EDIT_CATEGORIES.min.js'), array(), WMP_VERSION);
             wp_enqueue_script('js_content_editpages', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_EDIT_PAGES.min.js'), array(), WMP_VERSION);
             wp_enqueue_script('js_content_pagedetails', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_PAGE_DETAILS.min.js'), array(), WMP_VERSION);
-			
 			wp_enqueue_script('jquery-ui-sortable');
 			//wp_enqueue_script('jquery-ui-draggable');
 		}
@@ -252,7 +251,6 @@ if ( ! class_exists( 'WMobilePack' ) ) {
             wp_enqueue_script('js_settings_edittheme', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Theming/WMP_EDIT_THEME.min.js'), array(), WMP_VERSION);
             wp_enqueue_script('js_settings_editimages', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Theming/WMP_EDIT_IMAGES.min.js'), array(), WMP_VERSION);
             wp_enqueue_script('js_settings_editcover', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Theming/WMP_EDIT_COVER.min.js'), array(), WMP_VERSION);
-            
         }
         
 		/**
