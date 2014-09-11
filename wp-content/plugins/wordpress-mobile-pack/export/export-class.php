@@ -896,7 +896,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
     			foreach($pages_query->posts as $page) {
     					
 					// add only the pages that are not password protected
-					if($page->post_password == '') {
+					if($page->post_password == '' && strip_tags(trim($page->post_title)) != '') {
 					
 						// check if features image
 						$image_details = array();
@@ -930,8 +930,9 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 						
 						
 						$arrPages[$current_key] = array(
-							'id' 				=> $page->ID,							
-							"title" 			=> $page->post_title,							
+							'id' 				=> $page->ID,	
+							'order'				=> $current_key,
+							"title" 			=> strip_tags(trim($page->post_title)),							
 							"image" 			=> !empty($image_details) ? $image_details : "",
 							"content" 			=> ''
 						);
@@ -992,7 +993,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 			// get page by id
 		    $page = get_page( $pageId);
 			
-			if ($page != null && $page->post_type == 'page' && $page->post_password == '') {
+			if ($page != null && $page->post_type == 'page' && $page->post_password == '' && strip_tags(trim($page->post_title)) != '') {
 				
 			  	// check if page is visible
 			   $is_visible = false;
@@ -1079,7 +1080,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 			
 			// remove all unwanted script tags
 			$text = self::removeScriptTags($text);
-			
+			$text = self::removeTableTags($text);
 			// if no_images is true, remove all images from the content
 			if($stripTags)
 				$text = strip_tags( $text, '<p><a><span><br><i><u><strong><b><sup><em>');
@@ -1179,6 +1180,17 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 	public static function removeScriptTags($text) {
      
 	 $text = preg_replace("/<\s*script[^>]*>[\s\S]*?(<\s*\/script[^>]*>|$)/i"," ",$text);
+	 // return clean text
+	 return $text;
+	  
+	}
+	
+	/**
+	 * Method used to remove table tags and everything in between them
+	 */
+	public static function removeTableTags($text) {
+     
+	 $text = preg_replace("/<\s*table[^>]*>[\s\S]*?(<\s*\/table[^>]*>|$)/i"," ",$text);
 	 // return clean text
 	 return $text;
 	  

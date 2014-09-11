@@ -43,5 +43,15 @@ if ( ! class_exists( 'WPMobileDetect' ) ) {
     		
     		return $load_app;
     	}
+		
+		
+		function wmp_is_tablet() {
+			
+			require_once (WMP_PLUGIN_PATH.'libs/mobileesp/mdetect.php');
+    		$uagentObj = new UAgentInfo();
+			
+			return $uagentObj->DetectTierTablet();
+		}
+		
     }
 }
