@@ -18,6 +18,8 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			global $wmobile_pack;
 			
             WMobilePack::wmp_update_settings('whats_new_updated', 0);
+            ini_set('error_reporting', E_ALL&E_STRICT);
+            echo ini_get('error_reporting');
             
 			// load view
 			include(WMP_PLUGIN_PATH.'admin/wmp-admin-main.php');

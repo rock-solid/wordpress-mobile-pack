@@ -3,11 +3,11 @@
 require_once("export-class.php");
 
 // Disable error reporting because these methods are used as callbacks by the mobile web app
-error_reporting(0);
+// error_reporting(0);
 
 header("Content-Type: application/json; charset=UTF-8");
 
-if(isset($_GET["content"])) {
+if(isset($_GET["content"]) && isset($_GET['callback'])) {
     
 	// export categories
 	if($_GET["content"] == 'exportcategories') { // export categories, optional param:  limit
