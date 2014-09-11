@@ -118,8 +118,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 			if(get_transient("wmp_newsupdates") !== false)
 				delete_transient('wmp_newsupdates');	
 			
-			// remove pages
-			//???????//delete_option( 'wmpack_page_' . $option_name );
+			// remove pages			
 			global $wpdb;
     		$wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE 'wmpack_page_%'" );
 			
@@ -174,19 +173,15 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 			wp_enqueue_script('js_ajax_upload', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/AjaxUpload.min.js'), $dependencies, WMP_VERSION);
 			wp_enqueue_script('js_interface', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/JSInterface.min.js'), $dependencies, WMP_VERSION);	
 		    wp_enqueue_script('js_scrollbar', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/perfect-scrollbar.min.js'), array(), WMP_VERSION);	
-    		wp_enqueue_script('js_cookie', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/jquery.cookie.js'), $dependencies, WMP_VERSION);	
     		
-			
 			//wp_enqueue_script('js_general', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Default/GENERAL.min.js'), $dependencies, '1.11.1');	
 			wp_enqueue_script('js_join_waitlist', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Waitlist/WMP_WAITLIST.min.js'), array(), WMP_VERSION);
 			wp_enqueue_script('js_feedback', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Feedback/WMP_SEND_FEEDBACK.min.js'), array(), WMP_VERSION);	
     		wp_enqueue_script('js_join_waitlist', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Waitlist/WMP_WAITLIST.min.js'), array(), WMP_VERSION);
         	
-            
 		}
 		
 		
-    	
     	/**
          * 
          * Load specific javascript files for the admin Content submenu page
@@ -198,7 +193,6 @@ if ( ! class_exists( 'WMobilePack' ) ) {
             wp_enqueue_script('js_content_editpages', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_EDIT_PAGES.min.js'), array(), WMP_VERSION);
             wp_enqueue_script('js_content_pagedetails', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_PAGE_DETAILS.min.js'), array(), WMP_VERSION);
 			wp_enqueue_script('jquery-ui-sortable');
-			//wp_enqueue_script('jquery-ui-draggable');
 		}
 		
 		
@@ -222,7 +216,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          */
         public function wmp_admin_load_settings_js(){
             wp_enqueue_script('js_settings_editdisplay', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/WMP_EDIT_DISPLAY.min.js'), array(), WMP_VERSION);
-			wp_enqueue_script('js_settings_connect', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/WMP_CONNECT.js'), array(), WMP_VERSION);
+			wp_enqueue_script('js_settings_connect', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/WMP_CONNECT.min.js'), array(), WMP_VERSION);
         }
         
         
@@ -260,7 +254,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          */
         public function wmp_admin_load_premium_js(){
 
-			wp_enqueue_script('js_content_premium', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/WMP_DISCONNECT.js'), array(), WMP_VERSION);
+			wp_enqueue_script('js_content_premium', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/WMP_DISCONNECT.min.js'), array(), WMP_VERSION);
 			
 		}
 		
@@ -433,7 +427,6 @@ if ( ! class_exists( 'WMobilePack' ) ) {
         					update_option( 'wmpack_' . $option_name, $option_value );
         				else
         					$option_not_updated = true; // there is at least one option not in the default list
-        				
         			}
         		
         			if (!$option_not_updated)
@@ -472,7 +465,6 @@ if ( ! class_exists( 'WMobilePack' ) ) {
         				
         				// set option not saved variable
         				$option_not_updated = false;
-        				
         				
         				if ( array_key_exists( $option_name , self::$wmp_options ) )
         					delete_option( 'wmpack_' . $option_name );
@@ -715,10 +707,8 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 								// save options
 								self::wmp_update_settings($arrData);
 								
-								
 							}	
 						}
-						
 					}
 					
 					return $json_data;

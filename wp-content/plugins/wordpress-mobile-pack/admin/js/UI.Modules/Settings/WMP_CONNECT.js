@@ -220,7 +220,7 @@ function WMP_CONNECT(){
 								
 								if (status) {
 									
-									console.log(status,"status")	
+									//console.log(status,"status")	
 									jQuery.post(
 										ajaxurl, 
 										{
@@ -230,7 +230,7 @@ function WMP_CONNECT(){
 											'config_path' : JSON.config_path
 										}, 
 										function(response1){
-											console.log(response1);
+											//console.log(response1);
 											response1 = Boolean(Number(String(response1)));
 											
 											if(response1) {

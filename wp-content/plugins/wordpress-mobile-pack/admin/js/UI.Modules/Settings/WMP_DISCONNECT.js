@@ -101,7 +101,7 @@ function WMP_DISCONNECT(){
 				},
 				//dataType: 'jsonp',
 				success: function(responseJSON){
-					console.log(responseJSON);
+					//console.log(responseJSON);
 					WMPJSInterface.Preloader.remove(100);
 					
 					JSON = eval (responseJSON);
@@ -115,9 +115,7 @@ function WMP_DISCONNECT(){
 						JSObject.addButtonsActions();
 					
 					} else { 
-					   
-						// make request to settings endpoint to remove premium dashboard and theme
-					   
+					   											   
 						jQuery.post(
 							ajaxurl, 
 							{
@@ -126,7 +124,7 @@ function WMP_DISCONNECT(){
 								'active': '0'
 							}, 
 							function(response1){
-								console.log(response1);
+								//console.log(response1);
 								response1 = Boolean(Number(String(response1)));
 								if(response1 == 1)
 									window.location.href = JSObject.redirectTo;

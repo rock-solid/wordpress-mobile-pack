@@ -79,7 +79,7 @@
                  	<h2 class="title">Connect with Appticles</h2>
                     <div class="spacer-20"></div>
                     <form name="wmp_connect_form" id="wmp_connect_form" class="left" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_premium_save" method="post">
-                        <input type="hidden" name="wmp_connect_settings" id="wmp_connect_settings"  value="<?php echo plugins_url()."/".WMP_DOMAIN.'/api/content.php?content=exportsettings';?>" />
+                        <input type="hidden" name="wmp_connect_settings" id="wmp_connect_settings"  value="<?php echo plugins_url()."/".WMP_DOMAIN.'/export/content.php?content=exportsettings';?>" />
                         <input type="text" name="wmp_connect_apikey" id="wmp_connect_apikey" placeholder="api key*" class="small indent" value="" />
                         <div class="field-message error" id="error_apikey_container"></div>
                         <div class="spacer-20"></div>

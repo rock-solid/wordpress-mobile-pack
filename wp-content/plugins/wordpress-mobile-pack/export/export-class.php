@@ -1080,7 +1080,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 			
 			// remove all unwanted script tags
 			$text = self::removeScriptTags($text);
-			$text = self::removeTableTags($text);
+			
 			// if no_images is true, remove all images from the content
 			if($stripTags)
 				$text = strip_tags( $text, '<p><a><span><br><i><u><strong><b><sup><em>');
@@ -1185,18 +1185,6 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 	  
 	}
 	
-	/**
-	 * Method used to remove table tags and everything in between them
-	 */
-	public static function removeTableTags($text) {
-     
-	 $text = preg_replace("/<\s*table[^>]*>[\s\S]*?(<\s*\/table[^>]*>|$)/i"," ",$text);
-	 // return clean text
-	 return $text;
-	  
-	}
-	
-	
 	
 	/**
 	 * 
@@ -1254,7 +1242,76 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 		 // return comment status 
     	return $comment_status;
     }
-	 
+	
+	
+	
+	
+	/**
+    * 
+    *  - exportSettings method used for the export of the main settings
+	*  - this method returns a JSON with the specific content
+	*  - ex : 	
+	*		{
+	*			"logo": "",
+	*			"icon": "",
+	*			"cover": ""
+	*		}
+	*				
+    *
+    */
+	public function exportSettings() {
+			
+		if (isset($_GET["content"]) && $_GET["content"] == 'exportsettings') {
+			
+			$arrSettings = array();
+			
+			if(isset($_POST["apiKey"]) && $_POST["apiKey"] == WMobilePack::wmp_get_setting('premium_api_key')) {
+				
+				if(WMobilePack::wmp_get_setting('premium_active') == 0) {
+					
+					// check if logo exists
+					$logo_path = WMobilePack::wmp_get_setting('logo');					
+					if ($logo_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$logo_path))
+						$logo_path = '';    
+					else
+						$logo_path = WMP_FILES_UPLOADS_URL.$logo_path;
+						
+					// check if icon exists
+					$icon_path = WMobilePack::wmp_get_setting('icon');					
+					if ($icon_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$icon_path))
+						$icon_path = ''; 
+					else
+						$icon_path = WMP_FILES_UPLOADS_URL.$icon_path;
+						
+					// check if cover exists
+					$cover_path = WMobilePack::wmp_get_setting('cover');					
+					if ($cover_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$cover_path))
+						$cover_path = ''; 
+					else
+						$cover_path = WMP_FILES_UPLOADS_URL.$cover_path;
+					
+					
+					// set settings
+					$arrSettings = array(
+										'logo' => $logo_path,
+										'icon' => $icon_path,
+										'cover' => $cover_path,
+										'status' => 1
+									 );
+				
+					// return json
+					return json_encode($arrSettings);
+				
+				}
+			} 
+			 
+			// by default assume the api key is not valid	
+			return '{"error":"The api key provided is not valid.","status" : 0}';
+			
+		} else
+			return '{"error":"","status" : 0}';
+	}
+		 
 	 
   } // Export
   
