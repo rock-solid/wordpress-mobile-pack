@@ -1,6 +1,6 @@
 <?php
 
-define("WMP_VERSION", '2.0');
+define("WMP_VERSION", '2.1');
 define('WMP_PLUGIN_NAME', 'WP Mobile Pack '.WMP_VERSION);
 define('WMP_DOMAIN', 'wordpress-mobile-pack');
 
@@ -16,8 +16,7 @@ define('WMP_NEWS_UPDATES','http://cdn-wpmp.appticles.com/dashboard/news.json');
 define('WMP_WHATSNEW_UPDATES','http://cdn-wpmp.appticles.com/dashboard/whats_new/content1.json');
 define('WMP_MORE_UPDATES','http://cdn-wpmp.appticles.com/dashboard/more/more1.json');
 
-define('WMP_WAITLIST_PATH','http://gateway.appticles.com/waitlist/api/subscribe');
-define('WMP_GO_PREMIUM_PATH','http://www.appticles.com/wordpress.html?wp_mobile_pack=try');
+define('WMP_WAITLIST_PATH','http://gateway-dev.appticles.com/waitlist/api/subscribe');
 
 // define connect with appticles path
 define('WMP_APPTICLES_CONNECT','http://dev.webcrumbz.co/content/wpconnect');

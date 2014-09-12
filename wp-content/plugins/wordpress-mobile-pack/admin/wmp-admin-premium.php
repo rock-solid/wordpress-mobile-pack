@@ -20,19 +20,12 @@
                 
                 <h1>PREMIUM</h1>
                 
-                <div class="spacer-20"></div>
-                <div class="showcase">
-                	<img src="http://http://cdn-wpmp.appticles.com/dashboard/whats_new/images/whats-new.png">
-                </div>
-                <div class="spacer-20"></div>
-                
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis aliquet arcu. Suspendisse potenti. Sed vel nunc non arcu eleifend aliquet. Curabitur lacinia mi eget tristique aliquam. Nullam commodo magna at purus commodo porta. Vestibulum vel felis ut risus dictum posuere. Quisque ligula leo, vehicula at magna et, pretium commodo ex. Phasellus in aliquam sapien, at pretium sapien. Suspendisse et vehicula dui.
+                <p>Your WP Mobile Pack is now connected with Appticles.com and your Premium version is enabled. You can manage everything by simply logging in to the Dashboard. </p>
                 <div class="spacer-20"></div>
                 <form name="wmp_disconnect_form" id="wmp_disconnect_form" class="left" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_premium_disconnect" method="post">
                     <input type="hidden" name="wmp_disconnect_apikey" id="wmp_disconnect_apikey" placeholder="api key*" class="small indent" value="<?php echo WMobilePack::wmp_get_setting('premium_api_key');?>" />
                     <a class="btn blue smaller" href="javascript:void(0)" id="wmp_disconnect_send_btn">Disconnect</a>
-                 </form>
-                
+                </form>
             </div>
             <div class="spacer-10"></div>
             

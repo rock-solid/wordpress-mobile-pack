@@ -11,7 +11,7 @@
     $inactive_categories = unserialize(WMobilePack::wmp_get_setting('inactive_categories'));
 	$order_categories = unserialize(WMobilePack::wmp_get_setting('ordered_categories'));
     $categories = get_categories();
-
+    
 	$inactive_pages = unserialize(WMobilePack::wmp_get_setting('inactive_pages'));
 	$order_pages = unserialize(WMobilePack::wmp_get_setting('ordered_pages'));
 	$pages = get_pages();
@@ -54,35 +54,44 @@
                         </div>
                 
                         <ul class="categories" id="categories">
-                            <?php
-								$arrCategories = array();
-								if(is_array($order_categories) && !empty($order_categories)){
-									// order categories
-									foreach($categories as $category) {
-									
-										$index = array_search($category->cat_ID,$order_categories);
-										
-										// create new index for new categories
-										$new_index = count($order_categories) + 1;
-										$last_key = count($arrCategories) > 0 ? max(array_keys($arrCategories)) : 0;
-										
-										if(is_numeric($index))
-											$arrCategories[$index] = $category;
-										elseif($new_index > $last_key)
-											$arrCategories[$new_index] = $category;
-										else
-											$arrCategories[$last_key+1] = $category;
-									
-									}
-									// sort categories	
-									ksort($arrCategories);
-									
-								} else
-									$arrCategories = $categories;
-									
-							?>
 							<?php 
-                                foreach ($arrCategories as $key => $category):
+                                // list with displayed categories
+                                $arrOrderedCategories = array();
+                                
+                            	if (is_array($order_categories) && !empty($order_categories)){
+                            	   
+                                    // add categories in the array in their order 
+                                    foreach ($order_categories as $category_id){
+                                        
+                                        foreach ($categories as $category){
+                                            if ($category->cat_ID == $category_id){
+                                                $arrOrderedCategories[] = clone $category;
+                                                break;
+                                            }
+                                        }
+                                    }    
+                                    
+                                    // copy categories that don't have an order yet (they were added after the categories were sorted)
+                                    foreach($categories as $category){
+                                        
+                                        $added = false;
+                                        
+                                        foreach ($arrOrderedCategories as $key => $ordered_category){
+                                            if ($category->cat_ID == $ordered_category->cat_ID){
+                                                $added = true;
+                                                break;
+                                            }
+                                        }
+                                        
+                                        if (!$added){
+                                            $arrOrderedCategories[] = clone $category;
+                                        }
+                                    }
+                                    
+                            	} else
+                            		$arrOrderedCategories = $categories;
+        
+                                foreach ($arrOrderedCategories as $key => $category):
                             
                                     $status = 'active';
                                     if (in_array($category->cat_ID, $inactive_categories))
@@ -136,7 +145,9 @@
                         <ul class="categories pages">
                             <?php
 								$arrPages = array();
-								if(is_array($order_pages) && !empty($order_pages)){
+                                
+								if (is_array($order_pages) && !empty($order_pages)){
+								    
 									// order pages
 									foreach($pages as $key => $page) {
 											
@@ -160,8 +171,6 @@
 								
 								} else
 									$arrPages = $pages;
-								
-								
 							?>
 							<?php 
                                 foreach ($arrPages as $key =>  $page):
@@ -197,62 +206,6 @@
                         
                 <?php endif;?>
             </div>
-            
-            <?php if(0):?>
-                <div class="spacer-10"></div>
-                <div class="details">
-                    <h2 class="title">Coming Soon</h2>
-                    <div class="spacer-15"></div>
-                    <div class="grey-line"></div>
-                    <div class="spacer-15"></div>
-                    <div class="spacer-20"></div>
-                    <div class="more-content">
-                        <p class="left">Want to add more content?</p>
-                        <img src="<?php echo plugins_url()."/".WMP_DOMAIN."/admin/images/content-icons.png";?>" alt="" class="left" />
-                    </div>
-                    <?php
-                        $joined_content_waitlist = false;
-                         
-                        $joined_waitlists = unserialize(WMobilePack::wmp_get_setting('joined_waitlists'));
-                        
-                        if ($joined_waitlists != '' && in_array('content', $joined_waitlists))
-                            $joined_content_waitlist = true;
-                    ?>
-                    
-                    <div class="waitlist" id="wmp_waitlist_container">
-                    
-                        <?php if ($joined_content_waitlist == false):?>
-                            <div id="wmp_waitlist_action">
-                                <a href="javascript:void(0);" id="wmp_waitlist_display_btn" class="btn blue smaller">Join Waitlist</a>
-                                <div class="spacer-0"></div>
-                                <p>and get notified when available</p>
-                            </div>
-                        
-                            <form name="wmp_waitlist_form" id="wmp_waitlist_form" action="" method="post" style="display: none;">    
-                                <div class="info">
-                                   <input name="wmp_waitlist_emailaddress" id="wmp_waitlist_emailaddress" type="text" placeholder="your email" class="small" value="<?php echo get_option( 'admin_email' );?>" />
-                                   <a href="javascript: void(0);" id="wmp_waitlist_send_btn" class="btn blue smallest">Ok</a>
-                                   <div class="spacer-5"></div>
-                                   <div class="field-message error" id="error_emailaddress_container"></div>
-                                   <div class="spacer-15"></div>
-                               </div>
-                            </form>
-                        <?php endif;?>
-                        
-                        <div id="wmp_waitlist_added" class="added" style="display: <?php echo $joined_content_waitlist ? 'block' : 'none'?>;">
-                            <div class="switcher blue">
-                                <div class="msg">ADDED TO WAITLIST</div>
-                                <div class="check"></div>
-                            </div>
-                            <div class="spacer-15"></div>
-                        </div>
-                    </div> 
-                    <div class="spacer-5"></div>
-                    <div class="grey-line"></div>
-                    <div class="spacer-20"></div> 
-                </div>
-        	<?php endif;?>
-            
         </div>
     
         <div class="right-side">

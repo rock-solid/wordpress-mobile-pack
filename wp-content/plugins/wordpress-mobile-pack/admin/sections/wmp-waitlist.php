@@ -1,4 +1,3 @@
-
 <?php 
 	$joined_features_waitlist = false;
                          
