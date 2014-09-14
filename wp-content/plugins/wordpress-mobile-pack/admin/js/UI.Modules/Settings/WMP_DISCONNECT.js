@@ -99,9 +99,9 @@ function WMP_DISCONNECT(){
 				data: { 
 					'apiKey':    jQuery("#"+JSObject.type+"_apikey", JSObject.DOMDoc).val()
 				},
-				//dataType: 'jsonp',
 				success: function(responseJSON){
-					//console.log(responseJSON);
+				    
+                    console.log(responseJSON)
 					WMPJSInterface.Preloader.remove(100);
 					
 					JSON = eval (responseJSON);
@@ -109,8 +109,16 @@ function WMP_DISCONNECT(){
 					
 					if (response == 0) {
 						
-						var message = 'There was an error. Please reload the page and try again in few seconds or contact the plugin administrator if the problem persists.';
-						WMPJSInterface.Loader.display({message: message});	
+                        if (JSON.message != undefined) {
+                            
+                            WMPJSInterface.Loader.display({message: JSON.message});
+                            
+                        } else {
+                            
+                            var message = 'We were unable to disconnect your plugin, please contact support.';
+						    WMPJSInterface.Loader.display({message: message});
+                        }	
+                        
 						//enable buttons
 						JSObject.addButtonsActions();
 					
@@ -124,8 +132,8 @@ function WMP_DISCONNECT(){
 								'active': '0'
 							}, 
 							function(response1){
-								//console.log(response1);
 								response1 = Boolean(Number(String(response1)));
+                                
 								if(response1 == 1)
 									window.location.href = JSObject.redirectTo;
 								else {
@@ -138,6 +146,10 @@ function WMP_DISCONNECT(){
 							
 				},
 				error: function(responseJSON){
+				    
+                     // API endpoint is turned off
+                    WMPJSInterface.Preloader.remove(100);
+                    WMPJSInterface.Loader.display({message: "Disconnect endpoint is unreachable. Please contact support."});
 				}
 			});
 		}

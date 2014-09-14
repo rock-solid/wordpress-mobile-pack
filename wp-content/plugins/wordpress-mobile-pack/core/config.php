@@ -14,7 +14,8 @@ if ( !defined( 'WMP_FILES_UPLOADS_DIR' ) && !defined( 'WMP_FILES_UPLOADS_URL' ) 
 define('WMP_FEEDBACK_EMAIL','feedback@appticles.com');
 define('WMP_NEWS_UPDATES','http://cdn-wpmp.appticles.com/dashboard/news.json');
 define('WMP_WHATSNEW_UPDATES','http://cdn-wpmp.appticles.com/dashboard/whats_new/content1.json');
-define('WMP_MORE_UPDATES','http://cdn-wpmp.appticles.com/dashboard/more/more1.json');
+// define('WMP_MORE_UPDATES','http://cdn-wpmp.appticles.com/dashboard/more/more1.json');
+define('WMP_MORE_UPDATES','https://s3-eu-west-1.amazonaws.com/appticles-wmpack/dashboard/more/more1.json');
 
 define('WMP_WAITLIST_PATH','http://gateway-dev.appticles.com/waitlist/api/subscribe');
 

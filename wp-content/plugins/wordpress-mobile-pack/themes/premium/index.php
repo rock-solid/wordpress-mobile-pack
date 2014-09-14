@@ -1,24 +1,24 @@
 <?php
 
 	$json_config_premium = WMobilePack::wmp_set_premium_config(); 
-	
-	$arrConfig = null;
-	if($json_config_premium !== false) {
-		$arrConfig = json_decode($json_config_premium,true);
-	
+    
+    $arrConfig = null;
+	if ($json_config_premium !== false) {
+		$arrConfig = json_decode($json_config_premium, true);
 	}
-
-
+    
+    // check if we have a valid domain
+    if (isset($arrConfig['domain_name']) && filter_var('http://'.$arrConfig['domain_name'], FILTER_VALIDATE_URL)) {
+        header("Location: http://".$arrConfig['domain_name']);
+        exit();
+    }
+        
 	// check if it is tablet 
 	$is_tablet = WMobilePack::wmp_is_tablet();
-	$preview = 0;
 
-
-
-	$kit_version = 'v2.4.2';
-	$kits_path = "http://cdn-kits1.appticles.com/app".$arrConfig['theme'].'/'.$kit_version.'/';
-   // $app_files_path         = "http://cdn.appticles.com/".$arrConfig['shorten_url'].'/';
-	$app_files_path         = "http://cdn-dev.appticles.com/".$arrConfig['shorten_url'].'/';
+	$kits_path =   $arrConfig['cdn_kits']."/app".$arrConfig['theme'].'/'.$arrConfig['kit_version'].'/';
+	$app_files_path = $arrConfig['cdn_apps'].'/'.$arrConfig['shorten_url'].'/';
+    
 ?>
 <!DOCTYPE HTML>
 <html manifest="" lang="en-US">
@@ -116,23 +116,21 @@
             webApp: "<?php echo $arrConfig['webapp'];?>",
             title: "<?php echo addslashes($arrConfig['title']);?>", // to update the title tag with the same constant
 
-           // exportPath: 'http://api.webcrumbz.co/content1/',
-            exportPath: 'http://dev.webcrumbz.co/test/',
+            exportPath: '<?php echo $arrConfig['api_content'];?>',
 			defaultPath: '<?php echo $kits_path;?>',
             appPath: '<?php echo $app_files_path;?>',
-           // socialApiPath: "http://api.appticles.com/social1/",
-			socialApiPath: "http://dev.webcrumbz.com/social/",
+			socialApiPath: '<?php echo $arrConfig['api_social'];?>',
             
             logo: '<?php echo isset($arrConfig['logo_path']) && $arrConfig['logo_path'] != '' ? $app_files_path.$arrConfig['logo_path'] : $kits_path."resources/images/logo.png";?>',
             hasIcons: <?php echo intval(isset($arrConfig['icon_path']) &&$arrConfig['icon_path'] != "");?>,
             hasStartups: <?php echo intval(isset($arrConfig['logo_path']) && $arrConfig['logo_path'] != "");?>,
             
             userCover: <?php echo $cover == "" ? 'false' : 'true' ;?>,
-            defaultCover: "<?php echo $cover == "" ? 'http://cdn-kits1.appticles.com/others/covers/'.($is_tablet ? 'tablet' : 'phone').'/pattern-'.rand(1,8).'.jpg' : $app_files_path.$cover ;?>",
+            defaultCover: "<?php echo $cover == "" ? $arrConfig['cdn_kits'].'/others/covers/'.($is_tablet ? 'tablet' : 'phone').'/pattern-'.rand(1,8).'.jpg' : $app_files_path.$cover ;?>",
             
-            appUrl: '<?php echo $arrConfig['website_url'];?>',
-            websiteUrl: '<?php if ($arrConfig['website_url'] != '') echo $arrConfig['website_url']."?redirect=false";?>',
-            preview: <?php echo intval($preview);?>,
+            appUrl: '<?php echo home_url();?>',
+            websiteUrl: '<?php echo home_url();?>?wmp_theme_mode=desktop',
+            preview: 0,
             imageInterval : {
                 minWidth: 120,
                 minHeight: 120,
@@ -148,7 +146,7 @@
                         phone: {
                             networkCode: <?php echo $arrConfig['phone_network_code'];?>,
                             adUnitCode: "<?php echo $arrConfig['phone_unit_name'];?>",
-                            sizes: <?php echo $arrConfig['phone_ad_sizes'];?>
+                            sizes: <?php echo json_encode($arrConfig['phone_ad_sizes']);?>
                         },
                     <?php else: ?>
                         phone : null,
@@ -158,7 +156,7 @@
                         tablet: {
                             networkCode: <?php echo $arrConfig['tablet_network_code'];?>,
                             adUnitCode: "<?php echo $arrConfig['tablet_unit_name'];?>",
-                            sizes: <?php echo $arrConfig['tablet_ad_sizes'];?>
+                            sizes: <?php echo json_encode($arrConfig['tablet_ad_sizes']);?>
                         },
                     <?php else: ?>
                         tablet : null,
@@ -169,6 +167,7 @@
     </script>
     
     <?php if (($arrConfig['has_phone_ads'] == 1 && $is_tablet == 0) || ($arrConfig['has_tablet_ads'] == 1 && $is_tablet == 1)):?>
+    
         <!-- start Google Doubleclick for publishers -->
         <script type='text/javascript'>
     	var googletag = googletag || {};
@@ -200,14 +199,13 @@
     <?php
     	
 		$theme_details = array(							
-							'color_scheme'      => 1,
-							'font_headlines'    => 1,
-							'font_subtitles'    => 1,
-							'font_paragraphs'   => 1
-						);
+			'color_scheme'      => 1,
+			'font_headlines'    => 1,
+			'font_subtitles'    => 1,
+			'font_paragraphs'   => 1
+		);
 	
-	
-		if(!isset($arrConfig['font_headlines'])) 
+		if (!isset($arrConfig['font_headlines'])) 
 			$arrConfig['font_headlines'] = $theme_details['font_headlines'];
 			
 		if(!isset($arrConfig['font_subtitles'])) 
@@ -264,22 +262,28 @@
         
     <?php endif;?>
     
-   <!-- add google universal analytics -->
-   <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  
-    ga('create', 'UA-45917766-1');
-  
-    var dimensionValue = '<?php echo $arrConfig['google_internal_id'];?>';
-    ga('set', 'dimension1', dimensionValue);
-  
-    ga('send', 'pageview');
-  
-  </script>
-
+    <?php
+        // check if google analytics id was set
+        $google_internal_id = isset($arrConfig['google_internal_id']) ? $arrConfig['google_internal_id'] : '';        
+        if ($google_internal_id != ''):
+    ?>
+    
+       <!-- add google universal analytics -->
+       <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+        ga('create', 'UA-45917766-1');
+      
+        var dimensionValue = '<?php echo $arrConfig['google_internal_id'];?>';
+        ga('set', 'dimension1', dimensionValue);
+      
+        ga('send', 'pageview');
+      
+      </script>
+    <?php endif;?>
 
 </head>
 <body>

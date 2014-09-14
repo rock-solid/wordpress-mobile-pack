@@ -1338,12 +1338,15 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 					else
 						$cover_path = WMP_FILES_UPLOADS_URL.$cover_path;
 					
-					
+					// check if google analytics id is set
+                    $google_analytics_id = WMobilePack::wmp_get_setting('google_analytics_id');
+                    
 					// set settings
 					$arrSettings = array(
                         'logo' => $logo_path,
                         'icon' => $icon_path,
                         'cover' => $cover_path,
+                        'google_analytics_id' => $google_analytics_id,
                         'status' => 1
                     );
 				

@@ -72,7 +72,7 @@ function WMP_CONNECT(){
             
             messages: {
                 wmp_connect_apikey : {
-    				required		: "Please add an api key."
+    				required		: "This field is required."
     			}
             },
             
@@ -196,106 +196,111 @@ function WMP_CONNECT(){
 		
 		WMPJSInterface.Preloader.start();
 		
+        // Make request to save the API Key in the options table (will be used by the API to retrieve settings)
 		jQuery.post(
-					ajaxurl, 
-					{
-						'action': 'wmp_premium_save',
-						'api_key': jQuery("#"+JSObject.type+"_apikey", JSObject.DOMDoc).val()
-					}, 
-					function(response){
+			ajaxurl, 
+			{
+				'action': 'wmp_premium_save',
+				'api_key': jQuery("#"+JSObject.type+"_apikey", JSObject.DOMDoc).val()
+			}, 
+			function(response){
+				
+                // Call Appticles API
+				jQuery.ajax({
+					url: JSObject.submitURL,
+					type: 'get',
+					data: { 
+						'apiKey':    jQuery("#"+JSObject.type+"_apikey", JSObject.DOMDoc).val(),
+						'settingsPath' : jQuery("#"+JSObject.type+"_settings", JSObject.DOMDoc).val()
+					},
+					success: function(responseJSON){
+					 
+                        console.log("API RESPONSE ", responseJSON)
+                        
+						WMPJSInterface.Preloader.remove(100);
+      
+						var JSON = eval(responseJSON);
+						var status = Boolean(Number(String(JSON.status)));
 						
-						jQuery.ajax({
-							url: JSObject.submitURL,
-							type: 'get',
-							data: { 
-								'apiKey':    jQuery("#"+JSObject.type+"_apikey", JSObject.DOMDoc).val(),
-								'settingsPath' : jQuery("#"+JSObject.type+"_settings", JSObject.DOMDoc).val()
-							},
-							//dataType: 'jsonp',
-							success: function(responseJSON){
-								WMPJSInterface.Preloader.remove(100);
-								
-								JSON = eval (responseJSON);
-								status = Boolean(Number(String(JSON.status)));
-								
-								if (status) {
-									
-									//console.log(status,"status")	
-									jQuery.post(
-										ajaxurl, 
-										{
-											'action': 'wmp_premium_connect',
-											'api_key': jQuery("#"+JSObject.type+"_apikey", JSObject.DOMDoc).val(),
-											'valid' : 1,
-											'config_path' : JSON.config_path
-										}, 
-										function(response1){
-											//console.log(response1);
-											response1 = Boolean(Number(String(response1)));
-											
-											if(response1) {
-												// reload the page - redirect to premium  
-												window.location.href = JSObject.redirectTo;
-												
-											} else {
-											
-												
-												var message = 'There was an error. Please try again later';
-												WMPJSInterface.Loader.display({message: message});	
-											
-												// reset form
-												JSObject.form.reset();
-												
-												//enable form elements
-												setTimeout(function(){
-																var aElems = JSObject.form.elements;
-																nElems = aElems.length;
-																for (j=0; j<nElems; j++) {
-																	aElems[j].disabled = false;
-																}
-															},300);
-												
-												//enable buttons
-												JSObject.addButtonsActions();
-														
-												
-											}
-											
-										}
-									);
-									
-								} else {
-									
-									WMPJSInterface.Loader.display({message: JSON.message});	
-									
-									// reset form
-									JSObject.form.reset();
-									
-									//enable form elements
-									setTimeout(function(){
-													var aElems = JSObject.form.elements;
-													nElems = aElems.length;
-													for (j=0; j<nElems; j++) {
-														aElems[j].disabled = false;
-													}
-												},300);
-									
-									//enable buttons
-									JSObject.addButtonsActions();
-									
-								}
+						if (status == true) {
+							
+							// Make request to save config settings in the db and enable premium theme	
+							jQuery.post(
+								ajaxurl, 
+								{
+									'action': 'wmp_premium_connect',
+									'api_key': jQuery("#"+JSObject.type+"_apikey", JSObject.DOMDoc).val(),
+									'valid' : 1,
+									'config_path' : JSON.config_path
+								}, 
+								function(response1){
+								  
+									console.log("connect response ", response1);
+									var response1 = Boolean(Number(String(response1)));
+								    
+									if (response1 == true) {
+									   
+										// reload the page - redirect to premium  
+										window.location.href = JSObject.redirectTo;
 										
-							},
-							error: function(responseJSON){
-							}
-						});
-						
+									} else {
+									
+										var message = 'We were unable to verify your API Key. Please contact support.';
+										WMPJSInterface.Loader.display({message: message});	
+									
+										// reset form
+										JSObject.form.reset();
+										
+										//enable form elements
+										setTimeout(function(){
+														var aElems = JSObject.form.elements;
+														nElems = aElems.length;
+														for (j=0; j<nElems; j++) {
+															aElems[j].disabled = false;
+														}
+													},300);
+										
+										//enable buttons
+										JSObject.addButtonsActions();
+									}
+								}
+							);
+							
+						} else {
+							
+                            // Display error message returned by the API or a default message
+                            if (JSON.message != undefined)
+                                WMPJSInterface.Loader.display({message: JSON.message});
+                            else
+                           	    WMPJSInterface.Loader.display({message: "We were unable to verify your API Key. Please contact support."});
+							
+							// reset form
+							JSObject.form.reset();
+							
+							//enable form elements
+							setTimeout(function(){
+											var aElems = JSObject.form.elements;
+											nElems = aElems.length;
+											for (j=0; j<nElems; j++) {
+												aElems[j].disabled = false;
+											}
+										},300);
+						 
+							//enable buttons
+							JSObject.addButtonsActions();
+							
+						}
+								
+					},
+					error: function(responseJSON){
+					   
+                        // API endpoint is turned off
+                        WMPJSInterface.Preloader.remove(100);
+                        WMPJSInterface.Loader.display({message: "Verification endpoint is unreachable. Please contact support."});
 					}
-			);
-		
-		
-		
+				});
+				
+			}
+		);	
 	}
-	
-
 }
