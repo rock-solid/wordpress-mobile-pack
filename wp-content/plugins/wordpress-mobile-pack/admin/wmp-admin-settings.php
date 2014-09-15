@@ -110,7 +110,7 @@
                         <div class="spacer-20"></div>
                         <a href="javascript:void(0)" id="wmp_connect_send_btn" class="btn green smaller">Save</a>
                      </form>
-                     <div class="notice notice-left right" style="width: 465px; margin: 0px 0 15px 0;">
+                     <div class="notice notice-left right" style="width: 465px; margin: 0px 0 15px 0; top:-10px;">
                         <span>
                             Once your API key is validated, your WP Mobile Pack admin area will be transformed and you will be able to change your mobile web application settings from the Appticles.com dashboard.
                         </span>

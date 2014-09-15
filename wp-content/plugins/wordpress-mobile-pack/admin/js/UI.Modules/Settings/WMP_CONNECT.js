@@ -214,9 +214,7 @@ function WMP_CONNECT(){
 						'settingsPath' : jQuery("#"+JSObject.type+"_settings", JSObject.DOMDoc).val()
 					},
 					success: function(responseJSON){
-					 
-                        console.log("API RESPONSE ", responseJSON)
-                        
+					    
 						WMPJSInterface.Preloader.remove(100);
       
 						var JSON = eval(responseJSON);
@@ -235,8 +233,7 @@ function WMP_CONNECT(){
 								}, 
 								function(response1){
 								  
-									console.log("connect response ", response1);
-									var response1 = Boolean(Number(String(response1)));
+								    var response1 = Boolean(Number(String(response1))); 
 								    
 									if (response1 == true) {
 									   

@@ -207,6 +207,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
                     
                     // read posts for the latest category
                     $posts_query = new WP_Query ( 
+
                         array(
                             'numberposts'  => $limit,
                             'cat' 		   => implode(', ', $active_categories_ids),
@@ -849,6 +850,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 										if($comment->comment_approved == 1)
 											return '{"status":1}';//Your comment was successfully added
 										else
+
 											return '{"status":2}'; // Your comment is awaiting moderation.
 									
 									}
