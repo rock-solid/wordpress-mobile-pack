@@ -24,6 +24,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
         public static $wmp_allowed_fonts = array('Roboto Light Condensed', 'Crimson Roman', 'Open Sans Condensed Light');
         public static $wmp_basic_theme = 'base';
 		public static $wmp_premium_theme = 'premium';
+        
         // the oldest version that will enable the custom select
         public static $wmp_customselect_enable = 3.6;
     	 
@@ -41,7 +42,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     		if(!is_array(self::$wmp_options) || empty(self::$wmp_options)){
                 
                 self::$wmp_options = array(
-                
+                    'theme'                  => 1,
                 	'color_scheme'           => 1,
                 	'font_headlines'         => self::$wmp_allowed_fonts[0],
                     'font_subtitles'         => self::$wmp_allowed_fonts[0],
@@ -86,6 +87,13 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     	 */
     	public function wmp_uninstall(){
     		
+            // disconnect premium from the api
+            $apiKey = self::wmp_get_setting('premium_api_key');
+            $isPremiumActive =  self::wmp_get_setting('premium_active');
+            
+            if ($apiKey != '' && $isPremiumActive == 1)
+                WMobilePackAdmin::wmp_read_data(WMP_APPTICLES_DISCONNECT.'?apiKey='.$apiKey);
+            
             // remove uploaded images and uploads folder
             $logo_path = WMobilePack::wmp_get_setting('logo');
             
@@ -96,8 +104,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
             
             if ($icon_path != '' && file_exists(WMP_FILES_UPLOADS_DIR.$icon_path))
                 unlink(WMP_FILES_UPLOADS_DIR.$icon_path);  
-				
-				
+						
 			$cover_path = WMobilePack::wmp_get_setting('cover');
             
             if ($cover_path != '' && file_exists(WMP_FILES_UPLOADS_DIR.$cover_path))
@@ -105,27 +112,26 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                 
             rmdir( WMP_FILES_UPLOADS_DIR );
             
-    		// remove settings from database
     		$this->wmp_delete_settings(self::$wmp_options);
 			
 			// remove transients
-			if(get_transient("wmp_more_updates") !== false)
+			if (get_transient("wmp_more_updates") !== false)
 				delete_transient('wmp_more_updates');
 				
-			if(get_transient("wmp_whats_new_updates") !== false)
+			if (get_transient("wmp_whats_new_updates") !== false)
 				delete_transient('wmp_whats_new_updates');
 			
-			if(get_transient("wmp_newsupdates") !== false)
+			if (get_transient("wmp_newsupdates") !== false)
 				delete_transient('wmp_newsupdates');	
 			
-			// remove pages			
+			// remove settings from database		
 			global $wpdb;
     		$wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE 'wmpack_page_%'" );
-			
 			
 			// remove the cookies
 			setcookie("wmp_theme_mode", "", time()-3600);
 			setcookie("wmp_load_app", "", time()-3600);
+            
     	}
     	
     		
@@ -216,7 +222,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          */
         public function wmp_admin_load_settings_js(){
             wp_enqueue_script('js_settings_editdisplay', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/WMP_EDIT_DISPLAY.min.js'), array(), WMP_VERSION);
-			wp_enqueue_script('js_settings_connect', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/WMP_CONNECT.min.js'), array(), WMP_VERSION);
+			wp_enqueue_script('js_settings_connect', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/WMP_CONNECT.js'), array(), WMP_VERSION);
         }
         
         
@@ -254,7 +260,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          */
         public function wmp_admin_load_premium_js(){
 
-			wp_enqueue_script('js_content_premium', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/WMP_DISCONNECT.min.js'), array(), WMP_VERSION);
+			wp_enqueue_script('js_content_premium', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/WMP_DISCONNECT.js'), array(), WMP_VERSION);
 			
 		}
 		
@@ -506,22 +512,21 @@ if ( ! class_exists( 'WMobilePack' ) ) {
         		
 					$visible_app = true; // set app visible by default
 				
-					/// for premium, check if the web app is still visible
+					// for premium, check if the web app is still visible
 					$json_config_premium = self::wmp_set_premium_config();
-					
-					if($json_config_premium !== false) {
+                    
+					if ($json_config_premium !== false) {
 						
 						$arrConfig = json_decode($json_config_premium);
-						
-						if(isset($arrConfig->settings->status) && $arrConfig->settings->status == 'hidden') {
+                        
+						if (isset($arrConfig->settings->status) && $arrConfig->settings->status == 'hidden') {
 							
 							$load_app = false; // the app will not be loaded since the status is hidden
 							$visible_app = false; // setting it to false will skip the detection
-						
 						}
 					}
 				
-					if($visible_app) {
+					if ($visible_app) {
 						
 						if (!isset($_COOKIE["wmp_load_app"])) {
 								
@@ -661,52 +666,136 @@ if ( ! class_exists( 'WMobilePack' ) ) {
      	
     	
 		/**
-		 * Method used to read the config js for premium dashboards and add them to a transient
-		 *
+		 * Method used to read the config js for the premium theme and save it to a transient,
+         * 
+         * The JSON file has the following format:
+         * 
+         * // MANDATORY fields
+         * {
+         * 
+         *  'kit_version' : 'v2.4.2',
+         *  'cdn_kits' : 'http://cdn-kits.appticles.com',
+         *  'cdn_apps': 'http://cdn.appticles.com',
+         *  
+         *  'api_content': 'http://api.webcrumbz.co/content1/',
+         *  'api_social' : 'http://api.webcrumbz.co/social',
+         *  
+         *  'webapp' : 'xxxxxxxxxxxxxxxxxxxxxxx',
+         *  'title' : 'My app',
+         *  'shorten_url' : 'xxxxxx',
+         *  
+         *  'status' => 'visible' / 'hidden',
+         *  'theme' : 1,
+         *  
+         *  'has_phone_ads' : 0/1,
+         *  'has_tablet_ads' : 0/1,
+         *  
+         *  // OPTIONAL fields
+         *  'domain_name' : 'myapp.domain.com',
+         *  
+         *  'color_scheme'      : 1,
+		 *  'font_headlines'    : 1,
+		 *  'font_subtitles'    : 1,
+		 *  'font_paragraphs'   : 1,
+         *  'cover_smartphones_path' : '',
+         *  'cover_tablets_path' : '',
+         *  'logo_path' : '',
+         *  'icon_path' : '',
+         *  
+         *  'phone_network_code' : '',
+         *  'phone_unit_name' : '',
+         *  'phone_ad_sizes' : [[250,250],[300,300],...],
+         *  
+         *  'tablet_network_code' : '',
+         *  'tablet_unit_name' : '',
+         *  'tablet_ad_sizes' : [[250,250],[300,300],...],
+         *                      
+         *  'google_analytics_id' : 'UA-XXXXXX-1',
+         *  'google_internal_id' : 'xxxxx'
+         * 
+         * }
 		 */
-		public static function wmp_set_premium_config() { 
+		public static function wmp_set_premium_config() {
 			
-			if(self::wmp_get_setting('premium_active') == 1 && self::wmp_get_setting('premium_api_key') != '') {
+			if (self::wmp_get_setting('premium_api_key') != '') {
 				
 				// get config path
 				$config_path = self::wmp_get_setting('premium_config_path');
-				
-				if($config_path != '') { // check if config path is set
+                
+				if ($config_path != '') { // check if config path is set
 				
 					$json_data = get_transient("wmp_premium_config_path"); 
 					
-					if(!$json_data) {
+					if (!$json_data) {
 						
 						$delete_premium = false;
 						
-						// check if config path is a valid url
-						//$pattern = '%^http:\/\/cdn.appticles.com\/[a-z0-9]{6,7}\/config\.json%';
-						$pattern = '%^http:\/\/cdn-dev.appticles.com\/[a-z0-9]{6,7}\/config\.json%';
-						
-						if(preg_match($pattern,$config_path,$matches) === 1) {
-							
+                        if (filter_var($config_path, FILTER_VALIDATE_URL) !== false) {
+                        
 							// get response
 							$json_response = WMobilePackAdmin::wmp_read_data($config_path);
-							
-							if ($json_response !== false && $json_response != '') {							
-								// Store this data in a transient
-								set_transient( 'wmp_premium_config_path', $json_response, 3600*30 ); // transient expires every half an hour
-							
-								return $json_response;
-							
+                            
+							if ($json_response !== false && $json_response != '') {
+	      
+                                // is valid json
+                                $arrAppSettings = json_decode($json_response, true);
+                                
+                                if (isset($arrAppSettings['kit_version']) && ctype_alnum(str_replace('.', '', $arrAppSettings['kit_version'])) && 
+                                    isset($arrAppSettings['cdn_kits']) && filter_var($arrAppSettings['cdn_kits'], FILTER_VALIDATE_URL) && 
+                                    isset($arrAppSettings['cdn_apps']) && filter_var($arrAppSettings['cdn_apps'], FILTER_VALIDATE_URL) &&
+                                    isset($arrAppSettings['api_content']) && filter_var($arrAppSettings['api_content'], FILTER_VALIDATE_URL) &&
+                                    isset($arrAppSettings['api_social']) && filter_var($arrAppSettings['api_social'], FILTER_VALIDATE_URL) &&
+                                    isset($arrAppSettings['webapp']) && ctype_alnum($arrAppSettings['webapp']) &&
+                                    isset($arrAppSettings['shorten_url']) && ctype_alnum($arrAppSettings['shorten_url']) &&
+                                    isset($arrAppSettings['title']) && $arrAppSettings['title'] == strip_tags($arrAppSettings['title']) &&
+                                    isset($arrAppSettings['status']) && in_array($arrAppSettings['status'], array('visible', 'hidden')) &&
+                                    isset($arrAppSettings['theme']) && is_numeric($arrAppSettings['theme']) &&
+                                    
+                                    isset($arrAppSettings['has_phone_ads']) && is_numeric($arrAppSettings['has_phone_ads']) &&
+                                    isset($arrAppSettings['has_tablet_ads']) && is_numeric($arrAppSettings['has_tablet_ads']) &&
+                                    
+                                    // validate optional fields
+                                    (!isset($arrAppSettings['domain_name']) || $arrAppSettings['domain_name'] == '' || filter_var('http://'.$arrAppSettings['domain_name'], FILTER_VALIDATE_URL)) && 
+                                    (!isset($arrAppSettings['color_scheme']) || $arrAppSettings['color_scheme'] == '' || is_numeric($arrAppSettings['color_scheme'])) &&
+                                    (!isset($arrAppSettings['font_headlines']) || $arrAppSettings['font_headlines'] == '' || is_numeric($arrAppSettings['font_headlines'])) &&
+                                    (!isset($arrAppSettings['font_subtitles']) || $arrAppSettings['font_subtitles'] == '' || is_numeric($arrAppSettings['font_subtitles'])) &&
+                                    (!isset($arrAppSettings['font_paragraphs']) || $arrAppSettings['font_paragraphs'] == '' || is_numeric($arrAppSettings['font_paragraphs'])) && 
+                                    
+                                    (!isset($arrAppSettings['cover_smartphones_path']) || $arrAppSettings['cover_smartphones_path'] == '' || $arrAppSettings['cover_smartphones_path'] == strip_tags($arrAppSettings['cover_smartphones_path'])) && 
+                                    (!isset($arrAppSettings['cover_tablets_path']) || $arrAppSettings['cover_tablets_path'] == '' || $arrAppSettings['cover_tablets_path'] == strip_tags($arrAppSettings['cover_tablets_path'])) &&
+                                    (!isset($arrAppSettings['logo_path']) || $arrAppSettings['logo_path'] == '' || $arrAppSettings['logo_path'] == strip_tags($arrAppSettings['logo_path'])) &&
+                                    (!isset($arrAppSettings['icon_path']) || $arrAppSettings['icon_path'] == '' || $arrAppSettings['icon_path'] == strip_tags($arrAppSettings['icon_path'])) &&  
+                                    
+                                     (!isset($arrAppSettings['google_analytics_id']) || $arrAppSettings['google_analytics_id'] == '' || ctype_alnum(str_replace('-','', $arrAppSettings['google_analytics_id']))) &&
+                                     (!isset($arrAppSettings['google_internal_id']) || $arrAppSettings['google_internal_id'] == '' || is_numeric($arrAppSettings['google_internal_id'])) &&  
+                                     
+                                     (!isset($arrAppSettings['phone_network_code']) || $arrAppSettings['phone_network_code'] == '' || is_numeric($arrAppSettings['phone_network_code'])) &&
+                                     (!isset($arrAppSettings['phone_unit_name']) || $arrAppSettings['phone_unit_name'] == '' || $arrAppSettings['phone_unit_name'] == strip_tags($arrAppSettings['phone_unit_name'])) &&
+                                     (!isset($arrAppSettings['phone_ad_sizes']) || $arrAppSettings['phone_ad_sizes'] == '' || is_array($arrAppSettings['phone_ad_sizes'])) &&
+                                     
+                                     (!isset($arrAppSettings['tablet_network_code']) || $arrAppSettings['tablet_network_code'] == '' || is_numeric($arrAppSettings['tablet_network_code'])) &&
+                                     (!isset($arrAppSettings['tablet_unit_name']) || $arrAppSettings['tablet_unit_name'] == '' || $arrAppSettings['tablet_unit_name'] == strip_tags($arrAppSettings['tablet_unit_name'])) &&
+                                     (!isset($arrAppSettings['tablet_ad_sizes']) || $arrAppSettings['tablet_ad_sizes'] == '' || is_array($arrAppSettings['tablet_ad_sizes']))
+                                     
+                                ) {
+                                    
+                                    set_transient( 'wmp_premium_config_path', $json_response, 3600*10 ); // transient expires every 10 minutes
+                                    return $json_response;  
+                                }
+                                    
 							} else
-								$delete_premium = true;
+                                $delete_premium = true;
 								
-							if($delete_premium) { // the dashboards were disconnected
+							if ($delete_premium) { // the dashboards were disconnected
 								
-								$arrData = array(
-													'premium_api_key' => '',
-													'premium_active'  => 0,
-													'premium_config_path' => ''
-												 );	
+                                $arrData = array(
+                                    'premium_api_key' => '',
+									'premium_active'  => 0,
+									'premium_config_path' => ''
+								);
+                                	
 								// save options
 								self::wmp_update_settings($arrData);
-								
 							}	
 						}
 					}
@@ -716,14 +805,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 			}
 			
 			return false;
-		}
-		
-		
-		
-		
-		
-		
-		
+		 }
 		
 		
 		

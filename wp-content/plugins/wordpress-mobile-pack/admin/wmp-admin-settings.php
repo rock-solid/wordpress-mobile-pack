@@ -60,16 +60,12 @@
                         <div class="field-message error" id="error_ganalyticsid_container"></div>
                         <div class="spacer-20"></div>
                         <a href="javascript:void(0)" id="wmp_editsettings_send_btn" class="btn green smaller">Save</a>
-                     
-                       
-                    </form>
+                     </form>
                      <div class="notice notice-left right" style="width: 465px; margin: 95px 0 15px 0;">
                         <span>
                             By adding your Google Analytics ID, you will be able to track the mobile web application's visitors directly in your Google Analytics account.
                         </span>
-                    </div>
-                    
-                    
+                     </div>
                 </div>
                 <div class="spacer-0"></div>
             </div>
@@ -78,25 +74,47 @@
             	<div class="display-mode">
                  	<h2 class="title">Connect with Appticles</h2>
                     <div class="spacer-20"></div>
-                    <p> Extend your WP Mobile Pack with the Premium version by connecting with Appticles.com. Fill in the provided API Key to enable your Premium account.</p>
-                    <p>
-[5:55:25 PM] Ciprian Borodescu: Your WP Mobile Pack is now connected with Appticles.com and your Premium version is enabled. You can manage everything by simply logging in to the Dashboard. </p>
+                    <?php
+                        $premium_link = ''; 
+                        
+                        // Get premium link from the more json
+                        $page_content = WMobilePackAdmin::wmp_more_updates();
+                        
+                        if  (is_array($page_content) && !empty($page_content)){
+                            
+                            if (array_key_exists('premium', $page_content)){
+                                
+                                if (array_key_exists('button_text', $page_content['premium']) && array_key_exists('button_link', $page_content['premium'])){
+                                    
+                                    $feed_url = '';
+							
+        							if (get_bloginfo('atom_url') != null && get_bloginfo('atom_url') != '')
+        								$feed_url = '&feedurl='.urlencode(get_bloginfo('atom_url'));
+        							elseif (get_bloginfo('rss2_url') != null && get_bloginfo('rss2_url') != '')
+        								$feed_url = '&feedurl='.urlencode(get_bloginfo('rss2_url'));
+                                    
+                                    $premium_link = $page_content['premium']['button_link'].$feed_url.'&wmp_v=21';
+                                }
+                            }
+                        } 
+                    ?>
+                    
+                    <p>Extend your WP Mobile Pack with the <?php if ($premium_link):?><a href="<?php echo $premium_link;?>" target="_blank"><?php endif;?>Premium version<?php if ($premium_link):?></a><?php endif;?> by connecting with Appticles.com. Fill in the provided API Key to enable your Premium account.</p>
                     <div class="spacer-20"></div>
                     <form name="wmp_connect_form" id="wmp_connect_form" class="left" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_premium_save" method="post">
                         <input type="hidden" name="wmp_connect_settings" id="wmp_connect_settings"  value="<?php echo plugins_url()."/".WMP_DOMAIN.'/export/content.php?content=exportsettings';?>" />
-                        <p>Api Key:</p>
+                        <p>API Key:</p>
                         <div class="spacer-10"></div>
                         <input type="text" name="wmp_connect_apikey" id="wmp_connect_apikey" class="small indent" value="" />
                         <div class="field-message error" id="error_apikey_container"></div>
                         <div class="spacer-20"></div>
                         <a href="javascript:void(0)" id="wmp_connect_send_btn" class="btn green smaller">Save</a>
                      </form>
-                    <div class="notice notice-left right" style="width: 465px; margin: 0px 0 15px 0;">
+                     <div class="notice notice-left right" style="width: 465px; margin: 0px 0 15px 0;">
                         <span>
-                            Extend your WP Mobile Pack with the Premium version by connecting with Appticles.com. Fill in the provided API Key to enable your Premium account.
+                            Once your API key is validated, your WP Mobile Pack admin area will be transformed and you will be able to change your mobile web application settings from the Appticles.com dashboard.
                         </span>
                     </div>
-                    
                 </div>
                 <div class="spacer-0"></div>
             </div>
@@ -127,4 +145,3 @@
         });
     }
 </script>
-

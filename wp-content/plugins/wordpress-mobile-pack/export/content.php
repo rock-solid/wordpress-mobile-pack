@@ -51,19 +51,17 @@ if (isset($_GET["content"]) && isset($_GET['callback'])) {
 	} else
 		echo $_GET['callback'] . '({"error":"No export requested"})';
         
-} elseif(isset($_GET['content'])) { // the endpoint for settings
+} elseif (isset($_GET['content']) && $_GET["content"] == 'exportsettings') { // the endpoint for api settings
 	
-	if($_GET["content"] == 'exportsettings' && isset($_POST['apiKey']) && $_POST['apiKey'] != '') { // export settings, optional param:  limit
+	if (isset($_POST['apiKey']) && $_POST['apiKey'] != '') { // export settings, optional param:  limit
 		
 		$export = new Export();
 		echo $export->exportSettings();
 	
 	} else
 		echo '{"error":"No export requested","status" : 0}';
-	
-}
-
-
-else
+        
+} else
     echo '({"error":"No export requested"})';
+    
 ?>

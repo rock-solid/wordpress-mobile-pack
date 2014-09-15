@@ -54,14 +54,30 @@
                     </div>
                     
                     <?php
-						$feed_url = '';
-						
-						if (get_bloginfo('atom_url') != null && get_bloginfo('atom_url') != '')
-							$feed_url = '&feedurl='.urlencode(get_bloginfo('atom_url'));
-						elseif (get_bloginfo('rss2_url') != null && get_bloginfo('rss2_url') != '')
-							$feed_url = '&feedurl='.urlencode(get_bloginfo('rss2_url'));	
-					?>
-                    
+                        $premium_link = ''; 
+                        
+                        // Get premium link from the more json
+                        $page_content = WMobilePackAdmin::wmp_more_updates();
+                        
+                        if  (is_array($page_content) && !empty($page_content)){
+                            
+                            if (array_key_exists('premium', $page_content)){
+                                
+                                if (array_key_exists('button_text', $page_content['premium']) && array_key_exists('button_link', $page_content['premium'])){
+                                    
+                                    $feed_url = '';
+							
+        							if (get_bloginfo('atom_url') != null && get_bloginfo('atom_url') != '')
+        								$feed_url = '&feedurl='.urlencode(get_bloginfo('atom_url'));
+        							elseif (get_bloginfo('rss2_url') != null && get_bloginfo('rss2_url') != '')
+        								$feed_url = '&feedurl='.urlencode(get_bloginfo('rss2_url'));
+                                    
+                                    $premium_link = $page_content['premium']['button_link'].$feed_url.'&wmp_v=21';
+                                }
+                            }
+                        } 
+                    ?>
+
                     <div class="theme premium">
                     	<div class="corner relative">
                             <div class="indicator"></div>
@@ -77,10 +93,9 @@
                                     
                                     <div id="wmp_waitlist_business_container">
                                     	<div id="wmp_waitlist_action">
-                                            <a href="<?php echo WMP_GO_PREMIUM_PATH.$feed_url;?>" target="_blank" class="btn orange smaller">Go Premium</a>
-                                            <div class="text">
-                                                <em></em>	
-                                            </div>
+                                            <?php if ($premium_link != ''):?>
+                                                <a href="<?php echo $premium_link;?>" target="_blank" class="btn orange smaller">Go Premium</a>
+                                            <?php endif;?>                                            
                                         </div>
                                     </div>
                                 </div>
@@ -112,10 +127,9 @@
                                     
                                 	<div id="wmp_waitlist_lifestyle_container">
                                     	<div id="wmp_waitlist_action">
-                                            <a href="<?php echo WMP_GO_PREMIUM_PATH.$feed_url;?>" target="_blank" class="btn orange smaller">Go Premium</a>
-                                            <div class="text">
-                                                <em></em>
-                                            </div>
+                                            <?php if ($premium_link != ''):?>
+                                                <a href="<?php echo $premium_link;?>" target="_blank" class="btn orange smaller">Go Premium</a>
+                                            <?php endif;?>
                                         </div>
                                     </div>
                                 </div>
