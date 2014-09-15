@@ -12,7 +12,7 @@
         header("Location: http://".$arrConfig['domain_name']);
         exit();
     }
-        
+    
 	// check if it is tablet 
 	$is_tablet = WMobilePack::wmp_is_tablet();
 
@@ -109,6 +109,18 @@
         if ($is_tablet == 1 && isset($arrConfig['cover_tablets_path'] ) && $arrConfig['cover_tablets_path'] != '')
             $cover = $arrConfig['cover_tablets_path'];
             
+        // init icon & logo timestamps
+        $icon_timestamp = '';
+        if (isset($arrConfig['icon_path'])) {
+             $str = $arrConfig['icon_path'];
+             $icon_timestamp = '_'.substr($str, strpos($str, '_') + 1 , strpos($str, '.') - strpos($str, '_') - 1);
+        }
+        
+        $logo_timestamp = '';
+        if (isset($arrConfig['logo_path'])) {
+             $str = $arrConfig['logo_path'];
+             $logo_timestamp = '_'.substr($str, strpos($str, '_') + 1 , strpos($str, '.') - strpos($str, '_') - 1);
+        }
     ?>
 
     <script type="text/javascript">
@@ -122,9 +134,11 @@
 			socialApiPath: '<?php echo $arrConfig['api_social'];?>',
             
             logo: '<?php echo isset($arrConfig['logo_path']) && $arrConfig['logo_path'] != '' ? $app_files_path.$arrConfig['logo_path'] : $kits_path."resources/images/logo.png";?>',
-            hasIcons: <?php echo intval(isset($arrConfig['icon_path']) &&$arrConfig['icon_path'] != "");?>,
+            hasIcons: <?php echo intval(isset($arrConfig['icon_path']) && $arrConfig['icon_path'] != "");?>,
             hasStartups: <?php echo intval(isset($arrConfig['logo_path']) && $arrConfig['logo_path'] != "");?>,
-            
+            iconTimestamp: '<?php echo $icon_timestamp;?>',
+            startupImageTimestamp: '<?php echo $logo_timestamp;?>',
+   
             userCover: <?php echo $cover == "" ? 'false' : 'true' ;?>,
             defaultCover: "<?php echo $cover == "" ? $arrConfig['cdn_kits'].'/others/covers/'.($is_tablet ? 'tablet' : 'phone').'/pattern-'.rand(1,8).'.jpg' : $app_files_path.$cover ;?>",
             
