@@ -236,8 +236,6 @@ function WMP_PAGE_DETAILS(){
 	/*****************************************************************************************************/
 	this.completeUploadingData = function(response){
 		
-		console.log(response);
-		
 		jQuery("#"+JSObject.form.id,JSObject.DOMDoc).unbind("submit");
 		jQuery("#"+JSObject.form.id,JSObject.DOMDoc).bind("submit",function(){return false;});
 	
@@ -251,8 +249,6 @@ function WMP_PAGE_DETAILS(){
             // show message
             var message = 'Your page has been successfully modified!';
             WMPJSInterface.Loader.display({message: message});
-			
-			// REDIRECT TO CONTENT ????!!!!! 
 			
 		} else {
 			

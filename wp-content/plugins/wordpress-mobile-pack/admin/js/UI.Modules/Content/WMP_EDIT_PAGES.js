@@ -202,7 +202,6 @@ function WMP_EDIT_PAGES(){
     	});
         
     	// -------------------------------------- //
-    	//console.log(stringOrder);
         WMPJSInterface.Preloader.start();
         JSObject.changingStatus = true;
         
@@ -215,7 +214,6 @@ function WMP_EDIT_PAGES(){
 				'ids':   stringOrder
 			},
 			function(response){
-				//console.log(response);
                 WMPJSInterface.Preloader.remove(100);
   		        JSObject.changingStatus = false;
                 

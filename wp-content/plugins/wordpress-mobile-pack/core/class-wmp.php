@@ -159,13 +159,8 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     	public function wmp_admin_enqueue_scripts() {
     		
     		// enqueue styles
-			//wp_enqueue_style('css_general', plugins_url(WMP_DOMAIN.'/admin/css/general-min.css'), array(), WMP_VERSION);
-            
-			wp_enqueue_style('css_main', 'http://dev.webcrumbz.co/~raducu/dashboard-cutting/wp/resources/css/main.css', array(), WMP_VERSION);
-            wp_enqueue_style('css_fonts', 'http://dev.webcrumbz.co/~raducu/dashboard-cutting/wp/resources/css/fonts.css', array(), WMP_VERSION);
-            wp_enqueue_style('css_ie', 'http://dev.webcrumbz.co/~raducu/dashboard-cutting/wp/resources/css/ie.css', array(), WMP_VERSION);
-            
-			
+			wp_enqueue_style('css_general', plugins_url(WMP_DOMAIN.'/admin/css/general-min.css'), array(), WMP_VERSION);
+        
             // enqueue scripts
         	if (WMP_BLOG_VERSION < 3.6) 
 				$dependencies = array('jquery');
@@ -209,7 +204,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          */
         public function wmp_admin_load_page_js(){
 
-			wp_enqueue_script('js_content_pagedetails', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_PAGE_DETAILS.js'), array(), WMP_VERSION);
+			wp_enqueue_script('js_content_pagedetails', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_PAGE_DETAILS.min.js'), array(), WMP_VERSION);
 			
 		}
 		
@@ -222,7 +217,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          */
         public function wmp_admin_load_settings_js(){
             wp_enqueue_script('js_settings_editdisplay', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/WMP_EDIT_DISPLAY.min.js'), array(), WMP_VERSION);
-			wp_enqueue_script('js_settings_connect', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/WMP_CONNECT.js'), array(), WMP_VERSION);
+			wp_enqueue_script('js_settings_connect', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/WMP_CONNECT.min.js'), array(), WMP_VERSION);
         }
         
         
@@ -260,7 +255,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          */
         public function wmp_admin_load_premium_js(){
 
-			wp_enqueue_script('js_content_premium', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/WMP_DISCONNECT.js'), array(), WMP_VERSION);
+			wp_enqueue_script('js_content_premium', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/WMP_DISCONNECT.min.js'), array(), WMP_VERSION);
 			
 		}
 		

@@ -101,8 +101,7 @@ function WMP_DISCONNECT(){
 				},
 				success: function(responseJSON){
 				    
-                    console.log(responseJSON)
-					WMPJSInterface.Preloader.remove(100);
+                    WMPJSInterface.Preloader.remove(100);
 					
 					JSON = eval (responseJSON);
 					response = Boolean(Number(String(JSON.status)));

@@ -184,7 +184,7 @@ function WMP_EDIT_CATEGORIES(){
 				'ids':   stringOrder
 			},
 			function(response){
-				console.log(response);
+				
                 WMPJSInterface.Preloader.remove(100);
   		        JSObject.changingStatus = false;
                 
