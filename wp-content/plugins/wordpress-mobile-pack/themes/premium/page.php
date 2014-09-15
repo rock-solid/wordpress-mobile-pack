@@ -1,6 +1,6 @@
 <?php
-// get the post url
-$articleUrlParam = '';
+// get the page url
+$pageUrlParam = '';
 
 $permalink = get_permalink();
 
@@ -8,7 +8,7 @@ if (is_numeric(get_the_ID()) && filter_var($permalink, FILTER_VALIDATE_URL)){
     $permalink = rawurlencode($permalink);
     $permalink = str_replace('.','%2E',$permalink);
     
-    $articleUrlParam = '#articleUrl/'.$permalink;
+    $pageUrlParam = '#pageUrl/'.$permalink;
 } 
 
 // load config json for the premium theme
@@ -21,9 +21,8 @@ if ($json_config_premium !== false) {
 
 // check if we have a valid domain
 if (isset($arrConfig['domain_name']) && filter_var('http://'.$arrConfig['domain_name'], FILTER_VALIDATE_URL)) {
-    header("Location: http://".$arrConfig['domain_name'].$articleUrlParam);
+    header("Location: http://".$arrConfig['domain_name'].$pageUrlParam);
 } else {
-    header("Location: ".home_url().$articleUrlParam);
+    header("Location: ".home_url().$pageUrlParam);
 }
-
 ?>
