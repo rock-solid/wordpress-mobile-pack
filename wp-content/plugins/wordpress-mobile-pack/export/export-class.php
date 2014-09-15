@@ -220,7 +220,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 							$current_key = $new_index;
 						else
 							$current_key = $last_key+1;
-						 
+					 	
 						
     					// add details to category array
     					$arrCategories[$current_key + 1] = array(
