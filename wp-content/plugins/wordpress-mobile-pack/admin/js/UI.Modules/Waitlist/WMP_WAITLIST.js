@@ -131,6 +131,10 @@ function WMP_WAITLIST(){
             jQuery(JSObject.actionBox).hide();
         })
         JSObject.enableButton(this.display_btn);
+		
+		jQuery("#"+JSObject.form.id,JSObject.DOMDoc).bind("keypress", function (e) {
+			if (e.keyCode == 13) return false;
+		});
         
     }
 	
