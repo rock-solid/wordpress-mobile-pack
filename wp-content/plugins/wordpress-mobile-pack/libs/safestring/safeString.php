@@ -2,7 +2,11 @@
 
 class safeString {
     
-  protected static $transliterationTable = array(
+	/* ----------------------------------*/
+	/* Properties						 */
+	/* ----------------------------------*/		
+	
+  	protected static $transliterationTable = array(
 												 'à' => 'a', 
 												 'À' => 'A',
 												 'Á' => 'A', 
@@ -66,8 +70,12 @@ class safeString {
   
    
 
-		
-  /** 
+	/* ----------------------------------*/
+	/* Methods							 */
+	/* ----------------------------------*/
+	
+	
+  	/** 
      * clearString  
      * 
      * Method used to clean a string to be safely appended to the url
