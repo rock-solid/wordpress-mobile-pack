@@ -933,7 +933,12 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 				  'post_password'	 => ''
             );
 			
-           
+           if(WMP_BLOG_VERSION >= 3.6) {
+				$args['orderby'] = 'title';
+				$args['order'] = 'ASC';
+			}
+			
+			
 		   // get pages order
 			$order_pages = unserialize(WMobilePack::wmp_get_setting('ordered_pages'));
 		   

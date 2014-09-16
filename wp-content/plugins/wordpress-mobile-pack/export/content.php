@@ -3,7 +3,7 @@
 header("Content-Type: application/json; charset=UTF-8");
 require_once("export-class.php");
 // Disable error reporting because these methods are used as callbacks by the mobile web app
-// error_reporting(0);
+error_reporting(0);
 
 if (isset($_GET["content"]) && isset($_GET['callback'])) {
     
