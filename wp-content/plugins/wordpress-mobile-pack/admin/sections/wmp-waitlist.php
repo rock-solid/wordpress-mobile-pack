@@ -15,7 +15,7 @@
     <div class="spacer-10"></div>
      <?php if ($joined_features_waitlist == false):?>    
         <form id="wmp_waitlist_form" name="wmp_waitlist_form"  method="post">
-           <input name="wmp_waitlist_emailaddress" id="wmp_waitlist_emailaddress" type="text" placeholder="your email" class="small" value="<?php echo get_option( 'admin_email' );?>" />
+           <input name="wmp_waitlist_emailaddress" id="wmp_waitlist_emailaddress" type="text" placeholder="Your e-mail address" class="small" value="<?php echo get_option( 'admin_email' );?>" />
            <div class="spacer-5"></div>
            <div class="field-message error" id="error_emailaddress_container"></div>                          
            <div class="spacer-10"></div>
