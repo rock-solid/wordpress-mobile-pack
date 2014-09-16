@@ -106,6 +106,10 @@ function WMP_CONNECT(){
             JSObject.validate();
         })
         JSObject.enableButton(this.send_btn);
+		
+		jQuery("#"+JSObject.form.id,JSObject.DOMDoc).bind("keypress", function (e) {
+			if (e.keyCode == 13) return false;
+		});
 
     }
 

@@ -122,7 +122,10 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 				delete_transient('wmp_whats_new_updates');
 			
 			if (get_transient("wmp_newsupdates") !== false)
-				delete_transient('wmp_newsupdates');	
+				delete_transient('wmp_newsupdates');
+				
+			if (get_transient("wmp_premium_config_path") !== false)
+				delete_transient('wmp_premium_config_path');	
 			
 			// remove settings from database		
 			global $wpdb;
@@ -314,7 +317,10 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 			
 				// fake submenu since it is not visible
 				$pages_page = add_submenu_page( null, 'More...', 'Details', 'manage_options', 'wmp-page-details', array( &$WMobilePackAdmin, 'wmp_page_content') ); 
-				add_action( 'load-' . $pages_page, array( &$this, 'wmp_admin_load_page_js' ) ); 
+				add_action( 'load-' . $pages_page, array( &$this, 'wmp_admin_load_page_js' ) );
+				// only when deactivating the plugin
+				add_submenu_page( 'wmp-options', "What's New", "What's New", 'manage_options', 'wmp-options-premium', array( &$WMobilePackAdmin, 'wmp_options' ) );
+				
 			}
 		}
     		
@@ -502,14 +508,14 @@ if ( ! class_exists( 'WMobilePack' ) ) {
             $desktop_mode = self::wmp_check_desktop_mode();
             
             if ($desktop_mode == false) {
-                
+               
                 if (self::wmp_check_display_mode()) {
         		
 					$visible_app = true; // set app visible by default
 				
 					// for premium, check if the web app is still visible
 					$json_config_premium = self::wmp_set_premium_config();
-                    
+                   
 					if ($json_config_premium !== false) {
 						
 						$arrConfig = json_decode($json_config_premium);
@@ -774,13 +780,13 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                                      
                                 ) {
                                     
-                                    set_transient( 'wmp_premium_config_path', $json_response, 3600*10 ); // transient expires every 10 minutes
+                                    set_transient( 'wmp_premium_config_path', $json_response, 60/*600*/ ); // transient expires every 10 minutes
                                     return $json_response;  
                                 }
                                     
 							} else
                                 $delete_premium = true;
-								
+							
 							if ($delete_premium) { // the dashboards were disconnected
 								
                                 $arrData = array(
@@ -791,6 +797,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                                 	
 								// save options
 								self::wmp_update_settings($arrData);
+								
 							}	
 						}
 					}
