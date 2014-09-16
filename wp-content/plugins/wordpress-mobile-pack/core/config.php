@@ -14,14 +14,13 @@ if ( !defined( 'WMP_FILES_UPLOADS_DIR' ) && !defined( 'WMP_FILES_UPLOADS_URL' ) 
 define('WMP_FEEDBACK_EMAIL','feedback@appticles.com');
 define('WMP_NEWS_UPDATES','http://cdn-wpmp.appticles.com/dashboard/news.json');
 define('WMP_WHATSNEW_UPDATES','http://cdn-wpmp.appticles.com/dashboard/whats_new/content1.json');
-// define('WMP_MORE_UPDATES','http://cdn-wpmp.appticles.com/dashboard/more/more1.json');
-define('WMP_MORE_UPDATES','https://s3-eu-west-1.amazonaws.com/appticles-wmpack/dashboard/more/more1.json');
+define('WMP_MORE_UPDATES','http://cdn-wpmp.appticles.com/dashboard/more/more1.json');
 
-define('WMP_WAITLIST_PATH','http://gateway-dev.appticles.com/waitlist/api/subscribe');
+define('WMP_WAITLIST_PATH','http://gateway.appticles.com/waitlist/api/subscribe');
 
 // define connect with appticles path
-define('WMP_APPTICLES_CONNECT','http://dev.webcrumbz.co/content/wpconnect');
-define('WMP_APPTICLES_DISCONNECT','http://dev.webcrumbz.co/content/wpdisconnect');
+define('WMP_APPTICLES_CONNECT','http://api.webcrumbz.co/content1/wpconnect');
+define('WMP_APPTICLES_DISCONNECT','http://api.webcrumbz.co/content1/wpdisconnect');
 
 // define blog version
 define('WMP_BLOG_VERSION',get_bloginfo('version'));

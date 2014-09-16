@@ -2,23 +2,23 @@
 Contributors: jamesgpearce, andreatrasatti, edent, cborodescu
 Tags: mobile, mobile web, mobile internet, smartphone, iphone, android, windows 8, webkit, chrome, safari, mobile web app, html5, sencha touch, responsive ui
 Requires at least: 3.5
-Tested up to: 3.9.1
-Stable tag: 2.0.2
+Tested up to: 4.0
+Stable tag: 2.1
 License: GPLv2 or later
 
 The NEW WordPress Mobile Pack allows you to 'package' your existing content into a cross-platform mobile web application.
 
 == Description ==
 
-**The WordPress Mobile Pack 2.0 has been completely rebuilt from the ground up and repurposed to empower bloggers, publishers and other content creators to go beyond responsiveness and 'appify' the content of their blog.**
+**The WordPress Mobile Pack 2.0+ has been completely rebuilt from the ground up and repurposed to empower bloggers, publishers and other content creators to go beyond responsiveness and 'appify' the content of their blog.**
 
-WordPress Mobile Pack 2.0 is **supported on**: iPhones, Android smartphones, Windows Phone 8, Firefox OS. **Compatible browsers**: Safari, Google Chrome, Android - Native Browser, Internet Explorer 10 and Firefox.
+WordPress Mobile Pack 2.0+ is **supported on**: iPhones, Android smartphones, Windows Phone 8, Firefox OS. **Compatible browsers**: Safari, Google Chrome, Android - Native Browser, Internet Explorer 10 and Firefox.
 
 The pack has been tested on WordPress 3.5 and later. Please read the [Known issues and limitations](https://wordpress.org/plugins/wordpress-mobile-pack/other_notes/) list before installing.
 
-The WordPress Mobile Pack 2.0 eliminates the hassle of dealing with high development costs, approval processes with various app stores, poor discoverability due to the closed environment of native apps and finally, one of the biggest injustices aimed towards the publishing industry in general - the shared revenue constraint.
+The WordPress Mobile Pack 2.0+ eliminates the hassle of dealing with high development costs, approval processes with various app stores, poor discoverability due to the closed environment of native apps and finally, one of the biggest injustices aimed towards the publishing industry in general - the shared revenue constraint.
 
-What the WordPress Mobile Pack 2.0 enables you to do: 
+What the WordPress Mobile Pack 2.0+ enables you to do: 
 
 * **Cross-platform mobile web applications**. All it takes for a mobile web application to run is a modern mobile browser (HTML5 compatible), thus allowing readers to instantly have access to your content, without needing to go through an app store, download & install the app.
  
@@ -30,11 +30,27 @@ What the WordPress Mobile Pack 2.0 enables you to do:
 
 * **Posts Sync**. The posts inside the mobile web application are organized into their corresponding categories, thus readers can simply swipe through articles and jump from category to category in a seamless way. 
 
+* **Pages Sync**. Choose what pages you want to display on your mobile web application. You can edit, show/hide different pages and order them according to your needs.
+
 * **Comments Sync**. All the comments that are displayed in the blog are also synchronized into the mobile web application. On top of that, comments that are posted from within the app are also displayed on the blog.
 
 * **Analytics**. WordPress Mobile Pack 2.0 easily integrates with Google Analytics. 
 
 * **Add to Homescreen**. Readers can add the mobile web application to their homescreen and run it in full-screen mode. 
+
+WordPress Mobile Pack 2.0+ can be extended to its Premium version by connecting it with [Appticles.com](http://www.appticles.com).  Some of the benefits of going Premium:
+ 
+* **Phablets & Tablets Support**. Turn your blog into an amazing tablet web application. The look and feel of the web app seamlessly morphs into the screen size of your users' device.
+
+* **Unlimited Themes & Custom Appearance**. Dozens of themes to choose from. Customize the colors & fonts, add your logo and personalize your app to craft your brand identity. 
+
+* **Unlimited Content Sources**. Repurpose your existing social content into a personalized mobile & tablet web application that tells a story: Your story.
+
+* **Unlimited Applications**. Have as many mobile & tablet web applications as you need, supported on iOS, Android, Windows 8, FirefoxOS, Tizen. 
+
+* **Monetization**. Start making money by connecting your ad units from Google Adsense and Double Click for Publishers.
+ 
+* **Offline Mode**. Keep your mobile readers always in touch with your content, even in offline mode.
 
 For previous versions, check out the 'Change log' page.
 
@@ -63,7 +79,7 @@ A more comprehensive setup process and guide to configuration is as follows.
 1. Click 'Activate' for the plugin.
 1. Go to the 'WP Mobile Pack' admin panel.
 1. Go to the 'Look & Feel' tab. Choose color schemes, fonts and add your own logo and app icon.
-1. Go to the 'Content' tab. Disable or enable categories depending on what content you want to show in the mobile web app.
+1. Go to the 'Content' tab. Disable, enable or order categories and pages depending on what content you want to show in the mobile web app.
 1. Go to the 'Settings' tab to choose a Display Mode and add your Google Analytics ID.
 1. Access your site in a mobile browser and check if the application is displayed. If the app is not loading properly, make sure that the file exporting the content - http://yoursite.com/{your plugins folder}/wordpress-mobile-pack/export/content.php - can be accessed in the browser and doesn't return a '404 Not Found' error.
 1. You're all done!
@@ -97,15 +113,22 @@ The short answer is that a mobile web application is an enriched version of a mo
 A responsive theme is all about design - it loads the same styling as the desktop view, adjusting it to fit a smaller screen. A mobile web application combines the versatility of the web with the functionality of touch-enabled devices and can contain features that your desktop website doesn't have (like offline mode for example). A mobile web app is similar to a native app in terms of look & feel, with the only difference being that it runs in the browser.
 
 = Am I able to use my own theme or customize the existing one? =  
-V2.0 is based on a Javascript framework called Sencha Touch, that mimics a native app interface. Because of that, the themes used are not regular PHP based themes that can be easily customized by editing the source. It is still possible to make small CSS changes, but changing the theme structure will not work.
+V2.0+ is based on a Javascript framework called Sencha Touch, that mimics a native app interface. Because of that, the themes used are not regular PHP based themes that can be easily customized by editing the source. It is still possible to make small CSS changes, but changing the theme structure will not work.
 
 = Am I able to add Javascript code inside the theme? =
 Adding tracking scripts in the source is possible if you place them in the <head> section of the theme files. However, code that is placed inside the posts will not be executed. The theme is implemented enterily in Javascript and that would mean Javascript code inside another Javascript code.
 
 = Am I able to integrate my own advertisement? =
-Support for various ad networks will be added in future releases. These will be managed enterily from the admin panel, so you won't have to modify the source to integrate ads.
+Google Ad Sense / Google Double Click for Publishers is supported on the Premium version as of v2.1. Support for other ad networks will be added in future releases.
 
 == Changelog ==
+
+= 2.1 =
+* Added support for pages with basic HTML content (forms, tables and iframe tags are not supported)
+* Categories and pages can be ordered from the admin panel
+* Connect with Appticles.com through an API key for the Premium version
+* Fixed PHP errors caused by STRICT standards
+* Fixed url rewriting bug for categories with special characters in the title
 
 = 2.0.2 = 
 * Added support for Firefox and Firefox OS
@@ -215,14 +238,15 @@ Two major issues were introduced in beta 1, now solved:
 
 1. Cover of the mobile web app. A default cover is used if your last blog entry doesn't contain a large enough featured image.
 2. Articles within a category. 
-3. Side menu with all the enabled categories. 
-4. Article details.
-5. Comments panel for an article.
-6. "What's New" page from the admin panel. Displays latest updates and news.
-7. "Look & Feel" page from the admin panel. Customize theme by choosing colors, fonts and adding your own app icon, logo & cover.
-8. "Content" page from the admin panel. Show/hide categories of articles in the mobile web app.
-9. "Settings" page from the admin panel. Set display mode and add your Google Analytics Id.
-10. "More" page from the admin panel. Other capabilities offered in the premium hosted platform.
+3. Side menu with all the enabled categories.
+4. Side menu with all the enabled pages.
+5. Article details.
+6. Comments panel for an article.
+7. "What's New" page from the admin panel. Displays latest updates and news.
+9. "Look & Feel" page from the admin panel. Customize theme by choosing colors, fonts and adding your own app icon, logo & cover.
+9. "Content" page from the admin panel. Show/hide categories of articles and pages in the mobile web app.
+10. "Settings" page from the admin panel. Set display mode, add your Google Analytics Id and enable the Premium version.
+11. "More" page from the admin panel. Other capabilities offered in the premium hosted platform.
 
 
 == Known issues and limitations for v2.0 ==
