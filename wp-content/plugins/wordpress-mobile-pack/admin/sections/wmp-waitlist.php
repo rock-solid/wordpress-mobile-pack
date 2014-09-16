@@ -43,7 +43,7 @@
                     {
                         'DOMDoc':       window.document,
                         'container' :   window.document.getElementById('wmp_waitlist_container'),
-                        'submitURL' :   'http://gateway-dev.appticles.com/waitlist/api/subscribe',
+                        'submitURL' :   'http://gateway.appticles.com/waitlist/api/subscribe',
                         'listType' :    'themes_features'
                     }, 
                     window
