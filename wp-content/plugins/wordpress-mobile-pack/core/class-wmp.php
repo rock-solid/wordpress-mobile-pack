@@ -780,7 +780,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                                      
                                 ) {
                                     
-                                    set_transient( 'wmp_premium_config_path', $json_response, 60/*600*/ ); // transient expires every 10 minutes
+                                    set_transient( 'wmp_premium_config_path', $json_response, 600 ); // transient expires every 10 minutes
                                     return $json_response;  
                                 }
                                     

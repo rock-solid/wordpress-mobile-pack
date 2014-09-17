@@ -99,6 +99,7 @@ function WMP_DISCONNECT(){
 				data: { 
 					'apiKey':    jQuery("#"+JSObject.type+"_apikey", JSObject.DOMDoc).val()
 				},
+                dataType: "jsonp",
 				success: function(responseJSON){
 				    
                     WMPJSInterface.Preloader.remove(100);

@@ -217,6 +217,7 @@ function WMP_CONNECT(){
 						'apiKey':    jQuery("#"+JSObject.type+"_apikey", JSObject.DOMDoc).val(),
 						'settingsPath' : jQuery("#"+JSObject.type+"_settings", JSObject.DOMDoc).val()
 					},
+                    dataType: "jsonp",
 					success: function(responseJSON){
 					    
 						WMPJSInterface.Preloader.remove(100);

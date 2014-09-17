@@ -43,7 +43,7 @@
                     {
                         'DOMDoc':       window.document,
                         'container' :   window.document.getElementById('wmp_waitlist_container'),
-                        'submitURL' :   'http://gateway.appticles.com/waitlist/api/subscribe',
+                        'submitURL' :   '<?php echo WMP_WAITLIST_PATH;?>',
                         'listType' :    'themes_features'
                     }, 
                     window
