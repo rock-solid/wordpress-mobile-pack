@@ -22,35 +22,42 @@ if ( ! class_exists( 'WPMobileDetect' ) ) {
     		
     		require_once (WMP_PLUGIN_PATH.'libs/mobileesp/mdetect.php');
     		$uagentObj = new UAgentInfo();
-    		 
-    		$is_tablet = $uagentObj->DetectTierTablet();
+    		
+    		$is_tablet = $uagentObj->DetectTierTablet(); 
     		$is_mobile = $uagentObj->DetectMobileQuick();
     		$is_webkit = $uagentObj->DetectWebkit();
     		$is_windows_mobile = $uagentObj->DetectWindowsPhone8();
+			$is_windows_tablet = $uagentObj->DetectWindowsTablet();
 
     		$is_firefox_os = $uagentObj->DetectFirefoxOsPhone();
 			$is_firefox = $uagentObj->DetectFirefoxPhone();
     		
-			if($is_mobile && !$is_tablet && ($is_webkit || $is_windows_mobile || $is_firefox_os || $is_firefox)) {
-
-    			
+			$is_premium = false;
+			if(WMobilePack::wmp_get_setting('premium_active') == 1 && WMobilePack::wmp_get_setting('premium_api_key') != '')
+				$is_premium = true; 
+			
+			$load_app = false;
+			// set load app variable to true
+			if(!$is_premium && $is_mobile && !$is_tablet && ($is_webkit || $is_windows_mobile || $is_firefox_os || $is_firefox))
+				$load_app = true;
+			elseif($is_premium && (($is_mobile || $is_tablet) &&  ($is_webkit || $is_windows_mobile || $is_firefox_os || $is_firefox)|| $is_windows_tablet))
+				$load_app = true; 
+			
+			
+			if($load_app)
     			// set load app cookie	
     			setcookie("wmp_load_app", 1, time()+3600*7*24,'/');
     			
-    			// set load app variable to true
-    			$load_app = true;	
-    		}
-    		
+    			
     		return $load_app;
     	}
-		
 		
 		function wmp_is_tablet() {
 			
 			require_once (WMP_PLUGIN_PATH.'libs/mobileesp/mdetect.php');
     		$uagentObj = new UAgentInfo();
 			
-			return $uagentObj->DetectTierTablet();
+			return ($uagentObj->DetectTierTablet() || $uagentObj->DetectWindowsTablet());
 		}
 		
     }
