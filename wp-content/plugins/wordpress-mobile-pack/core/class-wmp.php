@@ -520,7 +520,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 						
 						$arrConfig = json_decode($json_config_premium);
                         
-						if (isset($arrConfig->settings->status) && $arrConfig->settings->status == 'hidden') {
+						if (isset($arrConfig->status) && $arrConfig->status == 'hidden') {
 							
 							$load_app = false; // the app will not be loaded since the status is hidden
 							$visible_app = false; // setting it to false will skip the detection
