@@ -319,7 +319,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 				$pages_page = add_submenu_page( null, 'More...', 'Details', 'manage_options', 'wmp-page-details', array( &$WMobilePackAdmin, 'wmp_page_content') ); 
 				add_action( 'load-' . $pages_page, array( &$this, 'wmp_admin_load_page_js' ) );
 				// only when deactivating the plugin
-				add_submenu_page( 'wmp-options', "What's New", "What's New", 'manage_options', 'wmp-options-premium', array( &$WMobilePackAdmin, 'wmp_options' ) );
+				add_submenu_page( null, "What's New", "What's New", 'manage_options', 'wmp-options-premium', array( &$WMobilePackAdmin, 'wmp_options' ) );
 				
 			}
 		}

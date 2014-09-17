@@ -43,8 +43,7 @@ if ( ! class_exists( 'WPMobileDetect' ) ) {
 				$load_app = true;
 			elseif($is_premium && (($is_mobile || $is_tablet) &&  ($is_webkit || $is_windows_mobile || $is_firefox_os || $is_firefox)|| $is_windows_tablet))
 				$load_app = true; 
-			
-			if($load_app)
+						if($load_app)
     			// set load app cookie	
     			setcookie("wmp_load_app", 1, time()+3600*7*24,'/');
     			
@@ -56,8 +55,8 @@ if ( ! class_exists( 'WPMobileDetect' ) ) {
 			
 			require_once (WMP_PLUGIN_PATH.'libs/mobileesp/mdetect.php');
     		$uagentObj = new UAgentInfo();
-			
-			return ($uagentObj->DetectTierTablet() || $uagentObj->DetectWindowsTablet());
+
+			return ($uagentObj->DetectTierTablet() || ($uagentObj->DetectWindowsTablet() && !$uagentObj->DetectWindowsPhone8()));
 		}
 		
     }
