@@ -36,13 +36,13 @@ if ( ! class_exists( 'WPMobileDetect' ) ) {
 			if(WMobilePack::wmp_get_setting('premium_active') == 1 && WMobilePack::wmp_get_setting('premium_api_key') != '')
 				$is_premium = true; 
 			
+		
 			$load_app = false;
 			// set load app variable to true
 			if(!$is_premium && $is_mobile && !$is_tablet && ($is_webkit || $is_windows_mobile || $is_firefox_os || $is_firefox))
 				$load_app = true;
 			elseif($is_premium && (($is_mobile || $is_tablet) &&  ($is_webkit || $is_windows_mobile || $is_firefox_os || $is_firefox)|| $is_windows_tablet))
 				$load_app = true; 
-			
 			
 			if($load_app)
     			// set load app cookie	

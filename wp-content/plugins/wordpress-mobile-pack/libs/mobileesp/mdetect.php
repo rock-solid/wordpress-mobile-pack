@@ -190,7 +190,8 @@ class UAgentInfo
    //Disambiguation strings.
    var $disUpdate = "update"; //pda vs. update
 
-
+   // detect touch
+   var $touchScreen = "touch";
    //**************************
    //The constructor. Allows the latest PHP (5.0+) to locate a constructor object and initialize the object.
    function __construct()
@@ -416,6 +417,17 @@ class UAgentInfo
          return $this->isWebkit;
 
       if (stripos($this->useragent, $this->engineWebKit) > -1)
+         return $this->true;
+      else
+         return $this->false;
+   }
+
+
+	// Detects if the current browser is EITHER a
+   // Windows Phone 7.x OR 8 device.
+   function DetectWindowsTablet()
+   {
+      if ((stripos($this->useragent, $this->deviceWindows) > -1) && (stripos($this->useragent, $this->touchScreen) > -1))
          return $this->true;
       else
          return $this->false;
