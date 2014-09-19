@@ -945,5 +945,6 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 			
 			
 		}
+		
    }
 }

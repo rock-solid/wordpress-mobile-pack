@@ -46,8 +46,7 @@ if ( ! class_exists( 'WPMobileDetect' ) ) {
 						if($load_app)
     			// set load app cookie	
     			setcookie("wmp_load_app", 1, time()+3600*7*24,'/');
-    			
-    			
+    		
     		return $load_app;
     	}
 		

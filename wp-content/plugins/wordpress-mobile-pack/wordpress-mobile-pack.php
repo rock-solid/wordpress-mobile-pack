@@ -26,7 +26,7 @@ if ( class_exists( 'WMobilePack' ) && class_exists( 'WMobilePackAdmin' ) ) {
 
     // Initialize the Wordpress Mobile Pack check logic and rendering 
     add_action('plugins_loaded',array( &$wmobile_pack, 'wmp_check_load' )); 
-        
+	
 	if (is_admin()) {
 		  
 		$wmobile_pack->wmp_admin_init();
