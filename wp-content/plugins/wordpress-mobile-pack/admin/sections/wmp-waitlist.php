@@ -5,6 +5,9 @@
 	
 	if ($joined_waitlists != '' && in_array('themes_features', $joined_waitlists))
 		$joined_features_waitlist = true;
+        
+    // check if we have a https connection
+    $is_secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
 
 ?>
 
@@ -43,7 +46,7 @@
                     {
                         'DOMDoc':       window.document,
                         'container' :   window.document.getElementById('wmp_waitlist_container'),
-                        'submitURL' :   '<?php echo WMP_WAITLIST_PATH;?>',
+                        'submitURL' :   '<?php echo $is_secure ? WMP_WAITLIST_PATH_HTTPS : WMP_WAITLIST_PATH;?>',
                         'listType' :    'themes_features'
                     }, 
                     window

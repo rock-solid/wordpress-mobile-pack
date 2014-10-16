@@ -63,6 +63,11 @@
     </div>
 </div>
 
+<?php
+    // check if we have a https connection
+    $is_secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
+?>
+
 <script type="text/javascript">
     if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
@@ -70,7 +75,7 @@
                     "WMP_DISCONNECT",
                     {
                         'DOMDoc':       window.document,
-                        'submitURL' :   '<?php echo WMP_APPTICLES_DISCONNECT;?>',
+                        'submitURL' :   '<?php echo $is_secure ? WMP_APPTICLES_DISCONNECT_SSL : WMP_APPTICLES_DISCONNECT;?>',
 						'redirectTo' :  '<?php echo admin_url('admin.php?page=wmp-options');?>'
                     }, 
                     window

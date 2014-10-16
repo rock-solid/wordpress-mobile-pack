@@ -50,11 +50,14 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			// the transient is not set or expired
 			if (!$json_data) {
 			
+                // check if we have a https connection
+                $is_secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
+                
     			// jSON URL which should be requested
-    			$json_url = WMP_WHATSNEW_UPDATES;
+    			$json_url = ($is_secure ? WMP_WHATSNEW_UPDATES_HTTPS : WMP_WHATSNEW_UPDATES);
     			
 				// get response
-				$json_response = self::wmp_read_data(WMP_WHATSNEW_UPDATES);
+				$json_response = self::wmp_read_data($json_url);
 				
 				if ($json_response !== false && $json_response != '') {
 					
@@ -456,11 +459,14 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
             
             if (!$json_data) {
 			
-				// jSON URL which should be requested
-				$json_url = WMP_NEWS_UPDATES;
-				
+                // check if we have a https connection
+                $is_secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
+                
+    			// JSON URL that should be requested
+    			$json_url = ($is_secure ? WMP_NEWS_UPDATES_HTTPS : WMP_NEWS_UPDATES);
+                
 				// get response
-				$json_response = self::wmp_read_data(WMP_NEWS_UPDATES);
+				$json_response = self::wmp_read_data($json_url);
 				
 				if($json_response !== false && $json_response != '') {
 					
@@ -1158,11 +1164,14 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			// the transient is not set or expired
 			if (!$json_data) {
 			
-    			// jSON URL which should be requested
-    			$json_url = WMP_MORE_UPDATES;
-    		
+                // check if we have a https connection
+                $is_secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
+                
+    			// JSON URL that should be requested
+    			$json_url = ($is_secure ? WMP_MORE_UPDATES_HTTPS : WMP_MORE_UPDATES);
+                
 				// get response
-				$json_response = self::wmp_read_data(WMP_MORE_UPDATES);
+				$json_response = self::wmp_read_data($json_url);
 				
 				if($json_response !== false && $json_response != '') {
 					
