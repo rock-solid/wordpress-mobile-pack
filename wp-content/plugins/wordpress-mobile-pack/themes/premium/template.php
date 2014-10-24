@@ -27,7 +27,7 @@
     
 	// check if it is tablet 
 	$is_tablet = WMobilePack::wmp_is_tablet();
-
+    
     $cdn_kits = ($is_secure ? $arrConfig['cdn_kits_https'] : $arrConfig['cdn_kits']);
     $cdn_apps = ($is_secure ? $arrConfig['cdn_apps_https'] : $arrConfig['cdn_apps']);
 

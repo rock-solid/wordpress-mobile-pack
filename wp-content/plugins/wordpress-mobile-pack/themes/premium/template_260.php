@@ -2,9 +2,9 @@
 
 // Check if we have to load a custom theme
 if ( ($is_tablet == 0 && $arrConfig['phone']['theme'] != 0) || ($is_tablet == 1 && $arrConfig['tablet']['theme'] != 0)) {
-    $kits_path = $cdn_kits."app".($is_tablet == 0 ? $arrConfig['phone']['theme'] : $arrConfig['tablet']['theme']).'/'.$arrConfig['kit_version'].'/';    
+    $kits_path = $cdn_kits."/app".($is_tablet == 0 ? $arrConfig['phone']['theme'] : $arrConfig['tablet']['theme']).'/'.$arrConfig['kit_version'].'/';    
 } else {    
-    $kits_path = $cdn_apps.$arrConfig['shorten_url'].'/';
+    $kits_path = $cdn_apps."/".$arrConfig['shorten_url'].'/';
 }
 
  // ----------------------------------------- //
@@ -121,17 +121,17 @@ if ($is_tablet == 1 && isset($arrConfig['tablet']['cover']) && $arrConfig['table
 
             exportPath: '<?php echo $is_secure ? $arrConfig['api_content_https'] : $arrConfig['api_content'];?>',
 			defaultPath: '<?php echo $kits_path;?>',
-            appPath: '<?php echo $cdn_apps.$arrConfig['shorten_url'];?>',
+            appPath: '<?php echo $cdn_apps."/".$arrConfig['shorten_url'];?>',
 			socialApiPath: '<?php echo $is_secure ? $arrConfig['api_social_https'] : $arrConfig['api_social'];?>',
             
-            logo: '<?php echo isset($arrConfig['logo_path']) && $arrConfig['logo_path'] != '' ? $cdn_apps.$arrConfig['shorten_url'].'/'.$arrConfig['logo_path'] : $cdn_kits."app1/".$arrConfig['kit_version']."/resources/images/logo.png";?>',
+            logo: '<?php echo isset($arrConfig['logo_path']) && $arrConfig['logo_path'] != '' ? $cdn_apps."/".$arrConfig['shorten_url'].'/'.$arrConfig['logo_path'] : $cdn_kits."/app1/".$arrConfig['kit_version']."/resources/images/logo.png";?>',
             hasIcons: <?php echo intval(isset($arrConfig['icon_path']) && $arrConfig['icon_path'] != "");?>,
             hasStartups: <?php echo intval(isset($arrConfig['logo_path']) && $arrConfig['logo_path'] != "");?>,
             iconTimestamp: '<?php echo $icon_timestamp;?>',
             startupImageTimestamp: '<?php echo $logo_timestamp;?>',
 	    
             userCover: <?php echo $cover == "" ? 'false' : 'true' ;?>,
-            defaultCover: "<?php echo $cover == "" ? $cdn_kits.'/others/covers/'.($is_tablet ? 'tablet' : 'phone').'/pattern-'.rand(1,8).'.jpg' : $cdn_apps.$arrConfig['shorten_url'].'/'.$cover;?>",
+            defaultCover: "<?php echo $cover == "" ? $cdn_kits.'/others/covers/'.($is_tablet ? 'tablet' : 'phone').'/pattern-'.rand(1,8).'.jpg' : $cdn_apps."/".$arrConfig['shorten_url'].'/'.$cover;?>",
             
             appUrl: '<?php echo home_url();?>',
             websiteUrl: '<?php echo home_url();?>?wmp_theme_mode=desktop',
@@ -229,7 +229,7 @@ if ($is_tablet == 1 && isset($arrConfig['tablet']['cover']) && $arrConfig['table
     ?>
 
     <?php foreach ($arrLoadedFonts as $font_no):?>
-        <link rel="stylesheet" href="<?php echo $cdn_kits;?>resources/fonts/<?php echo $supported_gzip ? 'font-'.$font_no.'-css.gz' : 'font-'.$font_no.'.css' ;?>" type="text/css" />
+        <link rel="stylesheet" href="<?php echo $cdn_kits;?>/resources/fonts/<?php echo $supported_gzip ? 'font-'.$font_no.'-css.gz' : 'font-'.$font_no.'.css' ;?>" type="text/css" />
     <?php endforeach; ?>
     
     <?php 
@@ -250,13 +250,13 @@ if ($is_tablet == 1 && isset($arrConfig['tablet']['cover']) && $arrConfig['table
     ?>
     
     <?php foreach ($arrCustomFonts as $font_no):?>
-        <link rel="stylesheet" href="<?php echo $cdn_apps.$arrConfig['shorten_url'];?>/resources/fonts/<?php echo $supported_gzip ? 'font-'.$font_no.'-css.gz' : 'font-'.$font_no.'.css' ;?>" type="text/css" />
+        <link rel="stylesheet" href="<?php echo $cdn_apps."/".$arrConfig['shorten_url'];?>/resources/css/<?php echo $supported_gzip ? 'font-'.$font_no.'-css.gz' : 'font-'.$font_no.'.css' ;?>" type="text/css" />
     <?php endforeach; ?>
     
     <?php if ($theme_details['theme'] == 0): // load custom theme ?>
         <link rel="stylesheet" href="<?php echo $kits_path;?>resources/css/<?php echo $device.'-'.$theme_details['theme_timestamp'].($supported_gzip ? '-css.gz' : '.css');?>" type="text/css" />
     <?php elseif ($theme_details['theme_timestamp'] != ''): // check if we have a generated css ?>
-	    <link rel="stylesheet" href="<?php echo $cdn_apps.$arrConfig['shorten_url'];?>/resources/css/<?php echo $device.'-'.$theme_details['theme_timestamp'].($supported_gzip ? '-css.gz' : '.css');?>" type="text/css" />
+	    <link rel="stylesheet" href="<?php echo $cdn_apps."/".$arrConfig['shorten_url'];?>/resources/css/<?php echo $device.'-'.$theme_details['theme_timestamp'].($supported_gzip ? '-css.gz' : '.css');?>" type="text/css" />
     <?php else: ?>
 	   <link rel="stylesheet" href="<?php echo $kits_path;?>resources/css/<?php echo $device.'/colors-'.$theme_details['color_scheme'].'-font-'.$theme_details['font_headlines'].($supported_gzip ? '-css.gz' : '.css');?>" type="text/css" />
     <?php endif;?>
