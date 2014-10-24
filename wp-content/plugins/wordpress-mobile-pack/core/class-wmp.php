@@ -91,8 +91,13 @@ if ( ! class_exists( 'WMobilePack' ) ) {
             $apiKey = self::wmp_get_setting('premium_api_key');
             $isPremiumActive =  self::wmp_get_setting('premium_active');
             
-            if ($apiKey != '' && $isPremiumActive == 1)
-                WMobilePackAdmin::wmp_read_data(WMP_APPTICLES_DISCONNECT.'?apiKey='.$apiKey);
+            if ($apiKey != '' && $isPremiumActive == 1) {
+                
+                // check if we have a https connection
+                $is_secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
+    
+                WMobilePackAdmin::wmp_read_data( ($is_secure ? WMP_APPTICLES_DISCONNECT_SSL : WMP_APPTICLES_DISCONNECT).'?apiKey='.$apiKey);
+            }
             
             // remove uploaded images and uploads folder
             $logo_path = WMobilePack::wmp_get_setting('logo');
@@ -743,9 +748,13 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                                 
                                 if (isset($arrAppSettings['kit_version']) && ctype_alnum(str_replace('.', '', $arrAppSettings['kit_version'])) && 
                                     isset($arrAppSettings['cdn_kits']) && filter_var($arrAppSettings['cdn_kits'], FILTER_VALIDATE_URL) && 
+                                    isset($arrAppSettings['cdn_kits_https']) && filter_var($arrAppSettings['cdn_kits_https'], FILTER_VALIDATE_URL) &&
                                     isset($arrAppSettings['cdn_apps']) && filter_var($arrAppSettings['cdn_apps'], FILTER_VALIDATE_URL) &&
+                                    isset($arrAppSettings['cdn_apps_https']) && filter_var($arrAppSettings['cdn_apps_https'], FILTER_VALIDATE_URL) &&
                                     isset($arrAppSettings['api_content']) && filter_var($arrAppSettings['api_content'], FILTER_VALIDATE_URL) &&
+                                    isset($arrAppSettings['api_content_https']) && filter_var($arrAppSettings['api_content_https'], FILTER_VALIDATE_URL) &&
                                     isset($arrAppSettings['api_social']) && filter_var($arrAppSettings['api_social'], FILTER_VALIDATE_URL) &&
+                                    isset($arrAppSettings['api_social_https']) && filter_var($arrAppSettings['api_social_https'], FILTER_VALIDATE_URL) &&
                                     isset($arrAppSettings['webapp']) && ctype_alnum($arrAppSettings['webapp']) &&
                                     isset($arrAppSettings['shorten_url']) && ctype_alnum($arrAppSettings['shorten_url']) &&
                                     isset($arrAppSettings['title']) && $arrAppSettings['title'] == strip_tags($arrAppSettings['title']) &&

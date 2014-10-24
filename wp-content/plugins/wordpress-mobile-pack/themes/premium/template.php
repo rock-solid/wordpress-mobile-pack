@@ -13,11 +13,17 @@
         exit();
     }
     
+    // check if we have a secure https connection
+    $is_secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
+    
 	// check if it is tablet 
 	$is_tablet = WMobilePack::wmp_is_tablet();
 
-	$kits_path =   $arrConfig['cdn_kits']."/app".$arrConfig['theme'].'/'.$arrConfig['kit_version'].'/';
-	$app_files_path = $arrConfig['cdn_apps'].'/'.$arrConfig['shorten_url'].'/';
+    $cdn_kits = ($is_secure ? $arrConfig['cdn_kits_https'] : $arrConfig['cdn_kits']);
+    $cdn_apps = ($is_secure ? $arrConfig['cdn_apps_https'] : $arrConfig['cdn_apps']);
+    
+	$kits_path =   $cdn_kits."/app".$arrConfig['theme'].'/'.$arrConfig['kit_version'].'/';
+	$app_files_path = $cdn_apps.'/'.$arrConfig['shorten_url'].'/';
     
 ?>
 <!DOCTYPE HTML>
@@ -128,10 +134,10 @@
             webApp: "<?php echo $arrConfig['webapp'];?>",
             title: "<?php echo addslashes($arrConfig['title']);?>", // to update the title tag with the same constant
 
-            exportPath: '<?php echo $arrConfig['api_content'];?>',
+            exportPath: '<?php echo $is_secure ? $arrConfig['api_content_https'] : $arrConfig['api_content'];?>',
 			defaultPath: '<?php echo $kits_path;?>',
             appPath: '<?php echo $app_files_path;?>',
-			socialApiPath: '<?php echo $arrConfig['api_social'];?>',
+			socialApiPath: '<?php echo $is_secure ? $arrConfig['api_social_https'] : $arrConfig['api_social'];?>',
             
             logo: '<?php echo isset($arrConfig['logo_path']) && $arrConfig['logo_path'] != '' ? $app_files_path.$arrConfig['logo_path'] : $kits_path."resources/images/logo.png";?>',
             hasIcons: <?php echo intval(isset($arrConfig['icon_path']) && $arrConfig['icon_path'] != "");?>,
@@ -140,7 +146,7 @@
             startupImageTimestamp: '<?php echo $logo_timestamp;?>',
    
             userCover: <?php echo $cover == "" ? 'false' : 'true' ;?>,
-            defaultCover: "<?php echo $cover == "" ? $arrConfig['cdn_kits'].'/others/covers/'.($is_tablet ? 'tablet' : 'phone').'/pattern-'.rand(1,8).'.jpg' : $app_files_path.$cover ;?>",
+            defaultCover: "<?php echo $cover == "" ? $cdn_kits.'/others/covers/'.($is_tablet ? 'tablet' : 'phone').'/pattern-'.rand(1,8).'.jpg' : $app_files_path.$cover ;?>",
             
             appUrl: '<?php echo home_url();?>',
             websiteUrl: '<?php echo home_url();?>?wmp_theme_mode=desktop',

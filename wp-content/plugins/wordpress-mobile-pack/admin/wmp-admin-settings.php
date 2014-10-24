@@ -129,6 +129,11 @@
 	</div>
 </div>
 
+<?php
+    // check if we have a https connection
+    $is_secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
+?>
+
 <script type="text/javascript">
     if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
@@ -137,7 +142,7 @@
                     "WMP_CONNECT",
                     {
                         'DOMDoc':       window.document,
-                        'submitURL' :   '<?php echo WMP_APPTICLES_CONNECT;?>',
+                        'submitURL' :   '<?php echo $is_secure ? WMP_APPTICLES_CONNECT_SSL : WMP_APPTICLES_CONNECT;?>',
 						'redirectTo' :  '<?php echo admin_url('admin.php?page=wmp-options-premium');?>'
                     }, 
                     window

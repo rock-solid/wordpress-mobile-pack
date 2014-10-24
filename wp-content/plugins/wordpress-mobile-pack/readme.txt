@@ -123,12 +123,16 @@ Google Ad Sense / Google Double Click for Publishers is supported on the Premium
 
 == Changelog ==
 
+= 2.1.1 =
+* Added SSL support 
+
 = 2.1 =
 * Added support for pages with basic HTML content (forms, tables and iframe tags are not supported)
 * Categories and pages can be ordered from the admin panel
 * Connect with Appticles.com through an API key for the Premium version
 * Fixed PHP errors caused by STRICT standards
 * Fixed url rewriting bug for categories with special characters in the title
+* Patch 22/09/2014 - Fixed redirect loop bug for blogs that use a static page as their front page
 
 = 2.0.2 = 
 * Added support for Firefox and Firefox OS

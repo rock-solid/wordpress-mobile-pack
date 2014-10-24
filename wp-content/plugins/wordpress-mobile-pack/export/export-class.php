@@ -143,34 +143,30 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
     							
                                 // check if the post is not password protected
 								if ($post->post_password == '') {
-								   
+								    
 									// featured image details
 									$image_details = array();
 									
-									if (has_post_thumbnail($post->ID) ) { // check if the post has a Post Thumbnail assigned to it.
-    									  
-										$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ),'large');
-										
-										if (is_array($image_data) && !empty($image_data)) {
-											
-											// set image details
-											$image_details = array(
-												"src" 		=> $image_data[0],
-												"width" 	=> $image_data[1],
-												"height" 	=> $image_data[2]
-											);											
-										}
-									} 
-									
-									
 									// get featured image and add it to the category
-                                    if (!is_array($arrCategories[$current_key]["image"])) {                                     
-    								
-    									if (is_array($image_details) && !empty($image_details)) {    											
-    										$arrCategories[$current_key]["image"] = $image_details;
-										}
+                                    if (!is_array($arrCategories[$current_key]["image"])) {
+                                        
+    									if (has_post_thumbnail($post->ID) ) { // check if the post has a Post Thumbnail assigned to it.
+    									  
+    										$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ),'large');
+    										
+    										if (is_array($image_data) && !empty($image_data)) {
+    											
+    											// set image details
+    											$image_details = array(
+                                                    "src" 		=> $image_data[0],
+                                                    "width" 	=> $image_data[1],
+                                                    "height" 	=> $image_data[2]
+                                                );
+    											
+    											$arrCategories[$current_key]["image"] = $image_details;
+    										}
+    									} 
                                     }
-									
 									
 									// get content
 									$content = apply_filters("the_content", $post->post_content);
@@ -205,8 +201,8 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
                         // $current_key++;
                     }
 				}
-              
-			    // activate latest category only if we have at least 2 visible categories
+                
+                // activate latest category only if we have at least 2 visible categories
                 if (count($arrCategories) > 1){
                     
                     // read posts for the latest category
