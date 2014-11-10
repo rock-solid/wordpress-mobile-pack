@@ -162,8 +162,11 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 							
 							$config = HTMLPurifier_Config::createDefault();
 							$config->set('Core.Encoding', 'UTF-8'); 									
-							$config->set('HTML.Allowed','a[href|target],p,ol,li,ul,img[src|class|width|height],blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe[frameborder|marginheight|marginwidth|scrolling|src|width|height]');
-							$config->set('Attr.AllowedFrameTargets', '_blank, _parent, _self, _top');
+							
+                            $config->set('HTML.AllowedElements','div,a,p,ol,li,ul,img,blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe');
+						  	$config->set('HTML.AllowedAttributes', 'class, src, width, height, target, href, name,frameborder,marginheight,marginwidth,scrolling');
+						    
+                            $config->set('Attr.AllowedFrameTargets', '_blank, _parent, _self, _top');
 							
 							$config->set('HTML.SafeIframe',1);
 							$config->set('Filter.Custom', array( new HTMLPurifier_Filter_Iframe()));
@@ -196,6 +199,9 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
          */
         public function wmp_content_save() {
             
+            // set log url
+		    $log = WMP_PLUGIN_PATH.'wmp_log.log';
+            
             if (current_user_can( 'manage_options' )){
                 
                 global $wmobile_pack;
@@ -204,7 +210,15 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                 
                 if (isset($_POST) && is_array($_POST) && !empty($_POST)){
                     
+                    error_log(date('[Y-m-d H:i e] '). "Categories Save - POST not empty" . PHP_EOL, 3, $log);
+                    
                     if (isset($_POST['id']) && isset($_POST['status'])){
+                        
+                        // set category id
+                        error_log(date('[Y-m-d H:i e] '). "Categories Save - Category Id ".$_POST['id'] . PHP_EOL, 3, $log);
+                        // set category status
+                        error_log(date('[Y-m-d H:i e] '). "Categories Save - Category status ".$_POST['status'] . PHP_EOL, 3, $log);
+                    
                         
                         if (is_numeric($_POST['id']) && ($_POST['status'] == 'active' || $_POST['status'] == 'inactive')){
                             
@@ -225,9 +239,14 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                                 
                             // save option
                             WMobilePack::wmp_update_settings('inactive_categories', serialize($inactive_categories));
-                        }
-                    }    
-                }
+                        
+                        } else
+                            error_log(date('[Y-m-d H:i e] '). "Categories Save - The data in POST is not valid" . PHP_EOL, 3, $log);
+                    
+                    } else
+                        error_log(date('[Y-m-d H:i e] '). "Categories Save - The data in POST is not set(id and status)" . PHP_EOL, 3, $log);   
+                } else
+                    error_log(date('[Y-m-d H:i e] '). "Categories Save - POST is empty" . PHP_EOL, 3, $log);   
                 
                 echo $status;
             }
@@ -243,17 +262,28 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
          */
         public function wmp_content_pagestatus() {
             
+            // set log url
+		    $log = WMP_PLUGIN_PATH.'wmp_log.log';
+            
             if (current_user_can( 'manage_options' )){
                 
                 global $wmobile_pack;
             	
                 $status = 0;
                 
-                if (isset($_POST) && is_array($_POST) && !empty($_POST)){
+                if (isset($_POST) && is_array($_POST) && !empty($_POST)) {
+                    
+                    error_log(date('[Y-m-d H:i e] '). "Pages Save - POST not empty" . PHP_EOL, 3, $log);
                     
                     if (isset($_POST['id']) && isset($_POST['status'])){
-                        
+                    
+                        // set category id
+                        error_log(date('[Y-m-d H:i e] '). "Pages Save - Page Id ".$_POST['id'] . PHP_EOL, 3, $log);
+                        // set category status
+                        error_log(date('[Y-m-d H:i e] '). "Pages Save - Page status ".$_POST['status'] . PHP_EOL, 3, $log);
+                    
                         if (is_numeric($_POST['id']) && ($_POST['status'] == 'active' || $_POST['status'] == 'inactive')){
+                            
                             
                             $status = 1;
                              
@@ -272,9 +302,15 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                                 
                             // save option
                             WMobilePack::wmp_update_settings('inactive_pages', serialize($inactive_pages));
-                        }
-                    }    
-                }
+                        
+                        } else
+                            error_log(date('[Y-m-d H:i e] '). "Pages Save - The data is POST is not valid ". PHP_EOL, 3, $log);
+                        
+                    } else 
+                        error_log(date('[Y-m-d H:i e] '). "Pages Save - The data is POST is not set (id or status) ". PHP_EOL, 3, $log);
+                    
+                } else
+                    error_log(date('[Y-m-d H:i e] '). "Pages Save - POST is empty ". PHP_EOL, 3, $log);
                 
                 echo $status;
             }
@@ -291,6 +327,9 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
         */
         public function wmp_content_order() {
             
+            // set log url
+		    $log = WMP_PLUGIN_PATH.'wmp_log.log';
+            
             if (current_user_can( 'manage_options' )){
                 
                 global $wmobile_pack;
@@ -299,7 +338,15 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                 
                 if (isset($_POST) && is_array($_POST) && !empty($_POST)){
                     
+                    error_log(date('[Y-m-d H:i e] '). "Categories / Pages Order  Save - POST not empty" . PHP_EOL, 3, $log);
+                    
                     if (isset($_POST['ids']) && isset($_POST['type'])){
+                      
+                        // set category id
+                        error_log(date('[Y-m-d H:i e] '). "Categories / Pages Order - Ids ".$_POST['ids'] . PHP_EOL, 3, $log);
+                        // set category status
+                        error_log(date('[Y-m-d H:i e] '). "Categories / Pages Order - Type ".$_POST['type'] . PHP_EOL, 3, $log);
+                    
                         
                         if ($_POST['ids'] != '' && ($_POST['type'] == 'pages' || $_POST['type'] == 'categories')){
                              
@@ -325,11 +372,17 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 										WMobilePack::wmp_update_settings('ordered_pages', serialize($arrPagesIds));
 									elseif ($_POST['type'] == 'categories')
 										WMobilePack::wmp_update_settings('ordered_categories', serialize($arrPagesIds));
-								}
+								
+                                } else
+                                    error_log(date('[Y-m-d H:i e] '). "Categories / Pages Order  Save - Ids not valid" . PHP_EOL, 3, $log);
 							}
-                        }
-                    }    
-                }
+                        } else
+                            error_log(date('[Y-m-d H:i e] '). "Categories / Pages Order  Save - POST data is not valid" . PHP_EOL, 3, $log);
+                    } else
+                        error_log(date('[Y-m-d H:i e] '). "Categories / Pages Order  Save - POST data is not set correctly" . PHP_EOL, 3, $log);
+                            
+                } else
+                    error_log(date('[Y-m-d H:i e] '). "Categories / Pages Order  Save - POST is empty" . PHP_EOL, 3, $log);
                 
                 echo $status;
             }
@@ -345,6 +398,9 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
          */
         public function wmp_content_pagedetails() {
             
+            // set log url
+		    $log = WMP_PLUGIN_PATH.'wmp_log.log';
+            
             if (current_user_can( 'manage_options' )){
                 
                 global $wmobile_pack;
@@ -353,7 +409,16 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                
                 if (isset($_POST) && is_array($_POST) && !empty($_POST)){
                     
+                    error_log(date('[Y-m-d H:i e] '). "Page details Save - POST not empty" . PHP_EOL, 3, $log);
+                    
+                    
                     if (isset($_POST['wmp_pageedit_id']) && isset($_POST['wmp_pageedit_content'])){
+                        
+                        // set category id
+                        error_log(date('[Y-m-d H:i e] '). "Page details Save - Id ".$_POST['wmp_pageedit_id'] . PHP_EOL, 3, $log);
+                        // set category status
+                        error_log(date('[Y-m-d H:i e] '). "Page details Save - Content ".$_POST['wmp_pageedit_content'] . PHP_EOL, 3, $log);
+                    
                         
                         if (is_numeric($_POST['wmp_pageedit_id']) && trim($_POST['wmp_pageedit_content']) != ''){
                             
@@ -361,7 +426,10 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 							include(WMP_PLUGIN_PATH.'libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php');
 							$config = HTMLPurifier_Config::createDefault();
 							$config->set('Core.Encoding', 'UTF-8'); 									
-							$config->set('HTML.Allowed','a[href|target],p,ol,li,ul,img[src|class|width|height],blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe[frameborder|marginheight|marginwidth|scrolling|src|width|height]');
+							
+                            $config->set('HTML.AllowedElements','div,a,p,ol,li,ul,img,blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe');
+						  	$config->set('HTML.AllowedAttributes', 'class, src, width, height, target, href, name,frameborder,marginheight,marginwidth,scrolling');
+						    
 							$config->set('Attr.AllowedFrameTargets', '_blank, _parent, _self, _top');
 							
 							$config->set('HTML.SafeIframe',1);
@@ -380,9 +448,12 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                             // save option in the db
 							update_option( 'wmpack_page_' . $page_id, $page_content );
                             
-                        }
-                    }    
-                }
+                        } else
+                            error_log(date('[Y-m-d H:i e] '). "Page details Save - POST data is not valid" . PHP_EOL, 3, $log);
+                    } else
+                         error_log(date('[Y-m-d H:i e] '). "Page details Save - POST data is not set correctly" . PHP_EOL, 3, $log);    
+                } else
+                     error_log(date('[Y-m-d H:i e] '). "Page details Save - POST is empty" . PHP_EOL, 3, $log);
                 
                 echo $status;
             }
@@ -401,13 +472,25 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
          */
         public function wmp_send_feedback() {
             
+            // set log url
+		    $log = WMP_PLUGIN_PATH.'wmp_log.log';
+            
             if (current_user_can( 'manage_options' )){
                 
                 $status = 0;
                
                 if (isset($_POST) && is_array($_POST) && !empty($_POST)){
                      
+                    error_log(date('[Y-m-d H:i e] '). "Send Feedback - POST not empty" . PHP_EOL, 3, $log);
+                    
+                     
                     if (isset($_POST['wmp_feedback_page']) && isset($_POST['wmp_feedback_name']) && isset($_POST['wmp_feedback_email']) && isset($_POST['wmp_feedback_message'])){
+                        
+                        // set feedback page
+                        error_log(date('[Y-m-d H:i e] '). "Send Feedback - Page ".$_POST['wmp_feedback_page'] . PHP_EOL, 3, $log);
+                        // set feedback email
+                        error_log(date('[Y-m-d H:i e] '). "Send Feedback - Email ".$_POST['wmp_feedback_email'] . PHP_EOL, 3, $log);
+                     
                         
                         if (is_string($_POST['wmp_feedback_page']) && $_POST['wmp_feedback_page'] != '' && $_POST['wmp_feedback_name'] != "" && $_POST['wmp_feedback_email'] && $_POST['wmp_feedback_message'] != '' ){
                           
@@ -435,10 +518,14 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
     								if (mail($to, $subject, $message, $headers)) 
                                         $status = 1;
     							}
-    						}
-                        }
-                    }    
-                }
+    						} else
+                                error_log(date('[Y-m-d H:i e] '). "Send Feedback - The user is not admin ". PHP_EOL, 3, $log);
+                        } else
+                            error_log(date('[Y-m-d H:i e] '). "Send Feedback - The POST data is not valid ". PHP_EOL, 3, $log);
+                    } else 
+                         error_log(date('[Y-m-d H:i e] '). "Send Feedback - The POST data is not set ". PHP_EOL, 3, $log);   
+                } else
+                     error_log(date('[Y-m-d H:i e] '). "Send Feedback - The POST is empty ". PHP_EOL, 3, $log);
                 
                 echo $status;
             }
@@ -521,6 +608,9 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
          */
         public function wmp_settings_save() {
             
+            // set log url
+		    $log = WMP_PLUGIN_PATH.'wmp_log.log';
+            
             if (current_user_can( 'manage_options' )) {
                 
                 global $wmobile_pack;
@@ -528,15 +618,24 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                 $status = 0;
                 
                 if (isset($_POST) && is_array($_POST) && !empty($_POST)){
-                    
+                    // post not empty
+                    error_log(date('[Y-m-d H:i e] '). "Settings save - POST not empty" . PHP_EOL, 3, $log);
+                     
                     // handle display mode (settings page)
                     if (isset($_POST['wmp_editsettings_displaymode']) && $_POST['wmp_editsettings_displaymode'] != ''){
                         if (in_array($_POST['wmp_editsettings_displaymode'], array('normal', 'preview', 'disabled'))){
+                            
+                            // set display mode
+                            error_log(date('[Y-m-d H:i e] '). "Settings save - Display mode ".$_POST['wmp_editsettings_displaymode'] . PHP_EOL, 3, $log);
+                    
                             
                             $status = 1;
                             // save google analytics id
     						if (isset($_POST["wmp_editsettings_ganalyticsid"])) {
     							
+                                // set google analytics id
+                                error_log(date('[Y-m-d H:i e] '). "Settings save - Google analytics id ".$_POST['wmp_editsettings_ganalyticsid'] . PHP_EOL, 3, $log);
+                    
     							// validate google analytics id
     							if (preg_match('/^ua-\d{4,9}-\d{1,4}$/i', strval($_POST["wmp_editsettings_ganalyticsid"])))
     								WMobilePack::wmp_update_settings('google_analytics_id', $_POST['wmp_editsettings_ganalyticsid']);
@@ -596,6 +695,10 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                     }        
                 }
                 
+                // set settings save status
+                error_log(date('[Y-m-d H:i e] '). "Settings save - Status ".$status . PHP_EOL, 3, $log);
+                    
+                
                 echo $status;
             }
             
@@ -609,6 +712,9 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
          */
         public function wmp_premium_save() {
             
+            // set log url
+		    $log = WMP_PLUGIN_PATH.'wmp_log.log';
+            
             if (current_user_can( 'manage_options' )){
                 
                 global $wmobile_pack;
@@ -617,18 +723,32 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                 
                 if (isset($_POST) && is_array($_POST) && !empty($_POST)){
                     
+                    // post not empty
+                    error_log(date('[Y-m-d H:i e] '). "Api key added - POST not empty" . PHP_EOL, 3, $log);
+                    
                     if (isset($_POST['api_key'])){
                         
+                        // set api key to error log
+                        error_log(date('[Y-m-d H:i e] '). "Api key added - Api key - ".$_POST['api_key'] . PHP_EOL, 3, $log);
+                 
                         if (preg_match('/^[a-zA-Z0-9]+$/', $_POST['api_key']) ){
                         
                             // save options
                             if(WMobilePack::wmp_update_settings('premium_api_key',$_POST['api_key']))
 								$status = 1;
-                        }
-                    }    
-                }
+                        } else
+                            error_log(date('[Y-m-d H:i e] '). "Api key added - Api kei is not valid" . PHP_EOL, 3, $log);  
+                        
+                    } else
+                        error_log(date('[Y-m-d H:i e] '). "Api key added - Api key is not in POST" . PHP_EOL, 3, $log);  
+                        
+                } else
+                    error_log(date('[Y-m-d H:i e] '). "Api key added - POST is empty" . PHP_EOL, 3, $log);  
                 
                 echo $status;
+                // set  api key valid and saved
+                error_log(date('[Y-m-d H:i e] '). "Api key added - Status - ".$status . PHP_EOL, 3, $log);
+                 
             }
             
             exit();
@@ -643,6 +763,9 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
          */
         public function wmp_premium_connect() {
             
+            // set log url
+		    $log = WMP_PLUGIN_PATH.'wmp_log.log';
+            
             if (current_user_can('manage_options')){
                 
                 global $wmobile_pack;
@@ -651,7 +774,19 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                 
                 if (isset($_POST) && is_array($_POST) && !empty($_POST)){
                     
+                    // post not empty
+                    error_log(date('[Y-m-d H:i e] '). "Premium connect - POST not empty" . PHP_EOL, 3, $log);
+                    
+                    
                     if (isset($_POST['api_key']) && isset($_POST['valid']) && isset($_POST['config_path'])){
+                        
+                        // set connect - api key
+                        error_log(date('[Y-m-d H:i e] '). "Premium connect - Api key - ".$_POST['api_key'] . PHP_EOL, 3, $log);
+                        // set api key to error log
+                        error_log(date('[Y-m-d H:i e] '). "Premium connect - Valid - ".$_POST['valid'] . PHP_EOL, 3, $log);
+                        // set api key to error log
+                        error_log(date('[Y-m-d H:i e] '). "Premium connect - Config path - ".$_POST['config_path'] . PHP_EOL, 3, $log);
+                 
                         
                         if (
 								preg_match('/^[a-zA-Z0-9]+$/', $_POST['api_key']) && 
@@ -678,12 +813,21 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                                         WMobilePack::wmp_update_settings('premium_active', 0);
                                     }
                                 }
-							}  
-                        }
-                    }    
-                }
+							} else
+                                error_log(date('[Y-m-d H:i e] '). "Premium connect - Api key is not the same " . PHP_EOL, 3, $log);
+                   
+                        } else 
+                            error_log(date('[Y-m-d H:i e] '). "Premium connect - The data in POST is not valid " . PHP_EOL, 3, $log);
+                    } else
+                        error_log(date('[Y-m-d H:i e] '). "Premium connect - The data in POST is not set " . PHP_EOL, 3, $log);
+                } else
+                    error_log(date('[Y-m-d H:i e] '). "Premium connect - POST is not set " . PHP_EOL, 3, $log);
                 
                 echo $status;
+                
+                // set  premium connect status
+                error_log(date('[Y-m-d H:i e] '). "Premium connect - Status - ".$status . PHP_EOL, 3, $log);
+                
             }
             
             exit();
@@ -696,6 +840,10 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
          */
         public function wmp_premium_disconnect() {
             
+            // set log url
+		    $log = WMP_PLUGIN_PATH.'wmp_log.log';
+            
+            
             if (current_user_can( 'manage_options' )){
                 
                 global $wmobile_pack;
@@ -704,7 +852,17 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                 
                 if (isset($_POST) && is_array($_POST) && !empty($_POST)){
                     
+                    // post not empty
+                    error_log(date('[Y-m-d H:i e] '). "Premium disconnect - POST not empty" . PHP_EOL, 3, $log);
+                    
+                    
                     if (isset($_POST['api_key']) && isset($_POST['active'])){
+                        
+                        // set connect - api key
+                        error_log(date('[Y-m-d H:i e] '). "Premium disconnect - Api key - ".$_POST['api_key'] . PHP_EOL, 3, $log);
+                        // set connect - active
+                        error_log(date('[Y-m-d H:i e] '). "Premium disconnect - Active - ".$_POST['active'] . PHP_EOL, 3, $log);
+                        
                         
                         if (preg_match('/^[a-zA-Z0-9]+$/', $_POST['api_key']) && $_POST['active'] == 0){
                                 
@@ -718,11 +876,17 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                            if( WMobilePack::wmp_update_settings($arrData))	
 						   	$status = 1;
 							
-                        }
-                    }    
-                }
+                        } else
+                            error_log(date('[Y-m-d H:i e] '). "Premium disconnect - The data in POST is not valid " . PHP_EOL, 3, $log);
+                    } else
+                        error_log(date('[Y-m-d H:i e] '). "Premium disconnect - The data in POST is not set " . PHP_EOL, 3, $log);   
+                } else
+                    error_log(date('[Y-m-d H:i e] '). "Premium connect - POST is not set " . PHP_EOL, 3, $log);
                 
                 echo $status;
+                
+                // set  premium connect status
+                error_log(date('[Y-m-d H:i e] '). "Premium disconnect - Status - ".$status . PHP_EOL, 3, $log);
             }
             
             exit();
@@ -736,6 +900,9 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
          */
          public function wmp_settings_editimages() {
 		
+            // set log url
+		    $log = WMP_PLUGIN_PATH.'wmp_log.log';
+            
             if (current_user_can( 'manage_options' )){
                 
                 $action = null;
@@ -744,6 +911,9 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                     if ($_GET['type'] == 'upload' || $_GET['type'] == 'delete')
                         $action = $_GET['type'];
                         
+                // action
+                error_log(date('[Y-m-d H:i e] '). "Edit images - Action: ".$action . PHP_EOL, 3, $log);
+                    
                 $arrResponse = array(
                     'status' => 0,
                     'messages' => array()
@@ -929,6 +1099,18 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                     }
                 }
                 
+                // action
+                error_log(date('[Y-m-d H:i e] '). "Edit images - Status: ".$arrResponse['status'] . PHP_EOL, 3, $log);
+                
+                if(is_array($arrResponse['messages']) && !empty($arrResponse['messages'])) {
+                    
+                    foreach($arrResponse['messages'] as $Message){
+                        // check messages
+                        error_log(date('[Y-m-d H:i e] '). "Edit images - Message: ".$Message . PHP_EOL, 3, $log);
+                
+                    }
+                }
+                // echo json with response
                 echo json_encode($arrResponse);
             }
             
@@ -943,6 +1125,9 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
          */
          public function wmp_settings_editcover() {
 		
+            // set log url
+		    $log = WMP_PLUGIN_PATH.'wmp_log.log';
+        
             if (current_user_can( 'manage_options' )){
                 
                 $action = null;
@@ -951,6 +1136,10 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                     if ($_GET['type'] == 'upload' || $_GET['type'] == 'delete')
                         $action = $_GET['type'];
                         
+                
+                // action
+                error_log(date('[Y-m-d H:i e] '). "Edit cover - Action: ".$action . PHP_EOL, 3, $log);
+                
                 $arrResponse = array(
                     'status' => 0,
                     'messages' => array()
@@ -1130,6 +1319,18 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                             
                             $arrResponse['status'] = 1;
                         }
+                    }
+                }
+                
+                // action
+                error_log(date('[Y-m-d H:i e] '). "Edit cover - Status: ".$arrResponse['status'] . PHP_EOL, 3, $log);
+                
+                if(is_array($arrResponse['messages']) && !empty($arrResponse['messages'])) {
+                    
+                    foreach($arrResponse['messages'] as $Message){
+                        // check messages
+                        error_log(date('[Y-m-d H:i e] '). "Edit cover - Message: ".$Message . PHP_EOL, 3, $log);
+                
                     }
                 }
                 

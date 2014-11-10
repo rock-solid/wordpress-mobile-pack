@@ -547,7 +547,9 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 	*       "show_avatars" : true,
 	*		"require_name_email" : true,	
 	*		"category_id": 5,
-	*		"category_name": "News"
+	*		"category_name": "News".
+    *       "related_posts" :"",
+    *       "related_web_posts":""
 	*	  }
 	*	}
     *  
@@ -556,6 +558,8 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
     */
 	public function exportArticle() {
 		
+        global $post;
+        
 		// check if the export call is correct
 		if(isset($_GET["content"]) && $_GET["content"] == 'exportarticle' ) {
 		
@@ -612,8 +616,58 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
     					}
     				} 
     				
-    				// filter the content
+                    // filter the content
     				$content = apply_filters( 'the_content', $post->post_content );
+                    
+                                        
+                    $related_posts = '';
+                    $related_web_posts = '';                    
+                    /* ZEMANTA RELATED POSTS AND POSTS FROM AROUND THE WEB */
+                    if(WMobilePack::wmp_active_plugin('Related Posts by Zemanta')) {
+                    
+                        // check if class exists and specific function that are used
+                         if(class_exists('WPRPZemanta')) {
+                            
+                            // check if related posts should be displayed
+                            if(function_exists('zem_rp_get_options')) {
+                                // get options 
+                                $options = zem_rp_get_options();
+                                
+                                if($post->post_content != "" && $post->post_type === 'post' && $options["on_single_post"]){
+                                  
+                                  if(function_exists('zem_rp_get_related_posts')) {
+                                
+                                        $related_posts = zem_rp_get_related_posts() != null ? zem_rp_get_related_posts() : '';
+                                        
+                                        // there are related posts set
+                                        if($related_posts != ''){
+                                            
+                                            // parse the urls in order to obtain the correct path
+                                            $related_posts = $this->wmp_replace_internal_links($related_posts);
+                                            
+                                        }
+                                    }
+                                }
+                            }
+                            
+                            // get related posts from around the web
+                            $related_web_posts = $this->wmp_related_web_posts($content);
+                            
+                        }
+                        
+                    }  
+                    
+                    /* ZEMANTA EDITORIAL ASISTANT AND POSTS FROM AROUND THE WEB */                  
+                    if(WMobilePack::wmp_active_plugin('Editorial Assistant by Zemanta')) {
+                         // get related posts from around the web
+                         $related_web_posts = $this->wmp_related_web_posts($content);
+                        
+                         // parse the urls in order to obtain the correct path
+                         $related_web_posts = $this->wmp_replace_internal_links($related_web_posts);
+                        
+                    }
+                    
+    				
 					// remove script tags
 					$content = self::removeScriptTags($content);
 					
@@ -621,7 +675,6 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
     				
 					// remove all url's from attachment images
 					$content = preg_replace( array('{<a(.*?)(wp-att|wp-content\/uploads|attachment)[^>]*><img}', '{ wp-image-[0-9]*" /></a>}'), array('<img','" />'), $content);
-					
 					
     				// get the description
     				$description = Export::truncateHtml($content,$descriptionLength);
@@ -652,7 +705,9 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
                         "show_avatars"			=> get_option("show_avatars") == 1 ? true : false,// false
 						"require_name_email"	=> get_option("require_name_email") == 1 ? true : false,
 						"category_id" 			=> $visible_category->term_id,
-                        "category_name" 		=> $visible_category->name
+                        "category_name" 		=> $visible_category->name,
+                        "related_posts"         => trim($related_posts),
+                        "related_web_posts"     => trim($related_web_posts)
 					 );
 				}
 			}
@@ -665,7 +720,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 			return '{"error":""}';
 	}
 	
-	
+    
 	
 	/**
     * 
@@ -939,7 +994,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 			}
 			
 			
-		   // get pages order
+		    // get pages order
 			$order_pages = unserialize(WMobilePack::wmp_get_setting('ordered_pages'));
 		   
 			// remove inline style for the photos types of posts
@@ -1024,7 +1079,8 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 	*		"image": "",
 	*		"description":"<p><b>Sport</b> (or <b>sports</b>) is all forms of usually <a href=\"http://en.wikipedia.org/wiki/Competition\">competitive</a> <a href=\"http://en.wikipedia.org/wiki/Physical_activity\">physical activity</a> which,<sup><a href=\"http://en.wikipedia.org/wiki/Sport#cite_note-sportaccord-1\">[1]</a></sup> through casual or organised participation, aim to use, maintain or improve physical ability and skills while...</p>",				  
 	*	    "content": "<p>On the second day of the International Journalism Festival in Perugia, delegates were treated to a round up of data journalism trends and developments from around the world.</p>",
-	*	  }
+    *       "related_web_posts":"" 
+    *       }
 	*	}
     *  
 	*   @params $pageId - the id of the page
@@ -1087,6 +1143,30 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 					else
 						$content = apply_filters("the_content",get_option( 'wmpack_page_' .$page->ID  ));
     				
+                    
+                    $related_web_posts = '';                    
+                    /* ZEMANTA RELATED POSTS AND POSTS FROM AROUND THE WEB */
+                    if(WMobilePack::wmp_active_plugin('Related Posts by Zemanta')) {
+                    
+                        // check if class exists and specific function that are used
+                         if(class_exists('WPRPZemanta')) {
+                            
+                            // get related posts from around the web
+                            $related_web_posts = $this->wmp_related_web_posts($content);
+                         }
+                    }    
+                    
+                    /* ZEMANTA EDITORIAL ASISTANT AND POSTS FROM AROUND THE WEB */                  
+                    if(WMobilePack::wmp_active_plugin('Editorial Assistant by Zemanta')) {
+                         // get related posts from around the web
+                         $related_web_posts = $this->wmp_related_web_posts($content);
+                        
+                         // parse the urls in order to obtain the correct path
+                         $related_web_posts = $this->wmp_replace_internal_links($related_web_posts);
+                        
+                    }
+                    
+                    
 					// remove script tags
 					$content = self::removeScriptTags($content);
 					
@@ -1104,7 +1184,8 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
                         "title" 				=> $page->post_title,
                         "link" 			    	=> $page->guid,
                         "image" 				=> !empty($image_details) ? $image_details : "",
-                        "content" 				=> $content
+                        "content" 				=> $content,
+                        "related_web_posts"     => trim($related_web_posts),
 					 );
 				}
 			}
@@ -1369,6 +1450,124 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 		} else
 			return '{"error":"","status" : 0}';
 	}
+    
+    
+    /**
+     * 
+     * Method wmp_replace_internal_links called when related posts are found for an article
+     *
+     * The method is used to replace the standard urls of the related posts with internal urls
+     * 
+     * @param $content - the content to be parsed
+     * @param $type - can be post or page, in order to rebuild the correct url
+     * 
+     * 
+     */
+    public function wmp_replace_internal_links($content,$type='post'){
+		
+        
+        if($content != '' && in_array($type,array('post','page'))) { 
+            
+            // check if url exist
+            $Match = preg_match_all('%href=\"(https?:)?(http?:)?//'.$_SERVER['HTTP_HOST'].'.*\"%siU',$content,$matches);
+        
+            //$match = preg_match_all('/<a\s[^>]*href=([\"\']??)([^\" >]*?)\\1[^>]*>(.*)<\/a>/siU',$content,$matches);
+            
+            //var_dump('/<a\s[^>]*href=([\"\']??)((https?:)?(http?:)?//'.$_SERVER['HTTP_HOST'].'[^\" >]*?)\\1[^>]*>(.*)<\/a>/siU/');exut();
+            // $match = preg_match_all('/<a\s[^>]*href=([\"\']??)((https?:)?(http?:)?//[^\" >]*?)\\1[^>]*>(.*)<\/a>/siU/',$content,$matches);
+            
+            //$match = preg_match_all('/<a\s[^>]*href=\"((https?:)?(http?:)?//'.$_SERVER['HTTP_HOST'].')\">(.*)<\/a>/siU',$content,$matches);
+        
+            // if there was at leat a match fount
+            if($Match) {
+            
+                if(!empty($matches) && is_array($matches)) {
+                
+                    if(!empty($matches[0]) && is_array($matches[0])) {
+                    
+                        // replace links
+                        foreach($matches[0] as $match) {
+                        
+                            if($match != '') {
+                        
+                                // get url
+                                $post_url = substr($match,6,-1);
+                            
+                                // get post id using the url
+                                $post_id = url_to_postid($post_url);
+                            
+                                if(is_numeric($post_id) && $post_id > 0) {
+                                    
+                                    // recreate new url
+                                    if($type == 'post')
+                                        $new_url = 'href="#article/'.$post_id.'"';
+                                    else
+                                        $new_url = 'href="#page/'.$post_id.'"';
+                                    
+                                    
+                                    // update content and add new url
+                                    $content = str_replace($match,$new_url,$content);
+                                    
+                                }
+                            }                    
+                        }                
+                    }            
+                }
+            }
+        }
+        
+        return $content;
+	}
+    
+    
+    
+    /**
+     * 
+     * Method wmp_related_web_posts called when we want to fetch zemanta's related posts around the web
+     *
+     * The method is used to remove the related posts around the web from the content
+     * 
+     * @param $content - the content to be parsed, the related posts will be removed
+     * 
+     * The method return the html with the related posts around the web, or empty if there are none
+     * 
+     */
+    public function wmp_related_web_posts(&$content){
+		
+        // by default, related posts are emtpy
+        $related_posts = '';
+        
+        if($content != '') {
+            
+            // remove the title    
+            $content = preg_replace('/<h.* class="zemanta-related-title".*>(.*?)<\/(.*)>/i', '', $content);
+           
+          
+            // remove and get the content
+            $content_match = preg_match('%<ul class=\"zemanta-article-ul zemanta-article-ul-image\".*>(.*?)<\/ul>%siU',$content,$matches);
+            
+            if($content_match) {
+                
+                if(is_array($matches) && !empty($matches)){
+                    
+                    $related_posts = $matches[0];
+                    
+                    // remove zemnata list from content
+                    $content = preg_replace('%<ul class=\"zemanta-article-ul zemanta-article-ul-image\".*>(.*?)<\/ul>%siU', '', $content);
+           
+                    
+                }
+            }
+            
+        }
+        
+        
+        return $related_posts;
+        
+        
+	}
+    
+    
 		 
 	 
   } // Export

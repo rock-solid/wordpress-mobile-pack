@@ -74,10 +74,16 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     	 *
     	 */
     	public function wmp_install(){
-    		
-    		// add settings to database
+    	
+        	// add settings to database
     		$this->wmp_save_settings(self::$wmp_options);
-    	}
+    	
+            // set log url
+		    $log = WMP_PLUGIN_PATH.'wmp_log.log';
+            error_log(date('[Y-m-d H:i e] '). "Plugin installed succesfully " . PHP_EOL, 3, $log);
+			
+        
+		}
     		
     	/**
          * 
@@ -87,11 +93,16 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     	 */
     	public function wmp_uninstall(){
     		
+            // set log url
+		    $log = WMP_PLUGIN_PATH.'wmp_log.log';
+            
             // disconnect premium from the api
             $apiKey = self::wmp_get_setting('premium_api_key');
             $isPremiumActive =  self::wmp_get_setting('premium_active');
             
             if ($apiKey != '' && $isPremiumActive == 1) {
+                // set error log
+                error_log(date('[Y-m-d H:i e] '). "Uninstall plugin - is premium " . PHP_EOL, 3, $log);
                 
                 // check if we have a https connection
                 $is_secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
@@ -140,6 +151,10 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 			setcookie("wmp_theme_mode", "", time()-3600);
 			setcookie("wmp_load_app", "", time()-3600);
             
+            // set error log
+            error_log(date('[Y-m-d H:i e] '). "Uninstall successfully " . PHP_EOL, 3, $log);
+                
+            
     	}
     	
     		
@@ -166,7 +181,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     	 */	
     	public function wmp_admin_enqueue_scripts() {
     		
-    		// enqueue styles
+            // enqueue styles
 			wp_enqueue_style('css_general', plugins_url(WMP_DOMAIN.'/admin/css/general-min.css'), array(), WMP_VERSION);
         
             // enqueue scripts
@@ -278,8 +293,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     		// load admin class
     		require_once(WMP_PLUGIN_PATH.'core/class-admin.php');
     		$WMobilePackAdmin = new WMobilePackAdmin;
-
-			
+           	
 			// check menu 
 			if(self::wmp_get_setting('premium_active') == 1 && self::wmp_get_setting('premium_api_key') != '') {
 					
@@ -380,11 +394,11 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     	 *
     	 */
     	public static function wmp_save_settings( $option, $option_value = '' ) {
-    		
+    	 
             if (current_user_can( 'manage_options' )){
                 
         		if (is_array($option) && !empty($option)) {
-        		
+        		    
         			// set option not saved variable
         			$option_not_saved = false;
         		
@@ -408,7 +422,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
         			
         		}
       		
-            }
+            } 
             
     		return false;
     		
@@ -691,7 +705,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          *  'shorten_url' : 'xxxxxx',
          *  
          *  'status' => 'visible' / 'hidden',
-         *  'theme' : 1,
+         *  'theme' : 1,                      // will be removed in future versions
          *  
          *  'has_phone_ads' : 0/1,
          *  'has_tablet_ads' : 0/1,
@@ -699,12 +713,13 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          *  // OPTIONAL fields
          *  'domain_name' : 'myapp.domain.com',
          *  
-         *  'color_scheme'      : 1,
-		 *  'font_headlines'    : 1,
-		 *  'font_subtitles'    : 1,
-		 *  'font_paragraphs'   : 1,
-         *  'cover_smartphones_path' : '',
-         *  'cover_tablets_path' : '',
+         *  'color_scheme'      : 1,          // will be removed in future versions
+		 *  'font_headlines'    : 1,          // will be removed in future versions
+		 *  'font_subtitles'    : 1,          // will be removed in future versions
+		 *  'font_paragraphs'   : 1,          // will be removed in future versions
+         *  'cover_smartphones_path' : '',    // will be removed in future versions
+         *  'cover_tablets_path' : '',        // will be removed in future versions
+         * 
          *  'logo_path' : '',
          *  'icon_path' : '',
          *  
@@ -719,6 +734,29 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          *  'google_analytics_id' : 'UA-XXXXXX-1',
          *  'google_internal_id' : 'xxxxx'
          * 
+         *  // VERSION 2.6.0 (Separate phone and tablet theme settings)
+         * 'phone' : {
+         *  'theme'             : 1, // 0 means a custom theme
+         *  'color_scheme'      : 1,
+		 *  'font_headlines'    : 1,
+		 *  'font_subtitles'    : 1,
+		 *  'font_paragraphs'   : 1,
+         *  'cover'             : '',
+         *  'theme_timestamp'   : '',
+         *  'custom_fonts''     : ''
+         * }
+         * 
+         * 'tablet' : {
+         *  'theme'             : 1, // 0 means a custom theme
+         *  'color_scheme'      : 1,
+		 *  'font_headlines'    : 1,
+		 *  'font_subtitles'    : 1,
+		 *  'font_paragraphs'   : 1,
+         *  'cover'             : '',
+         *  'theme_timestamp'   : '',
+         *  'custom_fonts''     : ''
+         * }
+         *  
          * }
 		 */
 		public static function wmp_set_premium_config() {
@@ -987,7 +1025,50 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 			$WMobileDetect = new WPMobileDetect;
 			
 			return $WMobileDetect->wmp_is_tablet();
+		  
 			
+		}
+		
+		
+		
+		 /**
+          * 
+          * Method used to check if a specific plugin is installed and active
+		  * 
+		  * @param $plugin_name - the name of the plugin
+		  * 
+          *		 
+		  * Method returns true if the plugin is installed and false otherwise
+          */
+		public static function wmp_active_plugin($plugin_name){
+			
+			$active_plugin = false; // by default, the search plugin does not exist
+			
+			// if the plugin name is empty return false 
+			if($plugin_name != '') {
+				// if function doesn't exist, load plugin.php	
+				if (! function_exists('get_plugins')) {
+					require_once ABSPATH . 'wp-admin/includes/plugin.php';
+				}
+				// get active plugins from the DB
+				$apl = get_option('active_plugins');
+				
+				// get list withh all the installed plugins
+				$plugins = get_plugins(); 
+				
+				//$activated_plugins = array();
+				foreach ($apl as $p){
+					if(isset($plugins[$p])){
+						// check if the active plugin is the searched plugin	
+						if($plugins[$p]['Name'] == $plugin_name)
+							$active_plugin = true;
+						
+						 //array_push($activated_plugins, $plugins[$p]);
+					}           
+				}
+			}
+			
+			return $active_plugin; //return the active plugin variable
 			
 		}
 		

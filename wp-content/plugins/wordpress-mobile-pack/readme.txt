@@ -125,6 +125,7 @@ Google Ad Sense / Google Double Click for Publishers is supported on the Premium
 
 = 2.1.1 =
 * Added SSL support 
+* Premium version - Added support for custom color schemes and fonts
 
 = 2.1 =
 * Added support for pages with basic HTML content (forms, tables and iframe tags are not supported)
