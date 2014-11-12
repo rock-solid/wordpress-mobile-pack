@@ -27,8 +27,10 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 		$config = HTMLPurifier_Config::createDefault();
 		$config = HTMLPurifier_Config::createDefault();
 		$config->set('Core.Encoding', 'UTF-8'); 									
-		$config->set('HTML.Allowed','a[href|target],p,ol,li,ul,img[src|class|width|height],blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe[frameborder|marginheight|marginwidth|scrolling|src|width|height]');
-		$config->set('Attr.AllowedFrameTargets', '_blank, _parent, _self, _top');
+		$config->set('HTML.AllowedElements','div,a,p,ol,li,ul,img,blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe,small');
+		$config->set('HTML.AllowedAttributes', 'class, src, width, height, target, href, name,frameborder,marginheight,marginwidth,scrolling');
+						    
+        $config->set('Attr.AllowedFrameTargets', '_blank, _parent, _self, _top');
 		
 		$config->set('HTML.SafeIframe',1);
 		$config->set('Filter.Custom', array( new HTMLPurifier_Filter_Iframe()));
@@ -621,7 +623,8 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
                     
                                         
                     $related_posts = '';
-                    $related_web_posts = '';                    
+                    $related_web_posts = '';
+                    $zemanta = false;                    
                     /* ZEMANTA RELATED POSTS AND POSTS FROM AROUND THE WEB */
                     if(WMobilePack::wmp_active_plugin('Related Posts by Zemanta')) {
                     
@@ -632,6 +635,9 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
                             if(function_exists('zem_rp_get_options')) {
                                 // get options 
                                 $options = zem_rp_get_options();
+                    
+                                if($options['display_zemanta_linky'])
+                                    $zemanta = true;      
                                 
                                 if($post->post_content != "" && $post->post_type === 'post' && $options["on_single_post"]){
                                   
@@ -644,7 +650,8 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
                                             
                                             // parse the urls in order to obtain the correct path
                                             $related_posts = $this->wmp_replace_internal_links($related_posts);
-                                            
+                                            // remove inline styling
+                                            $related_posts = $this->purifier->purify($related_posts);
                                         }
                                     }
                                 }
@@ -652,21 +659,25 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
                             
                             // get related posts from around the web
                             $related_web_posts = $this->wmp_related_web_posts($content);
+                            $related_web_posts = $this->purifier->purify($related_web_posts);
                             
                         }
                         
                     }  
                     
-                    /* ZEMANTA EDITORIAL ASISTANT AND POSTS FROM AROUND THE WEB */                  
-                    if(WMobilePack::wmp_active_plugin('Editorial Assistant by Zemanta')) {
-                         // get related posts from around the web
-                         $related_web_posts = $this->wmp_related_web_posts($content);
+                    if($related_web_posts == '') {
                         
-                         // parse the urls in order to obtain the correct path
-                         $related_web_posts = $this->wmp_replace_internal_links($related_web_posts);
-                        
+                        /* ZEMANTA EDITORIAL ASISTANT AND POSTS FROM AROUND THE WEB */                  
+                        if(WMobilePack::wmp_active_plugin('Editorial Assistant by Zemanta')) {
+                             // get related posts from around the web
+                             $related_web_posts = $this->wmp_related_web_posts($content);
+                            
+                             // parse the urls in order to obtain the correct path
+                             $related_web_posts = $this->wmp_replace_internal_links($related_web_posts);
+                             $related_web_posts = $this->purifier->purify($related_web_posts);
+                            
+                        }
                     }
-                    
     				
 					// remove script tags
 					$content = self::removeScriptTags($content);
@@ -707,7 +718,8 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 						"category_id" 			=> $visible_category->term_id,
                         "category_name" 		=> $visible_category->name,
                         "related_posts"         => trim($related_posts),
-                        "related_web_posts"     => trim($related_web_posts)
+                        "related_web_posts"     => trim($related_web_posts),
+                        "zemanta"               => $zemanta
 					 );
 				}
 			}
@@ -1153,19 +1165,22 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
                             
                             // get related posts from around the web
                             $related_web_posts = $this->wmp_related_web_posts($content);
+                            $related_web_posts = $this->purifier->purify($related_web_posts);
                          }
                     }    
-                    
-                    /* ZEMANTA EDITORIAL ASISTANT AND POSTS FROM AROUND THE WEB */                  
-                    if(WMobilePack::wmp_active_plugin('Editorial Assistant by Zemanta')) {
-                         // get related posts from around the web
-                         $related_web_posts = $this->wmp_related_web_posts($content);
+                    if($related_web_posts == '') {
                         
-                         // parse the urls in order to obtain the correct path
-                         $related_web_posts = $this->wmp_replace_internal_links($related_web_posts);
-                        
+                        /* ZEMANTA EDITORIAL ASISTANT AND POSTS FROM AROUND THE WEB */                  
+                        if(WMobilePack::wmp_active_plugin('Editorial Assistant by Zemanta')) {
+                             // get related posts from around the web
+                             $related_web_posts = $this->wmp_related_web_posts($content);
+                            
+                             // parse the urls in order to obtain the correct path
+                             $related_web_posts = $this->wmp_replace_internal_links($related_web_posts);
+                             $related_web_posts = $this->purifier->purify($related_web_posts);
+                            
+                        }
                     }
-                    
                     
 					// remove script tags
 					$content = self::removeScriptTags($content);
@@ -1498,11 +1513,8 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
                             
                                 if(is_numeric($post_id) && $post_id > 0) {
                                     
-                                    // recreate new url
-                                    if($type == 'post')
-                                        $new_url = 'href="#article/'.$post_id.'"';
-                                    else
-                                        $new_url = 'href="#page/'.$post_id.'"';
+                                    // recreate new url                                   
+                                    $new_url = 'href="#'.$post_id.'"';
                                     
                                     
                                     // update content and add new url
@@ -1568,7 +1580,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 	}
     
     
-		 
+    	 
 	 
   } // Export
   
