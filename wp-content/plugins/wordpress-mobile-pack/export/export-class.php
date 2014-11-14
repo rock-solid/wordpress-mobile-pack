@@ -2,7 +2,7 @@
 
 require_once("../../../../wp-config.php");
 require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php';
-
+require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
 /* -------------------------------------------------------------------------*/
 /* Export class with different export 										*/
 /* methods for categories, articles and comments							*/
@@ -25,10 +25,9 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 		
 		// set HTML Purifier
 		$config = HTMLPurifier_Config::createDefault();
-		$config = HTMLPurifier_Config::createDefault();
 		$config->set('Core.Encoding', 'UTF-8'); 									
-		$config->set('HTML.AllowedElements','div,a,p,ol,li,ul,img,blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe,small');
-		$config->set('HTML.AllowedAttributes', 'class, src, width, height, target, href, name,frameborder,marginheight,marginwidth,scrolling');
+		$config->set('HTML.AllowedElements','div,a,p,ol,li,ul,img,blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe,small,video,audio,source');
+		$config->set('HTML.AllowedAttributes', 'src, width, height, target, href, name,frameborder,marginheight,marginwidth,scrolling,poster,preload,controls,type');
 						    
         $config->set('Attr.AllowedFrameTargets', '_blank, _parent, _self, _top');
 		
@@ -38,7 +37,10 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 		// disable cache
 		$config->set('Cache.DefinitionImpl',null);
 		
-		$this->purifier  = new HTMLPurifier($config); 
+	   // extend purifier
+        $Html5Purifier = new WMPHtmlPurifier();
+        $this->purifier = $Html5Purifier->wmp_extended_purifier($config);
+        
 	
         $this->inactive_categories = unserialize(WMobilePack::wmp_get_setting('inactive_categories'));
 		$this->inactive_pages = unserialize(WMobilePack::wmp_get_setting('inactive_pages'));
@@ -545,7 +547,8 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 	*		"image": "",
 	*		"description":"<p><b>Sport</b> (or <b>sports</b>) is all forms of usually <a href=\"http://en.wikipedia.org/wiki/Competition\">competitive</a> <a href=\"http://en.wikipedia.org/wiki/Physical_activity\">physical activity</a> which,<sup><a href=\"http://en.wikipedia.org/wiki/Sport#cite_note-sportaccord-1\">[1]</a></sup> through casual or organised participation, aim to use, maintain or improve physical ability and skills while...</p>",				  
 	*	    "content": "<p>On the second day of the International Journalism Festival in Perugia, delegates were treated to a round up of data journalism trends and developments from around the world.</p>",
-	*		"comment_status": "open",	** the values can be opened or closed	
+	*		"comment_status": "open",	** the values can be opened or closed
+    *       "no_comments": 2,	
 	*       "show_avatars" : true,
 	*		"require_name_email" : true,	
 	*		"category_id": 5,
@@ -631,6 +634,9 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
                         // check if class exists and specific function that are used
                          if(class_exists('WPRPZemanta')) {
                             
+                            // set zemanta purifier
+                            $zemanta_purifier = $this->wmp_zemanta_purifier();
+                            
                             // check if related posts should be displayed
                             if(function_exists('zem_rp_get_options')) {
                                 // get options 
@@ -650,8 +656,9 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
                                             
                                             // parse the urls in order to obtain the correct path
                                             $related_posts = $this->wmp_replace_internal_links($related_posts);
+                                            
                                             // remove inline styling
-                                            $related_posts = $this->purifier->purify($related_posts);
+                                            $related_posts = $zemanta_purifier->purify($related_posts);
                                         }
                                     }
                                 }
@@ -659,13 +666,16 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
                             
                             // get related posts from around the web
                             $related_web_posts = $this->wmp_related_web_posts($content);
-                            $related_web_posts = $this->purifier->purify($related_web_posts);
+                            $related_web_posts =$zemanta_purifier->purify($related_web_posts);
                             
                         }
                         
                     }  
                     
                     if($related_web_posts == '') {
+                        
+                        // set zemanta purifier
+                        $zemanta_purifier = $this->wmp_zemanta_purifier();
                         
                         /* ZEMANTA EDITORIAL ASISTANT AND POSTS FROM AROUND THE WEB */                  
                         if(WMobilePack::wmp_active_plugin('Editorial Assistant by Zemanta')) {
@@ -674,7 +684,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
                             
                              // parse the urls in order to obtain the correct path
                              $related_web_posts = $this->wmp_replace_internal_links($related_web_posts);
-                             $related_web_posts = $this->purifier->purify($related_web_posts);
+                             $related_web_posts = $zemanta_purifier->purify($related_web_posts);
                             
                         }
                     }
@@ -683,7 +693,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 					$content = self::removeScriptTags($content);
 					
     				$content = $this->purifier->purify($content);
-    				
+    			 
 					// remove all url's from attachment images
 					$content = preg_replace( array('{<a(.*?)(wp-att|wp-content\/uploads|attachment)[^>]*><img}', '{ wp-image-[0-9]*" /></a>}'), array('<img','" />'), $content);
 					
@@ -692,13 +702,18 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
     				// get comments status
                     $comment_status = $this->comment_closed($post);
                     
+                    
+                    $no_comments = 0;
+                    // check if there is at least a  comment
+					$comment_count = wp_count_comments( $articleId );	
+                    $no_comments = $comment_count->approved;
+                    
 					if($comment_status == 'closed') {
-						
-						// check if there is at least a  comment
-						$comment_count = wp_count_comments( $articleId );					
-						if($comment_count)
-							if($comment_count->approved == 0)
+										
+						if($comment_count) 
+							if($comment_count->approved == 0) 
 								$comment_status = 'disabled';
+                        
 					}
 					
 					
@@ -713,6 +728,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
                         "description"	    	=> $description,
                         "content" 				=> $content,
                         "comment_status"    	=> $comment_status,
+                        "no_comments"           => $no_comments,
                         "show_avatars"			=> get_option("show_avatars") == 1 ? true : false,// false
 						"require_name_email"	=> get_option("require_name_email") == 1 ? true : false,
 						"category_id" 			=> $visible_category->term_id,
@@ -1162,22 +1178,26 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
                     
                         // check if class exists and specific function that are used
                          if(class_exists('WPRPZemanta')) {
-                            
+                            // set zemanta purifier
+                            $zemanta_purifier = $this->wmp_zemanta_purifier();
                             // get related posts from around the web
                             $related_web_posts = $this->wmp_related_web_posts($content);
-                            $related_web_posts = $this->purifier->purify($related_web_posts);
+                            $related_web_posts = $zemanta_purifier->purify($related_web_posts);
                          }
                     }    
                     if($related_web_posts == '') {
                         
                         /* ZEMANTA EDITORIAL ASISTANT AND POSTS FROM AROUND THE WEB */                  
                         if(WMobilePack::wmp_active_plugin('Editorial Assistant by Zemanta')) {
+                             // set zemanta purifier
+                             $zemanta_purifier = $this->wmp_zemanta_purifier();
+                            
                              // get related posts from around the web
                              $related_web_posts = $this->wmp_related_web_posts($content);
                             
                              // parse the urls in order to obtain the correct path
                              $related_web_posts = $this->wmp_replace_internal_links($related_web_posts);
-                             $related_web_posts = $this->purifier->purify($related_web_posts);
+                             $related_web_posts = $zemanta_purifier->purify($related_web_posts);
                             
                         }
                     }
@@ -1579,6 +1599,36 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
         
 	}
     
+    
+    /**
+     * 
+     * Method wmp_zemanta_purifier called when he want to keep the class attribute for the content, for zemanta tags
+     * 
+     */
+    public function wmp_zemanta_purifier(){
+        
+        // set HTML Purifier
+		$config = HTMLPurifier_Config::createDefault();
+		$config->set('Core.Encoding', 'UTF-8'); 									
+		$config->set('HTML.AllowedElements','div,a,p,ol,li,ul,img,blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe,small,video,audio,source');
+		$config->set('HTML.AllowedAttributes', 'class, src, width, height, target, href, name,frameborder,marginheight,marginwidth,scrolling,poster,preload,controls,type');
+						    
+        $config->set('Attr.AllowedFrameTargets', '_blank, _parent, _self, _top');
+		
+		$config->set('HTML.SafeIframe',1);
+		$config->set('Filter.Custom', array( new HTMLPurifier_Filter_Iframe()));
+		
+		// disable cache
+		$config->set('Cache.DefinitionImpl',null);
+		
+	   // extend purifier
+        $Html5Purifier = new WMPHtmlPurifier();
+        $purifier = $Html5Purifier->wmp_extended_purifier($config);
+        
+        return $purifier;
+        
+        
+    }
     
     	 
 	 

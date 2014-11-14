@@ -149,7 +149,9 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 			global $wmobile_pack;
 			
 			include(WMP_PLUGIN_PATH.'libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php');
-			if (isset($_GET) && is_array($_GET) && !empty($_GET)){
+			include(WMP_PLUGIN_PATH.'libs/htmlpurifier-html5/htmlpurifier_html5.php');
+            
+            if (isset($_GET) && is_array($_GET) && !empty($_GET)){
 				 
 				 if (isset($_GET['id'])) { 
 				 
@@ -163,8 +165,8 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 							$config = HTMLPurifier_Config::createDefault();
 							$config->set('Core.Encoding', 'UTF-8'); 									
 							
-                            $config->set('HTML.AllowedElements','div,a,p,ol,li,ul,img,blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe');
-						  	$config->set('HTML.AllowedAttributes', 'class, src, width, height, target, href, name,frameborder,marginheight,marginwidth,scrolling');
+                            $config->set('HTML.AllowedElements','div,a,p,ol,li,ul,img,blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe,small,video,audio,source');
+						  	$config->set('HTML.AllowedAttributes', 'class,src, width, height, target, href, name,frameborder,marginheight,marginwidth,scrolling,poster,preload,controls,type');
 						    
                             $config->set('Attr.AllowedFrameTargets', '_blank, _parent, _self, _top');
 							
@@ -174,7 +176,8 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 							// disable cache
 							$config->set('Cache.DefinitionImpl',null);
 							
-							$purifier  = new HTMLPurifier($config); 
+							$Html5Purifier = new WMPHtmlPurifier();
+                            $purifier = $Html5Purifier->wmp_extended_purifier($config);
 							
 							// first check if the admin edited the content for this page
 							if(get_option( 'wmpack_page_' .$page->ID  ) === false)
@@ -424,11 +427,13 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                             
 							// set HTML Purifier
 							include(WMP_PLUGIN_PATH.'libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php');
-							$config = HTMLPurifier_Config::createDefault();
+							include(WMP_PLUGIN_PATH.'libs/htmlpurifier-html5/htmlpurifier_html5.php');
+                            
+                            $config = HTMLPurifier_Config::createDefault();
 							$config->set('Core.Encoding', 'UTF-8'); 									
 							
-                            $config->set('HTML.AllowedElements','div,a,p,ol,li,ul,img,blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe');
-						  	$config->set('HTML.AllowedAttributes', 'class, src, width, height, target, href, name,frameborder,marginheight,marginwidth,scrolling');
+                            $config->set('HTML.AllowedElements','div,a,p,ol,li,ul,img,blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe,small,video,audio,source');
+						  	$config->set('HTML.AllowedAttributes', 'class, src, width, height, target, href, name,frameborder,marginheight,marginwidth,scrolling,poster,preload,controls,type');
 						    
 							$config->set('Attr.AllowedFrameTargets', '_blank, _parent, _self, _top');
 							
@@ -438,7 +443,8 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 							// disable cache
 							$config->set('Cache.DefinitionImpl',null);
 							
-							$purifier  = new HTMLPurifier($config); 
+							$Html5Purifier = new WMPHtmlPurifier();
+                            $purifier = $Html5Purifier->wmp_extended_purifier($config);
 							
                             $status = 1;
                             
