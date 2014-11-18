@@ -1,0 +1,3 @@
+ul.related_post li a {word-wrap: break-word !important;}
+ul.related_post li.zem_rp_promoted a {position:relative !important;}
+ul.related_post li.zem_rp_remote a {position:relative !important;}

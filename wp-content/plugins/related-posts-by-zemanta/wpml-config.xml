@@ -1,0 +1,11 @@
+<wpml-config>
+	<custom-fields>
+		<custom-field action="ignore">_zem_rp_image</custom-field>
+		<custom-field action="ignore">_zem_rp_selected_related_posts</custom-field>
+	</custom-fields>
+	<admin-texts>
+	 <key name="zem_rp_options">
+	   <key name="related_posts_title" />
+	  </key>
+	</admin-texts>
+</wpml-config>

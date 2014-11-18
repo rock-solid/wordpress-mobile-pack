@@ -1,0 +1,76 @@
+.zem_rp_wrap {
+	clear: both;
+}
+
+.zem_rp_wrap .related_post_title {
+	background: rgba(245, 245, 245, 1) !important;
+	padding: 3px 0 3px 10px !important;
+	margin: 0 !important;
+	font-weight: normal;
+	border-radius: 2px !important;
+	border: 1px solid rgba(0, 0, 0, .1) !important;
+	clear: both !important;
+}
+div.zem_rp_content {
+	display: block !important;
+}
+
+div.zem_rp_footer {
+	text-align: right !important;
+	overflow: hidden !important;
+}
+div.zem_rp_footer a {
+	color: #999 !important;
+	font-size: 11px !important;
+	text-decoration: none !important;
+	display: inline-block !important;
+}
+ul.related_post {
+	margin: 0 0 18px 0 !important;
+	padding: 0 !important;
+}
+
+ul.related_post li {
+	position: relative !important;
+	min-height: 60px;
+	list-style: none !important;
+	padding: 10px 0 10px 0 !important;
+	margin: 0 !important;
+	border-bottom: 1px solid rgba(0, 0, 0, .1) !important;
+	background: none !important;
+}
+
+ul.related_post li a {
+	position: relative !important;
+	text-decoration:none;
+	text-indent: 0 !important;
+}
+
+ul.related_post li a img {
+	width: 60px;
+	height: 60px;
+	float: left !important;
+	margin: 0 10px 0 0 !important;
+	padding: 0 !important;
+	max-width: 100% !important;
+	float: none !important;
+}
+
+ul.related_post li a img.zem_rp_santa_hat {
+	display: none !important;
+}
+
+ul.related_post li a.title {
+	vertical-align: top !important;
+}
+
+/* override old CSS for new plugin version with CSS classes */
+ul.related_post li a.zem_rp_thumbnail { 
+	float: left !important;
+	margin-right: 10px !important;
+}
+ul.related_post li a.zem_rp_thumbnail img {
+	float: none !important;
+	margin-right: 0 !important;
+	display: block !important;
+}

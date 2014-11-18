@@ -27,7 +27,7 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
 		$config = HTMLPurifier_Config::createDefault();
 		$config->set('Core.Encoding', 'UTF-8'); 									
 		$config->set('HTML.AllowedElements','div,a,p,ol,li,ul,img,blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe,small,video,audio,source');
-		$config->set('HTML.AllowedAttributes', 'src, width, height, target, href, name,frameborder,marginheight,marginwidth,scrolling,poster,preload,controls,type');
+		$config->set('HTML.AllowedAttributes', 'src, width, height, target, href, name,frameborder,marginheight,marginwidth,scrolling,poster,preload,controls,type,data-type');
 						    
         $config->set('Attr.AllowedFrameTargets', '_blank, _parent, _self, _top');
 		
@@ -623,6 +623,7 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
     				
                     // filter the content
     				$content = apply_filters( 'the_content', $post->post_content );
+                    
                     
                                         
                     $related_posts = '';
