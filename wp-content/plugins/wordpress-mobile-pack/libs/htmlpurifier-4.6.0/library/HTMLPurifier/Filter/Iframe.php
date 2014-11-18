@@ -19,7 +19,7 @@ class HTMLPurifier_Filter_Iframe extends HTMLPurifier_Filter
     public function preFilter($html, $config, $context)
     {
         
-		$html = preg_replace('#<iframe#i', '<img class="Iframe"', $html);
+		$html = preg_replace('#<iframe#i', '<img data-type="Iframe"', $html);
         $html = preg_replace('#</iframe>#i', '', $html);
 	  
         return $html;
@@ -35,7 +35,7 @@ class HTMLPurifier_Filter_Iframe extends HTMLPurifier_Filter
     public function postFilter($html, $config, $context)
     {
        
-		$post_regex = '#<img class="Iframe"([^>]+?)>#';
+		$post_regex = '#<img data-type="Iframe"([^>]+?)>#';
         return preg_replace_callback($post_regex, array($this, 'postFilterCallback'), $html);
     }
 

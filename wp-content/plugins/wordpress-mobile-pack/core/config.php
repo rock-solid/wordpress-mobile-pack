@@ -32,6 +32,7 @@ define('WMP_APPTICLES_CONNECT_SSL','https://api.appticles.com/content1/wpconnect
 
 //define('WMP_APPTICLES_DISCONNECT','http://api.appticles.com/content1/wpdisconnect');
 define('WMP_APPTICLES_DISCONNECT','http://dev.webcrumbz.co/test/wpdisconnect');
+
 define('WMP_APPTICLES_DISCONNECT_SSL','https://api.appticles.com/content1/wpdisconnect');
 
 // define blog version

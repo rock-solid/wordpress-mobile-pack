@@ -1,0 +1,80 @@
+.zem_rp_wrap .related_post_title {
+	clear: both;
+	padding: 0 !important;
+	margin: 0 !important;
+}
+div.zem_rp_content {
+	display: inline-block !important;
+}
+
+div.zem_rp_footer {
+	text-align: right !important;
+	overflow: hidden !important;
+}
+div.zem_rp_footer a {
+	color: #999 !important;
+	font-size: 11px !important;
+	text-decoration: none !important;
+	display: inline-block !important;
+}
+ul.related_post {
+	display: inline-block !important;
+	position: relative !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+ul.related_post li {
+	position: relative !important;
+	display: inline-block !important;
+	vertical-align: top !important;
+	zoom: 1 !important;
+	*display: inline !important;
+	width: 75px !important;
+	margin: 10px 10px 10px 0px !important;
+	padding: 0 !important;
+	background: none !important;
+}
+ul.related_post li a {
+	position: relative !important;
+	display: block !important;
+	font-size: 11px !important;
+	line-height: 1.5em !important;
+	text-decoration: none !important;
+	margin-bottom: 5px !important;
+	text-indent: 0 !important;
+}
+ul.related_post li img {
+	display: block !important;
+	width: 75px !important;
+	height: 75px !important;
+	max-width: 100% !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	background: none !important;
+	border: none !important;
+
+	border-radius: 3px !important;
+	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2) !important;
+}
+
+ul.related_post li a img.zem_rp_santa_hat {
+	display: none !important;
+}
+
+ul.related_post li small {
+	font-size: 80%;
+}
+
+@media screen and (max-width: 480px) {
+	ul.related_post {
+		-moz-column-count: auto !important;
+		-moz-column-gap: normal !important;
+		-moz-column-rule: none !important;
+		-webkit-column-count:auto !important; 
+		-webkit-column-gap: normal !important;
+		-webkit-column-rule: none !important;
+		column-count: auto !important;
+		column-gap: normal !important;
+		column-rule: none !important;
+	}
+}
