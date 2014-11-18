@@ -691,7 +691,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          *  'shorten_url' : 'xxxxxx',
          *  
          *  'status' => 'visible' / 'hidden',
-         *  'theme' : 1,
+         *  'theme' : 1,                      // will be removed in future versions
          *  
          *  'has_phone_ads' : 0/1,
          *  'has_tablet_ads' : 0/1,
@@ -699,12 +699,13 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          *  // OPTIONAL fields
          *  'domain_name' : 'myapp.domain.com',
          *  
-         *  'color_scheme'      : 1,
-		 *  'font_headlines'    : 1,
-		 *  'font_subtitles'    : 1,
-		 *  'font_paragraphs'   : 1,
-         *  'cover_smartphones_path' : '',
-         *  'cover_tablets_path' : '',
+         *  'color_scheme'      : 1,          // will be removed in future versions
+		 *  'font_headlines'    : 1,          // will be removed in future versions
+		 *  'font_subtitles'    : 1,          // will be removed in future versions
+		 *  'font_paragraphs'   : 1,          // will be removed in future versions
+         *  'cover_smartphones_path' : '',    // will be removed in future versions
+         *  'cover_tablets_path' : '',        // will be removed in future versions
+         * 
          *  'logo_path' : '',
          *  'icon_path' : '',
          *  
@@ -719,6 +720,29 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          *  'google_analytics_id' : 'UA-XXXXXX-1',
          *  'google_internal_id' : 'xxxxx'
          * 
+         *  // VERSION 2.6.0 (Separate phone and tablet theme settings)
+         * 'phone' : {
+         *  'theme'             : 1, // 0 means a custom theme
+         *  'color_scheme'      : 1,
+		 *  'font_headlines'    : 1,
+		 *  'font_subtitles'    : 1,
+		 *  'font_paragraphs'   : 1,
+         *  'cover'             : '',
+         *  'theme_timestamp'   : '',
+         *  'custom_fonts''     : ''
+         * }
+         * 
+         * 'tablet' : {
+         *  'theme'             : 1, // 0 means a custom theme
+         *  'color_scheme'      : 1,
+		 *  'font_headlines'    : 1,
+		 *  'font_subtitles'    : 1,
+		 *  'font_paragraphs'   : 1,
+         *  'cover'             : '',
+         *  'theme_timestamp'   : '',
+         *  'custom_fonts''     : ''
+         * }
+         *  
          * }
 		 */
 		public static function wmp_set_premium_config() {
@@ -987,7 +1011,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 			$WMobileDetect = new WPMobileDetect;
 			
 			return $WMobileDetect->wmp_is_tablet();
-			
+		  
 			
 		}
 		

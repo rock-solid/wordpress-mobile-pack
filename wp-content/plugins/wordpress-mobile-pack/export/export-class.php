@@ -1320,7 +1320,7 @@ require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'
 			
 			$arrSettings = array();
 			
-			if(isset($_POST["apiKey"]) && $_POST["apiKey"] == WMobilePack::wmp_get_setting('premium_api_key')) {
+			if (isset($_POST["apiKey"]) && $_POST["apiKey"] == WMobilePack::wmp_get_setting('premium_api_key')) {
 				
 				if (WMobilePack::wmp_get_setting('premium_active') == 0) {
 					

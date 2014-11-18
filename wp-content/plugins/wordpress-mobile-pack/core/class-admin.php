@@ -467,7 +467,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                 
 				// get response
 				$json_response = self::wmp_read_data($json_url);
-				
+
 				if($json_response !== false && $json_response != '') {
 					
 					// Store this data in a transient
@@ -487,7 +487,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 					
 				// get response
 				$response = json_decode($json_data, true);
-				
+                
                 if ( (isset($response["news"]) && is_array($response["news"]) && !empty($response["news"])) || 
                     (isset($response["whitepaper"]) && is_array($response["whitepaper"]) && !empty($response["whitepaper"])) ) {
                     

@@ -43,9 +43,10 @@ if ( ! class_exists( 'WPMobileDetect' ) ) {
 				$load_app = true;
 			elseif($is_premium && (($is_mobile || $is_tablet) &&  ($is_webkit || $is_windows_mobile || $is_firefox_os || $is_firefox)|| $is_windows_tablet))
 				$load_app = true; 
-						if($load_app)
-    			// set load app cookie	
-    			setcookie("wmp_load_app", 1, time()+3600*7*24,'/');
+						
+            // set load app cookie
+            if ($load_app)
+                setcookie("wmp_load_app", 1, time()+3600*7*24,'/');
     		
     		return $load_app;
     	}

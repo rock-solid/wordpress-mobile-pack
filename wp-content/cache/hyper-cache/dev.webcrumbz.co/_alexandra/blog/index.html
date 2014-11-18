@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html manifest="" lang="en-US">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="apple-touch-icon-precomposed" href="" />
+    
+    <title>Test Blog</title>
+    <style type="text/css">
+         /**
+         * Example of an initial loading indicator.
+         * It is recommended to keep this as minimal as possible to provide instant feedback
+         * while other resources are still being loaded for the first time
+         */
+        html, body {
+            height: 100%;
+			width: 100%;
+			margin: 0;
+			padding: 0;
+            background-color: #e5e8e3;
+        }
+
+        #appLoadingIndicator {
+            position: absolute;
+            top: 50%;
+            margin-top: -8px;
+            text-align: center;
+            width: 100%;
+            height: 16px;
+            -webkit-animation-name: appLoadingIndicator;
+            -webkit-animation-duration: 0.5s;
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animation-direction: linear;
+            animation-name: appLoadingIndicator;
+            animation-duration: 0.5s;
+            animation-iteration-count: infinite;
+            animation-direction: linear;
+        }
+
+        #appLoadingIndicator > * {
+            background-color: #c6cdbe;
+            display: inline-block;
+            height: 16px;
+			width: 16px;
+             -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 8px;
+            margin: 0 2px;
+            opacity: 0.8;
+        }
+
+        @-webkit-keyframes appLoadingIndicator{
+            0% {
+                opacity: 0.8
+            }
+            50% {
+                opacity: 0
+            }
+            100% {
+                opacity: 0.8
+            }
+        }
+        
+        @keyframes appLoadingIndicator{
+            0% {
+                opacity: 0.8
+            }
+            50% {
+                opacity: 0
+            }
+            100% {
+                opacity: 0.8
+            }
+        }
+    </style>
+               
+    <script type="text/javascript">
+		var appticles = {
+			exportPath: "http://dev.webcrumbz.co/~alexandra/blog/wp-content/plugins/wordpress-mobile-pack/export/",
+			creditsPath: "http://dev.webcrumbz.co/~alexandra/blog/wp-content/plugins/wordpress-mobile-pack/themes/base/includes/",
+            defaultCover: "http://dev.webcrumbz.co/~alexandra/blog/wp-content/plugins/wordpress-mobile-pack/themes/base/includes/resources/images/pattern-5.jpg",
+   			userCover: "",
+			logo: "",
+			icon: "",
+			websiteUrl: 'http://dev.webcrumbz.co/~alexandra/blog?wmp_theme_mode=desktop',
+			commentsToken: "ZjA4NWRkMGE5ODVkZWViOWViYTc1YWYxMjNlYzk4NDdfMTQxNTYzMjEwMA=="
+		};
+	</script>
+
+    <!-- core -->
+	<link rel="stylesheet" href="http://dev.webcrumbz.co/~alexandra/blog/wp-content/plugins/wordpress-mobile-pack/themes/base/includes/resources/css/phone.css?date=20140911" type="text/css">
+    <link rel="stylesheet" href="http://dev.webcrumbz.co/~alexandra/blog/wp-content/plugins/wordpress-mobile-pack/themes/base/includes/resources/css/fonts.css?date=20140911" type="text/css">
+    
+    <!-- custom fonts -->
+            <link rel="stylesheet" href="http://dev.webcrumbz.co/~alexandra/blog/wp-content/plugins/wordpress-mobile-pack/themes/base/includes/resources/css/font-1.css?date=20140911" type="text/css">
+        
+    <!-- theming -->
+    <link rel="stylesheet" href="http://dev.webcrumbz.co/~alexandra/blog/wp-content/plugins/wordpress-mobile-pack/themes/base/includes/resources/css/headlines-f1.css?date=20140911" type="text/css">
+    <link rel="stylesheet" href="http://dev.webcrumbz.co/~alexandra/blog/wp-content/plugins/wordpress-mobile-pack/themes/base/includes/resources/css/paragraphs-f1.css?date=20140911" type="text/css">
+    <link rel="stylesheet" href="http://dev.webcrumbz.co/~alexandra/blog/wp-content/plugins/wordpress-mobile-pack/themes/base/includes/resources/css/subtitles-f1.css?date=20140911" type="text/css">
+    <link rel="stylesheet" href="http://dev.webcrumbz.co/~alexandra/blog/wp-content/plugins/wordpress-mobile-pack/themes/base/includes/resources/css/theme-1.css?date=20140911" type="text/css">
+    
+    <script type="text/javascript" src="http://dev.webcrumbz.co/~alexandra/blog/wp-content/plugins/wordpress-mobile-pack/themes/base/includes/app.js?date=20140911"></script> 
+    
+     
+    
+</head>
+<body>
+    <div id="appLoadingIndicator">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+<script>function lc_get_cookie(name) {var c = document.cookie;if (c.indexOf(name) != -1) {var x = c.indexOf(name)+name.length+1;var y = c.indexOf(";",x);if (y < 0) y = c.length;return decodeURIComponent(c.substring(x,y));} else return "";}if ((d = document.getElementById("commentform")) != null) { e = d.elements;var z = lc_get_cookie("comment_author_email_310048fae18ab0eb8d3acf297e820f3e");if (z != "") e["email"].value = z;z = lc_get_cookie("comment_author_310048fae18ab0eb8d3acf297e820f3e");if (z != "") e["author"].value = z;z = lc_get_cookie("comment_author_url_310048fae18ab0eb8d3acf297e820f3e");if (z != "") e["url"].value = z;}</script></body></html><!-- hyper cache 2014-11-10 02:08:20 -->
