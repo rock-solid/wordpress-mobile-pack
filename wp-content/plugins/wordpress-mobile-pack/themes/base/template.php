@@ -1,3 +1,70 @@
+<?php
+    $theme_path = plugins_url()."/".WMP_DOMAIN."/themes/".WMobilePack::wmp_app_theme()."/";
+    
+    // check if logo exists
+    $logo_path = WMobilePack::wmp_get_setting('logo');
+    
+    if ($logo_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$logo_path))
+        $logo_path = '';    
+    else
+        $logo_path = WMP_FILES_UPLOADS_URL.$logo_path;
+        
+    // check if icon exists
+    $icon_path = WMobilePack::wmp_get_setting('icon');
+    
+    if ($icon_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$icon_path))
+        $icon_path = ''; 
+    else
+        $icon_path = WMP_FILES_UPLOADS_URL.$icon_path;  
+	    
+    // check color scheme
+    $color_scheme = WMobilePack::wmp_get_setting('color_scheme');
+    if ($color_scheme == '')
+        $color_scheme = 1;
+        
+    // check fonts
+    $arrLoadedFonts = array();
+    
+    $font_headlines = array_search(WMobilePack::wmp_get_setting('font_headlines'), WMobilePack::$wmp_allowed_fonts) + 1;
+    if (!$font_headlines)
+        $font_headlines = 1;
+        
+    $arrLoadedFonts[] = $font_headlines;
+        
+    $font_subtitles = array_search(WMobilePack::wmp_get_setting('font_subtitles'), WMobilePack::$wmp_allowed_fonts) + 1;
+    if (!$font_subtitles)
+        $font_subtitles = 1;
+        
+    if (!in_array($font_subtitles, $arrLoadedFonts))
+        $arrLoadedFonts[] = $font_subtitles;
+        
+    $font_paragraphs = array_search(WMobilePack::wmp_get_setting('font_paragraphs'), WMobilePack::$wmp_allowed_fonts) + 1;
+    if (!$font_paragraphs)
+        $font_paragraphs = 1;
+        
+    if (!in_array($font_paragraphs, $arrLoadedFonts))
+        $arrLoadedFonts[] = $font_paragraphs;
+		
+		
+	// check if cover exists
+    $cover_path = WMobilePack::wmp_get_setting('cover');
+   
+	
+	$useCover = false;
+	
+    if ($cover_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$cover_path))
+        $cover_path = ''; 
+    else {
+        $cover_path = WMP_FILES_UPLOADS_URL.$cover_path;  	
+		$useCover = true;
+	}
+		
+	if (!$useCover) {
+		// get random cover from default covers
+		$cover_path = $theme_path."includes/resources/images/pattern-".rand(1, 6).".jpg";
+	}
+		
+?>
 <!DOCTYPE HTML>
 <html manifest="" lang="en-US">
 <head>
@@ -7,6 +74,12 @@
     <meta name="apple-touch-fullscreen" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <link rel="apple-touch-icon-precomposed" href="" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <link rel="manifest" href="<?php echo plugins_url()."/".WMP_DOMAIN."/export/content.php?content=androidmanifest";?>" />
+    
+    <?php if ($icon_path != ''): // icon path for Firefox ?>
+        <link rel="shortcut icon" href="<?php echo $icon_path;?>"/>
+    <?php endif;?>
     
     <title><?php echo get_bloginfo("name");?></title>
     <style type="text/css">
@@ -76,73 +149,6 @@
             }
         }
     </style>
-    <?php
-        $theme_path = plugins_url()."/".WMP_DOMAIN."/themes/".WMobilePack::wmp_app_theme()."/";
-        
-        // check if logo exists
-        $logo_path = WMobilePack::wmp_get_setting('logo');
-        
-        if ($logo_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$logo_path))
-            $logo_path = '';    
-        else
-            $logo_path = WMP_FILES_UPLOADS_URL.$logo_path;
-            
-        // check if icon exists
-        $icon_path = WMobilePack::wmp_get_setting('icon');
-        
-        if ($icon_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$icon_path))
-            $icon_path = ''; 
-        else
-            $icon_path = WMP_FILES_UPLOADS_URL.$icon_path;  
-		    
-        // check color scheme
-        $color_scheme = WMobilePack::wmp_get_setting('color_scheme');
-        if ($color_scheme == '')
-            $color_scheme = 1;
-            
-        // check fonts
-        $arrLoadedFonts = array();
-        
-        $font_headlines = array_search(WMobilePack::wmp_get_setting('font_headlines'), WMobilePack::$wmp_allowed_fonts) + 1;
-        if (!$font_headlines)
-            $font_headlines = 1;
-            
-        $arrLoadedFonts[] = $font_headlines;
-            
-        $font_subtitles = array_search(WMobilePack::wmp_get_setting('font_subtitles'), WMobilePack::$wmp_allowed_fonts) + 1;
-        if (!$font_subtitles)
-            $font_subtitles = 1;
-            
-        if (!in_array($font_subtitles, $arrLoadedFonts))
-            $arrLoadedFonts[] = $font_subtitles;
-            
-        $font_paragraphs = array_search(WMobilePack::wmp_get_setting('font_paragraphs'), WMobilePack::$wmp_allowed_fonts) + 1;
-        if (!$font_paragraphs)
-            $font_paragraphs = 1;
-            
-        if (!in_array($font_paragraphs, $arrLoadedFonts))
-            $arrLoadedFonts[] = $font_paragraphs;
-			
-			
-		// check if cover exists
-        $cover_path = WMobilePack::wmp_get_setting('cover');
-       
-		
-		$useCover = false;
-		
-        if ($cover_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$cover_path))
-            $cover_path = ''; 
-        else {
-            $cover_path = WMP_FILES_UPLOADS_URL.$cover_path;  	
-			$useCover = true;
-		}
-			
-		if(!$useCover) {
-			// get random cover from default covers
-			$cover_path = $theme_path."includes/resources/images/pattern-".rand(1, 6).".jpg";
-		}	
-			
-    ?>
            
     <script type="text/javascript">
 		var appticles = {
@@ -158,8 +164,8 @@
 	</script>
 
     <!-- core -->
-	<link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/phone.css?date=20140911" type="text/css">
-    <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/fonts.css?date=20140911" type="text/css">
+	<link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/phone.css?date=20140911" type="text/css" />
+    <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/fonts.css?date=20140911" type="text/css" />
     
     <!-- custom fonts -->
     <?php foreach ($arrLoadedFonts as $font_no):?>

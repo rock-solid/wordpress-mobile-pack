@@ -28,7 +28,7 @@ if ( class_exists( 'WMobilePack' ) && class_exists( 'WMobilePackAdmin' ) ) {
     add_action('plugins_loaded',array( &$wmobile_pack, 'wmp_check_load' )); 
 	
 	if (is_admin()) {
-		  
+ 
 		$wmobile_pack->wmp_admin_init();
 		
 		add_action( 'wp_ajax_wmp_content_save', array( &$wmobile_pack_admin, 'wmp_content_save' ) );

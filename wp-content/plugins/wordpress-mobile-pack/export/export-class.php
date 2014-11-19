@@ -3,6 +3,7 @@
 require_once("../../../../wp-config.php");
 require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php';
 require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
+
 /* -------------------------------------------------------------------------*/
 /* Export class with different export 										*/
 /* methods for categories, articles and comments							*/
@@ -41,7 +42,6 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
         $Html5Purifier = new WMPHtmlPurifier();
         $this->purifier = $Html5Purifier->wmp_extended_purifier($config);
         
-	
         $this->inactive_categories = unserialize(WMobilePack::wmp_get_setting('inactive_categories'));
 		$this->inactive_pages = unserialize(WMobilePack::wmp_get_setting('inactive_pages'));
 	}
@@ -1211,7 +1211,6 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
 					// remove all url's from attachment images
 					$content = preg_replace( array('{<a(.*?)(wp-att|wp-content\/uploads|attachment)[^>]*><img}', '{ wp-image-[0-9]*" /></a>}'), array('<img','" />'), $content);
 					
-					
     				// get the description
     				$description = Export::truncateHtml($content,$descriptionLength);
     				
@@ -1269,6 +1268,7 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
 			$total_length = strlen($ending);
 			$open_tags = array();
 			$truncate = '';
+            
 			foreach ($lines as $line_matchings) {
 				// if there is any html-tag in this line, handle it and add it (uncounted) to the output
 				if (!empty($line_matchings[1])) {
@@ -1417,6 +1417,110 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
     }
 		
 	
+    /**
+     * 
+     * Export manifest files for Android or Mozilla
+     * 
+     * These manifest files will be used only if the index file is loaded from the plugin (free or premium).
+     * 
+     */
+    public function exportManifest(){
+        
+        if (isset($_GET["content"]) && ($_GET["content"] == 'androidmanifest' || $_GET["content"] == 'mozillamanifest')) {
+            
+            // Check if the premium version is enabled
+            $is_premium = false;
+            $arrPremiumConfig = null;
+            
+            // Check premium configuration
+            if (WMobilePack::wmp_get_setting('premium_active') == 1 && WMobilePack::wmp_get_setting('premium_api_key') != '') {
+		 
+				$is_premium = true; 
+                
+                $json_config_premium = WMobilePack::wmp_set_premium_config(); 
+                
+            	if ($json_config_premium !== false) {
+            		$arrPremiumConfig = json_decode($json_config_premium, true);
+            	}
+            }
+            
+            // set blog name
+            $blog_name = get_bloginfo("name");
+            
+            if ($is_premium && $arrPremiumConfig != null && isset($arrPremiumConfig['title']))
+                $blog_name = $arrPremiumConfig['title'];
+                
+            // init response depending on the manifest type
+            if ($_GET['content'] == 'androidmanifest') {
+                
+                $arrManifest = array(
+                	'name' 			=> $blog_name,
+                	'start_url' 	=> home_url(), 
+                	'display' 		=> 'standalone'
+                );
+                
+            } else {
+                
+                // remove domain name from the launch path
+                $launch_path = home_url();
+                $launch_path = str_replace('http://'.$_SERVER['HTTP_HOST'],'',$launch_path);
+                $launch_path = str_replace('https://'.$_SERVER['HTTP_HOST'],'',$launch_path);
+                
+                $arrManifest = array(
+                	'name' 			=> $blog_name, 
+                	'launch_path' 	=> $launch_path, 
+                	'developer'		=> array(
+	  					"name"		=> $blog_name
+     				)
+                );
+            }
+            
+            // check if icon exists
+            $icon_path = false;
+            
+            if ($is_premium) {
+                
+                // load icon from the premium config json
+                if ($arrPremiumConfig != null && isset($arrConfig['icon_path']) && $arrConfig['icon_path'] != ''){
+                    $icon_path = $arrConfig['icon_path'];
+                }
+                
+            } else {
+                
+                // load icon from the local settings and folder
+                $icon_path = WMobilePack::wmp_get_setting('icon');
+            
+                if ($icon_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$icon_path)) {
+                    $icon_path = false;
+                } else {
+                    $icon_path = WMP_FILES_UPLOADS_URL.$icon_path;
+                }
+            }
+                
+            // set icon depending on the manifest file type
+            if ($icon_path != false) {
+                
+                if ($_GET['content'] == 'androidmanifest') {
+                    
+                    $arrManifest['icons'] = array(
+        				array(
+        					"src"		=> $icon_path,
+        					"sizes"		=> "192x192"
+        				)
+                    );
+                    
+                } else {
+                    $arrManifest['icons'] = array(
+        				'152' => $icon_path,
+                    );
+                }
+            }
+    
+            echo json_encode($arrManifest);
+        }
+    }
+    
+    
 	/**
     * 
     *  - exportSettings method used for the export of the main settings
@@ -1477,11 +1581,11 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
 					// return json
 					return json_encode($arrSettings);
 				
-				}
-			} 
-			 
-			// by default assume the api key is not valid	
-			return '{"error":"The api key provided is not valid.","status" : 0}';
+				} else 
+                    return '{"error":"Premium plugin is not active.","status" : 0}';
+                
+			} else 
+                return '{"error":"Missing post data (API Key) or mismatch.","status" : 0}';
 			
 		} else
 			return '{"error":"","status" : 0}';
@@ -1501,30 +1605,22 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
      */
     public function wmp_replace_internal_links($content,$type='post'){
 		
-        
-        if($content != '' && in_array($type,array('post','page'))) { 
+        if ($content != '' && in_array($type,array('post','page'))) { 
             
             // check if url exist
             $Match = preg_match_all('%href=\"(https?:)?(http?:)?//'.$_SERVER['HTTP_HOST'].'.*\"%siU',$content,$matches);
         
-            //$match = preg_match_all('/<a\s[^>]*href=([\"\']??)([^\" >]*?)\\1[^>]*>(.*)<\/a>/siU',$content,$matches);
+            // if there was at least a match fount
+            if ($Match) {
             
-            //var_dump('/<a\s[^>]*href=([\"\']??)((https?:)?(http?:)?//'.$_SERVER['HTTP_HOST'].'[^\" >]*?)\\1[^>]*>(.*)<\/a>/siU/');exut();
-            // $match = preg_match_all('/<a\s[^>]*href=([\"\']??)((https?:)?(http?:)?//[^\" >]*?)\\1[^>]*>(.*)<\/a>/siU/',$content,$matches);
-            
-            //$match = preg_match_all('/<a\s[^>]*href=\"((https?:)?(http?:)?//'.$_SERVER['HTTP_HOST'].')\">(.*)<\/a>/siU',$content,$matches);
-        
-            // if there was at leat a match fount
-            if($Match) {
-            
-                if(!empty($matches) && is_array($matches)) {
+                if (!empty($matches) && is_array($matches)) {
                 
-                    if(!empty($matches[0]) && is_array($matches[0])) {
+                    if (!empty($matches[0]) && is_array($matches[0])) {
                     
                         // replace links
-                        foreach($matches[0] as $match) {
+                        foreach ($matches[0] as $match) {
                         
-                            if($match != '') {
+                            if ($match != '') {
                         
                                 // get url
                                 $post_url = substr($match,6,-1);
@@ -1537,10 +1633,8 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
                                     // recreate new url                                   
                                     $new_url = 'href="#'.$post_id.'"';
                                     
-                                    
                                     // update content and add new url
                                     $content = str_replace($match,$new_url,$content);
-                                    
                                 }
                             }                    
                         }                
@@ -1570,12 +1664,11 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
         // by default, related posts are emtpy
         $related_posts = '';
         
-        if($content != '') {
+        if ($content != '') {
             
             // remove the title    
             $content = preg_replace('/<h.* class="zemanta-related-title".*>(.*?)<\/(.*)>/i', '', $content);
            
-          
             // remove and get the content
             $content_match = preg_match('%<ul class=\"zemanta-article-ul zemanta-article-ul-image\".*>(.*?)<\/ul>%siU',$content,$matches);
             
@@ -1588,16 +1681,12 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
                     // remove zemnata list from content
                     $content = preg_replace('%<ul class=\"zemanta-article-ul zemanta-article-ul-image\".*>(.*?)<\/ul>%siU', '', $content);
            
-                    
                 }
             }
-            
         }
         
         
         return $related_posts;
-        
-        
 	}
     
     
@@ -1627,12 +1716,8 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
         $purifier = $Html5Purifier->wmp_extended_purifier($config);
         
         return $purifier;
-        
-        
     }
-    
-    	 
-	 
+
   } // Export
   
 ?>

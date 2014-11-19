@@ -32,7 +32,7 @@ if ($is_tablet == 0 && isset($arrConfig['phone']['cover']) && $arrConfig['phone'
     
 if ($is_tablet == 1 && isset($arrConfig['tablet']['cover']) && $arrConfig['tablet']['cover'] != '')
     $cover = $arrConfig['tablet']['cover'];
-
+    
 ?>
 
 <!DOCTYPE HTML>
@@ -44,7 +44,12 @@ if ($is_tablet == 1 && isset($arrConfig['tablet']['cover']) && $arrConfig['table
     <meta name="apple-touch-fullscreen" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <link rel="apple-touch-icon-precomposed" href="" />
-
+    <link rel="manifest" href="<?php echo plugins_url()."/".WMP_DOMAIN."/export/content.php?content=androidmanifest";?>" />
+    
+    <?php if (isset($arrConfig['icon_path'])): // icon path for Firefox ?>
+        <link rel="shortcut icon" href="<?php echo $arrConfig['icon_path'];?>"/>
+    <?php endif;?>
+    
     <title><?php echo $arrConfig['title'];?></title>
     <style type="text/css">
          /**
@@ -136,6 +141,8 @@ if ($is_tablet == 1 && isset($arrConfig['tablet']['cover']) && $arrConfig['table
             appUrl: '<?php echo home_url();?>',
             websiteUrl: '<?php echo home_url();?>?wmp_theme_mode=desktop',
             preview: 0,
+            language: '<?php echo isset($arrConfig['language']) && $arrConfig['language'] != '' ? $arrConfig['language'] : 'en';?>',
+            
             imageInterval : {
                 minWidth: 120,
                 minHeight: 120,

@@ -61,6 +61,11 @@ if (isset($_GET["content"]) && isset($_GET['callback'])) {
 	} else
 		echo '{"error":"No export requested","status" : 0}';
         
+} elseif (isset($_GET['content']) && ($_GET["content"] == 'androidmanifest' || $_GET["content"] == 'mozillamanifest')) {
+	
+	$export = new Export();
+	echo $export->exportManifest();
+        
 } else
     echo '({"error":"No export requested"})';
     

@@ -1,4 +1,4 @@
-function _a53d44557bcf463c1b18e7055a4f9ae9493adbac(){};//@tag foundation,core
+function _d5f3c689ced5fd7041a2482227bfc84deabe6a36(){};//@tag foundation,core
 //@define Ext
 
 /**
@@ -71689,10 +71689,31 @@ Ext.define('WP.proxy.Article', {
 	}
 });
 
+Ext.define("WP.model.RelatedArticle", {
+   	extend: 'Ext.data.Model',
+	requires: [
+		
+	],
+	
+	config: {
+		fields: [
+			{name: 'id',  					type: 'string'},
+			{name: 'title',  				type: 'string'},
+			{name: 'image',  				type: 'auto'},
+			{name: 'date',  				type: 'auto'},
+			{name: 'description', 			type: 'string'},
+			{name: 'external_link',			type: 'string'},
+			{name: 'header',				type: 'string'},
+			{name: 'provider',				type: 'boolean'}			// showing or not the Provider's name in the list header
+		]
+	},
+});
+
 Ext.define("WP.model.Article", {
    	extend: 'Ext.data.Model',
 	           
-		                  
+		                   
+		                         
 	  
 	
 	config: {
@@ -71705,11 +71726,26 @@ Ext.define("WP.model.Article", {
 			{name: 'description', 			type: 'string'},
 			{name: 'content', 				type: 'string'},
 			{name: 'timestamp',				type: 'int'},
+			{name: 'no_comments',			type: 'int'},
 			{name: 'comment_status',		type: 'string'},			// open, closed (closed but with comments), disabled (closed with no comments)
 			{name: 'require_name_email',	type: 'boolean'},			// for comments				
 			{name: 'category_id',			type: 'int'},
-			{name: 'category_name',			type: 'string'}
-		]
+			{name: 'category_name',			type: 'string'},
+			{name: 'related_posts',			type: 'string'},
+			{name: 'related_web_posts',		type: 'string'},
+			{name: 'zemanta',				type: 'boolean'}			// the Zemanta text has to be visible or not in the related posts list 	
+		],
+		
+		hasMany:[{
+			model: 'WP.model.RelatedArticle',
+			name: 'relatedPosts',
+			associationKey: 'relatedPosts',
+		},
+		{
+			model: 'WP.model.RelatedArticle',
+			name: 'relatedWebPosts',
+			associationKey: 'relatedWebPosts',	
+		}]
 	},
 });
 
@@ -71872,7 +71908,16 @@ Ext.define('WP.proxy.Page', {
 	
 	processResponse: function(success, operation, request, response, callback, scope){
 		
-		this.callParent([success, operation, request, response, callback, scope])
+		if (response && response.page){
+			
+			// process page before adding to the store
+			var page = pagesController.processPages(response.page);
+			
+			this.callParent([success, operation, request, [page], callback, scope])
+		}
+		else{
+			this.callParent([success, operation, request, response, callback, scope])	
+		}
 	}
 });
 
@@ -71885,11 +71930,20 @@ Ext.define("WP.model.Page", {
 	config: {
 		fields: [
 			{name: 'id',  					type: 'int'},
+			{name: 'order',  				type: 'int'},
 			{name: 'title',  				type: 'string'},
 			{name: 'image',  				type: 'auto'},
 			{name: 'content', 				type: 'string'},
-			{name: 'link',					type: 'string'}
-		]
+			{name: 'link',					type: 'string'},
+			{name: 'related_web_posts',		type: 'string'},
+			{name: 'zemanta',				type: 'boolean'}			// the Zemanta text has to be visible or not in the related posts list 	
+		],
+		
+		hasMany:[{
+			model: 'WP.model.RelatedArticle',
+			name: 'relatedWebPosts',
+			associationKey: 'relatedWebPosts',	
+		}]
 	},
 });
 
@@ -71952,8 +72006,8 @@ Ext.define("WP.store.Pages", {
 	config: {
         model: 'WP.model.Page',
 		sorters: {
-			property : 'id',
-			direction: 'DESC'
+			property : 'order',
+			direction: 'ASC'
 		}
     },
 	
@@ -72218,7 +72272,7 @@ Ext.define('WP.controller.Main', {
 		this.pagesStore = Ext.create("WP.store.Pages");					// pages store
 		this.queueTasks = [];											// a list of tasks to be run after loading the categories store
 		this.isRouting = false;											// a flag indicating if we have a "routes" process
-		this.history = [];												// an array with browsing URLs
+		this.history = [];												// an array with history hashes
 	},
 	
 	
@@ -72320,7 +72374,6 @@ Ext.define('WP.controller.Main', {
 		if (this.history.length == 0 || this.history[this.history.length-1] != hash){
 			this.history.push(hash);	
 		}
-		console.log(hash, this.history)
 	},
 	
 		
@@ -72541,8 +72594,8 @@ Ext.define('WP.controller.Categories', {
 			var categoriesPanel = this.getCategoriesPanel();
 			
 			// verify if the requested category is founded in the categories store
-			var record = categoriesStore.findRecord("id", categoryId, 0, false, false, true);
-			if (record){
+			var category = categoriesStore.findRecord("id", categoryId, 0, false, true, true);
+			if (category){
 				categoriesPanel.fireEvent("buildcategory", categoryId);
 			}
 			else{
@@ -72612,7 +72665,6 @@ Ext.define('WP.controller.Categories', {
 			callback: function(records, operation){
 				
 				// if the number of items received is less than the number of items requested, then set the flag for category
-				console.log(records.length, limit)
 				if (records.length < limit){
 					layouts.set("noMoreArticles", true);	
 				}
@@ -72780,34 +72832,8 @@ Ext.define('WP.controller.Articles', {
 			
 			var description = article.description;
 			
-			// duplicate <br>
-			/*if (new RegExp("[^\>]\<br(|\/)\>[^\<]").test(description) == true){
-				var c = description.replace(/\<br(|\/)\>\<br(|\/)\>/g, "<br/>");
-					c = c.replace(/\<br(|\/)\>/g, "<br/><br/>");
-				
-				var splits = c.split("<br/><br/>");
-				var newContent = "";
-				
-				for (var k=0; k<splits.length; k++){
-					newContent += splits[k]
-					
-					if (k != splits.length-1)
-						newContent += (splits[k].length > 50) ? "<br/><br/>" : "<br/>";	
-				}
-				
-				description = newContent;
-			}
-			
-			// replace all <a href="link" with <a href="javascript:void(0);"
-			if (new RegExp("\<a.+href\=(\'|\").+(\'|\")").test(description) == true){
-				var newContent = description.replace(/href\=(\'|\")\S+(\'|\")/g,"href=\"javascript:void(0);\"");
-				
-				description = newContent;
-			}
-			
-			article.description = description;*/
-			
 			var date = new Date(article.date);
+			
 			var day  = date.getDate();
 			var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][date.getMonth()];
 			var year = date.getFullYear();
@@ -72821,9 +72847,121 @@ Ext.define('WP.controller.Articles', {
 			else{
 				article.date = month +" "+ day +", "+ year;
 			}
+			
+			// parse related posts for the given article
+			if (article.related_posts){
+				articlesController.parseRelatedPosts(article, article.related_posts);
+			}
+			
+			// parse related web posts for the given article
+			if (article.related_web_posts){
+				articlesController.parseRelatedWebPosts(article, article.related_web_posts);
+			}
 		})
 		
 		return articles;
+	},
+	
+	
+	parseRelatedPosts: function(article, str){
+		var div = document.createElement("div");
+		div.style.width = 0;
+		div.style.height = 0;
+		div.style.display = "none";
+		
+		document.body.appendChild(div);
+		div.innerHTML = str;
+		
+		var posts = [];
+		var items = Ext.get(div).query("li");
+		
+		for (var i=0; i<items.length; i++){
+			var post = {};
+			var item = items[i];
+			
+			// set title
+			var title = Ext.get(item).query("[class*='title']")[0] || null;
+			if (title){
+				post.title = title.innerHTML;	
+				post.id = title.href.split("#")[1];
+			}
+			
+			// set image
+			var img = Ext.get(item).query("img")[0] || null;
+			if (img){
+				post.image = img.src;	
+			}
+			
+			// set date
+			var date = Ext.get(item).query("[class*='date']")[0] || null;
+			if (date){
+				post.date = date.innerHTML;	
+			}
+			
+			// set description
+			var description = Ext.get(item).query("[class*='excerpt']")[0] || null;
+			if (description){
+				var text = description.innerHTML;
+				text = text.replace("\n","");
+				text = text.replace("\r","");	
+				text = text.substring(0,100) + " ...";
+				post.description = text;
+			}
+			
+			post.header = "Related articles";
+			post.provider = (article.zemanta);
+			
+			posts.push(post);
+		}
+		
+		article.relatedPosts = posts;
+		
+		Ext.get(div).destroy();
+	},
+	
+	
+	parseRelatedWebPosts: function(article, str){
+		var div = document.createElement("div");
+		div.style.width = 0;
+		div.style.height = 0;
+		div.style.display = "none";
+		
+		document.body.appendChild(div);
+		div.innerHTML = str;
+		
+		var posts = [];
+		var items = Ext.get(div).query("li");
+		
+		for (var i=0; i<items.length; i++){
+			var post = {};
+			var item = items[i];
+			
+			// set image
+			var img = Ext.get(item).query("a > img")[0] || null;
+			if (img){
+				post.image = img.src;	
+			}
+			
+			// set title and external link
+			var links = Ext.get(item).query("a");
+			Ext.each(links, function(link){
+				if (link.childNodes.length != 0){
+					if (link.childNodes[0].nodeType == 3){
+						post.title = link.innerHTML;
+						post.external_link = link.href;	
+					}
+				}
+			})
+			
+			post.header = "Related articles from the web";
+			post.provider = (article.zemanta);
+			
+			posts.push(post);
+		}
+		
+		article.relatedWebPosts = posts;
+		
+		Ext.get(div).destroy();
 	},
 	
 	
@@ -72924,7 +73062,7 @@ Ext.define('WP.controller.Articles', {
 				mask.hide();
 				
 				var record = response.getRecords()[0];
-								
+												
 				// if there is no article with the given params then exit
 				if (record.get("category_id") == null){
 					
@@ -72933,7 +73071,7 @@ Ext.define('WP.controller.Articles', {
 					WP.app.redirectTo("");
 					return;
 				}
-								
+				
 				// activate panel 
 				if (mainView.getActiveItem() != articlesPanel){
 					mainView.animateActiveItem(articlesPanel, {type: "slide", direction: "left"});
@@ -72973,10 +73111,9 @@ Ext.define('WP.controller.Articles', {
 		if (!articlesPanel.child(articleId)){
 			// add a new card
 			var card = Ext.create('WP.view.phone.articles.ArticleCard', {
-				itemId: articleId,
+				itemId: "article-"+articleId,
 				record: record,
 			});
-			
 			articlesPanel.add(card);
 			
 			if (!card.getIsFilled()){
@@ -72991,12 +73128,12 @@ Ext.define('WP.controller.Articles', {
 	onShowArticle: function(article){
 		
 		var articleId = article.get("id");
-		
+				
 		// get reference
 		var articlesPanel = this.getArticlesPanel();
 		
 		// get article's card
-		var articleCard = articlesPanel.child("#"+articleId);
+		var articleCard = articlesPanel.down("#article-"+articleId);
 		var index = articlesPanel.getItems().indexOf(articleCard);
 		var total = articlesPanel.getItems().length;
 		
@@ -73013,9 +73150,24 @@ Ext.define('WP.controller.Articles', {
 		
 		if (article.get("comment_status") == "disabled"){
 			commentsBtn.hide();
+			commentsBtn.getParent().down("#spacer").hide();
 		}
 		else{
-			commentsBtn.show();	
+			commentsBtn.show();
+			commentsBtn.setBadgeText(article.get("no_comments"));
+			commentsBtn.getParent().down("#spacer").show();
+		}
+		
+		// show or hide related posts button
+		var relatedPostsBtn = articlesPanel.down("#relatedPostsBtn");
+		
+		if (article.relatedPosts().getCount() !=0 ||  article.relatedWebPosts().getCount() !=0){
+			relatedPostsBtn.show();
+			relatedPostsBtn.setBadgeText(article.relatedPosts().getCount() + article.relatedWebPosts().getCount());
+		}
+		else{
+			relatedPostsBtn.hide();
+			commentsBtn.getParent().down("#spacer").hide();	
 		}
 	},
 	
@@ -73027,12 +73179,17 @@ Ext.define('WP.controller.Articles', {
 		var articlesPanel = this.getArticlesPanel();
 		var categoriesStore = mainController.categoriesStore;
 		var commentsPanel = Ext.Viewport.down("#commentsPanel");
+		var relatedPostsList = Ext.Viewport.down("#relatedPostsList");
 		
 		// remove comments panel
 		if (commentsPanel){
 			commentsPanel.destroy();
 		}
 		
+		// remove ralated posts panel
+		if (relatedPostsList){
+			relatedPostsList.destroy();
+		}
 				
 		// stop scrolling
 		if (articlesPanel.getActiveItem().getScrollable())
@@ -73083,7 +73240,8 @@ Ext.define('WP.controller.Articles', {
 				
 			Ext.defer(function(){
 				// destroy carousel and all his children
-				articleCard.destroy(true);
+				articleCard.element.dom.parentNode.innerHTML = "";
+				articleCard.destroy();
 			}, 500, this);
 		}
 		// there are more than one card in the articles panel
@@ -73093,14 +73251,12 @@ Ext.define('WP.controller.Articles', {
 			var prevArticleId = prevCard.getRecord().get("id");
 			
 			// redirect to article URL
-			Ext.defer(function(){
-				mainController.saveHistory();
-				WP.app.redirectTo("article/"+prevArticleId);
-			}, 150, this);
+			mainController.saveHistory();
+			WP.app.redirectTo("article/"+prevArticleId);
 			
 			Ext.defer(function(){
 				// destroy carousel and all its children
-				articleCard.destroy(true);
+				articleCard.destroy();
 			}, 500, this);
 		}
 	},
@@ -73138,8 +73294,42 @@ Ext.define('WP.controller.Articles', {
 		
 		mask.show();
 		commentsPanel.show();
-	}
+	},
 	
+	
+	openRelatedPostsPanel: function(){
+		
+		// create mask
+		var mask = Ext.create("WP.view.MainMask", {
+			closeFn: function(){
+				relatedPostsPanel.fireEvent("closepanel");
+			}
+		});
+		
+		Ext.Viewport.add(mask);
+		
+		// create or show related posts panel
+		var profile = appticles.profile;
+		var relatedPostsPanel = Ext.Viewport.down("#relatedPostsPanel");
+		
+		if (!relatedPostsPanel){
+			relatedPostsPanel = Ext.create("WP.view."+profile+".articles.relatedposts.RelatedPostsList",{
+				mask: mask,
+				zIndex: mask.getZIndex()+1	
+			});
+			Ext.Viewport.add(relatedPostsPanel);
+			
+			// set actions
+			relatedPostsPanel.fireEvent("setactions");
+		}
+		else{
+			relatedPostsPanel.setMask(mask);
+			relatedPostsPanel.setZIndex(mask.getZIndex()+1);
+		}
+		
+		mask.show();
+		relatedPostsPanel.show();
+	}
 });
 
 var pagesController;
@@ -73169,6 +73359,77 @@ Ext.define('WP.controller.Pages', {
 	launch: function(){
 		
     },
+	
+	
+	processPages: function(pages){
+		
+		/* Each page must be parsed and adapted so that it is visible right
+		   For example, field description should be adjusted and all <br> elements must be duplicated <br><br> */
+		Ext.each(pages, function(page){
+			
+			var record = mainController.pagesStore.findRecord("id", page.id, 0, false, true, true);
+			if (record){
+				page.order = record.get("order");	
+			}
+						
+			// parse related web posts for the given article
+			if (page.related_web_posts){
+				pagesController.parseRelatedWebPosts(page, page.related_web_posts);
+			}
+		})
+		
+		return pages;
+	},
+	
+	
+	parseRelatedWebPosts: function(page, str){
+		var div = document.createElement("div");
+		div.style.width = 0;
+		div.style.height = 0;
+		div.style.display = "none";
+		
+		document.body.appendChild(div);
+		div.innerHTML = str;
+		
+		var posts = [];
+		var items = Ext.get(div).query("li");
+		
+		for (var i=0; i<items.length; i++){
+			var post = {};
+			var item = items[i];
+			
+			// set image
+			var img = Ext.get(item).query("a > img")[0] || null;
+			if (img){
+				post.image = img.src;	
+			}
+			
+			// set title and external link
+			var links = Ext.get(item).query("a");
+			Ext.each(links, function(link){
+				if (link.childNodes.length != 0){
+					if (link.childNodes[0].nodeType == 3){
+						post.title = link.innerHTML;
+						post.external_link = link.href;	
+					}
+				}
+			})
+			
+			post.header = "Related articles from the web";
+			post.provider = (page.zemanta);
+			
+			posts.push(post);
+		}
+		
+		// remove previous related articles
+		if (mainController.pagesStore.getCount() > 0){
+			mainController.pagesStore.findRecord("id", page.id, 0, false, true, true).relatedWebPosts().removeAll();
+		}
+		
+		page.relatedWebPosts = posts;
+		
+		Ext.get(div).destroy();
+	},
 	
 	
 	showPageById: function(pageId){
@@ -73252,7 +73513,7 @@ Ext.define('WP.controller.Pages', {
 			if (response.success){
 				
 				var record = response.getRecords()[0] || null;
-								
+												
 				// if there is no page with the given params then exit
 				if (record == null){
 					
@@ -73282,6 +73543,17 @@ Ext.define('WP.controller.Pages', {
 				if (!pagePanel.getIsFilled()){
 					pagePanel.fireEvent("repaint");
 					pagePanel.fireEvent("addcontent");
+					
+					// show or hide related posts button
+					var relatedPostsBtn = pagePanel.down("#relatedPostsBtn");
+					
+					if (record.relatedWebPosts().getCount() !=0){
+						relatedPostsBtn.show();
+						relatedPostsBtn.setBadgeText(record.relatedWebPosts().getCount());
+					}
+					else{
+						relatedPostsBtn.hide();
+					}
 				}
 				
 				// open page panel
@@ -73293,6 +73565,12 @@ Ext.define('WP.controller.Pages', {
 	
 	closePage: function(){
 		var mainView = this.getMainView();
+		var relatedPostsList = Ext.Viewport.down("#relatedPostsList");
+		
+		// remove ralated posts panel
+		if (relatedPostsList){
+			relatedPostsList.destroy();
+		}
 		
 		var ln = mainController.history.length;
 		var currentUrl = window.location.hash.replace("#","");
@@ -73307,8 +73585,42 @@ Ext.define('WP.controller.Pages', {
 				return;
 			}
 		}
-		console.log(prevUrl, currentUrl)
 		WP.app.redirectTo(prevUrl);	
+	},
+	
+	
+	openRelatedPostsPanel: function(page){
+		
+		// create mask
+		var mask = Ext.create("WP.view.MainMask", {
+			closeFn: function(){
+				relatedPostsPanel.fireEvent("closepanel");
+			}
+		});
+		
+		Ext.Viewport.add(mask);
+		
+		// create or show related posts panel
+		var profile = appticles.profile;
+		var relatedPostsPanel = Ext.Viewport.down("#relatedPostsPanel");
+		
+		if (!relatedPostsPanel){
+			relatedPostsPanel = Ext.create("WP.view."+profile+".pages.relatedposts.RelatedPostsList",{
+				mask: mask,
+				zIndex: mask.getZIndex()+1	
+			});
+			Ext.Viewport.add(relatedPostsPanel);
+			
+			// set actions
+			relatedPostsPanel.fireEvent("setactions", page);
+		}
+		else{
+			relatedPostsPanel.setMask(mask);
+			relatedPostsPanel.setZIndex(mask.getZIndex()+1);
+		}
+		
+		mask.show();
+		relatedPostsPanel.show();
 	}
 });
 
@@ -73484,6 +73796,15 @@ Ext.define('WP.controller.Actions', {
 			// build the cover page for the new categories carousel
 			categoriesCarousel.fireEvent("addcover");
 			
+			// verify if the new category has only one article and this is displayed on the cover
+			var coverArticleId = categoriesPanel.getCoverArticleId() || categoriesCarousel.down("#cover").getData()[0].id;
+			if (record.articles().getCount() == 1){
+				if (coverArticleId == record.articles().first().get("id")){
+					categoriesCarousel.setActiveItem(0);	
+				}
+			}
+			
+			
 			Ext.defer(function(){
 				// close mask and actions panel
 				mainView.down("[name='mainMask']").fireEvent("close");
@@ -73503,10 +73824,6 @@ Ext.define('WP.controller.Actions', {
 	
 	
 	onPagesItemTap: function(list, index, item, record){
-		// get references
-		var mainView = this.getMainView();
-		var categoriesPanel = this.getCategoriesPanel();
-		var categoriesCarousel = categoriesPanel.getCurrentCarousel();
 		
 		// prevent double tapping
 		list.suspendEvents();
@@ -73659,11 +73976,314 @@ Ext.define("WP.view.phone.actions.CategoriesList", {
 	}
 });
 
+Ext.define("WP.view.phone.pages.relatedposts.RelatedPostsBtn", {
+    extend: 'Ext.Button',
+	
+	requires: [
+		
+	],
+		   
+	config: {
+		
+		itemId: "relatedPostsBtn",
+		
+		// custom properties
+				
+		// css properties
+		iconCls: 'relatedposts',
+		cls: 'relatedposts-button',
+		pressedCls: 'pressed',
+		height: 40,
+		width: 40,
+		        
+		// properties
+		action: 'openrelatedposts',
+		html: '&nbsp;'
+    },
+	
+	
+	initialize: function(){
+       	
+		// add events
+		this.on("tap", this.onBtnTap, this);
+					   
+	    this.callParent(arguments);
+	},
+	
+	onBtnTap: function(){
+		var page = this.getParent().getParent().getRecord();
+		pagesController.openRelatedPostsPanel(page);
+	}
+});
+
+Ext.define("WP.store.RelatedArticles", {
+    extend: 'Ext.data.Store',
+	
+	          
+		                         
+	  
+		    
+	config: {
+        
+		// custom properties
+		
+		model: 'WP.model.RelatedArticle',
+		clearOnPageLoad: true,
+		pageSize: 500,
+		
+		grouper: {
+			groupFn: function(record) {
+				return [
+					'<div class="header hbox">',
+						'<div>'+record.get('header')+'</div>', 
+						'<div class="provider_link">'+(record.get('provider') ? '&nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.zemanta.com" target="_blank">Zemanta</a>' : '')+'</div>',
+					'</div>'
+				].join("");
+			},
+			direction: "DESC"
+		}	
+    },
+});
+
+Ext.define("WP.view.phone.pages.relatedposts.RelatedPostsList", {
+  	extend: 'Ext.List',
+	
+	           
+		                          
+	  
+	
+	config: {
+		
+		itemId: 'relatedPostsList',
+		
+		// custom properties
+		mask: null,												// the custom mask that appears behind this panel
+		page: null,
+		pageId: null,
+		
+		// css properties
+		cls: 'relatedposts-list',
+		itemCls: 'list-item',
+		selectedCls: '',
+		pressedCls: 'item-pressed',
+		width: '100%',
+		height: '100%',
+		top: 0,
+				
+		// properties
+		fullscreen: true,
+		scrollable: {
+			direction: 'vertical',
+			indicators: false
+		},
+		disableSelection: true,
+		useSimpleItems: true,
+		variableHeights: false,
+		grouped: true,
+		itemTpl: new Ext.XTemplate(
+			'<div class="article hbox">',
+				'<tpl if="image &amp;&amp; image.length &gt; 0">',
+					'<div class="image" style="background-image:url(\'{[values.image]}\');"></div>',
+				'</tpl>',
+				'<div class="inner vbox flex">',
+					'<div class="inner-container">',
+						'<div class="headline">',
+							'<h1>{title}</h1>',
+							'<tpl if="date &amp;&amp; date.length &gt; 0">',
+								'<h3>{date}</h3>', 
+							'</tpl>',
+							'<tpl if="description &amp;&amp; description.length &gt; 0">',
+								'<p>{description}</p>', 
+							'</tpl>',
+						'</div>',
+					'</div>',	
+				'</div>',
+			'</div>'
+		),
+		showAnimation: {
+			type: "slide",
+			direction: "down",
+			duration: 400,
+			easing: "out"
+		},
+		hideAnimation: {
+			type: "slideOut",
+			direction: "up",
+			duration: 400,
+			easing: "in"
+		},
+		items: [
+			{
+				xtype: "button",
+				action: 'close',
+				cls: 'close-x',
+				xtype: 'button',
+				pressedCls: 'pressed',
+				iconCls: 'close-icon',
+				height: 60,
+				top: 0,
+				right: 0,
+				width: 60,
+				align: 'right',
+				html: '&nbsp;'
+			}
+		]
+	},
+	
+	
+	initialize: function(){
+		
+		this.setStore(Ext.create("WP.store.RelatedArticles"));
+		
+		this.callParent(arguments);
+		
+		this.on("setactions", this.onSetActions, this);
+		this.on("loadposts", this.onLoadPosts, this);
+		this.on("closepanel", this.onClosePanel, this);
+		this.on("itemtap", this.onListItemTap, this);
+		this.down("button[action=close]").on("tap", this.onCloseBtnTap, this);
+	},
+	
+	
+	onSetActions: function(page){
+		// load related posts
+		this.fireEvent("loadposts", page);
+	},
+	
+	
+	onLoadPosts: function(page){
+		var pageId = page.getData().id;
+		
+		var store = this.getStore();
+		
+		if (this.getPageId() != pageId){
+			
+			// remove all comments of previous article
+			this.getScrollable().getScroller().scrollToTop();
+			store.removeAll();
+			
+			// remember the current articleId for which we request items
+			this.setPageId(pageId);
+			this.setPage(page);
+			
+			store.add(page.relatedWebPosts().getRange());
+		}
+	},
+	
+	onListItemTap: function(list, index, item, record){
+		// external link
+		if (record.get("external_link")){
+			window.open(record.get("external_link"), "Related from the web", "_blank");
+		}
+	},
+	
+	
+	onOpenPanel: function(){
+		this.show();
+	},
+	
+	onClosePanel: function(){
+		this.hide();
+		
+		var me = this;
+		Ext.defer(function(){
+			me.getStore().removeAll();
+			me.destroy();
+		}, 400);
+	},
+		
+	onCloseBtnTap: function(){
+		this.getMask().fireEvent("close");	
+	},
+});
+
+Ext.define("WP.view.phone.pages.Buttons", {
+    extend: 'Ext.Panel',
+	
+	           
+		                                                   
+		                                                   
+	  
+		   
+	config: {
+		
+		itemId: "buttons",
+		
+		// custom properties
+				
+		// css properties
+		cls: "bottom-buttons",
+		bottom: 0,
+		right: 0,
+		width: 120,
+		padding: 10,
+		layout: {
+			type: "hbox",
+			pack: "end",
+			align: "center"
+		},
+		        
+		// properties
+    },
+	
+	
+	initialize: function(){
+       	
+		var relatedPostBtn = Ext.create("WP.view.phone.pages.relatedposts.RelatedPostsBtn");
+		this.add(relatedPostBtn);
+		
+		// add events
+		this.on("showbuttons", this.onShowButtons, this);
+		this.on("hidebuttons", this.onHideButtons, this);
+					   
+	    this.callParent(arguments);
+	},
+	
+	
+	onShowButtons: function(){
+		var duration = 0.4;
+		
+		// slide in
+		var to = 0;
+		this.setStyle({
+			'-webkit-transition': 'all ' + duration + 's ease',
+			'-moz-transition': 'all ' + duration + 's ease',
+			'-o-transition': 'all ' + duration + 's ease',
+			'transition': 'all ' + duration + 's ease',
+			'-webkit-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'-moz-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'-ms-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'-o-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'transform': 'translate3d(0px, ' + to + 'px, 0px)'
+		});
+	},
+	
+	
+	onHideButtons: function(){
+		var duration = 0.4;
+		
+		// slide in
+		var to = 70;
+		this.setStyle({
+			'-webkit-transition': 'all ' + duration + 's ease',
+			'-moz-transition': 'all ' + duration + 's ease',
+			'-o-transition': 'all ' + duration + 's ease',
+			'transition': 'all ' + duration + 's ease',
+			'-webkit-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'-moz-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'-ms-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'-o-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'transform': 'translate3d(0px, ' + to + 'px, 0px)'
+		});
+	},
+});
+
 Ext.define("WP.view.phone.pages.PagePanel", {
     extend: 'Ext.Panel',
 	
 	           
-		              
+		               
+		                             
 	  
 	
 	config: {
@@ -73673,6 +74293,9 @@ Ext.define("WP.view.phone.pages.PagePanel", {
 		prevUrl: null,											// the last app URL before opening this page  (# after the hash)
 		record: null,
 		isFilled: false,										// a flag indicates if the card was filled with content
+		scrolling: false,										// a flag indicating if the content of the card is scrolling
+		backBtn: null,											// a reference of the back button
+		buttons: null,											// a reference of the buttons panel
 		
 		// css properties
 		cls: 'page-panel',
@@ -73737,12 +74360,24 @@ Ext.define("WP.view.phone.pages.PagePanel", {
 		this.on("openpanel", this.onOpenPanel, this);
 		this.on("closepanel", this.onClosePanel, this);
 		
+		var scroller = this.down("#content").getScrollable().getScroller();
+		scroller.on("scroll", this.onScrollableChange, this);
+		
+		this.element.on("touchstart", this.onTouchStart, this);
+		this.element.on("touchend", this.onTouchEnd, this);
+		this.element.on("tap", this.onTap, this);
+		
 		// add a handler for the orientationchange event of the viewport
 		Ext.Viewport.on('orientationchange', "handleOrientationChange", this, {buffer: 50 });
 		
-		var closeBtn = this.down("#closeBtn");
-		if (closeBtn) 
-			closeBtn.on("tap", this.onCloseBtnTap, this);
+		// show/hide back button when scrolling up or down
+		var backBtn = this.down("#closeBtn");
+		backBtn.on("tap", this.onCloseBtnTap, this);
+		this.setBackBtn(backBtn);
+		
+		var buttons = Ext.create("WP.view.phone.pages.Buttons");
+		this.add(buttons);
+		this.setButtons(buttons);
 		
 		this.callParent(arguments);
 	},
@@ -73753,6 +74388,47 @@ Ext.define("WP.view.phone.pages.PagePanel", {
 		this.fireEvent("repaint");
 		this.fireEvent("addcontent");
 	},
+	
+	onTouchStart: function(){
+		this.setScrolling(true);
+	},
+	
+	onTouchEnd: function(){
+		this.setScrolling(false);
+	},
+	
+	onTap: function(){
+		var backBtn = this.getBackBtn(); 
+		var buttons = this.getButtons();
+			
+		backBtn.fireEvent("showbtn");
+		buttons.fireEvent("showbuttons");
+	},
+	
+	onScrollableChange: function(scroller, scrollX, scrollY){
+		var scrolling = this.getScrolling();
+		
+		if (scrolling){
+			var backBtn = this.getBackBtn(); 
+			var buttons = this.getButtons();
+			
+			this.deltaY = (this.lastScrollY) ? scrollY - this.lastScrollY : 0;
+			
+			// scroll down
+			if (this.deltaY > 0){
+				backBtn.fireEvent("hidebtn");
+				buttons.fireEvent("hidebuttons");
+			}
+			// scroll up
+			else if (this.deltaY < 0){
+				backBtn.fireEvent("showbtn");
+				buttons.fireEvent("showbuttons");
+			}
+			
+			this.lastScrollY = scrollY;
+		}
+	},
+	
 	
 	onPainted: function(){
 		
@@ -73840,6 +74516,8 @@ Ext.define("WP.view.phone.pages.PagePanel", {
 			content		: html
 		})
 		
+		// size in pixels
+		var boxWidth = Math.round(Ext.Viewport.getWindowWidth() * parseInt(this.getWidth()) / 100);
 		
 		// replace images sizes
 		var imgItems = this.element.query("img");
@@ -73853,18 +74531,19 @@ Ext.define("WP.view.phone.pages.PagePanel", {
 					var width = parseInt(img.width);
 					var height = parseInt(img.height);
 					
-					var newWidth = Ext.Viewport.getWindowWidth() - 30;
+					var newWidth = boxWidth - 30;
 					var newHeight = Math.round((height * newWidth) / width);
 					
 					img.style.width = width + "px";
 					img.style.height = height + "px";
 						
-					if (newWidth <= width && width >= 30 && height >= 30){
+					// the image's width is bigger than 65% of the box width
+					if (0.65 * newWidth <= width && width >= 30 && height >= 30){
 						img.style.width = newWidth + "px";
 						img.style.height = newHeight + "px";
 					}
 					else if (width < 30 && height < 30){
-						img.style.margin = "0px";	
+						img.style.margin = "0px";
 						img.style.display = "inline";
 					}
 				}
@@ -73878,10 +74557,10 @@ Ext.define("WP.view.phone.pages.PagePanel", {
 			var item = Ext.get(iframeItems[i]);
 			
 			var computedStyle = document.defaultView.getComputedStyle(iframeItems[i]);
-			var width = parseInt(computedStyle.width) || (Ext.Viewport.getWindowWidth() - 30);
+			var width = parseInt(computedStyle.width) || (boxWidth - 30);
 			var height = parseInt(computedStyle.height) || 200;
 						
-			var newWidth = Ext.Viewport.getWindowWidth() - 30;
+			var newWidth = boxWidth - 30;
 			var newHeight = Math.round((height * newWidth) / width);
 			
 			iframeItems[i].style.width = newWidth + "px";
@@ -74523,8 +75202,20 @@ Ext.application({
             Ext.Viewport.orientation = Ext.Viewport.determineOrientation(); //added
 		}
 
-        // save current profile
+        
+		// save current profile
 		appticles.profile = this.getCurrentProfile().getName().toLowerCase();
+		
+		// try to install th app in the Firefox OS
+		if (window.navigator.mozApps){
+			
+			var request = window.navigator.mozApps.checkInstalled(appticles.exportPath + "content.php?content=mozillamanifest");
+			request.onsuccess = function(e) {
+				if (!request.result) {
+					var requestInstall = window.navigator.mozApps.install(appticles.exportPath + "content.php?content=mozillamanifest");
+				}
+			};
+		}
     },
 
     onUpdated: function() {
@@ -75738,7 +76429,7 @@ Ext.define("WP.view.phone.categories.CategoriesCarousel", {
 			var coverArticleId = this.down("#cover").getData()[0].id;
 			var firstArticleId = articles.getAt(0).getData().id;
 			var hiddenArticles = articles.getCount() - layouts.get("displayedArticlesIds").length - ((firstArticleId == coverArticleId) ? 1 : 0);
-			console.log(hiddenArticles)
+			
 			if (hiddenArticles != 0){
 				// build category's cards
 				carousel.fireEvent("buildcards", category.get("id"));	
@@ -75917,6 +76608,27 @@ Ext.define("WP.view.phone.categories.CategoriesCarousel", {
 				//console.log(firstPos, i, noOfArticles, index, itemId, layouts, nextLayoutIndex, layoutsCategory.get('cardsLayout')) 
 			}
 		}
+		// for current category there is only one article displayed on the cover,
+		// try to load articles for the next category
+		else if (dif == 0 && (firstArticleId == coverArticleId) && totalArticles == 1){
+			var index = categoriesStore.findExact("id", category.get("id"));
+				
+			// if there are available categories that must be show
+			if (index + 1 <= categoriesStore.getCount() - 1){
+				
+				var nextCategory = categoriesStore.getAt(index+1);
+								
+				// verify first if the next available category was already created and add it if it was not created
+				if (categoriesPanel.getStore().findExact("id", nextCategory.get("id")) == -1){
+					// add category
+					categoriesPanel.fireEvent("addcategory", nextCategory);
+				}
+				
+				// build category's cards
+				this.fireEvent("buildcards", nextCategory.get("id"));
+			}
+		}
+		
 	},
 	
 	
@@ -76125,9 +76837,17 @@ Ext.define("WP.view.phone.articles.MediaPanel", {
 							}
 							
 							
-							content = content.outerHTML;
+							content = content.outerHTML || content;
 							content = content.replace(/width\:(|\s)\d+/g, "width: "+newW);
 							content = content.replace(/height\:(|\s)\d+/g, "height: "+newH);
+							
+							// if the width isn't 100% then change the height
+							if (new RegExp("width\=[\'|\"]100%[\'|\"]").test(content) == false){
+								content = content.replace(/height\=[\'|\"]\d+(|\%)[\'|\"]/g, "height='"+newH+"'");	
+							}
+							
+							content = content.replace(/width\=[\'|\"]\d+(|\%)[\'|\"]/g, "width='"+newW+"'");
+							
 							
 							// add autoplay param to iframe src
 							var d = content.match(/src\=[\'|\"]\S+[\'|\"]/);
@@ -76243,7 +76963,7 @@ Ext.define("WP.view.phone.articles.ArticleCard", {
 		isFilled: false,								// a flag indicates if the card was filled with content
 		scrolling: false,								// a flag indicating if the content of the card is scrolling
 		backBtn: null,									// a reference of the back button
-		commentsBtn: null,								// a reference of the comments button
+		buttons: null,									// a reference of the buttons panel
 		
 		// css properties
 		cls: 'article-card',
@@ -76283,9 +77003,9 @@ Ext.define("WP.view.phone.articles.ArticleCard", {
 		var backBtn = this.getParent().down("#backBtn");
 		this.setBackBtn(backBtn);
 		
-		// show/hide comments button when scrolling up or down
-		var commentsBtn = this.getParent().down("#commentsBtn");
-		this.setCommentsBtn(commentsBtn);
+		// show/hide bottom buttons when scrolling up or down
+		var buttons = this.getParent().down("#buttons");
+		this.setButtons(buttons);
 	},
 	
 	onTouchStart: function(){
@@ -76298,10 +77018,10 @@ Ext.define("WP.view.phone.articles.ArticleCard", {
 	
 	onTap: function(){
 		var backBtn = this.getBackBtn(); 
-		var commentsBtn = this.getCommentsBtn();
+		var buttons = this.getButtons();
 			
 		backBtn.fireEvent("showbtn");
-		commentsBtn.fireEvent("showbtn");
+		buttons.fireEvent("showbuttons");
 	},
 	
 	onScrollableChange: function(scroller, scrollX, scrollY){
@@ -76309,19 +77029,19 @@ Ext.define("WP.view.phone.articles.ArticleCard", {
 		
 		if (scrolling){
 			var backBtn = this.getBackBtn(); 
-			var commentsBtn = this.getCommentsBtn();
+			var buttons = this.getButtons();
 			
 			this.deltaY = (this.lastScrollY) ? scrollY - this.lastScrollY : 0;
 			
 			// scroll down
 			if (this.deltaY > 0){
 				backBtn.fireEvent("hidebtn");
-				commentsBtn.fireEvent("hidebtn");
+				buttons.fireEvent("hidebuttons");
 			}
 			// scroll up
 			else if (this.deltaY < 0){
 				backBtn.fireEvent("showbtn");
-				commentsBtn.fireEvent("showbtn");
+				buttons.fireEvent("showbuttons");
 			}
 			
 			this.lastScrollY = scrollY;
@@ -76455,6 +77175,8 @@ Ext.define("WP.view.phone.articles.ArticleCard", {
 		})
 		
 		
+		var boxWidth = Ext.Viewport.getWindowWidth();
+		
 		// replace images sizes
 		var imgItems = this.element.query("img");
 		Ext.each(imgItems, function(img){
@@ -76467,18 +77189,19 @@ Ext.define("WP.view.phone.articles.ArticleCard", {
 					var width = parseInt(img.width);
 					var height = parseInt(img.height);
 					
-					var newWidth = Ext.Viewport.getWindowWidth() - 30;
+					var newWidth = boxWidth - 30;
 					var newHeight = Math.round((height * newWidth) / width);
 					
 					img.style.width = width + "px";
 					img.style.height = height + "px";
 						
-					if (newWidth <= width && width >= 30 && height >= 30){
+					// the image's width is bigger than 65% of the box width
+					if (0.65 * newWidth <= width && width >= 30 && height >= 30){
 						img.style.width = newWidth + "px";
 						img.style.height = newHeight + "px";
 					}
 					else if (width < 30 && height < 30){
-						img.style.margin = "0px";	
+						img.style.margin = "0px";
 						img.style.display = "inline";
 					}
 				}
@@ -76492,10 +77215,10 @@ Ext.define("WP.view.phone.articles.ArticleCard", {
 			var item = Ext.get(iframeItems[i]);
 			
 			var computedStyle = document.defaultView.getComputedStyle(iframeItems[i]);
-			var width = parseInt(computedStyle.width) || (Ext.Viewport.getWindowWidth() - 30);
+			var width = parseInt(computedStyle.width) || (boxWidth - 30);
 			var height = parseInt(computedStyle.height) || 200;
 						
-			var newWidth = Ext.Viewport.getWindowWidth() - 30;
+			var newWidth = boxWidth - 30;
 			var newHeight = Math.round((height * newWidth) / width);
 			
 			iframeItems[i].style.width = newWidth + "px";
@@ -76576,10 +77299,8 @@ Ext.define("WP.view.phone.articles.comments.CommentsBtn", {
 		iconCls: 'comment',
 		cls: 'comment-button',
 		pressedCls: 'pressed',
-		bottom: 0,
-		right: 0,
-		height: 60,
-		width: 60,
+		height: 40,
+		width: 40,
 		        
 		// properties
 		action: 'opencomments',
@@ -76590,8 +77311,6 @@ Ext.define("WP.view.phone.articles.comments.CommentsBtn", {
 	initialize: function(){
        	
 		// add events
-		this.on("showbtn", this.onShowBtn, this);
-		this.on("hidebtn", this.onHideBtn, this);
 		this.on("tap", this.onBtnTap, this);
 					   
 	    this.callParent(arguments);
@@ -76599,45 +77318,7 @@ Ext.define("WP.view.phone.articles.comments.CommentsBtn", {
 	
 	onBtnTap: function(){
 		articlesController.openCommentsPanel();
-	},
-	
-	
-	onShowBtn: function(){
-		var duration = 0.4;
-		
-		// slide in
-		var to = 0;
-		this.setStyle({
-			'-webkit-transition': 'all ' + duration + 's ease',
-			'-moz-transition': 'all ' + duration + 's ease',
-			'-o-transition': 'all ' + duration + 's ease',
-			'transition': 'all ' + duration + 's ease',
-			'-webkit-transform': 'translate3d(0px, ' + to + 'px, 0px)',
-			'-moz-transform': 'translate3d(0px, ' + to + 'px, 0px)',
-			'-ms-transform': 'translate3d(0px, ' + to + 'px, 0px)',
-			'-o-transform': 'translate3d(0px, ' + to + 'px, 0px)',
-			'transform': 'translate3d(0px, ' + to + 'px, 0px)'
-		});
-	},
-	
-	
-	onHideBtn: function(){
-		var duration = 0.4;
-		
-		// slide in
-		var to = 70;
-		this.setStyle({
-			'-webkit-transition': 'all ' + duration + 's ease',
-			'-moz-transition': 'all ' + duration + 's ease',
-			'-o-transition': 'all ' + duration + 's ease',
-			'transition': 'all ' + duration + 's ease',
-			'-webkit-transform': 'translate3d(0px, ' + to + 'px, 0px)',
-			'-moz-transform': 'translate3d(0px, ' + to + 'px, 0px)',
-			'-ms-transform': 'translate3d(0px, ' + to + 'px, 0px)',
-			'-o-transform': 'translate3d(0px, ' + to + 'px, 0px)',
-			'transform': 'translate3d(0px, ' + to + 'px, 0px)'
-		});
-	},
+	}
 });
 
 Ext.define('WP.view.phone.articles.comments.PullRefresh', {
@@ -77215,14 +77896,311 @@ Ext.define("WP.view.phone.articles.comments.CommentsPanel", {
 	},
 });
 
+Ext.define("WP.view.phone.articles.relatedposts.RelatedPostsBtn", {
+    extend: 'Ext.Button',
+	
+	requires: [
+		
+	],
+		   
+	config: {
+		
+		itemId: "relatedPostsBtn",
+		
+		// custom properties
+				
+		// css properties
+		iconCls: 'relatedposts',
+		cls: 'relatedposts-button',
+		pressedCls: 'pressed',
+		height: 40,
+		width: 40,
+		        
+		// properties
+		action: 'openrelatedposts',
+		html: '&nbsp;'
+    },
+	
+	
+	initialize: function(){
+       	
+		// add events
+		this.on("tap", this.onBtnTap, this);
+					   
+	    this.callParent(arguments);
+	},
+	
+	onBtnTap: function(){
+		articlesController.openRelatedPostsPanel();
+	}
+});
+
+Ext.define("WP.view.phone.articles.relatedposts.RelatedPostsList", {
+  	extend: 'Ext.List',
+	
+	           
+		                          
+	  
+	
+	config: {
+		
+		itemId: 'relatedPostsList',
+		
+		// custom properties
+		mask: null,												// the custom mask that appears behind this panel
+		article: null,
+		articleId: null,
+		
+		// css properties
+		cls: 'relatedposts-list',
+		itemCls: 'list-item',
+		selectedCls: '',
+		pressedCls: 'item-pressed',
+		width: '100%',
+		height: '100%',
+		top: 0,
+				
+		// properties
+		fullscreen: true,
+		scrollable: {
+			direction: 'vertical',
+			indicators: false
+		},
+		disableSelection: true,
+		useSimpleItems: true,
+		variableHeights: false,
+		grouped: true,
+		itemTpl: new Ext.XTemplate(
+			'<div class="article hbox">',
+				'<tpl if="image &amp;&amp; image.length &gt; 0">',
+					'<div class="image" style="background-image:url(\'{[values.image]}\');"></div>',
+				'</tpl>',
+				'<div class="inner vbox flex">',
+					'<div class="inner-container">',
+						'<div class="headline">',
+							'<h1>{title}</h1>',
+							'<tpl if="date &amp;&amp; date.length &gt; 0">',
+								'<h3>{date}</h3>', 
+							'</tpl>',
+							'<tpl if="description &amp;&amp; description.length &gt; 0">',
+								'<p>{description}</p>', 
+							'</tpl>',
+						'</div>',
+					'</div>',	
+				'</div>',
+			'</div>'
+		),
+		showAnimation: {
+			type: "slide",
+			direction: "down",
+			duration: 400,
+			easing: "out"
+		},
+		hideAnimation: {
+			type: "slideOut",
+			direction: "up",
+			duration: 400,
+			easing: "in"
+		},
+		items: [
+			{
+				xtype: "button",
+				action: 'close',
+				cls: 'close-x',
+				xtype: 'button',
+				pressedCls: 'pressed',
+				iconCls: 'close-icon',
+				height: 60,
+				top: 0,
+				right: 0,
+				width: 60,
+				align: 'right',
+				html: '&nbsp;'
+			}
+		]
+	},
+	
+	
+	initialize: function(){
+		
+		this.setStore(Ext.create("WP.store.RelatedArticles"));
+		
+		this.callParent(arguments);
+		
+		this.on("setactions", this.onSetActions, this);
+		this.on("loadposts", this.onLoadPosts, this);
+		this.on("closepanel", this.onClosePanel, this);
+		this.on("itemtap", this.onListItemTap, this);
+		this.down("button[action=close]").on("tap", this.onCloseBtnTap, this);
+	},
+	
+	
+	onSetActions: function(){
+		var articlesPanel = Ext.Viewport.down("#articlesPanel");
+		var article = articlesPanel.getActiveItem().getRecord();
+		
+		// load related posts
+		this.fireEvent("loadposts");
+	},
+	
+	
+	onLoadPosts: function(){
+		var articlesPanel = Ext.Viewport.down("#articlesPanel");
+		var article = articlesPanel.getActiveItem().getRecord();
+		var articleId = article.getData().id;
+		
+		var store = this.getStore();
+		
+		if (this.getArticleId() != articleId){
+			
+			// remove all comments of previous article
+			this.getScrollable().getScroller().scrollToTop();
+			store.removeAll();
+			
+			// remember the current articleId for which we request items
+			this.setArticleId(articleId);
+			this.setArticle(article);
+			
+			store.add(article.relatedPosts().getRange());
+			store.add(article.relatedWebPosts().getRange());
+		}
+	},
+	
+	onListItemTap: function(list, index, item, record){
+		// external link
+		if (record.get("external_link")){
+			window.open(record.get("external_link"), "Related from the web", "_blank");
+		}
+		// inside link
+		else{
+			var articleId = record.get("id");
+			
+			mainController.saveHistory();
+			WP.app.redirectTo("article/"+articleId);
+			
+			this.onCloseBtnTap();
+		}
+	},
+	
+	
+	onOpenPanel: function(){
+		this.show();
+	},
+	
+	onClosePanel: function(){
+		this.hide();
+		
+		var me = this;
+		Ext.defer(function(){
+			me.destroy();	
+		}, 400);
+	},
+		
+	onCloseBtnTap: function(){
+		this.getMask().fireEvent("close");	
+	},
+});
+
+Ext.define("WP.view.phone.articles.Buttons", {
+    extend: 'Ext.Panel',
+	
+	           
+		                                              
+		                                                
+		                                                      
+		                                                      
+	  
+		   
+	config: {
+		
+		itemId: "buttons",
+		
+		// custom properties
+				
+		// css properties
+		cls: "bottom-buttons",
+		bottom: 0,
+		right: 0,
+		width: 120,
+		padding: 10,
+		layout: {
+			type: "hbox",
+			pack: "end",
+			align: "center"
+		},
+		        
+		// properties
+    },
+	
+	
+	initialize: function(){
+       	
+		var relatedPostBtn = Ext.create("WP.view.phone.articles.relatedposts.RelatedPostsBtn");
+		this.add(relatedPostBtn);
+		
+		var spacer = Ext.create("Ext.Spacer", {
+			itemId: "spacer",
+			width: 10	
+		});
+		this.add(spacer);
+		
+		var commentsBtn = Ext.create("WP.view.phone.articles.comments.CommentsBtn");
+		this.add(commentsBtn);
+		
+		
+		// add events
+		this.on("showbuttons", this.onShowButtons, this);
+		this.on("hidebuttons", this.onHideButtons, this);
+					   
+	    this.callParent(arguments);
+	},
+	
+	
+	onShowButtons: function(){
+		var duration = 0.4;
+		
+		// slide in
+		var to = 0;
+		this.setStyle({
+			'-webkit-transition': 'all ' + duration + 's ease',
+			'-moz-transition': 'all ' + duration + 's ease',
+			'-o-transition': 'all ' + duration + 's ease',
+			'transition': 'all ' + duration + 's ease',
+			'-webkit-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'-moz-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'-ms-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'-o-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'transform': 'translate3d(0px, ' + to + 'px, 0px)'
+		});
+	},
+	
+	
+	onHideButtons: function(){
+		var duration = 0.4;
+		
+		// slide in
+		var to = 70;
+		this.setStyle({
+			'-webkit-transition': 'all ' + duration + 's ease',
+			'-moz-transition': 'all ' + duration + 's ease',
+			'-o-transition': 'all ' + duration + 's ease',
+			'transition': 'all ' + duration + 's ease',
+			'-webkit-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'-moz-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'-ms-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'-o-transform': 'translate3d(0px, ' + to + 'px, 0px)',
+			'transform': 'translate3d(0px, ' + to + 'px, 0px)'
+		});
+	},
+});
+
 Ext.define("WP.view.phone.articles.ArticlesPanel", {
     extend: 'Ext.Panel',
 	
 	           
 		                      
 		                                     
-		                                              
-		                                               
+		                                
 	  
 	
 	config: {
@@ -77256,8 +78234,9 @@ Ext.define("WP.view.phone.articles.ArticlesPanel", {
 	
 	initialize: function(){
 		
-		var commentsBtn = Ext.create("WP.view.phone.articles.comments.CommentsBtn");
-		this.add(commentsBtn);
+		var buttons = Ext.create("WP.view.phone.articles.Buttons")
+		this.add(buttons);
+			
 		
 		// create a store with details about displayed articles
 		this.setStore(Ext.create("Ext.data.ArrayStore", {
@@ -77409,5 +78388,5 @@ Ext.define("WP.view.phone.Main", {
 });
 
 // @tag full-page
-// @require C:\wamp\www\Appticles\Wordpress\dev\app1\app.js
+// @require /home/ionut/public_html/wp/dev/app1/app.js
 
