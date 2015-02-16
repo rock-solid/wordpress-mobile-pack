@@ -94,6 +94,7 @@ if ( ! class_exists( 'WMP_Tracking' ) ) {
 
 				$slug             = str_replace( '/' . basename( $plugin_path ), '', $plugin_path );
 				$plugins[ $slug ] = array(
+                    'slug'       => $slug,
 					'version'    => $plugin_info['Version'],
 					'name'       => $plugin_info['Name'],
 					'plugin_uri' => $plugin_info['PluginURI'],
@@ -121,9 +122,9 @@ if ( ! class_exists( 'WMP_Tracking' ) ) {
 				),
 				
 				'theme'     => $theme,
-				'plugins'   => $plugins,
+				'plugins'   => array_values($plugins),
                 
-                'options'   => array(
+                'other_options'   => array(
                 
                     'webserver_apache'            => isset($_SERVER) && isset( $_SERVER['SERVER_SOFTWARE'] ) && stristr( $_SERVER['SERVER_SOFTWARE'], 'apache' ) !== false ? 1 : 0,
             		'webserver_apache_version'    => function_exists( 'apache_get_version' ) ? apache_get_version() : 0,
@@ -144,7 +145,9 @@ if ( ! class_exists( 'WMP_Tracking' ) ) {
 			);
 
 			$args = array(
-				'body'      => json_encode($data),
+				'body'      => array(
+                    'items' => json_encode($data),
+                ),
 				'blocking'  => false,
 				'sslverify' => false,
 			);

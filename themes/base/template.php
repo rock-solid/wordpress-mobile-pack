@@ -150,7 +150,7 @@
         }
     </style>
            
-    <script type="text/javascript">
+    <script type="text/javascript" pagespeed_no_defer="">
 		var appticles = {
 			exportPath: "<?php echo plugins_url()."/".WMP_DOMAIN."/export/";?>",
 			creditsPath: "<?php echo $theme_path."includes/";?>",
@@ -164,21 +164,21 @@
 	</script>
 
     <!-- core -->
-	<link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/phone.css?date=20140911" type="text/css" />
-    <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/fonts.css?date=20140911" type="text/css" />
+	<link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/phone.css?date=20141120" type="text/css" />
+    <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/fonts.css?date=20141120" type="text/css" />
     
     <!-- custom fonts -->
     <?php foreach ($arrLoadedFonts as $font_no):?>
-        <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/font-<?php echo $font_no;?>.css?date=20140911" type="text/css">
+        <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/font-<?php echo $font_no;?>.css?date=20141120" type="text/css">
     <?php endforeach;?>
     
     <!-- theming -->
-    <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/headlines-f<?php echo $font_headlines;?>.css?date=20140911" type="text/css">
-    <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/paragraphs-f<?php echo $font_subtitles;?>.css?date=20140911" type="text/css">
-    <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/subtitles-f<?php echo $font_paragraphs;?>.css?date=20140911" type="text/css">
-    <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/theme-<?php echo $color_scheme;?>.css?date=20140911" type="text/css">
+    <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/headlines-f<?php echo $font_headlines;?>.css?date=20141120" type="text/css">
+    <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/paragraphs-f<?php echo $font_paragraphs;?>.css?date=20141120" type="text/css">
+    <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/subtitles-f<?php echo $font_subtitles;?>.css?date=20141120" type="text/css">
+    <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/theme-<?php echo $color_scheme;?>.css?date=20141120" type="text/css">
     
-    <script type="text/javascript" src="<?php echo $theme_path;?>includes/app.js?date=20140911"></script> 
+    <script type="text/javascript" src="<?php echo $theme_path;?>includes/app.js?date=20141120"></script> 
     
     <?php
         // check if google analytics id was set
@@ -187,7 +187,7 @@
         if ($google_analytics_id != ''):
     ?>
     
-        <script type="text/javascript">
+        <script type="text/javascript" pagespeed_no_defer="">
     
           var _gaq = _gaq || [];
           _gaq.push(['_setAccount', '<?php echo $google_analytics_id;?>']);

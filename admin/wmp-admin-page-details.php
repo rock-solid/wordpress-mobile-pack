@@ -46,7 +46,7 @@
                     <div class="spacer-20"></div>
                     <div class="inline-btns-container">
                     <a href="javascript:void(0);" id="wmp_pageedit_send_btn" class="btn blue smaller spaced-right" style="cursor: pointer; opacity: 1;">Save</a>
-                    <a href="<?php echo add_query_arg(array('page'=>'wmp-options-content'), network_admin_url('admin.php'));?>" class="btn grey smaller" style="cursor: pointer; opacity: 1;">Back</a>
+                    <a href="<?php echo add_query_arg(array('page'=>'wmp-options-content'), network_admin_url('admin.php'));?>" class="btn grey smaller" style="cursor: pointer; opacity: 1; text-transform:none;">Back</a>
                     </div>    
                 </form>
                     

@@ -3,7 +3,7 @@ Contributors: jamesgpearce, andreatrasatti, edent, cborodescu
 Tags: mobile, mobile web, mobile internet, smartphone, iphone, android, windows 8, webkit, chrome, safari, mobile web app, html5, sencha touch, responsive ui
 Requires at least: 3.5
 Tested up to: 4.0
-Stable tag: 2.1
+Stable tag: 2.1.1
 License: GPLv2 or later
 
 The NEW WordPress Mobile Pack allows you to 'package' your existing content into a cross-platform mobile web application.
@@ -92,7 +92,13 @@ You can also download a number of mobile emulators that can run on a desktop PC 
 
 Please note that the mobile web app will be enabled only on supported devices: iPhones, Android smartphones, Windows Phone 8 and Firefox OS. Only the following browsers are compatible: Safari, Google Chrome, Android - Native Browser, Internet Explorer 10 and Firefox (as of 2.0.2). 
 
+= Connecting the API Key (Premium accounts) =
+We have wrote a complete guide about [connecting your plugin with the hosted platform](http://support.appticles.com/hc/en-us/articles/201681012-Connecting-Your-Website-with-Your-Mobile-Web-Application#apikey) by using the API Key.
+
 == Frequently Asked Questions ==
+
+= I have enabled Wordpress Mobile Pack, but I still see the desktop theme on my smartphone =
+If you are using a cache plugin, please check the [docs](http://support.appticles.com/hc/en-us/articles/201795202-Optimizing-Cache-Plugins-for-Wordpress-Mobile-Pack). Some additional settings on the cache plugin might be required to correctly enable the mobile detection from Wordpress Mobile Pack.
 
 = What devices and operating systems are supported by my mobile web application? =
 WordPress Mobile Pack 2.0 is supported on: iPhones, Android smartphones, Windows Phone 8 and Firefox OS. Compatible browsers: Safari, Google Chrome, Android - Native Browser, Internet Explorer 10 and Firefox.
@@ -124,8 +130,15 @@ Google Ad Sense / Google Double Click for Publishers is supported on the Premium
 == Changelog ==
 
 = 2.1.1 =
-* Added SSL support 
-* Premium version - Added support for custom color schemes and fonts
+* Integrated with [Related Posts by Zemanta](https://wordpress.org/plugins/related-posts-by-zemanta/) and [Editorial Assistant by Zemanta](https://wordpress.org/plugins/zemanta/)
+* Wrote docs about [how to set up the main cache plugins for WPMP](http://support.appticles.com/hc/en-us/articles/201795202-Optimizing-Cache-Plugins-for-Wordpress-Mobile-Pack)
+* Added manifest files for Android and FirefoxOS (handle 'Add to homescreen' url and icon) 
+* Added SSL support
+* Added support for HTML5 audio and video tags. Please note that not all mobile browsers are correctly handling these tags. The audio/video players are not controlled or modified by WPMP.
+* Added opt-in for tracking for anonymous data (disabled by default)
+* Fixed bug - Blank page when accessing a category with a single post from the menu, if the post is displayed on the cover.
+* Premium version connect - Added support for custom color schemes and fonts
+* Patch 11/02/2015 - Added support for tel: and callto: link attributes
 
 = 2.1 =
 * Added support for pages with basic HTML content (forms, tables and iframe tags are not supported)
@@ -235,8 +248,8 @@ Two major issues were introduced in beta 1, now solved:
 
 == Upgrade Notice ==
 
-= 2.0.2 =
-* Completely rebuilt from the ground up and repurposed to empower bloggers, publishers and other content creators to go beyond responsiveness and 'appify' the content of their blog. The latest version includes support for Firefox and cover customization.
+= 2.1.1 =
+* WP Mobile Pack allows you to 'package' your existing content into a cross-platform mobile web application. The latest version includes support for Related Posts and Editorial Assistant by Zemanta, 'Add to homescreen' for iOS, Android and FirefoxOS, SSL support and other features.
 
 
 == Screenshots ==
@@ -254,9 +267,27 @@ Two major issues were introduced in beta 1, now solved:
 11. "More" page from the admin panel. Other capabilities offered in the premium hosted platform.
 
 
+== Setting up cache plugins for working with Wordpress Mobile Pack ==
+
+If your site uses a cache plugin, please note that a series of issues can occur if that plugin wasn't configured to work with Wordpress Mobile Pack. Some examples are:
+
+* Loading the mobile web application on desktop browsers
+* Loading the desktop theme on a supported mobile device (even though the Wordpress Mobile Pack plugin is active)
+* Inconsistent switching between the desktop and the Wordpress Mobile Pack theme
+
+If you find yourself in one of these situation, please read [the docs](http://support.appticles.com/hc/en-us/articles/201795202-Optimizing-Cache-Plugins-for-Wordpress-Mobile-Pack) and make the appropiate settings on your cache plugin.
+
+== Roadmap ==
+
+Our roadmap currently includes:
+
+* Integrating with Disqus
+* RTL support
+* Localization. Please contact us if you can help by translating the mobile web application's text into your language.
+* Integrating with the most popular forms plugins
+
 == Known issues and limitations for v2.1 ==
 
-* Integrating with cache plugins and RTL support are the next features to be released.
 * V2.1 of the mobile web app doesn't include support for forms. We are looking for a way to recreate forms inside the mobile web application and integrate with various plugins.
 * Iframes are not currently supported because of scrolling issues on iPhone.
 * The mobile web app doesn't include user authentication. If your blog settings enable comments only for logged in users, they will be disabled in the mobile web app.

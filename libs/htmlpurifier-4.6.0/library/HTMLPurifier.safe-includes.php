@@ -219,6 +219,8 @@ require_once $__dir . '/HTMLPurifier/URIScheme/https.php';
 require_once $__dir . '/HTMLPurifier/URIScheme/mailto.php';
 require_once $__dir . '/HTMLPurifier/URIScheme/news.php';
 require_once $__dir . '/HTMLPurifier/URIScheme/nntp.php';
+require_once $__dir . '/HTMLPurifier/URIScheme/tel.php';
+require_once $__dir . '/HTMLPurifier/URIScheme/callto.php';
 require_once $__dir . '/HTMLPurifier/VarParser/Flexible.php';
 require_once $__dir . '/HTMLPurifier/VarParser/Native.php';
 

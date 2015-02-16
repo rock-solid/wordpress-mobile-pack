@@ -47,7 +47,7 @@ if ($is_tablet == 1 && isset($arrConfig['tablet']['cover']) && $arrConfig['table
     <link rel="manifest" href="<?php echo plugins_url()."/".WMP_DOMAIN."/export/content.php?content=androidmanifest";?>" />
     
     <?php if (isset($arrConfig['icon_path'])): // icon path for Firefox ?>
-        <link rel="shortcut icon" href="<?php echo $arrConfig['icon_path'];?>"/>
+        <link rel="shortcut icon" href="<?php echo $cdn_apps."/".$arrConfig['shorten_url'].'/'.$arrConfig['icon_path'];?>"/>
     <?php endif;?>
     
     <title><?php echo $arrConfig['title'];?></title>
@@ -119,7 +119,7 @@ if ($is_tablet == 1 && isset($arrConfig['tablet']['cover']) && $arrConfig['table
         }
     </style>
     
-    <script type="text/javascript">
+    <script type="text/javascript" pagespeed_no_defer="">
         var webcrumbz = {
             webApp: "<?php echo $arrConfig['webapp'];?>",
             title: "<?php echo addslashes($arrConfig['title']);?>", // to update the title tag with the same constant
@@ -181,7 +181,7 @@ if ($is_tablet == 1 && isset($arrConfig['tablet']['cover']) && $arrConfig['table
     <?php if (($arrConfig['has_phone_ads'] == 1 && $is_tablet == 0) || ($arrConfig['has_tablet_ads'] == 1 && $is_tablet == 1)):?>
     
         <!-- start Google Doubleclick for publishers -->
-        <script type='text/javascript'>
+        <script type='text/javascript' pagespeed_no_defer="">
     	var googletag = googletag || {};
     	googletag.cmd = googletag.cmd || [];
     	(function() {
@@ -276,7 +276,7 @@ if ($is_tablet == 1 && isset($arrConfig['tablet']['cover']) && $arrConfig['table
         if ($google_analytics_id != ''):
     ?>
     
-        <script type="text/javascript">
+        <script type="text/javascript" pagespeed_no_defer="">
     
           var _gaq = _gaq || [];
           _gaq.push(['_setAccount', '<?php echo $google_analytics_id;?>']);
@@ -299,7 +299,7 @@ if ($is_tablet == 1 && isset($arrConfig['tablet']['cover']) && $arrConfig['table
     ?>
     
        <!-- add google universal analytics -->
-       <script>
+       <script pagespeed_no_defer="">
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)

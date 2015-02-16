@@ -273,7 +273,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
         public function wmp_admin_load_premium_js(){
 
 			wp_enqueue_script('js_content_premium', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/WMP_DISCONNECT.min.js'), array(), WMP_VERSION);
-			
+			wp_enqueue_script('js_settings_allowtracking', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/WMP_ALLOW_TRACKING.min.js'), array(), WMP_VERSION);
 		}
 		
         
@@ -691,8 +691,8 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          *  'cdn_kits' : 'http://cdn-kits.appticles.com',
          *  'cdn_apps': 'http://cdn.appticles.com',
          *  
-         *  'api_content': 'http://api.webcrumbz.co/content1/',
-         *  'api_social' : 'http://api.webcrumbz.co/social',
+         *  'api_content': 'http://api.appticles.com/content1/',
+         *  'api_social' : 'http://api.appticles.com/social',
          *  
          *  'webapp' : 'xxxxxxxxxxxxxxxxxxxxxxx',
          *  'title' : 'My app',

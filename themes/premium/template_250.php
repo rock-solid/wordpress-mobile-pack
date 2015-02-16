@@ -107,7 +107,7 @@ $app_files_path = $cdn_apps.'/'.$arrConfig['shorten_url'].'/';
         }
     ?>
 
-    <script type="text/javascript">
+    <script type="text/javascript" pagespeed_no_defer="">
         var webcrumbz = {
             webApp: "<?php echo $arrConfig['webapp'];?>",
             title: "<?php echo addslashes($arrConfig['title']);?>", // to update the title tag with the same constant
@@ -167,7 +167,7 @@ $app_files_path = $cdn_apps.'/'.$arrConfig['shorten_url'].'/';
     <?php if (($arrConfig['has_phone_ads'] == 1 && $is_tablet == 0) || ($arrConfig['has_tablet_ads'] == 1 && $is_tablet == 1)):?>
     
         <!-- start Google Doubleclick for publishers -->
-        <script type='text/javascript'>
+        <script type='text/javascript' pagespeed_no_defer="">
     	var googletag = googletag || {};
     	googletag.cmd = googletag.cmd || [];
     	(function() {
@@ -244,7 +244,7 @@ $app_files_path = $cdn_apps.'/'.$arrConfig['shorten_url'].'/';
         if ($google_analytics_id != ''):
     ?>
     
-        <script type="text/javascript">
+        <script type="text/javascript" pagespeed_no_defer="">
     
           var _gaq = _gaq || [];
           _gaq.push(['_setAccount', '<?php echo $google_analytics_id;?>']);
@@ -267,7 +267,7 @@ $app_files_path = $cdn_apps.'/'.$arrConfig['shorten_url'].'/';
     ?>
     
        <!-- add google universal analytics -->
-       <script>
+       <script pagespeed_no_defer="">
         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)

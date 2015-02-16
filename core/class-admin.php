@@ -1,6 +1,7 @@
 <?php
+
 if ( ! class_exists( 'WMobilePackAdmin' ) ) {
-     //require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php'; 
+     
 	/**
 	 * WMobilePackAdmin class for creating the admin area for the Wordpress Mobile Pack plugin
 	 *
@@ -168,6 +169,8 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                             $config->set('HTML.AllowedElements','div,a,p,ol,li,ul,img,blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe,small,video,audio,source');
 						  	$config->set('HTML.AllowedAttributes', 'class,src, width, height, target, href, name,frameborder,marginheight,marginwidth,scrolling,poster,preload,controls,type');
 						    
+							$config->set('URI.AllowedSchemes', array ('http' => true, 'https' => true, 'mailto' => true, 'news' => true, 'tel' => true, 'callto' => true));
+							
                             $config->set('Attr.AllowedFrameTargets', '_blank, _parent, _self, _top');
 							
 							$config->set('HTML.SafeIframe',1);
@@ -376,6 +379,8 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                             $config->set('HTML.AllowedElements','div,a,p,ol,li,ul,img,blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe,small,video,audio,source');
 						  	$config->set('HTML.AllowedAttributes', 'class, src, width, height, target, href, name,frameborder,marginheight,marginwidth,scrolling,poster,preload,controls,type');
 						    
+							$config->set('URI.AllowedSchemes', array ('http' => true, 'https' => true, 'mailto' => true, 'news' => true, 'tel' => true, 'callto' => true));
+							
 							$config->set('Attr.AllowedFrameTargets', '_blank, _parent, _self, _top');
 							
 							$config->set('HTML.SafeIframe',1);
@@ -541,8 +546,6 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                 global $wmobile_pack;
             	
                 $status = 0;
-                
-                print_r($_POST);
                 
                 if (isset($_POST) && is_array($_POST) && !empty($_POST)){
 
