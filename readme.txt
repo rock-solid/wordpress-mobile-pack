@@ -293,3 +293,10 @@ Our roadmap currently includes:
 * The mobile web app doesn't include user authentication. If your blog settings enable comments only for logged in users, they will be disabled in the mobile web app.
 * For now, supported mobile browsers include Safari, Google Chrome, Android's native browser, Internet Explorer 10 and Firefox (as of 2.0.2). Support for other mobile browsers such as Opera will be added in the following versions.
 * Only featured images from your blog posts are displayed as thumbnails in the list of posts. Images integrated in a post's content are displayed only on the details page for that post.
+
+== Repositories ==
+
+We currently have two Github development repositories:
+
+* [https://github.com/appticles/wordpress-mobile-pack-backend](https://github.com/appticles/wordpress-mobile-pack-backend) - The plugin files, same as you will find for download on Wordpress.org.
+* [https://github.com/appticles/wordpress-mobile-pack-app](https://github.com/appticles/wordpress-mobile-pack-app) - The mobile web application's development files (Javascript & CSS).
