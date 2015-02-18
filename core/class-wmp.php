@@ -706,6 +706,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          *  
          *  // OPTIONAL fields
          *  'domain_name' : 'myapp.domain.com',
+         *  'api_content_external': 'http://yourcustomapi.com',
          *  
          *  'color_scheme'      : 1,          // will be removed in future versions
 		 *  'font_headlines'    : 1,          // will be removed in future versions
@@ -798,7 +799,8 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                                     isset($arrAppSettings['has_tablet_ads']) && is_numeric($arrAppSettings['has_tablet_ads']) &&
                                     
                                     // validate optional fields
-                                    (!isset($arrAppSettings['domain_name']) || $arrAppSettings['domain_name'] == '' || filter_var('http://'.$arrAppSettings['domain_name'], FILTER_VALIDATE_URL)) && 
+                                    (!isset($arrAppSettings['domain_name']) || $arrAppSettings['domain_name'] == '' || filter_var('http://'.$arrAppSettings['domain_name'], FILTER_VALIDATE_URL)) &&
+									(!isset($arrAppSettings['api_content_external']) || $arrAppSettings['api_content_external'] == '' || filter_var('http://'.$arrAppSettings['api_content_external'], FILTER_VALIDATE_URL)) && 
                                     (!isset($arrAppSettings['color_scheme']) || $arrAppSettings['color_scheme'] == '' || is_numeric($arrAppSettings['color_scheme'])) &&
                                     (!isset($arrAppSettings['font_headlines']) || $arrAppSettings['font_headlines'] == '' || is_numeric($arrAppSettings['font_headlines'])) &&
                                     (!isset($arrAppSettings['font_subtitles']) || $arrAppSettings['font_subtitles'] == '' || is_numeric($arrAppSettings['font_subtitles'])) &&

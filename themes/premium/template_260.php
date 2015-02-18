@@ -125,9 +125,14 @@ if ($is_tablet == 1 && isset($arrConfig['tablet']['cover']) && $arrConfig['table
             title: "<?php echo addslashes($arrConfig['title']);?>", // to update the title tag with the same constant
 
             exportPath: '<?php echo $is_secure ? $arrConfig['api_content_https'] : $arrConfig['api_content'];?>',
+			socialApiPath: '<?php echo $is_secure ? $arrConfig['api_social_https'] : $arrConfig['api_social'];?>',
+			
+			<?php if (isset($arrConfig['api_content_external'])):?>
+				exportPathExternal: '<?php echo $arrConfig['api_content_external'];?>',
+			<?php endif;?>
+			
 			defaultPath: '<?php echo $kits_path;?>',
             appPath: '<?php echo $cdn_apps."/".$arrConfig['shorten_url'];?>',
-			socialApiPath: '<?php echo $is_secure ? $arrConfig['api_social_https'] : $arrConfig['api_social'];?>',
             
             logo: '<?php echo isset($arrConfig['logo_path']) && $arrConfig['logo_path'] != '' ? $cdn_apps."/".$arrConfig['shorten_url'].'/'.$arrConfig['logo_path'] : $cdn_kits."/app1/".$arrConfig['kit_version']."/resources/images/logo.png";?>',
             hasIcons: <?php echo intval(isset($arrConfig['icon_path']) && $arrConfig['icon_path'] != "");?>,
