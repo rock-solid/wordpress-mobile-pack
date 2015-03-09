@@ -85,7 +85,11 @@ class safeString {
   public static function clearString($text){
 
  	// return converted string
-	$text = str_replace(array_keys(self::$transliterationTable), array_values(self::$transliterationTable), $text);
+	if (function_exists('remove_accents')){
+		$text = remove_accents($text);
+	} else {
+		$text = str_replace(array_keys(self::$transliterationTable), array_values(self::$transliterationTable), $text);
+	}
 	$text = str_replace(' ','-',$text);
 	$text = preg_replace("/\'|\!|\@|\#|\$|\€|\^|\&|\*|\:|\~|\.|\,|\;|\(|\)|\{|\}|\[|\]|\?|\>|\<|\||\+|\/|\=|\`|%|\"\s/i", '-', $text);
 	

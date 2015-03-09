@@ -187,14 +187,15 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 								$content = apply_filters("the_content",$page->post_content);
 							else
 								$content = apply_filters("the_content",get_option( 'wmpack_page_' .$page->ID  ));
+								
 							$content = $purifier->purify(stripslashes($content));
 							
 							// load view
 							include(WMP_PLUGIN_PATH.'admin/wmp-admin-page-details.php');	
 						}
-					}			
+					}
 				}
-			}		
+			}
 		}
 		
 		

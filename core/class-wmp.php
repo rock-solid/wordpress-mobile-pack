@@ -289,13 +289,13 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     		$WMobilePackAdmin = new WMobilePackAdmin;
            	
 			// check menu 
-			if(self::wmp_get_setting('premium_active') == 1 && self::wmp_get_setting('premium_api_key') != '') {
+			if (self::wmp_get_setting('premium_active') == 1 && self::wmp_get_setting('premium_api_key') != '') {
 					
 				// add menu and submenu hooks
 				$menu_premium = add_menu_page( 'WP Mobile Pack', 'WP Mobile Pack', 'manage_options', 'wmp-options-premium', '', WP_PLUGIN_URL . '/wordpress-mobile-pack/admin/images/appticles-logo.png' );
 				add_submenu_page( 'wmp-options', "What's New", "What's New", 'manage_options', 'wmp-options-premium', array( &$WMobilePackAdmin, 'wmp_premium_options' ) );
 				add_action( 'load-' . $menu_premium, array( &$this, 'wmp_admin_load_premium_js' ) );   
-																					 
+				
 			} else {
 
 				// check if we need to request updates for the what's new section
@@ -577,9 +577,12 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 				if ($load_app) {
 					
 					// add hook in footer
-					add_action('wp_footer', array(&$this,'wmp_show_footer_box'));	
+					add_action('wp_footer', array(&$this,'wmp_show_footer_box'));
 				}
             }
+			
+			// add hook in header (for rel=alternate)
+			add_action('wp_head', array(&$this, 'wmp_show_rel'));
     	}
         
         
@@ -665,7 +668,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          * Return the theme name
          */
         public static function wmp_app_theme() {
-    		if(self::wmp_get_setting('premium_active') == 1 && self::wmp_get_setting('premium_api_key') != '')
+    		if (self::wmp_get_setting('premium_active') == 1 && self::wmp_get_setting('premium_api_key') != '')
 				return self::$wmp_premium_theme;
 			else
 				return self::$wmp_basic_theme;
@@ -956,6 +959,21 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     	}
 		
 		
+		/**
+          * 
+          * Method used to display a rel=alternate link in the header of the desktop theme
+		  * 
+		  * This method is called from wmp_check_load()
+          *		  
+          */
+		public function wmp_show_rel(){
+			if (WMobilePack::wmp_get_setting('premium_active') == 1 && WMobilePack::wmp_get_setting('premium_api_key') != '')
+				include(WMP_PLUGIN_PATH.'sections/wmp-show-rel-premium.php'); 
+			else
+				include(WMP_PLUGIN_PATH.'sections/wmp-show-rel.php'); 
+		}
+		
+		
 		
 		 /**
           * 
@@ -968,7 +986,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 		public function wmp_show_footer_box(){
 			
 			// load view
-			include(WMP_PLUGIN_PATH.'admin/sections/wmp-show-mobile.php'); 
+			include(WMP_PLUGIN_PATH.'sections/wmp-show-mobile.php'); 
 			
 			
 		}

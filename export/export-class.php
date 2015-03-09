@@ -9,14 +9,15 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
 /* methods for categories, articles and comments							*/
 /* -------------------------------------------------------------------------*/
 
-  class Export {
-	  
+class Export {
+	
     /* ----------------------------------*/
     /* Attributes						 */
     /* ----------------------------------*/
    	
 	private $purifier;
     private $inactive_categories = array();
+	private $inactive_pages = array();
    	
     /* ----------------------------------*/
     /* Methods							 */
@@ -40,7 +41,7 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
 		// disable cache
 		$config->set('Cache.DefinitionImpl',null);
 		
-	   // extend purifier
+	    // extend purifier
         $Html5Purifier = new WMPHtmlPurifier();
         $this->purifier = $Html5Purifier->wmp_extended_purifier($config);
         
@@ -397,14 +398,14 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
     */
 	public function exportArticles() {
 		
-		if(isset($_GET["content"]) && $_GET["content"] == 'exportarticles') {
+		if (isset($_GET["content"]) && $_GET["content"] == 'exportarticles') {
 		
 			// init articles array
 			$arrArticles = array();
 			
 			// set last timestamp
 			$lastTimestamp = date("Y-m-d H:i:s");
-			if(isset($_GET["lastTimestamp"]) && is_numeric($_GET["lastTimestamp"]))
+			if (isset($_GET["lastTimestamp"]) && is_numeric($_GET["lastTimestamp"]))
 				$lastTimestamp = date("Y-m-d H:i:s",$_GET["lastTimestamp"]);
 			
 			// set category id
@@ -413,12 +414,12 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
 				$categoryId = $_GET["categoryId"];
 			
 			$descriptionLength = 200;
-			if(isset($_GET["descriptionLength"]) && is_numeric($_GET["descriptionLength"]))
+			if (isset($_GET["descriptionLength"]) && is_numeric($_GET["descriptionLength"]))
 				$descriptionLength = $_GET["descriptionLength"];
 			
 			// set limit
 			$limit = 7;
-			if(isset($_GET["limit"]) && is_numeric($_GET["limit"]))
+			if (isset($_GET["limit"]) && is_numeric($_GET["limit"]))
 				$limit = $_GET["limit"];
 			
 			// set args for posts
@@ -482,7 +483,7 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
 							  
 								$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ),'large');
 								
-								if(is_array($image_data) && !empty($image_data)) {
+								if (is_array($image_data) && !empty($image_data)) {
 									
 									$image_details = array(
 														   "src" 		=> $image_data[0],
@@ -494,7 +495,7 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
 							
 							// get post category
 	
-							if($categoryId > 0)
+							if ($categoryId > 0)
 								$category = get_category($categoryId);
 							else {
 								
@@ -566,16 +567,16 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
         global $post;
         
 		// check if the export call is correct
-		if(isset($_GET["content"]) && $_GET["content"] == 'exportarticle' ) {
+		if (isset($_GET["content"]) && $_GET["content"] == 'exportarticle' ) {
 		
 			// set articleId
 			$articleId = 0;			
-			if(isset($_GET["articleId"]) && is_numeric($_GET["articleId"])) {
+			if (isset($_GET["articleId"]) && is_numeric($_GET["articleId"])) {
 				$articleId = $_GET["articleId"];
 			}
 			
 			$descriptionLength = 200;
-			if(isset($_GET["descriptionLength"]) && is_numeric($_GET["descriptionLength"]))
+			if (isset($_GET["descriptionLength"]) && is_numeric($_GET["descriptionLength"]))
 				$descriptionLength = $_GET["descriptionLength"];
 			
 			// init articles array
@@ -611,7 +612,7 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
     				  
     					$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ),'large');
     					
-    					if(is_array($image_data) && !empty($image_data)) {
+    					if (is_array($image_data) && !empty($image_data)) {
     					   
     						$image_details = array(
     												   "src" 		=> $image_data[0],
@@ -619,39 +620,41 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
     												   "height" 	=> $image_data[2]
     												 );
     					}
-    				} 
-    				
+    				}
+					
                     // filter the content
-    				$content = apply_filters( 'the_content', $post->post_content );
-                    
-                    $related_posts = '';
+    				$content = apply_filters('the_content', $post->post_content);
+					
+					$related_posts = '';
                     $related_web_posts = '';
-                    $zemanta = false;                    
+                    $zemanta = false;
+					
                     /* ZEMANTA RELATED POSTS AND POSTS FROM AROUND THE WEB */
-                    if(WMobilePack::wmp_active_plugin('Related Posts by Zemanta')) {
+                    if (WMobilePack::wmp_active_plugin('Related Posts by Zemanta')) {
                     
                         // check if class exists and specific function that are used
-                         if(class_exists('WPRPZemanta')) {
+                        if (class_exists('WPRPZemanta')) {
                             
                             // set zemanta purifier
                             $zemanta_purifier = $this->wmp_zemanta_purifier();
                             
                             // check if related posts should be displayed
-                            if(function_exists('zem_rp_get_options')) {
+                            if (function_exists('zem_rp_get_options')) {
+								
                                 // get options 
                                 $options = zem_rp_get_options();
-                    
-                                if($options['display_zemanta_linky'])
+								
+                                if ($options['display_zemanta_linky'])
                                     $zemanta = true;      
                                 
-                                if($post->post_content != "" && $post->post_type === 'post' && $options["on_single_post"]){
+                                if ($post->post_content != "" && $post->post_type === 'post' && $options["on_single_post"]){
                                   
-                                  if(function_exists('zem_rp_get_related_posts')) {
+                                  if (function_exists('zem_rp_get_related_posts')) {
                                 
                                         $related_posts = zem_rp_get_related_posts() != null ? zem_rp_get_related_posts() : '';
                                         
                                         // there are related posts set
-                                        if($related_posts != ''){
+                                        if ($related_posts != ''){
                                             
                                             // parse the urls in order to obtain the correct path
                                             $related_posts = $this->wmp_replace_internal_links($related_posts);
@@ -671,13 +674,13 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
                         
                     }  
                     
-                    if($related_web_posts == '') {
+                    if ($related_web_posts == '') {
                         
                         // set zemanta purifier
                         $zemanta_purifier = $this->wmp_zemanta_purifier();
                         
                         /* ZEMANTA EDITORIAL ASISTANT AND POSTS FROM AROUND THE WEB */                  
-                        if(WMobilePack::wmp_active_plugin('Editorial Assistant by Zemanta')) {
+                        if (WMobilePack::wmp_active_plugin('Editorial Assistant by Zemanta')) {
                              // get related posts from around the web
                              $related_web_posts = $this->wmp_related_web_posts($content);
                             
@@ -698,21 +701,19 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
 					
     				// get the description
     				$description = Export::truncateHtml($content,$descriptionLength);
+					
     				// get comments status
                     $comment_status = $this->comment_closed($post);
                     
-                    
-                    $no_comments = 0;
                     // check if there is at least a  comment
 					$comment_count = wp_count_comments( $articleId );	
                     $no_comments = $comment_count->approved;
                     
-					if($comment_status == 'closed') {
-										
-						if($comment_count) 
-							if($comment_count->approved == 0) 
+					if ($comment_status == 'closed') {
+						
+						if ($comment_count) 
+							if ($comment_count->approved == 0) 
 								$comment_status = 'disabled';
-                        
 					}
 					
 					
@@ -780,7 +781,7 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
 			// set articleId
 			$articleId = 0;
 			
-			if(isset($_GET["articleId"]) && is_numeric($_GET["articleId"])) {
+			if (isset($_GET["articleId"]) && is_numeric($_GET["articleId"])) {
 				$articleId = $_GET["articleId"];
 				
 			}
@@ -796,7 +797,7 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
 						);
 			
 			// order comments
-			if(WMP_BLOG_VERSION >= 3.6) {
+			if (WMP_BLOG_VERSION >= 3.6) {
 				$args['orderby'] = 'comment_date_gmt';
 				$args['order'] = 'ASC';
 			}
@@ -805,17 +806,17 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
 			$comments = get_comments( $args);
 			
 			
-			if(is_array($comments) && !empty($comments)) {
+			if (is_array($comments) && !empty($comments)) {
 				
 				foreach($comments as $comment) {
 					$get_avatar = '';
 					$avatar = '';
 					// get avatar only if the author wants it displayed
-					if(get_option("show_avatars")) {
+					if (get_option("show_avatars")) {
 						
 						$get_avatar = get_avatar( $comment, 50);
 						preg_match("/src='(.*?)'/i", $get_avatar, $matches);
-						if(isset($matches[1]))
+						if (isset($matches[1]))
 							$avatar = $matches[1];
 					} 
 						
@@ -862,31 +863,31 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
 	public function saveComment() {
 		
 		// check if the export call is correct
-		if(isset($_GET["content"]) && $_GET["content"] == 'savecomment' ) {
+		if (isset($_GET["content"]) && $_GET["content"] == 'savecomment' ) {
 			
-			if(!isset($_SERVER['HTTP_REFERER']) || strpos($_SERVER['HTTP_REFERER'],$_SERVER["HTTP_HOST"]) !== false) {
+			if (!isset($_SERVER['HTTP_REFERER']) || strpos($_SERVER['HTTP_REFERER'],$_SERVER["HTTP_HOST"]) !== false) {
 		
 				// set articleId
 				$articleId = 0;			
-				if(isset($_GET["articleId"]) && is_numeric($_GET["articleId"])) {
+				if (isset($_GET["articleId"]) && is_numeric($_GET["articleId"])) {
 					$articleId = $_GET["articleId"];
 				}
 					
 				// check token
-				if(isset($_GET['code']) && $_GET["code"] !== '') {
+				if (isset($_GET['code']) && $_GET["code"] !== '') {
 					
 					// if the token is valid, go ahead and save comment to the DB
-					if(WMobilePack::wmp_check_token($_GET['code'])) {
+					if (WMobilePack::wmp_check_token($_GET['code'])) {
 						
 						// get post by id
 						$post = get_post( $articleId);
 						
-						if($post != null && $post->post_type == 'post') {
+						if ($post != null && $post->post_type == 'post') {
 							
-							if($post->post_status == 'publish') {
+							if ($post->post_status == 'publish') {
 							
 								// check if the post accepts comments
-								if(comments_open( $articleId )) {
+								if (comments_open( $articleId )) {
 									
 									// get post variables
 									$comment_post_ID = 		$articleId;		
@@ -898,7 +899,7 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
 									$comment_parent = 		isset($_GET['comment_parent']) ? absint($_GET['comment_parent']) : 0;
 									
 									// return errors for empty fields
-									if(get_option('require_name_email')) {
+									if (get_option('require_name_email')) {
 											
 										if ( $comment_author_email == '' || $comment_author == '' )
 											return '{"status":0}'; //Please fill the required fields (name, email).
@@ -912,7 +913,7 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
 									// check if comment will be approved directly or will await moderation
 									$approved_comment = check_comment($comment_author,$comment_author_email,$comment_author_url,$comment_content,$_SERVER["REMOTE_ADDR"],$_SERVER['HTTP_USER_AGENT'],'user');
 									
-									if(wp_blacklist_check($comment_author,$comment_author_email,$comment_author_url,$comment_content,$_SERVER["REMOTE_ADDR"],$_SERVER['HTTP_USER_AGENT']))
+									if (wp_blacklist_check($comment_author,$comment_author_email,$comment_author_url,$comment_content,$_SERVER["REMOTE_ADDR"],$_SERVER['HTTP_USER_AGENT']))
 										$approved_comment = false;
 									// set comment data
 									$commentdata = compact('comment_post_ID', 'comment_author', 'comment_author_email', 'comment_author_url', 'comment_content', 'comment_type', 'comment_parent', 'user_ID');
@@ -924,12 +925,12 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
 									$comment_id = wp_new_comment( $commentdata );
 									
 									// get status
-									if(is_numeric($comment_id)) {
+									if (is_numeric($comment_id)) {
 										
 										// get comment
 										$comment = get_comment($comment_id);
 										// set status by comment status
-										if($comment->comment_approved == 1)
+										if ($comment->comment_approved == 1)
 											return '{"status":1}';//Your comment was successfully added
 										else
 
@@ -984,24 +985,24 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
     */
 	public function exportPages() {
 		
-		if(isset($_GET["content"]) && $_GET["content"] == 'exportpages') {
+		if (isset($_GET["content"]) && $_GET["content"] == 'exportpages') {
 		
 			// init pages array
 			$arrPages = array();
 			
 			// set last timestamp
 			$lastTimestamp = date("Y-m-d H:i:s");
-			if(isset($_GET["lastTimestamp"]) && is_numeric($_GET["lastTimestamp"]))
+			if (isset($_GET["lastTimestamp"]) && is_numeric($_GET["lastTimestamp"]))
 				$lastTimestamp = date("Y-m-d H:i:s",$_GET["lastTimestamp"]);
 			
 			
 			$descriptionLength = 200;
-			if(isset($_GET["descriptionLength"]) && is_numeric($_GET["descriptionLength"]))
+			if (isset($_GET["descriptionLength"]) && is_numeric($_GET["descriptionLength"]))
 				$descriptionLength = $_GET["descriptionLength"];
 			
 			// set limit
 			$limit = 7;
-			if(isset($_GET["limit"]) && is_numeric($_GET["limit"]))
+			if (isset($_GET["limit"]) && is_numeric($_GET["limit"]))
 				$limit = $_GET["limit"];
 			
 			
@@ -1015,7 +1016,7 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
 				  'post_password'	 => ''
             );
 			
-           if(WMP_BLOG_VERSION >= 3.6) {
+           if (WMP_BLOG_VERSION >= 3.6) {
 				$args['orderby'] = 'title';
 				$args['order'] = 'ASC';
 			}
@@ -1034,7 +1035,7 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
     			foreach($pages_query->posts as $page) {
     					
 					// add only the pages that are not password protected
-					if($page->post_password == '' && strip_tags(trim($page->post_title)) != '') {
+					if ($page->post_password == '' && strip_tags(trim($page->post_title)) != '') {
 					
 						// check if featured image
 						$image_details = array();
@@ -1060,9 +1061,9 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
 						$new_index = count($order_pages) + 1;
 						$last_key = count($arrPages) > 0 ? max(array_keys($arrPages)) : 0;
 						
-						if(is_numeric($index_order))
+						if (is_numeric($index_order))
 							$current_key = $index_order;
-						elseif($new_index > $last_key)
+						elseif ($new_index > $last_key)
 							$current_key = $new_index;
 						else
 							$current_key = $last_key+1;
@@ -1116,16 +1117,16 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
 	public function exportPage() {
 		
 		// check if the export call is correct
-		if(isset($_GET["content"]) && $_GET["content"] == 'exportpage' ) {
+		if (isset($_GET["content"]) && $_GET["content"] == 'exportpage' ) {
 		
 			// set pageId
 			$pageId = 0;			
-			if(isset($_GET["pageId"]) && is_numeric($_GET["pageId"])) {
+			if (isset($_GET["pageId"]) && is_numeric($_GET["pageId"])) {
 				$pageId = $_GET["pageId"];
 			}
 			
 			$descriptionLength = 200;
-			if(isset($_GET["descriptionLength"]) && is_numeric($_GET["descriptionLength"]))
+			if (isset($_GET["descriptionLength"]) && is_numeric($_GET["descriptionLength"]))
 				$descriptionLength = $_GET["descriptionLength"];
 			
 			// init page array
@@ -1137,11 +1138,10 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
 			if ($page != null && $page->post_type == 'page' && $page->post_password == '' && strip_tags(trim($page->post_title)) != '') {
 				
 			  	// check if page is visible
-			   $is_visible = false;
+			    $is_visible = false;
                    
 				if (!in_array($page->ID, $this->inactive_pages))
 					$is_visible = true;
-              
                 
                 if ($is_visible){
                 
@@ -1153,7 +1153,7 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
     				  
     					$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $page->ID ),'large');
     					
-    					if(is_array($image_data) && !empty($image_data)) {
+    					if (is_array($image_data) && !empty($image_data)) {
     					   
     						$image_details = array(
                                 "src" 		=> $image_data[0],
@@ -1165,18 +1165,18 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
     				
 					
 					// for the content, first check if the admin edited the content for this page
-					if(get_option( 'wmpack_page_' .$page->ID  ) === false)
-						$content = apply_filters("the_content",$page->post_content);
+					if (get_option('wmpack_page_'.$page->ID) === false)
+						$content = apply_filters("the_content", $page->post_content);
 					else
-						$content = apply_filters("the_content",get_option( 'wmpack_page_' .$page->ID  ));
+						$content = apply_filters("the_content", get_option( 'wmpack_page_' .$page->ID  ));
     				
                     
                     $related_web_posts = '';                    
                     /* ZEMANTA RELATED POSTS AND POSTS FROM AROUND THE WEB */
-                    if(WMobilePack::wmp_active_plugin('Related Posts by Zemanta')) {
+                    if (WMobilePack::wmp_active_plugin('Related Posts by Zemanta')) {
                     
                         // check if class exists and specific function that are used
-                         if(class_exists('WPRPZemanta')) {
+                         if (class_exists('WPRPZemanta')) {
                             // set zemanta purifier
                             $zemanta_purifier = $this->wmp_zemanta_purifier();
                             // get related posts from around the web
@@ -1184,10 +1184,10 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
                             $related_web_posts = $zemanta_purifier->purify($related_web_posts);
                          }
                     }    
-                    if($related_web_posts == '') {
+                    if ($related_web_posts == '') {
                         
                         /* ZEMANTA EDITORIAL ASISTANT AND POSTS FROM AROUND THE WEB */                  
-                        if(WMobilePack::wmp_active_plugin('Editorial Assistant by Zemanta')) {
+                        if (WMobilePack::wmp_active_plugin('Editorial Assistant by Zemanta')) {
                              // set zemanta purifier
                              $zemanta_purifier = $this->wmp_zemanta_purifier();
                             
@@ -1254,7 +1254,7 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
 			$text = self::removeScriptTags($text);
 			
 			// if no_images is true, remove all images from the content
-			if($stripTags)
+			if ($stripTags)
 				$text = strip_tags( $text, '<p><a><span><br><i><u><strong><b><sup><em>');
 			
 			// if the plain text is shorter than the maximum length, return the whole text
@@ -1315,7 +1315,7 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
 					$total_length += $content_length;
 				}
 				// if the maximum length is reached, get off the loop
-				if($total_length>= $length) {
+				if ($total_length>= $length) {
 					break;
 				}
 			}
@@ -1337,7 +1337,7 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
 		}
 		// add the defined ending to the text
 		$truncate .= $ending;
-		if($considerHtml) {
+		if ($considerHtml) {
 			// close all unclosed html-tags
 			foreach ($open_tags as $tag) {
 				$truncate .= '</' . $tag . '>';
@@ -1631,7 +1631,7 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
                                 // get post id using the url
                                 $post_id = url_to_postid($post_url);
                             
-                                if(is_numeric($post_id) && $post_id > 0) {
+                                if (is_numeric($post_id) && $post_id > 0) {
                                     
                                     // recreate new url                                   
                                     $new_url = 'href="#'.$post_id.'"';
@@ -1675,9 +1675,9 @@ require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
             // remove and get the content
             $content_match = preg_match('%<ul class=\"zemanta-article-ul zemanta-article-ul-image\".*>(.*?)<\/ul>%siU',$content,$matches);
             
-            if($content_match) {
+            if ($content_match) {
                 
-                if(is_array($matches) && !empty($matches)){
+                if (is_array($matches) && !empty($matches)){
                     
                     $related_posts = $matches[0];
                     

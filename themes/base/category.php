@@ -1,16 +1,21 @@
 ﻿<?php
-require_once(WMP_PLUGIN_PATH.'libs/safestring/safeString.php'); 
+$category_name = single_cat_title("", false);
 
-$displayed_category = get_the_category();
+$mobile_url = home_url();
 
-if ($displayed_category != null && is_array($displayed_category) && count($displayed_category) > 0 && is_object($displayed_category[0])) {
-
-	// strip all special chars
-	$safeString = new safeString();
-	$category_name = $safeString::clearString($displayed_category[0]->cat_name);
-
-	header("Location: ".home_url()."/#category/".$category_name."/".$displayed_category[0]->cat_ID);    
-} else {
-    header("Location: ".home_url());
+if ($category_name){
+	
+	$category_obj = get_term_by('name', $category_name, 'category');
+	
+	if ($category_obj && isset($category_obj->term_id) && is_numeric($category_obj->term_id)){
+		
+		$category_id = $category_obj->term_id;
+		
+		require_once(WMP_PLUGIN_PATH.'libs/safestring/safeString.php');
+		$mobile_url .= "/#category/".safeString::clearString($category_name).'/'.$category_id;
+	}
 }
+
+header("Location: ".$mobile_url);
+
 ?>

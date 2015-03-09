@@ -20,7 +20,7 @@ if ($json_config_premium !== false) {
 }
 
 
-// check if front page is a stic page
+// check if front page is a static page
 if(get_option('show_on_front') == 'page' && get_option('page_on_front') == get_the_ID()){
 	require_once('template.php');// load app
 	
