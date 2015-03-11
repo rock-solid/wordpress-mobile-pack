@@ -689,9 +689,8 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                 $status = 0;
                 
                 if (isset($_POST) && is_array($_POST) && !empty($_POST)){
-                                        
+                    
                     if (isset($_POST['api_key']) && isset($_POST['valid']) && isset($_POST['config_path'])){
-                        
                         
                         if (
 								preg_match('/^[a-zA-Z0-9]+$/', $_POST['api_key']) && 
@@ -750,14 +749,18 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                         if (preg_match('/^[a-zA-Z0-9]+$/', $_POST['api_key']) && $_POST['active'] == 0){
                                 
 							$arrData = array(
-											 	'premium_api_key' => '',
-												'premium_active'  => 0,
-												'premium_config_path' => ''
-											 );	
+								'premium_api_key' => '',
+								'premium_active'  => 0,
+								'premium_config_path' => ''
+							);	
 								
+							// delete transient with the json config
+							if (get_transient("wmp_premium_config_path") !== false)
+								delete_transient('wmp_premium_config_path');
+							
                             // save options
-                           if( WMobilePack::wmp_update_settings($arrData))	
-						   	$status = 1;
+							if (WMobilePack::wmp_update_settings($arrData))
+								$status = 1;
 							
                         } 
                     }        

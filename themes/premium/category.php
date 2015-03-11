@@ -1,12 +1,16 @@
 <?php
-$categoryIdParam = '';
+$category_id_param = '';
+$category_name = single_cat_title("", false);
 
-// get the category id
-$displayed_category = get_the_category();
-
-if ($displayed_category != null && is_array($displayed_category) && count($displayed_category) > 0 && is_object($displayed_category[0])){
-    $categoryIdParam = '#categoryWp/'.$displayed_category[0]->cat_ID;
-} 
+if ($category_name){
+	
+	$category_obj = get_term_by('name', $category_name, 'category');
+	
+	if ($category_obj && isset($category_obj->term_id) && is_numeric($category_obj->term_id)){
+		
+		$category_id_param = '#categoryWp/'.$category_obj->term_id;
+	}
+}
 
 // load config json for the premium theme
 $json_config_premium = WMobilePack::wmp_set_premium_config(); 
@@ -18,8 +22,8 @@ if ($json_config_premium !== false) {
 
 // check if we have a valid domain
 if (isset($arrConfig['domain_name']) && filter_var('http://'.$arrConfig['domain_name'], FILTER_VALIDATE_URL)) {
-    header("Location: http://".$arrConfig['domain_name'].$categoryIdParam);
+    header("Location: http://".$arrConfig['domain_name'].$category_id_param);
 } else {
-    header("Location: ".home_url().$categoryIdParam);
+    header("Location: ".home_url().$category_id_param);
 }
 ?>

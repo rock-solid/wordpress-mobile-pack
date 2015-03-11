@@ -1010,7 +1010,7 @@ class Export {
 			$args = array(
     			  'post__not_in' => $this->inactive_pages,
     			  'numberposts' => $limit,
-    			  "posts_per_page" => $limit,
+    			  'posts_per_page' => $limit,
     			  'post_status' => 'publish',
 				  'post_type' => 'page',
 				  'post_password'	 => ''
@@ -1030,9 +1030,9 @@ class Export {
 			
 			$pages_query = new WP_Query ( $args );
             
-    		if ($pages_query->have_posts() ) {
+    		if ($pages_query->have_posts()) {
     				
-    			foreach($pages_query->posts as $page) {
+    			foreach ($pages_query->posts as $page) {
     					
 					// add only the pages that are not password protected
 					if ($page->post_password == '' && strip_tags(trim($page->post_title)) != '') {

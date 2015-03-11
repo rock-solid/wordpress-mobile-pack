@@ -1045,7 +1045,6 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 		}
 		
 		
-		
 		 /**
           * 
           * Method used to check if a specific plugin is installed and active

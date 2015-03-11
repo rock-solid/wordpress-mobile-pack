@@ -128,6 +128,8 @@ $app_files_path = $cdn_apps.'/'.$arrConfig['shorten_url'].'/';
             
             appUrl: '<?php echo home_url();?>',
             websiteUrl: '<?php echo home_url();?>?wmp_theme_mode=desktop',
+			canonicalUrl: '<?php echo home_url();?>',
+			
             preview: 0,
             imageInterval : {
                 minWidth: 120,
@@ -163,6 +165,9 @@ $app_files_path = $cdn_apps.'/'.$arrConfig['shorten_url'].'/';
             <?php endif;?>
         };
     </script>
+    
+	<script src="<?php echo $is_secure ? 'https' : 'http' ?>://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="<?php echo $cdn_kits;?>others/landing-page-v2/scripts/<?php echo $supported_gzip ? 'canonical-urls-js.gz' : 'canonical-urls.js' ;?>" type="text/javascript"></script>
     
     <?php if (($arrConfig['has_phone_ads'] == 1 && $is_tablet == 0) || ($arrConfig['has_tablet_ads'] == 1 && $is_tablet == 1)):?>
     
