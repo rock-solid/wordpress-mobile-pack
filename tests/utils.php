@@ -4,7 +4,7 @@ class WPMPTestsUtils {
 
 	private static $UserAgent = "Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3";
 	
-	public function make_request($request_url){
+	public function make_request($request_url, $mobile_agent = true){
 		
 		// check if curl is enabled
 		if (extension_loaded('curl')) {
@@ -18,7 +18,10 @@ class WPMPTestsUtils {
 				
 			// set curl options
 			curl_setopt($send_curl, CURLOPT_URL, $request_url);
-			curl_setopt($send_curl, CURLOPT_USERAGENT, self::$UserAgent);
+			
+			if ($mobile_agent)
+				curl_setopt($send_curl, CURLOPT_USERAGENT, self::$UserAgent);
+				
 			curl_setopt($send_curl, CURLOPT_HEADER, true);
 			curl_setopt($send_curl, CURLOPT_CONNECTTIMEOUT, 10);
 			curl_setopt($send_curl, CURLOPT_RETURNTRANSFER, true);
