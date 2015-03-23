@@ -14,7 +14,7 @@ if (class_exists('WPMPTestsUtils')) {
 	 
 			if (!WMobilePack::wmp_get_setting('premium_active') || WMobilePack::wmp_get_setting('premium_api_key') == '') {
 			
-				$request_url = home_url();
+				$request_url = WPMPTestsUtils::get_furl(home_url());
 				$response = WPMPTestsUtils::make_request($request_url);
 				
 				$this->assertEquals($response['redirect'], '');				
@@ -27,7 +27,7 @@ if (class_exists('WPMPTestsUtils')) {
 		 *
 		 */
 		function test_post() {
-	 
+			
 			if (!WMobilePack::wmp_get_setting('premium_active') || WMobilePack::wmp_get_setting('premium_api_key') == '') {
 			
 				$post_id = 1241;
@@ -47,7 +47,7 @@ if (class_exists('WPMPTestsUtils')) {
 		 *
 		 */
 		function test_page() {
-	
+			
 			if (!WMobilePack::wmp_get_setting('premium_active') || WMobilePack::wmp_get_setting('premium_api_key') == '') {
 			
 				$page_id = 1086;
@@ -65,7 +65,7 @@ if (class_exists('WPMPTestsUtils')) {
 		 *
 		 */
 		function test_category() {
-	 
+			
 			if (!WMobilePack::wmp_get_setting('premium_active') || WMobilePack::wmp_get_setting('premium_api_key') == '') {
 			
 				$category_id = 38;

@@ -5,7 +5,7 @@ if (class_exists('WPMPTestsUtils')) {
 	
 	class RelAttributePremiumTest extends WP_UnitTestCase {
 	
-		var $old_current_user;
+		protected $old_current_user;
 		
 		
 		function setUp() {

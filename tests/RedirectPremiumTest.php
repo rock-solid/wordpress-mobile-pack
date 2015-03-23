@@ -74,7 +74,7 @@ if (class_exists('WPMPTestsUtils')) {
 			
 			if (WMobilePack::wmp_get_setting('premium_active') == 1 && WMobilePack::wmp_get_setting('premium_api_key') != '') {
 				
-				$request_url = home_url();
+				$request_url = WPMPTestsUtils::get_furl(home_url());
 				$response = WPMPTestsUtils::make_request($request_url);
 				
 				$this->assertEquals($response['redirect'], '');				

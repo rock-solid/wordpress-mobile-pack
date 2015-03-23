@@ -23,7 +23,7 @@ if (class_exists('WMobilePack')):
 		
 		$permalink = get_permalink();
 		
-		if (is_single() || is_page()){
+		if (is_single() || (is_page() && !is_front_page())){
 			
 			$permalink = get_permalink();
 			
