@@ -75,6 +75,23 @@ if (class_exists('WPMPTestsUtils')) {
 				$this->assertEquals($response['redirect'], home_url()."/#category/Child-Category-02/".$category_id);
 			}
 		}
+		
+		/**
+		 *
+		 * A category should redirect to #category/{category_slug}/{category_id}
+		 * Test category with special chars
+		 */
+		function test_category_specialchars() {
+			
+			if (!WMobilePack::wmp_get_setting('premium_active') || WMobilePack::wmp_get_setting('premium_api_key') == '') {
+			
+				$category_id = 2;
+				$request_url = WPMPTestsUtils::get_furl(home_url().'?cat='.$category_id);
+				$response = WPMPTestsUtils::make_request($request_url);
+					
+				$this->assertEquals($response['redirect'], home_url()."/#category/Alignmentuaaeeeuuuce/".$category_id);
+			}
+		}
 	}
 }
 

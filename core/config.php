@@ -14,13 +14,13 @@ if ( !defined( 'WMP_FILES_UPLOADS_DIR' ) && !defined( 'WMP_FILES_UPLOADS_URL' ) 
 define('WMP_FEEDBACK_EMAIL','feedback@appticles.com');
 
 define('WMP_NEWS_UPDATES','http://cdn-wpmp.appticles.com/dashboard/news.json');
-define('WMP_NEWS_UPDATES_HTTPS','https://dnd761xfdnvnn.cloudfront.net/dashboard/news.json');
+define('WMP_NEWS_UPDATES_HTTPS','https://d3oqwjghculspf.cloudfront.net/dashboard/news.json');
 
 define('WMP_WHATSNEW_UPDATES','http://cdn-wpmp.appticles.com/dashboard/whats_new/content1.json');
-define('WMP_WHATSNEW_UPDATES_HTTPS','https://dnd761xfdnvnn.cloudfront.net/dashboard/whats_new/content1_https.json');
+define('WMP_WHATSNEW_UPDATES_HTTPS','https://d3oqwjghculspf.cloudfront.net/dashboard/whats_new/content1_https.json');
 
 define('WMP_MORE_UPDATES','http://cdn-wpmp.appticles.com/dashboard/more/more1.json');
-define('WMP_MORE_UPDATES_HTTPS','https://dnd761xfdnvnn.cloudfront.net/dashboard/more/more1_https.json');
+define('WMP_MORE_UPDATES_HTTPS','https://d3oqwjghculspf.cloudfront.net/dashboard/more/more1_https.json');
 
 define('WMP_WAITLIST_PATH','http://gateway.appticles.com/waitlist/api/subscribe');
 define('WMP_WAITLIST_PATH_HTTPS','https://gateway.appticles.com/waitlist/api/subscribe');

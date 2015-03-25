@@ -166,9 +166,13 @@ $app_files_path = $cdn_apps.'/'.$arrConfig['shorten_url'].'/';
         };
     </script>
     
-	<script src="<?php echo $is_secure ? 'https' : 'http' ?>://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script src="<?php echo $cdn_kits;?>others/landing-page-v2/scripts/<?php echo $supported_gzip ? 'canonical-urls-js.gz' : 'canonical-urls.js' ;?>" type="text/javascript"></script>
+	<?php if (isset($arrConfig['load_canonical_script']) && $arrConfig['load_canonical_script'] == 1):?>
+	
+		<script src="<?php echo $is_secure ? 'https' : 'http' ?>://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script src="<?php echo $cdn_kits;?>/others/landing-page-v2/scripts/<?php echo $supported_gzip ? 'canonical-urls-js.gz' : 'canonical-urls.js' ;?>" type="text/javascript"></script>
     
+	<?php endif;?>
+	
     <?php if (($arrConfig['has_phone_ads'] == 1 && $is_tablet == 0) || ($arrConfig['has_tablet_ads'] == 1 && $is_tablet == 1)):?>
     
         <!-- start Google Doubleclick for publishers -->

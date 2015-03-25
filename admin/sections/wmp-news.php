@@ -6,7 +6,7 @@ if (!empty($news_updates)):
 
     if (isset($news_updates["whitepaper"]) && is_array($news_updates["whitepaper"]) && !empty($news_updates["whitepaper"])):
     ?>
-        <a href="<?php echo $news_updates["whitepaper"]["link"];?>" target="_blank"><img src="<?php echo $news_updates["whitepaper"]["image"];?>" /></a>
+        <a href="<?php echo $news_updates["whitepaper"]["link"];?>" target="_blank"><img src="<?php echo $news_updates["whitepaper"]["image"];?>" style="width:252px; height: auto;" /></a>
         <div class="spacer-10"></div>
     <?php 
     endif;

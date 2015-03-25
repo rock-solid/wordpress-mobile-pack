@@ -15,7 +15,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 		 *
 		 */
 		public function wmp_options() {
-			     
+			
 			global $wmobile_pack;
 			
             WMobilePack::wmp_update_settings('whats_new_updated', 0);
@@ -442,9 +442,12 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
     								 
     								// set e-mail variables
                                     $message = "Name: ".strip_tags($_POST["wmp_feedback_name"])."\r\n \r\n";
-                                    $message .= "E-mail: ".$_POST["wmp_feedback_email"]."\r\n \r\n";
+                                    $message .= "E-mail: ".$admin_email."\r\n \r\n";
     								$message .= "Message: ".strip_tags($_POST["wmp_feedback_message"])."\r\n \r\n";
-                                    $message .= "Page: ".stripslashes(strip_tags($_POST['wmp_feedback_page']));
+                                    $message .= "Page: ".stripslashes(strip_tags($_POST['wmp_feedback_page']))."\r\n \r\n";
+									
+									if (isset($_SERVER['HTTP_HOST']))
+										$message .= "Host: ".$_SERVER['HTTP_HOST'];
                                     
     								$subject = 'WP Mobile Pack Feeback';
     								$to = WMP_FEEDBACK_EMAIL;
@@ -464,7 +467,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                 echo $status;
             }
             
-            exit();
+			exit();
         }
 		
 		
@@ -485,10 +488,10 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                 
     			// JSON URL that should be requested
     			$json_url = ($is_secure ? WMP_NEWS_UPDATES_HTTPS : WMP_NEWS_UPDATES);
-                
+				
 				// get response
 				$json_response = self::wmp_read_data($json_url);
-
+				
 				if($json_response !== false && $json_response != '') {
 					
 					// Store this data in a transient

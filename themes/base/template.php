@@ -153,7 +153,7 @@
     <script type="text/javascript" pagespeed_no_defer="">
 		var appticles = {
 			exportPath: "<?php echo plugins_url()."/".WMP_DOMAIN."/export/";?>",
-			creditsPath: "<?php echo $theme_path."includes/";?>",
+			creditsPath: "<?php echo $theme_path."includes/others/credits.json";?>",
             defaultCover: "<?php echo $cover_path;?>",
    			userCover: "<?php echo $useCover;?>",
 			logo: "<?php echo $logo_path;?>",
@@ -178,7 +178,7 @@
     <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/subtitles-f<?php echo $font_subtitles;?>.css?date=20141120" type="text/css">
     <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/theme-<?php echo $color_scheme;?>.css?date=20141120" type="text/css">
     
-    <script type="text/javascript" src="<?php echo $theme_path;?>includes/app.js?date=20141120"></script> 
+    <script type="text/javascript" src="<?php echo $theme_path;?>includes/app.js?date=20150325"></script> 
     
     <?php
         // check if google analytics id was set

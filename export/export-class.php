@@ -3,7 +3,8 @@
 require_once("../../../../wp-config.php");
 require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php';
 require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
-
+require_once('../libs/safestring/safeString.php');
+		
 /* -------------------------------------------------------------------------*/
 /* Export class with different export 										*/
 /* methods for categories, articles and comments							*/
@@ -61,6 +62,7 @@ class Export {
 	*				"id": 0,
 	*				"order": 1,
 	*				"name": "Latest",
+	*				"link": "",
 	*				"image": {
 	*					"src": "http://cdn-kits.appticles.com/others/category-default.jpg",
 	*					"width": 480,
@@ -127,10 +129,12 @@ class Export {
                         $current_key = $category->cat_ID;
                         
 						$arrCategories[$current_key] = array(
-							'id' 	=> $category->term_id,
-							'order' => false,
-							'name' 	=> $category->name,
-							'image' => ""
+							'id' 		=> $category->term_id,
+							'order' 	=> false,
+							'name' 		=> $category->name,
+							'name_slug' => safeString::clearString($category->name),
+							'link' 		=> get_category_link($category->term_id),
+							'image' 	=> ""
 					    );                             
                         
                         // search posts from this category
@@ -185,18 +189,18 @@ class Export {
                                         $arrCategories[$current_key]["articles"] = array();
                                         
 									$arrCategories[$current_key]["articles"][] = array(
-    									 'id' 				=> $post->ID,
-    									 "title" 			=> $post->post_title,
-    									 "timestamp" 		=> strtotime($post->post_date),
-    									 "author" 			=> get_the_author_meta('display_name', $post->post_author ),
-    									 "date" 			=> date("D, M d, Y, H:i", strtotime($post->post_date)),
-    									 "link" 			=> $post->guid,
-    									 "image" 			=> !empty($image_details) ? $image_details : "",
-    									 "description"		=> $description,
-    									 "content" 			=> '',
-    									 "category_id" 		=> $category->term_id,
-    									 "category_name" 	=> $category->name	
-									 );
+										'id' 				=> $post->ID,
+										"title" 			=> $post->post_title,
+										"timestamp" 		=> strtotime($post->post_date),
+										"author" 			=> get_the_author_meta('display_name', $post->post_author ),
+										"date" 				=> date("D, M d, Y, H:i", strtotime($post->post_date)),
+										"link" 				=> get_permalink($post->ID),
+										"image" 			=> !empty($image_details) ? $image_details : "",
+										"description"		=> $description,
+										"content" 			=> '',
+										"category_id" 		=> $category->term_id,
+										"category_name" 	=> $category->name	
+									);
 								}
 							}
     					}
@@ -225,12 +229,13 @@ class Export {
                    if ($posts_query->have_posts()) {
     					                      
                         $arrCategories[0] = array(
-                            'id' => 0,
-                            'order' => false,
-                            'name' => 'Latest',
-                            'image' => ""
+                            'id' 		=> 0,
+                            'order' 	=> false,
+                            'name' 		=> 'Latest',
+							'name_slug' => 'Latest',
+                            'image' 	=> ""
                         );		
-                                              
+                        
                         foreach ($posts_query->posts as $post) {
     						
 							if ($post->post_password == '') {
@@ -273,17 +278,17 @@ class Export {
                                     $arrCategories[0]["articles"] = array();
                                         
 								$arrCategories[0]["articles"][] = array(
-    								 'id' 				=> $post->ID,
-    								 "title" 			=> $post->post_title,
-    								 "timestamp" 		=> strtotime($post->post_date),
-    								 "author" 			=>  get_the_author_meta( 'display_name' , $post->post_author ),
-    								 "date" 			=>  date("D, M d, Y, H:i", strtotime($post->post_date)),
-    								 "link" 			=> $post->guid,
-    								 "image" 			=> !empty($image_details) ? $image_details : "",
-    								 "description"		=> $description,
-    								 "content" 			=> '',
-    								 "category_id" 		=> $category[0]->term_id,
-    								 "category_name" 	=> $category[0]->name
+									'id' 				=> $post->ID,
+									"title" 			=> $post->post_title,
+									"timestamp" 		=> strtotime($post->post_date),
+									"author" 			=> get_the_author_meta( 'display_name' , $post->post_author ),
+									"date" 				=> date("D, M d, Y, H:i", strtotime($post->post_date)),
+									"link" 				=> get_permalink($post->ID),
+									"image" 			=> !empty($image_details) ? $image_details : "",
+									"description"		=> $description,
+									"content" 			=> '',
+									"category_id" 		=> $category[0]->term_id,
+									"category_name" 	=> $category[0]->name
 								 );
 							}
     					}
@@ -513,7 +518,7 @@ class Export {
 								"timestamp" 		=> strtotime($post->post_date),
 								"author" 			=> get_the_author_meta( 'display_name' , $post->post_author ),
 								"date" 				=> date("D, M d, Y, H:i", strtotime($post->post_date)),
-								"link" 				=> $post->guid,
+								"link" 				=> get_permalink($post->ID),
 								"image" 			=> !empty($image_details) ? $image_details : "",
 								"description"		=> $description,
 								"content" 			=> '',
@@ -681,13 +686,13 @@ class Export {
                         
                         /* ZEMANTA EDITORIAL ASISTANT AND POSTS FROM AROUND THE WEB */                  
                         if (WMobilePack::wmp_active_plugin('Editorial Assistant by Zemanta')) {
-                             // get related posts from around the web
-                             $related_web_posts = $this->wmp_related_web_posts($content);
-                            
-                             // parse the urls in order to obtain the correct path
-                             $related_web_posts = $this->wmp_replace_internal_links($related_web_posts);
-                             $related_web_posts = $zemanta_purifier->purify($related_web_posts);
-                            
+							
+							// get related posts from around the web
+							$related_web_posts = $this->wmp_related_web_posts($content);
+							
+							// parse the urls in order to obtain the correct path
+							$related_web_posts = $this->wmp_replace_internal_links($related_web_posts);
+							$related_web_posts = $zemanta_purifier->purify($related_web_posts);
                         }
                     }
     				
@@ -723,7 +728,7 @@ class Export {
                         "timestamp" 			=> strtotime($post->post_date),
                         "author" 				=> get_the_author_meta( 'display_name' , $post->post_author ),
                         "date" 			    	=> date("D, M d, Y, H:i", strtotime($post->post_date)),
-                        "link" 			    	=> $post->guid,
+                        "link" 			    	=> get_permalink($post->ID),
                         "image" 				=> !empty($image_details) ? $image_details : "",
                         "description"	    	=> $description,
                         "content" 				=> $content,
@@ -821,15 +826,15 @@ class Export {
 					} 
 						
 					$arrComments[] = array(
-										   	'id' => $comment->comment_ID,
-											'author' => $comment->comment_author != '' ? ucfirst($comment->comment_author) : 'Anonymous',
-											'author_url' => $comment->comment_author_url,
-											'date' => date("D, M d, Y, H:i", strtotime($comment->comment_date)),
-											'content' => $this->purifier->purify($comment->comment_content),
-											'article_id' => $comment->ID,
-											'article_title'=>$comment->post_title,
-											'avatar' => $avatar
-										   );
+						'id' => $comment->comment_ID,
+						'author' => $comment->comment_author != '' ? ucfirst($comment->comment_author) : 'Anonymous',
+						'author_url' => $comment->comment_author_url,
+						'date' => date("D, M d, Y, H:i", strtotime($comment->comment_date)),
+						'content' => $this->purifier->purify($comment->comment_content),
+						'article_id' => $comment->ID,
+						'article_title'=>$comment->post_title,
+						'avatar' => $avatar
+					);
 					
 				}
 			}
@@ -909,7 +914,7 @@ class Export {
 									
 									if ( $comment_content == '' )
 										return '{"status":0}'; // Please type a comment
-																		
+									
 									// check if comment will be approved directly or will await moderation
 									$approved_comment = check_comment($comment_author,$comment_author_email,$comment_author_url,$comment_content,$_SERVER["REMOTE_ADDR"],$_SERVER['HTTP_USER_AGENT'],'user');
 									
@@ -1215,7 +1220,7 @@ class Export {
     				$arrPage = array(
                         'id' 					=> $page->ID,
                         "title" 				=> $page->post_title,
-                        "link" 			    	=> $page->guid,
+                        "link" 			    	=> get_permalink($page->ID),
                         "image" 				=> !empty($image_details) ? $image_details : "",
                         "content" 				=> $content,
                         "related_web_posts"     => trim($related_web_posts),
