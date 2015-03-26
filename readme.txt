@@ -3,7 +3,7 @@ Contributors: jamesgpearce, andreatrasatti, edent, cborodescu
 Tags: mobile, mobile web, mobile internet, smartphone, iphone, android, windows 8, webkit, chrome, safari, mobile web app, html5, sencha touch, responsive ui
 Requires at least: 3.5
 Tested up to: 4.0
-Stable tag: 2.1.1
+Stable tag: 2.1.2
 License: GPLv2 or later
 
 The NEW WordPress Mobile Pack allows you to 'package' your existing content into a cross-platform mobile web application.
@@ -254,8 +254,8 @@ Two major issues were introduced in beta 1, now solved:
 
 == Upgrade Notice ==
 
-= 2.1.1 =
-* WP Mobile Pack allows you to 'package' your existing content into a cross-platform mobile web application. The latest version includes support for Related Posts and Editorial Assistant by Zemanta, 'Add to homescreen' for iOS, Android and FirefoxOS, SSL support and other features.
+= 2.1.2 =
+* WP Mobile Pack allows you to 'package' your existing content into a cross-platform mobile web application. The latest version includes support for rel="canonical" and rel="alternate" tags for better SEO and other bug fixes.
 
 
 == Screenshots ==
@@ -304,5 +304,5 @@ Our roadmap currently includes:
 
 We currently have two Github development repositories:
 
-* [https://github.com/appticles/wordpress-mobile-pack-backend](https://github.com/appticles/wordpress-mobile-pack-backend) - The plugin files, same as you will find for download on Wordpress.org.
+* [https://github.com/appticles/wordpress-mobile-pack-backend](https://github.com/appticles/wordpress-mobile-pack-backend) - The plugin files, same as you will find for download on Wordpress.org, plus unit tests.
 * [https://github.com/appticles/wordpress-mobile-pack-app](https://github.com/appticles/wordpress-mobile-pack-app) - The mobile web application's development files (Javascript & CSS).
