@@ -129,6 +129,12 @@ Google Ad Sense / Google Double Click for Publishers is supported on the Premium
 
 == Changelog ==
 
+= 2.1.2 =
+* Added [rel="canonical" and rel="alternate" elements](https://developers.google.com/webmasters/mobile-sites/mobile-seo/configurations/separate-urls?hl=en) for SEO
+* Fixed bug - category redirect for Premium themes
+* Fixed bug - cleaning up transient when disconnecting the API key
+* Fixed bug - navigating between categories with special chars (ex. French accents)
+
 = 2.1.1 =
 * Integrated with [Related Posts by Zemanta](https://wordpress.org/plugins/related-posts-by-zemanta/) and [Editorial Assistant by Zemanta](https://wordpress.org/plugins/zemanta/)
 * Wrote docs about [how to set up the main cache plugins for WPMP](http://support.appticles.com/hc/en-us/articles/201795202-Optimizing-Cache-Plugins-for-Wordpress-Mobile-Pack)
