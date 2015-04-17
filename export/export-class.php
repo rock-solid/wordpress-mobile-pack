@@ -155,39 +155,39 @@ class Export {
                                 // check if the post is not password protected
 								if ($post->post_password == '') {
 								    
-									// featured image details
+									// check if the post has a post thumbnail assigned to it and save it in an array
 									$image_details = array();
 									
-									// get featured image and add it to the category
-                                    if (!is_array($arrCategories[$current_key]["image"])) {
-                                        
-    									if (has_post_thumbnail($post->ID) ) { // check if the post has a Post Thumbnail assigned to it.
+									if (has_post_thumbnail($post->ID)){
     									  
-    										$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ),'large');
-    										
-    										if (is_array($image_data) && !empty($image_data)) {
-    											
-    											// set image details
-    											$image_details = array(
-                                                    "src" 		=> $image_data[0],
-                                                    "width" 	=> $image_data[1],
-                                                    "height" 	=> $image_data[2]
-                                                );
-    											
-    											$arrCategories[$current_key]["image"] = $image_details;
-    										}
-    									} 
+										$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ),'large');
+										
+										if (is_array($image_data) && !empty($image_data)) {
+											
+											// set image details
+											$image_details = array(
+												"src" 		=> $image_data[0],
+												"width" 	=> $image_data[1],
+												"height" 	=> $image_data[2]
+											);
+										}
+									}
+									
+									// if the category doesn't have a featured image yet, use the one from the current post
+                                    if (!is_array($arrCategories[$current_key]["image"]) && !empty($image_details)) {
+    									$arrCategories[$current_key]["image"] = $image_details;
                                     }
 									
-									// get content
+									// get & filter content
 									$content = apply_filters("the_content", $post->post_content);
 									$description = Export::truncateHtml($content, $descriptionLength);
 									$description = $this->purifier->purify($description);
 								
-									// add article details in the array
+									// if this is the first article from the category, create the 'articles' array
                                     if (!isset($arrCategories[$current_key]["articles"]))
                                         $arrCategories[$current_key]["articles"] = array();
                                         
+									// add article in the array
 									$arrCategories[$current_key]["articles"][] = array(
 										'id' 				=> $post->ID,
 										"title" 			=> $post->post_title,
@@ -205,7 +205,7 @@ class Export {
 							}
     					}
                         
-						// check if the category has at least one post
+						// check if the category has at least one post, otherwise delete it from the export array
 						if (!isset($arrCategories[$current_key]["articles"]) || empty($arrCategories[$current_key]["articles"]))
 							unset($arrCategories[$current_key]);
                     }
@@ -216,7 +216,6 @@ class Export {
                     
                     // read posts for the latest category
                     $posts_query = new WP_Query ( 
-
                         array(
                             'numberposts'  => $limit,
                             'cat' 		   => implode(', ', $active_categories_ids),
@@ -227,7 +226,7 @@ class Export {
                    );
                    
                    if ($posts_query->have_posts()) {
-    					                      
+    					
                         $arrCategories[0] = array(
                             'id' 		=> 0,
                             'order' 	=> false,
@@ -238,45 +237,44 @@ class Export {
                         
                         foreach ($posts_query->posts as $post) {
     						
+							// check if the post is not password protected
 							if ($post->post_password == '') {
 							
 								// get post category
 								$category = get_the_category($post->ID);
 								
-								// get content
+								// get & filter content
 								$content = apply_filters("the_content",$post->post_content);    						
-								$description = Export::truncateHtml($content,$descriptionLength);    						
+								$description = Export::truncateHtml($content, $descriptionLength);    						
 								$description = $this->purifier->purify($description);
 								
-								// featured image details
-                                if (!is_array($arrCategories[0]["image"])) {
-                                    
-    								$image_details = array();
+								// check if the post has a post thumbnail assigned to it and save it in an array
+								$image_details = array();
     								
-    								// get featured image and add it to the category
-    								if (has_post_thumbnail($post->ID)) { // check if the post has a Post Thumbnail assigned to it.
-    								  
-    									$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ),'large');
-    									
-    									if (is_array($image_data) && !empty($image_data)) {
-    										
-    										// set image details
-    										$image_details = array(
-                                                "src" 		=> $image_data[0],
-                                                "width" 	=> $image_data[1],
-                                                "height" 	=> $image_data[2]
-                                            );
-    										
-    										// add the image to the category
-    										 $arrCategories[0]["image"] = $image_details;
-    									}
-    								} 
+								if (has_post_thumbnail($post->ID)) {
+								  
+									$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'large');
+									
+									if (is_array($image_data) && !empty($image_data)) {
+										
+										// set image details
+										$image_details = array(
+											"src" 		=> $image_data[0],
+											"width" 	=> $image_data[1],
+											"height" 	=> $image_data[2]
+										);
+									}
+								} 
+								
+								// if the category doesn't have a featured image yet, use the one from the current post
+                                if (!is_array($arrCategories[0]["image"]) && !empty($image_details)) {
+    								$arrCategories[0]["image"] = $image_details;
 								}
                                 
 								// set article details
                                 if (!isset($arrCategories[0]["articles"]))
                                     $arrCategories[0]["articles"] = array();
-                                        
+                                    
 								$arrCategories[0]["articles"][] = array(
 									'id' 				=> $post->ID,
 									"title" 			=> $post->post_title,
@@ -289,7 +287,7 @@ class Export {
 									"content" 			=> '',
 									"category_id" 		=> $category[0]->term_id,
 									"category_name" 	=> $category[0]->name
-								 );
+								);
 							}
     					}
                     }
@@ -484,29 +482,28 @@ class Export {
 							$image_details = array();
                             
 							// get featured image
-							if ( has_post_thumbnail($post->ID)){ // check if the post has a Post Thumbnail assigned to it.
+							if (has_post_thumbnail($post->ID)){ // check if the post has a Post Thumbnail assigned to it.
 							  
 								$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ),'large');
 								
 								if (is_array($image_data) && !empty($image_data)) {
 									
 									$image_details = array(
-														   "src" 		=> $image_data[0],
-														   "width" 		=> $image_data[1],
-														   "height" 	=> $image_data[2]
-														 );
+										"src" 		=> $image_data[0],
+										"width" 		=> $image_data[1],
+										"height" 	=> $image_data[2]
+									);
 								}
 							} 
 							
 							// get post category
-	
-							if ($categoryId > 0)
+							if ($categoryId > 0) {
 								$category = get_category($categoryId);
-							else {
-								
+							} else {
 								$cat = get_the_category($post->ID);
 								$category = $cat[0];
 							}
+							
 							// get content
 							$content = apply_filters("the_content",$post->post_content);
 							$description = Export::truncateHtml($content,$descriptionLength);
