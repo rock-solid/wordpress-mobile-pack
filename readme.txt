@@ -2,7 +2,7 @@
 Contributors: jamesgpearce, andreatrasatti, edent, cborodescu
 Tags: mobile, mobile web, mobile internet, smartphone, iphone, android, windows 8, webkit, chrome, safari, mobile web app, html5, sencha touch, responsive ui
 Requires at least: 3.5
-Tested up to: 4.0
+Tested up to: 4.2
 Stable tag: 2.1.2
 License: GPLv2 or later
 
@@ -97,6 +97,9 @@ We have wrote a complete guide about [connecting your plugin with the hosted pla
 
 == Frequently Asked Questions ==
 
+= When I visit my website from a smartphone, I don't see any posts or pages =
+Please make sure that the endpoint exporting the content can be accessed and doesn't show errors or notices. From a browser, go to the following address: http://yoursite.com/wp-content/plugins/wordpress-mobile-pack/export/content.php?content=exportcategories&limit=5&callback=Ext.data.JsonP.callback. You should see a text starting with "Ext.data.JsonP.callback". If the page displays a "403 forbidden" message or has any errors / notices, it means that the content will not be available to the mobile web app.
+
 = I have enabled Wordpress Mobile Pack, but I still see the desktop theme on my smartphone =
 If you are using a cache plugin, please check the [docs](http://support.appticles.com/hc/en-us/articles/201795202-Optimizing-Cache-Plugins-for-Wordpress-Mobile-Pack). Some additional settings on the cache plugin might be required to correctly enable the mobile detection from Wordpress Mobile Pack.
 
@@ -134,6 +137,7 @@ Google Ad Sense / Google Double Click for Publishers is supported on the Premium
 * Fixed bug - category redirect for Premium themes
 * Fixed bug - cleaning up transient when disconnecting the API key
 * Fixed bug - navigating between categories with special chars (ex. French accents)
+* Patch 21/04/2015 - Fixed bug, featured images were not displaying properly for the first 10 articles from the carousel
 
 = 2.1.1 =
 * Integrated with [Related Posts by Zemanta](https://wordpress.org/plugins/related-posts-by-zemanta/) and [Editorial Assistant by Zemanta](https://wordpress.org/plugins/zemanta/)
