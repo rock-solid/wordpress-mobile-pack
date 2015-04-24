@@ -5,6 +5,7 @@ if (class_exists('WPMPTestsUtils')) {
 	
 	class MobileDetectFreeTest extends WP_UnitTestCase {
 		
+		
 		public static $smartphoneUserAgents = array(
 		
 			// iPhone 5 (Safari)
@@ -78,49 +79,8 @@ if (class_exists('WPMPTestsUtils')) {
 		);
 		
 		
-		protected $old_current_user;
-		
-		
-		function setUp() {
-			
-			parent::setUp();
-			
-			// create admin user that can modify the plugin settings
-			$this->old_current_user = get_current_user_id();
-			
-			$user_id = $this->factory->user->create( array( 'role' => 'administrator' ) );
-			wp_set_current_user( $user_id );
-			
-			// enable connection with the API key
-			$arrData = array(
-				'premium_api_key' => 'apikeytest',
-				'premium_active'  => 1
-			);
-				
-			WMobilePack::wmp_update_settings($arrData);
-		}
-		
-		
-		function tearDown(){
-			
-			// disable connection with the API key
-			$arrData = array(
-				'premium_api_key' => '',
-				'premium_active'  => 0
-			);
-			
-			// save options
-			WMobilePack::wmp_update_settings($arrData);
-			
-			wp_set_current_user( $this->old_current_user );
-			
-			parent::tearDown();
-		}
-		
-		
 		function test_smartphones(){
 			
-			// return;
 			foreach (self::$smartphoneUserAgents as $user_agent) {
 				
 				$_SERVER['HTTP_USER_AGENT'] = $user_agent;
@@ -128,9 +88,12 @@ if (class_exists('WPMPTestsUtils')) {
 				require_once(WMP_PLUGIN_PATH.'core/mobile-detect.php');
 				$WMobileDetect = new WPMobileDetect;
 				
-				$load_app = $WMobileDetect->wmp_detect_device();
+				$is_tablet = $WMobileDetect->wmp_is_tablet();
 				
-				$this->assertEquals(true, $load_app);
+				if ($is_tablet)
+					echo $user_agent;
+					
+				$this->assertEquals(false, $is_tablet);
 			}
 		}
 		
@@ -144,19 +107,15 @@ if (class_exists('WPMPTestsUtils')) {
 				require_once(WMP_PLUGIN_PATH.'core/mobile-detect.php');
 				$WMobileDetect = new WPMobileDetect;
 				
-				$load_app = $WMobileDetect->wmp_detect_device();
+				$is_tablet = $WMobileDetect->wmp_is_tablet();
 				
-				if ($load_app == false)
-					echo $user_agent;
-					
-				$this->assertEquals(true, $load_app);
+				$this->assertEquals(true, $is_tablet);
 			}
 		}
 		
 		
 		function test_desktops(){
 			
-			// return;
 			foreach (self::$desktopUserAgents as $user_agent) {
 				
 				$_SERVER['HTTP_USER_AGENT'] = $user_agent;
@@ -164,9 +123,9 @@ if (class_exists('WPMPTestsUtils')) {
 				require_once(WMP_PLUGIN_PATH.'core/mobile-detect.php');
 				$WMobileDetect = new WPMobileDetect;
 				
-				$load_app = $WMobileDetect->wmp_detect_device();
+				$is_tablet = $WMobileDetect->wmp_is_tablet();
 				
-				$this->assertEquals(false, $load_app);
+				$this->assertEquals(false, $is_tablet);
 			}
 		}
 		
@@ -180,9 +139,9 @@ if (class_exists('WPMPTestsUtils')) {
 				require_once(WMP_PLUGIN_PATH.'core/mobile-detect.php');
 				$WMobileDetect = new WPMobileDetect;
 				
-				$load_app = $WMobileDetect->wmp_detect_device();
+				$is_tablet = $WMobileDetect->wmp_is_tablet();
 				
-				$this->assertEquals(false, $load_app);
+				$this->assertEquals(false, $is_tablet);
 			}
 		}
 	}

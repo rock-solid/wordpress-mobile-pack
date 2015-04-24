@@ -68,6 +68,16 @@ if (class_exists('WPMPTestsUtils')) {
 		);
 		
 		
+		public static $bbUserAgents = array(
+			
+			// BB Q10
+			'Mozilla/5.0 (BB10; Touch) AppleWebKit/537.10+ (KHTML, like Gecko) Version/10.1.0.1429 Mobile Safari/537.10+',
+			
+			// BB Z10
+			'Mozilla/5.0 (BB10; Touch) AppleWebKit/537.35+ (KHTML, like Gecko) Version/10.3.1.2243 Mobile Safari/537.35+'
+		);
+		
+		
 		function test_smartphones(){
 			
 			foreach (self::$smartphoneUserAgents as $user_agent) {
@@ -103,6 +113,22 @@ if (class_exists('WPMPTestsUtils')) {
 		function test_desktops(){
 			
 			foreach (self::$desktopUserAgents as $user_agent) {
+				
+				$_SERVER['HTTP_USER_AGENT'] = $user_agent;
+				
+				require_once(WMP_PLUGIN_PATH.'core/mobile-detect.php');
+				$WMobileDetect = new WPMobileDetect;
+				
+				$load_app = $WMobileDetect->wmp_detect_device();
+				
+				$this->assertEquals(false, $load_app);
+			}
+		}
+		
+		
+		function test_otherdevices(){
+			
+			foreach (self::$bbUserAgents as $user_agent) {
 				
 				$_SERVER['HTTP_USER_AGENT'] = $user_agent;
 				
