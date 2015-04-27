@@ -117,7 +117,9 @@ if (class_exists('WPMPTestsUtils')) {
 			parent::tearDown();
 		}
 		
-		
+		/**
+		* @runInSeparateProcess
+		*/
 		function test_smartphones(){
 			
 			// return;
@@ -134,7 +136,9 @@ if (class_exists('WPMPTestsUtils')) {
 			}
 		}
 		
-		
+		/**
+		* @runInSeparateProcess
+		*/
 		function test_tablets(){
 			
 			foreach (self::$tabletsUserAgents as $user_agent) {
@@ -153,7 +157,9 @@ if (class_exists('WPMPTestsUtils')) {
 			}
 		}
 		
-		
+		/**
+		* @runInSeparateProcess
+		*/
 		function test_desktops(){
 			
 			// return;
@@ -170,7 +176,9 @@ if (class_exists('WPMPTestsUtils')) {
 			}
 		}
 		
-		
+		/**
+		* @runInSeparateProcess
+		*/
 		function test_otherdevices(){
 			
 			foreach (self::$bbUserAgents as $user_agent) {

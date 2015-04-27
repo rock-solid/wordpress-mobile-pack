@@ -78,6 +78,9 @@ if (class_exists('WPMPTestsUtils')) {
 		);
 		
 		
+		/**
+		* @runInSeparateProcess
+		*/
 		function test_smartphones(){
 			
 			foreach (self::$smartphoneUserAgents as $user_agent) {
@@ -94,6 +97,9 @@ if (class_exists('WPMPTestsUtils')) {
 		}
 		
 		
+		/**
+		* @runInSeparateProcess
+		*/
 		function test_tablets(){
 			
 			foreach (self::$tabletsUserAgents as $user_agent) {
@@ -109,7 +115,9 @@ if (class_exists('WPMPTestsUtils')) {
 			}
 		}
 		
-		
+		/**
+		* @runInSeparateProcess
+		*/
 		function test_desktops(){
 			
 			foreach (self::$desktopUserAgents as $user_agent) {

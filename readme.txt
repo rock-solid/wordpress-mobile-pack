@@ -132,6 +132,10 @@ Google Ad Sense / Google Double Click for Publishers is supported on the Premium
 
 == Changelog ==
 
+= 2.1.3 =
+* Changed mobile detection library
+* Fixed detection issue for BlackBerry devices (BB will display the desktop theme)
+
 = 2.1.2 =
 * Added [rel="canonical" and rel="alternate" elements](https://developers.google.com/webmasters/mobile-sites/mobile-seo/configurations/separate-urls?hl=en) for SEO
 * Fixed bug - category redirect for Premium themes

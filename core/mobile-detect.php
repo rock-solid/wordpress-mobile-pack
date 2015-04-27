@@ -35,7 +35,6 @@ if ( ! class_exists( 'WPMobileDetect' ) ) {
 				$is_premium = 1;
 				
 			require_once (WMP_PLUGIN_PATH.'libs/Mobile-Detect-2.8.12/Mobile_Detect.php');
-			
 			$detect = new Mobile_Detect();
 			
     		if ($detect->isMobile() || $detect->isTablet())
@@ -63,12 +62,15 @@ if ( ! class_exists( 'WPMobileDetect' ) ) {
 			// Check user agent only for not detected devices (should exclude Windows phones)
 			if ($is_wireless_device == 0){
 					
-				// Check if user agent is IE v>10 ex: Trident/6.0 or Trident/7.0 (for IE11) with Touch
-				preg_match("@Trident/([0-9]{1,}[\.0-9]{0,}); Touch@", $_SERVER['HTTP_USER_AGENT'], $matches);
-				
-				// if IE version is equal or more than 10
-				if(isset($matches[1]) && $matches[1] >= 6)
-					$is_IE_tablet = true;
+				if (isset($_SERVER['HTTP_USER_AGENT'])){
+					
+					// Check if user agent is IE v>10 ex: Trident/6.0 or Trident/7.0 (for IE11) with Touch
+					preg_match("@Trident/([0-9]{1,}[\.0-9]{0,}); Touch@", $_SERVER['HTTP_USER_AGENT'], $matches);
+					
+					// if IE version is equal or more than 10
+					if(isset($matches[1]) && $matches[1] >= 6)
+						$is_IE_tablet = true;
+				}
 			}
 				
 			if ($is_wireless_device && $is_supported_device && $is_supported_browser) {
@@ -123,6 +125,5 @@ if ( ! class_exists( 'WPMobileDetect' ) ) {
 			
 			return ($is_tablet || $is_IE_tablet);
 		}
-		
     }
 }

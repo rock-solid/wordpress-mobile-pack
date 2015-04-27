@@ -78,7 +78,9 @@ if (class_exists('WPMPTestsUtils')) {
 			'Mozilla/5.0 (BB10; Touch) AppleWebKit/537.35+ (KHTML, like Gecko) Version/10.3.1.2243 Mobile Safari/537.35+'
 		);
 		
-		
+		/**
+		* @runInSeparateProcess
+		*/
 		function test_smartphones(){
 			
 			foreach (self::$smartphoneUserAgents as $user_agent) {
@@ -97,7 +99,9 @@ if (class_exists('WPMPTestsUtils')) {
 			}
 		}
 		
-		
+		/**
+		* @runInSeparateProcess
+		*/
 		function test_tablets(){
 			
 			foreach (self::$tabletsUserAgents as $user_agent) {
@@ -113,7 +117,9 @@ if (class_exists('WPMPTestsUtils')) {
 			}
 		}
 		
-		
+		/**
+		* @runInSeparateProcess
+		*/
 		function test_desktops(){
 			
 			foreach (self::$desktopUserAgents as $user_agent) {
@@ -129,7 +135,9 @@ if (class_exists('WPMPTestsUtils')) {
 			}
 		}
 		
-		
+		/**
+		* @runInSeparateProcess
+		*/
 		function test_otherdevices(){
 			
 			foreach (self::$bbUserAgents as $user_agent) {
