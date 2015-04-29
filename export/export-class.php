@@ -3,7 +3,6 @@
 require_once("../../../../wp-config.php");
 require_once '../libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php';
 require_once '../libs/htmlpurifier-html5/htmlpurifier_html5.php';
-require_once('../libs/safestring/safeString.php');
 		
 /* -------------------------------------------------------------------------*/
 /* Export class with different export 										*/
@@ -132,7 +131,7 @@ class Export {
 							'id' 		=> $category->term_id,
 							'order' 	=> false,
 							'name' 		=> $category->name,
-							'name_slug' => safeString::clearString($category->name),
+							'name_slug' => $category->slug,
 							'link' 		=> get_category_link($category->term_id),
 							'image' 	=> ""
 					    );                             

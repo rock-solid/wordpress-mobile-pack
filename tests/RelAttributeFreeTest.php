@@ -60,7 +60,7 @@ if (class_exists('WPMPTestsUtils')) {
 				$request_url = WPMPTestsUtils::get_furl(home_url().'?cat='.$category_id);
 				$response = WPMPTestsUtils::make_request($request_url, false);
 				
-				$rel_tag = '<link rel="alternate" media="only screen and (max-width: 640px)" href="'.home_url().'/#category/Child-Category-02/'.$category_id.'" />';
+				$rel_tag = '<link rel="alternate" media="only screen and (max-width: 640px)" href="'.home_url().'/#category/child-category-02/'.$category_id.'" />';
 				
 				$this->assertContains($rel_tag, $response['content']);
 			}
@@ -80,7 +80,7 @@ if (class_exists('WPMPTestsUtils')) {
 				$request_url = WPMPTestsUtils::get_furl(home_url().'?cat='.$category_id);
 				$response = WPMPTestsUtils::make_request($request_url, false);
 				
-				$rel_tag = '<link rel="alternate" media="only screen and (max-width: 640px)" href="'.home_url().'/#category/Alignmentuaaeeeuuuce/'.$category_id.'" />';
+				$rel_tag = '<link rel="alternate" media="only screen and (max-width: 640px)" href="'.home_url().'/#category/alignment/'.$category_id.'" />';
 				
 				$this->assertContains($rel_tag, $response['content']);
 			}

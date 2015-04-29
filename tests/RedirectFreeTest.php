@@ -72,7 +72,7 @@ if (class_exists('WPMPTestsUtils')) {
 				$request_url = WPMPTestsUtils::get_furl(home_url().'?cat='.$category_id);
 				$response = WPMPTestsUtils::make_request($request_url);
 					
-				$this->assertEquals($response['redirect'], home_url()."/#category/Child-Category-02/".$category_id);
+				$this->assertEquals($response['redirect'], home_url()."/#category/child-category-02/".$category_id);
 			}
 		}
 		
@@ -89,7 +89,7 @@ if (class_exists('WPMPTestsUtils')) {
 				$request_url = WPMPTestsUtils::get_furl(home_url().'?cat='.$category_id);
 				$response = WPMPTestsUtils::make_request($request_url);
 					
-				$this->assertEquals($response['redirect'], home_url()."/#category/Alignmentuaaeeeuuuce/".$category_id);
+				$this->assertEquals($response['redirect'], home_url()."/#category/alignment/".$category_id);
 			}
 		}
 	}
