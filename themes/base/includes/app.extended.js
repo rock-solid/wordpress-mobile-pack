@@ -1,4 +1,4 @@
-function _0b78881efe823cc3ca6a8622daadcf750861816f(){};//@tag foundation,core
+function _aa8272cead0e18d3410d49016c667f254e0f0e6d(){};//@tag foundation,core
 //@define Ext
 /**
  * @class Ext
@@ -56109,6 +56109,14 @@ Ext.define('Ext.util.PaintMonitor', {
     }
 });
 
+// Override for Chrome 43 bug (swipe not working)
+Ext.define('Override.util.PaintMonitor', {
+    override: 'Ext.util.PaintMonitor',
+    constructor: function(config) {
+        return new Ext.util.paintmonitor.CssAnimation(config);
+    }
+});
+
 /**
  * @private
  */
@@ -56500,6 +56508,21 @@ Ext.define('Ext.util.SizeMonitor', {
                 return new namespace.Scroll(config);
             }
         } else if (Ext.browser.is.IE11) {
+            return new namespace.Scroll(config);
+        } else {
+            return new namespace.Default(config);
+        }
+    }
+});
+
+// Override for Chrome 43 bug (swipe not working)
+Ext.define('Override.util.SizeMonitor', {
+    override: 'Ext.util.SizeMonitor',
+    constructor: function(config) {
+        var namespace = Ext.util.sizemonitor;
+        if (Ext.browser.is.Firefox) {
+            return new namespace.OverflowChange(config);
+        } else if (Ext.browser.is.WebKit || Ext.browser.is.IE11) {
             return new namespace.Scroll(config);
         } else {
             return new namespace.Default(config);
@@ -67779,6 +67802,11 @@ Ext.define('WP.profile.Phone', {
 */
 // RegExp for any string without ";" character
 // console\.log\([^;]+\);
+Ext.Loader.setConfig({
+    paths: {
+        'Override': 'overrides'
+    }
+});
 Ext.application({
     name: 'WP',
     profiles: [

@@ -178,7 +178,7 @@
     <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/subtitles-f<?php echo $font_subtitles;?>.css?date=20141120" type="text/css">
     <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/theme-<?php echo $color_scheme;?>.css?date=20141120" type="text/css">
     
-    <script type="text/javascript" src="<?php echo $theme_path;?>includes/app.js?date=20150325"></script> 
+    <script type="text/javascript" src="<?php echo $theme_path;?>includes/app.js?date=20150530"></script> 
     
     <?php
         // check if google analytics id was set
