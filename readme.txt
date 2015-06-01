@@ -138,6 +138,8 @@ Google Ad Sense / Google Double Click for Publishers is supported on the Premium
 * Fixed URL rewriting for non-latin languages for the categories menu, use category slug instead of name
 * Added support for more click-to-call formats (Skype, SMS, WhatsApp)
 * Added patch for swipe events on Chrome 43
+* Added Google Webmaster Tools ID & deactivated status for Premium apps
+* Fixed inactive categories and pages warning for sites that use multilanguage plugins
 
 = 2.1.2 =
 * Added [rel="canonical" and rel="alternate" elements](https://developers.google.com/webmasters/mobile-sites/mobile-seo/configurations/separate-urls?hl=en) for SEO
