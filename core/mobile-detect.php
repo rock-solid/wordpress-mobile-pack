@@ -35,7 +35,7 @@ if ( ! class_exists( 'WPMobileDetect' ) ) {
 				$is_premium = 1;
 				
 			require_once (WMP_PLUGIN_PATH.'libs/Mobile-Detect-2.8.12/Mobile_Detect.php');
-			$detect = new Mobile_Detect();
+			$detect = new WPMP_Mobile_Detect();
 			
     		if ($detect->isMobile() || $detect->isTablet())
 				$is_wireless_device = 1;
@@ -104,7 +104,7 @@ if ( ! class_exists( 'WPMobileDetect' ) ) {
 		function wmp_is_tablet() {
 			
 			require_once (WMP_PLUGIN_PATH.'libs/Mobile-Detect-2.8.12/Mobile_Detect.php');
-			$detect = new Mobile_Detect();
+			$detect = new WPMP_Mobile_Detect();
 			
 			$is_tablet = false;
 			if ($detect->isTablet())
