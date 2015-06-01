@@ -149,13 +149,15 @@ if ($is_tablet == 1 && isset($arrConfig['tablet']['cover']) && $arrConfig['table
 			
             preview: 0,
             language: '<?php echo isset($arrConfig['language']) && $arrConfig['language'] != '' ? $arrConfig['language'] : 'en';?>',
-            
-            imageInterval : {
-                minWidth: 120,
-                minHeight: 120,
-                maxWidth: 750,
-                maxHeight: 600
-            },
+			
+			// enable the social modules
+			<?php if (isset($arrConfig['api_content_external'])):?>
+				hasFacebook: false,
+				hasTwitter: false,
+			<?php else:?>
+				hasFacebook: true,
+				hasTwitter: true,
+			<?php endif;?>
             
             <?php if ($arrConfig['has_phone_ads'] == 1 || $arrConfig['has_tablet_ads'] == 1):?>
                 googleAds:{
@@ -328,7 +330,41 @@ if ($is_tablet == 1 && isset($arrConfig['tablet']['cover']) && $arrConfig['table
       
       </script>
     <?php endif;?>
-
+	
+	<?php if (isset($arrConfig['google_webmasters_code']) && $arrConfig['google_webmasters_code'] != ""):?>
+		<meta name="google-site-verification" content="<?php echo $arrConfig['google_webmasters_code'];?>" />
+	<?php endif;?>
+	
+	<?php if (isset($arrConfig['load_chrome43_patch']) && $arrConfig['load_chrome43_patch'] == 1):?>
+	
+		<script type="text/javascript" pagespeed_no_defer="">
+			// Override for Chrome 43 bug (swipe not working)
+			Ext.define('Override.util.PaintMonitor', {
+				override : 'Ext.util.PaintMonitor',
+			
+				constructor : function(config) {
+					return new Ext.util.paintmonitor.CssAnimation(config);
+				}
+			});
+			
+			Ext.define('Override.util.SizeMonitor', {
+				override : 'Ext.util.SizeMonitor',
+			
+				constructor : function(config) {
+					var namespace = Ext.util.sizemonitor;
+			
+					if (Ext.browser.is.Firefox) {
+						return new namespace.OverflowChange(config);
+					} else if (Ext.browser.is.WebKit || Ext.browser.is.IE11) {
+						return new namespace.Scroll(config);
+					} else {
+						return new namespace.Default(config);
+					}
+				}
+			});
+		</script>
+	<?php endif;?>
+	
 </head>
 <body>
     <div id="appLoadingIndicator">
