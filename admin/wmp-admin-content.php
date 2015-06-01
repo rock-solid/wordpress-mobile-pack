@@ -7,14 +7,34 @@
         });
     }
 </script>
-<?php 
-    $inactive_categories = unserialize(WMobilePack::wmp_get_setting('inactive_categories'));
+<?php
+	$categories = get_categories();
 	$order_categories = unserialize(WMobilePack::wmp_get_setting('ordered_categories'));
-    $categories = get_categories();
-    
-	$inactive_pages = unserialize(WMobilePack::wmp_get_setting('inactive_pages'));
-	$order_pages = unserialize(WMobilePack::wmp_get_setting('ordered_pages'));
+	
+	// Depending on the language settings, not all categories might be visible at the same time
+    $setting_inactive_categories = unserialize(WMobilePack::wmp_get_setting('inactive_categories'));
+	$inactive_categories = array();
+	
+	// Compose inactive pages array with only the visible pages
+	foreach ($categories as $category){
+		if (in_array($category->cat_ID, $setting_inactive_categories))
+			$inactive_categories[] = $category->cat_ID;
+	}
+	
+	// ------------------------------------ //
+	
 	$pages = get_pages();
+	$order_pages = unserialize(WMobilePack::wmp_get_setting('ordered_pages'));
+	
+	// Depending on the language settings, not all pages might be visible at the same time
+	$setting_inactive_pages = unserialize(WMobilePack::wmp_get_setting('inactive_pages'));
+	$inactive_pages = array();
+	
+	// Compose inactive pages array with only the visible pages
+	foreach($pages as $key => $page) {
+		if (in_array($page->ID, $setting_inactive_pages))
+			$inactive_pages[] = $page->ID;
+	}
 	
 ?>
 <div id="wmpack-admin">

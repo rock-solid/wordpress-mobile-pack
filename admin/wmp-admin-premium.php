@@ -1,3 +1,12 @@
+<?php
+	$json_config_premium = WMobilePack::wmp_set_premium_config(); 
+    
+    $arrConfig = null;
+	if ($json_config_premium !== false) {
+		$arrConfig = json_decode($json_config_premium);
+	}
+	
+?>
 <script type="text/javascript">
     if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
@@ -41,8 +50,33 @@
                         <?php endif;?>
                          
                     <?php endif;?>
-                <?php endif;?>   
-                
+                <?php endif;?>
+				
+				<?php
+					if ($arrConfig != null):
+						if ((isset($arrConfig->status) && $arrConfig->status == 'hidden') ||
+							(isset($arrConfig->deactivated) && $arrConfig->deactivated == 1)):
+				?>
+							<div class="spacer-20"></div>
+							
+							<div class="message-container warning">
+								<div class="wrapper">
+									<div class="title">
+										<h2 class="underlined">Your mobile web app is not visible to your readers!</h2>
+									</div>
+									<span>
+										<?php if (isset($arrConfig->deactivated) && $arrConfig->deactivated == 1):?>
+											Your mobile web application has been deactivated because it wasn't accessed by readers for 30 consecutive days. Please contact support if you want to resume using this application immediately.
+										<?php else: ?>
+											Your mobile web application's status is set to 'hidden'. You can edit the application's settings from the Appticles <a href="https://publish.appticles.com" target="_blank">dashboard</a>.
+										<?php endif;?>
+									</span> 
+								</div>
+							</div>
+				<?php
+						endif;
+					endif;
+				?>
                 <div class="spacer-20"></div>
                 <form name="wmp_disconnect_form" id="wmp_disconnect_form" class="left" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_premium_disconnect" method="post">
                     <input type="hidden" name="wmp_disconnect_apikey" id="wmp_disconnect_apikey" placeholder="api key*" class="small indent" value="<?php echo WMobilePack::wmp_get_setting('premium_api_key');?>" />

@@ -533,7 +533,8 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 						
 						$arrConfig = json_decode($json_config_premium);
                         
-						if (isset($arrConfig->status) && $arrConfig->status == 'hidden') {
+						if ((isset($arrConfig->status) && $arrConfig->status == 'hidden') ||
+							(isset($arrConfig->deactivated) && $arrConfig->deactivated == 1)) {
 							
 							$load_app = false; // the app will not be loaded since the status is hidden
 							$visible_app = false; // setting it to false will skip the detection
@@ -709,6 +710,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          *  
          *  // OPTIONAL fields
          *  'domain_name' : 'myapp.domain.com',
+         *  'deactivated' : 1,
          *  'api_content_external': 'http://yourcustomapi.com',
          *  
          *  'color_scheme'      : 1,          // will be removed in future versions
@@ -810,6 +812,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                                     
                                     // validate optional fields
                                     (!isset($arrAppSettings['domain_name']) || $arrAppSettings['domain_name'] == '' || filter_var('http://'.$arrAppSettings['domain_name'], FILTER_VALIDATE_URL)) &&
+									(!isset($arrAppSettings['deactivated']) || $arrAppSettings['deactivated'] == 0 || $arrAppSettings['deactivated'] == 1) && 
 									(!isset($arrAppSettings['api_content_external']) || $arrAppSettings['api_content_external'] == '' || filter_var('http://'.$arrAppSettings['api_content_external'], FILTER_VALIDATE_URL)) && 
                                     (!isset($arrAppSettings['color_scheme']) || $arrAppSettings['color_scheme'] == '' || is_numeric($arrAppSettings['color_scheme'])) &&
                                     (!isset($arrAppSettings['font_headlines']) || $arrAppSettings['font_headlines'] == '' || is_numeric($arrAppSettings['font_headlines'])) &&
