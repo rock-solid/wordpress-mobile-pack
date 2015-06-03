@@ -3,7 +3,7 @@ Contributors: jamesgpearce, andreatrasatti, edent, cborodescu
 Tags: mobile, mobile web, mobile internet, smartphone, iphone, android, windows 8, webkit, chrome, safari, mobile web app, html5, sencha touch, responsive ui
 Requires at least: 3.5
 Tested up to: 4.2
-Stable tag: 2.1.2
+Stable tag: 2.1.3
 License: GPLv2 or later
 
 The NEW WordPress Mobile Pack allows you to 'package' your existing content into a cross-platform mobile web application.
@@ -103,6 +103,9 @@ Please make sure that the endpoint exporting the content can be accessed and doe
 = I have enabled Wordpress Mobile Pack, but I still see the desktop theme on my smartphone =
 If you are using a cache plugin, please check the [docs](http://support.appticles.com/hc/en-us/articles/201795202-Optimizing-Cache-Plugins-for-Wordpress-Mobile-Pack). Some additional settings on the cache plugin might be required to correctly enable the mobile detection from Wordpress Mobile Pack.
 
+= What can I use to replace contact forms? = 
+Most of the sites we come across use contact forms to allow users to get in touch or/and send messages. However, when targeting mobile users, forcing them to fill out a dull form (usually pretty long) is the worst UX you can offer to your mobile audience. Instead, here are [a couple of approaches](http://support.appticles.com/hc/en-us/articles/203264071-How-to-replace-contact-forms-with-click-to-call-links-for-your-mobile-application) you could try out in your mobile web application: 
+
 = What devices and operating systems are supported by my mobile web application? =
 WordPress Mobile Pack 2.0 is supported on: iPhones, Android smartphones, Windows Phone 8 and Firefox OS. Compatible browsers: Safari, Google Chrome, Android - Native Browser, Internet Explorer 10 and Firefox.
 
@@ -133,13 +136,14 @@ Google Ad Sense / Google Double Click for Publishers is supported on the Premium
 == Changelog ==
 
 = 2.1.3 =
-* Changed mobile detection library
+* Changed mobile detection library to [Mobile Detect](https://github.com/serbanghita/Mobile-Detect) 
 * Fixed detection issue for BlackBerry devices (BB will display the desktop theme)
 * Fixed URL rewriting for non-latin languages for the categories menu, use category slug instead of name
 * Added support for more click-to-call formats (Skype, SMS, WhatsApp)
 * Added patch for swipe events on Chrome 43
 * Added Google Webmaster Tools ID & deactivated status for Premium apps
 * Fixed inactive categories and pages warning for sites that use multilanguage plugins
+* Patch 03/06/2015 - Security bug fix for exporting a single post with a 'Private' status
 
 = 2.1.2 =
 * Added [rel="canonical" and rel="alternate" elements](https://developers.google.com/webmasters/mobile-sites/mobile-seo/configurations/separate-urls?hl=en) for SEO
@@ -176,6 +180,7 @@ Google Ad Sense / Google Double Click for Publishers is supported on the Premium
 * Fixed bug - Filter content to remove default image links added by Wordpress. The links were opening an image in a new window and messing up the scrolling of the content.
 * Fixed bug - Using 'home_url' instead of 'site_url' for redirecting to the home page.
 * Fixed bug - Switching from portrait to landscape on the native Android browser was not working properly on some smartphones (HTC One).
+* Security bug fix for exporting password-protected posts, CVE-2014-5337
 
 = 2.0.1 = 
 * Hide comments button if the comments are disabled for an article

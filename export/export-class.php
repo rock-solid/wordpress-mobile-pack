@@ -374,7 +374,7 @@ class Export {
 
 	/**
     * 
-    *  - exportArticles method used for the export of a number of articels for each category
+    *  - exportArticles method used for the export of a number of articles for each category
 	*  - this metod returns a JSON with the specific content
 	*  - ex : 
 	*	{
@@ -428,7 +428,7 @@ class Export {
 			$args = array(
     			  'date_query' => array('before' => $lastTimestamp),
     			  'numberposts' => $limit,
-    			  "posts_per_page" => $limit,
+    			  'posts_per_page' => $limit,
     			  'post_status' => 'publish',
 				  'post_password' => ''
             );
@@ -584,9 +584,9 @@ class Export {
 			$arrArticle = array();
 			
 			// get post by id
-		    $post = get_post( $articleId);
+		    $post = get_post($articleId);
 			
-			if ($post != null && $post->post_type == 'post' && $post->post_password == '') {
+			if ($post != null && $post->post_type == 'post' && $post->post_password == '' && $post->post_status == 'publish') {
 				
                 // get post categories
 				$categories = get_the_category($post->ID);
