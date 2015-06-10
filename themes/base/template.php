@@ -49,7 +49,6 @@
 	// check if cover exists
     $cover_path = WMobilePack::wmp_get_setting('cover');
    
-	
 	$useCover = false;
 	
     if ($cover_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$cover_path))
@@ -64,6 +63,27 @@
 		$cover_path = $theme_path."includes/resources/images/pattern-".rand(1, 6).".jpg";
 	}
 		
+	// load static texts from a json file
+	$language_file = WMP_PLUGIN_PATH."themes/".WMobilePack::wmp_app_theme().'/locales/'.get_locale().'.json';
+	
+	if (!file_exists($language_file)) {
+		$language_file = WMP_PLUGIN_PATH."themes/".WMobilePack::wmp_app_theme().'/locales/en_EN.json';
+	}
+	
+	$appTextsJson = null;
+	
+	if (file_exists($language_file)) {
+		
+		$appTexts = file_get_contents($language_file);
+		$appTexts = mb_convert_encoding($appTexts, 'HTML-ENTITIES', "UTF-8");
+		
+		$appTextsJson = json_decode($appTexts, true);
+	}
+	
+	if (!$appTextsJson || empty($appTextsJson) || !array_key_exists('appTexts', $appTextsJson)) {
+		echo "ERROR, unable to load language file. Please check the 'locales' folder.";
+	}
+	
 ?>
 <!DOCTYPE HTML>
 <html manifest="" lang="en-US">
@@ -159,8 +179,9 @@
 			logo: "<?php echo $logo_path;?>",
 			icon: "<?php echo $icon_path;?>",
 			websiteUrl: '<?php echo home_url();?>?wmp_theme_mode=desktop',
-			commentsToken: "<?php echo WMobilePack::wmp_set_token();?>"
-		};
+			commentsToken: "<?php echo WMobilePack::wmp_set_token();?>",
+			appTexts: <?php echo json_encode($appTextsJson['appTexts']);?>,
+		}
 	</script>
 
     <!-- core -->

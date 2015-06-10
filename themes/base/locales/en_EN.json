@@ -1,0 +1,39 @@
+{
+    "appTexts": {
+        "links": {
+            "visit_website": "Switch to website",
+            "credits": "Credits",
+            "go_to": "Go to",
+            "categories": "Categories"
+        },
+        "texts": {
+            "no_pages": "There are no pages!",
+            "no_categories": "There are no categories!",
+            "no_comments": "There are no comments for this article.<br/>Be the first one to comment about this!",
+            "no_comments_short": "There are no comments for this article.",
+            "leave_comment": "Leave a comment",
+            "comments": "Comments",
+            "by_author": "by",
+            "loading": "Loading",
+            "related_articles": "Related articles",
+            "related_articles_web": "Related articles from the web"
+        },
+        "pull_refresh":{
+            "pull_comments": "Pull down for more new comments!",
+            "last_updated": "Last Updated",
+            "release": "Release to refresh"
+        },
+        "forms": {
+            "send": "Send",
+            "your_name": "Your name",
+            "your_name_error": "Please fill your name!",
+            "your_email": "Your e-mail address",
+            "your_email_error": "Please fill your e-mail address!",
+            "your_email_error2": "Please enter a valid e-mail address!",
+            "your_comment": "Your comment",
+            "your_comment_error": "Please type a comment!",
+            "submit_error": "There was an error. Please try again later.",
+            "awaiting_moderation": "Your comment is waiting moderation!"
+        }
+    }
+}

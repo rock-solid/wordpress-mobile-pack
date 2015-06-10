@@ -1,4 +1,4 @@
-function _aa8272cead0e18d3410d49016c667f254e0f0e6d(){};//@tag foundation,core
+function _86f9f3961a0a23c28966141a18cbf8a4f7fd5459(){};//@tag foundation,core
 //@define Ext
 /**
  * @class Ext
@@ -554,22 +554,22 @@ function _aa8272cead0e18d3410d49016c667f254e0f0e6d(){};//@tag foundation,core
  * method to perform comparison. See also: {@link Ext.Version#compare compare}. Example:
  *
  *     var version = new Ext.Version('1.0.2beta');
- *     console.log("Version is " + version); // Version is 1.0.2beta
+ *      // Version is 1.0.2beta
  *
- *     console.log(version.getMajor()); // 1
- *     console.log(version.getMinor()); // 0
- *     console.log(version.getPatch()); // 2
- *     console.log(version.getBuild()); // 0
- *     console.log(version.getRelease()); // beta
+ *      // 1
+ *      // 0
+ *      // 2
+ *      // 0
+ *      // beta
  *
- *     console.log(version.isGreaterThan('1.0.1')); // true
- *     console.log(version.isGreaterThan('1.0.2alpha')); // true
- *     console.log(version.isGreaterThan('1.0.2RC')); // false
- *     console.log(version.isGreaterThan('1.0.2')); // false
- *     console.log(version.isLessThan('1.0.2')); // true
+ *      // true
+ *      // true
+ *      // false
+ *      // false
+ *      // true
  *
- *     console.log(version.match(1.0)); // true
- *     console.log(version.match('1.0.2')); // true
+ *      // true
+ *      // true
  */
 (function() {
     // Current core version
@@ -708,10 +708,10 @@ function _aa8272cead0e18d3410d49016c667f254e0f0e6d(){};//@tag foundation,core
          * Returns whether this version matches the supplied argument. Example:
          *
          *     var version = new Ext.Version('1.0.2beta');
-         *     console.log(version.match(1)); // true
-         *     console.log(version.match(1.0)); // true
-         *     console.log(version.match('1.0.2')); // true
-         *     console.log(version.match('1.0.2RC')); // false
+         *      // true
+         *      // true
+         *      // true
+         *      // false
          *
          * @param {String/Number} target The version to compare with.
          * @return {Boolean} `true` if this version matches the target, `false` otherwise.
@@ -1311,7 +1311,7 @@ Ext.urlAppend = Ext.String.urlAppend;
          *     var countries = ['Vietnam', 'Singapore', 'United States', 'Russia'];
          *
          *     Ext.Array.each(countries, function(name, index, countriesItSelf) {
-         *         console.log(name);
+         *         
          *     });
          *
          *     var sum = function() {
@@ -2425,7 +2425,7 @@ Ext.num = function() {
      *     };
      *
      *     Ext.Object.each(person, function(key, value, myself) {
-     *         console.log(key + ":" + value);
+     *         
      *
      *         if (key === 'hairColor') {
      *             return false; // stop the iteration
@@ -4150,13 +4150,13 @@ Ext.Date = {
          *
          *      Ext.define('Ext.some.Class', {
          *          method: function () {
-         *              console.log('Good');
+         *              
          *          }
          *      });
          *
          *      Ext.define('Ext.some.DerivedClass', {
          *          method: function () {
-         *              console.log('Bad');
+         *              
          *
          *              // ... logic but with a bug ...
          *
@@ -4171,7 +4171,7 @@ Ext.Date = {
          *          override: 'Ext.some.DerivedClass',
          *
          *          method: function () {
-         *              console.log('Fixed');
+         *              
          *
          *              // ... logic but with bug fixed ...
          *
@@ -6287,7 +6287,7 @@ Ext.Date = {
      *     Ext.define('Logger', {
      *         singleton: true,
      *         log: function(msg) {
-     *             console.log(msg);
+     *             
      *         }
      *     });
      *
@@ -6388,7 +6388,7 @@ Ext.Date = {
          *          someProperty: 'something',
          *
          *          someMethod: function(s) {
-         *              console.log(s + this.someProperty);
+         *              
          *          }
          *      });
          *
@@ -8861,7 +8861,7 @@ Ext.apply(Ext, {
                 leaks.push(component);
             }
         });
-        console.log(leaks);
+        
     },
     /**
      * True when the document is fully initialized and ready for action
@@ -9283,7 +9283,7 @@ Ext.define('Ext.env.Browser', {
      *         // WebKit specific code here
      *     }
      *
-     *     console.log("Version " + Ext.browser.version);
+     *     
      *
      * For a full list of supported values, refer to {@link #is} property/method.
      *
@@ -9496,7 +9496,7 @@ Ext.define('Ext.env.OS', {
      *         // iPad, iPod, iPhone, etc.
      *     }
      *
-     *     console.log("Version " + Ext.os.version);
+     *     
      *
      * For a full list of supported values, refer to the {@link #is} property/method.
      *
@@ -11150,7 +11150,7 @@ Ext.dom.Element.addStatics({
      * for background-color and one for color.
      *
      *     var css = 'background-color: red;color: blue; ';
-     *     console.log(Ext.dom.Element.parseStyles(css));
+     *     
      *
      * @static
      * @param {String} styles A CSS string
@@ -13675,7 +13675,7 @@ Ext.define('Ext.mixin.Mixin', {
  *         listeners: {
  *             quit: function() { // This function will be called when the 'quit' event is fired
  *                 // By default, "this" will be the object that fired the event.
- *                 console.log(this.getFullName() + " has quit!");
+ *                 
  *             }
  *         }
  *     });
@@ -13803,12 +13803,12 @@ Ext.define('Ext.mixin.Observable', {
      * Firstly, we set up a listener for our new event.
      *
      *     this.on('myevent', function(arg1, arg2, arg3, arg4, options, e) {
-     *         console.log(arg1); // true
-     *         console.log(arg2); // 2
-     *         console.log(arg3); // { test: 'foo' }
-     *         console.log(arg4); // 14
-     *         console.log(options); // the options added when adding the listener
-     *         console.log(e); // the event object with information about the event
+     *          // true
+     *          // 2
+     *          // { test: 'foo' }
+     *          // 14
+     *          // the options added when adding the listener
+     *          // the event object with information about the event
      *     });
      *
      * And then we can fire off the event.
@@ -14657,7 +14657,7 @@ Ext.define('Ext.AbstractComponent', {
  *     map.add('key3', 3);
  *
  *     map.each(function(key, value, length){
- *         console.log(key, value, length);
+ *         
  *     });
  *
  * The HashMap is an unordered class, there is no guarantee when iterating over the items that they will be in
@@ -15290,9 +15290,9 @@ Format  Description                                                             
  *     // 'Wed Jan 10 2007 15:05:01 GMT-0600 (Central Standard Time)'
  *
  *     var dt = new Date('1/10/2007 03:05:01 PM GMT-0600');
- *     console.log(Ext.Date.format(dt, 'Y-m-d'));                          // 2007-01-10
- *     console.log(Ext.Date.format(dt, 'F j, Y, g:i a'));                  // January 10, 2007, 3:05 pm
- *     console.log(Ext.Date.format(dt, 'l, \\t\\he jS \\of F Y h:i:s A')); // Wednesday, the 10th of January 2007 03:05:01 PM
+ *                               // 2007-01-10
+ *                       // January 10, 2007, 3:05 pm
+ *      // Wednesday, the 10th of January 2007 03:05:01 PM
  *
  * Here are some standard date/time patterns that you might find helpful.  They
  * are not part of the source of Ext.Date, but to use them you can simply copy this
@@ -16489,13 +16489,13 @@ Format  Description                                                             
      *     var orig = new Date('10/1/2006');
      *     var copy = orig;
      *     copy.setDate(5);
-     *     console.log(orig);  // returns 'Thu Oct 05 2006'!
+     *       // returns 'Thu Oct 05 2006'!
      *
      *     // correct way:
      *     var orig = new Date('10/1/2006'),
      *         copy = Ext.Date.clone(orig);
      *     copy.setDate(5);
-     *     console.log(orig);  // returns 'Thu Oct 01 2006'
+     *       // returns 'Thu Oct 01 2006'
      *
      * @param {Date} date The date.
      * @return {Date} The new Date instance.
@@ -30443,7 +30443,7 @@ Ext.define('Ext.data.Connection', {
      *             console.dir(obj);
      *         },
      *         failure: function(response, opts) {
-     *             console.log('server-side failure with status code ' + response.status);
+     *             
      *         }
      *     });
      *
@@ -34723,7 +34723,7 @@ Ext.define('Ext.MessageBox', {
      *         'Welcome!',
      *         'What\'s your name going to be today?',
      *         function (buttonId, value) {
-     *             console.log(value);
+     *             
      *         },
      *         null,
      *         false,
@@ -42232,11 +42232,11 @@ Ext.define('Ext.data.Types', {
  *
  *     var ed = Ext.create('User', {name: 'Ed Spencer'});
  *
- *     console.log(ed.get('firstName')); //logs 'Ed', based on our convert function
+ *      //logs 'Ed', based on our convert function
  *
  * In fact, if we log out all of the data inside ed, we'll see this:
  *
- *     console.log(ed.data);
+ *     
  *
  *     //outputs this:
  *     {
@@ -43689,10 +43689,10 @@ Ext.define('Ext.data.proxy.Ajax', {
  *     Ext.onReady(function(){
  *         MyApp.model.Group.load(10, {
  *             success: function(group){
- *                 console.log(group.getGroup().get('name'));
+ *                 
  *
  *                 group.groups().each(function(rec){
- *                     console.log(rec.get('name'));
+ *                     
  *                 });
  *             }
  *         });
@@ -44399,7 +44399,7 @@ Ext.define('Ext.data.association.HasMany', {
          *         hasMany: 'User'
          *     });
          *     var group = new Group();
-         *     console.log(group.users());
+         *     
          *
          *     // The method to retrieve the users will now be getUserList
          *     Ext.define('Group', {
@@ -44408,7 +44408,7 @@ Ext.define('Ext.data.association.HasMany', {
          *         hasMany: {model: 'User', name: 'getUserList'}
          *     });
          *     var group = new Group();
-         *     console.log(group.getUserList());
+         *     
          */
         /**
          * @cfg {Object} store
@@ -45592,7 +45592,7 @@ Ext.define('Ext.data.Errors', {
  *     //Uses the configured RestProxy to make a GET request to /users/123
  *     User.load(123, {
  *         success: function(user) {
- *             console.log(user.getId()); //logs 123
+ *              //logs 123
  *         }
  *     });
  *
@@ -45604,14 +45604,14 @@ Ext.define('Ext.data.Errors', {
  *     //tells the Proxy to save the Model. In this case it will perform a PUT request to /users/123 as this Model already has an id
  *     user.save({
  *         success: function() {
- *             console.log('The User was updated');
+ *             
  *         }
  *     });
  *
  *     //tells the Proxy to destroy the Model. Performs a DELETE request to /users/123
  *     user.erase({
  *         success: function() {
- *             console.log('The User was destroyed!');
+ *             
  *         }
  *     });
  *
@@ -48471,7 +48471,7 @@ Ext.define('Ext.data.Store', {
      *     });
      *
      *     store.each(function (item, index, length) {
-     *         console.log(item.get('firstName'), index);
+     *         
      *     });
      *
      * @param {Function} fn The function to call. Returning `false` aborts and exits the iteration.
@@ -49018,7 +49018,7 @@ Ext.define('Ext.data.Store', {
      *     store.load({
      *         callback: function(records, operation, success) {
      *             // the {@link Ext.data.Operation operation} object contains all of the details of the load operation
-     *             console.log(records);
+     *             
      *         },
      *         scope: this
      *     });
@@ -49026,7 +49026,7 @@ Ext.define('Ext.data.Store', {
      * If only the callback and scope options need to be specified, then one can call it simply like so:
      *
      *     store.load(function(records, operation, success) {
-     *         console.log('loaded records');
+     *         
      *     }, this);
      *
      * @param {Object/Function} [options] config object, passed into the {@link Ext.data.Operation} object before loading.
@@ -54856,7 +54856,7 @@ Ext.define('Ext.dataview.List', {
  *     //create the delayed task instance with our callback
  *     var task = Ext.create('Ext.util.DelayedTask', {
  *          fn: function() {
- *             console.log('callback!');
+ *             
  *          }
  *     });
  *
@@ -63148,7 +63148,6 @@ Ext.define('WP.proxy.Articles', {
     extend: Ext.data.proxy.JsonP,
     config: {
         // This is the url we always query when searching for posts
-        //url: appticles.exportPath+'exportarticles?webApp='+appticles.webApp,
         url: appticles.exportPath + 'content.php?content=exportarticles',
         reader: {
             type: 'json',
@@ -63472,38 +63471,6 @@ Ext.define('WP.controller.Articles', {
 		   For example, field description should be adjusted and all <br> elements must be duplicated <br><br> */
         Ext.each(articles, function(article) {
             var description = article.description;
-            var date = new Date(article.date);
-            var day = date.getDate();
-            var month = [
-                    "January",
-                    "February",
-                    "March",
-                    "April",
-                    "May",
-                    "June",
-                    "July",
-                    "August",
-                    "September",
-                    "October",
-                    "November",
-                    "December"
-                ][date.getMonth()];
-            var year = date.getFullYear();
-            var days = [
-                    "Sun",
-                    "Mon",
-                    "Tue",
-                    "Wed",
-                    "Thu",
-                    "Fri",
-                    "Sat"
-                ];
-            var currentYear = (new Date()).getFullYear();
-            if (currentYear == year) {
-                article.date = days[date.getDay()] + ", " + month + " " + day;
-            } else {
-                article.date = month + " " + day + ", " + year;
-            }
             // parse related posts for the given article
             if (article.related_posts) {
                 articlesController.parseRelatedPosts(article, article.related_posts);
@@ -63552,7 +63519,7 @@ Ext.define('WP.controller.Articles', {
                 text = text.substring(0, 100) + " ...";
                 post.description = text;
             }
-            post.header = "Related articles";
+            post.header = appticles.appTexts.texts.related_articles;
             post.provider = (article.zemanta);
             posts.push(post);
         }
@@ -63586,7 +63553,7 @@ Ext.define('WP.controller.Articles', {
                     }
                 }
             });
-            post.header = "Related articles from the web";
+            post.header = appticles.appTexts.texts.related_articles_web;
             post.provider = (article.zemanta);
             posts.push(post);
         }
@@ -63950,7 +63917,7 @@ Ext.define('WP.controller.Pages', {
                     }
                 }
             });
-            post.header = "Related articles from the web";
+            post.header = appticles.appTexts.texts.related_articles_web;
             post.provider = (page.zemanta);
             posts.push(post);
         }
@@ -64347,7 +64314,7 @@ Ext.define("WP.view.phone.actions.CategoriesList", {
         itemHeight: 85,
         // properties
         disableSelection: true,
-        emptyText: 'There are no categoies',
+        emptyText: appticles.appTexts.texts.no_categories,
         useSimpleItems: false,
         variableHeights: true,
         itemTpl: new Ext.XTemplate('<tpl if="image &amp;&amp; image.width &amp;&amp; image.width &gt; 0">','<div class="category-container" style="width: {[ this.itemWidth ]}px; height: {[ this.itemHeight ]}px; background-image: url(\'{image.src}\'); background-size: cover; background-position:center; background-repeat:no-repeat;">','<div class="gradient-bg" style="width: 100%; height: 100%">','<h1>{name}</h1>','</div>','</div>','<tpl else>','<div class="category-container" style="width: {[ this.itemWidth ]}px; height: {[ this.itemHeight ]}px;">','<div class="gradient-bg" style="width: 100%; height: 100%">','<h1>{name}</h1>','</div>','</div>','</tpl>',{
@@ -64875,7 +64842,7 @@ Ext.define("WP.view.phone.actions.PagesList", {
         itemHeight: 45,
         // properties
         disableSelection: true,
-        emptyText: 'There are no pages',
+        emptyText: appticles.appTexts.texts.no_pages,
         useSimpleItems: false,
         variableHeights: true,
         itemTpl: new Ext.XTemplate('<div class="icon"></div>','<div class="details">','<p>{title}</p>','</div>')
@@ -64925,7 +64892,7 @@ Ext.define("WP.view.phone.actions.CreditsPanel", {
                 xtype: 'titlebar',
                 cls: 'top-bar',
                 docked: 'top',
-                title: 'Credits',
+                title: appticles.appTexts.links.credits,
                 height: 60,
                 items: [
                     {
@@ -65020,11 +64987,11 @@ Ext.define("WP.store.MoreLinks", {
         model: 'WP.model.MoreLinks',
         data: [
             {
-                title: "Switch to website",
+                title: appticles.appTexts.links.visit_website,
                 cls: "website"
             },
             {
-                title: "Credits",
+                title: appticles.appTexts.links.credits,
                 cls: "credits"
             }
         ]
@@ -65104,11 +65071,11 @@ Ext.define("WP.view.phone.actions.ActionsPanel", {
                     },
                     data: [
                         {
-                            title: 'Categories',
+                            title: appticles.appTexts.links.categories,
                             type: 'categories'
                         },
                         {
-                            title: 'Go to',
+                            title: appticles.appTexts.links.go_to,
                             type: 'pages'
                         }
                     ]
@@ -65129,7 +65096,7 @@ Ext.define("WP.view.phone.actions.ActionsPanel", {
                         {
                             xtype: "button",
                             itemId: "backBtn",
-                            html: "Categories",
+                            html: appticles.appTexts.links.categories,
                             width: "100%",
                             height: 45,
                             docked: "top",
@@ -65147,7 +65114,7 @@ Ext.define("WP.view.phone.actions.ActionsPanel", {
                         {
                             xtype: "button",
                             itemId: "backBtn",
-                            html: "Go to",
+                            html: appticles.appTexts.links.go_to,
                             width: "100%",
                             height: 45,
                             docked: "top",
@@ -65173,7 +65140,7 @@ Ext.define("WP.view.phone.actions.ActionsPanel", {
         // the app contains only categories
         else if (categoriesStore.getCount() > 0) {
             var categoriesHeader = Ext.create("Ext.Component", {
-                    html: "<h1>Categories</h1>",
+                    html: "<h1>" + appticles.appTexts.links.categories + "</h1>",
                     height: 45,
                     docked: "top",
                     cls: "categories"
@@ -65201,7 +65168,7 @@ Ext.define("WP.view.phone.actions.ActionsPanel", {
         // the app contains only pages
         else if (pagesStore.getCount() > 0) {
             var pagesHeader = Ext.create("Ext.Component", {
-                    html: "<h1>Go to</h1>",
+                    html: "<h1>" + appticles.appTexts.links.go_to + "</h1>",
                     height: 45,
                     docked: "top",
                     cls: "pages"
@@ -66129,7 +66096,7 @@ Ext.define("WP.view.phone.categories.CategoriesCarousel", {
                 // build category's cards
                 carousel.fireEvent("buildcards", category.get("id"));
             } else if (!layouts.get("noMoreArticles")) {
-                console.log("load more articles");
+                
                 categoriesController.loadArticles({
                     categoryId: category.get("id")
                 });
@@ -66225,7 +66192,7 @@ Ext.define("WP.view.phone.categories.CategoriesCarousel", {
             }
             // for each new page create a card
             for (var i = 0; i < pages.length; i++) {
-                //console.log("i: "+i);
+                //
                 var noOfArticles = pages[i];
                 var index = currentLayouts.length;
                 var itemId = categoryId + "_" + index;
@@ -66266,11 +66233,7 @@ Ext.define("WP.view.phone.categories.CategoriesCarousel", {
                 this.add(card);
             }
         }
-        //console.log(firstPos, i, noOfArticles, index, itemId, layouts, nextLayoutIndex, layoutsCategory.get('cardsLayout')) 
-        // for current category there is only one article displayed on the cover,
-        // try to load articles for the next category
-        else if (dif == 0 && (firstArticleId == coverArticleId) && totalArticles == 1) {
-            var index = categoriesStore.findExact("id", category.get("id"));
+        //
             // if there are available categories that must be show
             if (index + 1 <= categoriesStore.getCount() - 1) {
                 var nextCategory = categoriesStore.getAt(index + 1);
@@ -66678,7 +66641,7 @@ Ext.define("WP.view.phone.articles.ArticleCard", {
             imageHeight = 0;
         }
         // update template
-        this.setTpl(new Ext.XTemplate('<div>','<tpl if="' + imageWidth + ' &gt; 0 &amp;&amp; ' + imageHeight + ' &gt; 0 ">','<div class="article-image" style="width: ' + imageWidth + 'px; height: ' + imageHeight + 'px;" >','<div class="image-container" style="background-image: url(\'{imageSrc}\'); width: ' + imageWidth + 'px; height: ' + imageHeight + 'px; background-size:cover; background-position:center">','<div class="headline">','<span class="category-name">{category}</span>','<h1 class="article-title">{title}</h1>','<tpl if="author.length &gt; 0">',"<h3>by <span>{author}</span>{[this.getDate(values.date, values.author)]}</h3>",'<tpl elseif="date.length &gt; 0">',"<h3>{[this.getDate(values.date, values.author)]}</h3>",'</tpl>','</div>','</div>','</div>','<tpl else>','<div class="headline no-image" style="padding-top:50px;">','<span class="category-name">{category}</span>','<h1 class="article-title">{title}</h1>','<tpl if="author.length &gt; 0">',"<h3>by <span>{author}</span>{[this.getDate(values.date, values.author)]}</h3>",'<tpl elseif="date.length &gt; 0">',"<h3>{[this.getDate(values.date, values.author)]}</h3>",'</tpl>','</div>','</tpl>','</div>','<div class="content">','{[this.parseContent(values.content, ' + imageWidth + ')]}','</div>',{
+        this.setTpl(new Ext.XTemplate('<div>','<tpl if="' + imageWidth + ' &gt; 0 &amp;&amp; ' + imageHeight + ' &gt; 0 ">','<div class="article-image" style="width: ' + imageWidth + 'px; height: ' + imageHeight + 'px;" >','<div class="image-container" style="background-image: url(\'{imageSrc}\'); width: ' + imageWidth + 'px; height: ' + imageHeight + 'px; background-size:cover; background-position:center">','<div class="headline">','<span class="category-name">{category}</span>','<h1 class="article-title">{title}</h1>','<tpl if="author.length &gt; 0">',"<h3>" + appticles.appTexts.texts.by_author + " <span>{author}</span>{[this.getDate(values.date, values.author)]}</h3>",'<tpl elseif="date.length &gt; 0">',"<h3>{[this.getDate(values.date, values.author)]}</h3>",'</tpl>','</div>','</div>','</div>','<tpl else>','<div class="headline no-image" style="padding-top:50px;">','<span class="category-name">{category}</span>','<h1 class="article-title">{title}</h1>','<tpl if="author.length &gt; 0">',"<h3>" + appticles.appTexts.texts.by_author + " <span>{author}</span>{[this.getDate(values.date, values.author)]}</h3>",'<tpl elseif="date.length &gt; 0">',"<h3>{[this.getDate(values.date, values.author)]}</h3>",'</tpl>','</div>','</tpl>','</div>','<div class="content">','{[this.parseContent(values.content, ' + imageWidth + ')]}','</div>',{
             getDate: function(date, author) {
                 var strDate = "";
                 if (author && author.length > 0 && date && date.length > 0) {
@@ -66862,22 +66825,22 @@ Ext.define("WP.model.Comment", {
             {
                 type: 'presence',
                 name: 'author',
-                message: "Please fill your name!"
+                message: appticles.appTexts.forms.your_name_error
             },
             {
                 type: 'presence',
                 name: 'email',
-                message: "Please fill your e-mail address!"
+                message: appticles.appTexts.forms.your_email_error
             },
             {
                 type: 'email',
                 name: 'email',
-                message: "Please enter a valid e-mail address!"
+                message: appticles.appTexts.forms.your_email_error2
             },
             {
                 type: 'presence',
                 name: 'content',
-                message: "Please type a comment!"
+                message: appticles.appTexts.forms.your_comment_error
             }
         ]
     }
@@ -66941,10 +66904,10 @@ Ext.define('WP.view.phone.articles.comments.PullRefresh', {
     requires: [],
     config: {
         itemId: 'pullRefresh',
-        pullText: 'Pull down for more new comments!',
-        loadingText: 'Loading ...',
-        releaseText: 'Last Updated' + ':&nbsp;',
-        lastUpdatedText: 'Release to refresh...',
+        pullText: appticles.appTexts.pull_refresh.pull_comments,
+        loadingText: appticles.appTexts.texts.loading + ' ...',
+        releaseText: appticles.appTexts.pull_refresh.last_updated + ':&nbsp;',
+        lastUpdatedText: appticles.appTexts.pull_refresh.release + ' ...',
         lastUpdatedDateFormat: 'd/m/Y h:iA',
         cls: 'pullrefresh'
     },
@@ -66988,44 +66951,9 @@ Ext.define("WP.view.phone.articles.comments.CommentsList", {
             indicators: false
         },
         disableSelection: true,
-        //emptyText: 'There are no comments for this article.<br/>Be the first one to comment about this!',
         useSimpleItems: false,
         variableHeights: true,
-        itemTpl: new Ext.XTemplate('<div class="comment-box">','<tpl if="avatar &amp;&amp; avatar.length &gt; 0">','<div class="comment-left">','<div class="img" style="background-image:url(\'{avatar}\');"></div>','</div>','</tpl>','<div class="comment-right">','<div class="header">','<span>{author}&nbsp;</span>','<div class="info">{[this.parseDate(values.date)]}</div>','</div>','<div class="body">{content}</div>','</div>','</div>',{
-            parseDate: function(date) {
-                var date = new Date(date);
-                var day = date.getDate();
-                var month = [
-                        "January",
-                        "February",
-                        "March",
-                        "April",
-                        "May",
-                        "June",
-                        "July",
-                        "August",
-                        "September",
-                        "October",
-                        "November",
-                        "December"
-                    ][date.getMonth()];
-                var year = date.getFullYear();
-                var days = [
-                        "Sun",
-                        "Mon",
-                        "Tue",
-                        "Wed",
-                        "Thu",
-                        "Fri",
-                        "Sat"
-                    ];
-                var currentYear = (new Date()).getFullYear();
-                if (currentYear == year) {
-                    return days[date.getDay()] + ", " + month + " " + day;
-                }
-                return month + " " + day + ", " + year;
-            }
-        }),
+        itemTpl: new Ext.XTemplate('<div class="comment-box">','<tpl if="avatar &amp;&amp; avatar.length &gt; 0">','<div class="comment-left">','<div class="img" style="background-image:url(\'{avatar}\');"></div>','</div>','</tpl>','<div class="comment-right">','<div class="header">','<span>{author}&nbsp;</span>','<div class="info">{date}</div>','</div>','<div class="body">{content}</div>','</div>','</div>'),
         plugins: [
             {
                 xclass: 'WP.view.phone.articles.comments.PullRefresh'
@@ -67089,7 +67017,7 @@ Ext.define("WP.view.phone.articles.comments.CommentForm", {
                 xtype: 'textfield',
                 itemId: 'nameField',
                 name: 'name',
-                placeHolder: 'Your name',
+                placeHolder: appticles.appTexts.forms.your_name,
                 autoCapitalize: false,
                 labelWidth: 0,
                 clearIcon: true,
@@ -67099,7 +67027,7 @@ Ext.define("WP.view.phone.articles.comments.CommentForm", {
                 xtype: 'emailfield',
                 itemId: 'emailField',
                 name: 'email',
-                placeHolder: 'Your e-mail address',
+                placeHolder: appticles.appTexts.forms.your_email,
                 labelWidth: 0,
                 clearIcon: true,
                 height: 30
@@ -67117,7 +67045,7 @@ Ext.define("WP.view.phone.articles.comments.CommentForm", {
                         xtype: 'textareafield',
                         itemId: 'commentField',
                         name: 'comment',
-                        placeHolder: 'Your comment',
+                        placeHolder: appticles.appTexts.forms.your_comment,
                         flex: 1,
                         labelWidth: 0,
                         scrollable: null,
@@ -67144,7 +67072,7 @@ Ext.define("WP.view.phone.articles.comments.CommentForm", {
                                 ].join(""),
                                 cls: 'send-comment-button',
                                 pressedCls: 'pressed',
-                                text: "SEND",
+                                text: appticles.appTexts.forms.send,
                                 styleHtmlContent: true,
                                 handler: function() {
                                     var btn = this;
@@ -67186,7 +67114,7 @@ Ext.define("WP.view.phone.articles.comments.CommentForm", {
                                         var successCallBack = Ext.create("Ext.util.DelayedTask", function() {
                                                 // remove the pending cls
                                                 btn.removeCls(btn.config.pendingCls);
-                                                btn.setHtml("SEND");
+                                                btn.setHtml(appticles.appTexts.forms.send);
                                                 form.reset();
                                                 // load the new posted comment in the comments list
                                                 commentsList.fireEvent("fetchlatest", {
@@ -67203,7 +67131,7 @@ Ext.define("WP.view.phone.articles.comments.CommentForm", {
                                         var errorCallBack = Ext.create("Ext.util.DelayedTask", function() {
                                                 // remove the pending cls
                                                 btn.removeCls(btn.config.pendingCls);
-                                                btn.setHtml("SEND");
+                                                btn.setHtml(appticles.appTexts.forms.send);
                                             });
                                         // send comment
                                         form.sendComment({
@@ -67254,7 +67182,7 @@ Ext.define("WP.view.phone.articles.comments.CommentForm", {
                     switch (result.status) {
                         case 0:
                             errorCallBack.getFn().call();
-                            alert("There was an error. Please try again later.");
+                            alert(appticles.appTexts.forms.submit_error);
                             break;
                         case 1:
                             successCallBack.getFn().call();
@@ -67262,7 +67190,7 @@ Ext.define("WP.view.phone.articles.comments.CommentForm", {
                         case 2:
                         default:
                             successCallBack.getFn().call();
-                            alert("Your comment is waiting moderation!");
+                            alert(appticles.appTexts.forms.awaiting_moderation);
                             break;
                     }
                 } else {
@@ -67360,12 +67288,12 @@ Ext.define("WP.view.phone.articles.comments.CommentsPanel", {
         // show or hide the comment form panel
         if (article.get("comment_status") == "open") {
             this.down("#commentForm").show();
-            this.down("#commentsList").setEmptyText("There are no comments for this article.<br/>Be the first one to comment about this!");
-            this.down("#topBar").setHtml("Leave a comment");
+            this.down("#commentsList").setEmptyText(appticles.appTexts.texts.no_comments);
+            this.down("#topBar").setHtml(appticles.appTexts.texts.leave_comment);
         } else {
             this.down("#commentForm").hide();
-            this.down("#commentsList").setEmptyText("There are no comments for this article.");
-            this.down("#topBar").setHtml("Comments");
+            this.down("#commentsList").setEmptyText(appticles.appTexts.texts.no_comments_short);
+            this.down("#topBar").setHtml(appticles.appTexts.texts.comments);
         }
         // load comments
         this.fireEvent("loadcomments");

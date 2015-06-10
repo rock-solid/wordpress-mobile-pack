@@ -1,0 +1,39 @@
+{
+    "appTexts": {
+        "links": {
+            "visit_website": "Byt till webbplats",
+            "credits": "Lista över medverkande",
+            "go_to": "Gå till",
+            "categories": "Kategorier"
+        },
+        "texts": {
+            "no_pages": "Det finns inga sidor!",
+            "no_categories": "Det finns inga kategorier!",
+            "no_comments": "Det finns inga kommentarer om denna artikel. Bli först med att kommentera detta!",
+            "no_comments_short": "Det finns inga kommentarer om denna artikel.",
+            "leave_comment": "Kommentera",
+            "comments": "Kommentarer",
+            "by_author": "av",
+            "loading": "Laddar",
+            "related_articles": "Relaterade artiklar",
+            "related_articles_web": "Relaterade artiklar från webben"
+        },
+        "pull_refresh":{
+            "pull_comments": "Dra nedåt för fler kommentarer!",
+            "last_updated": "Senast uppdaterad",
+            "release": "Släpp för att uppdatera"
+        },
+        "forms": {
+            "send": "Sänd",
+            "your_name": "Ditt namn",
+            "your_name_error": "Vänligen fyll i ditt namn!",
+            "your_email": "Din e-postadress",
+            "your_email_error": "Vänligen fyll i din e-postadress",
+            "your_email_error2": "Vänligen ange en giltig e-postadress!",
+            "your_comment": "Din kommentar",
+            "your_comment_error": "Vänligen skriv en kommentar",
+            "submit_error": "There was an error. Please try again later.",
+            "awaiting_moderation": "Your comment is waiting moderation!"
+        }
+    }
+}

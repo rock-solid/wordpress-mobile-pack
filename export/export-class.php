@@ -49,7 +49,19 @@ class Export {
 		$this->inactive_pages = unserialize(WMobilePack::wmp_get_setting('inactive_pages'));
 	}
 
-   
+    /**
+	 *
+	 * Format an article's or comment's date
+	 *
+	 */
+    protected function formatDate($date_timestamp){
+		
+		if (date('Y') == date('Y', $date_timestamp))
+			return date('D, F jS', $date_timestamp);
+			
+		return date('F jS, Y', $date_timestamp);
+	}
+	
 	/**
     * 
     *  - exportCategories method used for the export of every category with a number of articles for each
@@ -186,13 +198,15 @@ class Export {
                                     if (!isset($arrCategories[$current_key]["articles"]))
                                         $arrCategories[$current_key]["articles"] = array();
                                         
+									$date_timestamp = strtotime($post->post_date);
+										
 									// add article in the array
 									$arrCategories[$current_key]["articles"][] = array(
 										'id' 				=> $post->ID,
 										"title" 			=> $post->post_title,
-										"timestamp" 		=> strtotime($post->post_date),
+										"timestamp" 		=> $date_timestamp,
 										"author" 			=> get_the_author_meta('display_name', $post->post_author ),
-										"date" 				=> date("D, M d, Y, H:i", strtotime($post->post_date)),
+										"date" 				=> $this->formatDate($date_timestamp),
 										"link" 				=> get_permalink($post->ID),
 										"image" 			=> !empty($image_details) ? $image_details : "",
 										"description"		=> $description,
@@ -274,12 +288,14 @@ class Export {
                                 if (!isset($arrCategories[0]["articles"]))
                                     $arrCategories[0]["articles"] = array();
                                     
+								$date_timestamp = strtotime($post->post_date);
+								
 								$arrCategories[0]["articles"][] = array(
 									'id' 				=> $post->ID,
 									"title" 			=> $post->post_title,
-									"timestamp" 		=> strtotime($post->post_date),
+									"timestamp" 		=> $date_timestamp,
 									"author" 			=> get_the_author_meta( 'display_name' , $post->post_author ),
-									"date" 				=> date("D, M d, Y, H:i", strtotime($post->post_date)),
+									"date" 				=> $this->formatDate($date_timestamp),
 									"link" 				=> get_permalink($post->ID),
 									"image" 			=> !empty($image_details) ? $image_details : "",
 									"description"		=> $description,
@@ -426,11 +442,11 @@ class Export {
 			
 			// set args for posts
 			$args = array(
-    			  'date_query' => array('before' => $lastTimestamp),
-    			  'numberposts' => $limit,
-    			  'posts_per_page' => $limit,
-    			  'post_status' => 'publish',
-				  'post_password' => ''
+				'date_query' => array('before' => $lastTimestamp),
+				'numberposts' => $limit,
+				'posts_per_page' => $limit,
+				'post_status' => 'publish',
+				'post_password' => ''
             );
 			
             // if the selected category is active
@@ -508,12 +524,14 @@ class Export {
 							$description = Export::truncateHtml($content,$descriptionLength);
 							$description = $this->purifier->purify($description);
 								
+							$date_timestamp = strtotime($post->post_date);
+							
 							$arrArticles[] = array(
 								'id' 				=> $post->ID,
 								"title" 			=> $post->post_title,
-								"timestamp" 		=> strtotime($post->post_date),
+								"timestamp" 		=> $date_timestamp,
 								"author" 			=> get_the_author_meta( 'display_name' , $post->post_author ),
-								"date" 				=> date("D, M d, Y, H:i", strtotime($post->post_date)),
+								"date" 				=> $this->formatDate($date_timestamp),
 								"link" 				=> get_permalink($post->ID),
 								"image" 			=> !empty($image_details) ? $image_details : "",
 								"description"		=> $description,
@@ -717,13 +735,14 @@ class Export {
 								$comment_status = 'disabled';
 					}
 					
+					$date_timestamp = strtotime($post->post_date);
 					
     				$arrArticle = array(
                         'id' 					=> $post->ID,
                         "title" 				=> $post->post_title,
-                        "timestamp" 			=> strtotime($post->post_date),
+                        "timestamp" 			=> $date_timestamp,
                         "author" 				=> get_the_author_meta( 'display_name' , $post->post_author ),
-                        "date" 			    	=> date("D, M d, Y, H:i", strtotime($post->post_date)),
+                        "date" 			    	=> $this->formatDate($date_timestamp),
                         "link" 			    	=> get_permalink($post->ID),
                         "image" 				=> !empty($image_details) ? $image_details : "",
                         "description"	    	=> $description,
@@ -825,7 +844,7 @@ class Export {
 						'id' => $comment->comment_ID,
 						'author' => $comment->comment_author != '' ? ucfirst($comment->comment_author) : 'Anonymous',
 						'author_url' => $comment->comment_author_url,
-						'date' => date("D, M d, Y, H:i", strtotime($comment->comment_date)),
+						'date' => $this->formatDate(strtotime($comment->comment_date)),
 						'content' => $this->purifier->purify($comment->comment_content),
 						'article_id' => $comment->ID,
 						'article_title'=>$comment->post_title,

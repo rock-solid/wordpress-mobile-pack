@@ -135,6 +135,9 @@ Google Ad Sense / Google Double Click for Publishers is supported on the Premium
 
 == Changelog ==
 
+= 2.1.4 =
+* Added support for multilanguage. Thank you to all of our contributors: Mathias Wideroth (Swedish)
+
 = 2.1.3 =
 * Changed mobile detection library to [Mobile Detect](https://github.com/serbanghita/Mobile-Detect) 
 * Fixed detection issue for BlackBerry devices (BB will display the desktop theme)
