@@ -1,0 +1,39 @@
+{
+    "appTexts": {
+        "links": {
+            "visit_website": "Visita el sitio web",
+            "credits": "Acerca de la aplicación",
+            "go_to": "Ir a",
+            "categories": "Categorías"
+        },
+        "texts": {
+            "no_pages": "No existen páginas!",
+            "no_categories": "No existen categorías!",
+            "no_comments": "No existe ningún comentario para este artículo.<br/>¡Sé el primero en comentarlo!",
+            "no_comments_short": "No existe ningún comentario para este artículo.",
+            "leave_comment": "Escribir un comentario",
+            "comments": "Comentarios",
+            "by_author": "por",
+            "loading": "Cargando",
+            "related_articles": "Artículos similares",
+            "related_articles_web": "Artículos similares de la web"
+        },
+        "pull_refresh":{
+            "pull_comments": "Sigue bajando ver más comentarios!",
+            "last_updated": "Última actualización",
+            "release": "Suelta para actualizar"
+        },
+        "forms": {
+            "send": "Enviar",
+            "your_name": "Su nombre",
+            "your_name_error": "Por favor escriba su nombre!",
+            "your_email": "Su dirección de correo electrónico",
+            "your_email_error": "Por favor, rellene su dirección de e-mail!",
+            "your_email_error2": "Por favor, introduce una dirección de correo electrónico válida!",
+            "your_comment": "Tu comentario",
+            "your_comment_error": "Por favor, escribe un comentario!",
+            "submit_error": "Hubo un error. Por favor, inténtelo de nuevo más tarde.",
+            "awaiting_moderation": "Tu comentario está a la espera de aprobación!"
+        }
+    }
+}

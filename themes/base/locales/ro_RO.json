@@ -1,0 +1,39 @@
+{
+    "appTexts": {
+        "links": {
+            "visit_website": "Înapoi către site",
+            "credits": "Despre aplicație",
+            "go_to": "Mergi la",
+            "categories": "Categorii"
+        },
+        "texts": {
+            "no_pages": "Nu există pagini!",
+            "no_categories": "Nu există categorii!",
+            "no_comments": "Nu există comentarii pentru acest articol. <br /> Adaugă tu primul comentariu!",
+            "no_comments_short": "Nu există comentarii pentru acest articol.",
+            "leave_comment": "Adaugă un comentariu",
+            "comments": "Comentarii",
+            "by_author": "de",
+            "loading": "Se încarcă",
+            "related_articles": "Articole similare",
+            "related_articles_web": "Article similare de pe web"
+        },
+        "pull_refresh":{
+            "pull_comments": "Trage în jos pentru comentarii noi!",
+            "last_updated": "Actualizat pe",
+            "release": "Eliberează pentru a reîncărca"
+        },
+        "forms": {
+            "send": "Trimite",
+            "your_name": "Numele tău",
+            "your_name_error": "Te rugăm să introduci numele tău!",
+            "your_email": "Adresa ta de e-mail",
+            "your_email_error": "Te rugăm să introduci adresa ta de e-mail!",
+            "your_email_error2": "Te rugăm să introduci o adresă validă de e-mail!",
+            "your_comment": "Comentariul tău",
+            "your_comment_error": "Te rugăm să introduci comentariul!",
+            "submit_error": "Ne pare rău, a survenit o eroare.",
+            "awaiting_moderation": "Comentariul tău va fi revizuit înainte de publicare."
+        }
+    }
+}

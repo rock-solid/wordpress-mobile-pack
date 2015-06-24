@@ -1,0 +1,39 @@
+{
+    "appTexts": {
+        "links": {
+            "visit_website": "Przejdź do strony",
+            "credits": "Informacje o aplikacji",
+            "go_to": "Przejdź do",
+            "categories": "Kategorie"
+        },
+        "texts": {
+            "no_pages": "Brak stron!",
+            "no_categories": "Brak kategorii!",
+            "no_comments": "Brak komentarzy<br/> Bądź pierwszy i skomentuj artykuł",
+            "no_comments_short": "Brak komentarzy",
+            "leave_comment": "Zostaw komentarz",
+            "comments": "Komentarzy",
+            "by_author": "przez",
+            "loading": "Wczytywanie",
+            "related_articles": "Powiązane artykuły",
+            "related_articles_web": "Powiązane artykuły z sieci"
+        },
+        "pull_refresh":{
+            "pull_comments": "Rozwiń aby zobaczyć więcej komentarzy",
+            "last_updated": "Ostatnio aktualizowany",
+            "release": "Puść aby odświeżyć"
+        },
+        "forms": {
+            "send": "Wyślij",
+            "your_name": "Twoje imię",
+            "your_name_error": "Proszę wpisać swoje imię!",
+            "your_email": "Twój adres e-mail",
+            "your_email_error": "Proszę wpisać swój adres e-mail!",
+            "your_email_error2": "Proszę wpisać poprawny adres e-mail!",
+            "your_comment": "Twój komentarz",
+            "your_comment_error": "Napisz komentarz!",
+            "submit_error": "Wystąpił błąd. Proszę spróbuj ponownie później.",
+            "awaiting_moderation": "Twój komentarz czeka na moderację!"
+        }
+    }
+}

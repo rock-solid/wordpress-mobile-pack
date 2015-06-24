@@ -32,8 +32,8 @@
             "your_email_error2": "Vänligen ange en giltig e-postadress!",
             "your_comment": "Din kommentar",
             "your_comment_error": "Vänligen skriv en kommentar",
-            "submit_error": "There was an error. Please try again later.",
-            "awaiting_moderation": "Your comment is waiting moderation!"
+            "submit_error": "Något gick fel. Vänligen prova igen vid ett senare tillfälle",
+            "awaiting_moderation": "Din kommentar väntar på att modereras"
         }
     }
 }

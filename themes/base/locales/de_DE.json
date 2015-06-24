@@ -1,0 +1,39 @@
+{
+    "appTexts": {
+        "links": {
+            "visit_website": "Zur Website wechseln",
+            "credits": "Credits",
+            "go_to": "Gehe zu",
+            "categories": "Kategorien"
+        },
+        "texts": {
+            "no_pages": "Es gibt keine Seiten!",
+            "no_categories": "Es gibt keine Seiten!",
+            "no_comments": "Es gibt keine Kommentare für diesen Artikel.<br/>Sei der erste der einen Kommentar dazu hinterlässt!",
+            "no_comments_short": "Es gibt keine Kommentare für diesen Artikel.",
+            "leave_comment": "Hinterlasse einen Kommentar",
+            "comments": "Kommentare",
+            "by_author": "von",
+            "loading": "Lädt",
+            "related_articles": "Verwandte Artikel",
+            "related_articles_web": "Verwandte Artikel aus dem Internet"
+        },
+        "pull_refresh":{
+            "pull_comments": "Nach unten ziehen für mehr neue Kommentare!",
+            "last_updated": "Zuletzt aktualisiert",
+            "release": "Loslassen um zu aktualisieren"
+        },
+        "forms": {
+            "send": "Senden",
+            "your_name": "Dein Name",
+            "your_name_error": "Bitte gib deinen Namen ein!",
+            "your_email": "Deine E-Mail Adresse",
+            "your_email_error": "Bitte gib deine E-Mail Adresse ein!",
+            "your_email_error2": "Bitte gib eine gültige E-Mail Adresse ein!",
+            "your_comment": "Dein Kommentar",
+            "your_comment_error": "Hinterlasse einen Kommentar!",
+            "submit_error": "Es gab einen Fehler. Bitte versuchen Sie es später noch einmal.",
+            "awaiting_moderation": "Ihr Kommentar wartet Genehmigung!"
+        }
+    }
+}

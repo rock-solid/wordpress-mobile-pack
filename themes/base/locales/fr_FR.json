@@ -1,0 +1,39 @@
+{
+    "appTexts": {
+        "links": {
+            "visit_website": "Visitez le site web",
+            "credits": "A propos de l'application",
+            "go_to": "Aller à",
+            "categories": "Catégories"
+        },
+        "texts": {
+            "no_pages": "Il n'y a pas de pages!",
+            "no_categories": "Il n'y a pas de catégories!",
+            "no_comments": "Aucun commentaire pour cet article.<br/>Soyez le premier à commenter sur cet article!",
+            "no_comments_short": "Aucun commentaire pour cet article.",
+            "leave_comment": "Écrire un commentaire",
+            "comments": "Commentaires",
+            "by_author": "par",
+            "loading": "Chargement",
+            "related_articles": "Des articles similaires",
+            "related_articles_web": "Articles similaires à partir du Web"
+        },
+        "pull_refresh":{
+            "pull_comments": "Déroulez pour plus de commentaires!",
+            "last_updated": "Dernière mise à jour",
+            "release": "Relâchez pour rafraîchir"
+        },
+        "forms": {
+            "send": "Envoyer",
+            "your_name": "Votre nom",
+            "your_name_error": "S'il vous plaît remplir votre nom!",
+            "your_email": "Votre adresse e-mail",
+            "your_email_error": "S'il vous plaît remplissez votre adresse e-mail!",
+            "your_email_error2": "S'il vous plaît, mettez une adresse email valide!",
+            "your_comment": "Votre commentaire",
+            "your_comment_error": "S'il vous plaît écrire un commentaire!",
+            "submit_error": "Il y avait une erreur. S'il vous plaît réessayer plus tard.",
+            "awaiting_moderation": "Votre commentaire est en attente d'approbation!"
+        }
+    }
+}
