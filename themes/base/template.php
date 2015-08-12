@@ -65,15 +65,15 @@
 		
 	// load static texts from a json file
 	$language_file = WMP_PLUGIN_PATH."themes/".WMobilePack::wmp_app_theme().'/locales/'.get_locale().'.json';
-	
+
 	if (!file_exists($language_file)) {
-		$language_file = WMP_PLUGIN_PATH."themes/".WMobilePack::wmp_app_theme().'/locales/en_EN.json';
+		$language_file = WMP_PLUGIN_PATH."themes/".WMobilePack::wmp_app_theme().'/locales/default.json';
 	}
 	
 	$appTextsJson = null;
 	
 	if (file_exists($language_file)) {
-		
+
 		$appTexts = file_get_contents($language_file);
 		$appTexts = mb_convert_encoding($appTexts, 'HTML-ENTITIES', "UTF-8");
 		

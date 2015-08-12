@@ -501,7 +501,43 @@ if ( ! class_exists( 'WMobilePack' ) ) {
         		}
             }
     	}
-    
+
+
+
+        public static function wmp_get_ordered_content($type = 'categories'){
+
+            if ($type == 'pages'){
+                $ordered_items = unserialize(WMobilePack::wmp_get_setting('ordered_pages'));
+            } else {
+                $ordered_items = unserialize(WMobilePack::wmp_get_setting('ordered_categories'));
+            }
+
+            if (!empty($ordered_items)){
+
+                $use_locale = false;
+
+                foreach ($ordered_items as $key => $value){
+
+                    if (!is_numeric($key)){
+                        $use_locale = true;
+                    }
+
+                    break;
+                }
+
+                var_dump($use_locale);
+
+                if ($use_locale) {
+
+                    if (!array_key_exists(get_locale(), $ordered_items)){
+                        return array();
+                    } else {
+                        return $ordered_items[get_locale()];
+                    }
+                }
+            }
+        }
+
     
         /**
          * 
@@ -1060,12 +1096,12 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 		
 		 /**
           * 
-          * Method used to check if a specific plugin is installed and active
+          * Method used to check if a specific plugin is installed and active,
+          * returns true if the plugin is installed and false otherwise.
 		  * 
 		  * @param $plugin_name - the name of the plugin
-		  * 
-          *		 
-		  * Method returns true if the plugin is installed and false otherwise
+          *
+          * @return bool
           */
 		public static function wmp_active_plugin($plugin_name){
 			

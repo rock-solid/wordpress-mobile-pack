@@ -15,12 +15,9 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 		 *
 		 */
 		public function wmp_options() {
-			
-			global $wmobile_pack;
-			
+
             WMobilePack::wmp_update_settings('whats_new_updated', 0);
-            
-			// load view
+
 			include(WMP_PLUGIN_PATH.'admin/wmp-admin-main.php');        
 		}
 		
@@ -31,10 +28,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 		 *
 		 */
 		public function wmp_premium_options() {
-			
-			global $wmobile_pack;
-			 
-			// load view
+
 			include(WMP_PLUGIN_PATH.'admin/wmp-admin-premium.php'); 
 		}
 		
@@ -118,10 +112,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 		 *
 		 */
 		public function wmp_theme_options() {
-			
-			global $wmobile_pack;
-			
-			// load view
+
 			include(WMP_PLUGIN_PATH.'admin/wmp-admin-theme.php');
 		}
 
@@ -132,10 +123,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 		 *
 		 */
 		public function wmp_content_options() {
-			
-			global $wmobile_pack;
-			
-			// load view
+
 			include(WMP_PLUGIN_PATH.'admin/wmp-admin-content.php');
 		}
 		
@@ -146,9 +134,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 		 *
 		 */
 		public function wmp_page_content() {
-			
-			global $wmobile_pack;
-			
+
 			include(WMP_PLUGIN_PATH.'libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php');
 			include(WMP_PLUGIN_PATH.'libs/htmlpurifier-html5/htmlpurifier_html5.php');
             
@@ -207,9 +193,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
         public function wmp_content_save() {
             
             if (current_user_can( 'manage_options' )){
-                
-                global $wmobile_pack;
-            	
+
                 $status = 0;
                 
                 if (isset($_POST) && is_array($_POST) && !empty($_POST)){
@@ -255,9 +239,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
         public function wmp_content_pagestatus() {
             
             if (current_user_can( 'manage_options' )){
-                
-                global $wmobile_pack;
-            	
+
                 $status = 0;
                 
                 if (isset($_POST) && is_array($_POST) && !empty($_POST)) {
@@ -294,19 +276,19 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
             exit();
         }
 		
-		
-		
-		/**
-        * 
-        * Method used to save the order of pages and categories in the database (free version)
-        * 
-        */
+
+        /**
+         *
+         * Method used to save the order of pages and categories in the database (free version)
+         *
+         * From version 2.1.5, the settings will be saved as 'locale': array(), to allow the ordering of pages
+         * and categories for multiple languages.
+         *
+         */
         public function wmp_content_order() {
             
             if (current_user_can( 'manage_options' )){
-                
-                global $wmobile_pack;
-            	
+
                 $status = 0;
                 
                 if (isset($_POST) && is_array($_POST) && !empty($_POST)){
@@ -315,28 +297,46 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                       
                         if ($_POST['ids'] != '' && ($_POST['type'] == 'pages' || $_POST['type'] == 'categories')){
                              
-							// check ids
-							$arrPagesIds = array_filter(explode(",", $_POST['ids']));
+							// Retrieve the ids list from the param
+							$arrItemsIds = array_filter(explode(",", $_POST['ids']));
 							
-							if (count($arrPagesIds) > 0) {
-								
+							if (count($arrItemsIds) > 0) {
+
+                                // Check if the received ids are numeric
 								$valid_ids = true;
-							
-								foreach ($arrPagesIds as $page_id) {
+
+								foreach ($arrItemsIds as $item_id) {
 									
-									if (!is_numeric($page_id)) // 4page_is is not numeric
+									if (!is_numeric($item_id))
 										$valid_ids = false;
 								}
 		        	
 								if ($valid_ids) {
 									
-									 $status = 1;
-									
-									// save option
+									$status = 1;
+
+                                    if ($_POST['type'] == 'pages'){
+                                        $ordered_items = unserialize(WMobilePack::wmp_get_setting('ordered_pages'));
+                                    } else {
+                                        $ordered_items = unserialize(WMobilePack::wmp_get_setting('ordered_categories'));
+                                    }
+
+                                    // Check if we have to overwrite the existing list and introduce the locale keys
+                                    foreach ($ordered_items as $key => $value){
+
+                                        if (is_numeric($key)){
+                                            $ordered_items = array();
+                                            break;
+                                        }
+                                    }
+
+                                    $ordered_items[get_locale()] = $arrItemsIds;
+
+									// Save option
                            			if ($_POST['type'] == 'pages')
-										WMobilePack::wmp_update_settings('ordered_pages', serialize($arrPagesIds));
+										WMobilePack::wmp_update_settings('ordered_pages', serialize($ordered_items));
 									elseif ($_POST['type'] == 'categories')
-										WMobilePack::wmp_update_settings('ordered_categories', serialize($arrPagesIds));
+										WMobilePack::wmp_update_settings('ordered_categories', serialize($ordered_items));
 								
                                 } 
 							}            
@@ -359,9 +359,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
         public function wmp_content_pagedetails() {
             
             if (current_user_can( 'manage_options' )){
-                
-                global $wmobile_pack;
-            	
+
                 $status = 0;
                
                 if (isset($_POST) && is_array($_POST) && !empty($_POST)){
@@ -530,10 +528,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 		 *
 		 */
 		public function wmp_settings_options() {
-			
-			global $wmobile_pack;
-			
-			// load view
+
 			include(WMP_PLUGIN_PATH.'admin/wmp-admin-settings.php');
 		}
         
@@ -546,9 +541,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
         public function wmp_settings_save() {
             
             if (current_user_can( 'manage_options' )) {
-                
-                global $wmobile_pack;
-            	
+
                 $status = 0;
                 
                 if (isset($_POST) && is_array($_POST) && !empty($_POST)){
@@ -652,9 +645,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
         public function wmp_premium_save() {
             
             if (current_user_can( 'manage_options' )){
-                
-                global $wmobile_pack;
-            	
+
                 $status = 0;
                 
                 if (isset($_POST) && is_array($_POST) && !empty($_POST)){
@@ -686,9 +677,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
         public function wmp_premium_connect() {
 
             if (current_user_can('manage_options')){
-                
-                global $wmobile_pack;
-            	
+
                 $status = 0;
                 
                 if (isset($_POST) && is_array($_POST) && !empty($_POST)){
@@ -740,9 +729,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
         public function wmp_premium_disconnect() {
             
             if (current_user_can( 'manage_options' )){
-                
-                global $wmobile_pack;
-            	
+
                 $status = 0;
                 
                 if (isset($_POST) && is_array($_POST) && !empty($_POST)){
@@ -1205,10 +1192,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 		 * Method used to render the upgrade page from the admin area
 		 */
 		public function wmp_upgrade_options() {
-			
-			global $wmobile_pack;
-			
-			// load view
+
 			include(WMP_PLUGIN_PATH.'admin/wmp-admin-upgrade.php'); 
 		}
         

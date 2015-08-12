@@ -53,13 +53,16 @@ class Export {
 	 *
 	 * Format an article's or comment's date
 	 *
+     * The date_i18n() method will translate months and days names if the locale files are found in the
+     * /wp-content/languaged folder.
+     *
 	 */
     protected function formatDate($date_timestamp){
-		
+
 		if (date('Y') == date('Y', $date_timestamp))
-			return date('D, F jS', $date_timestamp);
-			
-		return date('F jS, Y', $date_timestamp);
+			return date_i18n('D, F d', $date_timestamp);
+
+		return date_i18n('F d, Y', $date_timestamp);
 	}
 	
 	/**
@@ -130,7 +133,7 @@ class Export {
             
 			// remove inline style for the photos types of posts
 			add_filter( 'use_default_gallery_style', '__return_false' );
-			
+
 			if (count($active_categories_ids) > 0) {
 			 
 				foreach ($categories as $key => $category) {
@@ -148,7 +151,7 @@ class Export {
 							'image' 	=> ""
 					    );                             
                         
-                        // search posts from this category
+                        // Reset query & search posts from this category
     					$cat_posts_query = new WP_Query(
                             array(
         						'numberposts'         => $limit,
@@ -160,21 +163,24 @@ class Export {
                         );
   			     
                     	if ($cat_posts_query->have_posts()) {
-							
-    						foreach($cat_posts_query->posts as $post) {
-    							
+
+                            while ($cat_posts_query->have_posts()) {
+
+                                $cat_posts_query->the_post();
+                                $post = $cat_posts_query->post;
+
                                 // check if the post is not password protected
 								if ($post->post_password == '') {
-								    
+
 									// check if the post has a post thumbnail assigned to it and save it in an array
 									$image_details = array();
-									
+
 									if (has_post_thumbnail($post->ID)){
-    									  
+
 										$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ),'large');
-										
+
 										if (is_array($image_data) && !empty($image_data)) {
-											
+
 											// set image details
 											$image_details = array(
 												"src" 		=> $image_data[0],
@@ -183,36 +189,36 @@ class Export {
 											);
 										}
 									}
-									
+
 									// if the category doesn't have a featured image yet, use the one from the current post
                                     if (!is_array($arrCategories[$current_key]["image"]) && !empty($image_details)) {
     									$arrCategories[$current_key]["image"] = $image_details;
                                     }
-									
+
 									// get & filter content
 									$content = apply_filters("the_content", $post->post_content);
 									$description = Export::truncateHtml($content, $descriptionLength);
 									$description = $this->purifier->purify($description);
-								
+
 									// if this is the first article from the category, create the 'articles' array
                                     if (!isset($arrCategories[$current_key]["articles"]))
                                         $arrCategories[$current_key]["articles"] = array();
-                                        
+
 									$date_timestamp = strtotime($post->post_date);
-										
+
 									// add article in the array
 									$arrCategories[$current_key]["articles"][] = array(
 										'id' 				=> $post->ID,
-										"title" 			=> $post->post_title,
+										"title" 			=> get_the_title(),
 										"timestamp" 		=> $date_timestamp,
-										"author" 			=> get_the_author_meta('display_name', $post->post_author ),
+										"author" 			=> get_the_author_meta('display_name'),
 										"date" 				=> $this->formatDate($date_timestamp),
-										"link" 				=> get_permalink($post->ID),
+										"link" 				=> get_permalink(),
 										"image" 			=> !empty($image_details) ? $image_details : "",
 										"description"		=> $description,
 										"content" 			=> '',
 										"category_id" 		=> $category->term_id,
-										"category_name" 	=> $category->name	
+										"category_name" 	=> $category->name
 									);
 								}
 							}
@@ -228,7 +234,7 @@ class Export {
                 if (count($arrCategories) > 1){
                     
                     // read posts for the latest category
-                    $posts_query = new WP_Query ( 
+                    $posts_query = new WP_Query(
                         array(
                             'numberposts'  => $limit,
                             'cat' 		   => implode(', ', $active_categories_ids),
@@ -236,9 +242,9 @@ class Export {
         			  		'post_status' => 'publish',
     						'post_password' => ''
                         )
-                   );
-                   
-                   if ($posts_query->have_posts()) {
+                    );
+
+                    if ($posts_query->have_posts()) {
     					
                         $arrCategories[0] = array(
                             'id' 		=> 0,
@@ -246,18 +252,21 @@ class Export {
                             'name' 		=> 'Latest',
 							'name_slug' => 'Latest',
                             'image' 	=> ""
-                        );		
-                        
-                        foreach ($posts_query->posts as $post) {
-    						
+                        );
+
+                        while ($posts_query->have_posts()) {
+
+                            $posts_query->the_post();
+                            $post = $posts_query->post;
+
 							// check if the post is not password protected
 							if ($post->post_password == '') {
 							
 								// get post category
-								$category = get_the_category($post->ID);
+								$category = get_the_category();
 								
 								// get & filter content
-								$content = apply_filters("the_content",$post->post_content);    						
+								$content = apply_filters("the_content", $post->post_content);
 								$description = Export::truncateHtml($content, $descriptionLength);    						
 								$description = $this->purifier->purify($description);
 								
@@ -292,11 +301,11 @@ class Export {
 								
 								$arrCategories[0]["articles"][] = array(
 									'id' 				=> $post->ID,
-									"title" 			=> $post->post_title,
+									"title" 			=> get_the_title(),
 									"timestamp" 		=> $date_timestamp,
-									"author" 			=> get_the_author_meta( 'display_name' , $post->post_author ),
+									"author" 			=> get_the_author_meta('display_name'),
 									"date" 				=> $this->formatDate($date_timestamp),
-									"link" 				=> get_permalink($post->ID),
+									"link" 				=> get_permalink(),
 									"image" 			=> !empty($image_details) ? $image_details : "",
 									"description"		=> $description,
 									"content" 			=> '',
@@ -404,7 +413,7 @@ class Export {
 	*			  "date": "Thu, May 01, 2014 01:19",
 	*			  "link": "http://www.journalism.co.uk/news/-ijf14-global-patterns-in-data-journalism-/s2/a556612/",
 	*			  "image": "",
-	*			  "description":"<p><b>Sport</b> (or <b>sports</b>) is all forms of usually <a href=\"http://en.wikipedia.org/wiki/Competition\">competitive</a> <a href=\"http://en.wikipedia.org/wiki/Physical_activity\">physical activity</a> which,<sup><a href=\"http://en.wikipedia.org/wiki/Sport#cite_note-sportaccord-1\">[1]</a></sup> through casual or organised participation, aim to use, maintain or improve physical ability and skills while...</p>",				  
+	*			  "description":"<p><b>Sport</b>ï¿½(orï¿½<b>sports</b>) is all forms of usuallyï¿½<a href=\"http://en.wikipedia.org/wiki/Competition\">competitive</a>ï¿½<a href=\"http://en.wikipedia.org/wiki/Physical_activity\">physical activity</a>ï¿½which,<sup><a href=\"http://en.wikipedia.org/wiki/Sport#cite_note-sportaccord-1\">[1]</a></sup>ï¿½through casual or organised participation, aim to use, maintain or improve physical ability and skills while...</p>",				  
 	*			  "content": '',
 	*			  "category_id": 5,
 	*			  "category_name": "News"
@@ -455,7 +464,7 @@ class Export {
 			// remove inline style for the photos types of posts
 			add_filter( 'use_default_gallery_style', '__return_false' );
 			
-			if ($categoryId != 0) {
+			if ($categoryId != 0){
 			 
 				$args["cat"] = $categoryId;
                 
@@ -484,55 +493,58 @@ class Export {
             
             if ($activeCategory){
                 
-    			$posts_query = new WP_Query ( $args );
+    			$posts_query = new WP_Query($args);
     			
     			if ($posts_query->have_posts() ) {
-    				
-    				foreach($posts_query->posts as $post) {
-    				    
+
+                    while ($posts_query->have_posts()) {
+
+                        $posts_query->the_post();
+                        $post = $posts_query->post;
+
     					// add only the posts that are not password protected
 						if ($post->post_password == '') {
-						
+
 							// check if a featured image exists
 							$image_details = array();
-                            
+
 							// get featured image
 							if (has_post_thumbnail($post->ID)){ // check if the post has a Post Thumbnail assigned to it.
-							  
+
 								$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ),'large');
-								
+
 								if (is_array($image_data) && !empty($image_data)) {
-									
+
 									$image_details = array(
 										"src" 		=> $image_data[0],
 										"width" 		=> $image_data[1],
 										"height" 	=> $image_data[2]
 									);
 								}
-							} 
-							
+							}
+
 							// get post category
 							if ($categoryId > 0) {
 								$category = get_category($categoryId);
 							} else {
-								$cat = get_the_category($post->ID);
+								$cat = get_the_category();
 								$category = $cat[0];
 							}
-							
+
 							// get content
-							$content = apply_filters("the_content",$post->post_content);
+							$content = apply_filters("the_content", $post->post_content);
 							$description = Export::truncateHtml($content,$descriptionLength);
 							$description = $this->purifier->purify($description);
-								
+
 							$date_timestamp = strtotime($post->post_date);
-							
+
 							$arrArticles[] = array(
 								'id' 				=> $post->ID,
-								"title" 			=> $post->post_title,
+								"title" 			=> get_the_title(),
 								"timestamp" 		=> $date_timestamp,
-								"author" 			=> get_the_author_meta( 'display_name' , $post->post_author ),
+								"author" 			=> get_the_author_meta( 'display_name'),
 								"date" 				=> $this->formatDate($date_timestamp),
-								"link" 				=> get_permalink($post->ID),
+								"link" 				=> get_permalink(),
 								"image" 			=> !empty($image_details) ? $image_details : "",
 								"description"		=> $description,
 								"content" 			=> '',
@@ -565,8 +577,8 @@ class Export {
 	*		"date": "Thu, May 01, 2014 04:07",
 	*		"link": "http://www.journalism.co.uk/news/-ijf14-global-patterns-in-data-journalism-/s2/a556612/",
 	*		"image": "",
-	*		"description":"<p><b>Sport</b> (or <b>sports</b>) is all forms of usually <a href=\"http://en.wikipedia.org/wiki/Competition\">competitive</a> <a href=\"http://en.wikipedia.org/wiki/Physical_activity\">physical activity</a> which,<sup><a href=\"http://en.wikipedia.org/wiki/Sport#cite_note-sportaccord-1\">[1]</a></sup> through casual or organised participation, aim to use, maintain or improve physical ability and skills while...</p>",				  
-	*	    "content": "<p>On the second day of the International Journalism Festival in Perugia, delegates were treated to a round up of data journalism trends and developments from around the world.</p>",
+	*		"description":"<p>Maintain or improve physical ability and skills while...</p>",
+	*	    "content": "<p>On the second day of the International Journalism Festival in Perugia, delegates were ...</p>",
 	*		"comment_status": "open",	** the values can be opened or closed
     *       "no_comments": 2,	
 	*       "show_avatars" : true,
@@ -634,10 +646,10 @@ class Export {
     					if (is_array($image_data) && !empty($image_data)) {
     					   
     						$image_details = array(
-    												   "src" 		=> $image_data[0],
-    												   "width" 		=> $image_data[1],
-    												   "height" 	=> $image_data[2]
-    												 );
+                                "src" 		=> $image_data[0],
+                                "width" 		=> $image_data[1],
+                                "height" 	=> $image_data[2]
+                            );
     					}
     				}
 					
@@ -687,7 +699,7 @@ class Export {
                             
                             // get related posts from around the web
                             $related_web_posts = $this->wmp_related_web_posts($content);
-                            $related_web_posts =$zemanta_purifier->purify($related_web_posts);
+                            $related_web_posts = $zemanta_purifier->purify($related_web_posts);
                             
                         }
                         
@@ -719,7 +731,7 @@ class Export {
 					$content = preg_replace( array('{<a(.*?)(wp-att|wp-content\/uploads|attachment)[^>]*><img}', '{ wp-image-[0-9]*" /></a>}'), array('<img','" />'), $content);
 					
     				// get the description
-    				$description = Export::truncateHtml($content,$descriptionLength);
+    				$description = Export::truncateHtml($content, $descriptionLength);
 					
     				// get comments status
                     $comment_status = $this->comment_closed($post);
@@ -739,7 +751,7 @@ class Export {
 					
     				$arrArticle = array(
                         'id' 					=> $post->ID,
-                        "title" 				=> $post->post_title,
+                        "title" 				=> get_the_title($post->ID),
                         "timestamp" 			=> $date_timestamp,
                         "author" 				=> get_the_author_meta( 'display_name' , $post->post_author ),
                         "date" 			    	=> $this->formatDate($date_timestamp),
@@ -935,6 +947,7 @@ class Export {
 									
 									if (wp_blacklist_check($comment_author,$comment_author_email,$comment_author_url,$comment_content,$_SERVER["REMOTE_ADDR"],$_SERVER['HTTP_USER_AGENT']))
 										$approved_comment = false;
+
 									// set comment data
 									$commentdata = compact('comment_post_ID', 'comment_author', 'comment_author_email', 'comment_author_url', 'comment_content', 'comment_type', 'comment_parent', 'user_ID');
 									
@@ -949,13 +962,12 @@ class Export {
 										
 										// get comment
 										$comment = get_comment($comment_id);
+
 										// set status by comment status
 										if ($comment->comment_approved == 1)
-											return '{"status":1}';//Your comment was successfully added
+											return '{"status":1}'; // Your comment was successfully added
 										else
-
 											return '{"status":2}'; // Your comment is awaiting moderation.
-									
 									}
 									
 								} else // return error
@@ -989,13 +1001,13 @@ class Export {
 	*		"pages": [
 	*			{
 	*			  "id": "53624b6981f58370a6968678",
-	*			  "title": "#IJF14: Global developments in data journalism",
+	*			  "title": "#IJF14: developments in data journalism",
 	*			  "timestamp": 1398950385,
 	*			  "author": "",
 	*			  "date": "Thu, May 01, 2014 01:19",
-	*			  "link": "http://www.journalism.co.uk/news/-ijf14-global-patterns-in-data-journalism-/s2/a556612/",
+	*			  "link": "http://www.journalism.co.uk/news/-ijf14-patterns-in-data-journalism-/s2/a556612/",
 	*			  "image": "",
-	*			  "description":"<p><b>Sport</b> (or <b>sports</b>) is all forms of usually <a href=\"http://en.wikipedia.org/wiki/Competition\">competitive</a> <a href=\"http://en.wikipedia.org/wiki/Physical_activity\">physical activity</a> which,<sup><a href=\"http://en.wikipedia.org/wiki/Sport#cite_note-sportaccord-1\">[1]</a></sup> through casual or organised participation, aim to use, maintain or improve physical ability and skills while...</p>",				  
+	*			  "description":"<p>Maintain or improve physical ability and skills while...</p>",
 	*			  "content": ''
 	*			},
 	*		]
@@ -1028,15 +1040,15 @@ class Export {
 			
 			// set args for pages
 			$args = array(
-    			  'post__not_in' => $this->inactive_pages,
-    			  'numberposts' => $limit,
-    			  'posts_per_page' => $limit,
-    			  'post_status' => 'publish',
-				  'post_type' => 'page',
-				  'post_password'	 => ''
+                'post__not_in' => $this->inactive_pages,
+                'numberposts' => $limit,
+                'posts_per_page' => $limit,
+                'post_status' => 'publish',
+                'post_type' => 'page',
+                'post_password' => ''
             );
 			
-           if (WMP_BLOG_VERSION >= 3.6) {
+            if (WMP_BLOG_VERSION >= 3.6) {
 				$args['orderby'] = 'title';
 				$args['order'] = 'ASC';
 			}
@@ -1048,51 +1060,53 @@ class Export {
 			// remove inline style for the photos types of posts
 			add_filter( 'use_default_gallery_style', '__return_false' );
 			
-			$pages_query = new WP_Query ( $args );
+			$pages_query = new WP_Query($args);
             
     		if ($pages_query->have_posts()) {
-    				
-    			foreach ($pages_query->posts as $page) {
-    					
+
+    			while ($pages_query->have_posts()) {
+
+                    $pages_query->the_post();
+                    $page = $pages_query->post;
+
 					// add only the pages that are not password protected
-					if ($page->post_password == '' && strip_tags(trim($page->post_title)) != '') {
-					
+					if ($page->post_password == '' && strip_tags(trim(get_the_title())) != '') {
+
 						// check if featured image
 						$image_details = array();
-                        
+
 						// get featured image and add it to the category
 						if ( has_post_thumbnail($page->ID) ) { // check if the post has a Post Thumbnail assigned to it.
-						  
+
 							$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $page->ID ),'large');
-							
-							if (is_array($image_data) && !empty($image_data)) { 
-								
+
+							if (is_array($image_data) && !empty($image_data)) {
+
 								$image_details = array(
                                     "src" 		=> $image_data[0],
                                     "width" 	=> $image_data[1],
                                     "height" 	=> $image_data[2]
                                 );
 							}
-						} 
-						
+						}
+
 						$index_order = array_search($page->ID, $order_pages);
-						
+
 						// create new index for new categories
 						$new_index = count($order_pages) + 1;
 						$last_key = count($arrPages) > 0 ? max(array_keys($arrPages)) : 0;
-						
+
 						if (is_numeric($index_order))
 							$current_key = $index_order;
 						elseif ($new_index > $last_key)
 							$current_key = $new_index;
 						else
 							$current_key = $last_key+1;
-						
-						
+
 						$arrPages[$current_key] = array(
-							'id' 				=> $page->ID,	
+							'id' 				=> $page->ID,
 							'order'				=> $current_key,
-							"title" 			=> strip_tags(trim($page->post_title)),							
+							"title" 			=> strip_tags(trim(get_the_title())),
 							"image" 			=> !empty($image_details) ? $image_details : "",
 							"content" 			=> ''
 						);
@@ -1117,16 +1131,16 @@ class Export {
 	*  - this metod returns a JSON with the specific content
 	*  - ex : 
 	*	{
-	*	  "article": {
+	*	  "page": {
 	*		"id": "53624b6981f58370a6968678",
-	*		"title": "#IJF14: Global developments in data journalism",
+	*		"title": "#IJF14: developments in data journalism",
 	*		"timestamp": 1398960437,
 	*		"author": "",
 	*		"date": "Thu, May 01, 2014 04:07",
-	*		"link": "http://www.journalism.co.uk/news/-ijf14-global-patterns-in-data-journalism-/s2/a556612/",
+	*		"link": "http://www.journalism.co.uk/news/-ijf14-patterns-in-data-journalism-/s2/a556612/",
 	*		"image": "",
-	*		"description":"<p><b>Sport</b> (or <b>sports</b>) is all forms of usually <a href=\"http://en.wikipedia.org/wiki/Competition\">competitive</a> <a href=\"http://en.wikipedia.org/wiki/Physical_activity\">physical activity</a> which,<sup><a href=\"http://en.wikipedia.org/wiki/Sport#cite_note-sportaccord-1\">[1]</a></sup> through casual or organised participation, aim to use, maintain or improve physical ability and skills while...</p>",				  
-	*	    "content": "<p>On the second day of the International Journalism Festival in Perugia, delegates were treated to a round up of data journalism trends and developments from around the world.</p>",
+	*		"description":"<p>Maintain or improve physical ability and skills while...</p>",
+	*	    "content": "<p>On the second day of the International Journalism Festival in Perugia, delegates were ...</p>",
     *       "related_web_posts":"" 
     *       }
 	*	}
@@ -1135,7 +1149,9 @@ class Export {
 	*    
     */
 	public function exportPage() {
-		
+
+        global $post;
+
 		// check if the export call is correct
 		if (isset($_GET["content"]) && $_GET["content"] == 'exportpage' ) {
 		
@@ -1153,45 +1169,45 @@ class Export {
 			$arrPage = array();
 			
 			// get page by id
-		    $page = get_page( $pageId);
+            $post = get_post($pageId);
 			
-			if ($page != null && $page->post_type == 'page' && $page->post_password == '' && strip_tags(trim($page->post_title)) != '') {
+			if ($post != null && $post->post_type == 'page' && $post->post_password == '' && strip_tags(trim($post->post_title)) != '') {
 				
 			  	// check if page is visible
 			    $is_visible = false;
                    
-				if (!in_array($page->ID, $this->inactive_pages))
+				if (!in_array($post->ID, $this->inactive_pages))
 					$is_visible = true;
                 
-                if ($is_visible){
-                
-    				// featured image details
-    				$image_details = array();
-                    				
-    				// get featured image
-    				if ( has_post_thumbnail($page->ID) ) { // check if the post has a Post Thumbnail assigned to it.
-    				  
-    					$image_data = wp_get_attachment_image_src( get_post_thumbnail_id( $page->ID ),'large');
-    					
-    					if (is_array($image_data) && !empty($image_data)) {
-    					   
-    						$image_details = array(
-                                "src" 		=> $image_data[0],
-                                "width" 	=> $image_data[1],
-                                "height" 	=> $image_data[2]
+                if ($is_visible) {
+
+                    // featured image details
+                    $image_details = array();
+
+                    // get featured image
+                    if (has_post_thumbnail($post->ID)) { // check if the post has a Post Thumbnail assigned to it.
+
+                        $image_data = wp_get_attachment_image_src(get_post_thumbnail_id($post->ID), 'large');
+
+                        if (is_array($image_data) && !empty($image_data)) {
+
+                            $image_details = array(
+                                "src" => $image_data[0],
+                                "width" => $image_data[1],
+                                "height" => $image_data[2]
                             );
-    					}
-    				} 
-    				
-					
-					// for the content, first check if the admin edited the content for this page
-					if (get_option('wmpack_page_'.$page->ID) === false)
-						$content = apply_filters("the_content", $page->post_content);
-					else
-						$content = apply_filters("the_content", get_option( 'wmpack_page_' .$page->ID  ));
-    				
+                        }
+                    }
+
+
+                    // for the content, first check if the admin edited the content for this page
+                    if (get_option('wmpack_page_' . $post->ID) === false)
+                        $content = apply_filters("the_content", $post->post_content);
+                    else
+						$content = apply_filters("the_content", get_option( 'wmpack_page_' .$post->ID  ));
                     
-                    $related_web_posts = '';                    
+                    $related_web_posts = '';
+
                     /* ZEMANTA RELATED POSTS AND POSTS FROM AROUND THE WEB */
                     if (WMobilePack::wmp_active_plugin('Related Posts by Zemanta')) {
                     
@@ -1203,7 +1219,8 @@ class Export {
                             $related_web_posts = $this->wmp_related_web_posts($content);
                             $related_web_posts = $zemanta_purifier->purify($related_web_posts);
                          }
-                    }    
+                    }
+
                     if ($related_web_posts == '') {
                         
                         /* ZEMANTA EDITORIAL ASISTANT AND POSTS FROM AROUND THE WEB */                  
@@ -1228,18 +1245,15 @@ class Export {
     				
 					// remove all url's from attachment images
 					$content = preg_replace( array('{<a(.*?)(wp-att|wp-content\/uploads|attachment)[^>]*><img}', '{ wp-image-[0-9]*" /></a>}'), array('<img','" />'), $content);
-					
-    				// get the description
-    				$description = Export::truncateHtml($content,$descriptionLength);
-    				
+
     				$arrPage = array(
-                        'id' 					=> $page->ID,
-                        "title" 				=> $page->post_title,
-                        "link" 			    	=> get_permalink($page->ID),
+                        'id' 					=> $post->ID,
+                        "title" 				=> get_the_title($post->ID),
+                        "link" 			    	=> get_permalink($post->ID),
                         "image" 				=> !empty($image_details) ? $image_details : "",
                         "content" 				=> $content,
                         "related_web_posts"     => trim($related_web_posts),
-					 );
+					);
 				}
 			}
 				
@@ -1393,16 +1407,17 @@ class Export {
 		// end 
 		exit();
 	}
-	 
-     /**
-	 * 
-	 * Method comment_closed used to determine the comment status for an article
-	 *
-	 *  The method returns 'open' if the users can comment and 'closed' otherwise
-	 *
-	 * @param $post - object containing the post details 
-	 */
-	 public function comment_closed( $post ) {
+
+    /**
+     *
+     * Method comment_closed used to determine the comment status for an article.
+     * The method returns 'open' if the users can comment and 'closed' otherwise.
+     *
+     * @param $post
+     * @return string
+     *
+     */
+	 public function comment_closed($post) {
         
         // set initial status for comments
         if ($post->comment_status == 'open' && get_option('comment_registration') == 0)
@@ -1416,7 +1431,7 @@ class Export {
     
         // if the number of ol days is not set return comment_status
     	$days_old = (int) get_option('close_comments_days_old');
-    	if ( !$days_old )
+    	if (!$days_old)
     		return $comment_status;
     
     	$post = get_post($post->ID);
@@ -1469,7 +1484,7 @@ class Export {
                 $blog_name = $arrPremiumConfig['title'];
                 
             // init response depending on the manifest type
-            if ($_GET['content'] == 'androidmanifest') {
+            if ($_GET['content'] == 'androidmanifest'){
                 
                 $arrManifest = array(
                 	'name' 			=> $blog_name,
@@ -1561,9 +1576,7 @@ class Export {
 	public function exportSettings() {
 			
 		if (isset($_GET["content"]) && $_GET["content"] == 'exportsettings') {
-			
-			$arrSettings = array();
-			
+
 			if (isset($_POST["apiKey"]) && $_POST["apiKey"] == WMobilePack::wmp_get_setting('premium_api_key')) {
 				
 				if (WMobilePack::wmp_get_setting('premium_active') == 0) {
@@ -1624,9 +1637,9 @@ class Export {
      * @param $content - the content to be parsed
      * @param $type - can be post or page, in order to rebuild the correct url
      * 
-     * 
+     * @return string
      */
-    public function wmp_replace_internal_links($content,$type='post'){
+    public function wmp_replace_internal_links($content, $type='post'){
 		
         if ($content != '' && in_array($type,array('post','page'))) { 
             
@@ -1675,12 +1688,12 @@ class Export {
      * 
      * Method wmp_related_web_posts called when we want to fetch zemanta's related posts around the web
      *
-     * The method is used to remove the related posts around the web from the content
-     * 
+     * The method is used to remove the related posts around the web from the content.
+     * The method returns the html with the related posts around the web, or empty if there are none.
+     *
      * @param $content - the content to be parsed, the related posts will be removed
-     * 
-     * The method return the html with the related posts around the web, or empty if there are none
-     * 
+     *
+     * @return string
      */
     public function wmp_related_web_posts(&$content){
 		
@@ -1716,7 +1729,8 @@ class Export {
     /**
      * 
      * Method wmp_zemanta_purifier called when he want to keep the class attribute for the content, for zemanta tags
-     * 
+     *
+     * @return object
      */
     public function wmp_zemanta_purifier(){
         
