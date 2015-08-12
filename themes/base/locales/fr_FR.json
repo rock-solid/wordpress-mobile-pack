@@ -2,6 +2,7 @@
     "appTexts": {
         "links": {
             "visit_website": "Visitez le site web",
+            "visit_app": "Passer à une version mobile",
             "credits": "A propos de l'application",
             "go_to": "Aller à",
             "categories": "Catégories"

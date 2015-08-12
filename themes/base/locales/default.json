@@ -2,6 +2,7 @@
     "appTexts": {
         "links": {
             "visit_website": "Switch to website",
+            "visit_app": "Switch to mobile version",
             "credits": "Credits",
             "go_to": "Go to",
             "categories": "Categories"

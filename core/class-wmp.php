@@ -576,7 +576,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 				
                 // add the option to view the app in the footer of the website
 				if ($load_app) {
-					
+
 					// add hook in footer
 					add_action('wp_footer', array(&$this,'wmp_show_footer_box'));
 				}
@@ -999,9 +999,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 		public function wmp_show_footer_box(){
 			
 			// load view
-			include(WMP_PLUGIN_PATH.'sections/wmp-show-mobile.php'); 
-			
-			
+			include(WMP_PLUGIN_PATH.'sections/wmp-show-mobile.php');
 		}
 		
 		
@@ -1056,6 +1054,43 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 			return $WMobileDetect->wmp_is_tablet();
 		  	
 		}
+
+
+        /**
+         *
+         * Load app texts for the current locale.
+         *
+         * The JSON files with translations for each language are located in themes/base/locales.
+         *
+         * Future releases - maybe replace JSON files with po/mo?
+         *
+         * @param $locale
+         * @return bool|mixed
+         *
+         */
+        public function wmp_load_language($locale){
+
+            // load static texts from a json file
+            $language_file = WMP_PLUGIN_PATH."themes/".self::$wmp_basic_theme.'/locales/'.$locale.'.json';
+
+            if (!file_exists($language_file)) {
+                $language_file = WMP_PLUGIN_PATH."themes/".self::$wmp_basic_theme.'/locales/default.json';
+            }
+
+            $appTextsJson = false;
+
+            if (file_exists($language_file)) {
+
+                $appTexts = file_get_contents($language_file);
+                $appTextsJson = json_decode($appTexts, true);
+            }
+
+            if (!$appTextsJson || empty($appTextsJson) || !array_key_exists('appTexts', $appTextsJson)) {
+                return false;
+            }
+
+            return $appTextsJson;
+        }
 		
 		
 		 /**

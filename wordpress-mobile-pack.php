@@ -6,7 +6,7 @@
  * Author: Appticles.com
  * Author URI: http://www.appticles.com/
  * Version: 2.1.4
- * Copyright (c) 2009 – 2015 James Pearce, mTLD Top Level Domain Limited, ribot, Forum Nokia, Appticles.com
+ * Copyright (c) 2009 - 2015 James Pearce, mTLD Top Level Domain Limited, ribot, Forum Nokia, Appticles.com
  * License: The WordPress Mobile Pack is Licensed under the Apache License, Version 2.0
  */
  
@@ -16,8 +16,8 @@ require_once('core/class-admin.php');
 
 if ( class_exists( 'WMobilePack' ) && class_exists( 'WMobilePackAdmin' ) ) {
 	
-	global $wmobile_pack; 
-	$wmobile_pack = new WMobilePack();
+	global $wmobile_pack;
+    $wmobile_pack = new WMobilePack();
     $wmobile_pack_admin = new WMobilePackAdmin();
 
 	// add hooks

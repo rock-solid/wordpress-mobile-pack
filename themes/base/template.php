@@ -23,62 +23,50 @@
         $color_scheme = 1;
         
     // check fonts
-    $arrLoadedFonts = array();
+    $loaded_fonts = array();
     
     $font_headlines = array_search(WMobilePack::wmp_get_setting('font_headlines'), WMobilePack::$wmp_allowed_fonts) + 1;
     if (!$font_headlines)
         $font_headlines = 1;
-        
-    $arrLoadedFonts[] = $font_headlines;
+
+    $loaded_fonts[] = $font_headlines;
         
     $font_subtitles = array_search(WMobilePack::wmp_get_setting('font_subtitles'), WMobilePack::$wmp_allowed_fonts) + 1;
     if (!$font_subtitles)
         $font_subtitles = 1;
         
-    if (!in_array($font_subtitles, $arrLoadedFonts))
-        $arrLoadedFonts[] = $font_subtitles;
+    if (!in_array($font_subtitles, $loaded_fonts))
+        $loaded_fonts[] = $font_subtitles;
         
     $font_paragraphs = array_search(WMobilePack::wmp_get_setting('font_paragraphs'), WMobilePack::$wmp_allowed_fonts) + 1;
     if (!$font_paragraphs)
         $font_paragraphs = 1;
         
-    if (!in_array($font_paragraphs, $arrLoadedFonts))
-        $arrLoadedFonts[] = $font_paragraphs;
+    if (!in_array($font_paragraphs, $loaded_fonts))
+        $loaded_fonts[] = $font_paragraphs;
 		
 		
 	// check if cover exists
     $cover_path = WMobilePack::wmp_get_setting('cover');
    
-	$useCover = false;
+	$use_cover = false;
 	
     if ($cover_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$cover_path))
         $cover_path = ''; 
     else {
         $cover_path = WMP_FILES_UPLOADS_URL.$cover_path;  	
-		$useCover = true;
+		$use_cover = true;
 	}
 		
-	if (!$useCover) {
+	if (!$use_cover) {
 		// get random cover from default covers
 		$cover_path = $theme_path."includes/resources/images/pattern-".rand(1, 6).".jpg";
 	}
 		
 	// load static texts from a json file
-	$language_file = WMP_PLUGIN_PATH."themes/".WMobilePack::wmp_app_theme().'/locales/'.get_locale().'.json';
-
-	if (!file_exists($language_file)) {
-		$language_file = WMP_PLUGIN_PATH."themes/".WMobilePack::wmp_app_theme().'/locales/default.json';
-	}
+	$texts_json = WMobilePack::wmp_load_language(get_locale());
 	
-	$appTextsJson = null;
-	
-	if (file_exists($language_file)) {
-
-		$appTexts = file_get_contents($language_file);
-		$appTextsJson = json_decode($appTexts, true);
-	}
-	
-	if (!$appTextsJson || empty($appTextsJson) || !array_key_exists('appTexts', $appTextsJson)) {
+	if ($texts_json === false) {
 		echo "ERROR, unable to load language file. Please check the '".WMP_DOMAIN."/themes/".WMobilePack::wmp_app_theme()."/locales' folder.";
 	}
 
@@ -173,12 +161,12 @@
 			exportPath: "<?php echo plugins_url()."/".WMP_DOMAIN."/export/";?>",
 			creditsPath: "<?php echo $theme_path."includes/others/credits.json";?>",
             defaultCover: "<?php echo $cover_path;?>",
-   			userCover: "<?php echo $useCover;?>",
+   			userCover: "<?php echo $use_cover;?>",
 			logo: "<?php echo $logo_path;?>",
 			icon: "<?php echo $icon_path;?>",
 			websiteUrl: '<?php echo home_url();?>?wmp_theme_mode=desktop',
 			commentsToken: "<?php echo WMobilePack::wmp_set_token();?>",
-			appTexts: <?php echo json_encode($appTextsJson['appTexts']);?>
+			appTexts: <?php echo json_encode($texts_json['appTexts']);?>
 		}
 	</script>
 
@@ -187,7 +175,7 @@
     <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/fonts.css?date=20141120" type="text/css" />
     
     <!-- custom fonts -->
-    <?php foreach ($arrLoadedFonts as $font_no):?>
+    <?php foreach ($loaded_fonts as $font_no):?>
         <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/font-<?php echo $font_no;?>.css?date=20141120" type="text/css">
     <?php endforeach;?>
     

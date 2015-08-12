@@ -141,9 +141,9 @@
                         
                 <?php endif;?>
                 
-             </div> 
-             <div class="spacer-10"></div>  
-             <div class="details" id="editpages_container">   
+            </div>
+            <div class="spacer-10"></div>
+            <div class="details" id="editpages_container">
                 <div class="spacer-10"></div>
                 <h2 class="title">Pages</h2>
            		<div class="spacer-15"></div>

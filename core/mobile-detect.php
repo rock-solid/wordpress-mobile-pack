@@ -80,11 +80,7 @@ if ( ! class_exists( 'WPMobileDetect' ) ) {
 				}
 				
 			} elseif ($is_IE_tablet && $is_premium == 1) {
-					
-				$is_wireless_device = 1;
-				$is_tablet = 1;
-				$is_supported_device = 1;
-				$is_supported_browser = 1;
+
 				$load_app = true;
 			}
     		
