@@ -54,7 +54,7 @@ class Export {
 	 * Format an article's or comment's date
 	 *
      * The date_i18n() method will translate months and days names if the locale files are found in the
-     * /wp-content/languaged folder.
+     * /wp-content/languages folder.
      *
 	 */
     protected function formatDate($date_timestamp){
@@ -66,9 +66,10 @@ class Export {
 	}
 	
 	/**
-    * 
-    *  - exportCategories method used for the export of every category with a number of articles for each
-	*  - this method returns a JSON with the specific content
+     *  The exportCategories method is used for the export of every category with a fixed number of articles for each.
+     *
+	 *  This method returns a JSON with the following format:
+     *
 	*  - ex : 
 	*	{
 	*		"categories": [
@@ -78,31 +79,31 @@ class Export {
 	*				"name": "Latest",
 	*				"link": "",
 	*				"image": {
-	*					"src": "http://cdn-kits.appticles.com/others/category-default.jpg",
+	*					"src": "{image_path}",
 	*					"width": 480,
 	*					"height": 270
 	*				},
 	*				"articles": [
 	*					{
-	*						"id": "5362972281f58370a69686b7",
-	*						"title": "Digital and Social Media Journalist",
+	*						"id": "123456",
+	*						"title": "Post title",
 	*						"timestamp": 1398969000,
-	*						"has_facebook_id": 0,
-	*						"author": "Accounts and Legal",
+	*						"author": "Author's name",
 	*						"date": "Thu, May 01, 2014 06:30",
-	*						"link": "http://www.journalism.co.uk/media-jobs/digital-and-social-media-journalist/s75/a556628/",
+	*						"link": "{post_link}",
 	*						"image": "",
 	*						"description" : "<p>Lorem ipsum sit dolor amet..</p>",
 	* 						"content": '',
 	*						"category_id": 3,
-	*						"category_name": "Jobs"
+	*						"category_name": "Post category"
 	*					}
 	*				]
 	*			}
 	*		]
 	*	}
     *
-	* - The "Latest" category will be formed from all the visible categories and articles	
+	* - The "Latest" category will be composed from all the visible categories and articles.
+    *
     */
 	public function exportCategories() {
 				
@@ -398,29 +399,29 @@ class Export {
 
 
 	/**
-    * 
-    *  - exportArticles method used for the export of a number of articles for each category
-	*  - this metod returns a JSON with the specific content
+    * The exportArticles method is used exporting a number of articles for each category.
+    *
+	*  The method returns a JSON with the following format:
+    *
 	*  - ex : 
 	*	{
 	*		"articles": [
 	*			{
-	*			  "id": "53624b6981f58370a6968678",
-	*			  "title": "#IJF14: Global developments in data journalism",
+	*			  "id": "123456",
+	*			  "title": "Post title",
 	*			  "timestamp": 1398950385,
-	*			  "has_facebook_id": 0,
 	*			  "author": "",
 	*			  "date": "Thu, May 01, 2014 01:19",
-	*			  "link": "http://www.journalism.co.uk/news/-ijf14-global-patterns-in-data-journalism-/s2/a556612/",
+	*			  "link": "{post_link}",
 	*			  "image": "",
-	*			  "description":"<p><b>Sport</b>�(or�<b>sports</b>) is all forms of usually�<a href=\"http://en.wikipedia.org/wiki/Competition\">competitive</a>�<a href=\"http://en.wikipedia.org/wiki/Physical_activity\">physical activity</a>�which,<sup><a href=\"http://en.wikipedia.org/wiki/Sport#cite_note-sportaccord-1\">[1]</a></sup>�through casual or organised participation, aim to use, maintain or improve physical ability and skills while...</p>",				  
+	*			  "description":"<p>Post content goes here...</p>",
 	*			  "content": '',
 	*			  "category_id": 5,
-	*			  "category_name": "News"
+	*			  "category_name": "Post category"
 	*			},
+    *           ...
 	*		]
 	*	}
-    *
 	*    
     */
 	public function exportArticles() {
@@ -495,7 +496,7 @@ class Export {
                 
     			$posts_query = new WP_Query($args);
     			
-    			if ($posts_query->have_posts() ) {
+    			if ($posts_query->have_posts()) {
 
                     while ($posts_query->have_posts()) {
 
@@ -564,33 +565,34 @@ class Export {
 	
 	
 	/**
-    * 
-    *  - exportArticle method used for the export of an article
-	*  - this metod returns a JSON with the specific content
+    *
+    * The exportArticle method is used for the exporting a single post.
+    *
+    *  The method returns a JSON with the following format:
+    *
 	*  - ex : 
 	*	{
 	*	  "article": {
-	*		"id": "53624b6981f58370a6968678",
-	*		"title": "#IJF14: Global developments in data journalism",
+	*		"id": "123456",
+	*		"title": "Post title",
 	*		"timestamp": 1398960437,
 	*		"author": "",
 	*		"date": "Thu, May 01, 2014 04:07",
-	*		"link": "http://www.journalism.co.uk/news/-ijf14-global-patterns-in-data-journalism-/s2/a556612/",
+	*		"link": "{post_link}",
 	*		"image": "",
-	*		"description":"<p>Maintain or improve physical ability and skills while...</p>",
-	*	    "content": "<p>On the second day of the International Journalism Festival in Perugia, delegates were ...</p>",
-	*		"comment_status": "open",	** the values can be opened or closed
+	*		"description":"<p>The first of the content goes here</p>",
+	*	    "content": "<p>The full content goes here</p>",
+	*		"comment_status": "open", (the values can be 'opened' or 'closed')
     *       "no_comments": 2,	
 	*       "show_avatars" : true,
 	*		"require_name_email" : true,	
 	*		"category_id": 5,
-	*		"category_name": "News".
+	*		"category_name": "Post category".
     *       "related_posts" :"",
     *       "related_web_posts":""
 	*	  }
 	*	}
-    *  
-	*   @params $articleId - the id of the article
+    *
 	*    
     */
 	public function exportArticle() {
@@ -647,7 +649,7 @@ class Export {
     					   
     						$image_details = array(
                                 "src" 		=> $image_data[0],
-                                "width" 		=> $image_data[1],
+                                "width" 	=> $image_data[1],
                                 "height" 	=> $image_data[2]
                             );
     					}
@@ -779,30 +781,31 @@ class Export {
 			// return error
 			return '{"error":""}';
 	}
-	
-    
-	
+
+
 	/**
-    * 
-    *  - exportComments method used for the export of the comments for an article
-	*  - this metod returns a JSON with the specific content
+    *
+    * The exportComments method is used for the exporting the comments for an article.
+    *
+	* The method returns a JSON with the specific content:
+    *
 	*  - ex : 
 	*	{
-	*	  "comments": {
-	*		"id": "53624b6981f58370a6968678",
-	*		"title": "#IJF14: Global developments in data journalism",
-	*		"timestamp": 1398960437,
-	*		"author": "",
-	*		"date": "Thu, May 01, 2014 04:07",
-	*		"link": "http://www.journalism.co.uk/news/-ijf14-global-patterns-in-data-journalism-/s2/a556612/",
-	*		"image": "",
-	*		"content": "<p>On the second day of the International Journalism Festival in Perugia, delegates were treated to a round up of data journalism trends and developments from around the world.</p>",
-	*		"category_id": 5,
-	*		"category_name": "News"
-	*	  }
+	*	  "comments": [
+    *           {
+	*		        "id": "1234",
+	*		        "author": "Comment author",
+	*		        "author_url": "{author_url}",
+	*		        "date": "Thu, May 01, 2014 04:07",
+	*		        "content": "<p>The comment's text goes here.</p>",
+	*		        "article_id": "123456",
+	*		        "article_title": "Post title",
+    * 	            "avatar": "{avatar}",
+	*	        },
+    *           ...
+    *       ]
 	*	}
-    *  
-	*   @params $articleId - the id of the article
+    *
 	*    
     */
 	public function exportComments() {
@@ -818,7 +821,7 @@ class Export {
 				
 			}
 				
-			// init articles array
+			// init comments array
 			$arrComments = array();
 			
 			$args = array(
@@ -834,15 +837,15 @@ class Export {
 				$args['order'] = 'ASC';
 			}
 			
-			// get post by id
-			$comments = get_comments( $args);
-			
-			
+			// read comments
+			$comments = get_comments($args);
+
 			if (is_array($comments) && !empty($comments)) {
 				
 				foreach($comments as $comment) {
-					$get_avatar = '';
+
 					$avatar = '';
+
 					// get avatar only if the author wants it displayed
 					if (get_option("show_avatars")) {
 						
@@ -859,7 +862,7 @@ class Export {
 						'date' => $this->formatDate(strtotime($comment->comment_date)),
 						'content' => $this->purifier->purify($comment->comment_content),
 						'article_id' => $comment->ID,
-						'article_title'=>$comment->post_title,
+						'article_title' => $comment->post_title,
 						'avatar' => $avatar
 					);
 					
@@ -875,21 +878,19 @@ class Export {
 	}
 	
 	/**
-    * 
-    *  - saveComment method used to add a comment to an article
-	*  - this metod returns a JSON with the success/ error message
-	*  - ex of get request : 
+    *  The saveComment method is used to add a comment to an article.
+    *
+    *  The method returns a JSON with the success/ error message.
+    *
+	*  Example of GET request :
 	*	
-	*	"author": "Flori",
-	*	"email": "florentina@appticles.com",
-	*	"url": http://appticles.com,
-	*	"comment": " love the pohotos of the cats!!",
+	*	"author": "Comment author",
+	*	"email": "emailaddress@mydomain.com",
+	*	"url": "{url}",
+	*	"comment": "Love cats photos!!",
 	*	"comment_parent": "1",
 	*	"code": "7841da44befc5b8fa00a0c8daab49d21_1400771121",	
-	*	 
-	*	
-    *  
-	*   
+	*
 	*    
     */
 	public function saveComment() {
@@ -988,31 +989,27 @@ class Export {
 		// return error
 		return '{"status":0}'; // error status
 	}
-	
-	
-	
-	
+
+
 	/**
     * 
-    *  - exportPages method used for the export of a number of articels for each category
-	*  - this metod returns a JSON with the specific content
+    *  The exportPages method is used for exporting all the visible pages.
+    *
+	*  This method returns a JSON with the following format:
+    *
 	*  - ex : 
 	*	{
 	*		"pages": [
 	*			{
-	*			  "id": "53624b6981f58370a6968678",
-	*			  "title": "#IJF14: developments in data journalism",
-	*			  "timestamp": 1398950385,
-	*			  "author": "",
-	*			  "date": "Thu, May 01, 2014 01:19",
-	*			  "link": "http://www.journalism.co.uk/news/-ijf14-patterns-in-data-journalism-/s2/a556612/",
+	*			  "id": "123456",
+	*			  "order": 3,
+	*			  "title": "Page title",
 	*			  "image": "",
-	*			  "description":"<p>Maintain or improve physical ability and skills while...</p>",
-	*			  "content": ''
-	*			},
+	*			  "content": "<p>The page's content goes here.</p>",
+    *			},
+    *           ...
 	*		]
 	*	}
-    *
 	*    
     */
 	public function exportPages() {
@@ -1021,23 +1018,10 @@ class Export {
 		
 			// init pages array
 			$arrPages = array();
-			
-			// set last timestamp
-			$lastTimestamp = date("Y-m-d H:i:s");
-			if (isset($_GET["lastTimestamp"]) && is_numeric($_GET["lastTimestamp"]))
-				$lastTimestamp = date("Y-m-d H:i:s",$_GET["lastTimestamp"]);
-			
-			
-			$descriptionLength = 200;
-			if (isset($_GET["descriptionLength"]) && is_numeric($_GET["descriptionLength"]))
-				$descriptionLength = $_GET["descriptionLength"];
-			
+
 			// set limit
-			$limit = 7;
-			if (isset($_GET["limit"]) && is_numeric($_GET["limit"]))
-				$limit = $_GET["limit"];
-			
-			
+			$limit = 100;
+
 			// set args for pages
 			$args = array(
                 'post__not_in' => $this->inactive_pages,
@@ -1092,7 +1076,7 @@ class Export {
 
 						$index_order = array_search($page->ID, $order_pages);
 
-						// create new index for new categories
+						// create new index for new page
 						$new_index = count($order_pages) + 1;
 						$last_key = count($arrPages) > 0 ? max(array_keys($arrPages)) : 0;
 
@@ -1123,30 +1107,26 @@ class Export {
 		} else
 			return '{"error":""}';
 	}
-	
-	
+
+
 	/**
-    * 
-    *  - exportPage method used for the export of a page
-	*  - this metod returns a JSON with the specific content
+    *
+    * The exportPage method is used for the exporting a single page.
+    *
+	* The method returns a JSON with the following format:
+    *
 	*  - ex : 
 	*	{
 	*	  "page": {
-	*		"id": "53624b6981f58370a6968678",
-	*		"title": "#IJF14: developments in data journalism",
-	*		"timestamp": 1398960437,
-	*		"author": "",
-	*		"date": "Thu, May 01, 2014 04:07",
-	*		"link": "http://www.journalism.co.uk/news/-ijf14-patterns-in-data-journalism-/s2/a556612/",
-	*		"image": "",
-	*		"description":"<p>Maintain or improve physical ability and skills while...</p>",
-	*	    "content": "<p>On the second day of the International Journalism Festival in Perugia, delegates were ...</p>",
-    *       "related_web_posts":"" 
-    *       }
+	*		"id": "123456",
+	*		"title": "Page title",
+    *		"link": "{page_link}",
+    *		"image": "",
+    *	    "content": "<p>Page content goes here</p>",
+    *       "related_web_posts" : "Related web posts go here"
+    *     }
 	*	}
-    *  
-	*   @params $pageId - the id of the page
-	*    
+    *
     */
 	public function exportPage() {
 
@@ -1160,11 +1140,7 @@ class Export {
 			if (isset($_GET["pageId"]) && is_numeric($_GET["pageId"])) {
 				$pageId = $_GET["pageId"];
 			}
-			
-			$descriptionLength = 200;
-			if (isset($_GET["descriptionLength"]) && is_numeric($_GET["descriptionLength"]))
-				$descriptionLength = $_GET["descriptionLength"];
-			
+
 			// init page array
 			$arrPage = array();
 			
@@ -1198,7 +1174,6 @@ class Export {
                             );
                         }
                     }
-
 
                     // for the content, first check if the admin edited the content for this page
                     if (get_option('wmpack_page_' . $post->ID) === false)
@@ -1240,14 +1215,13 @@ class Export {
                     
 					// remove script tags
 					$content = self::removeScriptTags($content);
-					
     				$content = $this->purifier->purify($content);
     				
 					// remove all url's from attachment images
 					$content = preg_replace( array('{<a(.*?)(wp-att|wp-content\/uploads|attachment)[^>]*><img}', '{ wp-image-[0-9]*" /></a>}'), array('<img','" />'), $content);
 
     				$arrPage = array(
-                        'id' 					=> $post->ID,
+                        "id" 					=> $post->ID,
                         "title" 				=> get_the_title($post->ID),
                         "link" 			    	=> get_permalink($post->ID),
                         "image" 				=> !empty($image_details) ? $image_details : "",
@@ -1269,7 +1243,7 @@ class Export {
 	
 	
 	/**
-	 * truncateHtml can truncate a string up to a number of characters while preserving whole words and HTML tags
+	 * truncateHtml can truncate a string up to a number of characters while preserving whole words and HTML tags.
 	 *
 	 * @param string $text String to truncate.
 	 * @param integer $length Length of returned string, including ellipsis.
@@ -1342,7 +1316,7 @@ class Export {
 						}
 					}
 					$truncate .= substr($line_matchings[2], 0, $left+$entities_length);
-					// maximum lenght is reached, so get off the loop
+					// maximum length is reached, so get off the loop
 					break;
 				} else {
 					$truncate .= $line_matchings[2];
@@ -1387,16 +1361,15 @@ class Export {
 	public static function removeScriptTags($text) {
      
         $text = preg_replace("/<\s*script[^>]*>[\s\S]*?(<\s*\/script[^>]*>|$)/i"," ",$text);
-        // return clean text
         return $text;
 	}
 	
 	
 	/**
 	 * 
-	 * Method wmp_duplicate called when a duplicate comment is detected.
+	 * Method wmp_duplicate is called when a duplicate comment is detected.
 	 *
-	 * The method is used to echo a JSON with and error and applies an exit to prevent wp_die()
+	 * The method is used to echo a JSON with and error and applies an exit to prevent wp_die().
      * 
 	 */
 	 public function wmp_duplicate(){
@@ -1410,7 +1383,7 @@ class Export {
 
     /**
      *
-     * Method comment_closed used to determine the comment status for an article.
+     * The comment_closed method is used to determine the comment status for an article.
      * The method returns 'open' if the users can comment and 'closed' otherwise.
      *
      * @param $post
@@ -1452,7 +1425,7 @@ class Export {
 	
     /**
      * 
-     * Export manifest files for Android or Mozilla
+     * Export manifest files for Android or Mozilla.
      * 
      * These manifest files will be used only if the index file is loaded from the plugin (free or premium).
      * 
@@ -1560,9 +1533,11 @@ class Export {
     
     
 	/**
-    * 
-    *  - exportSettings method used for the export of the main settings
-	*  - This method returns a JSON with the specific content
+    *
+    *  The exportSettings method is used for exporting the main settings, when connecting with a Premium API key.
+    *
+	*  The method returns a JSON with the following format:
+    *
 	*  - ex : 	
 	*		{
 	*			"logo": "",
@@ -1570,8 +1545,6 @@ class Export {
 	*			"cover": "",
     *           "status": 0/1
 	*		}
-	*				
-    *
     */
 	public function exportSettings() {
 			
@@ -1630,9 +1603,9 @@ class Export {
     
     /**
      * 
-     * Method wmp_replace_internal_links called when related posts are found for an article
+     * Method wmp_replace_internal_links is called when related posts are found for an article.
      *
-     * The method is used to replace the standard urls of the related posts with internal urls
+     * The method is used to replace the standard urls of the related posts with internal urls.
      * 
      * @param $content - the content to be parsed
      * @param $type - can be post or page, in order to rebuild the correct url
@@ -1686,7 +1659,7 @@ class Export {
     
     /**
      * 
-     * Method wmp_related_web_posts called when we want to fetch zemanta's related posts around the web
+     * Method wmp_related_web_posts called when we want to fetch zemanta's related posts around the web.
      *
      * The method is used to remove the related posts around the web from the content.
      * The method returns the html with the related posts around the web, or empty if there are none.
@@ -1728,7 +1701,7 @@ class Export {
     
     /**
      * 
-     * Method wmp_zemanta_purifier called when he want to keep the class attribute for the content, for zemanta tags
+     * Method wmp_zemanta_purifier called when he want to keep the class attribute for the content, for zemanta tags.
      *
      * @return object
      */
