@@ -502,42 +502,6 @@ if ( ! class_exists( 'WMobilePack' ) ) {
             }
     	}
 
-
-
-        public static function wmp_get_ordered_content($type = 'categories'){
-
-            if ($type == 'pages'){
-                $ordered_items = unserialize(WMobilePack::wmp_get_setting('ordered_pages'));
-            } else {
-                $ordered_items = unserialize(WMobilePack::wmp_get_setting('ordered_categories'));
-            }
-
-            if (!empty($ordered_items)){
-
-                $use_locale = false;
-
-                foreach ($ordered_items as $key => $value){
-
-                    if (!is_numeric($key)){
-                        $use_locale = true;
-                    }
-
-                    break;
-                }
-
-                var_dump($use_locale);
-
-                if ($use_locale) {
-
-                    if (!array_key_exists(get_locale(), $ordered_items)){
-                        return array();
-                    } else {
-                        return $ordered_items[get_locale()];
-                    }
-                }
-            }
-        }
-
     
         /**
          * 

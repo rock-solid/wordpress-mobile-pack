@@ -298,17 +298,18 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                         if ($_POST['ids'] != '' && ($_POST['type'] == 'pages' || $_POST['type'] == 'categories')){
                              
 							// Retrieve the ids list from the param
-							$arrItemsIds = array_filter(explode(",", $_POST['ids']));
+							$items_ids = array_filter(explode(",", $_POST['ids']));
 							
-							if (count($arrItemsIds) > 0) {
+							if (count($items_ids) > 0) {
 
                                 // Check if the received ids are numeric
 								$valid_ids = true;
 
-								foreach ($arrItemsIds as $item_id) {
-									
-									if (!is_numeric($item_id))
-										$valid_ids = false;
+								foreach ($items_ids as $item_id) {
+
+                                    if (!is_numeric($item_id)){
+                                        $valid_ids = false;
+                                    }
 								}
 		        	
 								if ($valid_ids) {
@@ -321,23 +322,17 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                                         $ordered_items = unserialize(WMobilePack::wmp_get_setting('ordered_categories'));
                                     }
 
-                                    // Check if we have to overwrite the existing list and introduce the locale keys
-                                    foreach ($ordered_items as $key => $value){
+                                    // Remove items that were received as params from the old list
+                                    $ordered_items = array_diff($ordered_items, $items_ids);
 
-                                        if (is_numeric($key)){
-                                            $ordered_items = array();
-                                            break;
-                                        }
-                                    }
-
-                                    $ordered_items[get_locale()] = $arrItemsIds;
+                                    // Add param items at the end of the list
+                                    $ordered_items = array_merge($ordered_items, $items_ids);
 
 									// Save option
                            			if ($_POST['type'] == 'pages')
 										WMobilePack::wmp_update_settings('ordered_pages', serialize($ordered_items));
 									elseif ($_POST['type'] == 'categories')
 										WMobilePack::wmp_update_settings('ordered_categories', serialize($ordered_items));
-								
                                 } 
 							}            
                         } 

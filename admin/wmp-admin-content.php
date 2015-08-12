@@ -8,7 +8,7 @@
     }
 </script>
 <?php
-var_dump(get_locale());
+
 	$categories = get_categories();
 	$order_categories = unserialize(WMobilePack::wmp_get_setting('ordered_categories'));
 	
@@ -25,8 +25,7 @@ var_dump(get_locale());
 	// ------------------------------------ //
 	
 	$pages = get_pages();
-	$order_pages = WMobilePack::wmp_get_ordered_content('pages');
-    print_r($order_pages);
+	$order_pages = unserialize(WMobilePack::wmp_get_setting('ordered_pages'));
 	
 	// Depending on the language settings, not all pages might be visible at the same time
 	$setting_inactive_pages = unserialize(WMobilePack::wmp_get_setting('inactive_pages'));
@@ -53,6 +52,7 @@ var_dump(get_locale());
             
             <!-- add content form -->
             <div class="details">
+
             	<div class="spacer-10"></div>
                 <h2 class="title">Categories</h2>
            		<div class="spacer-15"></div>

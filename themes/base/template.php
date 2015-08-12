@@ -75,15 +75,13 @@
 	if (file_exists($language_file)) {
 
 		$appTexts = file_get_contents($language_file);
-		$appTexts = mb_convert_encoding($appTexts, 'HTML-ENTITIES', "UTF-8");
-		
 		$appTextsJson = json_decode($appTexts, true);
 	}
 	
 	if (!$appTextsJson || empty($appTextsJson) || !array_key_exists('appTexts', $appTextsJson)) {
-		echo "ERROR, unable to load language file. Please check the 'locales' folder.";
+		echo "ERROR, unable to load language file. Please check the '".WMP_DOMAIN."/themes/".WMobilePack::wmp_app_theme()."/locales' folder.";
 	}
-	
+
 ?>
 <!DOCTYPE HTML>
 <html manifest="" <?php language_attributes(); ?>>
@@ -180,7 +178,7 @@
 			icon: "<?php echo $icon_path;?>",
 			websiteUrl: '<?php echo home_url();?>?wmp_theme_mode=desktop',
 			commentsToken: "<?php echo WMobilePack::wmp_set_token();?>",
-			appTexts: <?php echo json_encode($appTextsJson['appTexts']);?>,
+			appTexts: <?php echo json_encode($appTextsJson['appTexts']);?>
 		}
 	</script>
 
