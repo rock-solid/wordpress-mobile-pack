@@ -66,7 +66,7 @@ class Export {
 	}
 	
 	/**
-     *  The exportCategories method is used for the export of every category with a fixed number of articles for each.
+     *  The exportCategories method is used for exporting every category with a fixed number of articles.
      *
 	 *  This method returns a JSON with the following format:
      *
@@ -399,7 +399,8 @@ class Export {
 
 
 	/**
-    * The exportArticles method is used exporting a number of articles for each category.
+    *
+    *  The exportArticles method is used for exporting a number of articles for each category.
     *
 	*  The method returns a JSON with the following format:
     *
@@ -566,7 +567,7 @@ class Export {
 	
 	/**
     *
-    * The exportArticle method is used for the exporting a single post.
+    *  The exportArticle method is used for exporting a single post.
     *
     *  The method returns a JSON with the following format:
     *
@@ -785,7 +786,7 @@ class Export {
 
 	/**
     *
-    * The exportComments method is used for the exporting the comments for an article.
+    * The exportComments method is used for exporting the comments for an article.
     *
 	* The method returns a JSON with the specific content:
     *
@@ -878,7 +879,7 @@ class Export {
 	}
 	
 	/**
-    *  The saveComment method is used to add a comment to an article.
+    *  The saveComment method is used for adding a comment to an article.
     *
     *  The method returns a JSON with the success/ error message.
     *
@@ -1111,7 +1112,7 @@ class Export {
 
 	/**
     *
-    * The exportPage method is used for the exporting a single page.
+    * The exportPage method is used for exporting a single page.
     *
 	* The method returns a JSON with the following format:
     *
@@ -1369,7 +1370,7 @@ class Export {
 	 * 
 	 * Method wmp_duplicate is called when a duplicate comment is detected.
 	 *
-	 * The method is used to echo a JSON with and error and applies an exit to prevent wp_die().
+	 * The method is used to echo a JSON with an error and applies an exit to prevent wp_die().
      * 
 	 */
 	 public function wmp_duplicate(){
