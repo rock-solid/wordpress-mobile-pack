@@ -1,0 +1,106 @@
+#wmpack-admin{
+	.more{
+		display: table;
+		
+		.ribbon{
+			width: 100%;
+			
+			.indicator{
+				background: url(../images/ribbon-premium.png);
+				width: 67px;
+				height: 68px;
+				position: absolute;
+				top: -4px;
+				right: -6px;
+			}
+		}
+		
+		.left-side{
+			width: 100%;
+			display: table;
+			vertical-align: top;
+			
+			.details{
+				padding:30px;
+				background-color: $box-color; 
+				
+				h1{
+					font-family: 'OlRoundGothicLight', sans-serif;
+					font-size: 40px;
+					line-height: 40px;
+					color: $base-text-color;
+					text-align: center;
+					letter-spacing: 0.5px;
+				}
+				.upgrade-message{
+					text-align: center;
+				}
+				.try-it{
+					width: $input-size-smaller;
+					margin: 0 auto;
+					
+					p{
+						font-family: 'OpenSansItalic',sans-serif;
+						font-size: 14px;
+						color: $base-p-color;
+						line-height: normal;
+						text-align: center;
+					}
+				}
+				h2.title{
+					font-family: 'OlRoundGothicLight', sans-serif;
+					font-size: 25px;
+					line-height: normal;
+					color: $base-text-color;
+				}
+				.showcase{
+					width: 671px;
+					margin: 0 auto;
+				}
+				.subtitle{
+					font-family: "AcordeRegular", sans-serif;
+					font-size: 20px;
+					color: $base-text-color;
+					text-align: center;
+				}
+				&.go-premium,
+				&.go-premium-white{
+					background: #fdf7d3;
+					
+					.premium-bg{
+						background: #fffced;
+						padding: 30px 20px; 
+					}
+					.features{
+						display: table;
+						
+						.feature{
+							display: table-cell;
+							width: 33%;
+							text-align: center;
+							padding: 0 10px;
+							
+							img{
+								text-align: center;
+								width: 90px;
+								height: 90px;
+							}
+							p{
+								text-align: left;
+								
+								&.title{
+									font-size: 15px;
+									text-align: center;
+									font-weight: bold;
+								}
+							}
+						}
+					}
+				}
+				&.go-premium-white{
+					background: $box-color;
+				}
+			}
+		}
+	}
+}

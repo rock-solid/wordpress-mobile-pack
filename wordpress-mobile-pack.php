@@ -25,7 +25,7 @@ if ( class_exists( 'WMobilePack' ) && class_exists( 'WMobilePackAdmin' ) ) {
 	register_deactivation_hook( __FILE__, array( &$wmobile_pack, 'wmp_uninstall' ) );
 
     // Initialize the Wordpress Mobile Pack check logic and rendering 
-    add_action('plugins_loaded',array( &$wmobile_pack, 'wmp_check_load' )); 
+    add_action('plugins_loaded',array( &$wmobile_pack, 'wmp_check_load' ));
 	
 	if (is_admin()) {
  

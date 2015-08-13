@@ -6,13 +6,28 @@ if (class_exists('WMobilePack')):
 		
 		// The mobile web app paths will be set relative to the home url
 		$mobile_url = home_url();
-		$is_visible = false;
-		
-		if (is_single()){
-			
-			$is_visible = true;
-			
-			$mobile_url .= "/#article/".get_the_ID();
+        $is_visible = false;
+
+        if (is_single()){
+
+            // Read inactive categories
+            $inactive_categories = unserialize(WMobilePack::wmp_get_setting('inactive_categories'));
+
+            // Read post categories
+            $post_categories = get_the_category();
+
+            // Check if the post belongs to a visible category
+            $is_visible = false;
+            $visible_category = null;
+
+            foreach ($post_categories as $post_category){
+
+                if (!in_array($post_category->cat_ID, $inactive_categories)) {
+                    $is_visible = true;
+                    $mobile_url .= "/#article/".get_the_ID();
+                    break;
+                }
+            }
 			
 		} elseif (is_page()) {
 			

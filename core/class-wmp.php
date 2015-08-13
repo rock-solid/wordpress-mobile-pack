@@ -174,7 +174,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     	public function wmp_admin_enqueue_scripts() {
     		
             // enqueue styles
-			wp_enqueue_style('css_general', plugins_url(WMP_DOMAIN.'/admin/css/general-min.css'), array(), WMP_VERSION);
+			wp_enqueue_style('css_general', plugins_url(WMP_DOMAIN.'/admin/css/general.css'), array(), WMP_VERSION);
         
             // enqueue scripts
         	if (WMP_BLOG_VERSION < 3.6) 
@@ -519,7 +519,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     		$load_app = false;
             
             $desktop_mode = self::wmp_check_desktop_mode();
-            
+
             if ($desktop_mode == false) {
                
                 if (self::wmp_check_display_mode()) {
@@ -583,7 +583,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
             }
 			
 			// add hook in header (for rel=alternate)
-			add_action('wp_head', array(&$this, 'wmp_show_rel'));
+			add_action('wp_head', array(&$this, 'wmp_show_rel'), 100);
     	}
         
         

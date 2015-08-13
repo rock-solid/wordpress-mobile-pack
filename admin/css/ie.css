@@ -1,7 +1,0 @@
-@media screen and (min-width: 0 \0) {
-  /* line 3, ../sass/ie.scss */
-  body #main {
-    min-height: auto;
-    height: 100% !important;
-  }
-}

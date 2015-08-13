@@ -247,8 +247,7 @@
             <?php include_once('sections/wmp-feedback.php'); ?>
         </div>
 	</div>
-
-
+    <?php include_once('sections/wmp-review.php'); ?>
 </div>
 
 <script type="text/javascript">

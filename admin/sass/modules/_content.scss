@@ -1,0 +1,360 @@
+#wmpack-admin{	
+	.content{
+		display: table;
+		width:100%;
+		.left-side{
+			width: 100%;
+			display: table;
+			vertical-align: top;
+			
+			.details{
+				padding:30px;
+				background-color: $box-color; 
+				
+				h2.title{
+					font-family: 'OlRoundGothicLight', sans-serif;
+					font-size: 25px;
+					line-height: normal;
+					color: $base-text-color;
+				}
+				.more-content{
+					float: left;
+					
+					p{
+						font-family: 'AcordeRegular',sans-serif;
+						font-size: 15px;
+						line-height: normal;
+						padding: 5px 0 0 0; 
+						color: darken($base-blue,50%);
+						margin: 0 15px 0 0; 
+					}
+				}
+				.waitlist{
+					float: right; 
+					text-align: right;
+					
+					.btn{
+						margin: 0 ;
+					}
+					.btn.blue{
+						display: inline-flex;
+						float: right;
+						vertical-align: middle;
+						text-align: center;
+						
+					}
+					p{
+						font-family: 'OpenSansItalic',sans-serif;
+						font-size: 12px;
+						color: $base-p-color;
+						line-height: normal;
+					}
+					.info{
+						margin: 0 auto;
+						width: $input-size-small + $btn-size-smallest + 10px;
+						
+						input[type="text"]{
+							float: left;
+							background: rgba(250,250,250,0.8);
+						}
+						.btn{
+							float: left;
+							margin: 0 0 0 10px;
+						}
+					}
+					.added{
+						margin: 0 auto;
+						width: 190px;
+						
+						.switcher{
+							width: 190px;
+							
+							.msg{
+								font-family: 'AcordeSemiBold', sans-serif;
+								width: 150px;
+								height: $input-height;
+								background: $input-background;
+								color: $input-color;
+								font-size: $input-font-size;
+								@include wbz-border-radius($input-radius 0 0 $input-radius);
+								@include wbz-box-shadow(none);
+								border: 1px solid $input-border;
+								border-right: 0px;
+								padding: 0 10px;
+								line-height: 38px;
+								text-align: center;
+								float: left;
+							} 
+							.check{
+								@include wbz-border-radius(0 $input-radius $input-radius 0);
+								height: $input-height;
+								border: 1px solid darken($input-border, 10%);
+								border-left: 0px;
+								width: 40px;
+								float: right;
+								@include wbz-inline-icon(active, 17px);
+								color: #ffffff;
+								
+								&::before{
+									height: 38px;
+									width: 40px;
+									right: 10px;
+									top: -2px;
+									line-height: 38px;
+								}
+							}
+							&.blue{
+								.check{
+									background: $base-blue;
+									border: 1px solid darken($base-blue, 10%);
+									border-left: 0px;
+								}
+							}
+						}
+					}
+				}
+			}
+			ul.categories{
+				list-style-type: none;
+				width: 100%;
+				display: block;
+				
+				li{
+					@include wbz-display-box();
+					@include wbz-box-orient(horizontal);
+					@include wbz-box-align(center);
+					@include wbz-box-pack(justify);
+					@include wbz-box-flex(1);
+					background-color: #fcfcfc;
+					height: 64px;
+					width: 100%;
+					border-bottom: #f0f1f2 1px solid;
+					margin-bottom: 5px;
+					cursor: pointer;
+					vertical-align: middle;
+					
+					.row{
+						@include wbz-display-box();
+						@include wbz-box-orient(horizontal);
+						@include wbz-box-align(center);						
+						height: 64px;
+						width: 90%;
+						vertical-align: middle;	
+					}
+					
+					&:hover{
+						background-color: lighten($base-blue,45%);
+						border-bottom: lighten($base-blue,41%) 1px solid;
+						@include wbz-display-box();
+						@include wbz-box-orient(horizontal);
+						
+						a{
+							&.edit{
+								display:block;								
+							}
+							&.delete{
+								@include wbz-display-box();
+							}
+							&[class^="icon-"]{
+								.relative{
+									.img{
+										@include wbz-transform(translateY(30%) translateX(30%) scale(0.4));
+										@include wbz-transition(all 0.3s ease-in-out);
+									}
+								}
+							}
+						}
+					}
+					.buttons{
+						@include wbz-display-box();								
+						@include wbz-box-flex(1);
+						@include wbz-box-pack(end);
+					}
+					span,
+					a{
+						font-family: 'AcordeRegular', sans-serif;
+						
+						&.status{
+							@include wbz-display-box();
+							font-size: 12px;
+							color: #8c8d8d;
+							width: 70px; 
+							position: relative;
+    						margin: 0 0 0 20px;
+							 
+							&.active::before{
+								content: '';
+								@include wbz-display-box();
+								position: absolute;
+								width: 19px;
+								height: 19px;
+								border: #fff 3px solid;
+								@include wbz-border-radius(19px);
+								background-color: $base-green;
+								left: -29px;
+								top: 1px;
+							}
+							&.inactive::before{
+								content: '';
+								@include wbz-display-box();
+								position: absolute;
+								width: 19px;
+								height: 19px;
+								border: #fff 3px solid;
+								@include wbz-border-radius(19px);
+								background-color: darken($base-red,30%);
+								left: -29px;
+								top: 1px;
+							}
+						}
+						&.title{
+							@include wbz-display-box();
+							font-size: 15px; 
+							color: $base-dark-blue;
+							text-transform: uppercase; 
+							width: 300px;
+						}
+						&.posts{
+							@include wbz-display-box();
+							font-family: 'OpenSansItalic',sans-serif;
+							color: $base-p-color;
+							font-size: 15px; 
+							margin-right: 30px;
+							@include wbz-box-flex(1);
+							@include wbz-box-pack(end);
+						}
+						&.edit{
+							@include wbz-inline-icon(edit, 24px);
+							width: 63px;
+							height: 63px;
+							background: #cbdde2;
+							color: #ffffff;
+							border-left: 1px solid #e0edf1;
+							display: none;
+							position: relative;							
+							&:hover{
+								background: #d3e3e8;
+							}
+							&::before{
+								width: 63px;
+								height: 63px;
+								line-height: 63px;
+								position: absolute;
+							}
+						}
+						&.delete{
+							@include wbz-inline-icon(close-x, 24px);
+							width: 63px;
+							height: 63px;
+							background: #cbdde2;
+							color: #ffffff;
+							border-left: 1px solid #e0edf1;
+							display: none;
+							position: relative;
+							
+							&:hover{
+								background: #d3e3e8;
+							}
+							&::before{
+								width: 63px;
+								height: 63px;
+								line-height: 63px;
+								position: absolute;
+							}
+						}
+						&[class^="icon-"]{
+							@include wbz-display-box();
+							@include wbz-border-radius(48px);
+							width: 48px;
+							height: 48px;
+							margin: 0 20px 0 0;
+							
+							&::before{
+								width: 48px;
+								height: 48px;
+								line-height: 48px;
+							}
+							.relative{
+								display: block;
+								width: 0;
+								
+								.img{
+									@include wbz-border-radius(48px);
+									@include wbz-display-box();
+									@include wbz-transform(translateY(0%) scale(1));
+									@include wbz-transition(all 0.3s ease-in-out);
+									width: 48px;
+									height: 48px;
+									left: 0px; 
+									top: 0px;
+									position: absolute;
+									background-color: #ffffff;
+									@include wbz-box-shadow(inset 0 0 1px rgba(0,0,0,0.5));
+								}
+							}
+						} 
+					}
+				}
+				&.pages{
+					li{
+						span{
+							&.title{
+								
+							}
+						}
+					}
+				}
+			}
+		}
+		.button{
+			margin:2px;
+			padding: 0px 8px 1px 8px;
+		
+			&.insert-media{
+				color: #555;
+				background: #f7f7f7;
+				box-shadow: inset 0 1px 0 #fff, 0 1px 0 rgba(0,0,0,.08);
+				padding: 0px 7px 1px 5px;
+				margin: 0px 5px 4px 0px;
+				display: inline-block;
+				line-height: 26px;
+				font-size:13px;
+			}
+		}
+		.wp-switch-editor{
+			color:#555;
+			height:20px;
+			background: #ebebeb;
+			border:1px solid #dedede;
+			font: 13px/19px "Open Sans", sans-serif;
+			margin: 5px 0 0 5px;
+			padding: 3px 8px 4px;
+			@include wbz-box-sizing(initial);
+		}
+		.wp-editor-wrap{
+			min-width:100%;
+			textarea{
+				width:100%;				
+				height:auto;
+			}
+			&.tmce-active{
+				.switch-tmce{
+					background: #f5f5f5;
+					color: #555;
+					height: 20px;
+					border-bottom-color:#f5f5f5;
+				}
+			} 
+			&.html-active {
+				.switch-html {
+					background: #f5f5f5;
+					color: #555;
+					height: 20px;
+					border-bottom-color:#f5f5f5;
+				}
+			}
+		}
+		
+	}
+	
+}
