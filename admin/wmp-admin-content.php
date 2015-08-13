@@ -53,6 +53,15 @@
             <!-- add content form -->
             <div class="details">
 
+                <?php if (WMobilePack::wmp_active_plugin('Polylang')):?>
+                    <div class="message-container warning">
+                        <div class="wrapper">
+                            <span>When using Polylang, please make sure to select "<strong>Show all languages</strong>" when ordering categories and pages. Inconsistent ordering will result otherwise.</span>
+                        </div>
+                    </div>
+                    <div class="spacer-10"></div>
+                <?php endif;?>
+
             	<div class="spacer-10"></div>
                 <h2 class="title">Categories</h2>
            		<div class="spacer-15"></div>

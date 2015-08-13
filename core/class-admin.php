@@ -316,23 +316,11 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 									
 									$status = 1;
 
-                                    if ($_POST['type'] == 'pages'){
-                                        $ordered_items = unserialize(WMobilePack::wmp_get_setting('ordered_pages'));
-                                    } else {
-                                        $ordered_items = unserialize(WMobilePack::wmp_get_setting('ordered_categories'));
-                                    }
-
-                                    // Remove items that were received as params from the old list
-                                    $ordered_items = array_diff($ordered_items, $items_ids);
-
-                                    // Add param items at the end of the list
-                                    $ordered_items = array_merge($ordered_items, $items_ids);
-
 									// Save option
                            			if ($_POST['type'] == 'pages')
-										WMobilePack::wmp_update_settings('ordered_pages', serialize($ordered_items));
+										WMobilePack::wmp_update_settings('ordered_pages', serialize($items_ids));
 									elseif ($_POST['type'] == 'categories')
-										WMobilePack::wmp_update_settings('ordered_categories', serialize($ordered_items));
+										WMobilePack::wmp_update_settings('ordered_categories', serialize($items_ids));
                                 } 
 							}            
                         } 
