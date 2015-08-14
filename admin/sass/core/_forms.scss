@@ -140,6 +140,24 @@
 			margin: 4px;
 		}
 	}
+    input[type=checkbox]{
+        &:checked {
+            &::before{
+                margin: 0px;
+                float: left;
+                display: inline-block;
+                vertical-align: middle;
+                width: 16px;
+                font:normal 21px/1 'dashicons';
+                speak: none;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+                position: relative;
+                top: -3px;
+                left: -4px;
+            }
+        }
+    }
 	textarea{
 		font-family: 'AcordeSemiBold', sans-serif;
 		width: $input-size-normal;

@@ -382,11 +382,14 @@ body{
                 font-size: 13px;
             }
         }
-    }
 
-    .footer-review {
-        p, a {
-            font-size: 12px;
+        .ask-review {
+            p, a {
+                font-size: 12px;
+            }
+            p {
+                padding: 0px 5px;
+            }
         }
     }
 }

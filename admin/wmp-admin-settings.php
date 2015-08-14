@@ -118,6 +118,19 @@
                 </div>
                 <div class="spacer-0"></div>
             </div>
+
+            <div class="spacer-15"></div>
+            <div class="details">
+                <div class="display-mode">
+                    <h2 class="title">Language Settings</h2>
+                    <div class="spacer-20"></div>
+                    <p>Wordpress Mobile Pack will automatically translate your mobile web app in one of the supported languages (English, French, German, Polish, Romanian, Spanish or Swedish). This is done based on your Wordpress settings and doesn't require additional changes from the plugin.</p>
+                    <div class="spacer-10"></div>
+                    <p>However, if you wish to add another language or change the labels for your current one, you can do so by editing the language files located in <strong><?php echo WMP_PLUGIN_PATH."themes/".WMobilePack::wmp_app_theme()."/locales";?></strong>. If you need help or want to submit a translation for Wordpress Mobile Pack, please <a href="mailto:<?php echo WMP_FEEDBACK_EMAIL;?>">contact support</a>.</p>
+                    <div class="spacer-10"></div>
+                </div>
+                <div class="spacer-0"></div>
+            </div>
             
             <div class="spacer-15"></div>
             <div class="details">
@@ -148,7 +161,6 @@
             <?php include_once('sections/wmp-feedback.php'); ?>
         </div>
 	</div>
-    <?php include_once('sections/wmp-review.php'); ?>
 </div>
 
 <?php
