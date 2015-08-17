@@ -1,5 +1,5 @@
 <?php
-require_once('utils.php');
+require_once(__DIR__.'/../utils.php');
 
 if (class_exists('WPMPTestsUtils')) {
 	
@@ -54,7 +54,7 @@ if (class_exists('WPMPTestsUtils')) {
 			
 			if (WMobilePack::wmp_get_setting('premium_active') == 1 && WMobilePack::wmp_get_setting('premium_api_key') != '') {
 			
-				$post_id = 1241;
+				$post_id = 1;
 				$request_url = WPMPTestsUtils::get_furl(home_url().'/?p='.$post_id);
 	
 				$response = WPMPTestsUtils::make_request($request_url, false);
@@ -79,7 +79,7 @@ if (class_exists('WPMPTestsUtils')) {
 			
 			if (WMobilePack::wmp_get_setting('premium_active') == 1 && WMobilePack::wmp_get_setting('premium_api_key') != '') {
 			
-				$page_id = 1086;
+				$page_id = 2;
 				$request_url = WPMPTestsUtils::get_furl(home_url().'/?page_id='.$page_id);
 				
 				$response = WPMPTestsUtils::make_request($request_url, false);

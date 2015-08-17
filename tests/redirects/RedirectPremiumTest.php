@@ -1,12 +1,11 @@
 <?php
-require_once('utils.php');
+require_once(__DIR__.'/../utils.php');
 
 if (class_exists('WPMPTestsUtils')) {
 	
-	class RedirectPremiumDomainTest extends WP_UnitTestCase {
+	class RedirectPremiumTest extends WP_UnitTestCase {
 	
-		protected $old_current_user;
-		protected static $test_subdomain = 'myapp.domaintest.com';
+		var $old_current_user;
 		
 		function setUp() {
 			
@@ -21,10 +20,20 @@ if (class_exists('WPMPTestsUtils')) {
 			// enable connection with the API key
 			$arrData = array(
 				'premium_api_key' => 'apikeytest',
-				'premium_active'  => 1
+				'premium_active'  => 1,
+				// 'premium_config_path' => home_url().'/wp-content/plugins/wordpress-mobile-pack/tests/config_premium.json'
 			);
 				
 			WMobilePack::wmp_update_settings($arrData);
+			
+			// switch theme to the one from the plugin
+			/*register_theme_directory('plugins/wordpress-mobile-pack/themes');
+			
+			add_filter('theme_root', array(&$this, "_theme_root"));
+    		add_filter('theme_root_uri', array(&$this, "_theme_root"));
+			
+			add_filter("stylesheet", "WMobilePack::wmp_app_theme");
+            add_filter("template", "WMobilePack::wmp_app_theme");*/
 		}
 		
 		
@@ -34,7 +43,8 @@ if (class_exists('WPMPTestsUtils')) {
 			// disable connection with the API key
 			$arrData = array(
 				'premium_api_key' => '',
-				'premium_active'  => 0
+				'premium_active'  => 0,
+				// 'premium_config_path' => ''
 			);
 			
 			// save options
@@ -67,7 +77,7 @@ if (class_exists('WPMPTestsUtils')) {
 				$request_url = WPMPTestsUtils::get_furl(home_url());
 				$response = WPMPTestsUtils::make_request($request_url);
 				
-				$this->assertEquals($response['redirect'], 'http://'.self::$test_subdomain);				
+				$this->assertEquals($response['redirect'], '');				
 			}
 		}
 		
@@ -88,7 +98,7 @@ if (class_exists('WPMPTestsUtils')) {
 				$encoded_url = rawurlencode($request_url);
 				$encoded_url = str_replace('.','%2E',$encoded_url);
 				
-				$this->assertEquals($response['redirect'], 'http://'.self::$test_subdomain."#articleUrl/".$encoded_url);
+				$this->assertEquals($response['redirect'], home_url()."#articleUrl/".$encoded_url);
 			}
 		}
 		
@@ -111,7 +121,7 @@ if (class_exists('WPMPTestsUtils')) {
 				$encoded_url = rawurlencode($request_url);
 				$encoded_url = str_replace('.','%2E',$encoded_url);
 				
-				$this->assertEquals($response['redirect'], 'http://'.self::$test_subdomain."#pageUrl/".$encoded_url);
+				$this->assertEquals($response['redirect'], home_url()."#pageUrl/".$encoded_url);
 			}
 		}
 		
@@ -130,7 +140,7 @@ if (class_exists('WPMPTestsUtils')) {
 				
 				$response = WPMPTestsUtils::make_request($request_url);
 				
-				$this->assertEquals($response['redirect'], 'http://'.self::$test_subdomain."#categoryWp/".$category_id);
+				$this->assertEquals($response['redirect'], home_url()."#categoryWp/".$category_id);
 			}
 		}
 	}

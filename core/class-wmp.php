@@ -502,7 +502,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
             }
     	}
 
-    
+
         /**
          * 
          * Method that checks if we can load the mobile web application theme and calls the method that sets the custom theme.
@@ -510,80 +510,74 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          * The theme is loaded if ALL of the following conditions are met:
          * 
          * - the user comes from a supported mobile device and browser
-         * - the user has not deactivate the view of the mobile theme by switching to desktop mode
-         * - the display mode of the app is set to 'normal' or is set to 'preview' and an admin is logged in 
+         * - the user has not deactivated the view of the mobile theme by switching to desktop mode
+         * - the display mode of the app is set to 'normal' or is set to 'preview' and an admin is logged in
+         * - for Premium apps, if the app's status is set to visible and the app was not deactivated
          * 
          */		
     	public function wmp_check_load(){
-    		
-    		$load_app = false;
-            
-            $desktop_mode = self::wmp_check_desktop_mode();
 
-            if ($desktop_mode == false) {
-               
-                if (self::wmp_check_display_mode()) {
-        		
-					$visible_app = true; // set app visible by default
-				
-					// for premium, check if the web app is still visible
-					$json_config_premium = self::wmp_set_premium_config();
-                    
-					if ($json_config_premium !== false) {
-						
-						$arrConfig = json_decode($json_config_premium);
-                        
-						if ((isset($arrConfig->status) && $arrConfig->status == 'hidden') ||
-							(isset($arrConfig->deactivated) && $arrConfig->deactivated == 1)) {
-							
-							$load_app = false; // the app will not be loaded since the status is hidden
-							$visible_app = false; // setting it to false will skip the detection
-						}
-					}
-				
-					if ($visible_app) {
-						
-						if (!isset($_COOKIE["wmp_load_app"])) {
-								
-							// load admin class
-							require_once(WMP_PLUGIN_PATH.'core/mobile-detect.php');
-							$WMobileDetect = new WPMobileDetect;
-							
-							$load_app = $WMobileDetect->wmp_detect_device();
-							
-							
-						} elseif (isset($_COOKIE["wmp_load_app"]) && $_COOKIE["wmp_load_app"] == 1)
-							$load_app = true;	
-					}
-                        
-                    if ($load_app)
-                        $this->wmp_load_app();
+            // Set app as visible by default
+            $visible_app = true;
+
+            // Check if we have a Premium account
+            $json_config_premium = WMobilePack::wmp_set_premium_config();
+
+            if ($json_config_premium !== false) {
+
+                // For premium, check if the web app is set as visible
+                $arrConfig = json_decode($json_config_premium);
+
+                if ((isset($arrConfig->status) && $arrConfig->status == 'hidden') ||
+                    (isset($arrConfig->deactivated) && $arrConfig->deactivated == 1)) {
+
+                    $visible_app = false; // setting it to false will skip the detection
                 }
-                
-            } else {
-                
-				// check if the load app cookie is 1 or the user came form a mobile device
-				if (!isset($_COOKIE["wmp_load_app"])) {
-            			
-					// load admin class
-					require_once(WMP_PLUGIN_PATH.'core/mobile-detect.php');
-					$WMobileDetect = new WPMobileDetect;
-					
-					$load_app = $WMobileDetect->wmp_detect_device();
-					
-				} elseif (isset($_COOKIE["wmp_load_app"]) && $_COOKIE["wmp_load_app"] == 1)
-					$load_app = true;
-				
-                // add the option to view the app in the footer of the website
-				if ($load_app) {
 
-					// add hook in footer
-					add_action('wp_footer', array(&$this,'wmp_show_footer_box'));
-				}
+            } else {
+
+                // For free, check if the display mode is set to 'normal' or 'preview' and the admin is logged in
+                if (!self::wmp_check_display_mode()) {
+                    $visible_app = false;
+                }
             }
-			
-			// add hook in header (for rel=alternate)
-			add_action('wp_head', array(&$this, 'wmp_show_rel'), 100);
+
+            // Assume the app will not be loaded
+            $load_app = false;
+
+            if ($visible_app) {
+
+                // Check if the load app cookie is 1 or the user came from a mobile device
+                $load_app_cookie = $this->wmp_get_load_app_cookie();
+
+                // If the load_app cookie is not set, verify the device
+                if ($load_app_cookie === null) {
+                    $load_app = $this->wmp_check_device();
+
+                } elseif ($load_app_cookie == 1) {
+
+                    // The cookie was already set for the device, so we can load the app
+                    $load_app = true;
+                }
+            }
+
+            // We have a mobile device and the app is visible, so we can load the app
+            if ($load_app) {
+
+                // Check if the user deactivated the app display
+                $desktop_mode = self::wmp_check_desktop_mode();
+
+                if ($desktop_mode == false) {
+                    $this->wmp_load_app();
+                } else {
+                    // Add hook in footer to show the switch to mobile link
+                    add_action('wp_footer', array(&$this,'wmp_show_footer_box'));
+                }
+
+            } else {
+                // Add hook in header (for rel=alternate)
+                add_action('wp_head', array(&$this, 'wmp_show_rel'));
+            }
     	}
         
         
@@ -597,7 +591,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
         * @return bool
         *   
         */
-        public function wmp_check_display_mode(){
+        protected function wmp_check_display_mode(){
             
             $display_mode = self::wmp_get_setting('display_mode');
             
@@ -625,7 +619,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          * @return bool
          * 
          */
-        public function wmp_check_desktop_mode(){
+        protected function wmp_check_desktop_mode(){
             
             $desktop_mode = false;
             
@@ -648,6 +642,42 @@ if ( ! class_exists( 'WMobilePack' ) ) {
             
             return $desktop_mode;
         }
+
+
+        /**
+         *
+         * Call the mobile detection method to verify if we have a supported device
+         *
+         * @return bool
+         *
+         */
+        protected function wmp_check_device(){
+
+            // load admin class
+            require_once(WMP_PLUGIN_PATH.'core/mobile-detect.php');
+            $WMobileDetect = new WPMobileDetect;
+
+            return $WMobileDetect->wmp_detect_device();
+        }
+
+
+        /**
+         *
+         * Check the wmp_load_app cookie.
+         * The cookie is checked in a separate method to allow mocking for unit testing.
+         *
+         * @return null
+         *
+         */
+        protected function wmp_get_load_app_cookie(){
+
+            if (isset($_COOKIE["wmp_load_app"])){
+                return $_COOKIE["wmp_load_app"];
+            }
+
+            return null;
+        }
+
     		
     	/**
          * 

@@ -1,5 +1,5 @@
 <?php
-require_once('utils.php');
+require_once(__DIR__.'/../utils.php');
 
 if (class_exists('WPMPTestsUtils')) {
 	
@@ -7,7 +7,7 @@ if (class_exists('WPMPTestsUtils')) {
 	
 		/**
 		 *
-		 * Home page shouldn't redirect
+		 * Home page should not redirect
 		 *
 		 */
 		function test_home() {
@@ -30,12 +30,12 @@ if (class_exists('WPMPTestsUtils')) {
 			
 			if (!WMobilePack::wmp_get_setting('premium_active') || WMobilePack::wmp_get_setting('premium_api_key') == '') {
 			
-				$post_id = 1241;
+				$post_id = 1;
 				$request_url = WPMPTestsUtils::get_furl(home_url().'?p='.$post_id);
-				
-				$response = WPMPTestsUtils::make_request($request_url);
-					
-				$this->assertEquals($response['redirect'], home_url()."/#article/".$post_id);
+
+                $response = WPMPTestsUtils::make_request($request_url);
+
+                $this->assertEquals($response['redirect'], home_url()."/#article/".$post_id);
 			}
 		}
 		
@@ -50,7 +50,7 @@ if (class_exists('WPMPTestsUtils')) {
 			
 			if (!WMobilePack::wmp_get_setting('premium_active') || WMobilePack::wmp_get_setting('premium_api_key') == '') {
 			
-				$page_id = 1086;
+				$page_id = 2;
 				$request_url = WPMPTestsUtils::get_furl(home_url().'?page_id='.$page_id);
 				$response = WPMPTestsUtils::make_request($request_url);
 					
@@ -68,11 +68,11 @@ if (class_exists('WPMPTestsUtils')) {
 			
 			if (!WMobilePack::wmp_get_setting('premium_active') || WMobilePack::wmp_get_setting('premium_api_key') == '') {
 			
-				$category_id = 38;
+				$category_id = 1;
 				$request_url = WPMPTestsUtils::get_furl(home_url().'?cat='.$category_id);
 				$response = WPMPTestsUtils::make_request($request_url);
 					
-				$this->assertEquals($response['redirect'], home_url()."/#category/child-category-02/".$category_id);
+				$this->assertEquals($response['redirect'], home_url()."/#category/uncategorized/".$category_id);
 			}
 		}
 		
@@ -89,7 +89,7 @@ if (class_exists('WPMPTestsUtils')) {
 				$request_url = WPMPTestsUtils::get_furl(home_url().'?cat='.$category_id);
 				$response = WPMPTestsUtils::make_request($request_url);
 					
-				$this->assertEquals($response['redirect'], home_url()."/#category/alignment/".$category_id);
+				$this->assertEquals($response['redirect'], home_url()."/#category/alignmentyeaeuu/".$category_id);
 			}
 		}
 	}

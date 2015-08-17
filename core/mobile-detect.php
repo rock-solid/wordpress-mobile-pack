@@ -20,7 +20,7 @@ if ( ! class_exists( 'WPMobileDetect' ) ) {
 		 * Check the browser's user agent and return true if the device is a supported smartphone or tablet
 		 *
 		 */
-    	function wmp_detect_device() { 
+    	public function wmp_detect_device() {
     		
     		// set load app variable
     		$load_app = false;
@@ -86,7 +86,7 @@ if ( ! class_exists( 'WPMobileDetect' ) ) {
     		
             // set load app cookie
 			if ($load_app)
-				setcookie("wmp_load_app", 1, time()+3600*7*24,'/');
+				$this->wmp_set_load_app_cookie();
     		
     		return $load_app;
     	}
@@ -97,7 +97,7 @@ if ( ! class_exists( 'WPMobileDetect' ) ) {
 		 * Check the browser's user agent and return true if the device is a supported tablet
 		 *
 		 */
-		function wmp_is_tablet() {
+		public function wmp_is_tablet() {
 			
 			require_once (WMP_PLUGIN_PATH.'libs/Mobile-Detect-2.8.12/Mobile_Detect.php');
 			$detect = new WPMP_Mobile_Detect();
@@ -121,5 +121,15 @@ if ( ! class_exists( 'WPMobileDetect' ) ) {
 			
 			return ($is_tablet || $is_IE_tablet);
 		}
+
+
+        /**
+         * Set the wmp_load_app cookie
+         * The cookie is set in a separate method to allow mocking for unit testing.
+         *
+         */
+        protected function wmp_set_load_app_cookie(){
+            setcookie("wmp_load_app", 1, time()+3600*7*24,'/');
+        }
     }
 }
