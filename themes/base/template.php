@@ -1,74 +1,74 @@
 <?php
-    $theme_path = plugins_url()."/".WMP_DOMAIN."/themes/".WMobilePack::wmp_app_theme()."/";
-    
-    // check if logo exists
-    $logo_path = WMobilePack::wmp_get_setting('logo');
-    
-    if ($logo_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$logo_path))
-        $logo_path = '';    
-    else
-        $logo_path = WMP_FILES_UPLOADS_URL.$logo_path;
-        
-    // check if icon exists
-    $icon_path = WMobilePack::wmp_get_setting('icon');
-    
-    if ($icon_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$icon_path))
-        $icon_path = ''; 
-    else
-        $icon_path = WMP_FILES_UPLOADS_URL.$icon_path;  
-	    
-    // check color scheme
-    $color_scheme = WMobilePack::wmp_get_setting('color_scheme');
-    if ($color_scheme == '')
-        $color_scheme = 1;
-        
-    // check fonts
-    $loaded_fonts = array();
-    
-    $font_headlines = array_search(WMobilePack::wmp_get_setting('font_headlines'), WMobilePack::$wmp_allowed_fonts) + 1;
-    if (!$font_headlines)
-        $font_headlines = 1;
+$theme_path = plugins_url()."/".WMP_DOMAIN."/themes/".WMobilePack::wmp_app_theme()."/";
 
-    $loaded_fonts[] = $font_headlines;
-        
-    $font_subtitles = array_search(WMobilePack::wmp_get_setting('font_subtitles'), WMobilePack::$wmp_allowed_fonts) + 1;
-    if (!$font_subtitles)
-        $font_subtitles = 1;
-        
-    if (!in_array($font_subtitles, $loaded_fonts))
-        $loaded_fonts[] = $font_subtitles;
-        
-    $font_paragraphs = array_search(WMobilePack::wmp_get_setting('font_paragraphs'), WMobilePack::$wmp_allowed_fonts) + 1;
-    if (!$font_paragraphs)
-        $font_paragraphs = 1;
-        
-    if (!in_array($font_paragraphs, $loaded_fonts))
-        $loaded_fonts[] = $font_paragraphs;
-		
-		
-	// check if cover exists
-    $cover_path = WMobilePack::wmp_get_setting('cover');
-   
-	$use_cover = false;
-	
-    if ($cover_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$cover_path))
-        $cover_path = ''; 
-    else {
-        $cover_path = WMP_FILES_UPLOADS_URL.$cover_path;  	
-		$use_cover = true;
-	}
-		
-	if (!$use_cover) {
-		// get random cover from default covers
-		$cover_path = $theme_path."includes/resources/images/pattern-".rand(1, 6).".jpg";
-	}
-		
-	// load static texts from a json file
-	$texts_json = WMobilePack::wmp_load_language(get_locale());
-	
-	if ($texts_json === false) {
-		echo "ERROR, unable to load language file. Please check the '".WMP_DOMAIN."/themes/".WMobilePack::wmp_app_theme()."/locales' folder.";
-	}
+// check if logo exists
+$logo_path = WMobilePack::wmp_get_setting('logo');
+
+if ($logo_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$logo_path))
+    $logo_path = '';
+else
+    $logo_path = WMP_FILES_UPLOADS_URL.$logo_path;
+
+// check if icon exists
+$icon_path = WMobilePack::wmp_get_setting('icon');
+
+if ($icon_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$icon_path))
+    $icon_path = '';
+else
+    $icon_path = WMP_FILES_UPLOADS_URL.$icon_path;
+
+// check color scheme
+$color_scheme = WMobilePack::wmp_get_setting('color_scheme');
+if ($color_scheme == '')
+    $color_scheme = 1;
+
+// check fonts
+$loaded_fonts = array();
+
+$font_headlines = array_search(WMobilePack::wmp_get_setting('font_headlines'), WMobilePack::$wmp_allowed_fonts) + 1;
+if (!$font_headlines)
+    $font_headlines = 1;
+
+$loaded_fonts[] = $font_headlines;
+
+$font_subtitles = array_search(WMobilePack::wmp_get_setting('font_subtitles'), WMobilePack::$wmp_allowed_fonts) + 1;
+if (!$font_subtitles)
+    $font_subtitles = 1;
+
+if (!in_array($font_subtitles, $loaded_fonts))
+    $loaded_fonts[] = $font_subtitles;
+
+$font_paragraphs = array_search(WMobilePack::wmp_get_setting('font_paragraphs'), WMobilePack::$wmp_allowed_fonts) + 1;
+if (!$font_paragraphs)
+    $font_paragraphs = 1;
+
+if (!in_array($font_paragraphs, $loaded_fonts))
+    $loaded_fonts[] = $font_paragraphs;
+
+
+// check if cover exists
+$cover_path = WMobilePack::wmp_get_setting('cover');
+
+$use_cover = false;
+
+if ($cover_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$cover_path))
+    $cover_path = '';
+else {
+    $cover_path = WMP_FILES_UPLOADS_URL.$cover_path;
+    $use_cover = true;
+}
+
+if (!$use_cover) {
+    // get random cover from default covers
+    $cover_path = $theme_path."includes/resources/images/pattern-".rand(1, 6).".jpg";
+}
+
+// load static texts from a json file
+$texts_json = WMobilePack::wmp_load_language(get_locale());
+
+if ($texts_json === false) {
+    echo "ERROR, unable to load language file. Please check the '".WMP_DOMAIN."/themes/".WMobilePack::wmp_app_theme()."/locales' folder.";
+}
 
 ?>
 <!DOCTYPE HTML>
@@ -82,23 +82,23 @@
     <link rel="apple-touch-icon-precomposed" href="" />
     <meta name="mobile-web-app-capable" content="yes" />
     <link rel="manifest" href="<?php echo plugins_url()."/".WMP_DOMAIN."/export/content.php?content=androidmanifest";?>" />
-    
+
     <?php if ($icon_path != ''): // icon path for Firefox ?>
         <link rel="shortcut icon" href="<?php echo $icon_path;?>"/>
     <?php endif;?>
-    
+
     <title><?php echo get_bloginfo("name");?></title>
     <style type="text/css">
-         /**
-         * Example of an initial loading indicator.
-         * It is recommended to keep this as minimal as possible to provide instant feedback
-         * while other resources are still being loaded for the first time
-         */
+        /**
+        * Example of an initial loading indicator.
+        * It is recommended to keep this as minimal as possible to provide instant feedback
+        * while other resources are still being loaded for the first time
+        */
         html, body {
             height: 100%;
-			width: 100%;
-			margin: 0;
-			padding: 0;
+            width: 100%;
+            margin: 0;
+            padding: 0;
             background-color: #e5e8e3;
         }
 
@@ -123,8 +123,8 @@
             background-color: #c6cdbe;
             display: inline-block;
             height: 16px;
-			width: 16px;
-             -webkit-border-radius: 8px;
+            width: 16px;
+            -webkit-border-radius: 8px;
             -moz-border-radius: 8px;
             border-radius: 8px;
             margin: 0 2px;
@@ -142,7 +142,7 @@
                 opacity: 0.8
             }
         }
-        
+
         @keyframes appLoadingIndicator{
             0% {
                 opacity: 0.8
@@ -155,67 +155,67 @@
             }
         }
     </style>
-           
+
     <script type="text/javascript" pagespeed_no_defer="">
-		var appticles = {
-			exportPath: "<?php echo plugins_url()."/".WMP_DOMAIN."/export/";?>",
-			creditsPath: "<?php echo $theme_path."includes/others/credits.json";?>",
+        var appticles = {
+            exportPath: "<?php echo plugins_url()."/".WMP_DOMAIN."/export/";?>",
+            creditsPath: "<?php echo $theme_path."includes/others/credits.json";?>",
             defaultCover: "<?php echo $cover_path;?>",
-   			userCover: "<?php echo $use_cover;?>",
-			logo: "<?php echo $logo_path;?>",
-			icon: "<?php echo $icon_path;?>",
-			websiteUrl: '<?php echo home_url();?>?wmp_theme_mode=desktop',
-			commentsToken: "<?php echo WMobilePack::wmp_set_token();?>",
-			appTexts: <?php echo json_encode($texts_json['appTexts']);?>
-		}
-	</script>
+            userCover: "<?php echo $use_cover;?>",
+            logo: "<?php echo $logo_path;?>",
+            icon: "<?php echo $icon_path;?>",
+            websiteUrl: '<?php echo home_url(); echo parse_url(home_url(), PHP_URL_QUERY) ? '&' : '?'; ?>wmp_theme_mode=desktop',
+            commentsToken: "<?php echo WMobilePack::wmp_set_token();?>",
+            appTexts: <?php echo json_encode($texts_json['appTexts']);?>
+        }
+    </script>
 
     <!-- core -->
-	<link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/phone.css?date=20141120" type="text/css" />
+    <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/phone.css?date=20141120" type="text/css" />
     <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/fonts.css?date=20141120" type="text/css" />
-    
+
     <!-- custom fonts -->
     <?php foreach ($loaded_fonts as $font_no):?>
         <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/font-<?php echo $font_no;?>.css?date=20141120" type="text/css">
     <?php endforeach;?>
-    
+
     <!-- theming -->
     <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/headlines-f<?php echo $font_headlines;?>.css?date=20141120" type="text/css">
     <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/paragraphs-f<?php echo $font_paragraphs;?>.css?date=20141120" type="text/css">
     <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/subtitles-f<?php echo $font_subtitles;?>.css?date=20141120" type="text/css">
     <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/theme-<?php echo $color_scheme;?>.css?date=20141120" type="text/css">
-    
-    <script type="text/javascript" src="<?php echo $theme_path;?>includes/app.js?date=20150530"></script> 
-    
+
+    <script type="text/javascript" src="<?php echo $theme_path;?>includes/app.js?date=20150530"></script>
+
     <?php
-        // check if google analytics id was set
-        $google_analytics_id = WMobilePack::wmp_get_setting('google_analytics_id');
-        
-        if ($google_analytics_id != ''):
-    ?>
-    
+    // check if google analytics id was set
+    $google_analytics_id = WMobilePack::wmp_get_setting('google_analytics_id');
+
+    if ($google_analytics_id != ''):
+        ?>
+
         <script type="text/javascript" pagespeed_no_defer="">
-    
-          var _gaq = _gaq || [];
-          _gaq.push(['_setAccount', '<?php echo $google_analytics_id;?>']);
-          _gaq.push(['_trackPageview']);
-        
-          (function() {
-            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-          })();
-        
+
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', '<?php echo $google_analytics_id;?>']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+
         </script>
-        
-    <?php endif;?> 
-    
+
+    <?php endif;?>
+
 </head>
 <body>
-    <div id="appLoadingIndicator">
-        <div></div>
-        <div></div>
-        <div></div>
-    </div>
+<div id="appLoadingIndicator">
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
 </body>
 </html>

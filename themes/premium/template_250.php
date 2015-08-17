@@ -127,7 +127,7 @@ $app_files_path = $cdn_apps.'/'.$arrConfig['shorten_url'].'/';
             defaultCover: "<?php echo $cover == "" ? $cdn_kits.'/others/covers/'.($is_tablet ? 'tablet' : 'phone').'/pattern-'.rand(1,8).'.jpg' : $app_files_path.$cover ;?>",
             
             appUrl: '<?php echo home_url();?>',
-            websiteUrl: '<?php echo home_url();?>?wmp_theme_mode=desktop',
+            websiteUrl: '<?php echo home_url(); echo parse_url(home_url(), PHP_URL_QUERY) ? '&' : '?';?>wmp_theme_mode=desktop',
 			canonicalUrl: '<?php echo home_url();?>',
 			
             preview: 0,

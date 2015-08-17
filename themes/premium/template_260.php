@@ -144,7 +144,7 @@ if ($is_tablet == 1 && isset($arrConfig['tablet']['cover']) && $arrConfig['table
             defaultCover: "<?php echo $cover == "" ? $cdn_kits.'/others/covers/'.($is_tablet ? 'tablet' : 'phone').'/pattern-'.rand(1,8).'.jpg' : $cdn_apps."/".$arrConfig['shorten_url'].'/'.$cover;?>",
             
             appUrl: '<?php echo home_url();?>',
-            websiteUrl: '<?php echo home_url();?>?wmp_theme_mode=desktop',
+            websiteUrl: '<?php echo home_url(); echo parse_url(home_url(), PHP_URL_QUERY) ? '&' : '?';?>wmp_theme_mode=desktop',
 			canonicalUrl: '<?php echo home_url();?>',
 			
             preview: 0,

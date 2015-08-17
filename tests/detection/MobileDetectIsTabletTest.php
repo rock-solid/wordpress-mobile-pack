@@ -1,6 +1,6 @@
 <?php
 	
-class MobileDetectFreeTest extends WP_UnitTestCase {
+class MobileDetectIsTabletTest extends WP_UnitTestCase {
 
 
     public static $smartphoneUserAgents = array(

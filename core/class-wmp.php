@@ -561,6 +561,9 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                 }
             }
 
+            // If we need to add the rel=alternate links in the header
+            $show_alternate = true;
+
             // We have a mobile device and the app is visible, so we can load the app
             if ($load_app) {
 
@@ -568,14 +571,21 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                 $desktop_mode = self::wmp_check_desktop_mode();
 
                 if ($desktop_mode == false) {
+
+                    // We're loading the mobile web app, so we don't need the rel=alternate links
+                    $show_alternate = false;
+
                     $this->wmp_load_app();
+
                 } else {
                     // Add hook in footer to show the switch to mobile link
                     add_action('wp_footer', array(&$this,'wmp_show_footer_box'));
                 }
 
-            } else {
-                // Add hook in header (for rel=alternate)
+            }
+
+            // Add hook in header (for rel=alternate)
+            if ($show_alternate){
                 add_action('wp_head', array(&$this, 'wmp_show_rel'));
             }
     	}
@@ -666,7 +676,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          * Check the wmp_load_app cookie.
          * The cookie is checked in a separate method to allow mocking for unit testing.
          *
-         * @return null
+         * @return null or cookie value
          *
          */
         protected function wmp_get_load_app_cookie(){
