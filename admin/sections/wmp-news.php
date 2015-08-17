@@ -5,10 +5,24 @@ $news_updates = WMobilePackAdmin::wmp_news_updates();
 if (!empty($news_updates)):
 
     if (isset($news_updates["whitepaper"]) && is_array($news_updates["whitepaper"]) && !empty($news_updates["whitepaper"])):
+
+        // If we have a single banner, display it
+        if (array_key_exists("link", $news_updates["whitepaper"])) {
+            $whitepaper = $news_updates["whitepaper"];
+        } else {
+
+            // Randomly select between banners
+            $random_key = array_rand($news_updates["whitepaper"]);
+            $whitepaper = $news_updates["whitepaper"][$random_key];
+        }
+
+        if (array_key_exists("link", $whitepaper) && array_key_exists("image", $whitepaper)):
+
     ?>
-        <a href="<?php echo $news_updates["whitepaper"]["link"];?>" target="_blank"><img src="<?php echo $news_updates["whitepaper"]["image"];?>" style="width:252px; height: auto;" /></a>
-        <div class="spacer-10"></div>
-    <?php 
+            <a href="<?php echo $whitepaper["link"];?>" target="_blank"><img src="<?php echo $whitepaper["image"];?>" style="width:252px; height: auto;" /></a>
+            <div class="spacer-10"></div>
+    <?php
+        endif;
     endif;
     
     $arrNews = $news_updates['news'];
