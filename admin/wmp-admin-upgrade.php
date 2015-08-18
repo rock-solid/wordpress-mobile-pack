@@ -79,7 +79,13 @@
                         <?php if (array_key_exists('button_text', $page_content['premium']) && array_key_exists('button_link', $page_content['premium'])):?>
                             <div class="try-it">
                                 <a href="<?php echo $page_content['premium']['button_link'].$feed_url.'&wmp_v=21';?>" class="btn orange smaller" target="_blank"><?php echo $page_content['premium']['button_text'];?></a>
-                            </div>                        
+                            </div>
+                            <?php if (array_key_exists('button_subtext', $page_content['premium'])):?>
+                                <div class="try-it-subtext">
+                                    <div class="spacer-10"></div>
+                                    <?php echo $page_content['premium']['button_subtext'];?>
+                                </div>
+                            <?php endif;?>
                         <?php endif;?>
                     </div>
                 <?php endif;?>

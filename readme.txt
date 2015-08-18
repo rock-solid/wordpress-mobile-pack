@@ -2,7 +2,7 @@
 Contributors: jamesgpearce, andreatrasatti, edent, cborodescu
 Tags: mobile, mobile web, mobile internet, smartphone, iphone, android, windows 8, webkit, chrome, safari, mobile web app, html5, sencha touch, responsive ui
 Requires at least: 3.5
-Tested up to: 4.2
+Tested up to: 4.3
 Stable tag: 2.1.3
 License: GPLv2 or later
 
@@ -136,7 +136,10 @@ Google Ad Sense / Google Double Click for Publishers is supported on the Premium
 == Changelog ==
 
 = 2.1.4 =
-* Added support for multilanguage. A big thanks to all contributors: Bernhard Steinbichler (German), Sandra Gorgan (Romanian), Agnieszka Bugajska (Polish), Mathias Wideroth (Swedish).
+* Translated app in multiple languages. A big thanks to all contributors: Bernhard Steinbichler (German), Sandra Gorgan (Romanian), Agnieszka Bugajska (Polish), Mathias Wideroth (Swedish).
+* Partial support for multi-language plugins (to do - select language from the mobile web application)
+* Fixed comments form display on IE (Windows Phone 8)
+* Cleaned up admin CSS files
 
 = 2.1.3 =
 * Changed mobile detection library to [Mobile Detect](https://github.com/serbanghita/Mobile-Detect) 

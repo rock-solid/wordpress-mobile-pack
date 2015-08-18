@@ -47,6 +47,21 @@
 						text-align: center;
 					}
 				}
+
+                .try-it-subtext{
+
+                    width:60%;
+                    margin: 0 auto;
+
+                    p, a{
+                        font-size: 13px;
+                        line-height: normal;
+                    }
+
+                    a {
+                        text-decoration: underline;
+                    }
+                }
 				h2.title{
 					font-family: 'OlRoundGothicLight', sans-serif;
 					font-size: 25px;
