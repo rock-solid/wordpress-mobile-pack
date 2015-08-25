@@ -1,0 +1,40 @@
+{
+  "appTexts": {
+    "links": {
+      "visit_website": "Átváltás asztali verzióra",
+      "visit_app": "Átváltás mobil verzióra",
+      "credits": "Kreditek",
+      "go_to": "Aloldalak",
+      "categories": "Kategóriák"
+    },
+    "texts": {
+      "no_pages": "Nincsenek oldalak!",
+      "no_categories": "Nincsenek kategóriák!",
+      "no_comments": "Még nincsenek hozzászólások ehhez a bejegyzéshez.<br/>Legyél te az első, aki hozzászól!",
+      "no_comments_short": "Nincsenek hozzászólások ehhez a bejegyzéshez.",
+      "leave_comment": "Szólj hozzá",
+      "comments": "Hozzászólások",
+      "by_author": "via",
+      "loading": "Betöltés",
+      "related_articles": "Kapcsolódó bejegyzések",
+      "related_articles_web": "Kapcsolódó bejegyzések a webről"
+    },
+    "pull_refresh":{
+      "pull_comments": "Húzd le az újabb kommentekhez!",
+      "last_updated": "Utoljára frissítve",
+      "release": "Engedd el a frissítéshez"
+    },
+    "forms": {
+      "send": "Elküld",
+      "your_name": "Neved",
+      "your_name_error": "Kérlek add meg a neved!",
+      "your_email": "E-mail címed",
+      "your_email_error": "Kérlek add meg az e-mail címed!",
+      "your_email_error2": "Kérlek adj meg érvényes e-mail címet!",
+      "your_comment": "Hozzászólásod",
+      "your_comment_error": "Kérlek szólj hozzá!",
+      "submit_error": "Valami hiba történt. Később próbáld újra.",
+      "awaiting_moderation": "A hozzászólásod moderációra vár!"
+    }
+  }
+}

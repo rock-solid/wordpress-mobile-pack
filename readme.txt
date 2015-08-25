@@ -3,7 +3,7 @@ Contributors: jamesgpearce, andreatrasatti, edent, cborodescu
 Tags: mobile, mobile web, mobile internet, smartphone, iphone, android, windows 8, webkit, chrome, safari, mobile web app, html5, sencha touch, responsive ui
 Requires at least: 3.5
 Tested up to: 4.3
-Stable tag: 2.1.3
+Stable tag: 2.1.4
 License: GPLv2 or later
 
 The NEW WordPress Mobile Pack allows you to 'package' your existing content into a cross-platform mobile web application.
@@ -136,7 +136,7 @@ Google Ad Sense / Google Double Click for Publishers is supported on the Premium
 == Changelog ==
 
 = 2.1.4 =
-* Translated app in multiple languages. A big thanks to all contributors: Bernhard Steinbichler (German), Sandra Gorgan (Romanian), Agnieszka Bugajska (Polish), Mathias Wideroth (Swedish).
+* Translated app in multiple languages. A big thanks to all contributors: Bernhard Steinbichler (German), Péter Ágoston (Hungarian), Sandra Gorgan (Romanian), Agnieszka Bugajska (Polish), Mathias Wideroth (Swedish).
 * Partial support for multi-language plugins (to do - select language from the mobile web application)
 * Fixed comments form display on IE (Windows Phone 8)
 * Cleaned up admin CSS files
