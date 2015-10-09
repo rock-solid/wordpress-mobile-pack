@@ -430,7 +430,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 									if (isset($_SERVER['HTTP_HOST']))
 										$message .= "Host: ".$_SERVER['HTTP_HOST'];
                                     
-    								$subject = 'WP Mobile Pack Feeback';
+    								$subject = 'WP Mobile Pack Feedback';
     								$to = WMP_FEEDBACK_EMAIL;
                                     
     								// set headers
@@ -1249,9 +1249,9 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 
 			// check if curl is enabled
 			if (extension_loaded('curl')) {
-				
+
 				$send_curl = curl_init($json_url);
-			
+
 				// set curl options
 				curl_setopt($send_curl, CURLOPT_URL, $json_url);
 				curl_setopt($send_curl, CURLOPT_HEADER, false);
@@ -1262,41 +1262,41 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 				curl_setopt($send_curl, CURLOPT_SSL_VERIFYPEER, FALSE);
 				curl_setopt($send_curl, CURLOPT_SSL_VERIFYHOST, FALSE);
 				$json_response = curl_exec($send_curl);
-				
+
 				// get request status
 				$status = curl_getinfo($send_curl, CURLINFO_HTTP_CODE);
 				curl_close($send_curl);
-				
+
 				// return json if success
 				if ($status == 200)
 					return $json_response;
-				
+
 			} elseif (ini_get( 'allow_url_fopen' )) { // check if allow_url_fopen is enabled
-				
+
 				// open file
 				$json_file = fopen( $json_url, 'rb' );
-				
+
 				if($json_file) {
-					
+
 					$json_response = '';
-                    
+
 					// read contents of file
-					while (!feof($json_file)) {	
+					while (!feof($json_file)) {
 						$json_response .= fgets($json_file);
 					}
 				}
-				
+
 				// return json response
 				if($json_response)
 					return $json_response;
-					
-			} else 
+
+			} else
 				// both curl and fopen are disabled
 				return false;
-			
+
 			// by default return an empty string
-    		return '';	
-    		
+    		return '';
+
 		}
 	}
 	

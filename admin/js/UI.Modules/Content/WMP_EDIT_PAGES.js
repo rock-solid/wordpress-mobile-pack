@@ -153,7 +153,7 @@ function WMP_EDIT_PAGES(){
 							statusContainer.text(currentStatus);
 							
 							// success message								
-							var message = 'The status of this category has been changed.';
+							var message = 'The status of this page has been changed.';
 							WMPJSInterface.Loader.display({message: message});
 							
 							// count remaining active categories

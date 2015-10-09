@@ -249,7 +249,13 @@
 		display: block;
 		text-align: left;
 		width: 100%;
-		
+
+        a {
+            font-family: "OpenSansRegular", sans-serif;
+            font-size: 13px;
+            line-height: 20px;
+        }
+
 		&.error{
 			background:none;
 			border:none;
@@ -372,6 +378,11 @@
 			}
 			span{
 				color: $warning-color;
+
+                a {
+                    color: darken($warning-color,20%) !important;
+                    text-decoration: underline !important;
+                }
 			}
 			.close-x{
 				color: $warning-border;

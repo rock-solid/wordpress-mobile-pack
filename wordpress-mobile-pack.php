@@ -8,6 +8,7 @@
  * Version: 2.1.4
  * Copyright (c) 2009 - 2015 James Pearce, mTLD Top Level Domain Limited, ribot, Forum Nokia, Appticles.com
  * License: The WordPress Mobile Pack is Licensed under the Apache License, Version 2.0
+ * Text Domain: wordpress-mobile-pack
  */
  
 require_once('core/config.php');

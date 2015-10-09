@@ -442,53 +442,6 @@
 									}
 								}
 							}
-							&.waitlist{
-								.corner{
-									display: none;
-								}
-								.overlay{
-									background: rgba(139,196,218,0.9);
-									
-									.text{
-										font-family: "OpenSansSemiBold", sans-serif;
-										font-size: 13px;
-										color: #ffffff;
-										text-align: center;
-										display: block;
-										
-										&:last-child{
-											font-size: 12px;
-											font-family: "OpenSansRegular", sans-serif;
-										}
-										span{
-											font-size: 15px;
-											color: #ffffff;
-											display: block;
-										}
-									}
-									.btn{
-										margin: 0 auto;
-									}
-									.info{
-										margin: 0 auto;
-										width: $input-size-smaller + $btn-size-smallest + 10px;
-										
-										input[type="text"]{
-											float: left;
-											background: rgba(250,250,250,0.8);
-										}
-										.btn{
-											float: left;
-											margin: 0 0 0 10px;
-										}
-									}
-								}
-								&.added{
-									.corner{
-										display: block;
-									}
-								}
-							}
 						}
 					}
 				}

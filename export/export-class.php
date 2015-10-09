@@ -833,7 +833,7 @@ class Export {
 						);
 			
 			// order comments
-			if (WMP_BLOG_VERSION >= 3.6) {
+			if (get_bloginfo('version') >= 3.6) {
 				$args['orderby'] = 'comment_date_gmt';
 				$args['order'] = 'ASC';
 			}
@@ -1033,7 +1033,7 @@ class Export {
                 'post_password' => ''
             );
 			
-            if (WMP_BLOG_VERSION >= 3.6) {
+            if (get_bloginfo('version') >= 3.6) {
 				$args['orderby'] = 'title';
 				$args['order'] = 'ASC';
 			}

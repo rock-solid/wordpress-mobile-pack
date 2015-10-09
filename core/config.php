@@ -34,9 +34,6 @@ define('WMP_APPTICLES_DISCONNECT_SSL','https://api.appticles.com/content1/wpdisc
 
 define('WMP_APPTICLES_TRACKING_SSL','https://api.appticles.com/content1/wptracking');
 
-// define blog version
-define('WMP_BLOG_VERSION',get_bloginfo('version'));
-
 // define the string used for generating comments tokens (can be overwritten for increasing security)
 define('WMP_CODE_KEY','asdc%/dfr_A!8792*');
 

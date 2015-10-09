@@ -348,7 +348,9 @@
                             $logo_path = WMobilePack::wmp_get_setting('logo');
                             
                             if (!file_exists(WMP_FILES_UPLOADS_DIR.$logo_path))
-                                $logo_path = '';    
+                                $logo_path = '';
+                            else
+                                $logo_path = WMP_FILES_UPLOADS_URL.$logo_path;
                         ?>
     
                         <!-- upload logo field -->
@@ -380,7 +382,7 @@
                         <div class="wmp_editimages_logocontainer display-logo" style="display: <?php echo $logo_path != '' ? 'block' : 'none';?>;">
                         
                             <label for="branding_logo">App logo</label>
-                            <div class="img" id="wmp_editimages_currentlogo" style="background:url(<?php echo WMP_FILES_UPLOADS_URL.$logo_path;?>); background-size:contain; background-repeat: no-repeat; background-position: center"></div>
+                            <div class="img" id="wmp_editimages_currentlogo" style="background:url(<?php echo $logo_path;?>); background-size:contain; background-repeat: no-repeat; background-position: center"></div>
                             
                             <!-- edit/delete logo links -->
                             <a href="javascript:void(0);" class="wmp_editimages_changelogo btn grey smaller edit">Change</a>
@@ -394,7 +396,9 @@
                             $icon_path = WMobilePack::wmp_get_setting('icon');
                             
                             if (!file_exists(WMP_FILES_UPLOADS_DIR.$icon_path))
-                                $icon_path = '';    
+                                $icon_path = '';
+                            else
+                                $icon_path = WMP_FILES_UPLOADS_URL.$icon_path;
                         ?>
     
                         <!-- upload icon field -->
@@ -424,7 +428,7 @@
                         <div class="wmp_editimages_iconcontainer display-icon" style="display: <?php echo $icon_path != '' ? 'block' : 'none';?>;;">
                         
                             <label for="branding_icon">App icon</label>
-                            <img src="<?php echo WMP_FILES_UPLOADS_URL.$icon_path;?>" id="wmp_editimages_currenticon" />
+                            <img src="<?php echo $icon_path;?>" id="wmp_editimages_currenticon" />
                             
                             <!-- edit/delete icon links -->
                             <a href="javascript:void(0);" class="wmp_editimages_changeicon btn grey smaller edit">Change</a>
@@ -466,7 +470,9 @@
                             $cover_path = WMobilePack::wmp_get_setting('cover');
                             
                             if (!file_exists(WMP_FILES_UPLOADS_DIR.$cover_path))
-                                $cover_path = '';    
+                                $cover_path = '';
+                            else
+                                $cover_path = WMP_FILES_UPLOADS_URL.$cover_path;
                         ?>
     
                         <!-- upload cover field -->
@@ -498,7 +504,7 @@
                         <div class="wmp_editcover_covercontainer display-logo" style="display: <?php echo $cover_path != '' ? 'block' : 'none';?>;">
                         
                             <label for="branding_cover">App cover</label>
-                            <div class="img" id="wmp_editcover_currentcover" style="background:url(<?php echo WMP_FILES_UPLOADS_URL.$cover_path;?>); background-size:contain; background-repeat: no-repeat; background-position: center"></div>
+                            <div class="img" id="wmp_editcover_currentcover" style="background:url(<?php echo $cover_path;?>); background-size:contain; background-repeat: no-repeat; background-position: center"></div>
                             
                             <!-- edit/delete cover links -->
                             <a href="javascript:void(0);" class="wmp_editcover_changecover btn grey smaller edit">Change</a>

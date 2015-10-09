@@ -93,7 +93,8 @@
 			}
 		}
 	}
-}
-.inline-btns-container{
-	@include wbz-display-inline-box();
+
+    .inline-btns-container{
+        @include wbz-display-inline-box();
+    }
 }

@@ -14,8 +14,8 @@ images_path = File.join(dir, "..", "images")
 javascripts_path = File.join(dir, "..", "javascripts")
 
 
-output_style = :compressed
-environment = :production
+# output_style = :compressed
+# environment = :production
 
-# output_style = :expanded
-# environment = :development
+output_style = :expanded
+environment = :development
