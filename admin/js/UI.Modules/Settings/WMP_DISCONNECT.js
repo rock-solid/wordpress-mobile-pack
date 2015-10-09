@@ -104,8 +104,8 @@ function WMP_DISCONNECT(){
 				    
                     WMPJSInterface.Preloader.remove(100);
 					
-					JSON = eval (responseJSON);
-					response = Boolean(Number(String(JSON.status)));
+					var JSON = eval (responseJSON);
+					var response = Boolean(Number(String(JSON.status)));
 					
 					if (response == 0) {
 						
@@ -132,6 +132,7 @@ function WMP_DISCONNECT(){
 								'active': '0'
 							}, 
 							function(response1){
+
 								response1 = Boolean(Number(String(response1)));
                                 
 								if(response1 == 1)

@@ -610,8 +610,8 @@ function WMP_EDIT_IMAGES(){
 		// remove preloader
 		WMPJSInterface.Preloader.remove(100);
 		
-		JSON = eval ("("+responseJSON+")");
-		response = Boolean(Number(String(JSON.status)));
+		var JSON = eval ("("+responseJSON+")");
+		var response = Boolean(Number(String(JSON.status)));
         
         if (JSON.uploaded_icon != undefined) 
             JSObject.displayImage("icon", JSON.uploaded_icon)

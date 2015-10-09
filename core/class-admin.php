@@ -867,7 +867,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                                                     if ($image_size['width'] > $arrMaximumSize['width'] || $image_size['height'] > $arrMaximumSize['height']) {
                                                         
                                                         // resize and copy to the wmp uploads folder
-                                                        $image->resize( $arrMaximumSize['width'], $image_size['height'] );
+                                                        $image->resize( $arrMaximumSize['width'], $arrMaximumSize['height'] );
                                                         $image->save( WMP_FILES_UPLOADS_DIR.$uniqueFilename );
                                                         
                                                         $copied_and_resized = true;
@@ -1082,7 +1082,7 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 														if ($image_size['width'] > $arrMaximumSize['width'] || $image_size['height'] > $arrMaximumSize['height']) {
 															
 															// resize and copy to the wmp uploads folder
-															$image->resize( $arrMaximumSize['width'], $image_size['height'] );
+															$image->resize( $arrMaximumSize['width'], $arrMaximumSize['height'] );
 															$image->save( WMP_FILES_UPLOADS_DIR.$uniqueFilename );
 															
 															$copied_and_resized = true;

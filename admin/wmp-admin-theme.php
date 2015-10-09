@@ -346,11 +346,14 @@
                        
                         <?php
                             $logo_path = WMobilePack::wmp_get_setting('logo');
-                            
-                            if (!file_exists(WMP_FILES_UPLOADS_DIR.$logo_path))
-                                $logo_path = '';
-                            else
-                                $logo_path = WMP_FILES_UPLOADS_URL.$logo_path;
+
+                            if ($logo_path != "") {
+
+                                if (!file_exists(WMP_FILES_UPLOADS_DIR . $logo_path))
+                                    $logo_path = '';
+                                else
+                                    $logo_path = WMP_FILES_UPLOADS_URL . $logo_path;
+                            }
                         ?>
     
                         <!-- upload logo field -->
@@ -394,11 +397,14 @@
                         
                         <?php
                             $icon_path = WMobilePack::wmp_get_setting('icon');
-                            
-                            if (!file_exists(WMP_FILES_UPLOADS_DIR.$icon_path))
-                                $icon_path = '';
-                            else
-                                $icon_path = WMP_FILES_UPLOADS_URL.$icon_path;
+
+                            if ($icon_path != "") {
+
+                                if (!file_exists(WMP_FILES_UPLOADS_DIR . $icon_path))
+                                    $icon_path = '';
+                                else
+                                    $icon_path = WMP_FILES_UPLOADS_URL . $icon_path;
+                            }
                         ?>
     
                         <!-- upload icon field -->
@@ -467,12 +473,16 @@
                     <form name="wmp_editcover_form" id="wmp_editcover_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_editcover&type=upload" method="post" enctype="multipart/form-data">
                        
                         <?php
+
                             $cover_path = WMobilePack::wmp_get_setting('cover');
-                            
-                            if (!file_exists(WMP_FILES_UPLOADS_DIR.$cover_path))
-                                $cover_path = '';
-                            else
-                                $cover_path = WMP_FILES_UPLOADS_URL.$cover_path;
+
+                            if ($cover_path != "") {
+
+                                if (!file_exists(WMP_FILES_UPLOADS_DIR . $cover_path))
+                                    $cover_path = '';
+                                else
+                                    $cover_path = WMP_FILES_UPLOADS_URL . $cover_path;
+                            }
                         ?>
     
                         <!-- upload cover field -->
@@ -513,9 +523,6 @@
                         </div>
                                     
                         <div class="spacer-20"></div>
-                        
-                        
-                        
                         <a href="javascript:void(0);" id="wmp_editcover_send_btn" class="btn green smaller">Save</a>
     
                     </form>    
@@ -530,9 +537,6 @@
                 </div>
                 <div class="spacer-0"></div>
             </div>
-            
-            
-            
         </div>
     
         <div class="right-side">

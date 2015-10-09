@@ -427,13 +427,12 @@ function WMP_EDIT_COVER(){
 		// remove preloader
 		WMPJSInterface.Preloader.remove(100);
 		
-		JSON = eval ("("+responseJSON+")");
-		response = Boolean(Number(String(JSON.status)));
+		var JSON = eval ("("+responseJSON+")");
+		var response = Boolean(Number(String(JSON.status)));
         
         if (JSON.uploaded_cover != undefined) 
             JSObject.displayImage("cover", JSON.uploaded_cover)
-        
-       
+
 		if (response == true && JSON.messages.length == 0){
 			
             // show message
