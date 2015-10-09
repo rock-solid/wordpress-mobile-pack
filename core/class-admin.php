@@ -349,39 +349,44 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                     
                     if (isset($_POST['wmp_pageedit_id']) && isset($_POST['wmp_pageedit_content'])){
                         
-                        if (is_numeric($_POST['wmp_pageedit_id']) && trim($_POST['wmp_pageedit_content']) != ''){
+                        if (is_numeric($_POST['wmp_pageedit_id'])){
+
+                            if (trim($_POST['wmp_pageedit_content']) != ''){
                             
-							// set HTML Purifier
-							include(WMP_PLUGIN_PATH.'libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php');
-							include(WMP_PLUGIN_PATH.'libs/htmlpurifier-html5/htmlpurifier_html5.php');
-                            
-                            $config = HTMLPurifier_Config::createDefault();
-							$config->set('Core.Encoding', 'UTF-8'); 									
-							
-                            $config->set('HTML.AllowedElements','div,a,p,ol,li,ul,img,blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe,small,video,audio,source');
-						  	$config->set('HTML.AllowedAttributes', 'class, src, width, height, target, href, name,frameborder,marginheight,marginwidth,scrolling,poster,preload,controls,type');
-						    
-							$config->set('URI.AllowedSchemes', array ('http' => true, 'https' => true, 'mailto' => true, 'news' => true, 'tel' => true, 'callto' => true, 'skype' => true, 'sms' => true, 'whatsapp' => true));
-							
-							$config->set('Attr.AllowedFrameTargets', '_blank, _parent, _self, _top');
-							
-							$config->set('HTML.SafeIframe',1);
-							$config->set('Filter.Custom', array( new HTMLPurifier_Filter_Iframe()));
-							
-							// disable cache
-							$config->set('Cache.DefinitionImpl',null);
-							
-							$Html5Purifier = new WMPHtmlPurifier();
-                            $purifier = $Html5Purifier->wmp_extended_purifier($config);
-							
-                            $status = 1;
-                            
-                            $page_id = intval($_POST['wmp_pageedit_id']);
-                            $page_content = $purifier->purify(stripslashes($_POST['wmp_pageedit_content']));
-                            
-                            // save option in the db
-							update_option( 'wmpack_page_' . $page_id, $page_content );
-                            
+                                // set HTML Purifier
+                                include(WMP_PLUGIN_PATH.'libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php');
+                                include(WMP_PLUGIN_PATH.'libs/htmlpurifier-html5/htmlpurifier_html5.php');
+
+                                $config = HTMLPurifier_Config::createDefault();
+                                $config->set('Core.Encoding', 'UTF-8');
+
+                                $config->set('HTML.AllowedElements','div,a,p,ol,li,ul,img,blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe,small,video,audio,source');
+                                $config->set('HTML.AllowedAttributes', 'class, src, width, height, target, href, name,frameborder,marginheight,marginwidth,scrolling,poster,preload,controls,type');
+
+                                $config->set('URI.AllowedSchemes', array ('http' => true, 'https' => true, 'mailto' => true, 'news' => true, 'tel' => true, 'callto' => true, 'skype' => true, 'sms' => true, 'whatsapp' => true));
+
+                                $config->set('Attr.AllowedFrameTargets', '_blank, _parent, _self, _top');
+
+                                $config->set('HTML.SafeIframe',1);
+                                $config->set('Filter.Custom', array( new HTMLPurifier_Filter_Iframe()));
+
+                                // disable cache
+                                $config->set('Cache.DefinitionImpl',null);
+
+                                $Html5Purifier = new WMPHtmlPurifier();
+                                $purifier = $Html5Purifier->wmp_extended_purifier($config);
+
+                                $status = 1;
+
+                                $page_id = intval($_POST['wmp_pageedit_id']);
+                                $page_content = $purifier->purify(stripslashes($_POST['wmp_pageedit_content']));
+
+                                // save option in the db
+                                update_option( 'wmpack_page_' . $page_id, $page_content );
+
+                            } else {
+                                $status = 2;
+                            }
                         } 
                     }     
                 } 

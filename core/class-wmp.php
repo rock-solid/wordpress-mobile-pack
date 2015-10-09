@@ -174,7 +174,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     	public function wmp_admin_enqueue_scripts() {
     		
             // enqueue styles
-			wp_enqueue_style('css_general', plugins_url(WMP_DOMAIN.'/admin/css/general.css?v='.time()), array(), WMP_VERSION);
+			wp_enqueue_style('css_general', plugins_url(WMP_DOMAIN.'/admin/css/general.css'), array(), WMP_VERSION);
         
             // enqueue scripts
         	if (get_bloginfo('version') < 3.6)
@@ -205,7 +205,6 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 
 			wp_enqueue_script('js_content_editcategories', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_EDIT_CATEGORIES.min.js'), array(), WMP_VERSION);
             wp_enqueue_script('js_content_editpages', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_EDIT_PAGES.min.js'), array(), WMP_VERSION);
-            wp_enqueue_script('js_content_pagedetails', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_PAGE_DETAILS.min.js'), array(), WMP_VERSION);
 			wp_enqueue_script('jquery-ui-sortable');
 		}
 		

@@ -223,7 +223,7 @@ function WMP_PAGE_DETAILS(){
 							aElems[j].disabled = true;
 						}
 					},300);
-		
+
 		return true;
 	}
 	
@@ -241,20 +241,26 @@ function WMP_PAGE_DETAILS(){
 	
 		// remove preloader
 		WMPJSInterface.Preloader.remove(100);
-		
-		response = Boolean(Number(String(response)));
-  
-		if (response == true){
-			
+
+		response = Number(String(response));
+
+        if (response == 1){
+
             // show message
             var message = 'Your page has been successfully modified!';
             WMPJSInterface.Loader.display({message: message});
-			
-		} else {
-			
-			var message = 'There was an error. Please reload the page and try again.';
-			WMPJSInterface.Loader.display({message: message});
-		}
+
+        } else if (response == 2) {
+
+            // show message
+            var message = 'Please add some content before saving the page. You can deactivate this page if you don\'t want it to appear in the mobile web app.';
+            WMPJSInterface.Loader.display({message: message});
+
+        } else {
+
+            var message = 'There was an error. Please reload the page and try again.';
+            WMPJSInterface.Loader.display({message: message});
+        }
 
 		//enable form elements
 		setTimeout(function(){
