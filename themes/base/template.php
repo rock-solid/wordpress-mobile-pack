@@ -1,74 +1,55 @@
 <?php
-$theme_path = plugins_url()."/".WMP_DOMAIN."/themes/".WMobilePack::wmp_app_theme()."/";
+    $theme_path = plugins_url()."/".WMP_DOMAIN."/themes/".WMobilePack::wmp_app_theme()."/";
 
-// check if logo exists
-$logo_path = WMobilePack::wmp_get_setting('logo');
+    // check if logo exists
+    $logo_path = WMobilePack::wmp_get_setting('logo');
 
-if ($logo_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$logo_path))
-    $logo_path = '';
-else
-    $logo_path = WMP_FILES_UPLOADS_URL.$logo_path;
+    if ($logo_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$logo_path))
+        $logo_path = '';
+    else
+        $logo_path = WMP_FILES_UPLOADS_URL.$logo_path;
 
-// check if icon exists
-$icon_path = WMobilePack::wmp_get_setting('icon');
+    // check if icon exists
+    $icon_path = WMobilePack::wmp_get_setting('icon');
 
-if ($icon_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$icon_path))
-    $icon_path = '';
-else
-    $icon_path = WMP_FILES_UPLOADS_URL.$icon_path;
+    if ($icon_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$icon_path))
+        $icon_path = '';
+    else
+        $icon_path = WMP_FILES_UPLOADS_URL.$icon_path;
 
-// check color scheme
-$color_scheme = WMobilePack::wmp_get_setting('color_scheme');
-if ($color_scheme == '')
-    $color_scheme = 1;
+    // check color scheme
+    $color_scheme = WMobilePack::wmp_get_setting('color_scheme');
+    if ($color_scheme == '')
+        $color_scheme = 1;
 
-// check fonts
-$loaded_fonts = array();
+    // check fonts
+    $font_headlines = array_search(WMobilePack::wmp_get_setting('font_headlines'), WMobilePack::$wmp_allowed_fonts) + 1;
+    if (!$font_headlines)
+        $font_headlines = 1;
 
-$font_headlines = array_search(WMobilePack::wmp_get_setting('font_headlines'), WMobilePack::$wmp_allowed_fonts) + 1;
-if (!$font_headlines)
-    $font_headlines = 1;
+    // check if cover exists
+    $cover_path = WMobilePack::wmp_get_setting('cover');
 
-$loaded_fonts[] = $font_headlines;
+    $use_cover = false;
 
-$font_subtitles = array_search(WMobilePack::wmp_get_setting('font_subtitles'), WMobilePack::$wmp_allowed_fonts) + 1;
-if (!$font_subtitles)
-    $font_subtitles = 1;
+    if ($cover_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$cover_path))
+        $cover_path = '';
+    else {
+        $cover_path = WMP_FILES_UPLOADS_URL.$cover_path;
+        $use_cover = true;
+    }
 
-if (!in_array($font_subtitles, $loaded_fonts))
-    $loaded_fonts[] = $font_subtitles;
+    if (!$use_cover) {
+        // get random cover from default covers
+        $cover_path = $theme_path."includes/resources/images/pattern-".rand(1, 6).".jpg";
+    }
 
-$font_paragraphs = array_search(WMobilePack::wmp_get_setting('font_paragraphs'), WMobilePack::$wmp_allowed_fonts) + 1;
-if (!$font_paragraphs)
-    $font_paragraphs = 1;
+    // check if locale file exists
+    $texts_json_exists = WMobilePack::wmp_check_language_file(get_locale());
 
-if (!in_array($font_paragraphs, $loaded_fonts))
-    $loaded_fonts[] = $font_paragraphs;
-
-
-// check if cover exists
-$cover_path = WMobilePack::wmp_get_setting('cover');
-
-$use_cover = false;
-
-if ($cover_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$cover_path))
-    $cover_path = '';
-else {
-    $cover_path = WMP_FILES_UPLOADS_URL.$cover_path;
-    $use_cover = true;
-}
-
-if (!$use_cover) {
-    // get random cover from default covers
-    $cover_path = $theme_path."includes/resources/images/pattern-".rand(1, 6).".jpg";
-}
-
-// load static texts from a json file
-$texts_json = WMobilePack::wmp_load_language(get_locale());
-
-if ($texts_json === false) {
-    echo "ERROR, unable to load language file. Please check the '".WMP_DOMAIN."/themes/".WMobilePack::wmp_app_theme()."/locales' folder.";
-}
+    if ($texts_json_exists === false) {
+        echo "ERROR, unable to load language file. Please check the '".WMP_DOMAIN."/themes/".WMobilePack::wmp_app_theme()."/locales' folder.";
+    }
 
 ?>
 <!DOCTYPE HTML>
@@ -166,33 +147,27 @@ if ($texts_json === false) {
             icon: "<?php echo $icon_path;?>",
             websiteUrl: '<?php echo home_url(); echo parse_url(home_url(), PHP_URL_QUERY) ? '&' : '?'; ?>wmp_theme_mode=desktop',
             commentsToken: "<?php echo WMobilePack::wmp_set_token();?>",
-            appTexts: <?php echo json_encode($texts_json['appTexts']);?>
+            hasFacebook: 0,
+            hasTwitter: 0,
+            hasGoogle: 0
         }
     </script>
 
-    <!-- core -->
-    <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/phone.css?date=20141120" type="text/css" />
-    <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/fonts.css?date=20141120" type="text/css" />
+    <!-- load basic css file -->
+    <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/colors-<?php echo $color_scheme;?>-fonts-<?php echo $font_headlines;?>.css?date=20151012" type="text/css" />
 
-    <!-- custom fonts -->
-    <?php foreach ($loaded_fonts as $font_no):?>
-        <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/font-<?php echo $font_no;?>.css?date=20141120" type="text/css">
-    <?php endforeach;?>
+    <!-- load fonts -->
+    <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/font-<?php echo $font_headlines;?>.css?date=20151012" type="text/css">
 
-    <!-- theming -->
-    <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/headlines-f<?php echo $font_headlines;?>.css?date=20141120" type="text/css">
-    <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/paragraphs-f<?php echo $font_paragraphs;?>.css?date=20141120" type="text/css">
-    <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/subtitles-f<?php echo $font_subtitles;?>.css?date=20141120" type="text/css">
-    <link rel="stylesheet" href="<?php echo $theme_path;?>includes/resources/css/theme-<?php echo $color_scheme;?>.css?date=20141120" type="text/css">
-
-    <script type="text/javascript" src="<?php echo $theme_path;?>includes/app.js?date=20150530"></script>
+    <script src="<?php echo plugins_url()."/".WMP_DOMAIN."/export/content.php?content=apptexts&locale=".get_locale();?>" type="text/javascript"></script>
+    <script type="text/javascript" src="<?php echo $theme_path;?>includes/app.js?date=20151012"></script>
 
     <?php
-    // check if google analytics id was set
-    $google_analytics_id = WMobilePack::wmp_get_setting('google_analytics_id');
+        // check if google analytics id was set
+        $google_analytics_id = WMobilePack::wmp_get_setting('google_analytics_id');
 
-    if ($google_analytics_id != ''):
-        ?>
+        if ($google_analytics_id != ''):
+    ?>
 
         <script type="text/javascript" pagespeed_no_defer="">
 

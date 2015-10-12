@@ -9,7 +9,7 @@ if ( ! class_exists( 'WMP_Export' ) ) {
 }
 
 // Disable error reporting because these methods are used as callbacks by the mobile web app
-error_reporting(0);
+// error_reporting(0);
 
 if (isset($_GET['content'])) {
 
@@ -71,6 +71,17 @@ if (isset($_GET['content'])) {
             case 'mozillamanifest':
 
                 echo $export->export_manifest();
+                break;
+
+            case 'apptexts':
+
+                $app_texts = $export->load_language($_GET['locale']);
+
+                if ($app_texts !== false){
+                    header('Content-Type: application/javascript');
+                    echo $app_texts;
+                }
+
                 break;
 
             case 'exportsettings':

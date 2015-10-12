@@ -526,22 +526,18 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                     
                     // handle color schemes and fonts (look & feel page)
                     if (isset($_POST['wmp_edittheme_colorscheme']) && $_POST['wmp_edittheme_colorscheme'] != '' &&
-                        isset($_POST['wmp_edittheme_fontheadlines']) && $_POST['wmp_edittheme_fontheadlines'] != '' &&
-                        isset($_POST['wmp_edittheme_fontsubtitles']) && $_POST['wmp_edittheme_fontsubtitles'] != '' &&
-                        isset($_POST['wmp_edittheme_fontparagraphs']) && $_POST['wmp_edittheme_fontparagraphs'] != ''){
+                        isset($_POST['wmp_edittheme_fontheadlines']) && $_POST['wmp_edittheme_fontheadlines'] != ''){
                         
                         if (in_array($_POST['wmp_edittheme_colorscheme'], array(1,2,3)) && 
-                            in_array($_POST['wmp_edittheme_fontheadlines'], WMobilePack::$wmp_allowed_fonts) && 
-                            in_array($_POST['wmp_edittheme_fontsubtitles'], WMobilePack::$wmp_allowed_fonts) &&
-                            in_array($_POST['wmp_edittheme_fontparagraphs'], WMobilePack::$wmp_allowed_fonts)){
+                            in_array($_POST['wmp_edittheme_fontheadlines'], WMobilePack::$wmp_allowed_fonts)){
                             
                             $status = 1;
                             
                             // save options
                             WMobilePack::wmp_update_settings('color_scheme', $_POST['wmp_edittheme_colorscheme']);
                             WMobilePack::wmp_update_settings('font_headlines', $_POST['wmp_edittheme_fontheadlines']);
-                            WMobilePack::wmp_update_settings('font_subtitles', $_POST['wmp_edittheme_fontsubtitles']);
-                            WMobilePack::wmp_update_settings('font_paragraphs', $_POST['wmp_edittheme_fontparagraphs']);
+                            WMobilePack::wmp_update_settings('font_subtitles', $_POST['wmp_edittheme_fontheadlines']);
+                            WMobilePack::wmp_update_settings('font_paragraphs', $_POST['wmp_edittheme_fontheadlines']);
                         }
                     }
                     

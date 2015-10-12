@@ -1,0 +1,22 @@
+{
+  "name": "gulptools",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "hex2rgb": "^2.2.0"
+  },
+  "devDependencies": {
+    "gulp-batch-replace": "0.0.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-ruby-sass": "^2.0.3",
+    "gulp-strip-css-comments": "^1.2.0",
+    "hex-rgb": "^1.0.0"
+  },
+  "scripts": {
+    "test": "npm test"
+  },
+  "author": "Alexandra Anghel",
+  "license": "ISC"
+}

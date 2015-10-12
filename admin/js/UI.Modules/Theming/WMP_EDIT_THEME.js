@@ -53,8 +53,6 @@ function WMP_EDIT_THEME(){
         if (this.enableCustomSelects == 1){
             
             jQuery("#" + JSObject.type + "_fontheadlines").selectBoxIt();
-            jQuery("#" + JSObject.type + "_fontsubtitles").selectBoxIt();
-            jQuery("#" + JSObject.type + "_fontparagraphs").selectBoxIt();
         }
     }
     

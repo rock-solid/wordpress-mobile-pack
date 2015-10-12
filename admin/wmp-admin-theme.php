@@ -173,9 +173,11 @@
                             <div class="color-" title="Article border">3</div>
                             <div class="color-" title="Secondary texts">4</div>
                             <div class="color-" title="Category label">5</div>
-                            <div class="color-" title="Buttons">6</div>
-                            <div class="color-" title="Menu">7</div>
-                            <div class="color-" title="Forms">8</div>
+                            <div class="color-" title="Category text">6</div>
+                            <div class="color-" title="Buttons">7</div>
+                            <div class="color-" title="Menu">8</div>
+                            <div class="color-" title="Forms">9</div>
+                            <div class="color-" title="Cover text">10</div>
                         </div>
                         <div class="spacer-15"></div>
                         <!-- add radio buttons -->
@@ -186,52 +188,60 @@
                             <div class="color-1-3" title="Article border"></div>
                             <div class="color-1-4" title="Secondary texts"></div>
                             <div class="color-1-5" title="Category label"></div>
-                            <div class="color-1-6" title="Buttons"></div>
-                            <div class="color-1-7" title="Menu"></div>
-                            <div class="color-1-8" title="Forms"></div>
+                            <div class="color-1-6" title="Category text"></div>
+                            <div class="color-1-7" title="Buttons"></div>
+                            <div class="color-1-8" title="Menu"></div>
+                            <div class="color-1-9" title="Forms"></div>
+                            <div class="color-1-10" title="Cover text"></div>
                         </div>
                         <div class="spacer-20"></div>
                         <input type="radio" name="wmp_edittheme_colorscheme" id="wmp_edittheme_colorscheme" value="2" <?php if ($color_scheme == 2) echo "checked";?> autocomplete="off" />
                         <div class="colors">
-                        	<div class="color-2-1" title="Headlines and texts"></div>
+                            <div class="color-2-1" title="Headlines and texts"></div>
                             <div class="color-2-2" title="Article background"></div>
                             <div class="color-2-3" title="Article border"></div>
                             <div class="color-2-4" title="Secondary texts"></div>
                             <div class="color-2-5" title="Category label"></div>
-                            <div class="color-2-6" title="Buttons"></div>
-                            <div class="color-2-7" title="Menu"></div>
-                            <div class="color-2-8" title="Forms"></div>
+                            <div class="color-2-6" title="Category text"></div>
+                            <div class="color-2-7" title="Buttons"></div>
+                            <div class="color-2-8" title="Menu"></div>
+                            <div class="color-2-9" title="Forms"></div>
+                            <div class="color-2-10" title="Cover text"></div>
                         </div>
                         <div class="spacer-20"></div>
                         <input type="radio" name="wmp_edittheme_colorscheme" id="wmp_edittheme_colorscheme" value="3" <?php if ($color_scheme == 3) echo "checked";?> autocomplete="off" />
                         <div class="colors">
-                        	<div class="color-3-1" title="Headlines and texts"></div>
+                            <div class="color-3-1" title="Headlines and texts"></div>
                             <div class="color-3-2" title="Article background"></div>
                             <div class="color-3-3" title="Article border"></div>
                             <div class="color-3-4" title="Secondary texts"></div>
                             <div class="color-3-5" title="Category label"></div>
-                            <div class="color-3-6" title="Buttons"></div>
-                            <div class="color-3-7" title="Menu"></div>
-                            <div class="color-3-8" title="Forms"></div>
+                            <div class="color-3-6" title="Category text"></div>
+                            <div class="color-3-7" title="Buttons"></div>
+                            <div class="color-3-8" title="Menu"></div>
+                            <div class="color-3-9" title="Forms"></div>
+                            <div class="color-3-10" title="Cover text"></div>
                         </div>
-                        <div class="spacer-30"></div>
-                        <!-- start notice -->
-                        <div class="notice notice-top left" style="width: 345px;">
-                            <span>
-                                The above color scheme will impact the following sections within the mobile web application:<br/><br/>
-			
-                                1.&nbsp;Headlines and primary texts<br/>
-                                2.&nbsp;Article background<br/>
-                                3.&nbsp;Article border<br/>
-                                4.&nbsp;Secondary texts<br/>
-                                5.&nbsp;Category label<br/>
-                                6.&nbsp;Buttons<br/>
-                                7.&nbsp;Menu<br/>
-                                8.&nbsp;Forms<br/>
-                            </span>
-                        </div>
-                        <div class="spacer-10"></div>
                     </div>
+
+                    <!-- start notice -->
+                    <div class="notice notice-left left" style="width: 50%;">
+                        <span>
+                            The above color scheme will impact the following sections within the mobile web application:<br/><br/>
+
+                            1.&nbsp;Headlines and primary texts<br/>
+                            2.&nbsp;Article background<br/>
+                            3.&nbsp;Article border<br/>
+                            4.&nbsp;Secondary texts<br/>
+                            5.&nbsp;Category label<br/>
+                            6.&nbsp;Category text<br/>
+                            7.&nbsp;Buttons<br/>
+                            8.&nbsp;Menu<br/>
+                            9.&nbsp;Forms<br/>
+                            10.&nbsp;Cover text<br/>
+                        </span>
+                    </div>
+                    <div class="spacer-10"></div>
                     
                     <div class="font-chooser">
                         <p class="section-header">Fonts</p>
@@ -254,7 +264,7 @@
                                 $font_headlines = WMobilePack::$wmp_allowed_fonts[0];
                         ?>
                         
-                        <label for="wmp_edittheme_fontheadlines">Headlines</label>
+                        <label for="wmp_edittheme_fontheadlines">All texts</label>
                         
                         <select name="wmp_edittheme_fontheadlines" id="wmp_edittheme_fontheadlines">
                         
@@ -273,57 +283,7 @@
                                 endforeach;
                             ?>
                         </select>
-                                                
-                        <div class="spacer-10"></div>
-                        
-                        <?php 
-                            $font_subtitles = WMobilePack::wmp_get_setting('font_subtitles');
-                            if ($font_subtitles == '')
-                                $font_subtitles = WMobilePack::$wmp_allowed_fonts[0];
-                        ?>
-                        
-                        <label for="wmp_edittheme_fontsubtitles">Subtitles</label>
-                        <select name="wmp_edittheme_fontsubtitles" id="wmp_edittheme_fontsubtitles">
-                            <?php 
-                                foreach (WMobilePack::$wmp_allowed_fonts as $font_family):
-                            
-                                    if ($enable_custom_selects):    
-                            ?>
-                                        <option value="<?php echo $font_family;?>" data-text='<span style="font-family:<?php echo str_replace(" ", "", $font_family);?>"><?php echo $font_family;?></span>' <?php if ($font_subtitles == $font_family) echo "selected";?>></option>
-                                        
-                                    <?php else:?>
-                                    
-                                        <option value="<?php echo $font_family;?>" <?php if ($font_subtitles == $font_family) echo "selected";?>><?php echo $font_family;?></option>
-                            <?php   
-                                    endif;                                        
-                                endforeach;
-                            ?>
-                        </select>
-                        <div class="spacer-10"></div>
-                        
-                        <?php 
-                            $font_paragraphs = WMobilePack::wmp_get_setting('font_paragraphs');
-                            if ($font_paragraphs == '')
-                                $font_paragraphs = WMobilePack::$wmp_allowed_fonts[0];
-                        ?>
-                        
-                        <label for="wmp_edittheme_fontparagraphs">Paragraphs</label>
-                        <select name="wmp_edittheme_fontparagraphs" id="wmp_edittheme_fontparagraphs">
-                            <?php 
-                                foreach (WMobilePack::$wmp_allowed_fonts as $font_family):
-                            
-                                    if ($enable_custom_selects):    
-                            ?>
-                                        <option value="<?php echo $font_family;?>" data-text='<span style="font-family:<?php echo str_replace(" ", "", $font_family);?>"><?php echo $font_family;?></span>' <?php if ($font_paragraphs == $font_family) echo "selected";?>></option>
-                                        
-                                    <?php else:?>
-                                    
-                                        <option value="<?php echo $font_family;?>" <?php if ($font_paragraphs == $font_family) echo "selected";?>><?php echo $font_family;?></option>
-                            <?php   
-                                    endif;                                        
-                                endforeach;
-                            ?>
-                        </select>
+
                         <div class="spacer-20"></div>        
                     </div>
                 </form>

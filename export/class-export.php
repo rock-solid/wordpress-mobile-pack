@@ -1348,5 +1348,38 @@ if ( ! class_exists( 'WMP_Export' ) ) {
             } else
                 return '{"error":"Missing post data (API Key) or mismatch.","status":0}';
         }
+
+        /**
+         *
+         * Load app texts for the current locale.
+         *
+         * The JSON files with translations for each language are located in frontend/locales.
+         *
+         * @param $locale
+         * @param $response_type = javascript | list
+         * @return bool|mixed
+         *
+         */
+        public function load_language($locale, $response_type = 'javascript')
+        {
+
+            $language_file = WMobilePack::wmp_check_language_file($locale);
+
+            if ($language_file !== false) {
+
+                $appTexts = file_get_contents($language_file);
+                $appTextsJson = json_decode($appTexts, true);
+
+                if ($appTextsJson && !empty($appTextsJson) && array_key_exists('APP_TEXTS', $appTextsJson)) {
+
+                    if ($response_type == 'javascript')
+                        return 'var APP_TEXTS = ' . json_encode($appTextsJson['APP_TEXTS']);
+                    else
+                        return $appTextsJson;
+                }
+            }
+
+            return false;
+        }
     }
 }
