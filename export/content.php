@@ -5,11 +5,11 @@ header("Content-Type: application/json; charset=UTF-8");
 require_once("../../../../wp-config.php");
 
 if ( ! class_exists( 'WMP_Export' ) ) {
-    require_once(WPMP_PRO_PLUGIN_PATH.'export/class-export.php');
+    require_once(WMP_PLUGIN_PATH.'export/class-export.php');
 }
 
 // Disable error reporting because these methods are used as callbacks by the mobile web app
-// error_reporting(0);
+error_reporting(0);
 
 if (isset($_GET['content'])) {
 

@@ -179,7 +179,7 @@
                         </div>
                         <div class="spacer-15"></div>
                         <!-- add radio buttons -->
-                        <input type="radio" name="wmp_edittheme_colorscheme" id="wmp_edittheme_colorscheme" value="1" <?php if ($color_scheme == 1) echo "checked";?> />
+                        <input type="radio" name="wmp_edittheme_colorscheme" id="wmp_edittheme_colorscheme" value="1" <?php if ($color_scheme == 1) echo "checked";?> autocomplete="off" />
                         <div class="colors">
                         	<div class="color-1-1" title="Headlines and texts"></div>
                             <div class="color-1-2" title="Article background"></div>
@@ -191,7 +191,7 @@
                             <div class="color-1-8" title="Forms"></div>
                         </div>
                         <div class="spacer-20"></div>
-                        <input type="radio" name="wmp_edittheme_colorscheme" id="wmp_edittheme_colorscheme" value="2" <?php if ($color_scheme == 2) echo "checked";?> />
+                        <input type="radio" name="wmp_edittheme_colorscheme" id="wmp_edittheme_colorscheme" value="2" <?php if ($color_scheme == 2) echo "checked";?> autocomplete="off" />
                         <div class="colors">
                         	<div class="color-2-1" title="Headlines and texts"></div>
                             <div class="color-2-2" title="Article background"></div>
@@ -203,7 +203,7 @@
                             <div class="color-2-8" title="Forms"></div>
                         </div>
                         <div class="spacer-20"></div>
-                        <input type="radio" name="wmp_edittheme_colorscheme" id="wmp_edittheme_colorscheme" value="3" <?php if ($color_scheme == 3) echo "checked";?> />
+                        <input type="radio" name="wmp_edittheme_colorscheme" id="wmp_edittheme_colorscheme" value="3" <?php if ($color_scheme == 3) echo "checked";?> autocomplete="off" />
                         <div class="colors">
                         	<div class="color-3-1" title="Headlines and texts"></div>
                             <div class="color-3-2" title="Article background"></div>

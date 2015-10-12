@@ -5,6 +5,13 @@ require_once(WMP_PLUGIN_PATH."export/class-export.php");
 class ExportCommentsTest extends WP_UnitTestCase
 {
 
+    function setUp(){
+        parent::setUp();
+
+        update_option('wmpack_inactive_categories', serialize(array()));
+        update_option('wmpack_ordered_categories', serialize(array()));
+    }
+
     /**
      * Calling export_comments() without a post id returns error
      */
@@ -121,7 +128,7 @@ class ExportCommentsTest extends WP_UnitTestCase
 
         $_GET['articleId'] = $post_id;
 
-        update_option('wmpack_inactive_categories', array($cat_id));
+        update_option('wmpack_inactive_categories', serialize(array($cat_id)));
 
         $export = new WMP_Export();
         $this->assertEquals($export->export_comments(), json_encode(array('comments' => array())));

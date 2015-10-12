@@ -5,6 +5,13 @@ require_once(WMP_PLUGIN_PATH."export/class-export.php");
 class SaveCommentTest extends WP_UnitTestCase
 {
 
+    function setUp(){
+        parent::setUp();
+
+        update_option('wmpack_inactive_categories', serialize(array()));
+        update_option('wmpack_ordered_categories', serialize(array()));
+    }
+
     /**
      * Calling save_comment() without a post id returns null
      */
@@ -134,7 +141,7 @@ class SaveCommentTest extends WP_UnitTestCase
             )
         );
 
-        update_option('wmpack_inactive_categories', array($cat_id));
+        update_option('wmpack_inactive_categories', serialize(array($cat_id)));
 
         $_GET['articleId'] = $post_id;
         $_GET['code'] = WMobilePack::wmp_set_token();

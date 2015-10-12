@@ -36,16 +36,8 @@ if ( ! class_exists( 'WMP_Export' ) ) {
         public function __construct()
         {
             $this->purifier = WMP_Formatter::init_purifier();
-
-            $this->inactive_categories = WMobilePack::wmp_get_setting('inactive_categories');
-
-            if (!is_array($this->inactive_categories))
-                $this->inactive_categories = array();
-
-            $this->inactive_pages = WMobilePack::wmp_get_setting('inactive_pages');
-
-            if (!is_array($this->inactive_pages))
-                $this->inactive_pages = array();
+            $this->inactive_categories = unserialize(WMobilePack::wmp_get_setting('inactive_categories'));
+            $this->inactive_pages = unserialize(WMobilePack::wmp_get_setting('inactive_pages'));
         }
 
 
@@ -192,7 +184,7 @@ if ( ! class_exists( 'WMP_Export' ) ) {
             if (!empty($arr_categories)) {
 
                 // check if the categories were ordered from the admin panel
-                $order_categories = WMobilePack::wmp_get_setting('ordered_categories');
+                $order_categories = unserialize(WMobilePack::wmp_get_setting('ordered_categories'));
 
                 // check if we have a latest category (should be the first one to appear)
                 $has_latest = 0;
@@ -1088,7 +1080,7 @@ if ( ! class_exists( 'WMP_Export' ) ) {
             }
 
             // get pages order
-            $order_pages = WMobilePack::wmp_get_setting('ordered_pages');
+            $order_pages = unserialize(WMobilePack::wmp_get_setting('ordered_pages'));
 
             // remove inline style for the photos types of posts
             add_filter('use_default_gallery_style', '__return_false');

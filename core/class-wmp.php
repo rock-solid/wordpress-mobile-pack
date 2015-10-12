@@ -137,16 +137,18 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 				delete_transient('wmp_newsupdates');
 				
 			if (get_transient("wmp_premium_config_path") !== false)
-				delete_transient('wmp_premium_config_path');	
-			
-			// remove settings from database		
+				delete_transient('wmp_premium_config_path');
+
+            if (get_transient("wmp_tracking_cache") !== false)
+                delete_transient('wmp_tracking_cache');
+
+            // remove settings from database
 			global $wpdb;
     		$wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE 'wmpack_page_%'" );
 			
 			// remove the cookies
-			setcookie("wmp_theme_mode", "", time()-3600);
-			setcookie("wmp_load_app", "", time()-3600);
-            
+			setcookie("wmp_theme_mode", false, time()-3600, '/');
+			setcookie("wmp_load_app", false, time()-3600, '/');
     	}
     	
     		

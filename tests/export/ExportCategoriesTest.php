@@ -5,6 +5,13 @@ require_once(WMP_PLUGIN_PATH."export/class-export.php");
 class ExportCategoriesTest extends WP_UnitTestCase
 {
 
+    function setUp(){
+        parent::setUp();
+
+        update_option('wmpack_inactive_categories', serialize(array()));
+        update_option('wmpack_ordered_categories', serialize(array()));
+    }
+
     /**
      * Calling export_categories() with password protected posts returns empty
      */
@@ -57,7 +64,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
             )
         );
 
-        update_option('wmpack_inactive_categories', array($cat_id));
+        update_option('wmpack_inactive_categories', serialize(array($cat_id)));
 
         $export = new WMP_Export();
         $this->assertEquals($export->export_categories(), json_encode(array('categories' => array())));
@@ -236,7 +243,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
             )
         );
 
-        update_option('wmpack_inactive_categories', array($hidden_cat_id));
+        update_option('wmpack_inactive_categories', serialize(array($hidden_cat_id)));
 
         $export = new WMP_Export();
         $data = json_decode($export->export_categories(), true);
@@ -297,8 +304,8 @@ class ExportCategoriesTest extends WP_UnitTestCase
             )
         );
 
-        update_option('wmpack_inactive_categories', array($hidden_cat_id));
-        update_option('wmpack_ordered_categories', array($visible_cat_id2, $visible_cat_id, $hidden_cat_id));
+        update_option('wmpack_inactive_categories', serialize(array($hidden_cat_id)));
+        update_option('wmpack_ordered_categories', serialize(array($visible_cat_id2, $visible_cat_id, $hidden_cat_id)));
 
         $export = new WMP_Export();
         $data = json_decode($export->export_categories(), true);

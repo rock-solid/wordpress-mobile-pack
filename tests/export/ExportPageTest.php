@@ -5,6 +5,13 @@ require_once(WMP_PLUGIN_PATH."export/class-export.php");
 class ExportPageTest extends WP_UnitTestCase
 {
 
+    function setUp(){
+        parent::setUp();
+
+        update_option('wmpack_inactive_pages', serialize(array()));
+        update_option('wmpack_ordered_pages', serialize(array()));
+    }
+
     /**
      * Calling export_page() without a post id returns error
      */
@@ -86,7 +93,7 @@ class ExportPageTest extends WP_UnitTestCase
 
         $_GET['pageId'] = $post_id;
 
-        update_option('wmpack_inactive_pages', array($post_id));
+        update_option('wmpack_inactive_pages', serialize(array($post_id)));
 
         $export = new WMP_Export();
         $this->assertEquals($export->export_page(), json_encode(array('page' => array())));

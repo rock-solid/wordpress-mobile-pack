@@ -5,6 +5,12 @@ require_once(WMP_PLUGIN_PATH."export/class-export.php");
 class ExportArticlesTest extends WP_UnitTestCase
 {
 
+    function setUp(){
+        parent::setUp();
+
+        update_option('wmpack_inactive_categories', serialize(array()));
+    }
+
     /**
      * Calling export_articles() with password protected posts returns empty
      */
@@ -56,7 +62,7 @@ class ExportArticlesTest extends WP_UnitTestCase
             )
         );
 
-        update_option('wmpack_inactive_categories', array($cat_id));
+        update_option('wmpack_inactive_categories', serialize(array($cat_id)));
 
         $export = new WMP_Export();
         $this->assertEquals($export->export_articles(), json_encode(array('articles' => array())));
@@ -218,7 +224,7 @@ class ExportArticlesTest extends WP_UnitTestCase
             )
         );
 
-        update_option('wmpack_inactive_categories', array($hidden_cat_id));
+        update_option('wmpack_inactive_categories', serialize(array($hidden_cat_id)));
 
         $export = new WMP_Export();
         $data = json_decode($export->export_articles(), true);

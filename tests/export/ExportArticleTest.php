@@ -5,6 +5,12 @@ require_once(WMP_PLUGIN_PATH."export/class-export.php");
 class ExportArticleTest extends WP_UnitTestCase
 {
 
+    function setUp(){
+        parent::setUp();
+
+        update_option('wmpack_inactive_categories', serialize(array()));
+    }
+
     /**
      * Calling export_article() without a post id returns error
      */
@@ -95,7 +101,7 @@ class ExportArticleTest extends WP_UnitTestCase
 
         $_GET['articleId'] = $post_id;
 
-        update_option('wmpack_inactive_categories', array($cat_id));
+        update_option('wmpack_inactive_categories', serialize(array($cat_id)));
 
         $export = new WMP_Export();
         $this->assertEquals($export->export_article(), json_encode(array('article' => array())));
