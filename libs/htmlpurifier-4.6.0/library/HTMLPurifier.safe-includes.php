@@ -226,6 +226,3 @@ require_once $__dir . '/HTMLPurifier/URIScheme/sms.php';
 require_once $__dir . '/HTMLPurifier/URIScheme/whatsapp.php';
 require_once $__dir . '/HTMLPurifier/VarParser/Flexible.php';
 require_once $__dir . '/HTMLPurifier/VarParser/Native.php';
-
-
-require_once $__dir . '/HTMLPurifier/Filter/Iframe.php';

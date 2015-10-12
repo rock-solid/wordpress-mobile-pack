@@ -135,9 +135,6 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 		 */
 		public function wmp_page_content() {
 
-			include(WMP_PLUGIN_PATH.'libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php');
-			include(WMP_PLUGIN_PATH.'libs/htmlpurifier-html5/htmlpurifier_html5.php');
-            
             if (isset($_GET) && is_array($_GET) && !empty($_GET)){
 				 
 				 if (isset($_GET['id'])) { 
@@ -147,32 +144,20 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 						// get page
 						$page = get_page($_GET['id']); 
 										  
-						if($page != null) {
-							
-							$config = HTMLPurifier_Config::createDefault();
-							$config->set('Core.Encoding', 'UTF-8'); 									
-							
-                            $config->set('HTML.AllowedElements','div,a,p,ol,li,ul,img,blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe,small,video,audio,source');
-						  	$config->set('HTML.AllowedAttributes', 'class,src, width, height, target, href, name,frameborder,marginheight,marginwidth,scrolling,poster,preload,controls,type');
-						    
-							$config->set('URI.AllowedSchemes', array ('http' => true, 'https' => true, 'mailto' => true, 'news' => true, 'tel' => true, 'callto' => true, 'skype' => true, 'sms' => true, 'whatsapp' => true));
-							
-                            $config->set('Attr.AllowedFrameTargets', '_blank, _parent, _self, _top');
-							
-							$config->set('HTML.SafeIframe',1);
-							$config->set('Filter.Custom', array( new HTMLPurifier_Filter_Iframe()));
-							
-							// disable cache
-							$config->set('Cache.DefinitionImpl',null);
-							
-							$Html5Purifier = new WMPHtmlPurifier();
-                            $purifier = $Html5Purifier->wmp_extended_purifier($config);
-							
+						if ($page != null) {
+
+                            // load HTML purifier / formatter
+                            if (!class_exists('WMP_Formatter')) {
+                                require_once(WMP_PLUGIN_PATH . 'export/class-wmp-formatter.php');
+                            }
+
+                            $purifier = WMP_Formatter::init_purifier();
+
 							// first check if the admin edited the content for this page
-							if(get_option( 'wmpack_page_' .$page->ID  ) === false)
-								$content = apply_filters("the_content",$page->post_content);
+							if (get_option('wmpack_page_'.$page->ID) === false)
+								$content = apply_filters("the_content", $page->post_content);
 							else
-								$content = apply_filters("the_content",get_option( 'wmpack_page_' .$page->ID  ));
+								$content = apply_filters("the_content", get_option('wmpack_page_' .$page->ID));
 								
 							$content = $purifier->purify(stripslashes($content));
 							
@@ -353,36 +338,20 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 
                             if (trim($_POST['wmp_pageedit_content']) != ''){
                             
-                                // set HTML Purifier
-                                include(WMP_PLUGIN_PATH.'libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php');
-                                include(WMP_PLUGIN_PATH.'libs/htmlpurifier-html5/htmlpurifier_html5.php');
+                                // load HTML purifier / formatter
+                                if (!class_exists('WMP_Formatter')) {
+                                    require_once(WMP_PLUGIN_PATH . 'export/class-wmp-formatter.php');
+                                }
 
-                                $config = HTMLPurifier_Config::createDefault();
-                                $config->set('Core.Encoding', 'UTF-8');
-
-                                $config->set('HTML.AllowedElements','div,a,p,ol,li,ul,img,blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe,small,video,audio,source');
-                                $config->set('HTML.AllowedAttributes', 'class, src, width, height, target, href, name,frameborder,marginheight,marginwidth,scrolling,poster,preload,controls,type');
-
-                                $config->set('URI.AllowedSchemes', array ('http' => true, 'https' => true, 'mailto' => true, 'news' => true, 'tel' => true, 'callto' => true, 'skype' => true, 'sms' => true, 'whatsapp' => true));
-
-                                $config->set('Attr.AllowedFrameTargets', '_blank, _parent, _self, _top');
-
-                                $config->set('HTML.SafeIframe',1);
-                                $config->set('Filter.Custom', array( new HTMLPurifier_Filter_Iframe()));
-
-                                // disable cache
-                                $config->set('Cache.DefinitionImpl',null);
-
-                                $Html5Purifier = new WMPHtmlPurifier();
-                                $purifier = $Html5Purifier->wmp_extended_purifier($config);
-
-                                $status = 1;
+                                $purifier = WMP_Formatter::init_purifier();
 
                                 $page_id = intval($_POST['wmp_pageedit_id']);
                                 $page_content = $purifier->purify(stripslashes($_POST['wmp_pageedit_content']));
 
                                 // save option in the db
                                 update_option( 'wmpack_page_' . $page_id, $page_content );
+
+                                $status = 1;
 
                             } else {
                                 $status = 2;
