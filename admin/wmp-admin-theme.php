@@ -158,7 +158,7 @@
                 <form name="wmp_edittheme_form" id="wmp_edittheme_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_save" method="post" enctype="multipart/form-data">
                 
                     <div class="color-schemes">
-                        <p class="section-header">Color scheme</p>
+                        <p class="section-header">Select Color Scheme</p>
                         <div class="spacer-20"></div>
                         <?php 
                             $color_scheme = WMobilePack::wmp_get_setting('color_scheme');
@@ -222,6 +222,10 @@
                             <div class="color-3-9" title="Forms"></div>
                             <div class="color-3-10" title="Cover text"></div>
                         </div>
+                        <div class="spacer-40"></div>
+
+                        <p class="section-header">Your Custom Colors</p>
+                        <div class="spacer-20"></div>
                     </div>
 
                     <!-- start notice -->
@@ -244,7 +248,7 @@
                     <div class="spacer-10"></div>
                     
                     <div class="font-chooser">
-                        <p class="section-header">Fonts</p>
+                        <p class="section-header">Select Font</p>
                         <div class="spacer-20"></div>
                         
                         <?php 
@@ -404,7 +408,6 @@
                         <div class="spacer-20"></div>
                         
                         <a href="javascript:void(0);" id="wmp_editimages_send_btn" class="btn green smaller">Save</a>
-    
                     </form>    
                 </div>
                 

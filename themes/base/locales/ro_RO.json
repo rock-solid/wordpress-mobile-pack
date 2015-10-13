@@ -1,40 +1,47 @@
 {
-    "appTexts": {
-        "links": {
-            "visit_website": "Înapoi către site",
-            "visit_app": "Înapoi la versiunea pentru mobil",
-            "credits": "Despre aplicație",
-            "go_to": "Mergi la",
-            "categories": "Categorii"
+    "APP_TEXTS": {
+        "LINKS": {
+            "VISIT_WEBSITE": "Înapoi către site",
+            "VISIT_APP": "Înapoi la versiunea pentru mobil",
+            "CREDITS": "Despre aplicație",
+            "CATEGORIES": "Categorii",
+            "GO_TO": "Mergi la",
+            "OTHERS": "Altele",
+            "HEADLINES": "Titluri",
+            "INSIDE": "Sumar"
         },
-        "texts": {
-            "no_pages": "Nu există pagini!",
-            "no_categories": "Nu există categorii!",
-            "no_comments": "Nu există comentarii pentru acest articol. <br /> Adaugă tu primul comentariu!",
-            "no_comments_short": "Nu există comentarii pentru acest articol.",
-            "leave_comment": "Adaugă un comentariu",
-            "comments": "Comentarii",
-            "by_author": "de",
-            "loading": "Se încarcă",
-            "related_articles": "Articole similare",
-            "related_articles_web": "Article similare de pe web"
+        "TEXTS": {
+            "NO_PAGES": "Nu există pagini!",
+            "NO_CATEGORIES": "Nu există categorii!",
+            "NO_ARTICLES": "Nu există articole!",
+            "NO_COMMENTS": "Nu există comentarii pentru acest articol. <br /> Adaugă tu primul comentariu!",
+            "NO_COMMENTS_SHORT": "Nu există comentarii pentru acest articol.",
+            "COMMENTS": "Comentarii",
+            "LEAVE_COMMENTS": "Adaugă un comentariu",
+            "BY_AUTHOR": "de",
+            "LOADING": "Se încarcă",
+            "LOAD_MORE": "Încarcă mai mult",
+            "LATEST": "Noutăți",
+            "PAGE": "Pagina",
+            "SWIPE_FOR_MORE": "Swipe pentru mai mult",
+            "SWIPE_TO_CONTINUE": "Swipe pentru a continua"
         },
-        "pull_refresh":{
-            "pull_comments": "Trage în jos pentru comentarii noi!",
-            "last_updated": "Actualizat pe",
-            "release": "Eliberează pentru a reîncărca"
+        "PULL_REFRESH":{
+            "PULL_COMMENTS": "Trage în jos pentru comentarii noi!",
+            "RELEASE": "Eliberează pentru a reîncărca",
+            "LAST_UPDATED": "Actualizat pe"
         },
-        "forms": {
-            "send": "Trimite",
-            "your_name": "Numele tău",
-            "your_name_error": "Te rugăm să introduci numele tău!",
-            "your_email": "Adresa ta de e-mail",
-            "your_email_error": "Te rugăm să introduci adresa ta de e-mail!",
-            "your_email_error2": "Te rugăm să introduci o adresă validă de e-mail!",
-            "your_comment": "Comentariul tău",
-            "your_comment_error": "Te rugăm să introduci comentariul!",
-            "submit_error": "Ne pare rău, a survenit o eroare.",
-            "awaiting_moderation": "Comentariul tău va fi revizuit înainte de publicare."
+        "FORMS": {
+            "SEND": "Trimite",
+            "YOUR_NAME": "Numele tău",
+            "YOUR_NAME_ERROR": "Te rugăm să introduci numele tău!",
+            "YOUR_EMAIL": "Adresa ta de e-mail",
+            "YOUR_EMAIL_ERROR": "Te rugăm să introduci adresa ta de e-mail!",
+            "YOUR_EMAIL_ERROR2": "Te rugăm să introduci o adresă validă de e-mail!",
+            "YOUR_COMMENT": "Comentariul tău",
+            "YOUR_COMMENT_ERROR": "Te rugăm să introduci comentariul!",
+            "SUBMIT_ERROR": "Ne pare rău, a survenit o eroare.",
+            "AWAITING_MODERATION": "Comentariul tău va fi revizuit înainte de publicare."
         }
     }
 }

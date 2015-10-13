@@ -145,7 +145,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 
             // remove settings from database
 			global $wpdb;
-    		$wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE 'wmpack_page_%'" );
+    		$wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE '".self::$wmp_prefix."page_%'" );
 			
 			// remove the cookies
 			setcookie("wmp_theme_mode", false, time()-3600, '/');
@@ -353,10 +353,10 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     		if (is_array($option)) {
     			
     			foreach($option as $option_name => $option_value)	{
-    				if ( get_option( 'wmpack_' . $option_name ) == '')
+    				if ( get_option( self::$wmp_prefix . $option_name ) == '')
     					$wmp_settings[$option_name] = self::$wmp_options[$option_name];
     				else
-    					$wmp_settings[$option_name] = get_option( 'wmpack_' . $option_name );
+    					$wmp_settings[$option_name] = get_option( self::$wmp_prefix . $option_name );
     			}
     			
     			// return array
@@ -365,10 +365,10 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     		} elseif(is_string($option)) { // if option is a string, return the value of the option
     			
                 // check if the option is added in the db 
-    			if ( get_option( 'wmpack_' . $option ) === false ) { 
+    			if ( get_option( self::$wmp_prefix . $option ) === false ) {
     				$wmp_setting = self::$wmp_options[$option];
     			} else {
-    				$wmp_setting = get_option( 'wmpack_' . $option );
+    				$wmp_setting = get_option( self::$wmp_prefix . $option );
                 }
         			
     			return $wmp_setting;
@@ -399,7 +399,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
         			foreach($option as $option_name => $option_value) {
         				
         				if (array_key_exists( $option_name , self::$wmp_options))
-        					add_option( 'wmpack_' . $option_name, $option_value );
+        					add_option( self::$wmp_prefix . $option_name, $option_value );
         				else
         					$option_not_saved = true; // there is at least one option not in the default list
         			}
@@ -412,7 +412,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
         		} elseif (is_string($option) && $option_value != '') {
         
         			if (array_key_exists( $option , self::$wmp_options))
-        				return add_option( 'wmpack_' . $option, $option_value );
+        				return add_option( self::$wmp_prefix . $option, $option_value );
         			
         		}
       		
@@ -444,7 +444,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
         				
 						// set option not saved variable
         				if ( array_key_exists( $option_name , self::$wmp_options ) )
-        					update_option( 'wmpack_' . $option_name, $option_value );
+        					update_option( self::$wmp_prefix . $option_name, $option_value );
         				else
         					$option_not_updated = true; // there is at least one option not in the default list
         			}
@@ -457,7 +457,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
         		} elseif (is_string($option) && $option_value !== null) {
         			
         			if ( array_key_exists( $option , self::$wmp_options ) )
-        				return update_option( 'wmpack_' . $option, $option_value );
+        				return update_option( self::$wmp_prefix . $option, $option_value );
         			
         		}
     		}
@@ -484,7 +484,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
         			foreach($option as $option_name => $option_value) {
 
         				if ( array_key_exists( $option_name , self::$wmp_options ) )
-        					delete_option( 'wmpack_' . $option_name );
+        					delete_option( self::$wmp_prefix . $option_name );
         				
         			}
         		
@@ -493,7 +493,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
         		} elseif (is_string($option)) {
         			
         			if ( array_key_exists( $option , self::$wmp_options ) )
-        				return delete_option( 'wmpack_' . $option );
+        				return delete_option( self::$wmp_prefix . $option );
         			
         		}
             }

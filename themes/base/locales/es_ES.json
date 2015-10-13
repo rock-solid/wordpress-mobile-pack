@@ -1,40 +1,47 @@
 {
-    "appTexts": {
-        "links": {
-            "visit_website": "Visita el sitio web",
-            "visit_app": "Cambiar a la versión para móviles",
-            "credits": "Acerca de la aplicación",
-            "go_to": "Ir a",
-            "categories": "Categorías"
+    "APP_TEXTS": {
+        "LINKS": {
+            "VISIT_WEBSITE": "Visita el sitio web",
+            "VISIT_APP": "Cambiar a la versión para móviles",
+            "CREDITS": "Acerca de la aplicación",
+            "CATEGORIES": "Categorías",
+            "GO_TO": "Ir a",
+            "OTHERS": "Otros",
+            "HEADLINES": "Títulos",
+            "INSIDE": "Dentro"
         },
-        "texts": {
-            "no_pages": "No existen páginas!",
-            "no_categories": "No existen categorías!",
-            "no_comments": "No existe ningún comentario para este artículo.<br/>¡Sé el primero en comentarlo!",
-            "no_comments_short": "No existe ningún comentario para este artículo.",
-            "leave_comment": "Escribir un comentario",
-            "comments": "Comentarios",
-            "by_author": "por",
-            "loading": "Cargando",
-            "related_articles": "Artículos similares",
-            "related_articles_web": "Artículos similares de la web"
+        "TEXTS": {
+            "NO_PAGES": "No existen páginas!",
+            "NO_CATEGORIES": "No existen categorías!",
+            "NO_ARTICLES": "No existen artículos!",
+            "NO_COMMENTS": "No existe ningún comentario para este artículo.<br/>¡Sé el primero en comentarlo!",
+            "NO_COMMENTS_SHORT": "No existe ningún comentario para este artículo.",
+            "COMMENTS": "Comentarios",
+            "LEAVE_COMMENTS": "Escribir un comentario",
+            "BY_AUTHOR": "por",
+            "LOADING": "Cargando",
+            "LOAD_MORE": "Cargar más",
+            "LATEST": "Reciente",
+            "PAGE": "Página",
+            "SWIPE_FOR_MORE": "Pasa el dedo para ver más",
+            "SWIPE_TO_CONTINUE": "Pasa el dedo para continuar"
         },
-        "pull_refresh":{
-            "pull_comments": "Sigue bajando ver más comentarios!",
-            "last_updated": "Última actualización",
-            "release": "Suelta para actualizar"
+        "PULL_REFRESH":{
+            "PULL_COMMENTS": "Sigue bajando ver más comentarios!",
+            "RELEASE": "Suelta para actualizar",
+            "LAST_UPDATED": "Última actualización"
         },
-        "forms": {
-            "send": "Enviar",
-            "your_name": "Su nombre",
-            "your_name_error": "Por favor escriba su nombre!",
-            "your_email": "Su dirección de correo electrónico",
-            "your_email_error": "Por favor, rellene su dirección de e-mail!",
-            "your_email_error2": "Por favor, introduce una dirección de correo electrónico válida!",
-            "your_comment": "Tu comentario",
-            "your_comment_error": "Por favor, escribe un comentario!",
-            "submit_error": "Hubo un error. Por favor, inténtelo de nuevo más tarde.",
-            "awaiting_moderation": "Tu comentario está a la espera de aprobación!"
+        "FORMS": {
+            "SEND": "Enviar",
+            "YOUR_NAME": "Su nombre",
+            "YOUR_NAME_ERROR": "Por favor escriba su nombre!",
+            "YOUR_EMAIL": "Su dirección de correo electrónico",
+            "YOUR_EMAIL_ERROR": "Por favor, rellene su dirección de e-mail!",
+            "YOUR_EMAIL_ERROR2": "Por favor, introduce una dirección de correo electrónico válida!",
+            "YOUR_COMMENT": "Tu comentario",
+            "YOUR_COMMENT_ERROR": "Por favor, escribe un comentario!",
+            "SUBMIT_ERROR": "Hubo un error. Por favor, inténtelo de nuevo más tarde.",
+            "AWAITING_MODERATION": "Tu comentario está a la espera de aprobación!"
         }
     }
 }

@@ -1,40 +1,47 @@
 {
-    "appTexts": {
-        "links": {
-            "visit_website": "Visitez le site web",
-            "visit_app": "Passer à une version mobile",
-            "credits": "A propos de l'application",
-            "go_to": "Aller à",
-            "categories": "Catégories"
+    "APP_TEXTS": {
+        "LINKS": {
+            "VISIT_WEBSITE": "Visitez le site web",
+            "VISIT_APP": "Passer à une version mobile",
+            "CREDITS": "A propos de l'application",
+            "CATEGORIES": "Catégories",
+            "GO_TO": "Aller à",
+            "OTHERS": "Autres",
+            "HEADLINES": "Gros titres",
+            "INSIDE": "À l'intérieur"
         },
-        "texts": {
-            "no_pages": "Il n'y a pas de pages!",
-            "no_categories": "Il n'y a pas de catégories!",
-            "no_comments": "Aucun commentaire pour cet article.<br/>Soyez le premier à commenter sur cet article!",
-            "no_comments_short": "Aucun commentaire pour cet article.",
-            "leave_comment": "Écrire un commentaire",
-            "comments": "Commentaires",
-            "by_author": "par",
-            "loading": "Chargement",
-            "related_articles": "Des articles similaires",
-            "related_articles_web": "Articles similaires à partir du Web"
+        "TEXTS": {
+            "NO_PAGES": "Il n'y a pas de pages!",
+            "NO_CATEGORIES": "Il n'y a pas de catégories!",
+            "NO_ARTICLES": "Il n'y a pas d'articles!",
+            "NO_COMMENTS": "Aucun commentaire pour cet article <br/> Soyez le premier à commenter sur cet article",
+            "NO_COMMENTS_SHORT": "There are no comments for this article.",
+            "COMMENTS": "Commentaires",
+            "LEAVE_COMMENTS": "Laissez un commentaire",
+            "BY_AUTHOR": "par",
+            "LOADING": "Chargement",
+            "LOAD_MORE": "Voir plus",
+            "LATEST": "Récents",
+            "PAGE": "Page",
+            "SWIPE_FOR_MORE": "Glissez pour plus",
+            "SWIPE_TO_CONTINUE": "Glissez pour continuer"
         },
-        "pull_refresh":{
-            "pull_comments": "Déroulez pour plus de commentaires!",
-            "last_updated": "Dernière mise à jour",
-            "release": "Relâchez pour rafraîchir"
+        "PULL_REFRESH":{
+            "PULL_COMMENTS": "Déroulez pour plus de commentaires!",
+            "RELEASE": "Relâchez pour rafraîchir",
+            "LAST_UPDATED": "Dernière mise à"
         },
-        "forms": {
-            "send": "Envoyer",
-            "your_name": "Votre nom",
-            "your_name_error": "S'il vous plaît remplir votre nom!",
-            "your_email": "Votre adresse e-mail",
-            "your_email_error": "S'il vous plaît remplissez votre adresse e-mail!",
-            "your_email_error2": "S'il vous plaît, mettez une adresse email valide!",
-            "your_comment": "Votre commentaire",
-            "your_comment_error": "S'il vous plaît écrire un commentaire!",
-            "submit_error": "Il y avait une erreur. S'il vous plaît réessayer plus tard.",
-            "awaiting_moderation": "Votre commentaire est en attente d'approbation!"
+        "FORMS": {
+            "SEND": "Envoyer",
+            "YOUR_NAME": "Votre nom",
+            "YOUR_NAME_ERROR": "S'il vous plaît remplir votre nom!",
+            "YOUR_EMAIL": "Votre adresse e-mail",
+            "YOUR_EMAIL_ERROR": "S'il vous plaît remplissez votre adresse e-mail!",
+            "YOUR_EMAIL_ERROR2": "S'il vous plaît, mettez une adresse email valide!",
+            "YOUR_COMMENT": "Votre commentaire",
+            "YOUR_COMMENT_ERROR": "S'il vous plaît écrire un commentaire!",
+            "SUBMIT_ERROR": "Il y avait une erreur. S'il vous plaît réessayer plus tard.",
+            "AWAITING_MODERATION": "Votre commentaire est en attente d'approbation!"
         }
     }
 }

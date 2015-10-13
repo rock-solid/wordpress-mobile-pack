@@ -1,40 +1,47 @@
 {
-    "appTexts": {
-        "links": {
-            "visit_website": "Switch to website",
-            "visit_app": "Switch to mobile version",
-            "credits": "Credits",
-            "go_to": "Go to",
-            "categories": "Categories"
+    "APP_TEXTS": {
+        "LINKS": {
+            "VISIT_WEBSITE": "Visit website",
+            "VISIT_APP": "Switch to mobile version",
+            "CREDITS": "Credits",
+            "CATEGORIES": "Categories",
+            "GO_TO": "Go to",
+            "OTHERS": "Others",
+            "HEADLINES": "Headlines",
+            "INSIDE": "Inside"
         },
-        "texts": {
-            "no_pages": "There are no pages!",
-            "no_categories": "There are no categories!",
-            "no_comments": "There are no comments for this article.<br/>Be the first one to comment about this!",
-            "no_comments_short": "There are no comments for this article.",
-            "leave_comment": "Leave a comment",
-            "comments": "Comments",
-            "by_author": "by",
-            "loading": "Loading",
-            "related_articles": "Related articles",
-            "related_articles_web": "Related articles from the web"
+        "TEXTS": {
+            "NO_PAGES": "There are no pages!",
+            "NO_CATEGORIES": "There are no categories!",
+            "NO_ARTICLES": "There are no articles!",
+            "NO_COMMENTS": "There are no comments for this article.<br/>Be the first one to comment about this!",
+            "NO_COMMENTS_SHORT": "There are no comments for this article.",
+            "COMMENTS": "Comments",
+            "LEAVE_COMMENTS": "Leave a comment",
+            "BY_AUTHOR": "by",
+            "LOADING": "Loading",
+            "LOAD_MORE": "Load More",
+            "LATEST": "Latest",
+            "PAGE": "Page",
+            "SWIPE_FOR_MORE": "Swipe for more",
+            "SWIPE_TO_CONTINUE": "Swipe to continue"
         },
-        "pull_refresh":{
-            "pull_comments": "Pull down for more new comments!",
-            "last_updated": "Last Updated",
-            "release": "Release to refresh"
+        "PULL_REFRESH": {
+            "PULL_COMMENTS": "Pull down for more new comments!",
+            "RELEASE": "Release to refresh",
+            "LAST_UPDATED": "Last Updated"
         },
-        "forms": {
-            "send": "Send",
-            "your_name": "Your name",
-            "your_name_error": "Please fill your name!",
-            "your_email": "Your e-mail address",
-            "your_email_error": "Please fill your e-mail address!",
-            "your_email_error2": "Please enter a valid e-mail address!",
-            "your_comment": "Your comment",
-            "your_comment_error": "Please type a comment!",
-            "submit_error": "There was an error. Please try again later.",
-            "awaiting_moderation": "Your comment is waiting moderation!"
+        "FORMS": {
+            "SEND": "Send",
+            "YOUR_NAME": "Your name",
+            "YOUR_NAME_ERROR": "Please fill your name!",
+            "YOUR_EMAIL": "Your e-mail address",
+            "YOUR_EMAIL_ERROR": "Please fill your e-mail address!",
+            "YOUR_EMAIL_ERROR2": "Please enter a valid e-mail address!",
+            "YOUR_COMMENT": "Your comment",
+            "YOUR_COMMENT_ERROR": "Please type a comment!",
+            "SUBMIT_ERROR": "There was an error. Please try again later.",
+            "AWAITING_MODERATION": "Your comment is waiting moderation!"
         }
     }
 }
