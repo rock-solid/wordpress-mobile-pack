@@ -36,10 +36,10 @@
                     	<div class="corner relative active">
                             <div class="indicator"></div>
                         </div>
-                        <div class="image" style="background:url(<?php echo plugins_url()."/".WMP_DOMAIN;?>/admin/images/theme-3.jpg);">
+                        <div class="image" style="background:url(<?php echo plugins_url()."/".WMP_DOMAIN;?>/admin/images/theme-1.jpg);">
                         	<div class="relative">
                             	<div class="overlay">
-                                	<div class="spacer-70"></div>
+                                	<div class="spacer-90"></div>
                             		<div class="preview" id="wmp_themes_gallery_base"></div>
                                     <div class="spacer-10"></div>
                                     <div class="text">Preview theme</div>
@@ -57,69 +57,39 @@
                         $premium_link = add_query_arg(array('page'=>'wmp-options-upgrade'), network_admin_url('admin.php'));
                     ?>
 
-                    <div class="theme premium">
-                    	<div class="corner relative">
-                            <div class="indicator"></div>
-                        </div>
-                        <div class="image" style="background:url(<?php echo plugins_url()."/".WMP_DOMAIN;?>/admin/images/theme-1.jpg);">
-                        	<div class="relative">
-                            	<div class="overlay">
-                                	<div class="spacer-30"></div>
-                            		<div class="preview" id="wmp_themes_gallery_business"></div>
-                                    <div class="spacer-20"></div>
-                                    <div class="text">Preview theme</div>
-                                    <div class="spacer-10"></div>
-                                    
-                                    <div id="wmp_waitlist_business_container">
-                                    	<div id="wmp_waitlist_action">
-                                            <a href="<?php echo $premium_link;?>" class="btn orange smaller">Available in PRO</a>
+                    <?php for ($i = 2; $i <= 4; $i++):?>
+                        <div class="theme premium">
+                            <div class="corner relative">
+                                <div class="indicator"></div>
+                            </div>
+                            <div class="image" style="background:url(<?php echo plugins_url()."/".WMP_DOMAIN;?>/admin/images/theme-<?php echo $i;?>.jpg);">
+                                <div class="relative">
+                                    <div class="overlay">
+                                        <div class="spacer-70"></div>
+                                        <div class="preview" id="wmp_themes_gallery_preview_<?php echo $i;?>"></div>
+                                        <div class="spacer-20"></div>
+                                        <div class="text">Preview theme</div>
+                                        <div class="spacer-10"></div>
+
+                                        <div id="wmp_waitlist_app<?php echo $i;?>_container">
+                                            <div id="wmp_waitlist_action">
+                                                <a href="<?php echo $premium_link;?>" class="btn orange smaller">Available in PRO</a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-                        <div class="name">Theme #2</div>
-                        <div class="content">
-                        	<span>Content type</span>
-                        	<div class="wordpress-icon"></div>
-                        	<div class="rss-icon"></div>
-                            <div class="facebook-icon"></div>
-                            <div class="twitter-icon"></div>
-                            <div class="google-icon"></div>
-                        </div>
-                    </div>
-                    <div class="theme premium">
-                    	<div class="corner relative">
-                            <div class="indicator"></div>
-                        </div>
-                        <div class="image" style="background:url(<?php echo plugins_url()."/".WMP_DOMAIN;?>/admin/images/theme-2.jpg);">
-                        	<div class="relative">
-                            	<div class="overlay">
-                                    <div class="spacer-30"></div>
-                            		<div class="preview" id="wmp_themes_gallery_lifestyle"></div>
-                                    <div class="spacer-20"></div>
-                                    <div class="text">Preview theme</div>
-                                    <div class="spacer-10"></div>
-                                    
-                                	<div id="wmp_waitlist_lifestyle_container">
-                                    	<div id="wmp_waitlist_action">
-                                            <a href="<?php echo $premium_link;?>" class="btn orange smaller">Available in PRO</a>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
+                            <div class="name">Theme #<?php echo $i;?></div>
+                            <div class="content">
+                                <span>Content type</span>
+                                <div class="wordpress-icon"></div>
+                                <div class="facebook-icon"></div>
+                                <div class="twitter-icon"></div>
+                                <div class="google-icon"></div>
+                            </div>
                         </div>
-                        <div class="name">Theme #3</div>
-                        <div class="content">
-                        	<span>Content type</span>
-                        	<div class="wordpress-icon"></div>
-                            <div class="rss-icon"></div>
-                            <div class="facebook-icon"></div>
-                            <div class="twitter-icon"></div>
-                            <div class="google-icon"></div>
-                        </div>
-                    </div>
+                    <?php endfor;?>
                 </div>
             </div>
             <div class="spacer-10"></div>

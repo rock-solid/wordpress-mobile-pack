@@ -1,20 +1,7 @@
 #wmpack-admin{
 	.more{
 		display: table;
-		
-		/*.ribbon{
-			width: 100%;
-			
-			.indicator{
-				background: url(../images/ribbon-premium.png);
-				width: 67px;
-				height: 68px;
-				position: absolute;
-				top: -4px;
-				right: -6px;
-			}
-		}*/
-		
+
 		.left-side{
 			width: 100%;
 			display: table;
@@ -176,53 +163,6 @@
                         text-decoration: underline;
                     }
                 }
-
-
-
-                /*
-				.subtitle{
-					font-family: "AcordeRegular", sans-serif;
-					font-size: 20px;
-					color: $base-text-color;
-					text-align: center;
-				}
-				&.go-premium,
-				&.go-premium-white{
-					background: #fdf7d3;
-					
-					.premium-bg{
-						background: #fffced;
-						padding: 30px 20px; 
-					}
-					.features{
-						display: table;
-						
-						.feature{
-							display: table-cell;
-							width: 33%;
-							text-align: center;
-							padding: 0 10px;
-							
-							img{
-								text-align: center;
-								width: 90px;
-								height: 90px;
-							}
-							p{
-								text-align: left;
-								
-								&.title{
-									font-size: 15px;
-									text-align: center;
-									font-weight: bold;
-								}
-							}
-						}
-					}
-				}
-				&.go-premium-white{
-					background: $box-color;
-				}*/
 			}
 		}
 	}
