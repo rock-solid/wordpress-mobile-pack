@@ -1,6 +1,6 @@
 <?php
 
-define("WMP_VERSION", '2.1');
+define("WMP_VERSION", '2.1.5');
 define('WMP_PLUGIN_NAME', 'WP Mobile Pack '.WMP_VERSION);
 define('WMP_DOMAIN', 'wordpress-mobile-pack');
 
@@ -19,8 +19,8 @@ define('WMP_NEWS_UPDATES_HTTPS','https://d3oqwjghculspf.cloudfront.net/dashboard
 define('WMP_WHATSNEW_UPDATES','http://cdn-wpmp.appticles.com/dashboard/whats_new/content1.json');
 define('WMP_WHATSNEW_UPDATES_HTTPS','https://d3oqwjghculspf.cloudfront.net/dashboard/whats_new/content1_https.json');
 
-define('WMP_MORE_UPDATES','http://cdn-wpmp.appticles.com/dashboard/more/more1.json');
-define('WMP_MORE_UPDATES_HTTPS','https://d3oqwjghculspf.cloudfront.net/dashboard/more/more1_https.json');
+define('WMP_MORE_UPDATES','http://cdn-wpmp.appticles.com/dashboard/more/more2.json');
+define('WMP_MORE_UPDATES_HTTPS','https://d3oqwjghculspf.cloudfront.net/dashboard/more/more2_https.json');
 
 define('WMP_WAITLIST_PATH','http://gateway.appticles.com/waitlist/api/subscribe');
 define('WMP_WAITLIST_PATH_HTTPS','https://gateway.appticles.com/waitlist/api/subscribe');

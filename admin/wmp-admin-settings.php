@@ -24,7 +24,6 @@
             	<div class="spacer-10"></div>
             	<p>
                     Edit the <strong>Display Mode</strong> of your app to enable/disable it for your mobile readers. The <strong>Preview mode</strong> lets you edit your app without it being visible to anyone else.
-                
                 </p>
             	<div class="spacer-20"></div>
             </div>
@@ -82,24 +81,34 @@
                         
                         if  (is_array($page_content) && !empty($page_content)){
                             
-                            if (array_key_exists('premium', $page_content)){
-                                
-                                if (array_key_exists('button_text', $page_content['premium']) && array_key_exists('button_link', $page_content['premium'])){
-                                    
-                                    $feed_url = '';
-							
-        							if (get_bloginfo('atom_url') != null && get_bloginfo('atom_url') != '')
-        								$feed_url = '&feedurl='.urlencode(get_bloginfo('atom_url'));
-        							elseif (get_bloginfo('rss2_url') != null && get_bloginfo('rss2_url') != '')
-        								$feed_url = '&feedurl='.urlencode(get_bloginfo('rss2_url'));
-                                    
-                                    $premium_link = $page_content['premium']['button_link'].$feed_url.'&wmp_v=21';
+                            if (array_key_exists('premium', $page_content)) {
+
+                                if (array_key_exists('packages', $page_content['premium']) && is_array($page_content['premium']['packages']) && count($page_content['premium']['packages'] == 2)) {
+
+                                    $package = $page_content['premium']['packages'][1];
+
+                                    if (array_key_exists('button_text', $package) && array_key_exists('button_link', $package)) {
+
+                                        $premium_link = $package['button_link'] . '&wmp_v=21';
+
+                                        if (array_key_exists('use_feed_param', $package) && $package['use_feed_param'] == 1) {
+
+                                            $feed_url = '';
+
+                                            if (get_bloginfo('atom_url') != null && get_bloginfo('atom_url') != '')
+                                                $feed_url = '&feedurl=' . urlencode(get_bloginfo('atom_url'));
+                                            elseif (get_bloginfo('rss2_url') != null && get_bloginfo('rss2_url') != '')
+                                                $feed_url = '&feedurl=' . urlencode(get_bloginfo('rss2_url'));
+
+                                            $premium_link .=  $feed_url . '&wmp_v=21';
+                                        }
+                                    }
                                 }
                             }
                         } 
                     ?>
-                    
-                    <p>Extend your WP Mobile Pack with the <?php if ($premium_link):?><a href="<?php echo $premium_link;?>" target="_blank"><?php endif;?>Premium version<?php if ($premium_link):?></a><?php endif;?> by connecting with Appticles.com. Fill in the provided API Key to enable your Premium account.</p>
+
+                    <p>Extend your WP Mobile Pack to the premium version by connecting with Appticles.com. Fill in the provided API Key to enable your WP Mobile Pack Cloud. <?php if ($premium_link):?><a href="<?php echo $premium_link;?>" target="_blank">Find out more about it here.</a><?php endif;?></p>
                     <div class="spacer-20"></div>
                     <form name="wmp_connect_form" id="wmp_connect_form" class="left" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_premium_save" method="post">
                         <input type="hidden" name="wmp_connect_settings" id="wmp_connect_settings"  value="<?php echo plugins_url()."/".WMP_DOMAIN.'/export/content.php?content=exportsettings';?>" />
@@ -124,9 +133,9 @@
                 <div class="display-mode">
                     <h2 class="title">Language Settings</h2>
                     <div class="spacer-20"></div>
-                    <p>Wordpress Mobile Pack will automatically translate your mobile web app in one of the supported languages (English, French, German, Hungarian, Polish, Romanian, Spanish or Swedish). This is done based on your Wordpress settings and doesn't require additional changes from the plugin.</p>
+                    <p>Wordpress Mobile Pack will automatically translate your mobile web app in one of the supported languages: English, French, German, Hungarian, Italian, Polish, Portuguese (Brazil), Romanian, Spanish or Swedish. This is done based on your Wordpress settings and doesn't require additional changes from the plugin. A big thanks to all of our <a href="https://wordpress.org/plugins/wordpress-mobile-pack/other_notes/" target="_blank">contributors</a>.</p>
                     <div class="spacer-10"></div>
-                    <p>However, if you wish to add another language or change the labels for your current one, you can do so by editing the language files located in <strong><?php echo WMP_PLUGIN_PATH."themes/".WMobilePack::wmp_app_theme()."/locales";?></strong>. If you need help or want to submit a translation for Wordpress Mobile Pack, please <a href="mailto:<?php echo WMP_FEEDBACK_EMAIL;?>">contact support</a>.</p>
+                    <p>However, if you wish to add another language or change the labels for your current one, you can do so by editing the language files located in <strong><?php echo WMP_PLUGIN_PATH."themes/".WMobilePack::wmp_app_theme()."/locales";?></strong>. To ensure your translation file will not be overwritten by future updates, please send it to <a href="mailto:<?php echo WMP_FEEDBACK_EMAIL;?>">our support team</a>.</p>
                     <div class="spacer-10"></div>
                 </div>
                 <div class="spacer-0"></div>

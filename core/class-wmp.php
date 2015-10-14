@@ -208,7 +208,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 
 			wp_enqueue_script(self::$wmp_prefix.'js_content_editcategories', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_EDIT_CATEGORIES.min.js'), array(), WMP_VERSION);
             wp_enqueue_script(self::$wmp_prefix.'js_content_editpages', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_EDIT_PAGES.min.js'), array(), WMP_VERSION);
-			wp_enqueue_script(self::$wmp_prefix.'jquery-ui-sortable');
+			wp_enqueue_script('jquery-ui-sortable');
 		}
 		
 		
@@ -220,7 +220,6 @@ if ( ! class_exists( 'WMobilePack' ) ) {
         public function wmp_admin_load_page_js(){
 
 			wp_enqueue_script(self::$wmp_prefix.'js_content_pagedetails', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_PAGE_DETAILS.min.js'), array(), WMP_VERSION);
-			
 		}
 		
         
@@ -324,13 +323,16 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 				add_action( 'load-' . $content_page, array( &$this, 'wmp_admin_load_content_js' ) );   
 				
 				$settings_page = add_submenu_page( 'wmp-options', 'Settings', 'Settings', 'manage_options', 'wmp-options-settings', array( &$WMobilePackAdmin, 'wmp_settings_options') );
-				add_action( 'load-' . $settings_page, array( &$this, 'wmp_admin_load_settings_js' ) ); 
-				
-				add_submenu_page( 'wmp-options', 'More...', 'More...', 'manage_options', 'wmp-options-upgrade', array( &$WMobilePackAdmin, 'wmp_upgrade_options') ); 
-			
+				add_action( 'load-' . $settings_page, array( &$this, 'wmp_admin_load_settings_js' ) );
+
+                add_submenu_page( 'wmp-options', 'Monetize', 'Monetize', 'manage_options', 'wmp-options-monetize', array( &$WMobilePackAdmin, 'wmp_monetize_options') );
+
+				add_submenu_page( 'wmp-options', 'PRO', 'PRO', 'manage_options', 'wmp-options-upgrade', array( &$WMobilePackAdmin, 'wmp_upgrade_options') );
+
 				// fake submenu since it is not visible
-				$pages_page = add_submenu_page( null, 'More...', 'Details', 'manage_options', 'wmp-page-details', array( &$WMobilePackAdmin, 'wmp_page_content') ); 
+				$pages_page = add_submenu_page( null, 'Content', 'Details', 'manage_options', 'wmp-page-details', array( &$WMobilePackAdmin, 'wmp_page_content') );
 				add_action( 'load-' . $pages_page, array( &$this, 'wmp_admin_load_page_js' ) );
+
 				// only when deactivating the plugin
 				add_submenu_page( null, "What's New", "What's New", 'manage_options', 'wmp-options-premium', array( &$WMobilePackAdmin, 'wmp_options' ) );
 				

@@ -16,7 +16,7 @@
 <div class="form-box feedback">
     <h2>Give Us Your Feedback</h2>
     <div class="spacer-10"></div>
-    <p>You too can contribute to a better Mobile Web.  We're eager to hear your feedback and be sure that we ALWAYS answer it.</p>
+    <p>Help us improve WP Mobile Pack. We're eager to hear your feedback and be sure that we ALWAYS answer it.</p>
     <div class="spacer-10"></div>
     <form id="wmp_feedback_form" name="wmp_feedback_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_send_feedback" method="post">
         <input type="hidden" name="wmp_feedback_page" id="wmp_feedback_page" value="<?php echo ucfirst($current_page);?>" />

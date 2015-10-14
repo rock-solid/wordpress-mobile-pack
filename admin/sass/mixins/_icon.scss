@@ -21,16 +21,32 @@
 
     // Row 1
     @if ($name == "facebook") { @return "f"; }
-	@else if ($name == "twitter") { @return "t"; } 
-	@else if ($name == "google-plus") { @return "g"; }
-	@else if ($name == "rss") { @return "r"; }
-	@else if ($name == "wordpress") { @return "w"; }
-	@else if ($name == "tumblr") { @return "\35"; }
+    @else if ($name == "twitter") { @return "t"; }
+    @else if ($name == "google-plus") { @return "g"; }
+    @else if ($name == "rss") { @return "r"; }
+    @else if ($name == "wordpress") { @return "w"; }
+    @else if ($name == "tumblr") { @return "\35"; }
+    @else if ($name == "youtube") {@return "\36"; }
+    @else if($name == "dfp") { @return "\37"; }
 
-	@else if ($name == "close-x") { @return "\31"; }
-	@else if ($name == "active") { @return "\32"; }
-	@else if ($name == "preview") { @return "\33"; }
-	@else if ($name == "edit") { @return "\34"; }
+    @else if ($name == "close-x") { @return "\31"; }
+    @else if ($name == "active") { @return "\32"; }
+    @else if ($name == "preview") { @return "\33"; }
+    @else if ($name == "edit") { @return "\34"; }
+
+    @else if($name == "apple") { @return "\e800"; }
+    @else if($name == "lock") { @return "\e801"; }
+    @else if($name == "blocked") { @return "\e802"; }
+    @else if($name == "airplane") { @return "\e803"; }
+    @else if($name == "cloud") { @return "\e804"; }
+    @else if($name == "stack") { @return "\e805"; }
+    @else if($name == "tablet") { @return "\e806"; }
+    @else if($name == "paint") { @return "\e807"; }
+    @else if($name == "shield") { @return "\e808"; }
+    @else if($name == "share") { @return "\e809"; }
+
+    @else if($name == "coins") { @return "\e80a"; }
+    @else if($name == "headset") { @return "\e80b"; }
 
     @else {
         // @debug "#icon: icon with name '#{$name}' not found.";

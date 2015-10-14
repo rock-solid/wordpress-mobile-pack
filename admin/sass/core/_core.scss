@@ -210,6 +210,7 @@ body{
     .left-side{
         padding-right: 13px;
         display: table-cell;
+
         nav.menu{
             width: 100%;
             height: 69px;
@@ -225,7 +226,7 @@ body{
                     position: absolute;
                     top: -4px;
                     right: auto;
-                    left: 98px;
+                    left: 83px;
                 }
             }
             ul{
@@ -234,7 +235,7 @@ body{
                 border-bottom: 1px solid #DADDDE;
 
                 li{
-                    min-width: 162px;
+                    min-width: 145px;
                     //max-width: 182px;
                     //width: 182px;
                     height: 68px;
@@ -318,53 +319,33 @@ body{
                 }
                 &.social{
                     float: right;
-                    .facebook{
+
+                    .facebook, .twitter, .google-plus {
                         width: 18px;
                         height: 18px;
                         background: #8c8d8d;
                         color: #2a2d33;
                         margin: 0 6px;
                         @include wbz-border-radius(18px);
+                        display: block;
+                        float: left;
+
+                        &::before{
+                            left: 5px;
+                            top: -1px;
+                        }
+                    }
+
+                    .facebook {
                         @include wbz-inline-icon(facebook,10px);
-                        display: block;
-                        float: left;
-
-                        &::before{
-                            left: 7px;
-                            top: -1px;
-                        }
                     }
-                    .twitter{
-                        width: 18px;
-                        height: 18px;
-                        background: #8c8d8d;
-                        color: #2a2d33;
-                        margin: 0 6px;
-                        @include wbz-border-radius(18px);
+
+                    .twitter {
                         @include wbz-inline-icon(twitter,10px);
-                        display: block;
-                        float: left;
-
-                        &::before{
-                            left: 5px;
-                            top: -1px;
-                        }
                     }
-                    .google-plus{
-                        width: 18px;
-                        height: 18px;
-                        background: #8c8d8d;
-                        color: #2a2d33;
-                        margin: 0 6px;
-                        @include wbz-border-radius(18px);
-                        @include wbz-inline-icon(google-plus,10px);
-                        display: block;
-                        float:left;
 
-                        &::before{
-                            left: 5px;
-                            top: -1px;
-                        }
+                    .google-plus {
+                        @include wbz-inline-icon(google-plus,10px);
                     }
                 }
             }

@@ -1,0 +1,36 @@
+#wmpack-admin {
+    .monetize {
+
+        display: table;
+        width:100%;
+
+        .left-side {
+
+            width: 100%;
+            display: table;
+            vertical-align: top;
+
+            .details.monetize {
+
+                padding:30px;
+                background: #fffced !important;
+
+                h2.title{
+                    font-family: 'OlRoundGothicLight', sans-serif;
+                    font-size: 25px;
+                    line-height: normal;
+                    color: $base-text-color;
+                }
+
+                .video-container {
+                    text-align: center;
+
+                    .btn {
+                        margin: 0 auto;
+                        width: 150px;
+                    }
+                }
+            }
+        }
+    }
+}

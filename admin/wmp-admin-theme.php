@@ -22,7 +22,7 @@
             <!-- add content form -->
             <div class="details">
                 <div class="spacer-10"></div>
-                <p>Currently there's only one theme available, but we're working on others so you're welcome to join the waitlist. You can choose from the below color schemes & fonts, add your logo & app icon. The default theme comes with 6 abstract covers that are randomly displayed on the loading screen to give your app a magazine flavor. You can further personalize your mobile web application by uploading your own cover.</p>
+                <p>Customize your mobile web application by choosing from the below color schemes &amp; fonts, adding your logo and app icon. The default theme comes with 6 abstract covers that are randomly displayed on the loading screen to give your app a magazine flavor. You can further personalize your mobile web application by uploading your own cover.</p>
                 <div class="spacer-20"></div>
             </div>
             <div class="spacer-10"></div>
@@ -54,28 +54,7 @@
                     </div>
                     
                     <?php
-                        $premium_link = ''; 
-                        
-                        // Get premium link from the more json
-                        $page_content = WMobilePackAdmin::wmp_more_updates();
-                        
-                        if  (is_array($page_content) && !empty($page_content)){
-                            
-                            if (array_key_exists('premium', $page_content)){
-                                
-                                if (array_key_exists('button_text', $page_content['premium']) && array_key_exists('button_link', $page_content['premium'])){
-                                    
-                                    $feed_url = '';
-							
-        							if (get_bloginfo('atom_url') != null && get_bloginfo('atom_url') != '')
-        								$feed_url = '&feedurl='.urlencode(get_bloginfo('atom_url'));
-        							elseif (get_bloginfo('rss2_url') != null && get_bloginfo('rss2_url') != '')
-        								$feed_url = '&feedurl='.urlencode(get_bloginfo('rss2_url'));
-                                    
-                                    $premium_link = $page_content['premium']['button_link'].$feed_url.'&wmp_v=21';
-                                }
-                            }
-                        } 
+                        $premium_link = add_query_arg(array('page'=>'wmp-options-upgrade'), network_admin_url('admin.php'));
                     ?>
 
                     <div class="theme premium">
@@ -93,9 +72,7 @@
                                     
                                     <div id="wmp_waitlist_business_container">
                                     	<div id="wmp_waitlist_action">
-                                            <?php if ($premium_link != ''):?>
-                                                <a href="<?php echo $premium_link;?>" target="_blank" class="btn orange smaller">Go Premium</a>
-                                            <?php endif;?>                                            
+                                            <a href="<?php echo $premium_link;?>" class="btn orange smaller">Available in PRO</a>
                                         </div>
                                     </div>
                                 </div>
@@ -106,10 +83,10 @@
                         <div class="content">
                         	<span>Content type</span>
                         	<div class="wordpress-icon"></div>
-                            <div class="tumblr-icon"></div>
                         	<div class="rss-icon"></div>
                             <div class="facebook-icon"></div>
                             <div class="twitter-icon"></div>
+                            <div class="google-icon"></div>
                         </div>
                     </div>
                     <div class="theme premium">
@@ -127,9 +104,7 @@
                                     
                                 	<div id="wmp_waitlist_lifestyle_container">
                                     	<div id="wmp_waitlist_action">
-                                            <?php if ($premium_link != ''):?>
-                                                <a href="<?php echo $premium_link;?>" target="_blank" class="btn orange smaller">Go Premium</a>
-                                            <?php endif;?>
+                                            <a href="<?php echo $premium_link;?>" class="btn orange smaller">Available in PRO</a>
                                         </div>
                                     </div>
                                 </div>
@@ -139,10 +114,10 @@
                         <div class="content">
                         	<span>Content type</span>
                         	<div class="wordpress-icon"></div>
-                            <div class="tumblr-icon"></div>
-                        	<div class="rss-icon"></div>
+                            <div class="rss-icon"></div>
                             <div class="facebook-icon"></div>
                             <div class="twitter-icon"></div>
+                            <div class="google-icon"></div>
                         </div>
                     </div>
                 </div>
@@ -226,6 +201,21 @@
 
                         <p class="section-header">Your Custom Colors</p>
                         <div class="spacer-20"></div>
+                        <input type="radio" autocomplete="off" disabled />
+                        <div class="colors colors-premium">
+                            <div class="color-premium" title="Headlines and texts"></div>
+                            <div class="color-premium" title="Article background"></div>
+                            <div class="color-premium" title="Article border"></div>
+                            <div class="color-premium" title="Secondary texts"></div>
+                            <div class="color-premium" title="Category label"></div>
+                            <div class="color-premium" title="Category text"></div>
+                            <div class="color-premium" title="Buttons"></div>
+                            <div class="color-premium" title="Menu"></div>
+                            <div class="color-premium" title="Forms"></div>
+                            <div class="color-premium" title="Cover text"></div>
+                        </div>
+                        <a href="<?php echo $premium_link;?>" class="icon-lock"></a>
+                        <div class="spacer-20"></div>
                     </div>
 
                     <!-- start notice -->
@@ -268,7 +258,7 @@
                                 $font_headlines = WMobilePack::$wmp_allowed_fonts[0];
                         ?>
                         
-                        <label for="wmp_edittheme_fontheadlines">All texts</label>
+                        <label for="wmp_edittheme_fontheadlines">All texts*</label>
                         
                         <select name="wmp_edittheme_fontheadlines" id="wmp_edittheme_fontheadlines">
                         
@@ -288,7 +278,9 @@
                             ?>
                         </select>
 
-                        <div class="spacer-20"></div>        
+                        <div class="spacer-10"></div>
+                        <p class="subtext">*More fonts available in <a href="<?php echo $premium_link;?>">WP Mobile Pack PRO</a></p>
+                        <div class="spacer-20"></div>
                     </div>
                 </form>
                 

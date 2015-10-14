@@ -1142,12 +1142,21 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
 		
         
 		/**
-		 * Method used to render the upgrade page from the admin area
+		 * Method used to render the monetize page from the admin area
 		 */
-		public function wmp_upgrade_options() {
+		public function wmp_monetize_options() {
 
-			include(WMP_PLUGIN_PATH.'admin/wmp-admin-upgrade.php'); 
+			include(WMP_PLUGIN_PATH.'admin/wmp-admin-monetize.php');
 		}
+
+
+        /**
+         * Method used to render the upgrade page from the admin area
+         */
+        public function wmp_upgrade_options() {
+
+            include(WMP_PLUGIN_PATH.'admin/wmp-admin-upgrade.php');
+        }
         
         /**
 		 * Static method used to request the content for the More page.
@@ -1169,8 +1178,8 @@ if ( ! class_exists( 'WMobilePackAdmin' ) ) {
                 
 				// get response
 				$json_response = self::wmp_read_data($json_url);
-				
-				if($json_response !== false && $json_response != '') {
+
+				if ($json_response !== false && $json_response != '') {
 					
 					// Store this data in a transient
 					set_transient( 'wmp_more_updates', $json_response, 3600*24*2 );

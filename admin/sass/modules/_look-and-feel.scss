@@ -74,8 +74,6 @@
 							text-align: center;
 						}
 
-
-
 						.color-1-1{
 							background: #000000;
 						}
@@ -170,7 +168,44 @@
                         .color-3-10{
                             background: #ffffff;
                         }
+
+                        .color-premium{
+                            background: #fdf7d3;
+                            border-right: 1px solid #daddde;
+
+                            &:last-child{
+                                border-right:none;
+                            }
+                        }
 					}
+
+                    .colors-premium{
+                        float: left;
+                    }
+
+                    .icon-lock {
+                        float:left;
+                        display: block;
+                        @include wbz-inline-icon(lock, 15px);
+                        border: $base-orange 1px solid;
+                        @include wbz-border-radius(23px);
+                        width: 23px;
+                        height: 23px;
+                        background: #fffdf4;
+                        color: $base-orange;
+                        margin: 0 6px;
+                        position: relative;
+                        top: -2px;
+                        outline: none;
+
+                        &::before{
+                            position: absolute;
+                            width: 23px;
+                            height: 23px;
+                            top: 0px;
+                            left: 2px;
+                        }
+                    }
 				}
 				.font-chooser{
 					width: 50%;
@@ -181,6 +216,14 @@
 						display: inline-block;
 						width: 135px;	
 					}
+
+                    .subtext {
+                        font-size: 11px;
+
+                        a {
+                             font-size: 11px;
+                        }
+                    }
 				}
 				&.theming{
 					background: $base-color-darken; 
@@ -231,98 +274,77 @@
 									@include wbz-display-box();
 									margin: 0 10px 0 0;
 								}
+
+                                .wordpress-icon{
+                                    @include wbz-inline-icon(wordpress, 19px);
+                                    color: $wordpress-color;
+                                    background: transparent;
+                                    width: 20px;
+                                    height: 20px;
+                                    display: inline-block;
+                                    line-height: normal;
+                                    margin: 0 2px;
+                                    @include wbz-display-box();
+
+                                    &::before{
+                                        width: 20px;
+                                        height: 20px;
+                                        //top: 5px;
+                                        left: 0px;
+                                    }
+                                }
+
+                                .rss-icon, .facebook-icon, .twitter-icon, .google-icon {
+
+                                    color: #ffffff;
+                                    @include wbz-border-radius(20px);
+                                    width: 20px;
+                                    height: 20px;
+                                    display: inline-block;
+                                    line-height: normal;
+                                    margin: 0 2px;
+                                    @include wbz-display-box();
+
+                                    &::before{
+                                        width: 20px;
+                                        height: 20px;
+                                    }
+                                }
+
 								.facebook-icon{
 									@include wbz-inline-icon(facebook, 14px);
-									color: #ffffff;
 									background: $facebook-color;
-									@include wbz-border-radius(20px);
-									width: 20px;
-									height: 20px;
-									display: inline-block;
-									line-height: normal;
-									margin: 0 2px;
-									@include wbz-display-box();
-									
-									&::before{
-										width: 20px;
-										height: 20px;
-										top: 3px;
-										left: 3px;
-									}
+
+                                    &::before{
+                                        top: 3px;
+                                        left: 3px;
+                                    }
 								}
 								.twitter-icon{
 									@include wbz-inline-icon(twitter, 13px);
-									color: #ffffff;
 									background: $twitter-color;
-									@include wbz-border-radius(20px);
-									width: 20px;
-									height: 20px;
-									display: inline-block;
-									line-height: normal;
-									margin: 0 2px;
-									@include wbz-display-box();
 									
 									&::before{
-										width: 20px;
-										height: 20px;
 										top: 4px;
 										left: 4px;
 									}
 								}
 								.rss-icon{
 									@include wbz-inline-icon(rss, 13px);
-									color: #ffffff;
 									background: $rss-color;
-									@include wbz-border-radius(20px);
-									width: 20px;
-									height: 20px;
-									display: inline-block;
-									line-height: normal;
-									margin: 0 2px;
-									@include wbz-display-box();
 									
 									&::before{
-										width: 20px;
-										height: 20px;
 										top: 3px;
 										left: 5px;
 									}
 								}
-								.tumblr-icon{
-									@include wbz-inline-icon(tumblr, 13px);
-									color: #ffffff;
-									background: $tumblr-color;
-									@include wbz-border-radius(20px);
-									width: 20px;
-									height: 20px;
-									display: inline-block;
-									line-height: normal;
-									margin: 0 2px;
-									@include wbz-display-box();
+								.google-icon{
+									@include wbz-inline-icon(google-plus, 13px);
+									background: $google-color;
 									
 									&::before{
-										width: 20px;
-										height: 20px;
-										top: 3px;
-										left: 3px;
-									}
-								}
-								.wordpress-icon{
-									@include wbz-inline-icon(wordpress, 19px);
-									color: $wordpress-color;
-									background: transparent;
-									width: 20px;
-									height: 20px;
-									display: inline-block;
-									line-height: normal;
-									margin: 0 2px;
-									@include wbz-display-box();
-									
-									&::before{
-										width: 20px;
-										height: 20px;
-										//top: 5px;
-										left: 0px;
+										top: 4px;
+										left: 4px;
 									}
 								}
 							}
@@ -448,6 +470,7 @@
 									}
 									.btn{
 										margin: 0 auto;
+                                        width: 150px;
 									}
 									.info{
 										margin: 0 auto;

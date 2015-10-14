@@ -24,11 +24,14 @@ else
         <li <?php echo $current_page == 'wmp-options-settings' ? 'class="selected"' : '';?>>
         	<a href="<?php echo add_query_arg(array('page'=>'wmp-options-settings'), network_admin_url('admin.php'));?>">Settings</a>
         </li>
+        <li <?php echo $current_page == 'wmp-options-monetize' ? 'class="selected"' : '';?>>
+            <a href="<?php echo add_query_arg(array('page'=>'wmp-options-monetize'), network_admin_url('admin.php'));?>">Monetize</a>
+        </li>
         <li <?php echo $current_page == 'wmp-options-upgrade' ? 'class="selected"' : '';?>>
         	<div class="ribbon relative">
                 <div class="indicator"></div>
-            </div> 
-            <a href="<?php echo add_query_arg(array('page'=>'wmp-options-upgrade'), network_admin_url('admin.php'));?>">More ...</a>
+            </div>
+            <a href="<?php echo add_query_arg(array('page'=>'wmp-options-upgrade'), network_admin_url('admin.php'));?>">PRO</a>
         </li>
     </ul>
 </nav>
