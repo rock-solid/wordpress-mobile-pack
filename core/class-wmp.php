@@ -777,9 +777,6 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          *
          *  // This variable should be removed after the rel=canonical script is integrated into the premium apps
          *  'load_canonical_script' : 1,
-         *
-         *  // This variable should be removed after the Chrome 43 fix is integrated into the premium apps
-		 * 'load_chrome43_patch' : 1
          * 
          *  // VERSION 2.6.0 (Separate phone and tablet theme settings)
          * 'phone' : {
@@ -876,8 +873,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                                     (!isset($arrAppSettings['tablet_unit_name']) || $arrAppSettings['tablet_unit_name'] == '' || $arrAppSettings['tablet_unit_name'] == strip_tags($arrAppSettings['tablet_unit_name'])) &&
                                     (!isset($arrAppSettings['tablet_ad_sizes']) || $arrAppSettings['tablet_ad_sizes'] == '' || is_array($arrAppSettings['tablet_ad_sizes'])) &&
 									
-                                    (!isset($arrAppSettings['load_canonical_script']) || $arrAppSettings['load_canonical_script'] == '' || is_numeric($arrAppSettings['load_canonical_script'])) &&
-									(!isset($arrAppSettings['load_chrome43_patch']) || $arrAppSettings['load_chrome43_patch'] == '' || is_numeric($arrAppSettings['load_chrome43_patch']))
+                                    (!isset($arrAppSettings['load_canonical_script']) || $arrAppSettings['load_canonical_script'] == '' || is_numeric($arrAppSettings['load_canonical_script']))
                                 ) {
                                 
                                     $valid_phone = false;

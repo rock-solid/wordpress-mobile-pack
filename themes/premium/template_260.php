@@ -188,12 +188,12 @@ if ($is_tablet == 1 && isset($arrConfig['tablet']['cover']) && $arrConfig['table
     </script>
 	
 	<?php if (isset($arrConfig['load_canonical_script']) && $arrConfig['load_canonical_script'] == 1):?>
-	
+
 		<script src="<?php echo $is_secure ? 'https' : 'http' ?>://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="<?php echo $cdn_kits;?>/others/landing-page-v2/scripts/<?php echo $supported_gzip ? 'canonical-urls-js.gz' : 'canonical-urls.js' ;?>" type="text/javascript"></script>
-		
+
 	<?php endif;?>
-	
+
     <?php if (($arrConfig['has_phone_ads'] == 1 && $is_tablet == 0) || ($arrConfig['has_tablet_ads'] == 1 && $is_tablet == 1)):?>
     
         <!-- start Google Doubleclick for publishers -->
@@ -333,36 +333,6 @@ if ($is_tablet == 1 && isset($arrConfig['tablet']['cover']) && $arrConfig['table
 	
 	<?php if (isset($arrConfig['google_webmasters_code']) && $arrConfig['google_webmasters_code'] != ""):?>
 		<meta name="google-site-verification" content="<?php echo $arrConfig['google_webmasters_code'];?>" />
-	<?php endif;?>
-	
-	<?php if (isset($arrConfig['load_chrome43_patch']) && $arrConfig['load_chrome43_patch'] == 1):?>
-	
-		<script type="text/javascript" pagespeed_no_defer="">
-			// Override for Chrome 43 bug (swipe not working)
-			Ext.define('Override.util.PaintMonitor', {
-				override : 'Ext.util.PaintMonitor',
-			
-				constructor : function(config) {
-					return new Ext.util.paintmonitor.CssAnimation(config);
-				}
-			});
-			
-			Ext.define('Override.util.SizeMonitor', {
-				override : 'Ext.util.SizeMonitor',
-			
-				constructor : function(config) {
-					var namespace = Ext.util.sizemonitor;
-			
-					if (Ext.browser.is.Firefox) {
-						return new namespace.OverflowChange(config);
-					} else if (Ext.browser.is.WebKit || Ext.browser.is.IE11) {
-						return new namespace.Scroll(config);
-					} else {
-						return new namespace.Default(config);
-					}
-				}
-			});
-		</script>
 	<?php endif;?>
 	
 </head>
