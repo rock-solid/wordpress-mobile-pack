@@ -859,7 +859,6 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                                     (!isset($arrAppSettings['font_headlines']) || $arrAppSettings['font_headlines'] == '' || is_numeric($arrAppSettings['font_headlines'])) &&
                                     (!isset($arrAppSettings['font_subtitles']) || $arrAppSettings['font_subtitles'] == '' || is_numeric($arrAppSettings['font_subtitles'])) &&
                                     (!isset($arrAppSettings['font_paragraphs']) || $arrAppSettings['font_paragraphs'] == '' || is_numeric($arrAppSettings['font_paragraphs'])) &&
-                                    (!isset($arrAppSettings['font_paragraphs']) || $arrAppSettings['font_paragraphs'] == '' || is_numeric($arrAppSettings['font_paragraphs'])) &&
 
                                     (!isset($arrAppSettings['cover_smartphones_path']) || $arrAppSettings['cover_smartphones_path'] == '' || $arrAppSettings['cover_smartphones_path'] == strip_tags($arrAppSettings['cover_smartphones_path'])) && 
                                     (!isset($arrAppSettings['cover_tablets_path']) || $arrAppSettings['cover_tablets_path'] == '' || $arrAppSettings['cover_tablets_path'] == strip_tags($arrAppSettings['cover_tablets_path'])) &&
