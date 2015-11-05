@@ -32,9 +32,17 @@ if ($is_tablet == 0 && isset($arrConfig['phone']['cover']) && $arrConfig['phone'
     
 if ($is_tablet == 1 && isset($arrConfig['tablet']['cover']) && $arrConfig['tablet']['cover'] != '')
     $cover = $arrConfig['tablet']['cover'];
-    
-?>
 
+// ----------------------------------------- //
+
+// Set locale
+$locale = isset($arrConfig['locale']) && $arrConfig['locale'] != '' ? $arrConfig['locale'] : 'en_EN';
+
+// ----------------------------------------- //
+
+// Set device
+$device = $is_tablet == 0 ? 'phone' : 'tablet';
+?>
 <!DOCTYPE HTML>
 <html manifest="" lang="en-US">
 <head>
@@ -120,7 +128,7 @@ if ($is_tablet == 1 && isset($arrConfig['tablet']['cover']) && $arrConfig['table
     </style>
     
     <script type="text/javascript" pagespeed_no_defer="">
-        var webcrumbz = {
+        var appticles = {
             webApp: "<?php echo $arrConfig['webapp'];?>",
             title: "<?php echo addslashes($arrConfig['title']);?>", // to update the title tag with the same constant
 
@@ -148,20 +156,20 @@ if ($is_tablet == 1 && isset($arrConfig['tablet']['cover']) && $arrConfig['table
 			canonicalUrl: '<?php echo home_url();?>',
 			
             preview: 0,
-            language: '<?php echo isset($arrConfig['language']) && $arrConfig['language'] != '' ? $arrConfig['language'] : 'en';?>',
+            language: '<?php echo $locale;?>',
 			
 			// enable the social modules
 			<?php if (isset($arrConfig['api_content_external'])):?>
 				hasFacebook: false,
 				hasTwitter: false,
 			<?php else:?>
-				hasFacebook: true,
-				hasTwitter: true,
+                hasFacebook: <?php echo !isset($arrConfig['enable_facebook']) || $arrConfig['enable_facebook'] == 1 ? 'true' : 'false';?>,
+                hasTwitter: <?php echo !isset($arrConfig['enable_twitter']) || $arrConfig['enable_twitter'] == 1 ? 'true' : 'false';?>,
 			<?php endif;?>
             
             <?php if ($arrConfig['has_phone_ads'] == 1 || $arrConfig['has_tablet_ads'] == 1):?>
                 googleAds:{
-                    adsInterval: 30,      // seconds between ads
+                    adsInterval: <?php echo isset($arrConfig[$device.'_ad_interval']) && $arrConfig[$device.'_ad_interval'] != ''  ? $arrConfig[$device.'_ad_interval'] : 30;?>,      // seconds between ads
                     
                     <?php if ($arrConfig['has_phone_ads'] == 1):?>
                         phone: {
@@ -186,13 +194,6 @@ if ($is_tablet == 1 && isset($arrConfig['tablet']['cover']) && $arrConfig['table
             <?php endif;?>
         };
     </script>
-	
-	<?php if (isset($arrConfig['load_canonical_script']) && $arrConfig['load_canonical_script'] == 1):?>
-
-		<script src="<?php echo $is_secure ? 'https' : 'http' ?>://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-		<script src="<?php echo $cdn_kits;?>/others/landing-page-v2/scripts/<?php echo $supported_gzip ? 'canonical-urls-js.gz' : 'canonical-urls.js' ;?>" type="text/javascript"></script>
-
-	<?php endif;?>
 
     <?php if (($arrConfig['has_phone_ads'] == 1 && $is_tablet == 0) || ($arrConfig['has_tablet_ads'] == 1 && $is_tablet == 1)):?>
     
@@ -221,8 +222,7 @@ if ($is_tablet == 1 && isset($arrConfig['tablet']['cover']) && $arrConfig['table
         <!-- end Google Doubleclick for publishers -->
     <?php endif;?>
 
-    <?php    
-        $device = $is_tablet == 0 ? 'phone' : 'tablet';
+    <?php
         
         $theme_details = array(
             'theme'             => $arrConfig[$device]['theme'],					
@@ -283,7 +283,8 @@ if ($is_tablet == 1 && isset($arrConfig['tablet']['cover']) && $arrConfig['table
     <?php else: ?>
 	   <link rel="stylesheet" href="<?php echo $kits_path;?>resources/css/<?php echo $device.'/colors-'.$theme_details['color_scheme'].'-font-'.$theme_details['font_headlines'].($supported_gzip ? '-css.gz' : '.css');?>" type="text/css" />
     <?php endif;?>
-    
+
+    <script type="text/javascript" src="<?php echo $cdn_kits;?>/others/locales/<?php echo $locale.($supported_gzip ? '-js.gz' : '.js');?>"></script>
     <script type="text/javascript" src="<?php echo $kits_path;?>js/<?php echo $device.($supported_gzip ? '-js.gz' : '.js');?>"></script>
     
     <?php

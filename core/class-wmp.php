@@ -764,20 +764,25 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          *  
          *  'phone_network_code' : '',
          *  'phone_unit_name' : '',
+         *  'phone_ad_interval' : 30,
          *  'phone_ad_sizes' : [[250,250],[300,300],...],
          *  
          *  'tablet_network_code' : '',
          *  'tablet_unit_name' : '',
+         *  'tablet_ad_interval' : 30,
          *  'tablet_ad_sizes' : [[250,250],[300,300],...],
-         *                      
+         *
+         *  'enable_facebook': 1,
+         *  'enable_twitter': 1,
+         *
+         *  // This variable should be removed in the future (it is used by WPMP <= 2.1.5)
          *  'language': 'en',
+         *
+         *  'locale': 'en_EN',
          *  'google_analytics_id' : 'UA-XXXXXX-1',
          *  'google_internal_id' : 'xxxxx',
          *  'google_webmasters_code' : 'xxxxxx',
          *
-         *  // This variable should be removed after the rel=canonical script is integrated into the premium apps
-         *  'load_canonical_script' : 1,
-         * 
          *  // VERSION 2.6.0 (Separate phone and tablet theme settings)
          * 'phone' : {
          *  'theme'             : 1, // 0 means a custom theme
@@ -842,7 +847,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                                     isset($arrAppSettings['title']) && $arrAppSettings['title'] == strip_tags($arrAppSettings['title']) &&
                                     isset($arrAppSettings['status']) && in_array($arrAppSettings['status'], array('visible', 'hidden')) &&
                                     isset($arrAppSettings['theme']) && is_numeric($arrAppSettings['theme']) &&
-                                    
+
                                     isset($arrAppSettings['has_phone_ads']) && is_numeric($arrAppSettings['has_phone_ads']) &&
                                     isset($arrAppSettings['has_tablet_ads']) && is_numeric($arrAppSettings['has_tablet_ads']) &&
                                     
@@ -853,27 +858,32 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                                     (!isset($arrAppSettings['color_scheme']) || $arrAppSettings['color_scheme'] == '' || is_numeric($arrAppSettings['color_scheme'])) &&
                                     (!isset($arrAppSettings['font_headlines']) || $arrAppSettings['font_headlines'] == '' || is_numeric($arrAppSettings['font_headlines'])) &&
                                     (!isset($arrAppSettings['font_subtitles']) || $arrAppSettings['font_subtitles'] == '' || is_numeric($arrAppSettings['font_subtitles'])) &&
-                                    (!isset($arrAppSettings['font_paragraphs']) || $arrAppSettings['font_paragraphs'] == '' || is_numeric($arrAppSettings['font_paragraphs'])) && 
-                                    
+                                    (!isset($arrAppSettings['font_paragraphs']) || $arrAppSettings['font_paragraphs'] == '' || is_numeric($arrAppSettings['font_paragraphs'])) &&
+                                    (!isset($arrAppSettings['font_paragraphs']) || $arrAppSettings['font_paragraphs'] == '' || is_numeric($arrAppSettings['font_paragraphs'])) &&
+
                                     (!isset($arrAppSettings['cover_smartphones_path']) || $arrAppSettings['cover_smartphones_path'] == '' || $arrAppSettings['cover_smartphones_path'] == strip_tags($arrAppSettings['cover_smartphones_path'])) && 
                                     (!isset($arrAppSettings['cover_tablets_path']) || $arrAppSettings['cover_tablets_path'] == '' || $arrAppSettings['cover_tablets_path'] == strip_tags($arrAppSettings['cover_tablets_path'])) &&
                                     (!isset($arrAppSettings['logo_path']) || $arrAppSettings['logo_path'] == '' || $arrAppSettings['logo_path'] == strip_tags($arrAppSettings['logo_path'])) &&
-                                    (!isset($arrAppSettings['icon_path']) || $arrAppSettings['icon_path'] == '' || $arrAppSettings['icon_path'] == strip_tags($arrAppSettings['icon_path'])) &&  
-                                    
+                                    (!isset($arrAppSettings['icon_path']) || $arrAppSettings['icon_path'] == '' || $arrAppSettings['icon_path'] == strip_tags($arrAppSettings['icon_path'])) &&
+
+                                    (!isset($arrAppSettings['locale']) || $arrAppSettings['locale'] == '' || ctype_alnum(str_replace('_','', $arrAppSettings['locale']))) &&
                                     (!isset($arrAppSettings['language']) || $arrAppSettings['language'] == '' || ctype_alpha($arrAppSettings['language'])) &&
                                     (!isset($arrAppSettings['google_analytics_id']) || $arrAppSettings['google_analytics_id'] == '' || ctype_alnum(str_replace('-','', $arrAppSettings['google_analytics_id']))) &&
                                     (!isset($arrAppSettings['google_internal_id']) || $arrAppSettings['google_internal_id'] == '' || is_numeric($arrAppSettings['google_internal_id'])) &&
 									(!isset($arrAppSettings['google_webmasters_code']) || $arrAppSettings['google_webmasters_code'] == '' || $arrAppSettings['google_webmasters_code'] == strip_tags($arrAppSettings['google_webmasters_code'])) &&
                                      
+                                    (!isset($arrAppSettings['enable_facebook']) || $arrAppSettings['enable_facebook'] == '' || is_numeric($arrAppSettings['enable_facebook'])) &&
+                                    (!isset($arrAppSettings['enable_twitter']) || $arrAppSettings['enable_twitter'] == '' || is_numeric($arrAppSettings['enable_twitter'])) &&
+
                                     (!isset($arrAppSettings['phone_network_code']) || $arrAppSettings['phone_network_code'] == '' || is_numeric($arrAppSettings['phone_network_code'])) &&
                                     (!isset($arrAppSettings['phone_unit_name']) || $arrAppSettings['phone_unit_name'] == '' || $arrAppSettings['phone_unit_name'] == strip_tags($arrAppSettings['phone_unit_name'])) &&
+                                    (!isset($arrAppSettings['phone_ad_interval']) || $arrAppSettings['phone_ad_interval'] == '' || is_numeric($arrAppSettings['phone_ad_interval'])) &&
                                     (!isset($arrAppSettings['phone_ad_sizes']) || $arrAppSettings['phone_ad_sizes'] == '' || is_array($arrAppSettings['phone_ad_sizes'])) &&
                                      
                                     (!isset($arrAppSettings['tablet_network_code']) || $arrAppSettings['tablet_network_code'] == '' || is_numeric($arrAppSettings['tablet_network_code'])) &&
                                     (!isset($arrAppSettings['tablet_unit_name']) || $arrAppSettings['tablet_unit_name'] == '' || $arrAppSettings['tablet_unit_name'] == strip_tags($arrAppSettings['tablet_unit_name'])) &&
-                                    (!isset($arrAppSettings['tablet_ad_sizes']) || $arrAppSettings['tablet_ad_sizes'] == '' || is_array($arrAppSettings['tablet_ad_sizes'])) &&
-									
-                                    (!isset($arrAppSettings['load_canonical_script']) || $arrAppSettings['load_canonical_script'] == '' || is_numeric($arrAppSettings['load_canonical_script']))
+                                    (!isset($arrAppSettings['tablet_ad_interval']) || $arrAppSettings['tablet_ad_interval'] == '' || is_numeric($arrAppSettings['tablet_ad_interval'])) &&
+                                    (!isset($arrAppSettings['tablet_ad_sizes']) || $arrAppSettings['tablet_ad_sizes'] == '' || is_array($arrAppSettings['tablet_ad_sizes']))
                                 ) {
                                 
                                     $valid_phone = false;

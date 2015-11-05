@@ -20,10 +20,6 @@
     $supported_gzip = false;
     if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && strstr($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip'))
 	   $supported_gzip = true;
-       
-    // Gzip is not support for older kit version
-    if ($arrConfig['kit_version'] == 'v2.5.0')
-        $supported_gzip = false;
     
 	// check if it is tablet 
 	$is_tablet = WMobilePack::wmp_is_tablet();
@@ -31,8 +27,5 @@
     $cdn_kits = ($is_secure ? $arrConfig['cdn_kits_https'] : $arrConfig['cdn_kits']);
     $cdn_apps = ($is_secure ? $arrConfig['cdn_apps_https'] : $arrConfig['cdn_apps']);
 
-    if ($arrConfig['kit_version'] == 'v2.5.0')
-        require_once('template_250.php');  
-    else
-        require_once('template_260.php');
+    require_once('template_260.php');
 ?>
