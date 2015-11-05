@@ -160,6 +160,7 @@ Google Ad Sense / Google Double Click for Publishers is supported on the Premium
 * Added 'Monetize' page (as a preview for WP Mobile Pack PRO)
 * Modified the 'More...' page and renamed it as 'PRO'
 * Added preview for the 4th app theme
+* Patch 05/11/2015 - Added new settings in the Premium theme index file - enable / disable Facebook and Twitter, language, ads interval
 
 = 2.1.4 =
 * Translated app in multiple languages. A big thanks to all contributors: Bernhard Steinbichler (German), Péter Ágoston (Hungarian), Sandra Gorgan (Romanian), Agnieszka Bugajska (Polish), Mathias Wideroth (Swedish).
