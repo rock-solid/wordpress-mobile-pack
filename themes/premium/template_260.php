@@ -11,13 +11,13 @@ if ( ($is_tablet == 0 && $arrConfig['phone']['theme'] != 0) || ($is_tablet == 1 
  
 // Process icons & startup screens timestamps
 $icon_timestamp = '';
-if (isset($arrConfig['icon_path'])) {
+if (isset($arrConfig['icon_path']) && $arrConfig['icon_path'] != '') {
      $str = $arrConfig['icon_path'];
      $icon_timestamp = '_'.substr($str, strpos($str, '_') + 1 , strpos($str, '.') - strpos($str, '_') - 1);
 }
 
 $logo_timestamp = '';
-if (isset($arrConfig['logo_path'])) {
+if (isset($arrConfig['logo_path']) && $arrConfig['logo_path'] != '') {
      $str = $arrConfig['logo_path'];
      $logo_timestamp = '_'.substr($str, strpos($str, '_') + 1 , strpos($str, '.') - strpos($str, '_') - 1);
 }
@@ -42,6 +42,7 @@ $locale = isset($arrConfig['locale']) && $arrConfig['locale'] != '' ? $arrConfig
 
 // Set device
 $device = $is_tablet == 0 ? 'phone' : 'tablet';
+
 ?>
 <!DOCTYPE HTML>
 <html manifest="" lang="en-US">
@@ -54,7 +55,7 @@ $device = $is_tablet == 0 ? 'phone' : 'tablet';
     <link rel="apple-touch-icon-precomposed" href="" />
     <link rel="manifest" href="<?php echo plugins_url()."/".WMP_DOMAIN."/export/content.php?content=androidmanifest";?>" />
     
-    <?php if (isset($arrConfig['icon_path'])): // icon path for Firefox ?>
+    <?php if (isset($arrConfig['icon_path']) && $arrConfig['icon_path'] != ''): // icon path for Firefox ?>
         <link rel="shortcut icon" href="<?php echo $cdn_apps."/".$arrConfig['shorten_url'].'/'.$arrConfig['icon_path'];?>"/>
     <?php endif;?>
     

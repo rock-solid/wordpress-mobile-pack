@@ -22,8 +22,9 @@ if ( class_exists( 'WMobilePack' ) && class_exists( 'WMobilePackAdmin' ) ) {
     $wmobile_pack_admin = new WMobilePackAdmin();
 
 	// add hooks
-	register_activation_hook( __FILE__, array( &$wmobile_pack, 'wmp_install' ) );
-	register_deactivation_hook( __FILE__, array( &$wmobile_pack, 'wmp_uninstall' ) );
+	register_activation_hook( __FILE__, array( &$wmobile_pack, 'wmp_activate' ) );
+    register_deactivation_hook( __FILE__, array( &$wmobile_pack, 'wmp_deactivate' ) );
+    register_uninstall_hook( __FILE__, array( 'WMobilePack', 'wmp_uninstall' ) );
 
     // Initialize the Wordpress Mobile Pack check logic and rendering 
     add_action('plugins_loaded',array( &$wmobile_pack, 'wmp_check_load' ));

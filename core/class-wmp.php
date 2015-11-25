@@ -71,11 +71,11 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     		
     	/**
          * 
-    	 * The wmp_install method is called on the activation of the plugin.
+    	 * The wmp_activate method is called on the activation of the plugin.
     	 * This method adds to the DB the default settings of the application.
     	 *
     	 */
-    	public function wmp_install(){
+    	public function wmp_activate(){
     	
         	// add settings to database
     		$this->wmp_save_settings(self::$wmp_options);
@@ -83,6 +83,44 @@ if ( ! class_exists( 'WMobilePack' ) ) {
             // reset tracking schedule using the current option value
             self::wmp_schedule_tracking(self::wmp_get_setting('allow_tracking'));
 		}
+
+
+        /**
+         *
+         * The wmp_deactivate method is called on the deactivation of the plugin.
+         * This method deletes temporary data, like transients and cookies.
+         *
+         */
+        public function wmp_deactivate(){
+
+            // clear scheduled tracking cron
+            self::wmp_schedule_tracking( self::wmp_get_setting('allow_tracking'),  true);
+            self::wmp_update_settings('allow_tracking', 0);
+
+            // delete tracking hash
+            delete_option('WPMP_tracking_hash');
+
+            // remove transients
+            if (get_transient("wmp_more_updates") !== false)
+                delete_transient('wmp_more_updates');
+
+            if (get_transient("wmp_whats_new_updates") !== false)
+                delete_transient('wmp_whats_new_updates');
+
+            if (get_transient("wmp_newsupdates") !== false)
+                delete_transient('wmp_newsupdates');
+
+            if (get_transient("wmp_premium_config_path") !== false)
+                delete_transient('wmp_premium_config_path');
+
+            if (get_transient("wmp_tracking_cache") !== false)
+                delete_transient('wmp_tracking_cache');
+
+            // remove the cookies
+            setcookie("wmp_theme_mode", false, time()-3600, '/');
+            setcookie("wmp_load_app", false, time()-3600, '/');
+        }
+
     		
     	/**
          * 
@@ -90,7 +128,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
     	 * This method removes from the DB the settings of the application and associated files.
     	 *
     	 */
-    	public function wmp_uninstall(){
+    	public static function wmp_uninstall(){
     		
             // disconnect premium from the api
             $apiKey = self::wmp_get_setting('premium_api_key');
@@ -103,10 +141,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                 
                 WMobilePackAdmin::wmp_read_data( ($is_secure ? WMP_APPTICLES_DISCONNECT_SSL : WMP_APPTICLES_DISCONNECT).'?apiKey='.$apiKey);
             }
-            
-            // clear scheduled tracking cron 
-            self::wmp_schedule_tracking( self::wmp_get_setting('allow_tracking'),  true);
-            
+
             // remove uploaded images and uploads folder
             $logo_path = WMobilePack::wmp_get_setting('logo');
             
@@ -124,32 +159,12 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                 unlink(WMP_FILES_UPLOADS_DIR.$cover_path);  
                 
             rmdir( WMP_FILES_UPLOADS_DIR );
-            
-    		$this->wmp_delete_settings(self::$wmp_options);
-			
-			// remove transients
-			if (get_transient("wmp_more_updates") !== false)
-				delete_transient('wmp_more_updates');
-				
-			if (get_transient("wmp_whats_new_updates") !== false)
-				delete_transient('wmp_whats_new_updates');
-			
-			if (get_transient("wmp_newsupdates") !== false)
-				delete_transient('wmp_newsupdates');
-				
-			if (get_transient("wmp_premium_config_path") !== false)
-				delete_transient('wmp_premium_config_path');
 
-            if (get_transient("wmp_tracking_cache") !== false)
-                delete_transient('wmp_tracking_cache');
-
-            // remove settings from database
+            self::wmp_delete_settings(self::$wmp_options);
+			
+			// remove settings from database
 			global $wpdb;
     		$wpdb->query( "DELETE FROM {$wpdb->options} WHERE option_name LIKE '".self::$wmp_prefix."page_%'" );
-			
-			// remove the cookies
-			setcookie("wmp_theme_mode", false, time()-3600, '/');
-			setcookie("wmp_load_app", false, time()-3600, '/');
     	}
     	
     		
@@ -398,7 +413,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
         			// set option not saved variable
         			$option_not_saved = false;
         		
-        			foreach($option as $option_name => $option_value) {
+        			foreach ($option as $option_name => $option_value) {
         				
         				if (array_key_exists( $option_name , self::$wmp_options))
         					add_option( self::$wmp_prefix . $option_name, $option_value );
