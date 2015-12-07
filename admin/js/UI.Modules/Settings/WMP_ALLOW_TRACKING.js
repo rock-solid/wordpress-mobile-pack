@@ -55,9 +55,9 @@ function WMP_ALLOW_TRACKING(){
             
             // set the value on the dummy text field that will always be visible in the post data
             if (this.checked) {
-                jQuery("#"+JSObject.type+"_box",JSObject.DOMDoc).val("1");
+                jQuery("#wmp_option_allow_tracking",JSObject.DOMDoc).val("1");
             } else {
-                jQuery("#"+JSObject.type+"_box",JSObject.DOMDoc).val("0");
+                jQuery("#wmp_option_allow_tracking",JSObject.DOMDoc).val("0");
             }
         });
         
@@ -157,10 +157,10 @@ function WMP_ALLOW_TRACKING(){
 	/*                                                                                                   */
 	/*****************************************************************************************************/
 	this.completeUploadingData = function(response){
-		
+
 		jQuery("#"+JSObject.form.id,JSObject.DOMDoc).unbind("submit");
 		jQuery("#"+JSObject.form.id,JSObject.DOMDoc).bind("submit",function(){return false;});
-	
+
 		// remove preloader
 		WMPJSInterface.Preloader.remove(100);
 		

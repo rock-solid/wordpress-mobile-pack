@@ -75,7 +75,7 @@ var WMPJSInterface =  function(){
 		 *         @params  : a JSON with params to pass to the new created object. Ex: {'name':'Johnson','age':24}
 		 */
 		add: function(objName, objType, params, iframeWindow){
-		  
+
 			//find similar object and remove it	
 			for (var i=0; i<objects_arr.length; i++){
 				var obj = objects_arr.shift();

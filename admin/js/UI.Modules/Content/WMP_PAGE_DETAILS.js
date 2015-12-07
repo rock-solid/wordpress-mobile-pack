@@ -57,15 +57,14 @@ function WMP_PAGE_DETAILS(){
 	    this.validator = jQuery("#"+this.form.id, this.DOMDoc).validate({
 	
             rules: {
-               wmp_pageedit_content : { 
-    				required    : true
-    			},
-			messages: {
-					wmp_pageedit_content : { 
-    					required    : "The content is required"
-    				},
-				}	
-				 
+                wmp_pageedit_content: {
+                    required: true
+                },
+                messages: {
+                    wmp_pageedit_content: {
+                        required: "The content is required"
+                    }
+                }
             },
             
             
@@ -238,11 +237,10 @@ function WMP_PAGE_DETAILS(){
 		
 		jQuery("#"+JSObject.form.id,JSObject.DOMDoc).unbind("submit");
 		jQuery("#"+JSObject.form.id,JSObject.DOMDoc).bind("submit",function(){return false;});
-	
+
 		// remove preloader
 		WMPJSInterface.Preloader.remove(100);
-
-		response = Number(String(response));
+        response = Number(String(response));
 
         if (response == 1){
 

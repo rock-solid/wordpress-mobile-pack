@@ -212,12 +212,12 @@ function WMP_WAITLIST(){
 			},
 			dataType: 'jsonp',
 			success: function(responseJSON){
-				
+
                 WMPJSInterface.Preloader.remove(100);
-                
-                JSON = eval (responseJSON);
-				response = Boolean(Number(String(JSON.status)));
-				
+
+                var JSON = eval(responseJSON);
+				var response = Number(String(JSON.status));
+
 				if (response == 0) {
 					
 					var message = 'There was an error. Please reload the page and try again in few seconds or contact the plugin administrator if the problem persists.';
@@ -245,14 +245,14 @@ function WMP_WAITLIST(){
             
                     jQuery(JSObject.form).hide();
                     jQuery("#"+JSObject.type + "_added", JSObject.container).show();
-                      
+
                     // make request to settings endpoint to mark the wailist as joined
-                    if (response == 1) {
+                    if (response == 1 || response == 2) {
                         
                         jQuery.post(
                             ajaxurl, 
                             {
-                                'action': 'wmp_settings_save',
+                                'action': 'wmp_join_waitlist',
                                 'joined_waitlist': JSObject.listType
                             }, 
                             function(response1){

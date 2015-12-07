@@ -204,7 +204,7 @@ function WMP_EDIT_COVER(){
                         jQuery.get(
                             ajaxurl, 
                             {
-                                'action': 'wmp_settings_editcover',
+                                'action': 'wmp_theme_editimages',
                                 'type':   'delete',
                                 'source': 'cover'
                             }, 

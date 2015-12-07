@@ -1,6 +1,6 @@
 /*****************************************************************************************************/
 /*                                                                                                   */
-/*                                    	'EDIT DISPLAY MODE'		                                     */
+/*                                    	'THEMES GALLERY'		                                     */
 /*                                                                                                   */
 /*****************************************************************************************************/
 
@@ -8,7 +8,7 @@ function WMP_THEMES_GALLERY(){
 
     var JSObject = this;
 
-    this.type = "wmp_themes_gallery";
+    this.type = "wmp_themes";
 
     this.DOMDoc;
     this.baseThemeUrl;
@@ -61,62 +61,89 @@ function WMP_THEMES_GALLERY(){
 
             'app2': [
                 {
-                    src: WMPJSInterface.localpath + '/admin/images/app2/1-preview-cover.png',
+                    src: WMPJSInterface.localpath + 'admin/images/app2/1-preview-cover.png',
                     title: 'Home page cover'
                 },
                 {
-                    src: WMPJSInterface.localpath + '/admin/images/app2/2-preview-categories.png',
+                    src: WMPJSInterface.localpath + 'admin/images/app2/2-preview-categories.png',
                     title: 'View posts'
                 },
                 {
-                    src: WMPJSInterface.localpath + '/admin/images/app2/3-preview-menu.png',
+                    src: WMPJSInterface.localpath + 'admin/images/app2/3-preview-menu.png',
                     title: 'Categories menu'
                 },
                 {
-                    src: WMPJSInterface.localpath + '/admin/images/app2/4-preview-article.png',
+                    src: WMPJSInterface.localpath + 'admin/images/app2/4-preview-article.png',
                     title: 'Post details'
                 }
             ],
 
             'app3': [
                 {
-                    src: WMPJSInterface.localpath + '/admin/images/app3/1-preview-cover.png',
+                    src: WMPJSInterface.localpath + 'admin/images/app1/1-preview-cover.png',
                     title: 'Home page cover'
                 },
                 {
-                    src: WMPJSInterface.localpath + '/admin/images/app3/2-preview-categories.png',
+                    src: WMPJSInterface.localpath + 'admin/images/app1/2-preview-categories.png',
                     title: 'Categories menu'
                 },
                 {
-                    src: WMPJSInterface.localpath + '/admin/images/app3/3-preview-menu.png',
+                    src: WMPJSInterface.localpath + 'admin/images/app1/3-preview-menu.png',
                     title: 'View posts'
                 },
                 {
-                    src: WMPJSInterface.localpath + '/admin/images/app3/4-preview-article.png',
+                    src: WMPJSInterface.localpath + 'admin/images/app1/4-preview-article.png',
                     title: 'Post details'
                 }
             ],
 
             'app4': [
                 {
-                    src: WMPJSInterface.localpath + '/admin/images/app4/1-homepage.png',
+                    src: WMPJSInterface.localpath + 'admin/images/app4/1-homepage.png',
                     title: 'Home page'
                 },
                 {
-                    src: WMPJSInterface.localpath + '/admin/images/app4/2-menu-opened.png',
+                    src: WMPJSInterface.localpath + 'admin/images/app4/2-menu-opened.png',
                     title: 'Menu'
                 },
                 {
-                    src: WMPJSInterface.localpath + '/admin/images/app4/3-categories-opened.png',
+                    src: WMPJSInterface.localpath + 'admin/images/app4/3-categories-opened.png',
                     title: 'Categories menu'
                 },
                 {
-                    src: WMPJSInterface.localpath + '/admin/images/app4/4-others-opened.png',
+                    src: WMPJSInterface.localpath + 'admin/images/app4/4-others-opened.png',
                     title: 'Other options menu'
                 },
                 {
-                    src: WMPJSInterface.localpath + '/admin/images/app4/5-article-details.png',
+                    src: WMPJSInterface.localpath + 'admin/images/app4/5-article-details.png',
                     title: 'Article details'
+                }
+            ],
+
+            'app5' : [
+                {
+                    src: WMPJSInterface.localpath + 'admin/images/app5/1-preview-homepage.png',
+                    title: 'Home page'
+                },
+                {
+                    src: WMPJSInterface.localpath + 'admin/images/app5/2-preview-articles.png',
+                    title: 'View posts'
+                },
+                {
+                    src: WMPJSInterface.localpath + 'admin/images/app5/3-preview-menu.png',
+                    title: 'Menu'
+                },
+                {
+                    src: WMPJSInterface.localpath + 'admin/images/app5/4-preview-menu-categories.png',
+                    title: 'Categories menu'
+                },
+                {
+                    src: WMPJSInterface.localpath + 'admin/images/app5/5-preview-article-details.png',
+                    title: 'Article details'
+                },
+                {
+                    src: WMPJSInterface.localpath + 'admin/images/app5/6-preview-article-details-menu.png',
+                    title: 'Share article'
                 }
             ]
         }
@@ -134,15 +161,7 @@ function WMP_THEMES_GALLERY(){
 
         var snapshots = this.initSnapshots();
 
-        jQuery('#'+this.type+'_base').magnificPopup({
-            items: snapshots['app1'],
-            gallery: {
-              enabled: true
-            },
-            type: 'image' // this is default type
-        });
-
-        for (var i = 2; i <= 4; i++) {
+        for (var i = 1; i <= 5; i++) {
 
             jQuery('#' + this.type + '_preview_' + String(i)).magnificPopup({
                 items: snapshots['app' + String(i)],

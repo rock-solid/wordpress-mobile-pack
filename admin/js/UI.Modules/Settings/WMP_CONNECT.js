@@ -208,7 +208,7 @@ function WMP_CONNECT(){
 				'api_key': jQuery("#"+JSObject.type+"_apikey", JSObject.DOMDoc).val()
 			}, 
 			function(response){
-				
+
                 // Call Appticles API
 				jQuery.ajax({
 					url: JSObject.submitURL,
@@ -219,7 +219,7 @@ function WMP_CONNECT(){
 					},
                     dataType: "jsonp",
 					success: function(responseJSON){
-					    
+
 						WMPJSInterface.Preloader.remove(100);
       
 						var JSON = eval(responseJSON);

@@ -211,7 +211,7 @@ function WMP_EDIT_IMAGES(){
                         jQuery.get(
                             ajaxurl, 
                             {
-                                'action': 'wmp_settings_editimages',
+                                'action': 'wmp_theme_editimages',
                                 'type':   'delete',
                                 'source': 'icon'
                             }, 
@@ -368,7 +368,7 @@ function WMP_EDIT_IMAGES(){
                         jQuery.get(
                             ajaxurl, 
                             {
-                                'action': 'wmp_settings_editimages',
+                                'action': 'wmp_theme_editimages',
                                 'type':   'delete',
                                 'source': 'logo'
                             }, 

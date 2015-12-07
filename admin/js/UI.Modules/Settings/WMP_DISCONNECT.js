@@ -15,6 +15,7 @@ function WMP_DISCONNECT(){
     this.send_btn;
 	this.redirectTo;
 	this.submitUrl;
+
 	/*****************************************************************************************************/
     /*                                                                                                   */
     /*                              FUNCTION INIT - called from WMPJSInterface                           */
@@ -101,7 +102,7 @@ function WMP_DISCONNECT(){
 				},
                 dataType: "jsonp",
 				success: function(responseJSON){
-				    
+
                     WMPJSInterface.Preloader.remove(100);
 					
 					var JSON = eval (responseJSON);
@@ -125,7 +126,8 @@ function WMP_DISCONNECT(){
 					} else { 
 					   											   
 						jQuery.post(
-							ajaxurl, 
+
+                            ajaxurl,
 							{
 								'action': 'wmp_premium_disconnect',
 								'api_key': jQuery("#"+JSObject.type+"_apikey", JSObject.DOMDoc).val(),
@@ -135,9 +137,9 @@ function WMP_DISCONNECT(){
 
 								response1 = Boolean(Number(String(response1)));
                                 
-								if(response1 == 1)
-									window.location.href = JSObject.redirectTo;
-								else {
+								if(response1 == 1) {
+                                    window.location.href = JSObject.redirectTo;
+                                } else {
 									var message = 'There was an error. Please reload the page and try again in few seconds or contact the plugin administrator if the problem persists.';
 									WMPJSInterface.Loader.display({message: message});	
 								}

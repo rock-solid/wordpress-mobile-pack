@@ -97,12 +97,13 @@ function WMP_EDIT_CATEGORIES(){
                     jQuery.post(
                         ajaxurl, 
                         {
-                            'action': 'wmp_content_save',
+                            'action': 'wmp_content_status',
                             'id':   categoryId,
-                            'status': currentStatus
+                            'status': currentStatus,
+                            'type': 'category'
                         }, 
                         function(response){
-                            
+
                             JSObject.changingStatus = false;
                             WMPJSInterface.Preloader.remove(100);
                             

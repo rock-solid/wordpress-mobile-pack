@@ -1,10 +1,10 @@
 /*****************************************************************************************************/
 /*                                                                                                   */
-/*                                    	'EDIT DISPLAY MODE'		                                     */
+/*                                    	'APP SETTINGS'		                                         */
 /*                                                                                                   */
 /*****************************************************************************************************/
 
-function WMP_EDIT_DISPLAY(){
+function WMP_APP_SETTINGS(){
 
     var JSObject = this;
 
@@ -68,22 +68,13 @@ function WMP_EDIT_DISPLAY(){
 		
         // this is the object that handles the form validations
 	    this.validator = jQuery("#"+this.form.id, this.DOMDoc).validate({
-	
+
             rules: {
-                wmp_editsettings_displaymode : { 
-    				required    : true
-    			},
-				 wmp_editsettings_ganalyticsid : {
-    				regex    :  '^ua-\\d{4,9}-\\d{1,4}$' 
-    			}
+                wmp_editsettings_ganalyticsid: {
+                    regex: '^ua-\\d{4,9}-\\d{1,4}$'
+                }
             },
-            
-            messages: {
-                wmp_editsettings_displaymode : {
-    				required		: "Please choose an option."
-    			}
-            },
-            
+
 	        // the errorPlacement has to take the table layout into account
 	        // all the errors must be handled by containers/divs with custom ids: Ex. "error_fullname_container"
 	        errorPlacement: function(error, element) {
@@ -95,6 +86,20 @@ function WMP_EDIT_DISPLAY(){
             
             errorElement: 'span'
 	    });
+
+        /*******************************************************/
+        /*                     CHECKBOX EVENT                  */
+        /*******************************************************/
+
+        jQuery("#wmp_displaywebsitelink_check",JSObject.DOMDoc).change(function() {
+
+            // set the value on the dummy text field that will always be visible in the post data
+            if (this.checked) {
+                jQuery("#"+JSObject.type+"_displaywebsitelink",JSObject.DOMDoc).val("1");
+            } else {
+                jQuery("#"+JSObject.type+"_displaywebsitelink",JSObject.DOMDoc).val("0");
+            }
+        });
     }
     
 
@@ -260,7 +265,6 @@ function WMP_EDIT_DISPLAY(){
 	
 		// remove preloader
 		WMPJSInterface.Preloader.remove(100);
-		
 		response = Boolean(Number(String(response)));
   
 		if (response == true){

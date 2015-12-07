@@ -133,9 +133,10 @@ function WMP_EDIT_PAGES(){
 				jQuery.post(
 					ajaxurl, 
 					{
-						'action': 'wmp_content_pagestatus',
+						'action': 'wmp_content_status',
 						'id':   pageId,
-						'status': currentStatus
+						'status': currentStatus,
+                        'type': 'page'
 					}, 
 					function(response){
 						
