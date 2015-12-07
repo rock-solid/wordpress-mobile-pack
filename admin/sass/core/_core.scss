@@ -8,8 +8,6 @@ body {
 }
 #wmpack-admin{
     *, *:after, *:before {
-        margin: 0px;
-        padding: 0px;
         font-weight: normal;
         @include wbz-box-sizing(border-box);
         -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -21,6 +19,7 @@ body {
         font-family: 'OlRoundGothicLight', sans-serif;
         font-size: $h1-font-size;
         line-height: $h1-font-size;
+        font-weight: normal;
         color: $base-text-color;
         margin:0px;
         padding:0px;
@@ -44,6 +43,8 @@ body {
         font-size: 14px;
         line-height: 19px;
         color: $base-text-color;
+    }
+    p, span {
         margin:0;
         padding:0;
     }
@@ -53,8 +54,6 @@ body {
     a{
         color: $base-blue;
         text-decoration: none;
-        margin:0px;
-        padding:0px;
         &:hover{
             color: darken($base-blue, $darken-amounth);
         }
@@ -226,7 +225,7 @@ body{
                     position: absolute;
                     top: -4px;
                     right: auto;
-                    left: 83px;
+                    left: 98px;
                 }
             }
             ul{
@@ -235,9 +234,7 @@ body{
                 border-bottom: 1px solid #DADDDE;
 
                 li{
-                    min-width: 145px;
-                    //max-width: 182px;
-                    //width: 182px;
+                    min-width: 162px;
                     height: 68px;
                     display: table-cell;
                     background-color: #f5f7f7;
@@ -372,6 +369,10 @@ body{
 
             p{
                 font-size: 13px;
+            }
+
+            .field-message {
+                padding: 1px 0;
             }
         }
 

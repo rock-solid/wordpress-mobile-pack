@@ -6,37 +6,40 @@
 	input[type="password"],
 	input[type="file"],
 	input[type="email"]{
-		font-family: 'AcordeSemiBold', sans-serif;
-		width: $input-size-normal;
-		height: $input-height;
-		background: $input-background;
-		color: $input-color;
-		font-size: $input-font-size;
-		@include wbz-border-radius($input-radius);
-		@include wbz-box-shadow(none);
-		border: 1px solid $input-border;
-		padding: 0 15px; 
-		
-		&.smaller{
-			width: $input-size-smaller;
-		}
-		&.small{
-			width: $input-size-small;
-		}
-		&.big{
-			width: $input-size-big;
-		}
-		&:focus{
-			outline:none;
-			border:1px solid darken($input-border,$darken-amounth);
-		}
-		&.error{
-			border-color: $error-color;
-			background: $error-bg;
-		} 
-		&.indent{
-			margin: 0 0 0 30px;
-		}
+
+        &:not(.wp-color-picker) {
+            font-family: 'AcordeSemiBold', sans-serif;
+            width: $input-size-normal;
+            height: $input-height;
+            background: $input-background;
+            color: $input-color;
+            font-size: $input-font-size;
+            @include wbz-border-radius($input-radius);
+            @include wbz-box-shadow(none);
+            border: 1px solid $input-border;
+            padding: 0 15px;
+
+            &.smaller {
+                width: $input-size-smaller;
+            }
+            &.small {
+                width: $input-size-small;
+            }
+            &.big {
+                width: $input-size-big;
+            }
+            &:focus {
+                outline: none;
+                border: 1px solid darken($input-border, $darken-amounth);
+            }
+            &.error {
+                border-color: $error-color;
+                background: $error-bg;
+            }
+            &.indent {
+                margin: 0 0 0 30px;
+            }
+        }
 	}
 	select {
 		font-family: 'AcordeSemiBold', sans-serif;
@@ -306,6 +309,7 @@
 			
 			&:hover{
 				cursor: pointer;
+                color: #ffc26b;
 			}
 			&::before{
 				width: 25px;

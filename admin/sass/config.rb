@@ -8,7 +8,7 @@ http_path = "/"
 
 sass_path = dir 
 css_path = File.join(dir, "..", "css")
-fonts_path = File.join(dir, "..", "fonts")
+fonts_path = File.join(dir, "fonts")
 images_path = File.join(dir, "..", "images")
 
 javascripts_path = File.join(dir, "..", "javascripts")
