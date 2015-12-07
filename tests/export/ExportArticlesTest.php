@@ -8,7 +8,7 @@ class ExportArticlesTest extends WP_UnitTestCase
     function setUp(){
         parent::setUp();
 
-        update_option('wmpack_inactive_categories', serialize(array()));
+        update_option('wmpack_inactive_categories', array());
     }
 
     /**
@@ -22,7 +22,7 @@ class ExportArticlesTest extends WP_UnitTestCase
             )
         );
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $this->assertEquals($export->export_articles(), json_encode(array('articles' => array())));
 
         wp_delete_post($post_id);
@@ -39,7 +39,7 @@ class ExportArticlesTest extends WP_UnitTestCase
             )
         );
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $this->assertEquals($export->export_articles(), json_encode(array('articles' => array())));
 
         wp_delete_post($post_id);
@@ -62,9 +62,9 @@ class ExportArticlesTest extends WP_UnitTestCase
             )
         );
 
-        update_option('wmpack_inactive_categories', serialize(array($cat_id)));
+        update_option('wmpack_inactive_categories', array($cat_id));
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $this->assertEquals($export->export_articles(), json_encode(array('articles' => array())));
 
         wp_delete_post($post_id);
@@ -93,7 +93,7 @@ class ExportArticlesTest extends WP_UnitTestCase
             )
         );
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $data = json_decode($export->export_articles(), true);
 
         $this->assertArrayHasKey('articles', $data);
@@ -145,7 +145,7 @@ class ExportArticlesTest extends WP_UnitTestCase
         $attach_id = wp_insert_attachment( $attachment, $filename, $post_id );
         add_post_meta( $post_id, '_thumbnail_id', $attach_id, true );
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $data = json_decode($export->export_articles(), true);
 
         $this->assertArrayHasKey('articles', $data);
@@ -186,7 +186,7 @@ class ExportArticlesTest extends WP_UnitTestCase
             )
         );
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $data = json_decode($export->export_articles(), true);
 
         $this->assertArrayHasKey('articles', $data);
@@ -224,9 +224,9 @@ class ExportArticlesTest extends WP_UnitTestCase
             )
         );
 
-        update_option('wmpack_inactive_categories', serialize(array($hidden_cat_id)));
+        update_option('wmpack_inactive_categories', array($hidden_cat_id));
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $data = json_decode($export->export_articles(), true);
 
         $this->assertArrayHasKey('articles', $data);
@@ -275,7 +275,7 @@ class ExportArticlesTest extends WP_UnitTestCase
 
         $_GET['categoryId'] = $cat_id;
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $data = json_decode($export->export_articles(), true);
 
         $this->assertArrayHasKey('articles', $data);

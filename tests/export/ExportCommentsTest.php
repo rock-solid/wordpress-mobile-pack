@@ -8,8 +8,8 @@ class ExportCommentsTest extends WP_UnitTestCase
     function setUp(){
         parent::setUp();
 
-        update_option('wmpack_inactive_categories', serialize(array()));
-        update_option('wmpack_ordered_categories', serialize(array()));
+        update_option('wmpack_inactive_categories', array());
+        update_option('wmpack_ordered_categories', array());
     }
 
     /**
@@ -17,7 +17,7 @@ class ExportCommentsTest extends WP_UnitTestCase
      */
     function test_export_comments_without_id_returns_error()
     {
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $this->assertEquals($export->export_comments(), json_encode(array('error' => 'Invalid post id')));
     }
 
@@ -41,7 +41,7 @@ class ExportCommentsTest extends WP_UnitTestCase
 
         $_GET['articleId'] = $post_id;
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $this->assertEquals($export->export_comments(), json_encode(array('comments' => array())));
 
         wp_delete_post($post_id);
@@ -68,7 +68,7 @@ class ExportCommentsTest extends WP_UnitTestCase
 
         $_GET['articleId'] = $post_id;
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $this->assertEquals($export->export_comments(), json_encode(array('comments' => array())));
 
         wp_delete_post($post_id);
@@ -95,7 +95,7 @@ class ExportCommentsTest extends WP_UnitTestCase
 
         $_GET['articleId'] = $post_id;
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $this->assertEquals($export->export_comments(), json_encode(array('comments' => array())));
 
         wp_delete_post($post_id);
@@ -128,9 +128,9 @@ class ExportCommentsTest extends WP_UnitTestCase
 
         $_GET['articleId'] = $post_id;
 
-        update_option('wmpack_inactive_categories', serialize(array($cat_id)));
+        update_option('wmpack_inactive_categories', array($cat_id));
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $this->assertEquals($export->export_comments(), json_encode(array('comments' => array())));
 
         wp_delete_post($post_id);
@@ -160,7 +160,7 @@ class ExportCommentsTest extends WP_UnitTestCase
         // make request & verify data
         $_GET['articleId'] = $post_id;
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $this->assertEquals($export->export_comments(), json_encode(array('comments' => array())));
 
         // clean-up data
@@ -192,7 +192,7 @@ class ExportCommentsTest extends WP_UnitTestCase
         // make request & verify data
         $_GET['articleId'] = $post_id;
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $data = json_decode($export->export_comments(), true);
 
         $this->assertArrayHasKey('comments', $data);

@@ -8,8 +8,8 @@ class ExportPagesTest extends WP_UnitTestCase
     function setUp(){
         parent::setUp();
 
-        update_option('wmpack_inactive_pages', serialize(array()));
-        update_option('wmpack_ordered_pages', serialize(array()));
+        update_option('wmpack_inactive_pages', array());
+        update_option('wmpack_ordered_pages', array());
     }
 
     /**
@@ -24,7 +24,7 @@ class ExportPagesTest extends WP_UnitTestCase
             )
         );
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $this->assertEquals($export->export_pages(), json_encode(array('pages' => array())));
 
         wp_delete_post($post_id);
@@ -42,7 +42,7 @@ class ExportPagesTest extends WP_UnitTestCase
             )
         );
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $this->assertEquals($export->export_pages(), json_encode(array('pages' => array())));
 
         wp_delete_post($post_id);
@@ -59,9 +59,9 @@ class ExportPagesTest extends WP_UnitTestCase
             )
         );
 
-        update_option('wmpack_inactive_pages', serialize(array($post_id)));
+        update_option('wmpack_inactive_pages', array($post_id));
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $this->assertEquals($export->export_pages(), json_encode(array('pages' => array())));
 
         wp_delete_post($post_id);
@@ -86,7 +86,7 @@ class ExportPagesTest extends WP_UnitTestCase
             )
         );
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $data = json_decode($export->export_pages(), true);
 
         $this->assertArrayHasKey('pages', $data);
@@ -122,9 +122,9 @@ class ExportPagesTest extends WP_UnitTestCase
             )
         );
 
-        update_option('wmpack_ordered_pages', serialize(array($post_id2, $post_id)));
+        update_option('wmpack_ordered_pages', array($post_id2, $post_id));
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $data = json_decode($export->export_pages(), true);
 
         $this->assertArrayHasKey('pages', $data);
@@ -167,9 +167,9 @@ class ExportPagesTest extends WP_UnitTestCase
             )
         );
 
-        update_option('wmpack_ordered_pages', serialize(array($post_id2, $post_id)));
+        update_option('wmpack_ordered_pages', array($post_id2, $post_id));
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $data = json_decode($export->export_pages(), true);
 
         $this->assertArrayHasKey('pages', $data);
@@ -218,7 +218,7 @@ class ExportPagesTest extends WP_UnitTestCase
         $attach_id = wp_insert_attachment( $attachment, $filename, $post_id );
         add_post_meta( $post_id, '_thumbnail_id', $attach_id, true );
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $data = json_decode($export->export_pages(), true);
 
         $this->assertArrayHasKey('pages', $data);

@@ -12,7 +12,7 @@ if (class_exists('WPMPTestsUtils')) {
 		 */
 		function test_home() {
 	 
-			if (!WMobilePack::wmp_get_setting('premium_active') || WMobilePack::wmp_get_setting('premium_api_key') == '') {
+			if (!WMobilePack_Options::get_setting('premium_active') || WMobilePack_Options::get_setting('premium_api_key') == '') {
 			
 				$request_url = WPMPTestsUtils::get_furl(home_url());
 				$response = WPMPTestsUtils::make_request($request_url);
@@ -28,7 +28,7 @@ if (class_exists('WPMPTestsUtils')) {
 		 */
 		function test_post() {
 			
-			if (!WMobilePack::wmp_get_setting('premium_active') || WMobilePack::wmp_get_setting('premium_api_key') == '') {
+			if (!WMobilePack_Options::get_setting('premium_active') || WMobilePack_Options::get_setting('premium_api_key') == '') {
 			
 				$post_id = 1;
 				$request_url = WPMPTestsUtils::get_furl(home_url().'?p='.$post_id);
@@ -48,7 +48,7 @@ if (class_exists('WPMPTestsUtils')) {
 		 */
 		function test_page() {
 			
-			if (!WMobilePack::wmp_get_setting('premium_active') || WMobilePack::wmp_get_setting('premium_api_key') == '') {
+			if (!WMobilePack_Options::get_setting('premium_active') || WMobilePack_Options::get_setting('premium_api_key') == '') {
 			
 				$page_id = 2;
 				$request_url = WPMPTestsUtils::get_furl(home_url().'?page_id='.$page_id);
@@ -66,7 +66,7 @@ if (class_exists('WPMPTestsUtils')) {
 		 */
 		function test_category() {
 			
-			if (!WMobilePack::wmp_get_setting('premium_active') || WMobilePack::wmp_get_setting('premium_api_key') == '') {
+			if (!WMobilePack_Options::get_setting('premium_active') || WMobilePack_Options::get_setting('premium_api_key') == '') {
 			
 				$category_id = 1;
 				$request_url = WPMPTestsUtils::get_furl(home_url().'?cat='.$category_id);
@@ -83,7 +83,7 @@ if (class_exists('WPMPTestsUtils')) {
 		 */
 		function test_category_specialchars() {
 			
-			if (!WMobilePack::wmp_get_setting('premium_active') || WMobilePack::wmp_get_setting('premium_api_key') == '') {
+			if (!WMobilePack_Options::get_setting('premium_active') || WMobilePack_Options::get_setting('premium_api_key') == '') {
 			
 				$category_id = 2;
 				$request_url = WPMPTestsUtils::get_furl(home_url().'?cat='.$category_id);

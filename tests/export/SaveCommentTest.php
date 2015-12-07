@@ -1,6 +1,7 @@
 <?php
 
 require_once(WMP_PLUGIN_PATH."export/class-export.php");
+require_once(WMP_PLUGIN_PATH . 'inc/class-wmp-tokens.php');
 
 class SaveCommentTest extends WP_UnitTestCase
 {
@@ -8,8 +9,8 @@ class SaveCommentTest extends WP_UnitTestCase
     function setUp(){
         parent::setUp();
 
-        update_option('wmpack_inactive_categories', serialize(array()));
-        update_option('wmpack_ordered_categories', serialize(array()));
+        update_option('wmpack_inactive_categories', array());
+        update_option('wmpack_ordered_categories', array());
     }
 
     /**
@@ -17,7 +18,7 @@ class SaveCommentTest extends WP_UnitTestCase
      */
     function test_save_comment_without_post_id_returns_null()
     {
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $this->assertEquals($export->save_comment(), null);
     }
 
@@ -30,7 +31,7 @@ class SaveCommentTest extends WP_UnitTestCase
 
         $_GET['articleId'] = $post_id;
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $this->assertEquals($export->save_comment(), null);
 
         wp_delete_post($post_id);
@@ -46,7 +47,7 @@ class SaveCommentTest extends WP_UnitTestCase
         $_GET['articleId'] = $post_id;
         $_GET['code'] = "invalidaccesscode";
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $this->assertEquals($export->save_comment(), null);
 
         wp_delete_post($post_id);
@@ -64,9 +65,9 @@ class SaveCommentTest extends WP_UnitTestCase
         );
 
         $_GET['articleId'] = $post_id;
-        $_GET['code'] = WMobilePack::wmp_set_token();
+        $_GET['code'] = WMobilePack_Tokens::get_token();
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $response = json_decode($export->save_comment(), true);
 
         $this->assertEquals(0, $response['status']);
@@ -88,9 +89,9 @@ class SaveCommentTest extends WP_UnitTestCase
         );
 
         $_GET['articleId'] = $post_id;
-        $_GET['code'] = WMobilePack::wmp_set_token();
+        $_GET['code'] = WMobilePack_Tokens::get_token();
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $response = json_decode($export->save_comment(), true);
 
         $this->assertEquals(0, $response['status']);
@@ -112,9 +113,9 @@ class SaveCommentTest extends WP_UnitTestCase
         );
 
         $_GET['articleId'] = $post_id;
-        $_GET['code'] = WMobilePack::wmp_set_token();
+        $_GET['code'] = WMobilePack_Tokens::get_token();
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $response = json_decode($export->save_comment(), true);
 
         $this->assertEquals(0, $response['status']);
@@ -141,12 +142,12 @@ class SaveCommentTest extends WP_UnitTestCase
             )
         );
 
-        update_option('wmpack_inactive_categories', serialize(array($cat_id)));
+        update_option('wmpack_inactive_categories', array($cat_id));
 
         $_GET['articleId'] = $post_id;
-        $_GET['code'] = WMobilePack::wmp_set_token();
+        $_GET['code'] = WMobilePack_Tokens::get_token();
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $response = json_decode($export->save_comment(), true);
 
         $this->assertEquals(0, $response['status']);
@@ -170,9 +171,9 @@ class SaveCommentTest extends WP_UnitTestCase
 
         // make request & verify data
         $_GET['articleId'] = $post_id;
-        $_GET['code'] = WMobilePack::wmp_set_token();
+        $_GET['code'] = WMobilePack_Tokens::get_token();
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $response = json_decode($export->save_comment(), true);
 
         $this->assertEquals(0, $response['status']);
@@ -194,10 +195,10 @@ class SaveCommentTest extends WP_UnitTestCase
 
         // make request & verify data
         $_GET['articleId'] = $post_id;
-        $_GET['code'] = WMobilePack::wmp_set_token();
+        $_GET['code'] = WMobilePack_Tokens::get_token();
         $_GET['email'] = 'dummy@appticles.com';
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $response = json_decode($export->save_comment(), true);
 
         $this->assertEquals(0, $response['status']);
@@ -219,10 +220,10 @@ class SaveCommentTest extends WP_UnitTestCase
 
         // make request & verify data
         $_GET['articleId'] = $post_id;
-        $_GET['code'] = WMobilePack::wmp_set_token();
+        $_GET['code'] = WMobilePack_Tokens::get_token();
         $_GET['author'] = 'Comment Author';
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $response = json_decode($export->save_comment(), true);
 
         $this->assertEquals(0, $response['status']);
@@ -244,11 +245,11 @@ class SaveCommentTest extends WP_UnitTestCase
 
         // make request & verify data
         $_GET['articleId'] = $post_id;
-        $_GET['code'] = WMobilePack::wmp_set_token();
+        $_GET['code'] = WMobilePack_Tokens::get_token();
         $_GET['author'] = 'Comment Author';
         $_GET['email'] = 'This is not an email address';
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $response = json_decode($export->save_comment(), true);
 
         $this->assertEquals(0, $response['status']);
@@ -270,11 +271,11 @@ class SaveCommentTest extends WP_UnitTestCase
 
         // make request & verify data
         $_GET['articleId'] = $post_id;
-        $_GET['code'] = WMobilePack::wmp_set_token();
+        $_GET['code'] = WMobilePack_Tokens::get_token();
         $_GET['author'] = 'Comment Author';
         $_GET['email'] = 'dummy@appticles.com';
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $response = json_decode($export->save_comment(), true);
 
         $this->assertEquals(0, $response['status']);
@@ -300,14 +301,14 @@ class SaveCommentTest extends WP_UnitTestCase
 
         // make request & verify data
         $_GET['articleId'] = $post_id;
-        $_GET['code'] = WMobilePack::wmp_set_token();
+        $_GET['code'] = WMobilePack_Tokens::get_token();
         $_GET['author'] = 'Comment Author';
         $_GET['email'] = 'dummy@appticles.com';
         $_GET['comment'] = 'This is a test comment '.time();
 
         $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $response = json_decode($export->save_comment(), true);
 
         $this->assertEquals(1, $response['status']);
@@ -330,14 +331,14 @@ class SaveCommentTest extends WP_UnitTestCase
 
         // make request & verify data
         $_GET['articleId'] = $post_id;
-        $_GET['code'] = WMobilePack::wmp_set_token();
+        $_GET['code'] = WMobilePack_Tokens::get_token();
         $_GET['author'] = 'Comment Author';
         $_GET['email'] = 'dummy@appticles.com';
         $_GET['comment'] = 'This is a test comment '.time();
 
         $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $response = json_decode($export->save_comment(), true);
 
         $this->assertEquals(2, $response['status']);
@@ -365,7 +366,7 @@ class SaveCommentTest extends WP_UnitTestCase
 
         // make request & verify data
         $_GET['articleId'] = $post_id;
-        $_GET['code'] = WMobilePack::wmp_set_token();
+        $_GET['code'] = WMobilePack_Tokens::get_token();
         $_GET['author'] = 'Comment Author';
         $_GET['email'] = 'dummy@appticles.com';
         $_GET['comment'] = 'This is a test comment '.time();
@@ -373,7 +374,7 @@ class SaveCommentTest extends WP_UnitTestCase
 
         $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $response = json_decode($export->save_comment(), true);
 
         $this->assertEquals(2, $response['status']);
@@ -407,12 +408,12 @@ class SaveCommentTest extends WP_UnitTestCase
 
         // make request & verify data
         $_GET['articleId'] = $post_id;
-        $_GET['code'] = WMobilePack::wmp_set_token();
+        $_GET['code'] = WMobilePack_Tokens::get_token();
         $_GET['comment'] = 'This is a test comment '.time();
 
         $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $response = json_decode($export->save_comment(), true);
 
         $this->assertEquals(2, $response['status']);

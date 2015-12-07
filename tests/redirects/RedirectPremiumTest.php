@@ -20,11 +20,10 @@ if (class_exists('WPMPTestsUtils')) {
 			// enable connection with the API key
 			$arrData = array(
 				'premium_api_key' => 'apikeytest',
-				'premium_active'  => 1,
-				// 'premium_config_path' => home_url().'/wp-content/plugins/wordpress-mobile-pack/tests/config_premium.json'
+				'premium_active'  => 1
 			);
 				
-			WMobilePack::wmp_update_settings($arrData);
+			WMobilePack_Options::update_settings($arrData);
 			
 			// switch theme to the one from the plugin
 			/*register_theme_directory('plugins/wordpress-mobile-pack/themes');
@@ -48,7 +47,7 @@ if (class_exists('WPMPTestsUtils')) {
 			);
 			
 			// save options
-			WMobilePack::wmp_update_settings($arrData);
+			WMobilePack_Options::update_settings($arrData);
 			
 			wp_set_current_user( $this->old_current_user );
 			
@@ -72,7 +71,7 @@ if (class_exists('WPMPTestsUtils')) {
 			
 			$themes = wp_get_theme();
 			
-			if (WMobilePack::wmp_get_setting('premium_active') == 1 && WMobilePack::wmp_get_setting('premium_api_key') != '') {
+			if (WMobilePack_Options::get_setting('premium_active') == 1 && WMobilePack_Options::get_setting('premium_api_key') != '') {
 				
 				$request_url = WPMPTestsUtils::get_furl(home_url());
 				$response = WPMPTestsUtils::make_request($request_url);
@@ -88,7 +87,7 @@ if (class_exists('WPMPTestsUtils')) {
 		 */
 		function test_post() {
 			
-			if (WMobilePack::wmp_get_setting('premium_active') == 1 && WMobilePack::wmp_get_setting('premium_api_key') != '') {
+			if (WMobilePack_Options::get_setting('premium_active') == 1 && WMobilePack_Options::get_setting('premium_api_key') != '') {
 			
 				$post_id = 1241;
 				$request_url = WPMPTestsUtils::get_furl(home_url().'/?p='.$post_id);
@@ -111,7 +110,7 @@ if (class_exists('WPMPTestsUtils')) {
 		 */
 		function test_page() {
 			
-			if (WMobilePack::wmp_get_setting('premium_active') == 1 && WMobilePack::wmp_get_setting('premium_api_key') != '') {
+			if (WMobilePack_Options::get_setting('premium_active') == 1 && WMobilePack_Options::get_setting('premium_api_key') != '') {
 			
 				$page_id = 1086;
 				$request_url = WPMPTestsUtils::get_furl(home_url().'/?page_id='.$page_id);
@@ -133,7 +132,7 @@ if (class_exists('WPMPTestsUtils')) {
 		 */
 		function test_category() {
 	 
-			if (WMobilePack::wmp_get_setting('premium_active') == 1 && WMobilePack::wmp_get_setting('premium_api_key') != '') {
+			if (WMobilePack_Options::get_setting('premium_active') == 1 && WMobilePack_Options::get_setting('premium_api_key') != '') {
 			
 				$category_id = 38;
 				$request_url = WPMPTestsUtils::get_furl(home_url().'?cat='.$category_id);

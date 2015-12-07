@@ -1,6 +1,6 @@
 <?php
 
-require_once(WMP_PLUGIN_PATH.'export/class-wmp-formatter.php');
+require_once(WMP_PLUGIN_PATH.'inc/class-wmp-formatter.php');
 
 class ClickToCallTest extends WP_UnitTestCase
 {
@@ -12,7 +12,7 @@ class ClickToCallTest extends WP_UnitTestCase
     {
         parent::setUp();
 
-        $this->purifier = WMP_Formatter::init_purifier();
+        $this->purifier = WMobilePack_Formatter::init_purifier();
     }
 
 

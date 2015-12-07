@@ -10,7 +10,7 @@ class ExportSettingsTest extends WP_UnitTestCase
      */
     function test_export_settings_without_api_key_returns_error()
     {
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $this->assertEquals($export->export_settings(), json_encode(array('error' => 'Missing post data (API Key) or mismatch.', 'status' => 0)));
     }
 
@@ -19,9 +19,9 @@ class ExportSettingsTest extends WP_UnitTestCase
      */
     function test_export_settings_with_invalid_api_key_returns_error()
     {
-        $_POST['apiKey'] = 'dummyapikey';
+        $_POST['apiKey'] = 'dummyapikey@@#';
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $this->assertEquals($export->export_settings(), json_encode(array('error' => 'Missing post data (API Key) or mismatch.', 'status' => 0)));
     }
 
@@ -35,7 +35,7 @@ class ExportSettingsTest extends WP_UnitTestCase
         update_option('wmpack_premium_api_key', $_POST['apiKey']);
         update_option('wmpack_premium_active', 1);
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $this->assertEquals($export->export_settings(), json_encode(array('error' => 'Premium plugin is not active.', 'status' => 0)));
     }
 
@@ -49,7 +49,7 @@ class ExportSettingsTest extends WP_UnitTestCase
         update_option('wmpack_premium_api_key', $_POST['apiKey']);
         update_option('wmpack_premium_active', 0);
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
 
         $data = json_decode($export->export_settings(), true);
 

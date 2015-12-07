@@ -88,10 +88,10 @@ if (!class_exists('MobileDetectIsTabletTest')) {
 
                 $_SERVER['HTTP_USER_AGENT'] = $user_agent;
 
-                require_once(WMP_PLUGIN_PATH . 'core/mobile-detect.php');
-                $WMobileDetect = new WPMobileDetect;
+                require_once(WMP_PLUGIN_PATH.'frontend/class-detect.php');
+                $WMobileDetect = new WMobilePack_Detect;
 
-                $is_tablet = $WMobileDetect->wmp_is_tablet();
+                $is_tablet = $WMobileDetect->is_tablet();
 
                 if ($is_tablet)
                     echo $user_agent;
@@ -110,10 +110,10 @@ if (!class_exists('MobileDetectIsTabletTest')) {
 
                 $_SERVER['HTTP_USER_AGENT'] = $user_agent;
 
-                require_once(WMP_PLUGIN_PATH . 'core/mobile-detect.php');
-                $WMobileDetect = new WPMobileDetect;
+                require_once(WMP_PLUGIN_PATH.'frontend/class-detect.php');
+                $WMobileDetect = new WMobilePack_Detect;
 
-                $is_tablet = $WMobileDetect->wmp_is_tablet();
+                $is_tablet = $WMobileDetect->is_tablet();
 
                 $this->assertEquals(true, $is_tablet);
             }
@@ -129,10 +129,10 @@ if (!class_exists('MobileDetectIsTabletTest')) {
 
                 $_SERVER['HTTP_USER_AGENT'] = $user_agent;
 
-                require_once(WMP_PLUGIN_PATH . 'core/mobile-detect.php');
-                $WMobileDetect = new WPMobileDetect;
+                require_once(WMP_PLUGIN_PATH.'frontend/class-detect.php');
+                $WMobileDetect = new WMobilePack_Detect;
 
-                $is_tablet = $WMobileDetect->wmp_is_tablet();
+                $is_tablet = $WMobileDetect->is_tablet();
 
                 $this->assertEquals(false, $is_tablet);
             }
@@ -148,10 +148,10 @@ if (!class_exists('MobileDetectIsTabletTest')) {
 
                 $_SERVER['HTTP_USER_AGENT'] = $user_agent;
 
-                require_once(WMP_PLUGIN_PATH . 'core/mobile-detect.php');
-                $WMobileDetect = new WPMobileDetect;
+                require_once(WMP_PLUGIN_PATH.'frontend/class-detect.php');
+                $WMobileDetect = new WMobilePack_Detect;
 
-                $is_tablet = $WMobileDetect->wmp_is_tablet();
+                $is_tablet = $WMobileDetect->is_tablet();
 
                 $this->assertEquals(false, $is_tablet);
             }

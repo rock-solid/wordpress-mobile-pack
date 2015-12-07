@@ -1,6 +1,6 @@
 <?php
 
-require_once(WMP_PLUGIN_PATH.'export/class-wmp-formatter.php');
+require_once(WMP_PLUGIN_PATH.'inc/class-wmp-formatter.php');
 
 class MediaContentTest extends WP_UnitTestCase
 {
@@ -11,7 +11,7 @@ class MediaContentTest extends WP_UnitTestCase
     {
         parent::setUp();
 
-        $this->purifier = WMP_Formatter::init_purifier();
+        $this->purifier = WMobilePack_Formatter::init_purifier();
     }
 
     public function test_paragraph(){

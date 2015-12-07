@@ -98,7 +98,7 @@ if (!class_exists('MobileDetectPremiumTest')) {
                 'premium_active' => 1
             );
 
-            WMobilePack::wmp_update_settings($arrData);
+            WMobilePack_Options::update_settings($arrData);
         }
 
 
@@ -112,7 +112,7 @@ if (!class_exists('MobileDetectPremiumTest')) {
             );
 
             // save options
-            WMobilePack::wmp_update_settings($arrData);
+            WMobilePack_Options::update_settings($arrData);
 
             wp_set_current_user($this->old_current_user);
 
@@ -130,10 +130,10 @@ if (!class_exists('MobileDetectPremiumTest')) {
 
                 $_SERVER['HTTP_USER_AGENT'] = $user_agent;
 
-                require_once(WMP_PLUGIN_PATH . 'core/mobile-detect.php');
-                $WMobileDetect = new WPMobileDetect;
+                require_once(WMP_PLUGIN_PATH.'frontend/class-detect.php');
+                $WMobileDetect = new WMobilePack_Detect;
 
-                $load_app = $WMobileDetect->wmp_detect_device();
+                $load_app = $WMobileDetect->detect_device();
 
                 $this->assertEquals(true, $load_app);
             }
@@ -149,10 +149,10 @@ if (!class_exists('MobileDetectPremiumTest')) {
 
                 $_SERVER['HTTP_USER_AGENT'] = $user_agent;
 
-                require_once(WMP_PLUGIN_PATH . 'core/mobile-detect.php');
-                $WMobileDetect = new WPMobileDetect;
+                require_once(WMP_PLUGIN_PATH.'frontend/class-detect.php');
+                $WMobileDetect = new WMobilePack_Detect;
 
-                $load_app = $WMobileDetect->wmp_detect_device();
+                $load_app = $WMobileDetect->detect_device();
 
                 if ($load_app == false)
                     echo $user_agent;
@@ -172,10 +172,10 @@ if (!class_exists('MobileDetectPremiumTest')) {
 
                 $_SERVER['HTTP_USER_AGENT'] = $user_agent;
 
-                require_once(WMP_PLUGIN_PATH . 'core/mobile-detect.php');
-                $WMobileDetect = new WPMobileDetect;
+                require_once(WMP_PLUGIN_PATH.'frontend/class-detect.php');
+                $WMobileDetect = new WMobilePack_Detect;
 
-                $load_app = $WMobileDetect->wmp_detect_device();
+                $load_app = $WMobileDetect->detect_device();
 
                 $this->assertEquals(false, $load_app);
             }
@@ -191,10 +191,10 @@ if (!class_exists('MobileDetectPremiumTest')) {
 
                 $_SERVER['HTTP_USER_AGENT'] = $user_agent;
 
-                require_once(WMP_PLUGIN_PATH . 'core/mobile-detect.php');
-                $WMobileDetect = new WPMobileDetect;
+                require_once(WMP_PLUGIN_PATH.'frontend/class-detect.php');
+                $WMobileDetect = new WMobilePack_Detect;
 
-                $load_app = $WMobileDetect->wmp_detect_device();
+                $load_app = $WMobileDetect->detect_device();
 
                 $this->assertEquals(false, $load_app);
             }

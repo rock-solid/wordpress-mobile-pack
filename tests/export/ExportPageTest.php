@@ -8,8 +8,8 @@ class ExportPageTest extends WP_UnitTestCase
     function setUp(){
         parent::setUp();
 
-        update_option('wmpack_inactive_pages', serialize(array()));
-        update_option('wmpack_ordered_pages', serialize(array()));
+        update_option('wmpack_inactive_pages', array());
+        update_option('wmpack_ordered_pages', array());
     }
 
     /**
@@ -17,7 +17,7 @@ class ExportPageTest extends WP_UnitTestCase
      */
     function test_export_page_without_id_returns_error()
     {
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $this->assertEquals($export->export_page(), json_encode(array('error' => 'Invalid post id')));
     }
 
@@ -31,7 +31,7 @@ class ExportPageTest extends WP_UnitTestCase
 
         $_GET['pageId'] = $post_id;
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $this->assertEquals($export->export_page(), json_encode(array('page' => array())));
 
         wp_delete_post($post_id);
@@ -52,7 +52,7 @@ class ExportPageTest extends WP_UnitTestCase
 
         $_GET['pageId'] = $post_id;
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $this->assertEquals($export->export_page(), json_encode(array('page' => array())));
 
         wp_delete_post($post_id);
@@ -73,7 +73,7 @@ class ExportPageTest extends WP_UnitTestCase
 
         $_GET['pageId'] = $post_id;
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $this->assertEquals($export->export_page(), json_encode(array('page' => array())));
 
         wp_delete_post($post_id);
@@ -93,9 +93,9 @@ class ExportPageTest extends WP_UnitTestCase
 
         $_GET['pageId'] = $post_id;
 
-        update_option('wmpack_inactive_pages', serialize(array($post_id)));
+        update_option('wmpack_inactive_pages', array($post_id));
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $this->assertEquals($export->export_page(), json_encode(array('page' => array())));
 
         wp_delete_post($post_id);
@@ -132,7 +132,7 @@ class ExportPageTest extends WP_UnitTestCase
         // make request and verify response
         $_GET['pageId'] = $post_id;
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $data = json_decode($export->export_page(), true);
 
         $this->assertArrayHasKey('page', $data);
@@ -172,7 +172,7 @@ class ExportPageTest extends WP_UnitTestCase
         // make request and verify response
         $_GET['pageId'] = $post_id;
 
-        $export = new WMP_Export();
+        $export = new WMobilePack_Export();
         $data = json_decode($export->export_page(), true);
 
         $this->assertTrue(strpos($data['page']['content'], 'This is the modified content') !== false);
