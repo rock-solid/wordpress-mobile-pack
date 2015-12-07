@@ -90,7 +90,7 @@ if (isset($_GET['content'])) {
                 break;
 
             default:
-                echo '{"error":"No export requested"}';
+                echo '{"error":"No export requested","status":0}';
         }
     }
 
