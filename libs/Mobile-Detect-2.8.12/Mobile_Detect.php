@@ -25,7 +25,7 @@
  * @version     2.8.12
  */
 
-class WPMP_Mobile_Detect
+class WMP_Mobile_Detect
 {
     /**
      * Mobile detection type.

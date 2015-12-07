@@ -1,0 +1,16 @@
+## ENABLE GZIP COMPRESSION ##
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/css
+BrowserMatch ^Mozilla/4 gzip-only-text/html
+BrowserMatch ^Mozilla/4\.0[678] no-gzip
+BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+</IfModule>
+## ENABLE GZIP COMPRESSION ##
+
+## ENABLE BROWSER CACHING ##
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType text/css "access plus 1 week"
+ExpiresDefault "access plus 2 days"
+</IfModule>
+## ENABLE BROWSER CACHING ##
