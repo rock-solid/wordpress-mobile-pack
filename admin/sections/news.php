@@ -1,6 +1,6 @@
 <?php 
 // get news & whitepaper
-$news_updates = WMobilePackAdmin::wmp_news_updates();
+$news_updates = WMobilePack_Admin::news_updates();
 
 if (!empty($news_updates)):
 

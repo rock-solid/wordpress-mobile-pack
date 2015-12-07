@@ -1,7 +1,7 @@
 <script type="text/javascript">
     if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
-            
+
             WMPJSInterface.localpath = "<?php echo plugins_url()."/".WMP_DOMAIN."/"; ?>";
             WMPJSInterface.init();
         });
@@ -10,14 +10,14 @@
 <div id="wmpack-admin">
     <div class="spacer-60"></div>
     <!-- set title -->
-    <h1><?php echo WMP_PLUGIN_NAME;?></h1>
+    <h1><?php echo WMP_PLUGIN_NAME.' '.WMP_VERSION;?></h1>
     <div class="spacer-20"></div>
-    <?php $page_content = WMobilePackAdmin::wmp_whatsnew_updates();?>
+    <?php $page_content = WMobilePack_Admin::whatsnew_updates();?>
     <div class="whats-new">
         <div class="left-side"> 
         
             <!-- add nav menu -->
-            <?php include_once('sections/wmp-admin-menu.php'); ?>
+            <?php include_once(WMP_PLUGIN_PATH.'admin/sections/admin-menu.php'); ?>
             <div class="spacer-0"></div>
             
             <?php if(is_array($page_content) && !empty($page_content)):?>
@@ -36,16 +36,6 @@
                         <?php endif;?>
                         
                         <div class="spacer-20"></div>
-                            
-                        <?php 
-                            $new_version = WMobilePack::wmp_new_plugin_version();
-                            
-                            if ($new_version !== null):
-                        ?>
-                            <p class="upgrade-message"><a href="<?php echo admin_url( 'plugins.php' );?>"><u>WP Mobile Pack <?php echo $new_version;?> is available. Please update now.</u></a></p>
-                            <div class="spacer-20"></div>
-                            
-                        <?php endif;?>
                     
                         <?php if (array_key_exists('banner', $page_content['header'])):?>
                             <div class="showcase">
@@ -74,9 +64,7 @@
                             <div class="grey-line"></div>
                             <div class="spacer-15"></div>
                         <?php endif;?>
-                        
-                        <div class="spacer-20"></div>
-                        
+
                         <?php if (array_key_exists('list', $page_content['features']) && is_array($page_content['features']['list'])):?>
                             
                             <?php 
@@ -133,13 +121,13 @@
         </div>
         <div class="right-side"> 
             <!-- add news and updates -->
-            <?php include_once('sections/wmp-news.php'); ?>
+            <?php include_once(WMP_PLUGIN_PATH.'admin/sections/news.php'); ?>
 
-			<!-- add waitlist form -->
-            <?php include_once('sections/wmp-waitlist.php'); ?>
+            <!-- waitlist form -->
+            <?php include_once(WMP_PLUGIN_PATH.'admin/sections/waitlist.php'); ?>
  
             <!-- add feedback form -->
-            <?php include_once('sections/wmp-feedback.php'); ?>
+            <?php include_once(WMP_PLUGIN_PATH.'admin/sections/feedback.php'); ?>
         </div>
     </div>
 </div>

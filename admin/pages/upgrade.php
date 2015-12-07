@@ -1,7 +1,7 @@
 <script type="text/javascript">
     if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
-            
+
             WMPJSInterface.localpath = "<?php echo plugins_url()."/".WMP_DOMAIN."/"; ?>";
             WMPJSInterface.init();
         });
@@ -10,22 +10,22 @@
 <div id="wmpack-admin">
     <div class="spacer-60"></div>
     <!-- set title -->
-    <h1><?php echo WMP_PLUGIN_NAME;?></h1>
+    <h1><?php echo WMP_PLUGIN_NAME.' '.WMP_VERSION;?></h1>
     <div class="spacer-20"></div>
 
     <div class="more">
-        <div class="left-side"> 
-        
+        <div class="left-side">
+
             <!-- add nav menu -->
-            <?php include_once('sections/wmp-admin-menu.php'); ?>
+            <?php include_once(WMP_PLUGIN_PATH.'admin/sections/admin-menu.php'); ?>
             <div class="spacer-0"></div>
 
             <?php
-                $page_content = WMobilePackAdmin::wmp_more_updates();
+            $page_content = WMobilePack_Admin::more_updates();
 
-                if (is_array($page_content) && !empty($page_content)):
-                    if (array_key_exists('premium', $page_content)):
-            ?>
+            if (is_array($page_content) && !empty($page_content)):
+                if (array_key_exists('premium', $page_content)):
+                    ?>
 
                     <div class="details">
                         <div class="spacer-10"></div>
@@ -45,12 +45,12 @@
                         <?php if (array_key_exists('packages', $page_content['premium']) && is_array($page_content['premium']['packages'])): ?>
 
                             <?php
-                                $feed_url = '';
+                            $feed_url = '';
 
-                                if (get_bloginfo('atom_url') != null && get_bloginfo('atom_url') != '')
-                                    $feed_url = '&feedurl='.urlencode(get_bloginfo('atom_url'));
-                                elseif (get_bloginfo('rss2_url') != null && get_bloginfo('rss2_url') != '')
-                                    $feed_url = '&feedurl='.urlencode(get_bloginfo('rss2_url'));
+                            if (get_bloginfo('atom_url') != null && get_bloginfo('atom_url') != '')
+                                $feed_url = '&feedurl='.urlencode(get_bloginfo('atom_url'));
+                            elseif (get_bloginfo('rss2_url') != null && get_bloginfo('rss2_url') != '')
+                                $feed_url = '&feedurl='.urlencode(get_bloginfo('rss2_url'));
                             ?>
 
                             <?php foreach ($page_content['premium']['packages'] as $package):?>
@@ -89,10 +89,10 @@
                                 <?php if (array_key_exists('button_text', $package) && array_key_exists('button_link', $package)):?>
                                     <div class="upgrade-btns">
                                         <?php
-                                            $btn_link = $package['button_link'].'&wmp_v=21';
+                                        $btn_link = $package['button_link'].'&wmp_v=21';
 
-                                            if (array_key_exists('use_feed_param', $package) && $package['use_feed_param'] == 1)
-                                                $btn_link .= $feed_url;
+                                        if (array_key_exists('use_feed_param', $package) && $package['use_feed_param'] == 1)
+                                            $btn_link .= $feed_url;
                                         ?>
                                         <a href="<?php echo $btn_link;?>" class="btn orange smaller" target="_blank"><?php echo $package['button_text'];?></a>
 
@@ -115,11 +115,11 @@
                         <?php endif;?>
                         <div class="spacer-20"></div>
                     </div>
-            <?php
-                    endif;
-                elseif ($page_content == 'warning'):
-            ?>
-            	<div class="details">
+                <?php
+                endif;
+            elseif ($page_content == 'warning'):
+                ?>
+                <div class="details">
                     <div class="spacer-10"></div>
                     <div class="message-container warning">
                         <div class="wrapper">
@@ -132,13 +132,14 @@
                     <div class="spacer-10"></div>
                 </div>
             <?php endif;?>
-        </div>                       
-                                                    
+        </div>
+
         <div class="right-side">
-        	<!-- add waitlist form -->
-            <?php include_once('sections/wmp-waitlist.php'); ?> 
+            <!-- waitlist form -->
+            <?php include_once(WMP_PLUGIN_PATH.'admin/sections/waitlist.php'); ?>
+
             <!-- add feedback form -->
-            <?php include_once('sections/wmp-feedback.php'); ?>
+            <?php include_once(WMP_PLUGIN_PATH.'admin/sections/feedback.php'); ?>
         </div>
     </div>
 </div>

@@ -1,7 +1,7 @@
 <script type="text/javascript">
     if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
-            
+
             WMPJSInterface.localpath = "<?php echo plugins_url()."/".WMP_DOMAIN."/"; ?>";
             WMPJSInterface.init();
         });
@@ -10,10 +10,11 @@
 <?php
 
 	$categories = get_categories();
-	$order_categories = unserialize(WMobilePack::wmp_get_setting('ordered_categories'));
-	
-	// Depending on the language settings, not all categories might be visible at the same time
-    $setting_inactive_categories = unserialize(WMobilePack::wmp_get_setting('inactive_categories'));
+
+	$order_categories = WMobilePack_Options::get_setting('ordered_categories');
+
+    // Depending on the language settings, not all categories might be visible at the same time
+    $setting_inactive_categories = WMobilePack_Options::get_setting('inactive_categories');
 	$inactive_categories = array();
 	
 	// Compose inactive pages array with only the visible pages
@@ -25,35 +26,34 @@
 	// ------------------------------------ //
 	
 	$pages = get_pages();
-	$order_pages = unserialize(WMobilePack::wmp_get_setting('ordered_pages'));
+	$order_pages = WMobilePack_Options::get_setting('ordered_pages');
 	
 	// Depending on the language settings, not all pages might be visible at the same time
-	$setting_inactive_pages = unserialize(WMobilePack::wmp_get_setting('inactive_pages'));
+	$setting_inactive_pages = WMobilePack_Options::get_setting('inactive_pages');
 	$inactive_pages = array();
 	
 	// Compose inactive pages array with only the visible pages
-	foreach($pages as $key => $page) {
+	foreach ($pages as $key => $page){
 		if (in_array($page->ID, $setting_inactive_pages))
 			$inactive_pages[] = $page->ID;
 	}
-	
 ?>
 <div id="wmpack-admin">
 	<div class="spacer-60"></div>
     <!-- set title -->
-    <h1><?php echo WMP_PLUGIN_NAME;?></h1>
+    <h1><?php echo WMP_PLUGIN_NAME.' '.WMP_VERSION;?></h1>
 	<div class="spacer-20"></div>
 	<div class="content">
         <div class="left-side">
         
             <!-- add nav menu -->
-            <?php include_once('sections/wmp-admin-menu.php'); ?>
+            <?php include_once(WMP_PLUGIN_PATH.'admin/sections/admin-menu.php'); ?>
             <div class="spacer-0"></div>
             
             <!-- add content form -->
             <div class="details">
 
-                <?php if (WMobilePack::wmp_active_plugin('Polylang')):?>
+                <?php if (WMobilePack::is_active_plugin('Polylang')):?>
                     <div class="message-container warning">
                         <div class="wrapper">
                             <span>When using Polylang, please make sure to select "<strong>Show all languages</strong>" when ordering categories and pages. Inconsistent ordering will result otherwise.</span>
@@ -217,7 +217,7 @@
                                     <span class="title"><?php echo $page->post_title;?></span>
                                 </div>
                                 <div class="buttons">
-                                    <a href="<?php echo admin_url('admin.php?page=wmp-page-details&id='.$page->ID);?>" class="edit" title="Edit page"></a> 
+                                    <a href="<?php echo admin_url('admin.php?page=wmp-page-details&id='.$page->ID);?>" class="edit" title="Edit page"></a>
                                     <span class="delete" title="Delete page" style="display: none;"></span>
                                 </div>
                             </li>
@@ -240,11 +240,11 @@
         </div>
     
         <div class="right-side">
-        	<!-- add waitlist form -->
-            <?php include_once('sections/wmp-waitlist.php'); ?>
-            
+            <!-- waitlist form -->
+            <?php include_once(WMP_PLUGIN_PATH.'admin/sections/waitlist.php'); ?>
+
             <!-- add feedback form -->
-            <?php include_once('sections/wmp-feedback.php'); ?>
+            <?php include_once(WMP_PLUGIN_PATH.'admin/sections/feedback.php'); ?>
         </div>
 	</div>
 </div>
@@ -252,7 +252,7 @@
 <script type="text/javascript">
     if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
-            
+
             window.WMPJSInterface.add("UI_editcategories","WMP_EDIT_CATEGORIES",{'DOMDoc':window.document}, window);
             window.WMPJSInterface.add("UI_editpages","WMP_EDIT_PAGES",{'DOMDoc':window.document}, window);
         });
