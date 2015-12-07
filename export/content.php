@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 header("Content-Type: application/json; charset=UTF-8");
 
 require_once("../../../../wp-config.php");
 
-if ( ! class_exists( 'WMP_Export' ) ) {
+if ( ! class_exists( 'WMobilePack_Export' ) ) {
     require_once(WMP_PLUGIN_PATH.'export/class-export.php');
 }
 
@@ -13,9 +13,9 @@ error_reporting(0);
 
 if (isset($_GET['content'])) {
 
-    $export = new WMP_Export();
+    $export = new WMobilePack_Export();
 
-    if (isset($_GET['callback'])) {
+    if (isset($_GET['callback'])){
 
         // filter callback param
         $callback = $export->purifier->purify($_GET['callback']);
@@ -90,9 +90,8 @@ if (isset($_GET['content'])) {
                 break;
 
             default:
-                echo '{"error":"No export requested","status":0}';
+                echo '{"error":"No export requested"}';
         }
     }
+
 }
-    
-?>

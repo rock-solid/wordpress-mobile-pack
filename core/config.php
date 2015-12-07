@@ -1,15 +1,10 @@
 <?php
 
-define("WMP_VERSION", '2.1.5');
-define('WMP_PLUGIN_NAME', 'WP Mobile Pack '.WMP_VERSION);
+define("WMP_VERSION", '2.2');
+define('WMP_PLUGIN_NAME', 'WP Mobile Pack');
 define('WMP_DOMAIN', 'wordpress-mobile-pack');
 
 define('WMP_PLUGIN_PATH', WP_PLUGIN_DIR . '/'.WMP_DOMAIN.'/');
-
-require_once( dirname( __FILE__ ) . '/config-uploads.php' );
-if ( !defined( 'WMP_FILES_UPLOADS_DIR' ) && !defined( 'WMP_FILES_UPLOADS_URL' ) ) {
-	wmp_set_uploads_dir();
-}
 
 define('WMP_FEEDBACK_EMAIL','feedback@appticles.com');
 

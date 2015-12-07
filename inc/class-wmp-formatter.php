@@ -1,17 +1,17 @@
 <?php
 
 // set HTML Purifier
-require_once WMP_PLUGIN_PATH.'libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php';
-require_once WMP_PLUGIN_PATH.'libs/htmlpurifier-html5/htmlpurifier_html5.php';
+require_once WMP_PLUGIN_PATH . 'libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php';
+require_once WMP_PLUGIN_PATH . 'libs/htmlpurifier-html5/htmlpurifier_html5.php';
 
-if ( ! class_exists( 'WMP_Formatter' ) ) {
+if ( ! class_exists( 'WMobilePack_Formatter' ) ) {
 
     /**
-     * Class WMP_Formatter
+     * Class WMobilePack_Formatter
      *
      * Contains different methods for formatting exported content
      */
-    class WMP_Formatter
+    class WMobilePack_Formatter
     {
 
         /**
@@ -191,3 +191,4 @@ if ( ! class_exists( 'WMP_Formatter' ) ) {
 
     }
 }
+

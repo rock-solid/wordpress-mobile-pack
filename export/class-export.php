@@ -1,17 +1,20 @@
 <?php
 
-if ( ! class_exists( 'WMP_Formatter' ) ) {
-    require_once('class-wmp-formatter.php');
+if ( ! class_exists( 'WMobilePack_Formatter' ) ) {
+    require_once(WMP_PLUGIN_PATH.'inc/class-wmp-formatter.php');
 }
 
-if ( ! class_exists( 'WMP_Export' ) ) {
+if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
     /**
-     * Class WMP_Export
+     * Class WMobilePack_Export
      *
      * Contains different methods for exporting categories, articles and comments
+     *
+     * @improvement - Move this class to the frontend folder (similar to the PRO version)?
+     *
      */
-    class WMP_Export
+    class WMobilePack_Export
     {
 
         /* ----------------------------------*/
@@ -21,7 +24,9 @@ if ( ! class_exists( 'WMP_Export' ) ) {
         public $purifier;
         private $inactive_categories = array();
         private $inactive_pages = array();
-        
+
+        // app2 supports up to 45 categories (including Latest)
+        private $limit_categories = 45;
 
         /* ----------------------------------*/
         /* Methods							 */
@@ -35,9 +40,9 @@ if ( ! class_exists( 'WMP_Export' ) ) {
          */
         public function __construct()
         {
-            $this->purifier = WMP_Formatter::init_purifier();
-            $this->inactive_categories = unserialize(WMobilePack::wmp_get_setting('inactive_categories'));
-            $this->inactive_pages = unserialize(WMobilePack::wmp_get_setting('inactive_pages'));
+            $this->purifier = WMobilePack_Formatter::init_purifier();
+            $this->inactive_categories = WMobilePack_Options::get_setting('inactive_categories');
+            $this->inactive_pages = WMobilePack_Options::get_setting('inactive_pages');
         }
 
 
@@ -91,13 +96,13 @@ if ( ! class_exists( 'WMP_Export' ) ) {
             $content = apply_filters("the_content", $post->post_content);
 
             // remove script tags
-            $content = WMP_Formatter::remove_script_tags($content);
+            $content = WMobilePack_Formatter::remove_script_tags($content);
             $content = $this->purifier->purify($content);
 
             // remove all urls from attachment images
             $content = preg_replace(array('{<a(.*?)(wp-att|wp-content\/uploads|attachment)[^>]*><img}', '{ wp-image-[0-9]*" /></a>}'), array('<img', '" />'), $content);
 
-            $description = WMP_Formatter::truncate_html($content, $description_length);
+            $description = WMobilePack_Formatter::truncate_html($content, $description_length);
             $description = $this->purifier->purify($description);
 
             // Build post array - get_the_title(), get_permalink() methods can be used inside or outside of The Loop.
@@ -111,7 +116,7 @@ if ( ! class_exists( 'WMP_Export' ) ) {
                     "author" => get_the_author_meta('display_name', $post->post_author),
                     "link" => get_permalink($post->ID),
                     "image" => !empty($image_details) ? $image_details : "",
-                    "date" => WMP_Formatter::format_date(strtotime($post->post_date)),
+                    "date" => WMobilePack_Formatter::format_date(strtotime($post->post_date)),
                     "timestamp" => strtotime($post->post_date),
                     "description" => $description,
                     "content" => $content
@@ -125,7 +130,7 @@ if ( ! class_exists( 'WMP_Export' ) ) {
                     "author" => get_the_author_meta('display_name'),
                     "link" => get_permalink(),
                     "image" => !empty($image_details) ? $image_details : "",
-                    "date" => WMP_Formatter::format_date(strtotime($post->post_date)),
+                    "date" => WMobilePack_Formatter::format_date(strtotime($post->post_date)),
                     "timestamp" => strtotime($post->post_date),
                     "description" => $description,
                     "content" => ''
@@ -184,7 +189,7 @@ if ( ! class_exists( 'WMP_Export' ) ) {
             if (!empty($arr_categories)) {
 
                 // check if the categories were ordered from the admin panel
-                $order_categories = unserialize(WMobilePack::wmp_get_setting('ordered_categories'));
+                $order_categories = WMobilePack_Options::get_setting('ordered_categories');
 
                 // check if we have a latest category (should be the first one to appear)
                 $has_latest = 0;
@@ -247,7 +252,10 @@ if ( ! class_exists( 'WMP_Export' ) ) {
                 }
             }
 
-            return $arr_ordered_categories;
+            if (WMobilePack_Options::get_setting('theme') == 2 && count($arr_ordered_categories) > $this->limit_categories){
+                return array_slice($arr_ordered_categories, 0, $this->limit_categories);
+            } else
+                return $arr_ordered_categories;
         }
 
 
@@ -856,9 +864,9 @@ if ( ! class_exists( 'WMP_Export' ) ) {
                                     'id' => $comment->comment_ID,
                                     'author' => $comment->comment_author != '' ? ucfirst($comment->comment_author) : 'Anonymous',
                                     'author_url' => $comment->comment_author_url,
-                                    'date' => WMP_Formatter::format_date(strtotime($comment->comment_date)),
+                                    'date' => WMobilePack_Formatter::format_date(strtotime($comment->comment_date)),
                                     'content' => $this->purifier->purify($comment->comment_content),
-                                    'article_id' => $comment->ID,
+                                    'article_id' => $comment->comment_post_ID,
                                     'article_title' => $comment->post_title,
                                     'avatar' => $avatar
                                 );
@@ -903,8 +911,12 @@ if ( ! class_exists( 'WMP_Export' ) ) {
                     // check token
                     if (isset($_GET['code']) && $_GET["code"] !== '') {
 
+                        if (!class_exists('WMobilePack_Tokens')) {
+                            require_once(WMP_PLUGIN_PATH . 'inc/class-wmp-tokens.php');
+                        }
+
                         // if the token is valid, go ahead and save comment to the DB
-                        if (WMobilePack::wmp_check_token($_GET['code'])) {
+                        if (WMobilePack_Tokens::check_token($_GET['code'])) {
 
                             $arr_response = array(
                                 'status' => 0,
@@ -1012,7 +1024,7 @@ if ( ! class_exists( 'WMP_Export' ) ) {
          *
          * The method is used to echo a JSON with an error and applies an exit to prevent wp_die().
          *
-         * @todo
+         * @improvement
          * If possible, improve this method by registering it as an ajax request and using wp_die() instead of exit()
          * to allow unit testing.
          */
@@ -1080,7 +1092,7 @@ if ( ! class_exists( 'WMP_Export' ) ) {
             }
 
             // get pages order
-            $order_pages = unserialize(WMobilePack::wmp_get_setting('ordered_pages'));
+            $order_pages = WMobilePack_Options::get_setting('ordered_pages');
 
             // remove inline style for the photos types of posts
             add_filter('use_default_gallery_style', '__return_false');
@@ -1116,10 +1128,11 @@ if ( ! class_exists( 'WMP_Export' ) ) {
 
                         $arr_pages[$current_key] = array(
                             'id' => $page->ID,
+                            'parent_id' => wp_get_post_parent_id($page->ID),
                             'order' => $current_key,
-                            "title" => strip_tags(trim(get_the_title())),
-                            "image" => !empty($image_details) ? $image_details : "",
-                            "content" => ''
+                            'title' => strip_tags(trim(get_the_title())),
+                            'image' => !empty($image_details) ? $image_details : "",
+                            'content' => ''
                         );
                     }
                 }
@@ -1184,13 +1197,13 @@ if ( ! class_exists( 'WMP_Export' ) ) {
                         $image_details = $this->get_post_image($post->ID);
 
                         // for the content, first check if the admin edited the content for this page
-                        if (get_option('wmpack_page_' . $post->ID) === false)
+                        if (get_option(WMobilePack_Options::$prefix.'page_' . $post->ID) === false)
                             $content = apply_filters("the_content", $post->post_content);
                         else
-                            $content = apply_filters("the_content", get_option('wmpack_page_' . $post->ID));
+                            $content = apply_filters("the_content", get_option(WMobilePack_Options::$prefix.'page_' . $post->ID));
 
                         // remove script tags
-                        $content = WMP_Formatter::remove_script_tags($content);
+                        $content = WMobilePack_Formatter::remove_script_tags($content);
                         $content = $this->purifier->purify($content);
 
                         // remove all urls from attachment images
@@ -1198,6 +1211,7 @@ if ( ! class_exists( 'WMP_Export' ) ) {
 
                         $arr_page = array(
                             "id" => $post->ID,
+                            "parent_id" => wp_get_post_parent_id($post->ID),
                             "title" => get_the_title($post->ID),
                             "link" => get_permalink($post->ID),
                             "image" => !empty($image_details) ? $image_details : "",
@@ -1255,7 +1269,7 @@ if ( ! class_exists( 'WMP_Export' ) ) {
             }
 
             // load icon from the local settings and folder
-            $icon_path = WMobilePack::wmp_get_setting('icon');
+            $icon_path = WMobilePack_Options::get_setting('icon');
 
             if ($icon_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR . $icon_path)) {
                 $icon_path = false;
@@ -1286,6 +1300,43 @@ if ( ! class_exists( 'WMP_Export' ) ) {
 
         }
 
+
+        /**
+         *
+         * Load app texts for the current locale.
+         *
+         * The JSON files with translations for each language are located in frontend/locales.
+         *
+         * @param $locale
+         * @param $response_type = javascript | list
+         * @return bool|mixed
+         *
+         */
+        public function load_language($locale, $response_type = 'javascript')
+        {
+
+            if (!class_exists('WMobilePack_Application'))
+                require_once(WMP_PLUGIN_PATH.'frontend/class-application.php');
+
+            $language_file = WMobilePack_Application::check_language_file($locale);
+
+            if ($language_file !== false) {
+
+                $appTexts = file_get_contents($language_file);
+                $appTextsJson = json_decode($appTexts, true);
+
+                if ($appTextsJson && !empty($appTextsJson) && array_key_exists('APP_TEXTS', $appTextsJson)) {
+
+                    if ($response_type == 'javascript')
+                        return 'var APP_TEXTS = ' . json_encode($appTextsJson['APP_TEXTS']);
+                    else
+                        return $appTextsJson;
+                }
+            }
+
+            return false;
+        }
+
         /**
          *
          *  The export_settings method is used for exporting the main settings, when connecting with a Premium API key.
@@ -1303,33 +1354,33 @@ if ( ! class_exists( 'WMP_Export' ) ) {
          */
         public function export_settings() {
 
-            if (isset($_POST["apiKey"]) && $_POST["apiKey"] == WMobilePack::wmp_get_setting('premium_api_key')) {
+            if (isset($_POST["apiKey"]) && preg_match('/^[a-zA-Z0-9]+$/', $_POST['apiKey'])) {
 
-                if (WMobilePack::wmp_get_setting('premium_active') == 0) {
+                if (WMobilePack_Options::get_setting('premium_active') == 0) {
 
                     // check if logo exists
-                    $logo_path = WMobilePack::wmp_get_setting('logo');
+                    $logo_path = WMobilePack_Options::get_setting('logo');
                     if ($logo_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$logo_path))
                         $logo_path = '';
                     else
                         $logo_path = WMP_FILES_UPLOADS_URL.$logo_path;
 
                     // check if icon exists
-                    $icon_path = WMobilePack::wmp_get_setting('icon');
+                    $icon_path = WMobilePack_Options::get_setting('icon');
                     if ($icon_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$icon_path))
                         $icon_path = '';
                     else
                         $icon_path = WMP_FILES_UPLOADS_URL.$icon_path;
 
                     // check if cover exists
-                    $cover_path = WMobilePack::wmp_get_setting('cover');
+                    $cover_path = WMobilePack_Options::get_setting('cover');
                     if ($cover_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$cover_path))
                         $cover_path = '';
                     else
                         $cover_path = WMP_FILES_UPLOADS_URL.$cover_path;
 
                     // check if google analytics id is set
-                    $google_analytics_id = WMobilePack::wmp_get_setting('google_analytics_id');
+                    $google_analytics_id = WMobilePack_Options::get_setting('google_analytics_id');
 
                     // set settings
                     $arr_settings = array(
@@ -1347,39 +1398,6 @@ if ( ! class_exists( 'WMP_Export' ) ) {
                     return '{"error":"Premium plugin is not active.","status":0}';
             } else
                 return '{"error":"Missing post data (API Key) or mismatch.","status":0}';
-        }
-
-        /**
-         *
-         * Load app texts for the current locale.
-         *
-         * The JSON files with translations for each language are located in frontend/locales.
-         *
-         * @param $locale
-         * @param $response_type = javascript | list
-         * @return bool|mixed
-         *
-         */
-        public function load_language($locale, $response_type = 'javascript')
-        {
-
-            $language_file = WMobilePack::wmp_check_language_file($locale);
-
-            if ($language_file !== false) {
-
-                $appTexts = file_get_contents($language_file);
-                $appTextsJson = json_decode($appTexts, true);
-
-                if ($appTextsJson && !empty($appTextsJson) && array_key_exists('APP_TEXTS', $appTextsJson)) {
-
-                    if ($response_type == 'javascript')
-                        return 'var APP_TEXTS = ' . json_encode($appTextsJson['APP_TEXTS']);
-                    else
-                        return $appTextsJson;
-                }
-            }
-
-            return false;
         }
     }
 }
