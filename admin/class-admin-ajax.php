@@ -756,11 +756,9 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                 if (isset($_POST) && is_array($_POST) && !empty($_POST)){
 
                     if (isset($_POST['wmp_editsettings_displaymode']) && $_POST['wmp_editsettings_displaymode'] != '' &&
-                        isset($_POST['wmp_editsettings_displaywebsitelink']) && is_numeric($_POST['wmp_editsettings_displaywebsitelink']) &&
-                        isset($_POST['wmp_editsettings_postsperpage']) && $_POST['wmp_editsettings_postsperpage'] != ''){
+                        isset($_POST['wmp_editsettings_displaywebsitelink']) && is_numeric($_POST['wmp_editsettings_displaywebsitelink'])){
 
-                        if (in_array($_POST['wmp_editsettings_displaymode'], array('normal', 'preview', 'disabled')) &&
-                            in_array($_POST['wmp_editsettings_postsperpage'], array('auto', 'single', 'double'))){
+                        if (in_array($_POST['wmp_editsettings_displaymode'], array('normal', 'preview', 'disabled'))){
 
                             $status = 1;
 
@@ -776,7 +774,6 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 
                             // save other options
                             WMobilePack_Options::update_settings('display_mode', $_POST['wmp_editsettings_displaymode']);
-                            WMobilePack_Options::update_settings('posts_per_page', $_POST['wmp_editsettings_postsperpage']);
                             WMobilePack_Options::update_settings('display_website_link', intval($_POST['wmp_editsettings_displaywebsitelink']));
                         }
                     }

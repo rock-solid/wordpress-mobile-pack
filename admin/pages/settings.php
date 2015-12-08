@@ -56,20 +56,7 @@
 
                         <input type="hidden" name="wmp_editsettings_displaywebsitelink" id="wmp_editsettings_displaywebsitelink" value="<?php echo $display_website_link;?>" />
                         <input type="checkbox" name="wmp_displaywebsitelink_check" id="wmp_displaywebsitelink_check" value="1" <?php if ($display_website_link == 1) echo "checked" ;?> /><label for="wmp_displaywebsitelink_check">Display back to desktop link</label>
-                        <div class="spacer-20"></div>
 
-                        <p>Choose how posts are displayed:</p>
-                        <div class="spacer-10"></div>
-                        <?php $posts_per_page = WMobilePack_Options::get_setting('posts_per_page'); ?>
-
-                        <!-- add radio buttons -->
-                        <input type="radio" name="wmp_editsettings_postsperpage" id="wmp_editsettings_postsperpage_auto" value="auto" <?php if ($posts_per_page == "auto") echo "checked" ;?> /><label for="wmp_editsettings_postsperpage_auto"><strong>Auto</strong> (combine one or two posts per page)</label>
-                        <div class="spacer-10"></div>
-
-                        <input type="radio" name="wmp_editsettings_postsperpage" id="wmp_editsettings_postsperpage_single" value="single" <?php if ($posts_per_page == "single") echo "checked" ;?> /><label for="wmp_editsettings_postsperpage_single">One post per page</label>
-                        <div class="spacer-10"></div>
-
-                        <input type="radio" name="wmp_editsettings_postsperpage" id="wmp_editsettings_postsperpage_double" value="double" <?php if ($posts_per_page == "double") echo "checked" ;?> /><label for="wmp_editsettings_postsperpage_double">Two posts per page</label>
                         <div class="spacer-30"></div>
 
                         <a href="javascript:void(0)" id="wmp_editsettings_send_btn" class="btn green smaller">Save</a>

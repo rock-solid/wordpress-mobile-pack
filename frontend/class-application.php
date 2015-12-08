@@ -312,8 +312,7 @@ if (!class_exists('WMobilePack_Application')) {
                 'font_paragraphs',
 
                 'google_analytics_id',
-                'display_website_link',
-                'posts_per_page'
+                'display_website_link'
             );
 
             $settings = array();
