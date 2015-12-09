@@ -227,12 +227,72 @@ class ExportPagesTest extends WP_UnitTestCase
         $this->assertEquals('Test Page', $data['pages'][0]['title']);
         $this->assertEquals(1, $data['pages'][0]['order']);
         $this->assertEquals('', $data['pages'][0]['content']);
+        $this->assertEquals(1, $data['pages'][0]['has_content']);
+        $this->assertEquals(0, $data['pages'][0]['parent_id']);
 
         // check image
         $this->assertArrayHasKey('image', $data['pages'][0]);
         $this->assertEquals($wp_upload_dir['baseurl'] . '/'.$filename, $data['pages'][0]['image']['src']);
         $this->assertTrue(is_numeric($data['pages'][0]['image']['width']));
         $this->assertTrue(is_numeric($data['pages'][0]['image']['height']));
+
+        wp_delete_post($post_id);
+    }
+
+
+    /**
+     * Calling export_pages() with pages that have parents returns data
+     */
+    function test_export_pages_with_parent_id_returns_data()
+    {
+        $post_id = $this->factory->post->create(
+            array(
+                'post_type' => 'page',
+                'post_title' => 'Test Page',
+                'post_content' => 'test content',
+                'post_parent' => 1234
+            )
+        );
+
+        $export = new WMobilePack_Export();
+        $data = json_decode($export->export_pages(), true);
+
+        $this->assertArrayHasKey('pages', $data);
+        $this->assertEquals(1, count($data['pages']));
+        $this->assertEquals($post_id, $data['pages'][0]['id']);
+        $this->assertEquals('Test Page', $data['pages'][0]['title']);
+        $this->assertEquals(1, $data['pages'][0]['order']);
+        $this->assertEquals('', $data['pages'][0]['content']);
+        $this->assertEquals(1, $data['pages'][0]['has_content']);
+        $this->assertEquals(1234, $data['pages'][0]['parent_id']);
+
+        wp_delete_post($post_id);
+    }
+
+    /**
+     * Calling export_pages() with pages that don't have content returns data
+     */
+    function test_export_pages_with_no_content_returns_data()
+    {
+        $post_id = $this->factory->post->create(
+            array(
+                'post_type' => 'page',
+                'post_title' => 'Test Page',
+                'post_content' => ''
+            )
+        );
+
+        $export = new WMobilePack_Export();
+        $data = json_decode($export->export_pages(), true);
+
+        $this->assertArrayHasKey('pages', $data);
+        $this->assertEquals(1, count($data['pages']));
+        $this->assertEquals($post_id, $data['pages'][0]['id']);
+        $this->assertEquals('Test Page', $data['pages'][0]['title']);
+        $this->assertEquals(1, $data['pages'][0]['order']);
+        $this->assertEquals('', $data['pages'][0]['content']);
+        $this->assertEquals(0, $data['pages'][0]['has_content']);
+        $this->assertEquals(0, $data['pages'][0]['parent_id']);
 
         wp_delete_post($post_id);
     }

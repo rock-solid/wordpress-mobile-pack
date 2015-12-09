@@ -252,10 +252,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                 }
             }
 
-            if (WMobilePack_Options::get_setting('theme') == 2 && count($arr_ordered_categories) > $this->limit_categories){
-                return array_slice($arr_ordered_categories, 0, $this->limit_categories);
-            } else
-                return $arr_ordered_categories;
+            return $arr_ordered_categories;
         }
 
 
@@ -1126,13 +1123,19 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                         // read featured image
                         $image_details = $this->get_post_image($page->ID);
 
+                        if (get_option(WMobilePack_Options::$prefix.'page_' . $page->ID) === false)
+                            $content = apply_filters("the_content", $page->post_content);
+                        else
+                            $content = apply_filters("the_content", get_option(WMobilePack_Options::$prefix.'page_' . $page->ID));
+
                         $arr_pages[$current_key] = array(
                             'id' => $page->ID,
                             'parent_id' => wp_get_post_parent_id($page->ID),
                             'order' => $current_key,
                             'title' => strip_tags(trim(get_the_title())),
                             'image' => !empty($image_details) ? $image_details : "",
-                            'content' => ''
+                            'content' => '',
+                            'has_content' => $content != '' ? 1 : 0
                         );
                     }
                 }
@@ -1215,7 +1218,8 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                             "title" => get_the_title($post->ID),
                             "link" => get_permalink($post->ID),
                             "image" => !empty($image_details) ? $image_details : "",
-                            "content" => $content
+                            "content" => $content,
+                            "has_content" => $content != '' ? 1 : 0
                         );
                     }
                 }

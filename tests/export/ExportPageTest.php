@@ -154,9 +154,9 @@ class ExportPageTest extends WP_UnitTestCase
     }
 
     /**
-     * Calling export_page() with a page that has been edited from wpmp returns data
+     * Calling export_page() with a page that has been edited from wmp returns data
      */
-    function test_export_page_with_custom_content()
+    function test_export_page_with_custom_content_returns_data()
     {
         // mock post
         $post_id = $this->factory->post->create(
@@ -176,6 +176,69 @@ class ExportPageTest extends WP_UnitTestCase
         $data = json_decode($export->export_page(), true);
 
         $this->assertTrue(strpos($data['page']['content'], 'This is the modified content') !== false);
+
+        // clean-up
+        wp_delete_post($post_id);
+
+    }
+
+    /**
+     * Calling export_page() with a page that has a parent returns data
+     */
+    function test_export_page_with_parent_returns_data()
+    {
+        // mock post
+        $post_id = $this->factory->post->create(
+            array(
+                'post_title' => 'Page Title',
+                'post_type' => 'page',
+                'post_content' => 'This is the content',
+                'post_parent' => 1234
+            )
+        );
+
+        // make request and verify response
+        $_GET['pageId'] = $post_id;
+
+        $export = new WMobilePack_Export();
+        $data = json_decode($export->export_page(), true);
+
+        $this->assertEquals($post_id, $data['page']['id']);
+        $this->assertEquals('Page Title', $data['page']['title']);
+        $this->assertTrue(strpos($data['page']['content'], 'This is the content') !== false);
+        $this->assertEquals(1, $data['page']['has_content']);
+        $this->assertEquals(1234, $data['page']['parent_id']);
+
+        // clean-up
+        wp_delete_post($post_id);
+
+    }
+
+    /**
+     * Calling export_page() with a page without content returns data
+     */
+    function test_export_page_with_empty_content_returns_data()
+    {
+        // mock post
+        $post_id = $this->factory->post->create(
+            array(
+                'post_title' => 'Page Title',
+                'post_type' => 'page',
+                'post_content' => ''
+            )
+        );
+
+        // make request and verify response
+        $_GET['pageId'] = $post_id;
+
+        $export = new WMobilePack_Export();
+        $data = json_decode($export->export_page(), true);
+
+        $this->assertEquals($post_id, $data['page']['id']);
+        $this->assertEquals('Page Title', $data['page']['title']);
+        $this->assertEquals('', $data['page']['content']);
+        $this->assertEquals(0, $data['page']['has_content']);
+        $this->assertEquals(0, $data['page']['parent_id']);
 
         // clean-up
         wp_delete_post($post_id);
