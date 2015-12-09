@@ -44,7 +44,7 @@ if ( ! class_exists( 'WMobilePack_Themes' ) ) {
                     'Category text color',
                     'Buttons',
                     'Side menu background',
-                    'Form inputs background',
+                    'Form inputs text',
                     'Cover text color'
                 ),
                 'vars' => array(

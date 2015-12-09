@@ -1,0 +1,7 @@
+# BEGIN Compress text files
+<ifModule mod_deflate.c>
+    <filesMatch "\.(php)$">
+        SetOutputFilter DEFLATE
+    </filesMatch>
+</ifModule>
+# END Compress text files

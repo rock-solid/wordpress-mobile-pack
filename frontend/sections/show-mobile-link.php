@@ -14,6 +14,6 @@ if (class_exists('WMobilePack')):
 }
     ?>
     <div id="show-mobile" style="width:100%; text-align: center;">
-        <a href="<?php echo home_url(); echo parse_url(home_url(), PHP_URL_QUERY) ? '&' : '?'; echo WMobilePack_Options::$prefix; ?>theme_mode=mobile" title="<?php echo $wmp_texts_json;?>"><?php echo $wmp_footer_text;?></a>
+        <a href="<?php echo home_url(); echo parse_url(home_url(), PHP_URL_QUERY) ? '&' : '?'; echo WMobilePack_Cookie::$prefix; ?>theme_mode=mobile" title="<?php echo $wmp_texts_json;?>"><?php echo $wmp_footer_text;?></a>
     </div>
 <?php endif;?>

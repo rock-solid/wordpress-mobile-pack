@@ -185,7 +185,7 @@
             defaultCover: "<?php echo $cover == "" ? $cdn_kits.'/others/covers/'.($is_tablet ? 'tablet' : 'phone').'/pattern-'.rand(1,8).'.jpg' : $cdn_apps."/".$arr_config_premium['shorten_url'].'/'.$cover;?>",
 
             appUrl: '<?php echo home_url();?>',
-            websiteUrl: '<?php echo home_url(); echo parse_url(home_url(), PHP_URL_QUERY) ? '&' : '?';?>wmp_theme_mode=desktop',
+            websiteUrl: '<?php echo home_url(); echo parse_url(home_url(), PHP_URL_QUERY) ? '&' : '?'; echo WMobilePack_Cookie::$prefix; ?>theme_mode=desktop',
             canonicalUrl: '<?php echo home_url();?>',
 
             preview: 0,

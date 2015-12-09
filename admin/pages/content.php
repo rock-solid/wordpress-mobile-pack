@@ -217,7 +217,7 @@
                                     <span class="title"><?php echo $page->post_title;?></span>
                                 </div>
                                 <div class="buttons">
-                                    <a href="<?php echo admin_url('admin.php?page=wmp-page-details&id='.$page->ID);?>" class="edit" title="Edit page"></a>
+                                    <a href="<?php echo admin_url('admin.php?page=wmp-page-details&id='.$page->ID);?>" class="edit" title="Edit page for mobile"></a>
                                     <span class="delete" title="Delete page" style="display: none;"></span>
                                 </div>
                             </li>

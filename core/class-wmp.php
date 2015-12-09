@@ -63,7 +63,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
             WMobilePack_Options::save_settings(WMobilePack_Options::$options);
 
             // reset tracking schedule using the current option value
-            self::schedule_tracking( WMobilePack_Options::get_setting('allow_tracking'));
+            self::schedule_tracking(WMobilePack_Options::get_setting('allow_tracking'));
 
             $WMP_Uploads = new WMobilePack_Uploads();
             $WMP_Uploads->create_uploads_dir();

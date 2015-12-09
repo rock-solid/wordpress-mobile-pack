@@ -80,19 +80,19 @@ function WMP_THEMES_GALLERY(){
 
             'app3': [
                 {
-                    src: WMPJSInterface.localpath + 'admin/images/app1/1-preview-cover.png',
+                    src: WMPJSInterface.localpath + 'admin/images/app3/1-preview-cover.png',
                     title: 'Home page cover'
                 },
                 {
-                    src: WMPJSInterface.localpath + 'admin/images/app1/2-preview-categories.png',
+                    src: WMPJSInterface.localpath + 'admin/images/app3/2-preview-categories.png',
                     title: 'Categories menu'
                 },
                 {
-                    src: WMPJSInterface.localpath + 'admin/images/app1/3-preview-menu.png',
+                    src: WMPJSInterface.localpath + 'admin/images/app3/3-preview-menu.png',
                     title: 'View posts'
                 },
                 {
-                    src: WMPJSInterface.localpath + 'admin/images/app1/4-preview-article.png',
+                    src: WMPJSInterface.localpath + 'admin/images/app3/4-preview-article.png',
                     title: 'Post details'
                 }
             ],
@@ -100,7 +100,7 @@ function WMP_THEMES_GALLERY(){
             'app4': [
                 {
                     src: WMPJSInterface.localpath + 'admin/images/app4/1-homepage.png',
-                    title: 'Home page'
+                    title: 'View posts'
                 },
                 {
                     src: WMPJSInterface.localpath + 'admin/images/app4/2-menu-opened.png',

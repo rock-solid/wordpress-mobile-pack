@@ -28,7 +28,7 @@
             <div class="spacer-10"></div>
             
             <div class="details theming">
-                <h2 class="title">Choose Your Theme</h2>
+                <h2 class="title">Choose Your Mobile Theme</h2>
                 <div class="spacer_15"></div>
                 <div class="spacer-15"></div>
                 <div class="themes">

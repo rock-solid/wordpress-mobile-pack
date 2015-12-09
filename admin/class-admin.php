@@ -47,17 +47,6 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
 
         /**
          *
-         * Method used to render the monetize page from the admin area
-         *
-         */
-        public function monetize() {
-
-            include(WMP_PLUGIN_PATH.'admin/pages/monetize.php');
-        }
-
-
-        /**
-         *
          * Method used to render the settings page from the admin area
          *
          */

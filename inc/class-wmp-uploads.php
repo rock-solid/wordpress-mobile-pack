@@ -7,7 +7,6 @@ if (!class_exists('WMobilePack_Uploads')) {
      *
      * Instantiates all the uploads and offers a number of utility methods to work with the options
      *
-     * @todo Copy htaccess file
      * @todo Test methods from this class separately
      *
      */
