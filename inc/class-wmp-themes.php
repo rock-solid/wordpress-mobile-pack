@@ -21,11 +21,11 @@ if ( ! class_exists( 'WMobilePack_Themes' ) ) {
         /* ----------------------------------*/
 
         public static $allowed_fonts = array(
-            'Roboto Condensed Light',
+            'Roboto Light Condensed',
+            'Crimson Roman',
+            'OpenSans Condensed Light',
             'Roboto Condensed Bold',
             'Roboto Condensed Regular',
-            'OpenSans Condensed Light',
-            'Crimson Roman',
             'Roboto Slab Light',
             'Helvetica Neue Light Condensed',
             'Helvetica Neue Bold Condensed',

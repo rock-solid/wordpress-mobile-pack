@@ -22,6 +22,7 @@ $texts_json_exists = WMobilePack_Application::check_language_file(get_locale());
 if ($texts_json_exists === false) {
     echo "ERROR, unable to load language file. Please check the '".WMP_DOMAIN."/frontend/locales/' folder.";
 }
+
 ?>
 <!DOCTYPE HTML>
 <html manifest="" <?php language_attributes(); ?>>
@@ -131,7 +132,7 @@ if ($texts_json_exists === false) {
     <?php if ($app_settings['theme_timestamp'] != ''):?>
         <link rel="stylesheet" href="<?php echo WMP_FILES_UPLOADS_URL.'theme-'.$app_settings['theme_timestamp'].'.css';?>" type="text/css" />
     <?php else: ?>
-        <link rel="stylesheet" href="<?php echo $theme_path;?>css/phone.css?date=20151207" type="text/css" />
+        <link rel="stylesheet" href="<?php echo $theme_path;?>css/colors-<?php echo $app_settings['color_scheme'];?>-fonts-<?php echo $app_settings['font_headlines'];?>.css?date=20151210" type="text/css" />
     <?php endif;?>
 
     <!-- custom fonts -->

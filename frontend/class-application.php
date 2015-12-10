@@ -310,7 +310,6 @@ if (!class_exists('WMobilePack_Application')) {
                 'font_headlines',
                 'font_subtitles',
                 'font_paragraphs',
-
                 'google_analytics_id',
                 'display_website_link'
             );

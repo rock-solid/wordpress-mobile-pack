@@ -67,6 +67,8 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 
             $WMP_Uploads = new WMobilePack_Uploads();
             $WMP_Uploads->create_uploads_dir();
+
+            $this->backwards_compatibility();
         }
 
 
@@ -92,6 +94,29 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 
             $WMP_Cookie->set_cookie("theme_mode", false, -3600);
             $WMP_Cookie->set_cookie("load_app", false, -3600);
+        }
+
+
+        /**
+         *
+         * Transform settings to fit the new plugin structure
+         *
+         */
+        public function backwards_compatibility(){
+
+            if (!class_exists('WMobilePack_Themes')) {
+                require_once(WMP_PLUGIN_PATH.'inc/class-wmp-themes.php');
+            }
+
+            foreach (array('headlines', 'subtitles', 'paragraphs') as $font_type) {
+
+                $font_option = WMobilePack_Options::get_setting('font_'.$font_type);
+
+                if (!is_numeric($font_option)){
+                    $new_font_option = array_search($font_option, WMobilePack_Themes::$allowed_fonts) + 1;
+                    WMobilePack_Options::update_settings('font_'.$font_type, $new_font_option);
+                }
+            }
         }
 
 
