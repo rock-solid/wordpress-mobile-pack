@@ -453,10 +453,10 @@ class ThemeSettingsTest extends WP_Ajax_UnitTestCase
         // Add hook for the ajax method
         add_action('wp_ajax_wmp_theme_settings', array( &$admin_ajax, 'theme_settings' ) );
 
-        $_POST['wmp_edittheme_colorscheme'] = "1";
-        $_POST['wmp_edittheme_fontheadlines'] = "1";
-        $_POST['wmp_edittheme_fontsubtitles'] = "1";
-        $_POST['wmp_edittheme_fontparagraphs'] = "1";
+        $_POST['wmp_edittheme_colorscheme'] = "3";
+        $_POST['wmp_edittheme_fontheadlines'] = "2";
+        $_POST['wmp_edittheme_fontsubtitles'] = "2";
+        $_POST['wmp_edittheme_fontparagraphs'] = "2";
 
         // Assume we have a previous theme that must be deleted
         update_option(WMobilePack_Options::$prefix.'theme_timestamp', '123456');
@@ -480,59 +480,6 @@ class ThemeSettingsTest extends WP_Ajax_UnitTestCase
         $this->assertEquals(array(), $response['messages']);
     }
 
-    /**
-     *
-     * Calling update theme with a color scheme that is not the default one compiles the theme and removes previous css file
-     *
-     */
-    function test_settings_with_not_default_color_scheme_compiles_theme_and_removes_old_css()
-    {
-
-        // Mock admin ajax class
-        $admin_ajax = $this->getMockBuilder('WMobilePack_Admin_Ajax')
-            ->setMethods(array('update_theme_color_scheme', 'get_theme_manager'))
-            ->getMock();
-
-        $admin_ajax->expects($this->once())
-            ->method('update_theme_color_scheme')
-            ->will($this->returnValue(array('scss' => true, 'updated' => true)));
-
-        // Mock theme manager class
-        $theme_manager = $this->mock_theme_manager(
-            array('compiled' => true, 'error' => false),
-            '123456'
-        );
-
-        $admin_ajax->expects($this->once())
-            ->method('get_theme_manager')
-            ->will($this->returnValue($theme_manager));
-
-        // Add hook for the ajax method
-        add_action('wp_ajax_wmp_theme_settings', array( &$admin_ajax, 'theme_settings' ) );
-
-        $_POST['wmp_edittheme_colorscheme'] = "2";
-        $_POST['wmp_edittheme_fontheadlines'] = "1";
-        $_POST['wmp_edittheme_fontsubtitles'] = "1";
-        $_POST['wmp_edittheme_fontparagraphs'] = "1";
-
-        // Assume we have a previous theme that must be deleted
-        update_option(WMobilePack_Options::$prefix.'theme_timestamp', '123456');
-
-        // Make the request
-        try {
-            $this->_handleAjax('wmp_theme_settings');
-        } catch (WPAjaxDieContinueException $e) {
-            unset($e);
-        }
-
-        $response = json_decode($this->_last_response, true);
-
-        $this->assertInternalType('array', $response);
-        $this->assertArrayHasKey('status', $response);
-        $this->assertArrayHasKey('messages', $response);
-        $this->assertEquals(1, $response['status']);
-        $this->assertEquals(array(), $response['messages']);
-    }
 
     /**
      *

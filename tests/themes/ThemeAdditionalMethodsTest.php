@@ -53,9 +53,9 @@ class ThemeAdditionalMethodsTest extends WP_UnitTestCase {
         $method->setAccessible(true);
 
         $data = array(
-            'wmp_edittheme_fontheadlines' => 2,
-            'wmp_edittheme_fontsubtitles' => 3,
-            'wmp_edittheme_fontparagraphs' => 4
+            'wmp_edittheme_fontheadlines' => 1,
+            'wmp_edittheme_fontsubtitles' => 2,
+            'wmp_edittheme_fontparagraphs' => 3
         );
 
         $response = $method->invoke($admin_ajax, $data);
@@ -86,9 +86,9 @@ class ThemeAdditionalMethodsTest extends WP_UnitTestCase {
         update_option(WMobilePack_Options::$prefix.'font_paragraphs', 4);
 
         $data = array(
-            'wmp_edittheme_fontheadlines' => 1,
-            'wmp_edittheme_fontsubtitles' => 1,
-            'wmp_edittheme_fontparagraphs' => 1
+            'wmp_edittheme_fontheadlines' => 3,
+            'wmp_edittheme_fontsubtitles' => 3,
+            'wmp_edittheme_fontparagraphs' => 3
         );
 
         $response = $method->invoke($admin_ajax, $data);
@@ -159,7 +159,7 @@ class ThemeAdditionalMethodsTest extends WP_UnitTestCase {
 
     /**
      *
-     * Calling update color scheme with a value different than default returns true and generates theme
+     * Calling update color scheme with a custom colors value generates theme
      *
      */
     function test_update_color_scheme_with_not_default_value_generates_theme()
@@ -175,7 +175,7 @@ class ThemeAdditionalMethodsTest extends WP_UnitTestCase {
         $method->setAccessible(true);
 
         $data = array(
-            'wmp_edittheme_colorscheme' => 2
+            'wmp_edittheme_colorscheme' => 0
         );
 
         $response = $method->invoke($admin_ajax, $data);
@@ -204,7 +204,7 @@ class ThemeAdditionalMethodsTest extends WP_UnitTestCase {
         update_option(WMobilePack_Options::$prefix.'color_scheme', 2);
 
         $data = array(
-            'wmp_edittheme_colorscheme' => 1
+            'wmp_edittheme_colorscheme' => 3
         );
 
         $response = $method->invoke($admin_ajax, $data);
