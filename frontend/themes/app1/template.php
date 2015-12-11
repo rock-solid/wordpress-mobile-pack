@@ -124,7 +124,8 @@ if ($texts_json_exists === false) {
             hasFacebook: 0,
             hasTwitter: 0,
             hasGoogle: 0,
-            commentsToken: "<?php echo $app_settings['comments_token'];?>"
+            commentsToken: "<?php echo $app_settings['comments_token'];?>",
+            articlesPerCard: "auto"
         }
     </script>
 
