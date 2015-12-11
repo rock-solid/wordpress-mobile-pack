@@ -6,6 +6,7 @@ if ( ! class_exists( 'WMobilePack_Options' ) ) {
      * Overall Option Management class
      *
      * Instantiates all the options and offers a number of utility methods to work with the options
+     *
      */
     class WMobilePack_Options
     {
@@ -37,7 +38,7 @@ if ( ! class_exists( 'WMobilePack_Options' ) ) {
             'inactive_categories' => array(),
             'inactive_pages' => array(),
             'ordered_categories' => array(),
-            'ordered_pages' => array(),
+            'ordered_pages' => array(), // this option is @deprecated starting from v2.2
 
             // other settings
             'display_mode' => 'normal',

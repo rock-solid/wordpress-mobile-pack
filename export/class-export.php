@@ -25,9 +25,6 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
         private $inactive_categories = array();
         private $inactive_pages = array();
 
-        // app2 supports up to 45 categories (including Latest)
-        private $limit_categories = 45;
-
         /* ----------------------------------*/
         /* Methods							 */
         /* ----------------------------------*/
@@ -863,8 +860,8 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                                     'author_url' => $comment->comment_author_url,
                                     'date' => WMobilePack_Formatter::format_date(strtotime($comment->comment_date)),
                                     'content' => $this->purifier->purify($comment->comment_content),
-                                    'article_id' => $comment->comment_post_ID,
-                                    'article_title' => $comment->post_title,
+                                    'article_id' => $post->ID,
+                                    'article_title' => strip_tags(trim($post->post_title)),
                                     'avatar' => $avatar
                                 );
                             }
@@ -1084,12 +1081,9 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
             );
 
             if (get_bloginfo('version') >= 3.6) {
-                $args['orderby'] = 'title';
+                $args['orderby'] = 'menu_order title';
                 $args['order'] = 'ASC';
             }
-
-            // get pages order
-            $order_pages = WMobilePack_Options::get_setting('ordered_pages');
 
             // remove inline style for the photos types of posts
             add_filter('use_default_gallery_style', '__return_false');
@@ -1097,6 +1091,8 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
             $pages_query = new WP_Query($args);
 
             if ($pages_query->have_posts()) {
+
+                $index_order = 1;
 
                 while ($pages_query->have_posts()) {
 
@@ -1106,20 +1102,6 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                     // if the page has a title that is not empty
                     if (strip_tags(trim(get_the_title())) != '') {
 
-                        // check the order of the page
-                        $index_order = array_search($page->ID, $order_pages);
-
-                        // create new index for new page
-                        $new_index = count($order_pages);
-                        $last_key = count($arr_pages) > 0 ? max(array_keys($arr_pages)) : 0;
-
-                        if (is_numeric($index_order))
-                            $current_key = $index_order + 1;
-                        elseif ($new_index > $last_key)
-                            $current_key = $new_index + 1;
-                        else
-                            $current_key = $last_key + 1;
-
                         // read featured image
                         $image_details = $this->get_post_image($page->ID);
 
@@ -1128,22 +1110,20 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                         else
                             $content = apply_filters("the_content", get_option(WMobilePack_Options::$prefix.'page_' . $page->ID));
 
-                        $arr_pages[$current_key] = array(
+                        $arr_pages[] = array(
                             'id' => $page->ID,
                             'parent_id' => wp_get_post_parent_id($page->ID),
-                            'order' => $current_key,
+                            'order' => $index_order,
                             'title' => strip_tags(trim(get_the_title())),
                             'image' => !empty($image_details) ? $image_details : "",
                             'content' => '',
                             'has_content' => $content != '' ? 1 : 0
                         );
+
+                        $index_order++;
                     }
                 }
             }
-
-            // sort pages by key
-            ksort($arr_pages);
-            $arr_pages = array_values($arr_pages);
 
             return '{"pages":' . json_encode($arr_pages) . "}";
         }

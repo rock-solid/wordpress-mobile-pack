@@ -22,21 +22,34 @@
 		if (in_array($category->cat_ID, $setting_inactive_categories))
 			$inactive_categories[] = $category->cat_ID;
 	}
-	
+
 	// ------------------------------------ //
-	
-	$pages = get_pages();
-	$order_pages = WMobilePack_Options::get_setting('ordered_pages');
-	
+
 	// Depending on the language settings, not all pages might be visible at the same time
 	$setting_inactive_pages = WMobilePack_Options::get_setting('inactive_pages');
+
 	$inactive_pages = array();
-	
+
+    $no_root_pages = 0;
+    $inactive_root_pages = 0;
+
 	// Compose inactive pages array with only the visible pages
-	foreach ($pages as $key => $page){
-		if (in_array($page->ID, $setting_inactive_pages))
-			$inactive_pages[] = $page->ID;
+	foreach ($all_pages as $key => $page) {
+
+        if (intval($page->post_parent) == 0) {
+            $no_root_pages++;
+        }
+
+        if (in_array($page->ID, $setting_inactive_pages)){
+
+            $inactive_pages[] = $page->ID;
+
+            if (intval($page->post_parent) == 0) {
+                $inactive_root_pages++;
+            }
+        }
 	}
+
 ?>
 <div id="wmpack-admin">
 	<div class="spacer-60"></div>
@@ -158,70 +171,66 @@
            		<div class="spacer-15"></div>
                 <div class="grey-line"></div>
                 <div class="spacer-15"></div>
-                <p>Choose what pages you want to display on your mobile web application. You can edit, show/hide different pages and, if you have at least two pages, you can rearrange their order by drag &amp; drop.</p>
+                <p>Choose what pages you want to display on your mobile web application. You can edit, show or hide different pages.</p>
+                <p><strong>Please note that deactivating a parent page will also hide its child pages.</strong></p>
                 <div class="spacer-20"></div>
                 <!-- start pages list -->
-                <?php if (count($pages) > 0): ?>
+                <?php if (count($all_pages) > 0): ?>
                 
                     <form name="wmp_editpages_form" id="wmp_editpages_form" action="" method="post">
                         
-                        <div id="wmp_editpages_warning" class="message-container warning" style="display: <?php echo count($inactive_pages) < count($pages) ? 'none' : 'block'?>;">
+                        <div id="wmp_editpages_warning" class="message-container warning" style="display: <?php echo $inactive_root_pages < $no_root_pages ? 'none' : 'block'?>;">
                             <div class="wrapper">
                                 <div class="relative"><a class="close-x"></a></div>
-                                <span>You deactivated all your pages, no content will be displayed in your mobile web app!</span> 
+                                <span>You deactivated all your main pages, no content will be displayed in your mobile web app!</span>
                             </div>
                             <div class="spacer-10"></div>
                         </div>
-                
+
+                        <?php
+
+                            /**
+                             * Recursive method for displaying the pages tree
+                             *
+                             * @param $list = Pages tree
+                             * @param $level = The level of the page
+                             * @param $inactive_pages = Array with inactive pages
+                             */
+                            function wmp_display_pages_tree($list, $level, $inactive_pages){
+
+                                foreach ($list as $page):
+
+                                    $status = in_array($page['obj']->ID, $inactive_pages) ? 'inactive' : 'active';
+                        ?>
+
+                                    <li data-page-id="<?php echo $page['obj']->ID;?>" style="width: <?php echo 100 - $level*5;?>%; margin-left:<?php echo $level * 5;?>%">
+                                        <div class="row" >
+                                            <span class="status <?php echo $status;?> <?php echo $level == 0 ? 'main-page' : '' ;?>"><?php echo $status;?></span>
+                                            <span class="title">
+                                                <?php
+                                                    for ($i = 0; $i < $level; $i++)
+                                                        echo ' — ';
+
+                                                    echo $page['obj']->post_title;
+                                                ?>
+                                            </span>
+                                        </div>
+                                        <div class="buttons">
+                                            <a href="<?php echo admin_url('admin.php?page=wmp-page-details&id='.$page['obj']->ID);?>" class="edit" title="Edit page for mobile"></a>
+                                            <span class="delete" title="Delete page" style="display: none;"></span>
+                                        </div>
+                                    </li>
+                        <?php
+                                    if (!empty($page['child'])):?>
+                                        <?php wmp_display_pages_tree($page['child'], $level + 1, $inactive_pages);?>
+                        <?php
+                                    endif;
+                                endforeach;
+                            }
+                        ?>
+
                         <ul class="categories pages">
-                            <?php
-								$arrPages = array();
-                                
-								if (is_array($order_pages) && !empty($order_pages)){
-								    
-									// order pages
-									foreach($pages as $key => $page) {
-											
-										$index = array_search($page->ID,$order_pages);
-										
-										// create new index for new pages
-										$new_index = count($order_pages) + 1;
-										$last_key = count($arrPages) > 0 ? max(array_keys($arrPages)) : 0;
-										
-										// set index for pages
-										if(is_numeric($index))
-											$arrPages[$index] = $page;
-										elseif($new_index > $last_key)
-											$arrPages[$new_index] = $page;
-										else
-											$arrPages[$last_key+1] = $page;
-									}
-									
-									// sort pages	
-									ksort($arrPages);
-								
-								} else
-									$arrPages = $pages;
-							?>
-							<?php 
-                                foreach ($arrPages as $key =>  $page):
-                            
-                                    $status = 'active';
-                                    if (in_array($page->ID, $inactive_pages))
-                                        $status = 'inactive';
-									
-                            ?>
-                        	<li data-page-id="<?php echo $page->ID;?>" data-order="<?php echo  $key;?>">
-                            	<div class="row">
-                                    <span class="status <?php echo $status;?>"><?php echo $status;?></span>
-                                    <span class="title"><?php echo $page->post_title;?></span>
-                                </div>
-                                <div class="buttons">
-                                    <a href="<?php echo admin_url('admin.php?page=wmp-page-details&id='.$page->ID);?>" class="edit" title="Edit page for mobile"></a>
-                                    <span class="delete" title="Delete page" style="display: none;"></span>
-                                </div>
-                            </li>
-                            <?php endforeach;?>
+                            <?php wmp_display_pages_tree($pages, 0, $inactive_pages);?>
                         </ul>
                     </form>
                 <?php else: ?>

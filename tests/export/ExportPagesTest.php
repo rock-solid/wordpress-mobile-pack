@@ -9,7 +9,6 @@ class ExportPagesTest extends WP_UnitTestCase
         parent::setUp();
 
         update_option('wmpack_inactive_pages', array());
-        update_option('wmpack_ordered_pages', array());
     }
 
     /**
@@ -68,13 +67,14 @@ class ExportPagesTest extends WP_UnitTestCase
     }
 
     /**
-     * Calling export_pages() without ordered pages returns data
+     * Calling export_pages() without ordered pages returns data with alphabetically ordered pages
      */
     function test_export_pages_without_ordered_pages_returns_data()
     {
         $post_id = $this->factory->post->create(
             array(
                 'post_type' => 'page',
+                'post_title' => 'a',
                 'post_content' => 'test content'
             )
         );
@@ -82,6 +82,7 @@ class ExportPagesTest extends WP_UnitTestCase
         $post_id2 = $this->factory->post->create(
             array(
                 'post_type' => 'page',
+                'post_title' => 'b',
                 'post_content' => 'test content'
             )
         );
@@ -93,10 +94,12 @@ class ExportPagesTest extends WP_UnitTestCase
         $this->assertEquals(2, count($data['pages']));
         $this->assertEquals($post_id, $data['pages'][0]['id']);
         $this->assertEquals(1, $data['pages'][0]['order']);
+        $this->assertEquals('a', $data['pages'][0]['title']);
         $this->assertEquals('', $data['pages'][0]['content']);
 
         $this->assertEquals($post_id2, $data['pages'][1]['id']);
         $this->assertEquals(2, $data['pages'][1]['order']);
+        $this->assertEquals('b', $data['pages'][1]['title']);
         $this->assertEquals('', $data['pages'][1]['content']);
 
         wp_delete_post($post_id);
@@ -111,13 +114,18 @@ class ExportPagesTest extends WP_UnitTestCase
         $post_id = $this->factory->post->create(
             array(
                 'post_type' => 'page',
-                'post_content' => 'test content'
+                'menu_order' => 2,
+                'post_title' => 'a',
+                'post_content' => 'test content',
+
             )
         );
 
         $post_id2 = $this->factory->post->create(
             array(
                 'post_type' => 'page',
+                'menu_order' => 1,
+                'post_title' => 'b',
                 'post_content' => 'test content'
             )
         );
@@ -131,65 +139,18 @@ class ExportPagesTest extends WP_UnitTestCase
         $this->assertEquals(2, count($data['pages']));
         $this->assertEquals($post_id2, $data['pages'][0]['id']);
         $this->assertEquals(1, $data['pages'][0]['order']);
+        $this->assertEquals('b', $data['pages'][0]['title']);
         $this->assertEquals('', $data['pages'][0]['content']);
 
         $this->assertEquals($post_id, $data['pages'][1]['id']);
         $this->assertEquals(2, $data['pages'][1]['order']);
+        $this->assertEquals('a', $data['pages'][1]['title']);
         $this->assertEquals('', $data['pages'][1]['content']);
 
         wp_delete_post($post_id);
         wp_delete_post($post_id2);
     }
 
-    /**
-     * Calling export_pages() with ordered pages returns data
-     */
-    function test_export_pages_with_ordered_pages_and_new_page_returns_data()
-    {
-        $post_id = $this->factory->post->create(
-            array(
-                'post_type' => 'page',
-                'post_content' => 'test content'
-            )
-        );
-
-        $post_id2 = $this->factory->post->create(
-            array(
-                'post_type' => 'page',
-                'post_content' => 'test content'
-            )
-        );
-
-        $post_id3 = $this->factory->post->create(
-            array(
-                'post_type' => 'page',
-                'post_content' => 'test content'
-            )
-        );
-
-        update_option('wmpack_ordered_pages', array($post_id2, $post_id));
-
-        $export = new WMobilePack_Export();
-        $data = json_decode($export->export_pages(), true);
-
-        $this->assertArrayHasKey('pages', $data);
-        $this->assertEquals(3, count($data['pages']));
-        $this->assertEquals($post_id2, $data['pages'][0]['id']);
-        $this->assertEquals(1, $data['pages'][0]['order']);
-        $this->assertEquals('', $data['pages'][0]['content']);
-
-        $this->assertEquals($post_id, $data['pages'][1]['id']);
-        $this->assertEquals(2, $data['pages'][1]['order']);
-        $this->assertEquals('', $data['pages'][1]['content']);
-
-        $this->assertEquals($post_id3, $data['pages'][2]['id']);
-        $this->assertEquals(3, $data['pages'][2]['order']);
-        $this->assertEquals('', $data['pages'][2]['content']);
-
-        wp_delete_post($post_id);
-        wp_delete_post($post_id2);
-        wp_delete_post($post_id3);
-    }
 
     /**
      * Calling export_pages() with pages that have images returns data

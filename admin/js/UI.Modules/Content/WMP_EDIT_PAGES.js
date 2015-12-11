@@ -14,8 +14,6 @@ function WMP_EDIT_PAGES(){
     this.DOMDoc;
     
     this.changingStatus = false;
-	this.editPageDialogWindow;
-	this.changingOrder = false;
 	
 	/*****************************************************************************************************/
     /*                                                                                                   */
@@ -36,7 +34,7 @@ function WMP_EDIT_PAGES(){
 
         this.initPages();
 		
-		 // custom list actions (sortable)
+		 // custom list actions
         this.initListActions();
     }
 
@@ -49,22 +47,9 @@ function WMP_EDIT_PAGES(){
     
     this.initListActions = function(){
     	
-    	/*****************************************************************************************************/
-	    /*                                                                                                   */
-	    /*                                		 ATTACH SORTABLE BEHAVIOUR                         			 */
-	    /*                                                                                                   */
-	    /*****************************************************************************************************/
-	    
-    	jQuery( "ul.pages", this.DOMDoc ).sortable( {  update: function(event, ui) { JSObject.changeOrder(); } } );
-        
-        // sorting will be disabled if we have less than 2 feeds in the list
-        this.update();
-				
-		// attach edit actions for each feed
+    	// attach edit actions for each feed
 		jQuery( "ul.pages li div.row", this.DOMDoc ).on("click", JSObject.changeStatus);
-		
-    }
-	
+    };
 
 
     /*****************************************************************************************************/
@@ -73,27 +58,12 @@ function WMP_EDIT_PAGES(){
     /*                                                                                                   */
     /*****************************************************************************************************/
     this.initPages = function(){
- 
- 		// sort list elements
- 		/*var pagesContainer =  jQuery( "ul.pages", this.DOMDoc );
-		var pagesItems = pagesContainer.children('li').get();
- 		
-		pagesItems.sort(function(a, b) {
-							var orderA = jQuery(a).attr("data-order");
-							var orderB = jQuery(b).attr("data-order");
-							if (orderA < orderB) return -1;
-							if (orderA > orderB) return 1;
-							return 0;
-						});
- 
- 		jQuery(pagesContainer).append(pagesItems);
-		*/
- 
+
         // close button action for the inactive categories warning
         jQuery( "#" + JSObject.type + "_warning a.close-x", this.form ).on("click", function(){
             jQuery('#'+JSObject.type+'_warning', JSObject.DOMDoc).hide();
-        })
-    }
+        });
+    };
 	
 	/*****************************************************************************************************/
     /*                                                                                                   */
@@ -158,7 +128,7 @@ function WMP_EDIT_PAGES(){
 							WMPJSInterface.Loader.display({message: message});
 							
 							// count remaining active categories
-							var no_active_pages = jQuery( "li span.active", JSObject.form ).length;
+							var no_active_pages = jQuery( "li span.active.main-page", JSObject.form ).length;
 							if (no_active_pages > 0){
 								jQuery('#'+JSObject.type+'_warning', JSObject.DOMDoc).hide();
 							} else {
@@ -176,88 +146,5 @@ function WMP_EDIT_PAGES(){
 				);
 			}
 		}
-    }
-	
-	
-	
-	/*****************************************************************************************************/
-    /*                                                                                                   */
-    /*                                  FUNCTION CHANGE ORDER                                      		 */
-    /*                                                                                                   */
-    /*****************************************************************************************************/
-    
-    this.changeOrder = function(){
-    	
-        if (JSObject.changingStatus == true)
-            return;
-            
-    	var stringOrder = '';
-    	
-    	// build string with the pages order
-    	jQuery( "ul.pages li", JSObject.DOMDoc).each(function(index, object){
-    	
-    		stringOrder += jQuery(this).attr("data-page-id") + ",";
-    		
-    		var newIndex = index + 1;
-            jQuery(this).attr("data-order", newIndex)
-    	});
-        
-    	// -------------------------------------- //
-        WMPJSInterface.Preloader.start();
-        JSObject.changingStatus = true;
-        
-    	// make ajax request
-    	jQuery.post(
-			ajaxurl, 
-			{
-				'action': 'wmp_content_order',
-				'type'	: 'pages',
-				'ids':   stringOrder
-			},
-			function(response){
-                WMPJSInterface.Preloader.remove(100);
-  		        JSObject.changingStatus = false;
-                
-			 	var response = Boolean(Number(String(response)));
-			 
-				if (response == true) {
-				
-					// success message								
-					var message = 'The order of the pages has been successfully changed.';
-					WMPJSInterface.Loader.display({message: message});
-				
-				} else {
-				
-                    // error message
-					var message = 'There was an error. Please reload the page and try again in few seconds or contact the plugin administrator if the problem persists.';
-					WMPJSInterface.Loader.display({message: message});	
-				}
-			}
-		)
-    }
-	
-	
-	 /*****************************************************************************************************/
-    /*                                                                                                   */
-    /*                                  FUNCTION UPDATE LIST  		                                   	 */
-    /*                                                                                                   */
-    /*****************************************************************************************************/
-    
-    this.update = function(){
-    	
-    	var noPages = jQuery("ul.pages li", this.DOMDoc).length;
-        
-        if (noPages > 1) {
-    		
-    		// enable list ordering
-    		jQuery( "ul.pages", JSObject.DOMDoc ).sortable("enable")
-    			
-    	} else {
-    		
-    		// disable list ordering
-    		jQuery( "ul.pages", JSObject.DOMDoc ).sortable("disable")
-    	}
-    }
-   
-
+    };
 }

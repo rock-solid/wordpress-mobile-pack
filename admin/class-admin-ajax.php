@@ -647,7 +647,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 
         /**
          *
-         * Method used to save the order of pages and categories in the database
+         * Method used to save the order of categories in the database
          *
          */
         public function content_order()
@@ -661,7 +661,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 
                     if (isset($_POST['ids']) && isset($_POST['type'])){
 
-                        if ($_POST['ids'] != '' && ($_POST['type'] == 'pages' || $_POST['type'] == 'categories')){
+                        if ($_POST['ids'] != '' && $_POST['type'] == 'categories'){
 
                             // Retrieve the ids list from the param
                             $items_ids = array_filter(explode(",", $_POST['ids']));
@@ -683,10 +683,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                                     $status = 1;
 
                                     // Save option
-                                    if ($_POST['type'] == 'pages')
-                                        WMobilePack_Options::update_settings('ordered_pages', $items_ids);
-                                    elseif ($_POST['type'] == 'categories')
-                                        WMobilePack_Options::update_settings('ordered_categories', $items_ids);
+                                    WMobilePack_Options::update_settings('ordered_categories', $items_ids);
                                 }
                             }
                         }

@@ -40,7 +40,7 @@
 					.row{
 						@include wbz-display-box();
 						@include wbz-box-orient(horizontal);
-						@include wbz-box-align(center);						
+						@include wbz-box-align(center);
 						height: 64px;
 						width: 90%;
 						vertical-align: middle;	
