@@ -171,8 +171,9 @@
            		<div class="spacer-15"></div>
                 <div class="grey-line"></div>
                 <div class="spacer-15"></div>
-                <p>Choose what pages you want to display on your mobile web application. You can edit, show or hide different pages.</p>
-                <p><strong>Please note that deactivating a parent page will also hide its child pages.</strong></p>
+                <p>Choose what pages you want to display on your mobile web application. You can edit, show or hide different pages. The Page Order can be set from the 'Pages' administrative panel.</p>
+                <p><strong>Please note that deactivating a parent page will also hide its child pages on the mobile version.</strong></p>
+
                 <div class="spacer-20"></div>
                 <!-- start pages list -->
                 <?php if (count($all_pages) > 0): ?>

@@ -130,8 +130,6 @@ class ExportPagesTest extends WP_UnitTestCase
             )
         );
 
-        update_option('wmpack_ordered_pages', array($post_id2, $post_id));
-
         $export = new WMobilePack_Export();
         $data = json_decode($export->export_pages(), true);
 

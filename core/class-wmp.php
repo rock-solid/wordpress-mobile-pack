@@ -77,8 +77,6 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          * The deactivate() method is called when the plugin is deactivated.
          * This method removes temporary data (transients and cookies).
          *
-         * @todo Test disable tracking
-         *
          */
         public function deactivate()
         {

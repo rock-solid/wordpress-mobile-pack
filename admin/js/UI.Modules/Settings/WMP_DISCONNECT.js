@@ -107,45 +107,38 @@ function WMP_DISCONNECT(){
 					
 					var JSON = eval (responseJSON);
 					var response = Boolean(Number(String(JSON.status)));
-					
+
 					if (response == 0) {
 						
                         if (JSON.message != undefined) {
                             
                             WMPJSInterface.Loader.display({message: JSON.message});
-                            
-                        } else {
-                            
-                            var message = 'We were unable to disconnect your plugin, please contact support.';
-						    WMPJSInterface.Loader.display({message: message});
-                        }	
-                        
-						//enable buttons
-						JSObject.addButtonsActions();
-					
-					} else { 
-					   											   
-						jQuery.post(
-
-                            ajaxurl,
-							{
-								'action': 'wmp_premium_disconnect',
-								'api_key': jQuery("#"+JSObject.type+"_apikey", JSObject.DOMDoc).val(),
-								'active': '0'
-							}, 
-							function(response1){
-
-								response1 = Boolean(Number(String(response1)));
-                                
-								if(response1 == 1) {
-                                    window.location.href = JSObject.redirectTo;
-                                } else {
-									var message = 'There was an error. Please reload the page and try again in few seconds or contact the plugin administrator if the problem persists.';
-									WMPJSInterface.Loader.display({message: message});	
-								}
-							}
-						);	
+                        }
 					}
+
+                    // Make the request to reset the API key even if the response from the API was an error
+                    // (ex. the Wordpress settings might be already deleted from Appticles)
+                    jQuery.post(
+
+                        ajaxurl,
+                        {
+                            'action': 'wmp_premium_disconnect',
+                            'api_key': jQuery("#"+JSObject.type+"_apikey", JSObject.DOMDoc).val(),
+                            'active': '0'
+                        },
+                        function(response1){
+
+                            response1 = Boolean(Number(String(response1)));
+
+                            if(response1 == 1) {
+                                window.location.href = JSObject.redirectTo;
+                            } else {
+                                var message = 'There was an error. Please reload the page and try again in few seconds or contact the plugin administrator if the problem persists.';
+                                WMPJSInterface.Loader.display({message: message});
+                            }
+                        }
+                    );
+
 							
 				},
 				error: function(responseJSON){

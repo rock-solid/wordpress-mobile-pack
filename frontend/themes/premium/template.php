@@ -1,7 +1,7 @@
 <?php
 
     $premium_manager = new WMobilePack_Premium();
-	$json_config_premium = $premium_manager->set_premium_config(); 
+	$json_config_premium = $premium_manager->set_premium_config();
     
     $arr_config_premium = null;
 	if ($json_config_premium !== false) {

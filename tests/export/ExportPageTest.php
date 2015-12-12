@@ -9,7 +9,6 @@ class ExportPageTest extends WP_UnitTestCase
         parent::setUp();
 
         update_option('wmpack_inactive_pages', array());
-        update_option('wmpack_ordered_pages', array());
     }
 
     /**

@@ -398,8 +398,6 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
          *
          * Method used to save the icon, logo or cover
          *
-         * @todo Test with not writable uploads folder
-         *
          */
         public function theme_editimages()
         {
