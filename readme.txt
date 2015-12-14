@@ -150,6 +150,14 @@ Google Ad Sense / Google Double Click for Publishers is supported on the Premium
 
 == Changelog ==
 
+= 2.2 =
+* Customize color scheme and fonts and compile SCSS theme file (similar to the PRO version)
+* Added 6 new fonts options
+* Select different font setting for headlines, subtitles and paragraphs
+* Refactoring for all admin, core files and themes files (similar to the PRO version)
+* Remove 'Monetize' preview page
+* Added preview for the 5th app theme
+
 = 2.1.5 =
 * Select a single font option for headlines, subtitles and paragraphs. Generated CSS files for all color schemes / fonts combinations.
 * Added browser caching for the app's static files, for improving loading time.
@@ -161,6 +169,7 @@ Google Ad Sense / Google Double Click for Publishers is supported on the Premium
 * Modified the 'More...' page and renamed it as 'PRO'
 * Added preview for the 4th app theme
 * Patch 05/11/2015 - Added new settings in the Premium theme index file - enable / disable Facebook and Twitter, language, ads interval
+* Patch 25/11/2015 - Remember settings when the plugin is deactivated, delete them at uninstall
 
 = 2.1.4 =
 * Translated app in multiple languages. A big thanks to all contributors: Bernhard Steinbichler (German), Péter Ágoston (Hungarian), Sandra Gorgan (Romanian), Agnieszka Bugajska (Polish), Mathias Wideroth (Swedish).
