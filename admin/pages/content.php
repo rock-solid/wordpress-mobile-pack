@@ -69,7 +69,7 @@
                 <?php if (WMobilePack::is_active_plugin('Polylang')):?>
                     <div class="message-container warning">
                         <div class="wrapper">
-                            <span>When using Polylang, please make sure to select "<strong>Show all languages</strong>" when ordering categories and pages. Inconsistent ordering will result otherwise.</span>
+                            <span>When using Polylang, please make sure to select "<strong>Show all languages</strong>" when ordering categories. Inconsistent ordering will result otherwise.</span>
                         </div>
                     </div>
                     <div class="spacer-10"></div>
