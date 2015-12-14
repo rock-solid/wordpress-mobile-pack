@@ -52,8 +52,14 @@
                     display: table;
                     width: 100%;
 
+                    h2.title {
+                        text-align: center;
+                    }
+
                     .themes{
                         display: block;
+                        width: ($theme-box-width + $theme-box-margin) * 3 + 20;
+                        margin: 0 auto;
 
                         .theme{
                             display: inline-block;
@@ -62,7 +68,7 @@
                             margin: 0 $theme-box-margin $theme-box-margin 0;
                             position: relative;
 
-                            &:nth-child(4){
+                            &:nth-child(3){
                                 margin: 0;
                             }
 
