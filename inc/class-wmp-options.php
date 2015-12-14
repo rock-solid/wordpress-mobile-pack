@@ -256,15 +256,14 @@ if ( ! class_exists( 'WMobilePack_Options' ) ) {
          *
          * Delete all transients and temporary data when the plugin is deactivated
          *
-         * @todo Check delete transients when the plugin is deactivated.
-         * @todo What happens with the old WPMP_Tracking_Hash after the plugin is upgraded? Is the option reset at upgrade?
+         * @todo Prefix WPMP_Tracking_Hash with the transient prefix instead of WPMP
          *
          */
         public static function deactivate()
         {
 
             // delete tracking hash
-            delete_option(self::$transient_prefix.'tracking_hash');
+            delete_option('WPMP_Tracking_Hash');
 
             // remove transients
             foreach (array('whats_new_updates', 'news_updates', 'more_updates', 'premium_config_path', 'tracking_cache') as $transient_name) {

@@ -55,7 +55,7 @@
                         <?php $display_website_link = WMobilePack_Options::get_setting('display_website_link'); ?>
 
                         <input type="hidden" name="wmp_editsettings_displaywebsitelink" id="wmp_editsettings_displaywebsitelink" value="<?php echo $display_website_link;?>" />
-                        <input type="checkbox" name="wmp_displaywebsitelink_check" id="wmp_displaywebsitelink_check" value="1" <?php if ($display_website_link == 1) echo "checked" ;?> /><label for="wmp_displaywebsitelink_check">Display back to desktop link</label>
+                        <input type="checkbox" name="wmp_displaywebsitelink_check" id="wmp_displaywebsitelink_check" value="1" <?php if ($display_website_link == 1) echo "checked" ;?> /><label for="wmp_displaywebsitelink_check">Display "Visit website" link</label>
 
                         <div class="spacer-30"></div>
 

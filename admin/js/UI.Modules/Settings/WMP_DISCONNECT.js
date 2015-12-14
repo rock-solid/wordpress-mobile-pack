@@ -108,13 +108,13 @@ function WMP_DISCONNECT(){
 					var JSON = eval (responseJSON);
 					var response = Boolean(Number(String(JSON.status)));
 
-					if (response == 0) {
+					/*if (response == 0) {
 						
                         if (JSON.message != undefined) {
                             
                             WMPJSInterface.Loader.display({message: JSON.message});
                         }
-					}
+					}*/
 
                     // Make the request to reset the API key even if the response from the API was an error
                     // (ex. the Wordpress settings might be already deleted from Appticles)

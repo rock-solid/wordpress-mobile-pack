@@ -40,12 +40,12 @@ if ( ! class_exists( 'WMobilePack_Tracking' ) ) {
             // Start of Metrics
             global $blog_id, $wpdb;
 
-            $hash = get_option( WMobilePack_Options::$transient_prefix.'tracking_hash', false );
+            $hash = get_option('WPMP_Tracking_Hash', false );
 
             if ( ! $hash || empty( $hash ) ) {
                 // create and store hash
                 $hash = md5( site_url() );
-                update_option( WMobilePack_Options::$transient_prefix.'tracking_hash', $hash );
+                update_option('WPMP_Tracking_Hash', $hash );
             }
 
             $pts        = array();
