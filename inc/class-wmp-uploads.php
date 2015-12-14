@@ -72,7 +72,13 @@ if (!class_exists('WMobilePack_Uploads')) {
 
             // if the directory doesn't exist, display notice
             if (!file_exists(WMP_FILES_UPLOADS_DIR)) {
-                echo '<div class="error"><p><b>Warning!</b> The '.WMP_PLUGIN_NAME.' uploads folder does not exist: '.WMP_FILES_UPLOADS_DIR.'</p></div>';
+                echo '<div class="error"><p><b>Warning!</b> The ' . WMP_PLUGIN_NAME . ' uploads folder does not exist: ' . WMP_FILES_UPLOADS_DIR . '</p></div>';
+                return;
+            }
+
+            if (!is_writable(WMP_FILES_UPLOADS_DIR)) {
+                echo '<div class="error"><p><b>Warning!</b> The ' . WMP_PLUGIN_NAME . ' uploads folder is not writable: ' . WMP_FILES_UPLOADS_DIR . '</p></div>';
+                return;
             }
         }
 

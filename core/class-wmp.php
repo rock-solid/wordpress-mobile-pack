@@ -54,8 +54,6 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          * This method adds to the DB the default settings of the plugin, creates the upload folder and
          * imports settings from the free version.
          *
-         * @todo Test enable tracking
-         *
          */
         public function activate()
         {

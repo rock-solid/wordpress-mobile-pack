@@ -69,15 +69,17 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
             foreach (array('headlines', 'subtitles', 'paragraphs') as $font_type) {
 
                 // check if the font settings have changed
-                if (isset($data['wmp_edittheme_font'.$font_type]) &&
-                    $data['wmp_edittheme_font'.$font_type] != WMobilePack_Options::get_setting('font_'.$font_type)) {
+                if (isset($data['wmp_edittheme_font'.$font_type])) {
 
-                    WMobilePack_Options::update_settings('font_'.$font_type, $data['wmp_edittheme_font'.$font_type]);
-                    $response['updated'] = true;
+                    if ($data['wmp_edittheme_font'.$font_type] != WMobilePack_Options::get_setting('font_'.$font_type)) {
 
-                    // if a font different from the default ones was selected, we need to compile the css file
-                    if ($data['wmp_edittheme_font'.$font_type] > 3) {
-                        $response['scss'] = true;
+                        WMobilePack_Options::update_settings('font_' . $font_type, $data['wmp_edittheme_font' . $font_type]);
+                        $response['updated'] = true;
+
+                        // if a font different from the default ones was selected, we need to compile the css file
+                        if ($data['wmp_edittheme_font' . $font_type] > 3) {
+                            $response['scss'] = true;
+                        }
                     }
 
                     $font_families[] = $data['wmp_edittheme_font'.$font_type];
@@ -85,7 +87,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
             }
 
             // if the font settings are different for headlines, subtitles or paragraphs, we need to compile the css file
-            if (count(array_unique($font_families)) > 1){
+            if ($response['updated'] == true && count(array_unique($font_families)) > 1){
                 $response['scss'] = true;
             }
 
@@ -228,6 +230,8 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
          * - invalid custom colors format
          * - settings were not changed
          * - other error messages resulted from compiling the theme
+         *
+         * @todo Revert to old fonts settings if the theme was not successfully compiled.
          *
          */
         public function theme_settings()

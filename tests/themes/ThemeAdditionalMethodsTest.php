@@ -98,6 +98,41 @@ class ThemeAdditionalMethodsTest extends WP_UnitTestCase {
 
     }
 
+
+    /**
+     *
+     * Calling update fonts with a single changed setting generates theme
+     *
+     */
+    function test_update_fonts_with_single_change_generates_theme()
+    {
+        $admin_ajax = $this->getMockBuilder('WMobilePack_Admin_Ajax')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        // Allow the protected method to be accessed
+        $method = new ReflectionMethod(
+            'WMobilePack_Admin_Ajax', 'update_theme_fonts'
+        );
+        $method->setAccessible(true);
+
+        update_option(WMobilePack_Options::$prefix.'font_headlines', 2);
+        update_option(WMobilePack_Options::$prefix.'font_subtitles', 3);
+        update_option(WMobilePack_Options::$prefix.'font_paragraphs', 4);
+
+        $data = array(
+            'wmp_edittheme_fontheadlines' => 2,
+            'wmp_edittheme_fontsubtitles' => 3,
+            'wmp_edittheme_fontparagraphs' => 3
+        );
+
+        $response = $method->invoke($admin_ajax, $data);
+        $this->assertInternalType('array', $response);
+        $this->assertEquals($response['scss'], true);
+        $this->assertEquals($response['updated'], true);
+
+    }
+
     /**
      *
      * Calling update fonts with unchanged values does not generate theme and returns false

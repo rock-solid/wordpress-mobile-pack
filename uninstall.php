@@ -22,7 +22,7 @@ if ($apiKey != '' && $isPremiumActive == 1) {
 // create uploads folder and define constants
 if ( !defined( 'WMP_FILES_UPLOADS_DIR' ) && !defined( 'WMP_FILES_UPLOADS_URL' ) ){
     $WMP_Uploads = new WMobilePack_Uploads();
-    $WMP_Uploads->define_uploads_dir();
+    $WMP_Uploads->define_uploads_dir(true);
 }
 
 // remove uploaded images and uploads folder

@@ -318,6 +318,13 @@ if (!class_exists('WMobilePack_Application')) {
 
             foreach ($frontend_options as $option_name){
                 $settings[$option_name] = WMobilePack_Options::get_setting($option_name);
+
+                // backwards compatibility for font settings with versions lower than 2.2
+                if (in_array($option_name, array('font_headlines', 'font_subtitles', 'font_paragraphs'))){
+                    if (!is_numeric($settings[$option_name])){
+                        $settings[$option_name] = 1;
+                    }
+                }
             }
 
             // check if custom theme exists and the file size is greater than zero
@@ -328,6 +335,11 @@ if (!class_exists('WMobilePack_Application')) {
                 if (!file_exists($custom_theme_path) || filesize($custom_theme_path) == 0){
                     $settings['theme_timestamp'] = '';
                 }
+            }
+
+            // theme file doesn't exist, an preset css file will be used instead
+            if ($settings['theme_timestamp'] == '' && $settings['font_headlines'] > 3){
+                $settings['font_headlines'] = 1;
             }
 
             // load images

@@ -23,7 +23,7 @@ if ( ! class_exists( 'WMobilePack_Themes' ) ) {
         public static $allowed_fonts = array(
             'Roboto Light Condensed',
             'Crimson Roman',
-            'OpenSans Condensed Light',
+            'Open Sans Condensed Light',
             'Roboto Condensed Bold',
             'Roboto Condensed Regular',
             'Roboto Slab Light',
@@ -141,17 +141,27 @@ if ( ! class_exists( 'WMobilePack_Themes' ) ) {
 
             } else {
 
-                // write scss file with the colors and fonts variables
-                $generated_vars_scss = $this->generate_variables_file($error);
+                $wp_uploads_dir = wp_upload_dir();
+                $wmp_uploads_dir = $wp_uploads_dir['basedir'].'/';
 
-                if ($generated_vars_scss) {
+                if (!is_writable($wmp_uploads_dir)){
 
-                    // compile css
-                    $response['compiled'] = $this->generate_css_file($theme_timestamp, $error);
+                    $response['error'] = "Error uploading theme files, your uploads folder ".$wmp_uploads_dir." is not writable.";
 
-                    // cleanup variables file
-                    $this->remove_variables_file();
-                    return $response;
+                } else {
+
+                    // write scss file with the colors and fonts variables
+                    $generated_vars_scss = $this->generate_variables_file($error);
+
+                    if ($generated_vars_scss) {
+
+                        // compile css
+                        $response['compiled'] = $this->generate_css_file($theme_timestamp, $error);
+
+                        // cleanup variables file
+                        $this->remove_variables_file();
+                        return $response;
+                    }
                 }
             }
 
