@@ -3,7 +3,7 @@ Contributors: jamesgpearce, andreatrasatti, edent, cborodescu, anghelalexandra
 Tags: mobile, mobile web, mobile internet, smartphone, iphone, android, windows 8, webkit, chrome, safari, mobile web app, html5, sencha touch, responsive ui
 Requires at least: 3.5
 Tested up to: 4.4
-Stable tag: 2.1.5
+Stable tag: 2.2
 License: GPLv2 or later
 
 The NEW WordPress Mobile Pack allows you to 'package' your existing content into a cross-platform mobile web application.

@@ -100,17 +100,20 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          */
         public function backwards_compatibility(){
 
-            if (!class_exists('WMobilePack_Themes')) {
+            if ( ! class_exists( 'WMobilePack_Themes' ) && version_compare(PHP_VERSION, '5.3') >= 0) {
                 require_once(WMP_PLUGIN_PATH.'inc/class-wmp-themes.php');
             }
+            
+            if (class_exists('WMobilePack_Themes')){
 
-            foreach (array('headlines', 'subtitles', 'paragraphs') as $font_type) {
-
-                $font_option = WMobilePack_Options::get_setting('font_'.$font_type);
-
-                if (!is_numeric($font_option)){
-                    $new_font_option = array_search($font_option, WMobilePack_Themes::$allowed_fonts) + 1;
-                    WMobilePack_Options::update_settings('font_'.$font_type, $new_font_option);
+                foreach (array('headlines', 'subtitles', 'paragraphs') as $font_type) {
+    
+                    $font_option = WMobilePack_Options::get_setting('font_'.$font_type);
+    
+                    if (!is_numeric($font_option)){
+                        $new_font_option = array_search($font_option, WMobilePack_Themes::$allowed_fonts) + 1;
+                        WMobilePack_Options::update_settings('font_'.$font_type, $new_font_option);
+                    }
                 }
             }
         }

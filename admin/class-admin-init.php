@@ -4,7 +4,7 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
     require_once(WMP_PLUGIN_PATH.'admin/class-admin.php');
 }
 
-if ( ! class_exists( 'WMobilePack_Themes' ) ) {
+if ( ! class_exists( 'WMobilePack_Themes' ) && version_compare(PHP_VERSION, '5.3') >= 0) {
     require_once(WMP_PLUGIN_PATH.'inc/class-wmp-themes.php');
 }
 
@@ -220,9 +220,12 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
                 wp_enqueue_style(WMobilePack_Options::$prefix.'css_select_box_it', plugins_url(WMP_DOMAIN.'/admin/css/jquery.selectBoxIt.css'), array(), '3.8.1');
                 wp_enqueue_script(WMobilePack_Options::$prefix.'js_select_box_it', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/jquery.selectBoxIt.min.js'), array('jquery','jquery-ui-core', 'jquery-ui-widget'), '3.8.1');
 
-                $allowed_fonts = WMobilePack_Themes::$allowed_fonts;
-                foreach ($allowed_fonts as $key => $font_family)
-                    wp_enqueue_style(WMobilePack_Options::$prefix.'css_font'.($key+1), plugins_url(WMP_DOMAIN.'/frontend/fonts/font-'.($key+1).'.css'), array(), WMP_VERSION);
+                if (class_exists('WMobilePack_Themes')) {
+                    
+                    $allowed_fonts = WMobilePack_Themes::$allowed_fonts;
+                    foreach ($allowed_fonts as $key => $font_family)
+                        wp_enqueue_style(WMobilePack_Options::$prefix.'css_font'.($key+1), plugins_url(WMP_DOMAIN.'/frontend/fonts/font-'.($key+1).'.css'), array(), WMP_VERSION);
+                }
             }
 
             wp_enqueue_style(WMobilePack_Options::$prefix.'css_magnific_popup', plugins_url(WMP_DOMAIN.'/admin/css/magnific-popup.css'), array(), '0.9.9');

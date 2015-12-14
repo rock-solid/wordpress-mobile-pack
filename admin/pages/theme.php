@@ -84,7 +84,14 @@
 
                 $selected_theme = WMobilePack_Options::get_setting('theme');
 
-                if (array_key_exists($selected_theme, WMobilePack_Themes::$color_schemes)):
+				$enable_custom_selects = false;
+
+				$blog_version = floatval(get_bloginfo('version'));
+
+				if ($blog_version >= WMobilePack_Admin_Init::$customselect_enable)
+					$enable_custom_selects = true;
+				
+                if (class_exists('WMobilePack_Themes') && array_key_exists($selected_theme, WMobilePack_Themes::$color_schemes)):
                     $theme_settings = WMobilePack_Themes::$color_schemes[$selected_theme];
             ?>
                     <div class="details">
@@ -191,16 +198,6 @@
                             <div class="font-chooser">
                                 <p class="section-header">Select Fonts</p>
                                 <div class="spacer-20"></div>
-
-                                <?php
-
-                                    $enable_custom_selects = false;
-
-                                    $blog_version = floatval(get_bloginfo('version'));
-
-                                    if ($blog_version >= WMobilePack_Admin_Init::$customselect_enable)
-                                        $enable_custom_selects = true;
-                                ?>
 
                                 <!-- add radio buttons -->
                                 <?php
@@ -418,82 +415,79 @@
             
             <div class="spacer-15"></div>
 
-            <?php if (array_key_exists($selected_theme, WMobilePack_Themes::$color_schemes) && WMobilePack_Themes::$color_schemes[$selected_theme]['cover'] == 1):?>
-
                 <div class="details branding">
 
-                    <h2 class="title">Customize Your App's Cover</h2>
-                    <div class="spacer-15"></div>
-                    <div class="grey-line"></div>
-                    <div class="spacer-20"></div>
-                    <p>Each theme comes with 6 abstract covers that are randomly displayed on the loading screen to give your app a magazine flavor. You can further personalize your mobile web application by uploading your own cover.</p>
-                    <div class="spacer-20"></div>
+				<h2 class="title">Customize Your App's Cover</h2>
+				<div class="spacer-15"></div>
+				<div class="grey-line"></div>
+				<div class="spacer-20"></div>
+				<p>Each theme comes with 6 abstract covers that are randomly displayed on the loading screen to give your app a magazine flavor. You can further personalize your mobile web application by uploading your own cover.</p>
+				<div class="spacer-20"></div>
 
-                    <form name="wmp_editcover_form" id="wmp_editcover_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_theme_editimages&type=upload" method="post" enctype="multipart/form-data">
-                        <div class="left">
-                            <?php
-                                $cover_path = WMobilePack_Options::get_setting('cover');
+				<form name="wmp_editcover_form" id="wmp_editcover_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_theme_editimages&type=upload" method="post" enctype="multipart/form-data">
+					<div class="left">
+						<?php
+							$cover_path = WMobilePack_Options::get_setting('cover');
 
-                                if ($cover_path != "") {
+							if ($cover_path != "") {
 
-                                    if (!file_exists(WMP_FILES_UPLOADS_DIR . $cover_path))
-                                        $cover_path = '';
-                                    else
-                                        $cover_path = WMP_FILES_UPLOADS_URL . $cover_path;
-                                }
-                            ?>
+								if (!file_exists(WMP_FILES_UPLOADS_DIR . $cover_path))
+									$cover_path = '';
+								else
+									$cover_path = WMP_FILES_UPLOADS_URL . $cover_path;
+							}
+						?>
 
-                            <!-- upload cover field -->
-                            <div class="wmp_editcover_uploadcover" style="display: <?php echo $cover_path == '' ? 'block' : 'none';?>;">
+						<!-- upload cover field -->
+						<div class="wmp_editcover_uploadcover" style="display: <?php echo $cover_path == '' ? 'block' : 'none';?>;">
 
-                                <label for="wmp_editcover_cover">Upload your app cover:</label>
+							<label for="wmp_editcover_cover">Upload your app cover:</label>
 
-                                <div class="custom-upload">
+							<div class="custom-upload">
 
-                                    <input type="file" id="wmp_editcover_cover" name="wmp_editcover_cover" />
-                                    <div class="fake-file">
-                                        <input type="text" id="fakefilecover" disabled="disabled" />
-                                        <a href="#" class="btn grey smaller">Browse</a>
-                                    </div>
+								<input type="file" id="wmp_editcover_cover" name="wmp_editcover_cover" />
+								<div class="fake-file">
+									<input type="text" id="fakefilecover" disabled="disabled" />
+									<a href="#" class="btn grey smaller">Browse</a>
+								</div>
 
-                                    <a href="javascript:void(0)" id="wmp_editcover_cover_removenew" class="remove" style="display: none;"></a>
-                                </div>
+								<a href="javascript:void(0)" id="wmp_editcover_cover_removenew" class="remove" style="display: none;"></a>
+							</div>
 
-                                <!-- cancel upload cover button -->
-                                <div class="wmp_editcover_changecover_cancel cancel-link" style="display: none;">
-                                    <a href="javascript:void(0);" class="cancel">cancel</a>
-                                </div>
-                                <div class="field-message error" id="error_cover_container"></div>
+							<!-- cancel upload cover button -->
+							<div class="wmp_editcover_changecover_cancel cancel-link" style="display: none;">
+								<a href="javascript:void(0);" class="cancel">cancel</a>
+							</div>
+							<div class="field-message error" id="error_cover_container"></div>
 
-                            </div>
+						</div>
 
-                            <!-- cover image -->
-                            <div class="wmp_editcover_covercontainer display-logo" style="display: <?php echo $cover_path != '' ? 'block' : 'none';?>;">
+						<!-- cover image -->
+						<div class="wmp_editcover_covercontainer display-logo" style="display: <?php echo $cover_path != '' ? 'block' : 'none';?>;">
 
-                                <label for="branding_cover">App cover:</label>
-                                <div class="img" id="wmp_editcover_currentcover" style="background:url(<?php echo $cover_path;?>); background-size:contain; background-repeat: no-repeat; background-position: center"></div>
+							<label for="branding_cover">App cover:</label>
+							<div class="img" id="wmp_editcover_currentcover" style="background:url(<?php echo $cover_path;?>); background-size:contain; background-repeat: no-repeat; background-position: center"></div>
 
-                                <!-- edit/delete cover links -->
-                                <a href="javascript:void(0);" class="wmp_editcover_changecover btn grey smaller edit">Change</a>
-                                <a href="#" class="wmp_editcover_deletecover smaller remove">remove</a>
+							<!-- edit/delete cover links -->
+							<a href="javascript:void(0);" class="wmp_editcover_changecover btn grey smaller edit">Change</a>
+							<a href="#" class="wmp_editcover_deletecover smaller remove">remove</a>
 
-                            </div>
-                        </div>
+						</div>
+					</div>
 
-                        <div class="notice notice-left right" style="width: 265px;">
-                            <span>
-                               Your cover will be used in portrait and landscape modes, so choose something that will look good on different screen sizes. <br />
-                               We recommend using a square image of minimum 500 x 500 px. The file size for uploaded images should not exceed 1MB.
-                            </span>
-                        </div>
+					<div class="notice notice-left right" style="width: 265px;">
+						<span>
+						   Your cover will be used in portrait and landscape modes, so choose something that will look good on different screen sizes. <br />
+						   We recommend using a square image of minimum 500 x 500 px. The file size for uploaded images should not exceed 1MB.
+						</span>
+					</div>
 
-                        <div class="spacer-20"></div>
-                        <a href="javascript:void(0);" id="wmp_editcover_send_btn" class="btn green smaller">Save</a>
+					<div class="spacer-20"></div>
+					<a href="javascript:void(0);" id="wmp_editcover_send_btn" class="btn green smaller">Save</a>
 
-                    </form>
-                    <div class="spacer-0"></div>
-                </div>
-            <?php endif;?>
+				</form>
+				<div class="spacer-0"></div>
+			</div>
         </div>
     
         <div class="right-side">

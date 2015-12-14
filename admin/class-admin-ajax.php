@@ -1,6 +1,6 @@
 <?php
 
-if ( ! class_exists( 'WMobilePack_Themes' ) ) {
+if ( ! class_exists( 'WMobilePack_Themes' ) && version_compare(PHP_VERSION, '5.3') >= 0) {
     require_once(WMP_PLUGIN_PATH.'inc/class-wmp-themes.php');
 }
 
