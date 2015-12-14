@@ -76,11 +76,14 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
                 $pages_tree[$pid]['child'][] = &$pages_tree[$id];
             }
 
-            $nodes_pages = $pages_tree['0']['child'];
-            unset($pages_tree);
-
-            return $nodes_pages;
-
+            if (!empty($pages_tree) && !empty($pages_tree[0])) {
+                $nodes_pages = $pages_tree[0]['child'];
+                unset($pages_tree);
+                return $nodes_pages;
+            }
+            
+            return array();
+        
         }
 
 
