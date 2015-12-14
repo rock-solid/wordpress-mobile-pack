@@ -19,14 +19,23 @@ class ExportCategoriesTest extends WP_UnitTestCase
     {
         $post_id = $this->factory->post->create(
             array(
-                'post_password' => '123123'
+                'post_password' => '123123',
+                'post_category' => array(1)
             )
-        ); 
+        );
+
+        $post_id2 = $this->factory->post->create(
+            array(
+                'post_password' => '123123',
+                'post_category' => array(2)
+            )
+        );
 
         $export = new WMobilePack_Export();
         $this->assertEquals($export->export_categories(), json_encode(array('categories' => array())));
 
         wp_delete_post($post_id);
+        wp_delete_post($post_id2);
     }
 
 

@@ -431,23 +431,26 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                                 $cat_posts_query->the_post();
                                 $post = $cat_posts_query->post;
 
-                                // retrieve array with the post's details
-                                $post_details = $this->format_post($post, $description_length);
+                                if ($post->post_type == 'post' && $post->post_password == '' && $post->post_status == 'publish') {
 
-                                // if the category doesn't have a featured image yet, use the one from the current post
-                                if (!is_array($arr_categories[$current_key]["image"]) && !empty($post_details['image'])) {
-                                    $arr_categories[$current_key]["image"] = $post_details['image'];
+                                    // retrieve array with the post's details
+                                    $post_details = $this->format_post($post, $description_length);
+
+                                    // if the category doesn't have a featured image yet, use the one from the current post
+                                    if (!is_array($arr_categories[$current_key]["image"]) && !empty($post_details['image'])) {
+                                        $arr_categories[$current_key]["image"] = $post_details['image'];
+                                    }
+
+                                    // if this is the first article from the category, create the 'articles' array
+                                    if (!isset($arr_categories[$current_key]["articles"]))
+                                        $arr_categories[$current_key]["articles"] = array();
+
+                                    $post_details['category_id'] = $category->term_id;
+                                    $post_details['category_name'] = $category->name;
+
+                                    // add article in the array
+                                    $arr_categories[$current_key]["articles"][] = $post_details;
                                 }
-
-                                // if this is the first article from the category, create the 'articles' array
-                                if (!isset($arr_categories[$current_key]["articles"]))
-                                    $arr_categories[$current_key]["articles"] = array();
-
-                                $post_details['category_id'] = $category->term_id;
-                                $post_details['category_name'] = $category->name;
-
-                                // add article in the array
-                                $arr_categories[$current_key]["articles"][] = $post_details;
                             }
                         }
 
@@ -491,22 +494,25 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
                             if ($visible_category !== null) {
 
-                                // retrieve array with the post's details
-                                $post_details = $this->format_post($post, $description_length);
+                                if ($post->post_type == 'post' && $post->post_password == '' && $post->post_status == 'publish') {
 
-                                // if the category doesn't have a featured image yet, use the one from the current post
-                                if (!is_array($arr_categories[0]["image"]) && !empty($post_details['image'])) {
-                                    $arr_categories[0]["image"] = $post_details['image'];
+                                    // retrieve array with the post's details
+                                    $post_details = $this->format_post($post, $description_length);
+
+                                    // if the category doesn't have a featured image yet, use the one from the current post
+                                    if (!is_array($arr_categories[0]["image"]) && !empty($post_details['image'])) {
+                                        $arr_categories[0]["image"] = $post_details['image'];
+                                    }
+
+                                    // if this is the first article from the category, create the 'articles' array
+                                    if (!isset($arr_categories[0]["articles"]))
+                                        $arr_categories[0]["articles"] = array();
+
+                                    $post_details['category_id'] = $visible_category->term_id;
+                                    $post_details['category_name'] = $visible_category->name;
+
+                                    $arr_categories[0]["articles"][] = $post_details;
                                 }
-
-                                // if this is the first article from the category, create the 'articles' array
-                                if (!isset($arr_categories[0]["articles"]))
-                                    $arr_categories[0]["articles"] = array();
-
-                                $post_details['category_id'] = $visible_category->term_id;
-                                $post_details['category_name'] = $visible_category->name;
-
-                                $arr_categories[0]["articles"][] = $post_details;
                             }
                         }
                     }
@@ -634,44 +640,47 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                         $posts_query->the_post();
                         $post = $posts_query->post;
 
-                        // retrieve array with the post's details
-                        $post_details = $this->format_post($post, $description_length);
+                        if ($post->post_type == 'post' && $post->post_password == '' && $post->post_status == 'publish') {
 
-                        // get post category
-                        $category = null;
+                            // retrieve array with the post's details
+                            $post_details = $this->format_post($post, $description_length);
 
-                        if ($category_id > 0) {
-                            $category = get_category($category_id);
-                        } else {
+                            // get post category
+                            $category = null;
 
-                            // since a post can have many categories and we have set inactive categories,
-                            // search for a category that is active
-                            if ($active_categories_ids !== false) {
-
-                                $post_categories = wp_get_post_categories($post->ID);
-
-                                foreach ($post_categories as $post_category_id) {
-
-                                    if (in_array($post_category_id, $active_categories_ids)) {
-                                        $category = get_category($post_category_id);
-                                        break;
-                                    }
-                                }
-
+                            if ($category_id > 0) {
+                                $category = get_category($category_id);
                             } else {
 
-                                // get a random post category
-                                $cat = get_the_category();
-                                $category = $cat[0];
+                                // since a post can have many categories and we have set inactive categories,
+                                // search for a category that is active
+                                if ($active_categories_ids !== false) {
+
+                                    $post_categories = wp_get_post_categories($post->ID);
+
+                                    foreach ($post_categories as $post_category_id) {
+
+                                        if (in_array($post_category_id, $active_categories_ids)) {
+                                            $category = get_category($post_category_id);
+                                            break;
+                                        }
+                                    }
+
+                                } else {
+
+                                    // get a random post category
+                                    $cat = get_the_category();
+                                    $category = $cat[0];
+                                }
                             }
-                        }
 
-                        if ($category !== null) {
+                            if ($category !== null) {
 
-                            $post_details['category_id'] = $category->term_id;
-                            $post_details['category_name'] = $category->name;
+                                $post_details['category_id'] = $category->term_id;
+                                $post_details['category_name'] = $category->name;
 
-                            $arr_articles[] = $post_details;
+                                $arr_articles[] = $post_details;
+                            }
                         }
                     }
                 }
@@ -1099,28 +1108,31 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                     $pages_query->the_post();
                     $page = $pages_query->post;
 
-                    // if the page has a title that is not empty
-                    if (strip_tags(trim(get_the_title())) != '') {
+                    if ($page->post_type == 'page' && $page->post_password == '' && $page->post_status == 'publish') {
 
-                        // read featured image
-                        $image_details = $this->get_post_image($page->ID);
+                        // if the page has a title that is not empty
+                        if (strip_tags(trim(get_the_title())) != '') {
 
-                        if (get_option(WMobilePack_Options::$prefix.'page_' . $page->ID) === false)
-                            $content = apply_filters("the_content", $page->post_content);
-                        else
-                            $content = apply_filters("the_content", get_option(WMobilePack_Options::$prefix.'page_' . $page->ID));
+                            // read featured image
+                            $image_details = $this->get_post_image($page->ID);
 
-                        $arr_pages[] = array(
-                            'id' => $page->ID,
-                            'parent_id' => wp_get_post_parent_id($page->ID),
-                            'order' => $index_order,
-                            'title' => strip_tags(trim(get_the_title())),
-                            'image' => !empty($image_details) ? $image_details : "",
-                            'content' => '',
-                            'has_content' => $content != '' ? 1 : 0
-                        );
+                            if (get_option(WMobilePack_Options::$prefix . 'page_' . $page->ID) === false)
+                                $content = apply_filters("the_content", $page->post_content);
+                            else
+                                $content = apply_filters("the_content", get_option(WMobilePack_Options::$prefix . 'page_' . $page->ID));
 
-                        $index_order++;
+                            $arr_pages[] = array(
+                                'id' => $page->ID,
+                                'parent_id' => wp_get_post_parent_id($page->ID),
+                                'order' => $index_order,
+                                'title' => strip_tags(trim(get_the_title())),
+                                'image' => !empty($image_details) ? $image_details : "",
+                                'content' => '',
+                                'has_content' => $content != '' ? 1 : 0
+                            );
+
+                            $index_order++;
+                        }
                     }
                 }
             }

@@ -11,6 +11,9 @@ class SaveCommentTest extends WP_UnitTestCase
 
         update_option('wmpack_inactive_categories', array());
         update_option('wmpack_ordered_categories', array());
+
+        $_SERVER['HTTP_USER_AGENT'] = 'Mozilla/6.0 (iPhone; CPU iPhone OS 8_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/8.0 Mobile/10A5376e Safari/8536.25';
+        $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
     }
 
     /**
