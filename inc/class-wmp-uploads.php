@@ -138,9 +138,12 @@ if (!class_exists('WMobilePack_Uploads')) {
                 if ( ! class_exists( 'WMobilePack_Themes' ) && version_compare(PHP_VERSION, '5.3') >= 0 ) {
                     require_once(WMP_PLUGIN_PATH.'inc/class-wmp-themes.php');
                 }
+                
+                if (class_exists('WMobilePack_Themes')) {
 
-                $wmp_themes = new WMobilePack_Themes();
-                $wmp_themes->remove_css_file($theme_timestamp);
+                    $wmp_themes = new WMobilePack_Themes();
+                    $wmp_themes->remove_css_file($theme_timestamp);
+                }
             }
 
             // remove htaccess file
