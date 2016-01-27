@@ -131,6 +131,21 @@ class MediaContentTest extends WP_UnitTestCase
         $this->assertEquals($this->purifier->purify($input), $output);
     }
 
+    public function test_spreaker(){
+
+        $input = '<iframe src="//www.spreaker.com/embed/player/standard?autoplay=true&amp;episode_id=7523544" style="width:100%;height:131px;min-width:250px;" frameborder="0" scrolling="no"></iframe>';
+
+        $this->assertEquals($this->purifier->purify($input), $input);
+    }
+
+    public function test_instagram(){
+
+        $input = '<iframe src="http://instagram.com/p/a1wDZKopa2/embed" width="400" height="480" frameborder="0" scrolling="no" allowtransparency="true"></iframe>';
+        $output = '<iframe src="http://instagram.com/p/a1wDZKopa2/embed" width="400" height="480" frameborder="0" scrolling="no"></iframe>';
+
+        $this->assertEquals($this->purifier->purify($input), $output);
+    }
+
     public function test_video(){
 
         $input = '<video width="320" height="240" controls><source src="movie.mp4" type="video/mp4"><source src="movie.ogg" type="video/ogg">Your browser does not support the video tag.</video>';
