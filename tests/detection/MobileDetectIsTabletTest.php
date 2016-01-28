@@ -1,4 +1,5 @@
 <?php
+require_once(WMP_PLUGIN_PATH.'frontend/class-detect.php');
 
 if (!class_exists('MobileDetectIsTabletTest')) {
 
@@ -79,7 +80,7 @@ if (!class_exists('MobileDetectIsTabletTest')) {
         );
 
         /**
-         * @runInSeparateProcess
+         * Smartphones should not be detected as tablets
          */
         function test_smartphones()
         {
@@ -88,20 +89,13 @@ if (!class_exists('MobileDetectIsTabletTest')) {
 
                 $_SERVER['HTTP_USER_AGENT'] = $user_agent;
 
-                require_once(WMP_PLUGIN_PATH.'frontend/class-detect.php');
                 $WMobileDetect = new WMobilePack_Detect;
-
-                $is_tablet = $WMobileDetect->is_tablet();
-
-                if ($is_tablet)
-                    echo $user_agent;
-
-                $this->assertEquals(false, $is_tablet);
+                $this->assertEquals(false, $WMobileDetect->is_tablet());
             }
         }
 
         /**
-         * @runInSeparateProcess
+         * Tablets user agents should be properly allowed
          */
         function test_tablets()
         {
@@ -110,17 +104,13 @@ if (!class_exists('MobileDetectIsTabletTest')) {
 
                 $_SERVER['HTTP_USER_AGENT'] = $user_agent;
 
-                require_once(WMP_PLUGIN_PATH.'frontend/class-detect.php');
                 $WMobileDetect = new WMobilePack_Detect;
-
-                $is_tablet = $WMobileDetect->is_tablet();
-
-                $this->assertEquals(true, $is_tablet);
+                $this->assertEquals(true, $WMobileDetect->is_tablet());
             }
         }
 
         /**
-         * @runInSeparateProcess
+         * Desktop devices should not be detected as tablets
          */
         function test_desktops()
         {
@@ -129,17 +119,13 @@ if (!class_exists('MobileDetectIsTabletTest')) {
 
                 $_SERVER['HTTP_USER_AGENT'] = $user_agent;
 
-                require_once(WMP_PLUGIN_PATH.'frontend/class-detect.php');
                 $WMobileDetect = new WMobilePack_Detect;
-
-                $is_tablet = $WMobileDetect->is_tablet();
-
-                $this->assertEquals(false, $is_tablet);
+                $this->assertEquals(false, $WMobileDetect->is_tablet());
             }
         }
 
         /**
-         * @runInSeparateProcess
+         * BlackBerry devices should not be detected as tablets
          */
         function test_otherdevices()
         {
@@ -148,12 +134,8 @@ if (!class_exists('MobileDetectIsTabletTest')) {
 
                 $_SERVER['HTTP_USER_AGENT'] = $user_agent;
 
-                require_once(WMP_PLUGIN_PATH.'frontend/class-detect.php');
                 $WMobileDetect = new WMobilePack_Detect;
-
-                $is_tablet = $WMobileDetect->is_tablet();
-
-                $this->assertEquals(false, $is_tablet);
+                $this->assertEquals(false, $WMobileDetect->is_tablet());
             }
         }
     }

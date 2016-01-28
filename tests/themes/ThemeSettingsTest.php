@@ -7,7 +7,7 @@ require_once(WMP_PLUGIN_PATH.'inc/class-wmp-options.php');
  * Testing ajax theme settings functionality
  *
  * @group      ajax
- * @runTestsInSeparateProcesses
+ *
  */
 class ThemeSettingsTest extends WP_Ajax_UnitTestCase
 {
@@ -581,5 +581,54 @@ class ThemeSettingsTest extends WP_Ajax_UnitTestCase
         $this->assertArrayHasKey('messages', $response);
         $this->assertEquals(0, $response['status']);
         $this->assertEquals(array('Your application\'s settings have not changed!'), $response['messages']);
+    }
+
+    /**
+     *
+     * Calling update theme without a valid theme manager returns error
+     * Obs.: The theme manager will not be loaded if the PHP version is lower than 5.3.
+     *
+     */
+    function test_settings_with_nonexistent_theme_manager_returns_error()
+    {
+
+        // Mock admin ajax class
+        $admin_ajax = $this->getMockBuilder('WMobilePack_Admin_Ajax')
+            ->setMethods(array('get_theme_manager'))
+            ->getMock();
+
+        $admin_ajax->expects($this->once())
+            ->method('get_theme_manager')
+            ->will($this->returnValue(false));
+
+        // Add hook for the ajax method
+        add_action('wp_ajax_wmp_theme_settings', array( &$admin_ajax, 'theme_settings' ) );
+
+        // Set previous options
+        update_option(WMobilePack_Options::$prefix.'color_scheme', '2');
+        update_option(WMobilePack_Options::$prefix.'font_headlines', '3');
+        update_option(WMobilePack_Options::$prefix.'font_subtitles', '4');
+        update_option(WMobilePack_Options::$prefix.'font_paragraphs', '5');
+        update_option(WMobilePack_Options::$prefix.'theme_timestamp', '123456');
+
+        $_POST['wmp_edittheme_colorscheme'] = "2";
+        $_POST['wmp_edittheme_fontheadlines'] = "3";
+        $_POST['wmp_edittheme_fontsubtitles'] = "4";
+        $_POST['wmp_edittheme_fontparagraphs'] = "5";
+
+        // Make the request
+        try {
+            $this->_handleAjax('wmp_theme_settings');
+        } catch (WPAjaxDieContinueException $e) {
+            unset($e);
+        }
+
+        $response = json_decode($this->_last_response, true);
+
+        $this->assertInternalType('array', $response);
+        $this->assertArrayHasKey('status', $response);
+        $this->assertArrayHasKey('messages', $response);
+        $this->assertEquals(0, $response['status']);
+        $this->assertEquals(array('Unable to load theme compiler. Please check your PHP version, should be at least 5.3.'), $response['messages']);
     }
 }

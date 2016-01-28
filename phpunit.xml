@@ -5,10 +5,35 @@
 	convertErrorsToExceptions="true"
 	convertNoticesToExceptions="true"
 	convertWarningsToExceptions="true"
+    stopOnError="true"
+    stopOnFailure="true"
+    stopOnIncomplete="false"
 	>
 	<testsuites>
 		<testsuite>
 			<directory prefix="test-" suffix=".php">./tests/</directory>
 		</testsuite>
 	</testsuites>
+
+    <filter>
+        <whitelist>
+            <directory>./admin</directory>
+            <directory>./core</directory>
+            <directory>./export</directory>
+            <directory>./frontend</directory>
+            <directory>./inc</directory>
+
+            <exclude>
+                <directory>./admin/pages</directory>
+                <directory>./admin/sections</directory>
+                <directory>./frontend/sections</directory>
+                <directory>./frontend/themes</directory>
+                <file>./core/config.php</file>
+            </exclude>
+        </whitelist>
+    </filter>
+
+    <logging>
+        <log type="coverage-html" target="coverage"/>
+    </logging>
 </phpunit>

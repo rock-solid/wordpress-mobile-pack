@@ -2,7 +2,12 @@
 require_once(__DIR__.'/../utils.php');
 
 if (class_exists('WPMPTestsUtils')) {
-	
+
+    /**
+     * Class RedirectPremiumTest
+     *
+     * @group integrationTests
+     */
 	class RedirectPremiumTest extends WP_UnitTestCase {
 	
 		var $old_current_user;

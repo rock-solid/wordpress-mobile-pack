@@ -2,7 +2,12 @@
 require_once(__DIR__.'/../utils.php');
 
 if (class_exists('WPMPTestsUtils')) {
-	
+
+    /**
+     * Class RelAttributePremiumDomainTest
+     *
+     * @group integrationTests
+     */
 	class RelAttributePremiumDomainTest extends WP_UnitTestCase {
 	
 		protected $old_current_user;

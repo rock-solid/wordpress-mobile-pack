@@ -1,5 +1,7 @@
 <?php
 
+require_once(WMP_PLUGIN_PATH.'frontend/class-detect.php');
+
 if (!class_exists('MobileDetectFreeTest')) {
 
     class MobileDetectFreeTest extends WP_UnitTestCase
@@ -79,18 +81,23 @@ if (!class_exists('MobileDetectFreeTest')) {
 
 
         /**
-         * @runInSeparateProcess
+         * Smartphones should be allowed
          */
         function test_smartphones()
         {
 
+            $WMobileDetect = $this->getMockBuilder('WMobilePack_Detect')
+                ->setMethods(array('set_load_app_cookie'))
+                ->getMock();
+
+            $WMobileDetect->expects($this->exactly(count(self::$smartphoneUserAgents)))
+                ->method('set_load_app_cookie')
+                ->will($this->returnValue(true));
+
+            // test smartphones
             foreach (self::$smartphoneUserAgents as $user_agent) {
 
                 $_SERVER['HTTP_USER_AGENT'] = $user_agent;
-
-                require_once(WMP_PLUGIN_PATH.'frontend/class-detect.php');
-                $WMobileDetect = new WMobilePack_Detect;
-
                 $load_app = $WMobileDetect->detect_device();
 
                 $this->assertEquals(true, $load_app);
@@ -99,18 +106,23 @@ if (!class_exists('MobileDetectFreeTest')) {
 
 
         /**
-         * @runInSeparateProcess
+         * Tablets should not be allowed
          */
         function test_tablets()
         {
 
+            $WMobileDetect = $this->getMockBuilder('WMobilePack_Detect')
+                ->setMethods(array('set_load_app_cookie'))
+                ->getMock();
+
+            $WMobileDetect->expects($this->exactly(count(self::$tabletsUserAgents)))
+                ->method('set_load_app_cookie')
+                ->will($this->returnValue(true));
+
+            // test smartphones
             foreach (self::$tabletsUserAgents as $user_agent) {
 
                 $_SERVER['HTTP_USER_AGENT'] = $user_agent;
-
-                require_once(WMP_PLUGIN_PATH.'frontend/class-detect.php');
-                $WMobileDetect = new WMobilePack_Detect;
-
                 $load_app = $WMobileDetect->detect_device();
 
                 $this->assertEquals(false, $load_app);
@@ -118,18 +130,22 @@ if (!class_exists('MobileDetectFreeTest')) {
         }
 
         /**
-         * @runInSeparateProcess
+         * Desktop devices should not be allowed
          */
         function test_desktops()
         {
 
+            $WMobileDetect = $this->getMockBuilder('WMobilePack_Detect')
+                ->setMethods(array('set_load_app_cookie'))
+                ->getMock();
+
+            $WMobileDetect->expects($this->exactly(count(self::$desktopUserAgents)))
+                ->method('set_load_app_cookie')
+                ->will($this->returnValue(true));
+
             foreach (self::$desktopUserAgents as $user_agent) {
 
                 $_SERVER['HTTP_USER_AGENT'] = $user_agent;
-
-                require_once(WMP_PLUGIN_PATH.'frontend/class-detect.php');
-                $WMobileDetect = new WMobilePack_Detect;
-
                 $load_app = $WMobileDetect->detect_device();
 
                 $this->assertEquals(false, $load_app);
@@ -137,18 +153,22 @@ if (!class_exists('MobileDetectFreeTest')) {
         }
 
         /**
-         * @runInSeparateProcess
+         * BlackBerry devices should not be allowed
          */
         function test_otherdevices()
         {
 
+            $WMobileDetect = $this->getMockBuilder('WMobilePack_Detect')
+                ->setMethods(array('set_load_app_cookie'))
+                ->getMock();
+
+            $WMobileDetect->expects($this->exactly(count(self::$bbUserAgents)))
+                ->method('set_load_app_cookie')
+                ->will($this->returnValue(true));
+
             foreach (self::$bbUserAgents as $user_agent) {
 
                 $_SERVER['HTTP_USER_AGENT'] = $user_agent;
-
-                require_once(WMP_PLUGIN_PATH.'frontend/class-detect.php');
-                $WMobileDetect = new WMobilePack_Detect;
-
                 $load_app = $WMobileDetect->detect_device();
 
                 $this->assertEquals(false, $load_app);

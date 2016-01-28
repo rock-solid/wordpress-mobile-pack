@@ -2,7 +2,12 @@
 require_once(__DIR__.'/../utils.php');
 
 if (class_exists('WPMPTestsUtils')) {
-	
+
+    /**
+     * Class RedirectFreeTest
+     *
+     * @group integrationTests
+     */
 	class RedirectFreeTest extends WP_UnitTestCase {
 	
 		/**
@@ -11,7 +16,7 @@ if (class_exists('WPMPTestsUtils')) {
 		 *
 		 */
 		function test_home() {
-	 
+
 			if (!WMobilePack_Options::get_setting('premium_active') || WMobilePack_Options::get_setting('premium_api_key') == '') {
 			
 				$request_url = WPMPTestsUtils::get_furl(home_url());

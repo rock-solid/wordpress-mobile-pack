@@ -2,7 +2,13 @@
 require_once(__DIR__.'/../utils.php');
 
 if (class_exists('WPMPTestsUtils')) {
-	
+
+    /**
+     * Class RelAttributeFreeTest
+     *
+     * @group integrationTests
+     *
+     */
 	class RelAttributeFreeTest extends WP_UnitTestCase {
 	
 		/**

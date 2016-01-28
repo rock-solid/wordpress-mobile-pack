@@ -1,5 +1,8 @@
 <?php
 
+require_once(WMP_PLUGIN_PATH.'inc/class-wmp-options.php');
+require_once(WMP_PLUGIN_PATH.'frontend/class-detect.php');
+
 if (!class_exists('MobileDetectPremiumTest')) {
 
     class MobileDetectPremiumTest extends WP_UnitTestCase
@@ -78,61 +81,35 @@ if (!class_exists('MobileDetectPremiumTest')) {
         );
 
 
-        protected $old_current_user;
-
-
         function setUp()
         {
 
             parent::setUp();
 
-            // create admin user that can modify the plugin settings
-            $this->old_current_user = get_current_user_id();
+            update_option(WMobilePack_Options::$prefix.'premium_api_key', 'apikeytest');
+            update_option(WMobilePack_Options::$prefix.'premium_active', 1);
 
-            $user_id = $this->factory->user->create(array('role' => 'administrator'));
-            wp_set_current_user($user_id);
-
-            // enable connection with the API key
-            $arrData = array(
-                'premium_api_key' => 'apikeytest',
-                'premium_active' => 1
-            );
-
-            WMobilePack_Options::update_settings($arrData);
         }
 
-
-        function tearDown()
-        {
-
-            // disable connection with the API key
-            $arrData = array(
-                'premium_api_key' => '',
-                'premium_active' => 0
-            );
-
-            // save options
-            WMobilePack_Options::update_settings($arrData);
-
-            wp_set_current_user($this->old_current_user);
-
-            parent::tearDown();
-        }
 
         /**
-         * @runInSeparateProcess
+         * Smartphones should be allowed
          */
         function test_smartphones()
         {
+
+            $WMobileDetect = $this->getMockBuilder('WMobilePack_Detect')
+                ->setMethods(array('set_load_app_cookie'))
+                ->getMock();
+
+            $WMobileDetect->expects($this->exactly(count(self::$smartphoneUserAgents)))
+                ->method('set_load_app_cookie')
+                ->will($this->returnValue(true));
 
             // return;
             foreach (self::$smartphoneUserAgents as $user_agent) {
 
                 $_SERVER['HTTP_USER_AGENT'] = $user_agent;
-
-                require_once(WMP_PLUGIN_PATH.'frontend/class-detect.php');
-                $WMobileDetect = new WMobilePack_Detect;
-
                 $load_app = $WMobileDetect->detect_device();
 
                 $this->assertEquals(true, $load_app);
@@ -140,41 +117,46 @@ if (!class_exists('MobileDetectPremiumTest')) {
         }
 
         /**
-         * @runInSeparateProcess
+         * Tablets should be allowed
          */
         function test_tablets()
         {
 
+            $WMobileDetect = $this->getMockBuilder('WMobilePack_Detect')
+                ->setMethods(array('set_load_app_cookie'))
+                ->getMock();
+
+            $WMobileDetect->expects($this->exactly(count(self::$tabletsUserAgents)))
+                ->method('set_load_app_cookie')
+                ->will($this->returnValue(true));
+
             foreach (self::$tabletsUserAgents as $user_agent) {
 
                 $_SERVER['HTTP_USER_AGENT'] = $user_agent;
-
-                require_once(WMP_PLUGIN_PATH.'frontend/class-detect.php');
-                $WMobileDetect = new WMobilePack_Detect;
-
                 $load_app = $WMobileDetect->detect_device();
-
-                if ($load_app == false)
-                    echo $user_agent;
 
                 $this->assertEquals(true, $load_app);
             }
         }
 
         /**
-         * @runInSeparateProcess
+         * Desktop devices should not be allowed
          */
         function test_desktops()
         {
+
+            $WMobileDetect = $this->getMockBuilder('WMobilePack_Detect')
+                ->setMethods(array('set_load_app_cookie'))
+                ->getMock();
+
+            $WMobileDetect->expects($this->exactly(count(self::$desktopUserAgents)))
+                ->method('set_load_app_cookie')
+                ->will($this->returnValue(true));
 
             // return;
             foreach (self::$desktopUserAgents as $user_agent) {
 
                 $_SERVER['HTTP_USER_AGENT'] = $user_agent;
-
-                require_once(WMP_PLUGIN_PATH.'frontend/class-detect.php');
-                $WMobileDetect = new WMobilePack_Detect;
-
                 $load_app = $WMobileDetect->detect_device();
 
                 $this->assertEquals(false, $load_app);
@@ -182,18 +164,22 @@ if (!class_exists('MobileDetectPremiumTest')) {
         }
 
         /**
-         * @runInSeparateProcess
+         * BlackBerry devices should not be allowed
          */
         function test_otherdevices()
         {
 
+            $WMobileDetect = $this->getMockBuilder('WMobilePack_Detect')
+                ->setMethods(array('set_load_app_cookie'))
+                ->getMock();
+
+            $WMobileDetect->expects($this->exactly(count(self::$bbUserAgents)))
+                ->method('set_load_app_cookie')
+                ->will($this->returnValue(true));
+
             foreach (self::$bbUserAgents as $user_agent) {
 
                 $_SERVER['HTTP_USER_AGENT'] = $user_agent;
-
-                require_once(WMP_PLUGIN_PATH.'frontend/class-detect.php');
-                $WMobileDetect = new WMobilePack_Detect;
-
                 $load_app = $WMobileDetect->detect_device();
 
                 $this->assertEquals(false, $load_app);

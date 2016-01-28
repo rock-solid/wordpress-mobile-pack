@@ -1,8 +1,12 @@
 <?php
-require_once('utils.php');
 
 if (class_exists('WPMPTestsUtils')) {
-	
+
+    /**
+     * Class MiscTest
+     *
+     * @group integrationTests
+     */
 	class MiscTest extends WP_Ajax_UnitTestCase {
 		
 		protected $old_current_user;

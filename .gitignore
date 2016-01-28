@@ -3,3 +3,4 @@ gulptools/node_modules/*
 gulptools/merged/*
 gulptools/scss/*
 gulptools/.sass-cache/*
+coverage/*
