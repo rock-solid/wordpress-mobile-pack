@@ -36,7 +36,7 @@ class ThemeSettingsTest extends WP_Ajax_UnitTestCase
      */
     function mock_theme_manager($compiled_response = null, $remove_css_response = null)
     {
-        $theme_manager = $this->getMockBuilder('WMobilePack_Themes')
+        $theme_manager = $this->getMockBuilder('WMobilePack_Themes_Compiler')
             ->setMethods(array('compile_css_file', 'remove_css_file'))
             ->disableOriginalConstructor()
             ->getMock();
@@ -444,7 +444,7 @@ class ThemeSettingsTest extends WP_Ajax_UnitTestCase
         $admin_ajax->expects($this->never())
             ->method('update_theme_colors');
 
-        $admin_ajax->expects($this->never())
+        $admin_ajax->expects($this->once())
             ->method('get_theme_manager');
 
         $admin_ajax->expects($this->once())
@@ -548,7 +548,7 @@ class ThemeSettingsTest extends WP_Ajax_UnitTestCase
             ->setMethods(array('get_theme_manager'))
             ->getMock();
 
-        $admin_ajax->expects($this->never())
+        $admin_ajax->expects($this->once())
             ->method('get_theme_manager');
 
         // Add hook for the ajax method

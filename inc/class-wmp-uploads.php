@@ -69,10 +69,6 @@ if (!class_exists('WMobilePack_Uploads')) {
             if (!current_user_can('manage_options')) {
                 return;
             }
-            
-            if (version_compare(PHP_VERSION, '5.3') < 0) {
-                echo '<div class="error"><p><b>Warning!</b> The ' . WMP_PLUGIN_NAME . ' plugin requires at least PHP 5.3.0!</p></div>';
-            }
 
             // if the directory doesn't exist, display notice
             if (!file_exists(WMP_FILES_UPLOADS_DIR)) {
@@ -135,13 +131,13 @@ if (!class_exists('WMobilePack_Uploads')) {
 
             if ($theme_timestamp != ''){
 
-                if ( ! class_exists( 'WMobilePack_Themes' ) && version_compare(PHP_VERSION, '5.3') >= 0 ) {
-                    require_once(WMP_PLUGIN_PATH.'inc/class-wmp-themes.php');
+                if ( ! class_exists( 'WMobilePack_Themes_Compiler' ) && version_compare(PHP_VERSION, '5.3') >= 0 ) {
+                    require_once(WMP_PLUGIN_PATH.'inc/class-wmp-themes-compiler.php');
                 }
                 
-                if (class_exists('WMobilePack_Themes')) {
+                if (class_exists('WMobilePack_Themes_Compiler')) {
 
-                    $wmp_themes = new WMobilePack_Themes();
+                    $wmp_themes = new WMobilePack_Themes_Compiler();
                     $wmp_themes->remove_css_file($theme_timestamp);
                 }
             }

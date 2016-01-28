@@ -323,7 +323,7 @@ class ThemeAdditionalMethodsTest extends WP_UnitTestCase {
         update_option(WMobilePack_Options::$prefix.'theme', 1);
         update_option(WMobilePack_Options::$prefix.'custom_colors', array());
 
-        $colors = WMobilePack_Themes::$color_schemes[1]['presets'][1];
+        $colors = WMobilePack_Themes_Config::$color_schemes[1]['presets'][1];
 
         $data = array();
 
@@ -356,7 +356,7 @@ class ThemeAdditionalMethodsTest extends WP_UnitTestCase {
         );
         $method->setAccessible(true);
 
-        $colors = WMobilePack_Themes::$color_schemes[1]['presets'][1];
+        $colors = WMobilePack_Themes_Config::$color_schemes[1]['presets'][1];
 
         update_option(WMobilePack_Options::$prefix.'theme', 1);
         update_option(WMobilePack_Options::$prefix.'custom_colors', $colors);

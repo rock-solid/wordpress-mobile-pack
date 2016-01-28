@@ -35,9 +35,9 @@
 
                     <?php
                         $arr_themes_names = array(
-                            1 => 'Base',
+                            1 => 'Obliq',
                             2 => 'Mosaic',
-                            3 => 'Obliq',
+                            3 => 'Base',
                             4 => 'Elevate',
                             5 => 'Folio'
                         );
@@ -91,8 +91,8 @@
 				if ($blog_version >= WMobilePack_Admin_Init::$customselect_enable)
 					$enable_custom_selects = true;
 				
-                if (class_exists('WMobilePack_Themes') && array_key_exists($selected_theme, WMobilePack_Themes::$color_schemes)):
-                    $theme_settings = WMobilePack_Themes::$color_schemes[$selected_theme];
+                if (array_key_exists($selected_theme, WMobilePack_Themes_Config::$color_schemes)):
+                    $theme_settings = WMobilePack_Themes_Config::$color_schemes[$selected_theme];
             ?>
                     <div class="details">
                         <h2 class="title">Customize Color Schemes and Fonts</h2>
@@ -103,7 +103,7 @@
                         <?php if (version_compare(PHP_VERSION, '5.3') < 0) :?>
                             <div class="message-container warning">
                                 <div class="wrapper">
-                                    <span>Customizing a theme's colors and fonts requires PHP5.3 or greater. Your PHP version (<?php echo PHP_VERSION;?>) is not supported.</span>
+                                    <span>Customizing the theme's colors and fonts requires PHP5.3 or greater. Your PHP version (<?php echo PHP_VERSION;?>) is not supported.</span>
                                 </div>
                             </div>
                             <div class="spacer-20"></div>
@@ -211,7 +211,7 @@
                                 <select name="wmp_edittheme_fontheadlines" id="wmp_edittheme_fontheadlines">
 
                                     <?php
-                                        foreach (WMobilePack_Themes::$allowed_fonts as $key => $font_family):
+                                        foreach (WMobilePack_Themes_Config::$allowed_fonts as $key => $font_family):
 
                                             if ($enable_custom_selects):
                                     ?>
@@ -237,7 +237,7 @@
                                 <label for="wmp_edittheme_fontsubtitles">Subtitles</label>
                                 <select name="wmp_edittheme_fontsubtitles" id="wmp_edittheme_fontsubtitles">
                                     <?php
-                                        foreach (WMobilePack_Themes::$allowed_fonts as $key => $font_family):
+                                        foreach (WMobilePack_Themes_Config::$allowed_fonts as $key => $font_family):
 
                                             if ($enable_custom_selects):
                                     ?>
@@ -262,7 +262,7 @@
                                 <label for="wmp_edittheme_fontparagraphs">Paragraphs</label>
                                 <select name="wmp_edittheme_fontparagraphs" id="wmp_edittheme_fontparagraphs">
                                     <?php
-                                        foreach (WMobilePack_Themes::$allowed_fonts as $key => $font_family):
+                                        foreach (WMobilePack_Themes_Config::$allowed_fonts as $key => $font_family):
 
                                             if ($enable_custom_selects):
                                     ?>

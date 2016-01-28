@@ -1,7 +1,7 @@
 <?php
 
-if ( ! class_exists( 'WMobilePack_Themes' ) && version_compare(PHP_VERSION, '5.3') >= 0) {
-    require_once(WMP_PLUGIN_PATH.'inc/class-wmp-themes.php');
+if ( ! class_exists( 'WMobilePack_Themes_Config' )) {
+    require_once(WMP_PLUGIN_PATH.'inc/class-wmp-themes-config.php');
 }
 
 if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
@@ -24,7 +24,15 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
          */
         protected function get_theme_manager()
         {
-            return new WMobilePack_Themes();
+            if ( ! class_exists( 'WMobilePack_Themes_Compiler' ) && version_compare(PHP_VERSION, '5.3') >= 0 ) {
+                require_once(WMP_PLUGIN_PATH.'inc/class-wmp-themes-compiler.php');
+            }
+
+            if (class_exists('WMobilePack_Themes_Compiler')) {
+                return new WMobilePack_Themes_Compiler();
+            }
+
+            return false;
         }
 
 
@@ -160,7 +168,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
             $selected_custom_colors = WMobilePack_Options::get_setting('custom_colors');
 
             // how many colors does the theme have
-            $no_theme_colors = count(WMobilePack_Themes::$color_schemes[$selected_theme]['vars']);
+            $no_theme_colors = count(WMobilePack_Themes_Config::$color_schemes[$selected_theme]['vars']);
 
             for ($i = 0; $i < $no_theme_colors; $i++) {
 
@@ -210,10 +218,13 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 
             if ($theme_timestamp != ''){
 
-                $wmp_themes = $this->get_theme_manager();
-                $wmp_themes->remove_css_file($theme_timestamp);
+                $wmp_themes_compiler = $this->get_theme_manager();
 
-                WMobilePack_Options::update_settings('theme_timestamp', '');
+                if ($wmp_themes_compiler !== false) {
+
+                    $wmp_themes_compiler->remove_css_file($theme_timestamp);
+                    WMobilePack_Options::update_settings('theme_timestamp', '');
+                }
             }
         }
 
@@ -250,72 +261,81 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                     isset($_POST['wmp_edittheme_fontparagraphs']) && is_numeric($_POST['wmp_edittheme_fontparagraphs'])){
 
                     if (in_array($_POST['wmp_edittheme_colorscheme'], array(0,1,2,3)) &&
-                        in_array($_POST['wmp_edittheme_fontheadlines']-1, array_keys(WMobilePack_Themes::$allowed_fonts)) &&
-                        in_array($_POST['wmp_edittheme_fontsubtitles']-1, array_keys(WMobilePack_Themes::$allowed_fonts)) &&
-                        in_array($_POST['wmp_edittheme_fontparagraphs']-1, array_keys(WMobilePack_Themes::$allowed_fonts))){
+                        in_array($_POST['wmp_edittheme_fontheadlines']-1, array_keys(WMobilePack_Themes_Config::$allowed_fonts)) &&
+                        in_array($_POST['wmp_edittheme_fontsubtitles']-1, array_keys(WMobilePack_Themes_Config::$allowed_fonts)) &&
+                        in_array($_POST['wmp_edittheme_fontparagraphs']-1, array_keys(WMobilePack_Themes_Config::$allowed_fonts))){
 
-                        // save custom colors first
-                        $updated_colors = array('scss' => false, 'error' => false);
+                        // check if the theme compiler can be successfully loaded
+                        $wmp_themes_compiler = $this->get_theme_manager();
 
-                        if ($_POST['wmp_edittheme_colorscheme'] == 0) {
+                        if ($wmp_themes_compiler === false) {
 
-                            $updated_colors = $this->update_theme_colors($_POST);
-
-                            // if the colors were not successfully processed, display error message and exit
-                            if ($updated_colors['error']){
-
-                                $arr_response['messages'][] = 'Please select all colors before saving the custom color scheme!';
-                                echo json_encode($arr_response);
-
-                                wp_die();
-                            }
-                        }
-
-                        // update fonts and check if we need to compile the scss file
-                        $updated_fonts = $this->update_theme_fonts($_POST);
-
-                        // update color scheme
-                        $updated_color_scheme = $this->update_theme_color_scheme($_POST);
-
-                        // the settings haven't changed, so return error status
-                        if (!$updated_colors['scss'] && !$updated_fonts['updated'] && !$updated_color_scheme['updated']) {
-
-                            $arr_response['messages'][] = 'Your application\'s settings have not changed!';
+                            $arr_response['messages'][] = 'Unable to load theme compiler. Please check your PHP version, should be at least 5.3.';
 
                         } else {
 
-                            if ($updated_colors['scss'] || $updated_fonts['scss'] || $updated_color_scheme['scss']){
+                            // save custom colors first
+                            $updated_colors = array('scss' => false, 'error' => false);
 
-                                $theme_timestamp = time();
+                            if ($_POST['wmp_edittheme_colorscheme'] == 0) {
 
-                                // create new css theme file
-                                $wmp_themes = $this->get_theme_manager();
-                                $theme_compiled = $wmp_themes->compile_css_file($theme_timestamp);
+                                $updated_colors = $this->update_theme_colors($_POST);
 
-                                if (!$theme_compiled['compiled']){
-                                    $arr_response['messages'][] = $theme_compiled['error'];
-                                } else {
+                                // if the colors were not successfully processed, display error message and exit
+                                if ($updated_colors['error']) {
 
-                                    // delete old css file (if it exists)
-                                    $old_theme_timestamp = WMobilePack_Options::get_setting('theme_timestamp');
+                                    $arr_response['messages'][] = 'Please select all colors before saving the custom color scheme!';
+                                    echo json_encode($arr_response);
 
-                                    // update theme timestamp
-                                    WMobilePack_Options::update_settings('theme_timestamp', $theme_timestamp);
-
-                                    if ($old_theme_timestamp != ''){
-                                        $wmp_themes->remove_css_file($old_theme_timestamp);
-                                    }
-
-                                    // the theme was successfully compiled and saved
-                                    $arr_response['status'] = 1;
+                                    wp_die();
                                 }
+                            }
 
+                            // update fonts and check if we need to compile the scss file
+                            $updated_fonts = $this->update_theme_fonts($_POST);
+
+                            // update color scheme
+                            $updated_color_scheme = $this->update_theme_color_scheme($_POST);
+
+                            // the settings haven't changed, so return error status
+                            if (!$updated_colors['scss'] && !$updated_fonts['updated'] && !$updated_color_scheme['updated']) {
+
+                                $arr_response['messages'][] = 'Your application\'s settings have not changed!';
 
                             } else {
 
-                                // we have reverted to the first color scheme (which is 1), remove custom theme file
-                                $this->remove_custom_theme();
-                                $arr_response['status'] = 1;
+                                if ($updated_colors['scss'] || $updated_fonts['scss'] || $updated_color_scheme['scss']) {
+
+                                    $theme_timestamp = time();
+
+                                    // create new css theme file
+                                    $theme_compiled = $wmp_themes_compiler->compile_css_file($theme_timestamp);
+
+                                    if (!$theme_compiled['compiled']) {
+                                        $arr_response['messages'][] = $theme_compiled['error'];
+                                    } else {
+
+                                        // delete old css file (if it exists)
+                                        $old_theme_timestamp = WMobilePack_Options::get_setting('theme_timestamp');
+
+                                        // update theme timestamp
+                                        WMobilePack_Options::update_settings('theme_timestamp', $theme_timestamp);
+
+                                        if ($old_theme_timestamp != '') {
+                                            $wmp_themes_compiler->remove_css_file($old_theme_timestamp);
+                                        }
+
+                                        // the theme was successfully compiled and saved
+                                        $arr_response['status'] = 1;
+                                    }
+
+
+                                } else {
+
+                                    // we have reverted to the first color scheme (which is 1), remove custom theme file
+                                    $this->remove_custom_theme();
+                                    $arr_response['status'] = 1;
+                                }
                             }
                         }
                     }
@@ -764,9 +784,11 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                 if (isset($_POST) && is_array($_POST) && !empty($_POST)){
 
                     if (isset($_POST['wmp_editsettings_displaymode']) && $_POST['wmp_editsettings_displaymode'] != '' &&
-                        isset($_POST['wmp_editsettings_displaywebsitelink']) && is_numeric($_POST['wmp_editsettings_displaywebsitelink'])){
+                        isset($_POST['wmp_editsettings_displaywebsitelink']) && is_numeric($_POST['wmp_editsettings_displaywebsitelink']) &&
+                        isset($_POST['wmp_editsettings_postsperpage']) && $_POST['wmp_editsettings_postsperpage'] != ''){
 
-                        if (in_array($_POST['wmp_editsettings_displaymode'], array('normal', 'preview', 'disabled'))){
+                        if (in_array($_POST['wmp_editsettings_displaymode'], array('normal', 'preview', 'disabled')) &&
+                            in_array($_POST['wmp_editsettings_postsperpage'], array('auto', 'single', 'double'))){
 
                             $status = 1;
 
@@ -783,6 +805,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                             // save other options
                             WMobilePack_Options::update_settings('display_mode', $_POST['wmp_editsettings_displaymode']);
                             WMobilePack_Options::update_settings('display_website_link', intval($_POST['wmp_editsettings_displaywebsitelink']));
+                            WMobilePack_Options::update_settings('posts_per_page', $_POST['wmp_editsettings_postsperpage']);
                         }
                     }
                 }
