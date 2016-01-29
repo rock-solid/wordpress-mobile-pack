@@ -57,16 +57,49 @@
                         <input type="hidden" name="wmp_editsettings_displaywebsitelink" id="wmp_editsettings_displaywebsitelink" value="<?php echo $display_website_link;?>" />
                         <input type="checkbox" name="wmp_displaywebsitelink_check" id="wmp_displaywebsitelink_check" value="1" <?php if ($display_website_link == 1) echo "checked" ;?> /><label for="wmp_displaywebsitelink_check">Display "Visit website" link</label>
 
-                        <div class="spacer-30"></div>
+                        <div class="spacer-20"></div>
+
+                        <?php
+                            $selected_theme = WMobilePack_Options::get_setting('theme');
+                            $posts_per_page = WMobilePack_Options::get_setting('posts_per_page');
+
+                            // Check if the theme has a posts_per_page setting
+                            if (WMobilePack_Themes_Config::$color_schemes[$selected_theme]['posts_per_page'] == 1):
+                        ?>
+
+                            <p>Choose how posts are displayed:</p>
+                            <div class="spacer-10"></div>
+
+                            <!-- add radio buttons -->
+                            <input type="radio" name="wmp_editsettings_postsperpage" id="wmp_editsettings_postsperpage_auto" value="auto" <?php if ($posts_per_page == "auto") echo "checked" ;?> /><label for="wmp_editsettings_postsperpage_auto"><strong>Auto</strong> (combine one or two posts per page)</label>
+                            <div class="spacer-10"></div>
+
+                            <input type="radio" name="wmp_editsettings_postsperpage" id="wmp_editsettings_postsperpage_single" value="single" <?php if ($posts_per_page == "single") echo "checked" ;?> /><label for="wmp_editsettings_postsperpage_single">One post per page</label>
+                            <div class="spacer-10"></div>
+
+                            <input type="radio" name="wmp_editsettings_postsperpage" id="wmp_editsettings_postsperpage_double" value="double" <?php if ($posts_per_page == "double") echo "checked" ;?> /><label for="wmp_editsettings_postsperpage_double">Two posts per page</label>
+
+                            <div class="spacer-20"></div>
+
+                        <?php else: // otherwise, use the current value ?>
+                            <input type="hidden" name="wmp_editsettings_postsperpage" id="wmp_editsettings_postsperpage" value="<?php echo $posts_per_page;?>" />
+                        <?php endif;?>
 
                         <a href="javascript:void(0)" id="wmp_editsettings_send_btn" class="btn green smaller">Save</a>
-                     </form>
-                     <div class="notice notice-left right" style="width: 465px; margin: 0px 0 15px 0;">
+                    </form>
+                    <div class="notice notice-left right" style="width: 465px; margin: 0px 0 15px 0;">
                         <span>
                             Edit the <strong>Display Mode</strong> of your app to enable/disable it for your mobile readers. The <strong>Preview mode</strong> lets you edit your app without it being visible to anyone else.<br/><br/><br/>
                             By adding your <strong>Google Analytics ID</strong>, you will be able to track the mobile web application's visitors directly in your Google Analytics account.
                         </span>
-                     </div>
+                    </div>
+                    <?php if (WMobilePack_Themes_Config::$color_schemes[$selected_theme]['posts_per_page'] == 1):?>
+                        <div class="notice notice-left right" style="width: 465px; margin: 70px 0 15px 0;">
+                            <span>
+                                The '<strong>Two posts per page</strong>' option will display posts in groups of two, as long as the categories have an even number of posts. If a category has an odd number of posts, the last card will contain a single post.
+                            </span>
+                        </div>
+                    <?php endif;?>
                 </div>
                 <div class="spacer-0"></div>
             </div>

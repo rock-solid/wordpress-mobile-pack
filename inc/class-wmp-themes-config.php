@@ -89,7 +89,8 @@ if ( ! class_exists( 'WMobilePack_Themes_Config' ) ) {
                         '#ffffff'
                     )
                 ),
-                'cover' => 1
+                'cover' => 1,
+                'posts_per_page' => 1
             )
         );
     }

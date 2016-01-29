@@ -44,6 +44,7 @@ if ( ! class_exists( 'WMobilePack_Options' ) ) {
             'display_mode' => 'normal',
             'google_analytics_id' => '',
             'display_website_link' => 1,
+            'posts_per_page' => 'auto',
 
             // premium accounts with api key
             'premium_api_key'		 => '',

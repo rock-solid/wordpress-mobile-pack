@@ -125,7 +125,7 @@ if ($texts_json_exists === false) {
             hasTwitter: 0,
             hasGoogle: 0,
             commentsToken: "<?php echo $app_settings['comments_token'];?>",
-            articlesPerCard: "auto"
+            articlesPerCard: <?php if ($app_settings['posts_per_page'] == 'single') echo 1; elseif ($app_settings['posts_per_page'] == 'double') echo 2; else echo '"auto"' ;?>
         }
     </script>
 
