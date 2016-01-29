@@ -123,20 +123,20 @@ if ( ! class_exists( 'WMobilePack_Themes_Compiler' ) ) {
                 if ($color_scheme == 0){
                     $colors = WMobilePack_Options::get_setting('custom_colors');
                 } else {
-                    $colors = self::$color_schemes[$theme]['presets'][$color_scheme];
+                    $colors = WMobilePack_Themes_Config::$color_schemes[$theme]['presets'][$color_scheme];
                 }
 
                 // write fonts
                 foreach (array('headlines', 'subtitles', 'paragraphs') as $font_type){
 
                     $font_setting = WMobilePack_Options::get_setting('font_'.$font_type);
-                    $font_family = self::$allowed_fonts[$font_setting-1];
+                    $font_family = WMobilePack_Themes_Config::$allowed_fonts[$font_setting-1];
 
                     fwrite($fp, '$'.$font_type."-font:'".str_replace(" ","",$font_family)."';\r\n");
                 }
 
                 // write colors
-                foreach (self::$color_schemes[$theme]['vars'] as $key => $var_name){
+                foreach (WMobilePack_Themes_Config::$color_schemes[$theme]['vars'] as $key => $var_name){
                     fwrite($fp, '$'.$var_name.":".$colors[$key].";\r\n");
                 }
 
