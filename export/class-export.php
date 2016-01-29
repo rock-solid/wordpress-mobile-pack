@@ -841,8 +841,15 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
                         // order comments
                         if (get_bloginfo('version') >= 3.6) {
+
+                            $comments_order = strtoupper(get_option('comment_order'));
+
+                            if (!in_array($comments_order, array('ASC', 'DESC'))){
+                                $comments_order = 'ASC';
+                            }
+
                             $args['orderby'] = 'comment_date_gmt';
-                            $args['order'] = 'ASC';
+                            $args['order'] = $comments_order;
                         }
 
                         // read comments
