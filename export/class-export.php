@@ -1247,7 +1247,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
             $blog_name = get_bloginfo("name");
 
             // init response depending on the manifest type
-            if ($_GET['content'] == 'androidmanifest') {
+            if (isset($_GET['content']) && $_GET['content'] == 'androidmanifest') {
 
                 $arr_manifest = array(
                     'name' => $blog_name,

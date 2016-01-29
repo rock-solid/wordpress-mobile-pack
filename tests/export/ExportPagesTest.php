@@ -255,4 +255,34 @@ class ExportPagesTest extends WP_UnitTestCase
 
         wp_delete_post($post_id);
     }
+
+    /**
+     * Calling export_pages() with pages that have modified content returns data
+     */
+    function test_export_pages_with_modified_content_returns_data()
+    {
+        $post_id = $this->factory->post->create(
+            array(
+                'post_type' => 'page',
+                'post_title' => 'Test Page',
+                'post_content' => 'This is the original content'
+            )
+        );
+
+        update_option('wmpack_page_'.$post_id, 'This is the modified content');
+
+        $export = new WMobilePack_Export();
+        $data = json_decode($export->export_pages(), true);
+
+        $this->assertArrayHasKey('pages', $data);
+        $this->assertEquals(1, count($data['pages']));
+        $this->assertEquals($post_id, $data['pages'][0]['id']);
+        $this->assertEquals('Test Page', $data['pages'][0]['title']);
+        $this->assertEquals(1, $data['pages'][0]['order']);
+        $this->assertEquals('', $data['pages'][0]['content']);
+        $this->assertEquals(1, $data['pages'][0]['has_content']);
+        $this->assertEquals(0, $data['pages'][0]['parent_id']);
+
+        wp_delete_post($post_id);
+    }
 }

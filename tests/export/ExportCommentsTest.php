@@ -212,4 +212,104 @@ class ExportCommentsTest extends WP_UnitTestCase
         wp_delete_post($post_id);
         wp_delete_comment($comment_id);
     }
+
+    /**
+     * Calling export_comments() with descending order returns comments in DESC order
+     */
+    function test_export_comments_descending_order_returns_data()
+    {
+
+        $post_id = $this->factory->post->create(
+            array(
+                'post_title' => 'Article Title'
+            )
+        );
+
+        $comment_id = $this->factory->comment->create(
+            array(
+                'comment_post_ID' => $post_id,
+                'comment_content' => 'test comment 1'
+            )
+        );
+
+        $comment_id2 = $this->factory->comment->create(
+            array(
+                'comment_post_ID' => $post_id,
+                'comment_content' => 'test comment 2'
+            )
+        );
+
+        // set invalid comment order
+        update_option('comment_order', 'desc');
+
+        // make request & verify data
+        $_GET['articleId'] = $post_id;
+
+        $export = new WMobilePack_Export();
+        $data = json_decode($export->export_comments(), true);
+
+        $this->assertArrayHasKey('comments', $data);
+        $this->assertEquals(2, count($data['comments']));
+
+        $this->assertEquals($comment_id2, $data['comments'][0]['id']);
+        $this->assertEquals('test comment 2', $data['comments'][0]['content']);
+
+        $this->assertEquals($comment_id, $data['comments'][1]['id']);
+        $this->assertEquals('test comment 1', $data['comments'][1]['content']);
+
+        // clean-up data
+        wp_delete_post($post_id);
+        wp_delete_comment($comment_id);
+        wp_delete_comment($comment_id2);
+    }
+
+    /**
+     * Calling export_comments() with invalid order returns comments in ASC order
+     */
+    function test_export_comments_invalid_order_returns_data()
+    {
+
+        $post_id = $this->factory->post->create(
+            array(
+                'post_title' => 'Article Title'
+            )
+        );
+
+        $comment_id = $this->factory->comment->create(
+            array(
+                'comment_post_ID' => $post_id,
+                'comment_content' => 'test comment 1'
+            )
+        );
+
+        $comment_id2 = $this->factory->comment->create(
+            array(
+                'comment_post_ID' => $post_id,
+                'comment_content' => 'test comment 2'
+            )
+        );
+
+        // set invalid comment order
+        update_option('comment_order', 'invalid');
+
+        // make request & verify data
+        $_GET['articleId'] = $post_id;
+
+        $export = new WMobilePack_Export();
+        $data = json_decode($export->export_comments(), true);
+
+        $this->assertArrayHasKey('comments', $data);
+        $this->assertEquals(2, count($data['comments']));
+
+        $this->assertEquals($comment_id, $data['comments'][0]['id']);
+        $this->assertEquals('test comment 1', $data['comments'][0]['content']);
+
+        $this->assertEquals($comment_id2, $data['comments'][1]['id']);
+        $this->assertEquals('test comment 2', $data['comments'][1]['content']);
+
+        // clean-up data
+        wp_delete_post($post_id);
+        wp_delete_comment($comment_id);
+        wp_delete_comment($comment_id2);
+    }
 }
