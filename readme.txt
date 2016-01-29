@@ -2,7 +2,7 @@
 Contributors: jamesgpearce, andreatrasatti, edent, cborodescu, anghelalexandra
 Tags: mobile, mobile web, mobile internet, smartphone, iphone, android, windows 8, webkit, chrome, safari, mobile web app, html5, sencha touch, responsive ui
 Requires at least: 3.5
-Tested up to: 4.4
+Tested up to: 4.4.1
 Stable tag: 2.2
 License: GPLv2 or later
 
@@ -16,31 +16,31 @@ WordPress Mobile Pack 2.0+ is **supported on**: iPhones, Android smartphones, Wi
 
 The pack has been tested on WordPress 3.5 and later. Please read the [Known issues and limitations](https://wordpress.org/plugins/wordpress-mobile-pack/other_notes/) list before installing.
 
-The WordPress Mobile Pack 2.0+ eliminates the hassle of dealing with high development costs, approval processes with various app stores, poor discoverability due to the closed environment of native apps and finally, one of the biggest injustices aimed towards the publishing industry in general - the shared revenue constraint.
+WordPress Mobile Pack 2.0+ eliminates the hassle of dealing with high development costs, approval processes with various app stores, poor discoverability due to the closed environment of native apps and finally, one of the biggest injustices aimed towards the publishing industry in general - the shared revenue constraint.
 
-What the WordPress Mobile Pack 2.0+ enables you to do: 
+What the WordPress Mobile Pack 2.0+ enables you to do:
 
 * **Cross-platform mobile web applications**. All it takes for a mobile web application to run is a modern mobile browser (HTML5 compatible), thus allowing readers to instantly have access to your content, without needing to go through an app store, download & install the app.
- 
+
 * **Responsive UI**. The mobile web application is sensitive to various screen sizes and orientation changes: landscape, portrait. In other words, the look and feel of the mobile web app seamlessly morphs into the screen size of users' devices.
 
 * **Theming**. You can offer your users an exceptional reading experience by giving them a mobile web application with a native app-like look & feel. The default theme comes with 6 abstract covers that are randomly displayed on the loading screen to give the app a magazine flavour. More themes available in [WP Mobile Pack PRO](https://www.appticles.com/wordpress-mobile-pack-pro.html).
 
 * **Customize appearance**. Once a favourite theme has been selected, you can customize the colors & fonts, add your logo and graphic elements that can relate to your blog's identity. More customization options available in [WP Mobile Pack PRO](https://www.appticles.com/wordpress-mobile-pack-pro.html).
 
-* **Posts Sync**. The posts inside the mobile web application are organized into their corresponding categories, thus readers can simply swipe through articles and jump from category to category in a seamless way. 
+* **Posts Sync**. The posts inside the mobile web application are organized into their corresponding categories, thus readers can simply swipe through articles and jump from category to category in a seamless way.
 
 * **Pages Sync**. Choose what pages you want to display on your mobile web application. You can edit, show/hide different pages and order them according to your needs.
 
-* **Comments Sync**. All the comments that are displayed in the blog are also synchronized into the mobile web application. On top of that, comments that are posted from within the app are also displayed on the blog. Social features are available in [WP Mobile Pack PRO](https://www.appticles.com/wordpress-mobile-pack-pro.html).
+* **Comments Sync**. All the comments that are displayed in the blog are also synchronized into the mobile web application. On top of that, comments that are posted from within the app are also displayed on the blog. Social media features are available in [WP Mobile Pack PRO](https://www.appticles.com/wordpress-mobile-pack-pro.html).
 
-* **Analytics**. WordPress Mobile Pack 2.0 easily integrates with Google Analytics. 
+* **Analytics**. WordPress Mobile Pack 2.0 easily integrates with Google Analytics.
 
-* **Add to Homescreen**. Readers can add the mobile web application to their homescreen and run it in full-screen mode. 
+* **Add to Homescreen**. Readers can add the mobile web application to their homescreen and run it in full-screen mode.
 
 WordPress Mobile Pack 2.0+ also comes with a **PRO version** which can be [purchased here](https://www.appticles.com/wordpress-mobile-pack-pro.html). WordPress Mobile Pack PRO is a self-hosted solution suited for personal blogs and small publishers that comes with:
 
-* **3 App Themes (fully customizable)**
+* **5 App Themes (fully customizable)**
 * **Social Features (Facebook, Twitter & Google+)**
 * **Monetization Options (Google AdSense & Double Click for Publishers)**
 * **1 Year of Professional Support**
@@ -54,17 +54,17 @@ Here are some walkthrough videos that can get you started with WordPress Mobile 
 [youtube https://www.youtube.com/watch?v=elxjfdbAoqM]
 
 WordPress Mobile Pack 2.0+ can also be extended to a **Premium Cloud Solution** by connecting it with [Appticles.com](https://www.appticles.com/wordpress-go-premium.html). This is suited for professional blogs, agencies & publishing companies. Some of the benefits of going Premium with Appticles:
- 
+
 * **Phablets & Tablets Support**. Turn your blog into an amazing tablet web application. The look and feel of the web app seamlessly morphs into the screen size of your users' device.
 
-* **Unlimited Themes & Custom Appearance**. Dozens of themes to choose from. Customize the colors & fonts, add your logo and personalize your app to craft your brand identity. 
+* **Unlimited Themes & Custom Appearance**. Dozens of themes to choose from. Customize the colors & fonts, add your logo and personalize your app to craft your brand identity.
 
 * **Unlimited Content Sources**. Repurpose your existing social content into a personalized mobile & tablet web application that tells a story: Your story.
 
-* **Unlimited Applications**. Have as many mobile & tablet web applications as you need, supported on iOS, Android, Windows 8, FirefoxOS, Tizen. 
+* **Unlimited Applications**. Have as many mobile & tablet web applications as you need, supported on iOS, Android, Windows 8, FirefoxOS, Tizen.
 
 * **Monetization**. Start making money by connecting your ad units from Google Adsense and Double Click for Publishers.
- 
+
 * **Offline Mode**. Keep your mobile readers always in touch with your content, even in offline mode.
 
 For previous versions, check out the 'Change log' page.
@@ -96,7 +96,7 @@ A more comprehensive setup process and guide to configuration is as follows.
 1. Go to the 'Look & Feel' tab. Choose color schemes, fonts and add your own logo and app icon.
 1. Go to the 'Content' tab. Disable, enable or order categories and pages depending on what content you want to show in the mobile web app.
 1. Go to the 'Settings' tab to choose a Display Mode and add your Google Analytics ID.
-1. Access your site in a mobile browser and check if the application is displayed. If the app is not loading properly, make sure that the file exporting the content - http://yoursite.com/{your plugins folder}/wordpress-mobile-pack/export/content.php - can be accessed in the browser and doesn't return a '404 Not Found' error.
+1. Access your site in a mobile browser and check if the application is displayed. If the app is not loading properly, make sure that the file exporting the content - http://yoursite.com/{your plugins folder}/wordpress-mobile-pack/export/content.php - can be accessed in the browser and doesn't return a '404 Not Found' or '403 Forbidden' error.
 1. You're all done!
 
 = Testing your installation =
@@ -105,7 +105,7 @@ Ideally, use a real mobile device to access your (public) site address and check
 
 You can also download a number of mobile emulators that can run on a desktop PC and simulate mobile devices.
 
-Please note that the mobile web app will be enabled only on supported devices: iPhones, Android smartphones, Windows Phone 8 and Firefox OS. Only the following browsers are compatible: Safari, Google Chrome, Android - Native Browser, Internet Explorer 10 and Firefox (as of 2.0.2). 
+Please note that the mobile web app will be enabled only on supported devices: iPhones, Android smartphones, Windows Phone 8 and Firefox OS. Only the following browsers are compatible: Safari, Google Chrome, Android - Native Browser, Internet Explorer 10 and Firefox (as of 2.0.2).
 
 = Connecting the API Key (Premium Cloud accounts) =
 We have wrote a complete guide about [connecting your plugin with the hosted platform](http://support.appticles.com/hc/en-us/articles/201681012-Connecting-Your-Website-with-Your-Mobile-Web-Application#apikey) by using the API Key.
@@ -118,8 +118,8 @@ Please make sure that the endpoint exporting the content can be accessed and doe
 = I have enabled Wordpress Mobile Pack, but I still see the desktop theme on my smartphone =
 If you are using a cache plugin, please check the [docs](http://support.appticles.com/hc/en-us/articles/201795202-Optimizing-Cache-Plugins-for-Wordpress-Mobile-Pack). Some additional settings on the cache plugin might be required to correctly enable the mobile detection from Wordpress Mobile Pack.
 
-= What can I use to replace contact forms? = 
-Most of the sites we come across use contact forms to allow users to get in touch or/and send messages. However, when targeting mobile users, forcing them to fill out a dull form (usually pretty long) is the worst UX you can offer to your mobile audience. Instead, here are [a couple of approaches](http://support.appticles.com/hc/en-us/articles/203264071-How-to-replace-contact-forms-with-click-to-call-links-for-your-mobile-application) you could try out in your mobile web application: 
+= What can I use to replace contact forms? =
+Most of the sites we come across use contact forms to allow users to get in touch or/and send messages. However, when targeting mobile users, forcing them to fill out a dull form (usually pretty long) is the worst UX you can offer to your mobile audience. Instead, here are [a couple of approaches](http://support.appticles.com/hc/en-us/articles/203264071-How-to-replace-contact-forms-with-click-to-call-links-for-your-mobile-application) you could try out in your mobile web application:
 
 = What devices and operating systems are supported by my mobile web application? =
 WordPress Mobile Pack 2.0 is supported on: iPhones, Android smartphones, Windows Phone 8 and Firefox OS. Compatible browsers: Safari, Google Chrome, Android - Native Browser, Internet Explorer 10 and Firefox.
@@ -133,13 +133,13 @@ A link called 'Switch to mobile version' will be displayed in the footer of your
 = I want to temporarily deactivate my mobile web application. What steps must I follow? =
 The mobile web application can be deactivated from the "Settings" page of the admin panel. This option will not delete any settings that you have done so far, like customizing the look & feel of your application, but mobile readers will no longer be able to see it on their devices.
 
-= What is the difference between my new mobile web application and a mobile friendly site? = 
+= What is the difference between my new mobile web application and a mobile friendly site? =
 The short answer is that a mobile web application is an enriched version of a mobile-friendly site; it's not only about screen size, it's also about functionality (offline mode, for example). The long answer comes in a form of an article, you can check it out here: http://www.appticles.com/blog/2014/05/mobile-web-dying-shifting/.
 
-= What is the difference between my mobile web application and a responsive theme? =  
+= What is the difference between my mobile web application and a responsive theme? =
 A responsive theme is all about design - it loads the same styling as the desktop view, adjusting it to fit a smaller screen. A mobile web application combines the versatility of the web with the functionality of touch-enabled devices and can contain features that your desktop website doesn't have (like offline mode for example). A mobile web app is similar to a native app in terms of look & feel, with the only difference being that it runs in the browser.
 
-= Am I able to use my own theme or customize the existing one? =  
+= Am I able to use my own theme or customize the existing one? =
 V2.0+ is based on a Javascript framework called Sencha Touch, that mimics a native app interface. Because of that, the themes used are not regular PHP based themes that can be easily customized by editing the source. It is still possible to make small CSS changes, but changing the theme structure will not work.
 
 = Am I able to add Javascript code inside the theme? =
@@ -149,6 +149,12 @@ Adding tracking scripts in the source is possible if you place them in the <head
 Google Ad Sense / Google Double Click for Publishers is supported on the Premium version as of v2.1. Support for other ad networks will be added in future releases.
 
 == Changelog ==
+
+= 2.2.1 =
+* Option to choose the number of posts per card
+* Add support for Instagram and Spreaker embed code
+* Added admin notice for PHP versions lower than 5.3
+* Fixed comments order bug (use WordPress settings)
 
 = 2.2 =
 * Customize color scheme and fonts and compile SCSS theme file (similar to the PRO version)
@@ -178,7 +184,7 @@ Google Ad Sense / Google Double Click for Publishers is supported on the Premium
 * Cleaned up admin CSS files
 
 = 2.1.3 =
-* Changed mobile detection library to [Mobile Detect](https://github.com/serbanghita/Mobile-Detect) 
+* Changed mobile detection library to [Mobile Detect](https://github.com/serbanghita/Mobile-Detect)
 * Fixed detection issue for BlackBerry devices (BB will display the desktop theme)
 * Fixed URL rewriting for non-latin languages for the categories menu, use category slug instead of name
 * Added support for more click-to-call formats (Skype, SMS, WhatsApp)
@@ -197,7 +203,7 @@ Google Ad Sense / Google Double Click for Publishers is supported on the Premium
 = 2.1.1 =
 * Integrated with [Related Posts by Zemanta](https://wordpress.org/plugins/related-posts-by-zemanta/) and [Editorial Assistant by Zemanta](https://wordpress.org/plugins/zemanta/)
 * Wrote docs about [how to set up the main cache plugins for WPMP](http://support.appticles.com/hc/en-us/articles/201795202-Optimizing-Cache-Plugins-for-Wordpress-Mobile-Pack)
-* Added manifest files for Android and FirefoxOS (handle 'Add to homescreen' url and icon) 
+* Added manifest files for Android and FirefoxOS (handle 'Add to homescreen' url and icon)
 * Added SSL support
 * Added support for HTML5 audio and video tags. Please note that not all mobile browsers are correctly handling these tags. The audio/video players are not controlled or modified by WPMP.
 * Added opt-in for tracking for anonymous data (disabled by default)
@@ -213,7 +219,7 @@ Google Ad Sense / Google Double Click for Publishers is supported on the Premium
 * Fixed url rewriting bug for categories with special characters in the title
 * Patch 22/09/2014 - Fixed redirect loop bug for blogs that use a static page as their front page
 
-= 2.0.2 = 
+= 2.0.2 =
 * Added support for Firefox and Firefox OS
 * Added support for customizing the home page cover
 * Added animation and arrow on the home page to suggest to readers that they have to swipe the screen to see the content
@@ -224,12 +230,12 @@ Google Ad Sense / Google Double Click for Publishers is supported on the Premium
 * Fixed bug - Switching from portrait to landscape on the native Android browser was not working properly on some smartphones (HTC One).
 * Security bug fix for exporting password-protected posts, CVE-2014-5337
 
-= 2.0.1 = 
+= 2.0.1 =
 * Hide comments button if the comments are disabled for an article
 * Hide back and comments buttons at scroll within an article and display them at tap
 * Hide 'Latest' category from the main menu
 * Within a category, display a single article per page only if the article has a featured image.
-* Fixed bug - verify if the curl library is installed before checking for updates 
+* Fixed bug - verify if the curl library is installed before checking for updates
 * Fixed bug - url rewriting for categories with punctuation or other special characters
 
 = 2.0 =
@@ -314,14 +320,14 @@ Two major issues were introduced in beta 1, now solved:
 
 == Upgrade Notice ==
 
-= 2.1.5 =
-* WP Mobile Pack allows you to 'package' your existing content into a cross-platform mobile web application. The latest version greatly improves loading times for the mobile web app through browser caching and refactoring CSS files.
+= 2.2.1 =
+* WP Mobile Pack allows you to 'package' your existing content into a cross-platform mobile web application. Starting from version 2.2+, you can create your own color scheme and choose different fonts for headlines, subtitles and paragraphs.
 
 
 == Screenshots ==
 
 1. Cover of the mobile web app. A default cover is used if your last blog entry doesn't contain a large enough featured image.
-2. Articles within a category. 
+2. Articles within a category.
 3. Side menu with all the enabled categories.
 4. Side menu with all the enabled pages.
 5. Article details.
@@ -341,23 +347,25 @@ If your site uses a cache plugin, please note that a series of issues can occur 
 * Loading the desktop theme on a supported mobile device (even though the Wordpress Mobile Pack plugin is active)
 * Inconsistent switching between the desktop and the Wordpress Mobile Pack theme
 
-If you find yourself in one of these situation, please read [the docs](http://support.appticles.com/hc/en-us/articles/201795202-Optimizing-Cache-Plugins-for-Wordpress-Mobile-Pack) and make the appropiate settings on your cache plugin.
+If you find yourself in one of these situation, please read [the docs](http://support.appticles.com/hc/en-us/articles/201795202-Optimizing-Cache-Plugins-for-Wordpress-Mobile-Pack) and make the appropriate settings on your cache plugin.
 
 == Roadmap ==
 
 Our roadmap currently includes:
 
-* Integrating with Disqus
-* RTL support
+* Fully customizable menus with categories, posts, pages and links
+* Integrating with the most popular multi-language plugins
 * Localization. Please contact us if you can help by translating the mobile web application's text into your language.
+* Support for password protected posts.
 * Integrating with the most popular forms plugins
+* Integrating with Disqus
 
-== Known issues and limitations for v2.1 ==
+== Known issues and limitations for v2.0+ ==
 
-* V2.1 of the mobile web app doesn't include support for forms. We are looking for a way to recreate forms inside the mobile web application and integrate with various plugins.
-* Iframes are not currently supported because of scrolling issues on iPhone.
+* V2.0+ of the mobile web app doesn't include support for forms. We are looking for a way to recreate forms inside the mobile web application and integrate with various plugins.
+* Iframes and embed codes are partially supported. Embed codes are allowed for YouTube, Vimeo, Daily Motion, Soundcloud, Instagram, Wistia, Flickrit and Spreaker. If you need support for other media content embed codes, please contact us.
 * The mobile web app doesn't include user authentication. If your blog settings enable comments only for logged in users, they will be disabled in the mobile web app.
-* For now, supported mobile browsers include Safari, Google Chrome, Android's native browser, Internet Explorer 10 and Firefox (as of 2.0.2). Support for other mobile browsers such as Opera will be added in the following versions.
+* For now, supported mobile browsers include Safari, Google Chrome, Android's native browser, Internet Explorer 10 and Firefox (as of 2.0.2).
 * Only featured images from your blog posts are displayed as thumbnails in the list of posts. Images integrated in a post's content are displayed only on the details page for that post.
 
 == Repositories ==
@@ -377,5 +385,5 @@ A big thanks to all contributors that helped us translate the mobile web applica
 * Agnieszka Bugajska (Polish)
 * Mathias Wideroth (Swedish)
 * Diogo Desiderati (Portuguese)
-* Fabiola Sguassero (Italian).
-* Emmanuel Andriulo (Italian).
+* Fabiola Sguassero (Italian)
+* Emmanuel Andriulo (Italian)
