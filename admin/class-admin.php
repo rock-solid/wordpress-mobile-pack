@@ -219,6 +219,28 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
                             }
                         }
 
+                        // check if a new version of the PRO plugin was released
+                        if (get_bloginfo('version') >= 4.2 && !WMobilePack::is_active_plugin('WP Mobile Pack PRO')){
+
+                            if (isset($response['content']['pro_release'])) {
+
+                                if (isset($response['content']['pro_release']['text']) &&
+                                    isset($response['content']['pro_release']['last_updated']) && is_numeric($response['content']['pro_release']['last_updated'])) {
+
+                                    // check if there was an update since the last time we had a release
+                                    $last_updated = intval($response['content']['pro_release']['last_updated']);
+                                    $option_last_updated = intval(WMobilePack_Options::get_setting('upgrade_notice_last_updated'));
+
+                                    if ($last_updated > $option_last_updated) {
+
+                                        // memorize the release timestamp and enable notice
+                                        WMobilePack_Options::update_settings('upgrade_notice_last_updated', $last_updated);
+                                        WMobilePack_Options::update_settings('upgrade_notice_updated', 1);
+                                    }
+                                }
+                            }
+                        }
+
                         // return response
                         return $response["content"];
                     }

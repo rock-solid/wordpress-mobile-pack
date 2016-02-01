@@ -832,7 +832,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                 if (isset($_POST) && is_array($_POST) && !empty($_POST)) {
 
                     // handle opt-ins settings
-                    foreach (array('allow_tracking') as $option_name) {
+                    foreach (array('allow_tracking', 'upgrade_notice_updated') as $option_name) {
 
                         if (isset($_POST['wmp_option_'.$option_name]) && $_POST['wmp_option_'.$option_name] != '' && is_numeric($_POST['wmp_option_'.$option_name])) {
 

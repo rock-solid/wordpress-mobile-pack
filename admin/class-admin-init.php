@@ -137,7 +137,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
                 // check if we need to request updates for the what's new section
                 $WMobilePackCookie = new WMobilePack_Cookie();
 
-                if ($WMobilePackCookie->get_cookie('check_updates') !== null) {
+                if ($WMobilePackCookie->get_cookie('check_updates') === null) {
 
                     WMobilePack_Admin::whatsnew_updates();
 
@@ -201,6 +201,9 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
             wp_enqueue_script(WMobilePack_Options::$prefix.'js_join_waitlist', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Waitlist/WMP_WAITLIST.min.js'), array(), WMP_VERSION);
             wp_enqueue_script(WMobilePack_Options::$prefix.'js_feedback', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Feedback/WMP_SEND_FEEDBACK.min.js'), array(), WMP_VERSION);
 
+            if (WMobilePack_Options::get_setting('upgrade_notice_updated') == 1){
+                wp_enqueue_script(WMobilePack_Options::$prefix.'js_upgrade_notice', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Waitlist/WMP_UPGRADE_NOTICE.min.js'), array(), WMP_VERSION, true);
+            }
         }
 
 

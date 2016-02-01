@@ -398,3 +398,12 @@
 		}
 	}
 }
+
+.wmp_upgrade_notice.notice {
+    background: $warning-color;
+    color: #FFFFFF;
+
+    .notice-dismiss:before {
+        color: #FFFFFF;
+    }
+}

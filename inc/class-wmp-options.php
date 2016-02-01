@@ -55,6 +55,8 @@ if ( ! class_exists( 'WMobilePack_Options' ) ) {
             'joined_waitlists' => array(),
             'whats_new_updated' => 0,
             'whats_new_last_updated' => 0,
+            'upgrade_notice_updated' => 0, // if we should display the upgrade notice
+            'upgrade_notice_last_updated' => 0, // upgrade timestamp
             'allow_tracking' => 0
         );
 
