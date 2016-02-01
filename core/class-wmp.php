@@ -127,7 +127,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 
         /**
          *
-         * Display a dismissible admin notice when a new version of the PRO plugin is release
+         * Display a dismissible admin notice when a new version of the PRO plugin is released
          *
          */
         public function display_pro_release_notice(){

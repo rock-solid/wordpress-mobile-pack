@@ -154,6 +154,7 @@ Google Ad Sense / Google Double Click for Publishers is supported on the Premium
 * Option to choose the number of posts per card
 * Add support for Instagram and Spreaker embed code
 * Added admin notice for PHP versions lower than 5.3
+* Notify plugin users when a new PRO version is released
 * Fixed comments order bug (use WordPress settings)
 
 = 2.2 =
