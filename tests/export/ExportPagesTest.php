@@ -229,6 +229,146 @@ class ExportPagesTest extends WP_UnitTestCase
     }
 
     /**
+     * Calling export_pages() with ordered pages with children and special theme returns data
+     *
+     * @todo Refactor after submenu support is added to themes 1 and 4
+     */
+    function test_export_pages_with_ordered_pages_and_children_returns_data()
+    {
+        $post_id = $this->factory->post->create(
+            array(
+                'post_type' => 'page',
+                'menu_order' => 2,
+                'post_title' => 'a',
+                'post_content' => 'test content'
+            )
+        );
+
+        $post_id2 = $this->factory->post->create(
+            array(
+                'post_type' => 'page',
+                'menu_order' => 1,
+                'post_title' => 'b',
+                'post_content' => 'test content'
+            )
+        );
+
+        $post_id3 = $this->factory->post->create(
+            array(
+                'post_type' => 'page',
+                'menu_order' => 1,
+                'post_title' => 'c',
+                'post_content' => 'child of page b',
+                'post_parent' => $post_id2
+            )
+        );
+
+        $export = new WMobilePack_Export();
+        $data = json_decode($export->export_pages(), true);
+
+        $this->assertArrayHasKey('pages', $data);
+        $this->assertEquals(3, count($data['pages']));
+        $this->assertEquals($post_id2, $data['pages'][0]['id']);
+        $this->assertEquals(1, $data['pages'][0]['order']);
+        $this->assertEquals(0, $data['pages'][0]['parent_id']);
+        $this->assertEquals('b', $data['pages'][0]['title']);
+        $this->assertEquals('', $data['pages'][0]['content']);
+
+        $this->assertEquals($post_id3, $data['pages'][1]['id']);
+        $this->assertEquals(2, $data['pages'][1]['order']);
+        $this->assertEquals($post_id2, $data['pages'][1]['parent_id']);
+        $this->assertEquals('c', $data['pages'][1]['title']);
+        $this->assertEquals('', $data['pages'][1]['content']);
+
+        $this->assertEquals($post_id, $data['pages'][2]['id']);
+        $this->assertEquals(3, $data['pages'][2]['order']);
+        $this->assertEquals(0, $data['pages'][2]['parent_id']);
+        $this->assertEquals('a', $data['pages'][2]['title']);
+        $this->assertEquals('', $data['pages'][2]['content']);
+
+        wp_delete_post($post_id);
+        wp_delete_post($post_id2);
+        wp_delete_post($post_id3);
+    }
+
+    /**
+     * Calling export_pages() with ordered pages and password protected children returns data
+     *
+     * @todo Refactor after submenu support is added to themes 1 and 4
+     */
+    function test_export_pages_with_ordered_pages_and_password_protected_children_returns_data()
+    {
+        $post_id = $this->factory->post->create(
+            array(
+                'post_type' => 'page',
+                'menu_order' => 2,
+                'post_title' => 'a',
+                'post_content' => 'test content'
+            )
+        );
+
+        $post_id2 = $this->factory->post->create(
+            array(
+                'post_type' => 'page',
+                'menu_order' => 1,
+                'post_title' => 'b',
+                'post_content' => 'test content'
+            )
+        );
+
+        $post_id3 = $this->factory->post->create(
+            array(
+                'post_type' => 'page',
+                'menu_order' => 1,
+                'post_title' => 'c',
+                'post_content' => 'password protected child of page b',
+                'post_password' => '123123',
+                'post_parent' => $post_id2
+            )
+        );
+
+        $post_id4 = $this->factory->post->create(
+            array(
+                'post_type' => 'page',
+                'menu_order' => 2,
+                'post_title' => 'd',
+                'post_content' => 'child of page b',
+                'post_parent' => $post_id2
+            )
+        );
+
+        $export = new WMobilePack_Export();
+        $data = json_decode($export->export_pages(), true);
+
+        $this->assertArrayHasKey('pages', $data);
+        $this->assertEquals(3, count($data['pages']));
+        $this->assertEquals($post_id2, $data['pages'][0]['id']);
+        $this->assertEquals(1, $data['pages'][0]['order']);
+        $this->assertEquals(0, $data['pages'][0]['parent_id']);
+        $this->assertEquals('b', $data['pages'][0]['title']);
+        $this->assertEquals('', $data['pages'][0]['content']);
+
+        // order=2 is skipped because page 'c' is password protected
+        // even is page 'a' appears first in the array, its order is higher than page 'd'
+        $this->assertEquals($post_id, $data['pages'][1]['id']);
+        $this->assertEquals(4, $data['pages'][1]['order']);
+        $this->assertEquals(0, $data['pages'][1]['parent_id']);
+        $this->assertEquals('a', $data['pages'][1]['title']);
+        $this->assertEquals('', $data['pages'][1]['content']);
+
+        $this->assertEquals($post_id4, $data['pages'][2]['id']);
+        $this->assertEquals(3, $data['pages'][2]['order']);
+        $this->assertEquals($post_id2, $data['pages'][2]['parent_id']);
+        $this->assertEquals('d', $data['pages'][2]['title']);
+        $this->assertEquals('', $data['pages'][2]['content']);
+
+        wp_delete_post($post_id);
+        wp_delete_post($post_id2);
+        wp_delete_post($post_id3);
+        wp_delete_post($post_id4);
+    }
+
+    /**
      * Calling export_pages() with pages that don't have content returns data
      */
     function test_export_pages_with_no_content_returns_data()

@@ -1055,6 +1055,33 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
         /**
          *
+         * Return array with the pages keys, ordered by hierarchy
+         *
+         * @param int $limit
+         * @return array
+         *
+         * @todo Delete this method after subpages support is added to themes 1 and 4
+         *
+         */
+        protected function get_pages_order($limit = 100){
+
+            $all_pages = get_pages(
+                array(
+                    'sort_column' => 'menu_order,post_title',
+                    'exclude' => implode(',', $this->inactive_pages),
+                    'post_status' => 'publish',
+                    'post_type' => 'page',
+                    'number' => $limit
+                )
+            );
+
+            $order_pages = array_keys(get_page_hierarchy($all_pages));
+            return $order_pages;
+        }
+
+
+        /**
+         *
          *  The exportPages method is used for exporting all the visible pages.
          *
          *  This method returns a JSON with the following format:
@@ -1077,16 +1104,19 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
          *
          * - callback = The JavaScript callback method
          * - content = 'exportpages'
+         *
+         * @todo Remove the order_pages array after subpages support is added to themes 1 and 4
+         *
          */
         public function export_pages()
         {
-            // init pages array
+
+            // init pages arrays
             $arr_pages = array();
 
-            // set limit
+            // set args for pages
             $limit = 100;
 
-            // set args for pages
             $args = array(
                 'post__not_in' => $this->inactive_pages,
                 'numberposts' => $limit,
@@ -1101,14 +1131,15 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                 $args['order'] = 'ASC';
             }
 
+            // get array with the ordered pages by hierarchy
+            $order_pages = $this->get_pages_order($limit);
+
             // remove inline style for the photos types of posts
             add_filter('use_default_gallery_style', '__return_false');
 
             $pages_query = new WP_Query($args);
 
             if ($pages_query->have_posts()) {
-
-                $index_order = 1;
 
                 while ($pages_query->have_posts()) {
 
@@ -1123,22 +1154,32 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                             // read featured image
                             $image_details = $this->get_post_image($page->ID);
 
-                            if (get_option(WMobilePack_Options::$prefix . 'page_' . $page->ID) === false)
+                            if (get_option(WMobilePack_Options::$prefix.'page_' . $page->ID) === false)
                                 $content = apply_filters("the_content", $page->post_content);
                             else
-                                $content = apply_filters("the_content", get_option(WMobilePack_Options::$prefix . 'page_' . $page->ID));
+                                $content = apply_filters("the_content", get_option(WMobilePack_Options::$prefix.'page_' . $page->ID));
+
+                            $last_key = count($arr_pages);
+                            $current_key = $last_key + 1;
+
+                            // if we have a pages hierarchy, use the order from that array
+                            if (!empty($order_pages)) {
+
+                                $index_order = array_search($page->ID, $order_pages);
+
+                                if (is_numeric($index_order))
+                                    $current_key = $index_order + 1;
+                            }
 
                             $arr_pages[] = array(
                                 'id' => $page->ID,
-                                'parent_id' => wp_get_post_parent_id($page->ID),
-                                'order' => $index_order,
+                                'parent_id' => intval($page->post_parent),
+                                'order' => $current_key,
                                 'title' => strip_tags(trim(get_the_title())),
                                 'image' => !empty($image_details) ? $image_details : "",
                                 'content' => '',
                                 'has_content' => $content != '' ? 1 : 0
                             );
-
-                            $index_order++;
                         }
                     }
                 }
