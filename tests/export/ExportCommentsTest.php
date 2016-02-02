@@ -228,14 +228,16 @@ class ExportCommentsTest extends WP_UnitTestCase
         $comment_id = $this->factory->comment->create(
             array(
                 'comment_post_ID' => $post_id,
-                'comment_content' => 'test comment 1'
+                'comment_content' => 'test comment 1',
+                'comment_date' => date('Y-m-01 01:i:s')
             )
         );
 
         $comment_id2 = $this->factory->comment->create(
             array(
                 'comment_post_ID' => $post_id,
-                'comment_content' => 'test comment 2'
+                'comment_content' => 'test comment 2',
+                'comment_date' => date('Y-m-02 02:i:s')
             )
         );
 

@@ -220,7 +220,7 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
                         }
 
                         // check if a new version of the PRO plugin was released
-                        if (get_bloginfo('version') >= 4.2 && !WMobilePack::is_active_plugin('WP Mobile Pack PRO')){
+                        if (get_bloginfo('version') >= 4.2 && !WMobilePack::is_active_plugin('WordPress Mobile Pack PRO')){
 
                             if (isset($response['content']['pro_release'])) {
 
