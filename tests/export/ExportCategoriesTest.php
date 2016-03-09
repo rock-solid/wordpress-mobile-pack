@@ -32,7 +32,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
         );
 
         $export = new WMobilePack_Export();
-        $this->assertEquals($export->export_categories(), json_encode(array('categories' => array())));
+        $this->assertEquals($export->export_categories(), json_encode(array('categories' => array(), 'wpmp' => WMP_VERSION)));
 
         wp_delete_post($post_id);
         wp_delete_post($post_id2);
@@ -51,7 +51,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
         );
 
         $export = new WMobilePack_Export();
-        $this->assertEquals($export->export_categories(), json_encode(array('categories' => array())));
+        $this->assertEquals($export->export_categories(), json_encode(array('categories' => array(), 'wpmp' => WMP_VERSION)));
 
         wp_delete_post($post_id);
     }
@@ -76,7 +76,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
         update_option('wmpack_inactive_categories', array($cat_id));
 
         $export = new WMobilePack_Export();
-        $this->assertEquals($export->export_categories(), json_encode(array('categories' => array())));
+        $this->assertEquals($export->export_categories(), json_encode(array('categories' => array(), 'wpmp' => WMP_VERSION)));
 
         wp_delete_post($post_id);
         wp_delete_term($cat_id, 'category');
