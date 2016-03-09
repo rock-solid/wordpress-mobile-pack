@@ -527,7 +527,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
             // order categories and display response
             $arr_ordered_categories = $this->order_categories($arr_categories);
-            return '{"categories":' . json_encode($arr_ordered_categories) . "}";
+            return '{"categories":' . json_encode($arr_ordered_categories) . ',"wpmp":"'.WMP_VERSION.'"}';
 
         }
 
