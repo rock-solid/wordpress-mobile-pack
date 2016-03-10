@@ -6,12 +6,7 @@ if (!class_exists('WMobilePack_Premium')) {
 }
 
 $premium_manager = new WMobilePack_Premium();
-$json_config_premium = $premium_manager->set_premium_config();
-
-$arr_wmp_config = null;
-if ($json_config_premium !== false) {
-    $arr_wmp_config = json_decode($json_config_premium);
-}
+$arr_wmp_config = $premium_manager->get_premium_config(false);
 
 ?>
 <script type="text/javascript">
@@ -61,9 +56,10 @@ if ($json_config_premium !== false) {
 
                 <?php
                 if ($arr_wmp_config != null):
+
                     if ((isset($arr_wmp_config->status) && $arr_wmp_config->status == 'hidden') ||
                         (isset($arr_wmp_config->deactivated) && $arr_wmp_config->deactivated == 1)):
-                        ?>
+                ?>
                         <div class="spacer-20"></div>
 
                         <div class="message-container warning">

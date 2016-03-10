@@ -74,6 +74,25 @@ if (!class_exists('WMobilePack_Premium')) {
 
 
         /**
+         * Get array with premium settings
+         *
+         * @param bool $as_array
+         * @return mixed|null
+         */
+        public function get_premium_config($as_array = true){
+
+            $json_config_premium = $this->set_premium_config();
+
+            if ($json_config_premium !== false) {
+                return json_decode($json_config_premium, $as_array);
+            }
+
+            return null;
+        }
+
+
+
+        /**
          * Wrapper for reading the JSON data
          *
          * @param $config_path
@@ -400,7 +419,6 @@ if (!class_exists('WMobilePack_Premium')) {
          * @param $arr_theme_settings
          * @return bool
          *
-         * @todo Purify cover text before displaying it
          */
         protected function validateThemeSettings($arr_theme_settings){
 

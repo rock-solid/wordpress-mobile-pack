@@ -1,15 +1,12 @@
 <?php
 
-require_once('config-premium.php');
+$app_settings = WMobilePack_Application::load_app_settings_premium();
 
 // if we have a valid domain, redirect to it
-if (isset($arr_config_premium['domain_name']) && filter_var('http://'.$arr_config_premium['domain_name'], FILTER_VALIDATE_URL)) {
-	header("Location: http://".$arr_config_premium['domain_name']);
+if (isset($app_settings['domain_name']) && filter_var('http://'.$app_settings['domain_name'], FILTER_VALIDATE_URL)) {
+	header("Location: http://".$app_settings['domain_name']);
 	exit();
 }
 
 // load app
-if ($kit_type == 'classic')
-	require_once('template-classic.php');
-else
-	require_once('template-wpmp.php');
+require_once('template.php');

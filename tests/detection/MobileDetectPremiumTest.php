@@ -5,6 +5,9 @@ require_once(WMP_PLUGIN_PATH.'frontend/class-detect.php');
 
 if (!class_exists('MobileDetectPremiumTest')) {
 
+    /**
+     * Class MobileDetectPremiumTest
+     */
     class MobileDetectPremiumTest extends WP_UnitTestCase
     {
 
@@ -88,7 +91,15 @@ if (!class_exists('MobileDetectPremiumTest')) {
 
             update_option(WMobilePack_Options::$prefix.'premium_api_key', 'apikeytest');
             update_option(WMobilePack_Options::$prefix.'premium_active', 1);
+            update_option(WMobilePack_Options::$prefix.'premium_config_path', "http://configpath.appticles.com");
 
+            $theme_settings = array(
+                'phone' => array(
+                    'theme' => 1
+                )
+            );
+
+            set_transient('wmp_premium_config_path', json_encode($theme_settings));
         }
 
 
@@ -104,9 +115,9 @@ if (!class_exists('MobileDetectPremiumTest')) {
 
             $WMobileDetect->expects($this->exactly(count(self::$smartphoneUserAgents)))
                 ->method('set_load_app_cookie')
+                ->with($this->equalTo(true))
                 ->will($this->returnValue(true));
 
-            // return;
             foreach (self::$smartphoneUserAgents as $user_agent) {
 
                 $_SERVER['HTTP_USER_AGENT'] = $user_agent;
@@ -117,10 +128,18 @@ if (!class_exists('MobileDetectPremiumTest')) {
         }
 
         /**
-         * Tablets should be allowed
+         * Tablets should be allowed is the config json contains a tablet theme
          */
-        function test_tablets()
+        function test_tablets_are_allowed()
         {
+
+            $tablet_theme_settings = array(
+                'tablet' => array(
+                    'theme' => 1
+                )
+            );
+
+            set_transient('wmp_premium_config_path', json_encode($tablet_theme_settings));
 
             $WMobileDetect = $this->getMockBuilder('WMobilePack_Detect')
                 ->setMethods(array('set_load_app_cookie'))
@@ -128,6 +147,7 @@ if (!class_exists('MobileDetectPremiumTest')) {
 
             $WMobileDetect->expects($this->exactly(count(self::$tabletsUserAgents)))
                 ->method('set_load_app_cookie')
+                ->with($this->equalTo(true))
                 ->will($this->returnValue(true));
 
             foreach (self::$tabletsUserAgents as $user_agent) {
@@ -136,6 +156,30 @@ if (!class_exists('MobileDetectPremiumTest')) {
                 $load_app = $WMobileDetect->detect_device();
 
                 $this->assertEquals(true, $load_app);
+            }
+        }
+
+        /**
+         * Tablets should NOT be allowed is the config json doesn't contain a tablet theme
+         */
+        function test_tablets_are_not_allowed()
+        {
+
+            $WMobileDetect = $this->getMockBuilder('WMobilePack_Detect')
+                ->setMethods(array('set_load_app_cookie'))
+                ->getMock();
+
+            $WMobileDetect->expects($this->exactly(count(self::$tabletsUserAgents)))
+                ->method('set_load_app_cookie')
+                ->with($this->equalTo(false))
+                ->will($this->returnValue(true));
+
+            foreach (self::$tabletsUserAgents as $user_agent) {
+
+                $_SERVER['HTTP_USER_AGENT'] = $user_agent;
+                $load_app = $WMobileDetect->detect_device();
+
+                $this->assertEquals(false, $load_app);
             }
         }
 
@@ -151,6 +195,7 @@ if (!class_exists('MobileDetectPremiumTest')) {
 
             $WMobileDetect->expects($this->exactly(count(self::$desktopUserAgents)))
                 ->method('set_load_app_cookie')
+                ->with($this->equalTo(false))
                 ->will($this->returnValue(true));
 
             // return;
@@ -175,6 +220,7 @@ if (!class_exists('MobileDetectPremiumTest')) {
 
             $WMobileDetect->expects($this->exactly(count(self::$bbUserAgents)))
                 ->method('set_load_app_cookie')
+                ->with($this->equalTo(false))
                 ->will($this->returnValue(true));
 
             foreach (self::$bbUserAgents as $user_agent) {

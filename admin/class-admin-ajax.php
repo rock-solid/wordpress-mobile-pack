@@ -38,7 +38,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 
         /**
          *
-         * Create a theme management object and return it
+         * Create a premium management object and return it
          *
          * @return object
          *
@@ -52,6 +52,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 
             return new WMobilePack_Premium();
         }
+
 
         /**
          * Save new font settings into the database. Returns true if we need to compile the css file.

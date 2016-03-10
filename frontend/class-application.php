@@ -67,13 +67,11 @@ if (!class_exists('WMobilePack_Application')) {
 
             // Check if we have a Premium account
             $premium_manager = $this->get_premium_manager();
-            $json_config_premium = $premium_manager->set_premium_config();
+            $arr_config_premium = $premium_manager->get_premium_config(false);
 
-            if ($json_config_premium !== false) {
+            if ($arr_config_premium !== null) {
 
                 // For premium, check if the web app is set as visible
-                $arr_config_premium = json_decode($json_config_premium);
-
                 if ((isset($arr_config_premium->status) && $arr_config_premium->status == 'hidden') ||
                     (isset($arr_config_premium->deactivated) && $arr_config_premium->deactivated == 1)) {
 
@@ -178,6 +176,21 @@ if (!class_exists('WMobilePack_Application')) {
 
             $WMobileDetect = new WMobilePack_Detect();
             return $WMobileDetect->detect_device();
+        }
+
+
+        protected static function get_device(){
+
+            // Check if it is tablet
+            if (!class_exists( 'WMobilePack_Detect' ) ) {
+                require_once(WMP_PLUGIN_PATH.'frontend/class-detect.php');
+            }
+
+            $detect_manager = new WMobilePack_Detect();
+            $is_tablet = $detect_manager->is_tablet();
+
+            // Set device
+            return $is_tablet == 0 ? 'phone' : 'tablet';
         }
 
 
@@ -362,6 +375,266 @@ if (!class_exists('WMobilePack_Application')) {
             $settings['comments_token'] = WMobilePack_Tokens::get_token();
 
             return $settings;
+        }
+
+
+        /**
+         * Returns an array with the application's Premium theme settings
+         *
+         * @param $arr_config_premium
+         * @param $device
+         * @return array
+         */
+        public function load_app_settings_theme_premium($arr_config_premium, $device){
+
+            $settings = array();
+
+            $theme_options = array(
+                'theme',
+                'color_scheme',
+                'font_headlines',
+                'font_subtitles',
+                'font_paragraphs',
+                'theme_timestamp',
+                'custom_fonts'
+            );
+
+            foreach ($theme_options as $exact_setting) {
+
+                if (isset($arr_config_premium[$device][$exact_setting])) {
+                    $settings[$exact_setting] = $arr_config_premium[$device][$exact_setting];
+                } else {
+
+                    if ($exact_setting == 'color_scheme' || $exact_setting == 'font_headlines')
+                        $settings[$exact_setting] = 1;
+                    else
+                        $settings[$exact_setting] = '';
+                }
+            }
+
+            return $settings;
+        }
+
+
+        /**
+         * Returns an array with the application's paths and images settings
+         *
+         * @param $arr_config_premium
+         * @param $device
+         * @param $is_secure
+         * @return array
+         */
+        public function load_app_settings_paths_images_premium($arr_config_premium, $device, $is_secure){
+
+            $settings = array(
+                'cdn_kits' => ($is_secure ? $arr_config_premium['cdn_kits_https'] : $arr_config_premium['cdn_kits']),
+                'cdn_apps' => ($is_secure ? $arr_config_premium['cdn_apps_https'] : $arr_config_premium['cdn_apps']),
+                'icon' => '',
+                'logo' => '',
+                'cover' => '',
+                'user_cover' => 0,
+            );
+
+            // Check if we have to load a custom theme
+            if ($arr_config_premium[$device]['theme'] != 0) {
+
+                $settings['kits_path'] = $settings['cdn_kits'];
+
+                if (isset($arr_config_premium['kit_type']) && $arr_config_premium['kit_type'] == 'wpmp'){
+                    $settings['kits_path'] .= "/apps";
+                }
+
+                $settings['kits_path'] .= "/app".$arr_config_premium[$device]['theme'].'/'.$arr_config_premium['kit_version'].'/';
+
+            } else {
+                $settings['kits_path'] = $settings['cdn_apps']."/".$arr_config_premium['shorten_url'].'/';
+            }
+
+            // Set icon
+            if (isset($arr_config_premium['icon_path']) && $arr_config_premium['icon_path'] != '')
+                $settings['icon'] = $settings['cdn_apps']."/".$arr_config_premium['shorten_url'].'/'.$arr_config_premium['icon_path'];
+
+            // Set logo
+            if (isset($arr_config_premium['logo_path']) && $arr_config_premium['logo_path'] != '')
+                $settings['logo'] = $settings['cdn_apps']."/".$arr_config_premium['shorten_url'].'/'.$arr_config_premium['logo_path'];
+
+            // Set cover settings
+            if (isset($arr_config_premium[$device]['cover']) && $arr_config_premium[$device]['cover'] != '') {
+                $settings['cover'] = $settings['cdn_apps']."/".$arr_config_premium['shorten_url'].'/'.$arr_config_premium[$device]['cover'];
+                $settings['user_cover'] = 1;
+            } else {
+                $settings['cover'] = $settings['cdn_kits'].'/others/covers/'.$device.'/pattern-'.rand(1,8).'.jpg';
+            }
+
+            // Process icons & startup screens timestamps
+            if (!isset($arr_config_premium['kit_type']) || $arr_config_premium['kit_type'] != 'wpmp') {
+
+                $settings['icon_timestamp'] = '';
+                if (isset($arr_config_premium['icon_path']) && $arr_config_premium['icon_path'] != '') {
+                    $str = $arr_config_premium['icon_path'];
+                    $settings['icon_timestamp'] = '_' . substr($str, strpos($str, '_') + 1, strpos($str, '.') - strpos($str, '_') - 1);
+                }
+
+                $settings['logo_timestamp'] = '';
+                if (isset($arr_config_premium['logo_path']) && $arr_config_premium['logo_path'] != '') {
+                    $str = $arr_config_premium['logo_path'];
+                    $settings['logo_timestamp'] = '_' . substr($str, strpos($str, '_') + 1, strpos($str, '.') - strpos($str, '_') - 1);
+                }
+            }
+
+            return $settings;
+        }
+
+
+        /**
+         * Returns an array with the application's Google DFP and analytics settings
+         *
+         * @param $arr_config_premium
+         * @return array
+         */
+        public function load_app_settings_google_premium($arr_config_premium){
+
+            $settings = array();
+
+            $google_options = array(
+                'has_phone_ads',
+
+                'phone_ad_interval',
+                'phone_network_code',
+                'phone_unit_name',
+                'phone_ad_sizes',
+
+                'has_tablet_ads',
+
+                'tablet_ad_interval',
+                'tablet_network_code',
+                'tablet_unit_name',
+                'tablet_ad_name',
+
+                'google_internal_id',
+                'google_analytics_id',
+                'google_webmasters_code',
+            );
+
+            foreach ($google_options as $exact_setting){
+
+                if (isset($arr_config_premium[$exact_setting])){
+                    $settings[$exact_setting] = $arr_config_premium[$exact_setting];
+                }
+            }
+
+            return $settings;
+        }
+
+
+
+        /**
+         *
+         * Returns an array with all the application's frontend settings (Premium themes)
+         *
+         * @todo UNIT TESTING !!!
+         */
+        public static function load_app_settings_premium(){
+
+            $premium_manager = new WMobilePack_Premium();
+            $arr_config_premium = $premium_manager->get_premium_config();
+
+            // Get the device type
+            $device = self::get_device();
+
+            // Check if we have a secure https connection
+            $is_secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
+
+            // load basic settings
+            $settings = array(
+                'device' => $device,
+                'kit_type' => 'classic',
+                'shorten_url' => $arr_config_premium['shorten_url'],
+                'title' => $arr_config_premium['title'],
+                'locale' => 'en_EN',
+                'cover_text' => '',
+                'posts_per_page' => 'auto',
+                'enable_facebook' => 1,
+                'enable_twitter' => 1,
+                'enable_google' => 1
+            );
+
+            $theme_settings = self::load_app_settings_theme_premium($arr_config_premium, $device);
+            $settings = array_merge($settings, $theme_settings);
+
+            $images_paths_settings = self::load_app_settings_paths_images_premium($arr_config_premium, $device, $is_secure);
+            $settings = array_merge($settings, $images_paths_settings);
+
+            $google_settings = self::load_app_settings_google_premium($arr_config_premium);
+            $settings = array_merge($settings, $google_settings);
+
+            // Check domain name
+            if (isset($arr_config_premium['domain_name']) && filter_var('http://'.$arr_config_premium['domain_name'], FILTER_VALIDATE_URL))
+                $settings['domain_name'] = $arr_config_premium['domain_name'];
+
+            // Set locale
+            if (isset($arr_config_premium['locale']) && $arr_config_premium['locale'] != '')
+                $settings['locale'] = $arr_config_premium['locale'];
+
+            // Set website url
+            if (isset($arr_config_premium['website_url']) && $arr_config_premium['website_url'] != '')
+                $settings['website_url'] = $arr_config_premium['website_url'];
+
+            // Set social media
+            foreach (array('facebook', 'twitter', 'google') as $social_network){
+                if (isset($arr_config_premium['enable_'.$social_network]) && !$arr_config_premium['enable_'.$social_network])
+                    $settings['enable_'.$social_network] = 0;
+            }
+
+            if (isset($arr_config_premium['kit_type']) && $arr_config_premium['kit_type'] == 'wpmp') {
+
+                $settings['kit_type'] = 'wpmp';
+                $settings['title'] = urldecode($settings['title']);
+
+                // Set posts per page
+                if (isset($arr_config_premium[$device]['posts_per_page']) && in_array($arr_config_premium[$device]['posts_per_page'], array('single', 'double'))) {
+
+                    if ($arr_config_premium[$device]['posts_per_page'] == 'single') {
+                        $settings['posts_per_page'] = 1;
+                    } else {
+                        $settings['posts_per_page'] = 2;
+                    }
+                }
+
+                // Set cover text
+                if (isset($arr_config_premium[$device]['cover_text']) && $arr_config_premium[$device]['cover_text'] != ''){
+
+                    // load HTML purifier / formatter
+                    if (!class_exists('WMobilePack_Formatter')) {
+                        require_once(WMP_PLUGIN_PATH . 'inc/class-wmp-formatter.php');
+                    }
+
+                    $purifier = WMobilePack_Formatter::init_purifier();
+                    $settings['cover_text'] = $purifier->purify(stripslashes(urldecode($arr_config_premium[$device]['cover_text'])));
+                }
+
+                // Generate comments token
+                if (!class_exists('WMobilePack_Tokens')) {
+                    require_once(WMP_PLUGIN_PATH . 'inc/class-wmp-tokens.php');
+                }
+
+                $settings['comments_token'] = WMobilePack_Tokens::get_token();
+
+            } else {
+
+                $settings['webapp'] = $arr_config_premium['webapp'];
+                $settings['api_content'] = $is_secure ? $arr_config_premium['api_content_https'] : $arr_config_premium['api_content'];
+                $settings['api_social'] = $is_secure ? $arr_config_premium['api_social_https'] : $arr_config_premium['api_social'];
+
+                if (isset($arr_config_premium['api_content_external'])){
+                    $settings['api_content_external'] = $arr_config_premium['api_content_external'];
+                    $settings['enable_facebook'] = 0;
+                    $settings['enable_twitter'] = 0;
+                }
+            }
+
+            return $settings;
+
         }
 
 

@@ -1,17 +1,15 @@
 <?php
 
-require_once('config-premium.php');
-
 // check if the front page is a static page
 if(get_option('show_on_front') == 'page' && get_option('page_on_front') == get_the_ID()){
 
 	// load app
-	if ($kit_type == 'classic')
-		require_once('template-classic.php');
-	else
-		require_once('template-wpmp.php');
+	$app_settings = WMobilePack_Application::load_app_settings_premium();
+	require_once('template.php');
 
 } else {
+
+	require_once('config-premium.php');
 
 	// get the page url
 	$pageUrlParam = '';

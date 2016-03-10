@@ -10,35 +10,34 @@ if (class_exists('WMobilePack')):
 
         // Load config json
         $premium_manager = new WMobilePack_Premium();
-        $json_config_premium = $premium_manager->set_premium_config();
+        $arr_config_premium = $premium_manager->get_premium_config();
 
-        $arr_config_premium = null;
-        if ($json_config_premium !== false) {
-            $arr_config_premium = json_decode($json_config_premium, true);
-        }
+        // @todo Modify & test this
+        if ($arr_config_premium != null) {
 
-        // Check if we have a valid subdomain linked to the Premium theme
-        if (isset($arr_config_premium['domain_name']) && filter_var('http://'.$arr_config_premium['domain_name'], FILTER_VALIDATE_URL)) {
-            $mobile_url = "http://".$arr_config_premium['domain_name'].'/';
-        }
-
-        $permalink = get_permalink();
-
-        if (is_single() || (is_page() && !is_front_page())){
+            // Check if we have a valid subdomain linked to the Premium theme
+            if (isset($arr_config_premium['domain_name']) && filter_var('http://' . $arr_config_premium['domain_name'], FILTER_VALIDATE_URL)) {
+                $mobile_url = "http://" . $arr_config_premium['domain_name'] . '/';
+            }
 
             $permalink = get_permalink();
 
-            if (is_numeric(get_the_ID()) && filter_var($permalink, FILTER_VALIDATE_URL)){
+            if (is_single() || (is_page() && !is_front_page())) {
 
-                $is_visible = true;
+                $permalink = get_permalink();
 
-                $permalink = rawurlencode($permalink);
-                $permalink = str_replace('.','%2E',$permalink);
+                if (is_numeric(get_the_ID()) && filter_var($permalink, FILTER_VALIDATE_URL)) {
 
-                if (is_single())
-                    $mobile_url .= '#articleUrl/'.$permalink;
-                else
-                    $mobile_url .= '#pageUrl/'.$permalink;
+                    $is_visible = true;
+
+                    $permalink = rawurlencode($permalink);
+                    $permalink = str_replace('.', '%2E', $permalink);
+
+                    if (is_single())
+                        $mobile_url .= '#articleUrl/' . $permalink;
+                    else
+                        $mobile_url .= '#pageUrl/' . $permalink;
+                }
             }
         }
 

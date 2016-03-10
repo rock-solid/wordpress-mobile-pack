@@ -17,6 +17,44 @@ if (!class_exists('WMobilePack_Detect')) {
         /* ----------------------------------*/
 
         /**
+         *
+         * Create a premium management object and return it
+         *
+         * @return object
+         *
+         */
+        protected function get_premium_manager()
+        {
+            // attempt to load the settings json
+            if (!class_exists('WMobilePack_Premium')) {
+                require_once(WMP_PLUGIN_PATH . 'inc/class-wmp-premium.php');
+            }
+
+            return new WMobilePack_Premium();
+        }
+
+
+        /**
+         * Check if we have tablet themes support
+         *
+         * @return int
+         */
+        protected function is_allowed_tablets(){
+
+            if (WMobilePack_Options::get_setting('premium_active') == 1 && WMobilePack_Options::get_setting('premium_api_key') != ''){
+
+                $premium_manager = $this->get_premium_manager();
+                $arr_config_premium = $premium_manager->get_premium_config();
+
+                if ($arr_config_premium !== null && array_key_exists('tablet', $arr_config_premium))
+                    return 1;
+            }
+
+            return 0;
+        }
+
+
+        /**
          * Detect IE tablet
          *
          * @return bool
@@ -38,20 +76,6 @@ if (!class_exists('WMobilePack_Detect')) {
         }
 
 
-        /**
-         * Check if we have a connect Premium app
-         *
-         * @return int
-         *
-         */
-        protected function is_premium(){
-
-            if (WMobilePack_Options::get_setting('premium_active') == 1 && WMobilePack_Options::get_setting('premium_api_key') != '')
-                return 1;
-
-            return 0;
-        }
-
 
         /**
          *
@@ -66,7 +90,7 @@ if (!class_exists('WMobilePack_Detect')) {
             $is_supported_browser = 0;
             $is_tablet = 0;
 
-            $is_premium = $this->is_premium();
+            $is_allowed_tablets = $this->is_allowed_tablets();
 
             if (!class_exists('WMP_Mobile_Detect'))
                 require_once (WMP_PLUGIN_PATH.'libs/Mobile-Detect-2.8.12/Mobile_Detect.php');
@@ -104,11 +128,11 @@ if (!class_exists('WMobilePack_Detect')) {
 
             if ($is_supported_device && $is_supported_os && $is_supported_browser) {
 
-                if ($is_tablet == 0 || $is_premium == 1){
+                if ($is_tablet == 0 || $is_allowed_tablets == 1){
                     $load_app = true;
                 }
 
-            } elseif ($is_IE_tablet && $is_premium == 1) {
+            } elseif ($is_IE_tablet && $is_allowed_tablets == 1) {
 
                 $load_app = true;
             }
