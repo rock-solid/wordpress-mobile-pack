@@ -1,23 +1,27 @@
 <?php
+
+require_once('config-premium.php');
+
 // get the post url
 $articleUrlParam = '';
 
-$permalink = get_permalink();
+if (is_numeric(get_the_ID())){
 
-if (is_numeric(get_the_ID()) && filter_var($permalink, FILTER_VALIDATE_URL)){
-    $permalink = rawurlencode($permalink);
-    $permalink = str_replace('.','%2E',$permalink);
-    
-    $articleUrlParam = '#articleUrl/'.$permalink;
-} 
+    if ($kit_type == 'classic') {
 
-// load config json for the premium theme
-$premium_manager = new WMobilePack_Premium();
-$json_config_premium = $premium_manager->set_premium_config();
-    
-$arr_config_premium = null;
-if ($json_config_premium !== false) {
-	$arr_config_premium = json_decode($json_config_premium, true);
+        $permalink = get_permalink();
+
+        if (filter_var($permalink, FILTER_VALIDATE_URL)) {
+
+            $permalink = rawurlencode($permalink);
+            $permalink = str_replace('.', '%2E', $permalink);
+
+            $articleUrlParam = '#articleUrl/' . $permalink;
+        }
+
+    } else {
+        $articleUrlParam = '#article/' . get_the_ID();
+    }
 }
 
 // check if we have a valid domain

@@ -1,28 +1,21 @@
 <?php
 
-    $premium_manager = new WMobilePack_Premium();
-	$json_config_premium = $premium_manager->set_premium_config();
-    
-    $arr_config_premium = null;
-	if ($json_config_premium !== false) {
-		$arr_config_premium = json_decode($json_config_premium, true);
-	}
-    
-    // check if we have a valid domain
-    if (isset($arr_config_premium['domain_name']) && filter_var('http://'.$arr_config_premium['domain_name'], FILTER_VALIDATE_URL)) {
-        header("Location: http://".$arr_config_premium['domain_name']);
-        exit();
-    }
-    
-    // check if we have a secure https connection
+    // Check if we have a secure https connection
     $is_secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
-    
+
+    $cdn_kits = ($is_secure ? $arr_config_premium['cdn_kits_https'] : $arr_config_premium['cdn_kits']);
+    $cdn_apps = ($is_secure ? $arr_config_premium['cdn_apps_https'] : $arr_config_premium['cdn_apps']);
+
+    // ----------------------------------------- //
+
     // Check if the browser supports the loading of gzipped files
     $supported_gzip = false;
     if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && strstr($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip'))
-	   $supported_gzip = true;
-    
-	// check if it is tablet
+        $supported_gzip = true;
+
+    // ----------------------------------------- //
+
+	// Check if it is tablet
     if (!class_exists( 'WMobilePack_Detect' ) ) {
         require_once(WMP_PLUGIN_PATH.'frontend/class-detect.php');
     }
@@ -30,12 +23,14 @@
     $detect_manager = new WMobilePack_Detect();
     $is_tablet = $detect_manager->is_tablet();
 
-    $cdn_kits = ($is_secure ? $arr_config_premium['cdn_kits_https'] : $arr_config_premium['cdn_kits']);
-    $cdn_apps = ($is_secure ? $arr_config_premium['cdn_apps_https'] : $arr_config_premium['cdn_apps']);
+    // Set device
+    $device = $is_tablet == 0 ? 'phone' : 'tablet';
+
+    // ----------------------------------------- //
 
     // Check if we have to load a custom theme
-    if ( ($is_tablet == 0 && $arr_config_premium['phone']['theme'] != 0) || ($is_tablet == 1 && $arr_config_premium['tablet']['theme'] != 0)) {
-        $kits_path = $cdn_kits."/app".($is_tablet == 0 ? $arr_config_premium['phone']['theme'] : $arr_config_premium['tablet']['theme']).'/'.$arr_config_premium['kit_version'].'/';
+    if ($arr_config_premium[$device]['theme'] != 0) {
+        $kits_path = $cdn_kits."/app".$arr_config_premium[$device]['theme'].'/'.$arr_config_premium['kit_version'].'/';
     } else {
         $kits_path = $cdn_apps."/".$arr_config_premium['shorten_url'].'/';
     }
@@ -60,11 +55,8 @@
     // Set cover settings
     $cover = '';
 
-    if ($is_tablet == 0 && isset($arr_config_premium['phone']['cover']) && $arr_config_premium['phone']['cover'] != '')
-        $cover = $arr_config_premium['phone']['cover'];
-
-    if ($is_tablet == 1 && isset($arr_config_premium['tablet']['cover']) && $arr_config_premium['tablet']['cover'] != '')
-        $cover = $arr_config_premium['tablet']['cover'];
+    if (isset($arr_config_premium[$device]['cover']) && $arr_config_premium[$device]['cover'] != '')
+        $cover = $arr_config_premium[$device]['cover'];
 
     // ----------------------------------------- //
 
@@ -73,11 +65,11 @@
 
     // ----------------------------------------- //
 
-    // Set device
-    $device = $is_tablet == 0 ? 'phone' : 'tablet';
+
+
 ?>
 <!DOCTYPE HTML>
-<html manifest="" lang="en-US">
+<html manifest="" lang="<?php echo str_replace('_', '-', $locale);?>">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
@@ -169,7 +161,7 @@
             socialApiPath: '<?php echo $is_secure ? $arr_config_premium['api_social_https'] : $arr_config_premium['api_social'];?>',
 
             <?php if (isset($arr_config_premium['api_content_external'])):?>
-            exportPathExternal: '<?php echo $arr_config_premium['api_content_external'];?>',
+                exportPathExternal: '<?php echo $arr_config_premium['api_content_external'];?>',
             <?php endif;?>
 
             defaultPath: '<?php echo $kits_path;?>',
@@ -182,10 +174,14 @@
             startupImageTimestamp: '<?php echo $logo_timestamp;?>',
 
             userCover: <?php echo $cover == "" ? 'false' : 'true' ;?>,
-            defaultCover: "<?php echo $cover == "" ? $cdn_kits.'/others/covers/'.($is_tablet ? 'tablet' : 'phone').'/pattern-'.rand(1,8).'.jpg' : $cdn_apps."/".$arr_config_premium['shorten_url'].'/'.$cover;?>",
+            defaultCover: "<?php echo $cover == "" ? $cdn_kits.'/others/covers/'.$device.'/pattern-'.rand(1,8).'.jpg' : $cdn_apps."/".$arr_config_premium['shorten_url'].'/'.$cover;?>",
 
             appUrl: '<?php echo home_url();?>',
-            websiteUrl: '<?php echo home_url(); echo parse_url(home_url(), PHP_URL_QUERY) ? '&' : '?'; echo WMobilePack_Cookie::$prefix; ?>theme_mode=desktop',
+
+            <?php if (isset($arr_config_premium['website_url']) && $arr_config_premium['website_url'] != ''):?>
+                websiteUrl: '<?php echo $arr_config_premium['website_url']; echo parse_url(home_url(), PHP_URL_QUERY) ? '&' : '?'; echo WMobilePack_Cookie::$prefix; ?>theme_mode=desktop',
+            <?php endif;?>
+
             canonicalUrl: '<?php echo home_url();?>',
 
             preview: 0,
@@ -257,31 +253,31 @@
 
     <?php
 
-    $theme_details = array(
-        'theme'             => $arr_config_premium[$device]['theme'],
-        'color_scheme'      => isset($arr_config_premium[$device]['color_scheme']) ? $arr_config_premium[$device]['color_scheme'] : 1,
-        'font_headlines'    => isset($arr_config_premium[$device]['font_headlines']) ? $arr_config_premium[$device]['font_headlines'] : '',
-        'font_subtitles'    => isset($arr_config_premium[$device]['font_subtitles']) ? $arr_config_premium[$device]['font_subtitles'] : '',
-        'font_paragraphs'   => isset($arr_config_premium[$device]['font_paragraphs']) ? $arr_config_premium[$device]['font_paragraphs'] : '',
-        'theme_timestamp'   => isset($arr_config_premium[$device]['theme_timestamp']) ? $arr_config_premium[$device]['theme_timestamp'] : '',
-    );
+        $theme_details = array(
+            'theme'             => $arr_config_premium[$device]['theme'],
+            'color_scheme'      => isset($arr_config_premium[$device]['color_scheme']) ? $arr_config_premium[$device]['color_scheme'] : 1,
+            'font_headlines'    => isset($arr_config_premium[$device]['font_headlines']) ? $arr_config_premium[$device]['font_headlines'] : '',
+            'font_subtitles'    => isset($arr_config_premium[$device]['font_subtitles']) ? $arr_config_premium[$device]['font_subtitles'] : '',
+            'font_paragraphs'   => isset($arr_config_premium[$device]['font_paragraphs']) ? $arr_config_premium[$device]['font_paragraphs'] : '',
+            'theme_timestamp'   => isset($arr_config_premium[$device]['theme_timestamp']) ? $arr_config_premium[$device]['theme_timestamp'] : '',
+        );
 
-    $arrLoadedFonts = array();
+        $arrLoadedFonts = array();
 
-    if (is_numeric($theme_details['font_headlines']))
-        $arrLoadedFonts[] = $theme_details['font_headlines'];
+        if (is_numeric($theme_details['font_headlines']))
+            $arrLoadedFonts[] = $theme_details['font_headlines'];
 
-    if (!in_array($theme_details['font_subtitles'], $arrLoadedFonts) && is_numeric($theme_details['font_subtitles']))
-        $arrLoadedFonts[] = $theme_details['font_subtitles'];
+        if (!in_array($theme_details['font_subtitles'], $arrLoadedFonts) && is_numeric($theme_details['font_subtitles']))
+            $arrLoadedFonts[] = $theme_details['font_subtitles'];
 
-    if (!in_array($theme_details['font_paragraphs'], $arrLoadedFonts) && is_numeric($theme_details['font_paragraphs']))
-        $arrLoadedFonts[] = $theme_details['font_paragraphs'];
+        if (!in_array($theme_details['font_paragraphs'], $arrLoadedFonts) && is_numeric($theme_details['font_paragraphs']))
+            $arrLoadedFonts[] = $theme_details['font_paragraphs'];
 
-    // Check if we have custom fonts, otherwise load at least one default font
-    if (!isset($arr_config_premium[$device]['custom_fonts']) && count($arrLoadedFonts) == 0) {
-        $arrLoadedFonts[] = 1;
-        $theme_details['font_headlines'] = 1;
-    }
+        // Check if we have custom fonts, otherwise load at least one default font
+        if (!isset($arr_config_premium[$device]['custom_fonts']) && count($arrLoadedFonts) == 0) {
+            $arrLoadedFonts[] = 1;
+            $theme_details['font_headlines'] = 1;
+        }
     ?>
 
     <?php foreach ($arrLoadedFonts as $font_no):?>
@@ -289,20 +285,19 @@
     <?php endforeach; ?>
 
     <?php
+        // load custom fonts
+        $arrCustomFonts = array();
 
-    // load custom fonts
-    $arrCustomFonts = array();
+        if (isset($arr_config_premium[$device]['custom_fonts'])) {
 
-    if (isset($arr_config_premium[$device]['custom_fonts'])) {
+            $arrFontsNo = explode(',', $arr_config_premium[$device]['custom_fonts']);
 
-        $arrFontsNo = explode(',', $arr_config_premium[$device]['custom_fonts']);
-
-        foreach ($arrFontsNo as $font_no){
-            if (is_numeric($font_no)){
-                $arrCustomFonts[] = $font_no;
+            foreach ($arrFontsNo as $font_no){
+                if (is_numeric($font_no)){
+                    $arrCustomFonts[] = $font_no;
+                }
             }
         }
-    }
     ?>
 
     <?php foreach ($arrCustomFonts as $font_no):?>
@@ -321,10 +316,10 @@
     <script type="text/javascript" src="<?php echo $kits_path;?>js/<?php echo $device.($supported_gzip ? '-js.gz' : '.js');?>"></script>
 
     <?php
-    // check if google analytics id was set
-    $google_analytics_id = isset($arr_config_premium['google_analytics_id']) ? $arr_config_premium['google_analytics_id'] : '';
-    if ($google_analytics_id != ''):
-        ?>
+        // check if google analytics id was set
+        $google_analytics_id = isset($arr_config_premium['google_analytics_id']) ? $arr_config_premium['google_analytics_id'] : '';
+        if ($google_analytics_id != ''):
+    ?>
 
         <script type="text/javascript" pagespeed_no_defer="">
 
@@ -343,10 +338,10 @@
     <?php endif;?>
 
     <?php
-    // check if google analytics id was set
-    $google_internal_id = isset($arr_config_premium['google_internal_id']) ? $arr_config_premium['google_internal_id'] : '';
-    if ($google_internal_id != ''):
-        ?>
+        // check if google analytics id was set
+        $google_internal_id = isset($arr_config_premium['google_internal_id']) ? $arr_config_premium['google_internal_id'] : '';
+        if ($google_internal_id != ''):
+    ?>
 
         <!-- add google universal analytics -->
         <script pagespeed_no_defer="">
