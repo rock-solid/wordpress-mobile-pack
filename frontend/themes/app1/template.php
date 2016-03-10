@@ -141,7 +141,7 @@ if ($texts_json_exists === false) {
         <link rel="stylesheet" href="<?php echo $frontend_path."fonts/font-".$font_no.".css?date=20151207";?>" type="text/css">
     <?php endforeach;?>
 
-    <script src="<?php echo $export_path.'content.php?content=apptexts&locale=nl_NL';?>" type="text/javascript"></script>
+    <script src="<?php echo $export_path.'content.php?content=apptexts&locale='.get_locale();?>" type="text/javascript"></script>
     <script src="<?php echo $theme_path;?>js/app.js?date=20150919" type="text/javascript"></script>
 
     <?php
