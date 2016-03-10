@@ -286,8 +286,25 @@ if (!class_exists('WMobilePack_Application')) {
          */
         public function show_rel()
         {
-            if (WMobilePack_Options::get_setting('premium_active') == 1 && WMobilePack_Options::get_setting('premium_api_key') != '')
-                include(WMP_PLUGIN_PATH.'frontend/sections/show-rel-premium.php');
+
+            $use_external_rels = false;
+
+            if (WMobilePack_Options::get_setting('premium_active') == 1 && WMobilePack_Options::get_setting('premium_api_key') != ''){
+
+                $premium_manager = $this->get_premium_manager();
+                $arr_config_premium = $premium_manager->get_premium_config();
+
+                if ($arr_config_premium !== null){
+                    if (!isset($arr_config_premium['kit_type']) || $arr_config_premium['kit_type'] != 'wpmp'){
+                        $use_external_rels = true;
+                    }
+                }
+            }
+
+            var_dump($use_external_rels);
+
+            if ($use_external_rels)
+                include(WMP_PLUGIN_PATH . 'frontend/sections/show-rel-external.php');
             else
                 include(WMP_PLUGIN_PATH.'frontend/sections/show-rel.php');
         }
