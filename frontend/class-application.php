@@ -301,8 +301,6 @@ if (!class_exists('WMobilePack_Application')) {
                 }
             }
 
-            var_dump($use_external_rels);
-
             if ($use_external_rels)
                 include(WMP_PLUGIN_PATH . 'frontend/sections/show-rel-external.php');
             else
