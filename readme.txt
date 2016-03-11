@@ -108,7 +108,7 @@ You can also download a number of mobile emulators that can run on a desktop PC 
 Please note that the mobile web app will be enabled only on supported devices: iPhones, Android smartphones, Windows Phone 8 and Firefox OS. Only the following browsers are compatible: Safari, Google Chrome, Android - Native Browser, Internet Explorer 10 and Firefox (as of 2.0.2).
 
 = Connecting the API Key (Premium Cloud accounts) =
-We have wrote a complete guide about [connecting your plugin with the hosted platform](http://support.appticles.com/hc/en-us/articles/201681012-Connecting-Your-Website-with-Your-Mobile-Web-Application#apikey) by using the API Key.
+We have wrote a complete guide about [connecting your plugin with the hosted platform](http://support.appticles.com/connecting-your-website-with-your-companion-mobile-web-application/#apikey) by using the API Key.
 
 == Frequently Asked Questions ==
 
@@ -116,10 +116,10 @@ We have wrote a complete guide about [connecting your plugin with the hosted pla
 Please make sure that the endpoint exporting the content can be accessed and doesn't show errors or notices. From a browser, go to the following address: http://yoursite.com/wp-content/plugins/wordpress-mobile-pack/export/content.php?content=exportcategories&limit=5&callback=Ext.data.JsonP.callback. You should see a text starting with "Ext.data.JsonP.callback". If the page displays a "403 forbidden" message or has any errors / notices, it means that the content will not be available to the mobile web app.
 
 = I have enabled Wordpress Mobile Pack, but I still see the desktop theme on my smartphone =
-If you are using a cache plugin, please check the [docs](http://support.appticles.com/hc/en-us/articles/201795202-Optimizing-Cache-Plugins-for-Wordpress-Mobile-Pack). Some additional settings on the cache plugin might be required to correctly enable the mobile detection from Wordpress Mobile Pack.
+If you are using a cache plugin, please check the [docs](http://support.appticles.com/optimizing-cache-plugins-wordpress-mobile-pack/). Some additional settings on the cache plugin might be required to correctly enable the mobile detection from Wordpress Mobile Pack.
 
 = What can I use to replace contact forms? =
-Most of the sites we come across use contact forms to allow users to get in touch or/and send messages. However, when targeting mobile users, forcing them to fill out a dull form (usually pretty long) is the worst UX you can offer to your mobile audience. Instead, here are [a couple of approaches](http://support.appticles.com/hc/en-us/articles/203264071-How-to-replace-contact-forms-with-click-to-call-links-for-your-mobile-application) you could try out in your mobile web application:
+Most of the sites we come across use contact forms to allow users to get in touch or/and send messages. However, when targeting mobile users, forcing them to fill out a dull form (usually pretty long) is the worst UX you can offer to your mobile audience. Instead, here are [a couple of approaches](http://support.appticles.com/replacing-contact-forms-with-click-to-call-links-for-your-mobile-web-application/) you could try out in your mobile web application:
 
 = What devices and operating systems are supported by my mobile web application? =
 WordPress Mobile Pack 2.0 is supported on: iPhones, Android smartphones, Windows Phone 8 and Firefox OS. Compatible browsers: Safari, Google Chrome, Android - Native Browser, Internet Explorer 10 and Firefox.
@@ -206,7 +206,7 @@ Google Ad Sense / Google Double Click for Publishers is supported on the Premium
 
 = 2.1.1 =
 * Integrated with [Related Posts by Zemanta](https://wordpress.org/plugins/related-posts-by-zemanta/) and [Editorial Assistant by Zemanta](https://wordpress.org/plugins/zemanta/)
-* Wrote docs about [how to set up the main cache plugins for WPMP](http://support.appticles.com/hc/en-us/articles/201795202-Optimizing-Cache-Plugins-for-Wordpress-Mobile-Pack)
+* Wrote docs about [how to set up the main cache plugins for WPMP](http://support.appticles.com/optimizing-cache-plugins-wordpress-mobile-pack/)
 * Added manifest files for Android and FirefoxOS (handle 'Add to homescreen' url and icon)
 * Added SSL support
 * Added support for HTML5 audio and video tags. Please note that not all mobile browsers are correctly handling these tags. The audio/video players are not controlled or modified by WPMP.
@@ -351,7 +351,7 @@ If your site uses a cache plugin, please note that a series of issues can occur 
 * Loading the desktop theme on a supported mobile device (even though the Wordpress Mobile Pack plugin is active)
 * Inconsistent switching between the desktop and the Wordpress Mobile Pack theme
 
-If you find yourself in one of these situation, please read [the docs](http://support.appticles.com/hc/en-us/articles/201795202-Optimizing-Cache-Plugins-for-Wordpress-Mobile-Pack) and make the appropriate settings on your cache plugin.
+If you find yourself in one of these situation, please read [the docs](http://support.appticles.com/optimizing-cache-plugins-wordpress-mobile-pack/) and make the appropriate settings on your cache plugin.
 
 == Roadmap ==
 
