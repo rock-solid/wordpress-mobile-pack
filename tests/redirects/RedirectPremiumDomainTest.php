@@ -49,23 +49,14 @@ if (class_exists('WPMPTestsUtils')) {
 			
 			parent::tearDown();
 		}
-	
-		/**
-		 * Return path to the WPMP theme folder
-		 */
-		function _theme_root() {
-			return WP_CONTENT_DIR.'/plugins/wordpress-mobile-pack/themes';
-		}
-		
+
 		
 		/**
 		 *
-		 * Home page shouldn't redirect
+		 * Home page should redirect
 		 *
 		 */
 		function test_home() {
-			
-			$themes = wp_get_theme();
 			
 			if (WMobilePack_Options::get_setting('premium_active') == 1 && WMobilePack_Options::get_setting('premium_api_key') != '') {
 				

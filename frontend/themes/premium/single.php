@@ -20,7 +20,7 @@ if (is_numeric(get_the_ID())){
         }
 
     } else {
-        $articleUrlParam = '#article/' . get_the_ID();
+        $articleUrlParam = '/#article/' . get_the_ID();
     }
 }
 

@@ -5,6 +5,13 @@ if(get_option('show_on_front') == 'page' && get_option('page_on_front') == get_t
 
 	// load app
 	$app_settings = WMobilePack_Application::load_app_settings_premium();
+
+    // if we have a valid domain, redirect to it
+    if (isset($app_settings['domain_name']) && filter_var('http://'.$app_settings['domain_name'], FILTER_VALIDATE_URL)) {
+        header("Location: http://".$app_settings['domain_name']);
+        exit();
+    }
+
 	require_once('template.php');
 
 } else {
@@ -30,7 +37,7 @@ if(get_option('show_on_front') == 'page' && get_option('page_on_front') == get_t
 
 		} else {
 
-			$pageUrlParam = '#page/' . get_the_ID();
+			$pageUrlParam = '/#page/' . get_the_ID();
 		}
 	}
 
