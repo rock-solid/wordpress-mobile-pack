@@ -146,6 +146,19 @@ class MediaContentTest extends WP_UnitTestCase
         $this->assertEquals($this->purifier->purify($input), $output);
     }
 
+    public function test_spotify(){
+
+        $input = '<iframe src="https://embed.spotify.com/?uri=spotify%3Aalbum%3A09wBB2tZNMY9WhIhvx5OSx" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>';
+        $output = '<iframe src="https://embed.spotify.com/?uri=spotify%3Aalbum%3A09wBB2tZNMY9WhIhvx5OSx" width="300" height="380" frameborder="0"></iframe>';
+
+        $this->assertEquals($this->purifier->purify($input), $output);
+
+        $input = '<iframe src="https://embed.spotify.com/?uri=spotify:track:7Hms7xBu3FJqbruhShB2zt?play=true&#038;utm_source=open.spotify.com&#038;utm_medium=open" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>';
+        $output = '<iframe src="https://embed.spotify.com/?uri=spotify:track:7Hms7xBu3FJqbruhShB2zt?play=true&amp;utm_source=open.spotify.com&amp;utm_medium=open" width="300" height="380" frameborder="0"></iframe>';
+
+        $this->assertEquals($this->purifier->purify($input), $output);
+    }
+
     public function test_video(){
 
         $input = '<video width="320" height="240" controls><source src="movie.mp4" type="video/mp4"><source src="movie.ogg" type="video/ogg">Your browser does not support the video tag.</video>';
