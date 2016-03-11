@@ -71,7 +71,7 @@
                             <div class="spacer-10"></div>
 
                             <!-- add radio buttons -->
-                            <input type="radio" name="wmp_editsettings_postsperpage" id="wmp_editsettings_postsperpage_auto" value="auto" <?php if ($posts_per_page == "auto") echo "checked" ;?> /><label for="wmp_editsettings_postsperpage_auto"><strong>Auto</strong> (combine one or two posts per page)</label>
+                            <input type="radio" name="wmp_editsettings_postsperpage" id="wmp_editsettings_postsperpage_auto" value="auto" <?php if ($posts_per_page == "auto") echo "checked" ;?> /><label for="wmp_editsettings_postsperpage_auto"><strong>Auto</strong> (1 or 2 posts per page)</label>
                             <div class="spacer-10"></div>
 
                             <input type="radio" name="wmp_editsettings_postsperpage" id="wmp_editsettings_postsperpage_single" value="single" <?php if ($posts_per_page == "single") echo "checked" ;?> /><label for="wmp_editsettings_postsperpage_single">One post per page</label>
