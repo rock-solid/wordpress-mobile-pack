@@ -150,6 +150,9 @@ Google Ad Sense / Google Double Click for Publishers is supported on the Premium
 
 == Changelog ==
 
+= 2.2.2 =
+* Translated app in Dutch. A big thanks to John Haverkate.
+
 = 2.2.1 =
 * Option to choose the number of posts per card
 * Add support for Instagram and Spreaker embed code
