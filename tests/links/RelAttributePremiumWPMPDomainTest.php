@@ -9,7 +9,7 @@ if (class_exists('WPMPTestsUtils')) {
      * @group integrationTests
      *
      */
-    class RelAttributePremiumWPMPTest extends WP_UnitTestCase {
+    class RelAttributePremiumWPMPDomainTest extends WP_UnitTestCase {
 
         protected static $test_subdomain = 'myapp.domaintest.com';
 
