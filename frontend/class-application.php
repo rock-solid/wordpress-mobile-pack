@@ -400,7 +400,7 @@ if (!class_exists('WMobilePack_Application')) {
          * @param $device
          * @return array
          */
-        public function load_app_settings_theme_premium($arr_config_premium, $device){
+        protected function load_app_settings_theme_premium($arr_config_premium, $device){
 
             $settings = array();
 
@@ -439,7 +439,7 @@ if (!class_exists('WMobilePack_Application')) {
          * @param $is_secure
          * @return array
          */
-        public function load_app_settings_paths_images_premium($arr_config_premium, $device, $is_secure){
+        protected function load_app_settings_paths_images_premium($arr_config_premium, $device, $is_secure){
 
             $settings = array(
                 'cdn_kits' => ($is_secure ? $arr_config_premium['cdn_kits_https'] : $arr_config_premium['cdn_kits']),
@@ -507,7 +507,7 @@ if (!class_exists('WMobilePack_Application')) {
          * @param $arr_config_premium
          * @return array
          */
-        public function load_app_settings_google_premium($arr_config_premium){
+        protected function load_app_settings_google_premium($arr_config_premium){
 
             $settings = array();
 
@@ -524,7 +524,7 @@ if (!class_exists('WMobilePack_Application')) {
                 'tablet_ad_interval',
                 'tablet_network_code',
                 'tablet_unit_name',
-                'tablet_ad_name',
+                'tablet_ad_sizes',
 
                 'google_internal_id',
                 'google_analytics_id',
@@ -547,7 +547,6 @@ if (!class_exists('WMobilePack_Application')) {
          *
          * Returns an array with all the application's frontend settings (Premium themes)
          *
-         * @todo UNIT TESTING !!!
          */
         public static function load_app_settings_premium(){
 

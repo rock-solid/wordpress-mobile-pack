@@ -149,8 +149,6 @@ class ExportManifestTest extends WP_UnitTestCase
 
     /**
      * Calling export_manifest_premium() for Android with icon and classic kit returns data
-     *
-     * @runInSeparateProcess
      */
     function test_export_manifest_premium_android_with_icon_classic_returns_data()
     {
@@ -182,6 +180,9 @@ class ExportManifestTest extends WP_UnitTestCase
         $this->assertEquals('https://dummy.appticles.com/blabla', $data['start_url']);
         $this->assertEquals('standalone', $data['display']);
         $this->assertEquals(array("src" => 'https://cdn.appticles.com/abcdef/resources/icon.png', "sizes" => "192x192"), $data['icons'][0]);
+
+        // set port back
+        $_SERVER['SERVER_PORT'] = 80;
     }
 
 
