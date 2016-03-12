@@ -70,7 +70,11 @@ if (isset($_GET['content'])) {
             case 'androidmanifest':
             case 'mozillamanifest':
 
-                echo $export->export_manifest();
+                if (isset($_GET['premium']) && $_GET['premium'] == 1) {
+                    echo $export->export_manifest_premium();
+                } else {
+                    echo $export->export_manifest();
+                }
                 break;
 
             case 'apptexts':
