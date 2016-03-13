@@ -27,6 +27,14 @@ $arr_wmp_config = $premium_manager->get_premium_config(false);
     <?php $page_content = WMobilePack_Admin::more_updates();?>
     <div class="whats-new">
         <div class="left-side">
+
+            <!-- add nav menu -->
+            <?php
+                if ($arr_wmp_config != null && isset($arr_wmp_config->kit_type) && $arr_wmp_config->kit_type == 'wpmp')
+                    include_once(WMP_PLUGIN_PATH.'admin/sections/admin-menu-premium.php');
+            ?>
+            <div class="spacer-0"></div>
+
             <div class="details go-premium-white">
                 <div class="spacer-10"></div>
 

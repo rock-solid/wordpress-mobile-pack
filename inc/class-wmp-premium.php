@@ -91,6 +91,22 @@ if (!class_exists('WMobilePack_Premium')) {
         }
 
 
+        /**
+         * Get Premium kit type
+         *
+         * @return string (wpmp|classic)
+         */
+        public function get_kit_type(){
+
+            $arr_config_premium = $this->get_premium_config();
+
+            if ($arr_config_premium !== null && isset($arr_config_premium['kit_type']) && $arr_config_premium['kit_type'] == 'wpmp'){
+                return 'wpmp';
+            }
+
+            return 'classic';
+        }
+
 
         /**
          * Wrapper for reading the JSON data

@@ -65,17 +65,39 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
             )
         );
 
+
         /**
-         * Submenu for the Premium version (with connect API key)
+         * Submenu for the Premium version (with connect API key), classic kit
          *
          * @var array
          */
-        private static $submenu_pages_premium = array(
+        private static $submenu_pages_premium_classic = array(
             array(
-                'page_title' => "What's New",
+                'page_title' => "PRO Settings",
                 'capability' => 'wmp-options-premium',
                 'function' => 'premium',
                 'enqueue_hook' => 'wmp_admin_load_premium_js'
+            )
+        );
+
+
+        /**
+         * Submenu for the Premium version (with connect API key), wpmp kit
+         *
+         * @var array
+         */
+        private static $submenu_pages_premium_wpmp = array(
+            array(
+                'page_title' => "PRO Settings",
+                'capability' => 'wmp-options-premium',
+                'function' => 'premium',
+                'enqueue_hook' => 'wmp_admin_load_premium_js'
+            ),
+            array(
+                'page_title' => "Content",
+                'capability' => 'wmp-options-content',
+                'function' => 'content',
+                'enqueue_hook' => 'wmp_admin_load_content_js'
             )
         );
 
@@ -118,21 +140,17 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
             // check menu
             if (WMobilePack_Options::get_setting('premium_active') == 1 && WMobilePack_Options::get_setting('premium_api_key') != '') {
 
-                // add menu and submenu hooks
-                add_menu_page( self::$submenu_title, self::$submenu_title, 'manage_options', 'wmp-options-premium', '', WP_PLUGIN_URL . '/' . WMP_DOMAIN . '/admin/images/appticles-logo.png' );
+                $kit_type = WMobilePack::get_kit_type();
+                $pages_list = $kit_type == 'classic' ? self::$submenu_pages_premium_classic : self::$submenu_pages_premium_wpmp;
 
-                foreach (self::$submenu_pages_premium as $submenu_item) {
-
-                    // add page in the submenu
-                    $submenu_page = add_submenu_page('wmp-options', $submenu_item['page_title'], $submenu_item['page_title'], 'manage_options', $submenu_item['capability'], array(&$WMobilePackAdmin, $submenu_item['function']));
-
-                    // enqueue js files for each subpage
-                    if (isset($submenu_item['enqueue_hook']) && $submenu_item['enqueue_hook'] != '') {
-                        add_action('load-' . $submenu_page, array(&$this, $submenu_item['enqueue_hook']));
-                    }
-                }
+                $menu_name = 'wmp-options-premium';
+                $display_notify_icon = false;
 
             } else {
+
+                $pages_list = self::$submenu_pages;
+
+                $menu_name = 'wmp-options';
 
                 // check if we need to request updates for the what's new section
                 $WMobilePackCookie = new WMobilePack_Cookie();
@@ -150,20 +168,23 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
                 if (WMobilePack_Options::get_setting('whats_new_updated') == 1) {
                     $display_notify_icon = true;
                 }
+            }
 
-                // add menu and submenu hooks
-                add_menu_page(self::$submenu_title, self::$submenu_title, 'manage_options', 'wmp-options', '', WP_PLUGIN_URL . '/' . WMP_DOMAIN . '/admin/images/appticles-logo' . ($display_notify_icon == true ? '-updates' : '') . '.png');
+            // add menu and submenu hooks
+            add_menu_page(self::$submenu_title, self::$submenu_title, 'manage_options', $menu_name, '', WP_PLUGIN_URL . '/' . WMP_DOMAIN . '/admin/images/appticles-logo' . ($display_notify_icon == true ? '-updates' : '') . '.png');
 
-                foreach (self::$submenu_pages as $submenu_item) {
+            foreach ($pages_list as $submenu_item) {
 
-                    // add page in the submenu
-                    $submenu_page = add_submenu_page('wmp-options', $submenu_item['page_title'], $submenu_item['page_title'], 'manage_options', $submenu_item['capability'], array(&$WMobilePackAdmin, $submenu_item['function']));
+                // add page in the submenu
+                $submenu_page = add_submenu_page($menu_name, $submenu_item['page_title'], $submenu_item['page_title'], 'manage_options', $submenu_item['capability'], array(&$WMobilePackAdmin, $submenu_item['function']));
 
-                    // enqueue js files for each subpage
-                    if (isset($submenu_item['enqueue_hook']) && $submenu_item['enqueue_hook'] != '') {
-                        add_action('load-' . $submenu_page, array(&$this, $submenu_item['enqueue_hook']));
-                    }
+                // enqueue js files for each subpage
+                if (isset($submenu_item['enqueue_hook']) && $submenu_item['enqueue_hook'] != '') {
+                    add_action('load-' . $submenu_page, array(&$this, $submenu_item['enqueue_hook']));
                 }
+            }
+
+            if ($menu_name == 'wmp-options' || ($menu_name == 'wmp-options-premium' && $kit_type == 'wpmp')){
 
                 // fake submenu since it is not visible (for editing a page's details)
                 $pages_page = add_submenu_page(null, 'Content', 'Details', 'manage_options', 'wmp-page-details', array(&$WMobilePackAdmin, 'page_content'));
