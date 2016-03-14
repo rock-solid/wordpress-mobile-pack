@@ -39,10 +39,11 @@ if ( ! class_exists( 'WMobilePack_Tokens' ) ) {
          * The method returns true if the token is valid and false otherwise.
          *
          * @param $token - string
+         * @param $webapp_id - The webapp's id (from Premium settings)
          * @return bool
          *
          */
-        public static function check_token($token)
+        public static function check_token($token, $webapp_id = false)
         {
 
             if (base64_decode($token,true)){
@@ -66,6 +67,15 @@ if ( ! class_exists( 'WMobilePack_Tokens' ) ) {
                             // check encoded domain
                             if ($arrParams[0] ==  $generated_url)
                                 return true;
+
+                            // get the generated encoded webappid
+                            if ($webapp_id !== false) {
+
+                                $generated_id = md5(md5($webapp_id));
+
+                                if ($arrParams[0] == $generated_id)
+                                    return true;
+                            }
                         }
                     }
                 }

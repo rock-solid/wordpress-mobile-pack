@@ -893,6 +893,45 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
         }
 
+
+        /**
+         * Get array with HTTP hosts that are allowed to save comments.
+         *
+         * @param bool $webapp_id = The webapp id (from Premium settings), used to check the comments token.
+         * @return array
+         *
+         */
+        protected function get_comments_allowed_hosts(&$webapp_id = false){
+
+            $allowed_hosts = array(
+                $_SERVER["HTTP_HOST"]
+            );
+
+            if (WMobilePack_Options::get_setting('premium_active') == 1 && WMobilePack_Options::get_setting('premium_api_key') != '') {
+
+                if (!class_exists('WMobilePack_Premium')) {
+                    require_once(WMP_PLUGIN_PATH . 'inc/class-wmp-premium.php');
+                }
+
+                $premium_manager = new WMobilePack_Premium();
+                $arr_config_premium = $premium_manager->get_premium_config();
+
+                if ($arr_config_premium !== null) {
+
+                    $allowed_hosts[] = WMP_APPTICLES_PREVIEW_DOMAIN.'/'.$arr_config_premium['shorten_url'];
+
+                    if (isset($arr_config_premium['domain_name']) && filter_var('http://'.$arr_config_premium['domain_name'], FILTER_VALIDATE_URL)) {
+                        $allowed_hosts[] = $arr_config_premium['domain_name'];
+                    }
+
+                    $webapp_id = $arr_config_premium['webapp'];
+                }
+            }
+
+            return $allowed_hosts;
+        }
+
+
         /**
          *  The save_comment method is used for adding a comment to an article.
          *
@@ -914,7 +953,22 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
         public function save_comment()
         {
 
-            if (!isset($_SERVER['HTTP_REFERER']) || strpos($_SERVER['HTTP_REFERER'], $_SERVER["HTTP_HOST"]) !== false) {
+            $allowed_hosts = $this->get_comments_allowed_hosts($webapp_id);
+
+            $is_allowed = false;
+
+            if (!isset($_SERVER['HTTP_REFERER'])){
+                $is_allowed = true;
+            } else {
+
+                foreach ($allowed_hosts as $http_host){
+                    if (strpos($_SERVER['HTTP_REFERER'], $http_host) !== false){
+                        $is_allowed = true;
+                    }
+                }
+            }
+
+            if ($is_allowed) {
 
                 if (isset($_GET["articleId"]) && is_numeric($_GET["articleId"])) {
 
@@ -926,7 +980,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                         }
 
                         // if the token is valid, go ahead and save comment to the DB
-                        if (WMobilePack_Tokens::check_token($_GET['code'])) {
+                        if (WMobilePack_Tokens::check_token($_GET['code'], $webapp_id)) {
 
                             $arr_response = array(
                                 'status' => 0,
