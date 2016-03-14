@@ -151,7 +151,10 @@ Google Ad Sense / Google Double Click for Publishers is supported on the Premium
 == Changelog ==
 
 = 2.2.2 =
+* Added support for Spotify
 * Translated app in Dutch. A big thanks to John Haverkate.
+* Modify settings for Premium themes (new kits with comments, similar to the PRO plugin)
+* Fixed disable desktop link for Premium themes
 
 = 2.2.1 =
 * Option to choose the number of posts per card
