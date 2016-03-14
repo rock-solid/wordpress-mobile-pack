@@ -103,6 +103,26 @@ if (!class_exists('MobileDetectPremiumTest')) {
         }
 
 
+        function tearDown(){
+
+            unset($_SERVER['HTTP_HOST']);
+
+            // disable connection with the API key
+            $arrData = array(
+                'premium_api_key' => '',
+                'premium_active'  => 0,
+                'premium_config_path'  => ''
+            );
+
+            // save options
+            WMobilePack_Options::update_settings($arrData);
+
+            delete_transient('wmp_premium_config_path');
+
+            parent::tearDown();
+        }
+
+
         /**
          * Smartphones should be allowed
          */

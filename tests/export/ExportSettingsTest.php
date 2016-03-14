@@ -5,6 +5,21 @@ require_once(WMP_PLUGIN_PATH."export/class-export.php");
 class ExportSettingsTest extends WP_UnitTestCase
 {
 
+    function tearDown(){
+
+        // disable connection with the API key
+        $arrData = array(
+            'premium_api_key' => '',
+            'premium_active'  => 0,
+            'premium_config_path'  => ''
+        );
+
+        // save options
+        WMobilePack_Options::update_settings($arrData);
+
+        parent::tearDown();
+    }
+
     /**
      * Calling export_settings() without an api key returns error
      */

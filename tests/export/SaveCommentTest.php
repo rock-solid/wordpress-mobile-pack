@@ -1,7 +1,6 @@
 <?php
 
 require_once(WMP_PLUGIN_PATH."export/class-export.php");
-require_once(WMP_PLUGIN_PATH . 'inc/class-wmp-tokens.php');
 
 class SaveCommentTest extends WP_UnitTestCase
 {
@@ -16,12 +15,48 @@ class SaveCommentTest extends WP_UnitTestCase
         $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
     }
 
+
+    /**
+     * Mock the export class
+     *
+     * @return mixed
+     */
+    function mock_export(){
+
+        $WMP_Export_Mock = $this->getMockBuilder('WMobilePack_Export')
+            ->setMethods(array('get_comments_allowed_hosts'))
+            ->getMock();
+        
+        return $WMP_Export_Mock;
+    }
+
+    /**
+     * Calling save_comment() with a HTTP REFERRER check allowed hosts
+     */
+    function test_save_comment_with_referrer_checks_hosts()
+    {
+        $_SERVER['HTTP_REFERER'] = 'app.appticles.com/abcdef';
+
+        $export = $this->mock_export();
+
+        $export->expects($this->once())
+            ->method('get_comments_allowed_hosts')
+            ->will(
+                $this->returnValue(array('app.appticles.com/abcdef'))
+            );
+
+        $this->assertEquals($export->save_comment(), null);
+
+        unset($_SERVER['HTTP_REFERER']);
+    }
+
+
     /**
      * Calling save_comment() without a post id returns null
      */
     function test_save_comment_without_post_id_returns_null()
     {
-        $export = new WMobilePack_Export();
+        $export = $this->mock_export();
         $this->assertEquals($export->save_comment(), null);
     }
 
@@ -34,7 +69,7 @@ class SaveCommentTest extends WP_UnitTestCase
 
         $_GET['articleId'] = $post_id;
 
-        $export = new WMobilePack_Export();
+        $export = $this->mock_export();
         $this->assertEquals($export->save_comment(), null);
 
         wp_delete_post($post_id);
@@ -50,7 +85,7 @@ class SaveCommentTest extends WP_UnitTestCase
         $_GET['articleId'] = $post_id;
         $_GET['code'] = "invalidaccesscode";
 
-        $export = new WMobilePack_Export();
+        $export = $this->mock_export();
         $this->assertEquals($export->save_comment(), null);
 
         wp_delete_post($post_id);
@@ -70,7 +105,7 @@ class SaveCommentTest extends WP_UnitTestCase
         $_GET['articleId'] = $post_id;
         $_GET['code'] = WMobilePack_Tokens::get_token();
 
-        $export = new WMobilePack_Export();
+        $export = $this->mock_export();
         $response = json_decode($export->save_comment(), true);
 
         $this->assertEquals(0, $response['status']);
@@ -94,7 +129,7 @@ class SaveCommentTest extends WP_UnitTestCase
         $_GET['articleId'] = $post_id;
         $_GET['code'] = WMobilePack_Tokens::get_token();
 
-        $export = new WMobilePack_Export();
+        $export = $this->mock_export();
         $response = json_decode($export->save_comment(), true);
 
         $this->assertEquals(0, $response['status']);
@@ -118,7 +153,7 @@ class SaveCommentTest extends WP_UnitTestCase
         $_GET['articleId'] = $post_id;
         $_GET['code'] = WMobilePack_Tokens::get_token();
 
-        $export = new WMobilePack_Export();
+        $export = $this->mock_export();
         $response = json_decode($export->save_comment(), true);
 
         $this->assertEquals(0, $response['status']);
@@ -150,7 +185,7 @@ class SaveCommentTest extends WP_UnitTestCase
         $_GET['articleId'] = $post_id;
         $_GET['code'] = WMobilePack_Tokens::get_token();
 
-        $export = new WMobilePack_Export();
+        $export = $this->mock_export();
         $response = json_decode($export->save_comment(), true);
 
         $this->assertEquals(0, $response['status']);
@@ -176,7 +211,7 @@ class SaveCommentTest extends WP_UnitTestCase
         $_GET['articleId'] = $post_id;
         $_GET['code'] = WMobilePack_Tokens::get_token();
 
-        $export = new WMobilePack_Export();
+        $export = $this->mock_export();
         $response = json_decode($export->save_comment(), true);
 
         $this->assertEquals(0, $response['status']);
@@ -201,7 +236,7 @@ class SaveCommentTest extends WP_UnitTestCase
         $_GET['code'] = WMobilePack_Tokens::get_token();
         $_GET['email'] = 'dummy@appticles.com';
 
-        $export = new WMobilePack_Export();
+        $export = $this->mock_export();
         $response = json_decode($export->save_comment(), true);
 
         $this->assertEquals(0, $response['status']);
@@ -226,7 +261,7 @@ class SaveCommentTest extends WP_UnitTestCase
         $_GET['code'] = WMobilePack_Tokens::get_token();
         $_GET['author'] = 'Comment Author';
 
-        $export = new WMobilePack_Export();
+        $export = $this->mock_export();
         $response = json_decode($export->save_comment(), true);
 
         $this->assertEquals(0, $response['status']);
@@ -252,7 +287,7 @@ class SaveCommentTest extends WP_UnitTestCase
         $_GET['author'] = 'Comment Author';
         $_GET['email'] = 'This is not an email address';
 
-        $export = new WMobilePack_Export();
+        $export = $this->mock_export();
         $response = json_decode($export->save_comment(), true);
 
         $this->assertEquals(0, $response['status']);
@@ -278,7 +313,7 @@ class SaveCommentTest extends WP_UnitTestCase
         $_GET['author'] = 'Comment Author';
         $_GET['email'] = 'dummy@appticles.com';
 
-        $export = new WMobilePack_Export();
+        $export = $this->mock_export();
         $response = json_decode($export->save_comment(), true);
 
         $this->assertEquals(0, $response['status']);
@@ -311,7 +346,7 @@ class SaveCommentTest extends WP_UnitTestCase
 
         $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
 
-        $export = new WMobilePack_Export();
+        $export = $this->mock_export();
         $response = json_decode($export->save_comment(), true);
 
         $this->assertEquals(1, $response['status']);
@@ -341,7 +376,7 @@ class SaveCommentTest extends WP_UnitTestCase
 
         $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
 
-        $export = new WMobilePack_Export();
+        $export = $this->mock_export();
         $response = json_decode($export->save_comment(), true);
 
         $this->assertEquals(2, $response['status']);
@@ -377,7 +412,7 @@ class SaveCommentTest extends WP_UnitTestCase
 
         $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
 
-        $export = new WMobilePack_Export();
+        $export = $this->mock_export();
         $response = json_decode($export->save_comment(), true);
 
         $this->assertEquals(2, $response['status']);
@@ -416,7 +451,7 @@ class SaveCommentTest extends WP_UnitTestCase
 
         $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
 
-        $export = new WMobilePack_Export();
+        $export = $this->mock_export();
         $response = json_decode($export->save_comment(), true);
 
         $this->assertEquals(2, $response['status']);
