@@ -99,7 +99,7 @@ if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && strstr($_SERVER['HTTP_ACCEPT_ENCO
 
                 hasGoogle: <?php echo $app_settings['enable_google'] ? 'true' : 'false';?>,
                 commentsToken: "<?php echo $app_settings['comments_token'];?>",
-                articlesPerCard: "<?php echo $app_settings['posts_per_page'] ;?>",
+                articlesPerCard: <?php echo is_numeric($app_settings['posts_per_page']) ? $app_settings['posts_per_page'] : '"auto"' ;?>,
                 homeText: <?php echo str_replace('\n', '<br/>', json_encode($app_settings['cover_text']));?>,
 
             <?php else:?>
