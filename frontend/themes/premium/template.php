@@ -169,7 +169,8 @@ if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && strstr($_SERVER['HTTP_ACCEPT_ENCO
         };
     </script>
 
-    <?php if (($app_settings['has_phone_ads'] == 1 && $app_settings['device'] == 'phone') || ($app_settings['has_tablet_ads'] == 1 && $app_settings['device'] == 1)):?>
+    <?php if (($app_settings['has_phone_ads'] == 1 && $app_settings['device'] == 'phone') ||
+              ($app_settings['has_tablet_ads'] == 1 && $app_settings['device'] == 'tablet')):?>
 
         <!-- start Google Doubleclick for publishers -->
         <script type='text/javascript' pagespeed_no_defer="">
