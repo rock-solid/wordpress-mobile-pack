@@ -179,6 +179,11 @@ if (!class_exists('WMobilePack_Application')) {
         }
 
 
+        /**
+         * Detect device and return it
+         *
+         * @return string (phone|tablet)
+         */
         protected static function get_device(){
 
             // Check if it is tablet
@@ -400,7 +405,7 @@ if (!class_exists('WMobilePack_Application')) {
          * @param $device
          * @return array
          */
-        protected function load_app_settings_theme_premium($arr_config_premium, $device){
+        protected static function load_app_settings_theme_premium($arr_config_premium, $device){
 
             $settings = array();
 
@@ -439,7 +444,7 @@ if (!class_exists('WMobilePack_Application')) {
          * @param $is_secure
          * @return array
          */
-        protected function load_app_settings_paths_images_premium($arr_config_premium, $device, $is_secure){
+        protected static function load_app_settings_paths_images_premium($arr_config_premium, $device, $is_secure){
 
             $settings = array(
                 'cdn_kits' => ($is_secure ? $arr_config_premium['cdn_kits_https'] : $arr_config_premium['cdn_kits']),
@@ -507,7 +512,7 @@ if (!class_exists('WMobilePack_Application')) {
          * @param $arr_config_premium
          * @return array
          */
-        protected function load_app_settings_google_premium($arr_config_premium){
+        protected static function load_app_settings_google_premium($arr_config_premium){
 
             $settings = array();
 

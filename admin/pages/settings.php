@@ -105,6 +105,7 @@
             </div>
             <div class="spacer-15"></div>
 
+            <a name="verifyapikey"></a>
             <div class="details">
                 <div class="display-mode">
                     <h2 class="title">Connect with Appticles</h2>
