@@ -327,7 +327,7 @@ Two major issues were introduced in beta 1, now solved:
 
 == Upgrade Notice ==
 
-= 2.2.1 =
+= 2.2.2 =
 * WP Mobile Pack allows you to 'package' your existing content into a cross-platform mobile web application. Starting from version 2.2+, you can create your own color scheme and choose different fonts for headlines, subtitles and paragraphs.
 
 
