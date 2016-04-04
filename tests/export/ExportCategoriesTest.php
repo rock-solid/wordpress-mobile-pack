@@ -136,6 +136,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
         wp_delete_term($visible_cat_id, 'category');
     }
 
+
     /**
      * Calling export_categories() with posts with images returns data
      */
@@ -425,5 +426,105 @@ class ExportCategoriesTest extends WP_UnitTestCase
         wp_delete_post($post_id2);
         wp_delete_term($visible_cat_id, 'category');
         wp_delete_term($visible_cat_id2, 'category');
+    }
+
+    /**
+     * Calling export_categories() with post from multiple categories returns data
+     */
+    function test_export_categories_with_visible_post_multiple_categories_returns_data()
+    {
+        $published = strtotime('-2 days');
+
+        $visible_cat_id = $this->factory->category->create(
+            array(
+                'name' => 'Visible Test Category'
+            )
+        );
+
+        $visible_cat_id2 = $this->factory->category->create(
+            array(
+                'name' => 'Visible Test Category 2'
+            )
+        );
+
+        $hidden_cat_id = $this->factory->category->create(
+            array(
+                'name' => 'Hidden Test Category'
+            )
+        );
+
+        $post_id = $this->factory->post->create(
+            array(
+                'post_date' => date('Y-m-d H:i:s', $published),
+                'post_title' => 'Article Title',
+                'post_content' => 'test content',
+                'post_category' => array($visible_cat_id, $visible_cat_id2, $hidden_cat_id)
+            )
+        );
+
+        update_option('wmpack_inactive_categories', array($hidden_cat_id));
+
+        $export = new WMobilePack_Export();
+        $data = json_decode($export->export_categories(), true);
+
+        $this->assertArrayHasKey('categories', $data);
+        $this->assertEquals(3, count($data['categories']));
+
+        // check categories names and slugs
+        $categories_ids = array(0, $visible_cat_id, $visible_cat_id2);
+        $categories_names = array('Latest', 'Visible Test Category', 'Visible Test Category 2');
+        $categories_slugs = array('Latest', 'visible-test-category', 'visible-test-category-2');
+
+        foreach ($data['categories'] as $key => $category_data){
+
+            $this->assertEquals($categories_ids[$key], $category_data['id']);
+            $this->assertEquals($categories_names[$key], $category_data['name']);
+            $this->assertEquals($categories_slugs[$key], $category_data['name_slug']);
+
+            if ($category_data['id'] != 0)
+                $this->assertEquals(home_url().'/?cat='.$category_data['id'], $category_data['link']);
+        }
+
+        // check the post in each of the 3 categories (Latest and two visible categories)
+        for ($i = 0; $i < 3; $i++){
+
+            $this->assertEquals(1, count($data['categories'][$i]['articles']));
+
+            $article_data = $data['categories'][$i]['articles'][0];
+
+            $this->assertEquals($post_id, $article_data['id']);
+            $this->assertEquals('Article Title', $article_data['title']);
+            $this->assertArrayHasKey('link', $article_data);
+            $this->assertArrayHasKey('description', $article_data);
+            $this->assertEquals('', $article_data['content']);
+
+            // check date
+            $this->assertEquals($published, $article_data['timestamp']);
+            $this->assertEquals(date('D, F d', $published), $article_data['date']);
+
+            // check categories array
+            $this->assertEquals(array($visible_cat_id, $visible_cat_id2), $article_data['categories']);
+
+            // check category id and name
+            if ($i != 0) {
+
+                $this->assertEquals($categories_ids[$i], $article_data['category_id']);
+                $this->assertEquals($categories_names[$i], $article_data['category_name']);
+
+            } else {
+
+                // for latest, post will be returned with one of the visible categories
+                $this->assertTrue(in_array($article_data['category_id'], array($visible_cat_id, $visible_cat_id2)));
+                $this->assertTrue(in_array($article_data['category_name'], array('Visible Test Category', 'Visible Test Category 2')));
+
+            }
+        }
+
+        wp_delete_post($post_id);
+        wp_delete_term($visible_cat_id, 'category');
+        wp_delete_term($visible_cat_id2, 'category');
+        wp_delete_term($hidden_cat_id, 'category');
+
+        update_option('wmpack_inactive_categories', array());
     }
 }

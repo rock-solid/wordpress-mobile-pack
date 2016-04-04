@@ -95,11 +95,13 @@ class ExportPagesTest extends WP_UnitTestCase
         $this->assertEquals($post_id, $data['pages'][0]['id']);
         $this->assertEquals(1, $data['pages'][0]['order']);
         $this->assertEquals('a', $data['pages'][0]['title']);
+        $this->assertEquals(home_url().'/?page_id='.$post_id, $data['pages'][0]['link']);
         $this->assertEquals('', $data['pages'][0]['content']);
 
         $this->assertEquals($post_id2, $data['pages'][1]['id']);
         $this->assertEquals(2, $data['pages'][1]['order']);
         $this->assertEquals('b', $data['pages'][1]['title']);
+        $this->assertEquals(home_url().'/?page_id='.$post_id2, $data['pages'][1]['link']);
         $this->assertEquals('', $data['pages'][1]['content']);
 
         wp_delete_post($post_id);
@@ -138,11 +140,13 @@ class ExportPagesTest extends WP_UnitTestCase
         $this->assertEquals($post_id2, $data['pages'][0]['id']);
         $this->assertEquals(1, $data['pages'][0]['order']);
         $this->assertEquals('b', $data['pages'][0]['title']);
+        $this->assertEquals(home_url().'/?page_id='.$post_id2, $data['pages'][0]['link']);
         $this->assertEquals('', $data['pages'][0]['content']);
 
         $this->assertEquals($post_id, $data['pages'][1]['id']);
         $this->assertEquals(2, $data['pages'][1]['order']);
         $this->assertEquals('a', $data['pages'][1]['title']);
+        $this->assertEquals(home_url().'/?page_id='.$post_id, $data['pages'][1]['link']);
         $this->assertEquals('', $data['pages'][1]['content']);
 
         wp_delete_post($post_id);
@@ -184,6 +188,7 @@ class ExportPagesTest extends WP_UnitTestCase
         $this->assertEquals(1, count($data['pages']));
         $this->assertEquals($post_id, $data['pages'][0]['id']);
         $this->assertEquals('Test Page', $data['pages'][0]['title']);
+        $this->assertEquals(home_url().'/?page_id='.$post_id, $data['pages'][0]['link']);
         $this->assertEquals(1, $data['pages'][0]['order']);
         $this->assertEquals('', $data['pages'][0]['content']);
         $this->assertEquals(1, $data['pages'][0]['has_content']);
@@ -220,6 +225,7 @@ class ExportPagesTest extends WP_UnitTestCase
         $this->assertEquals(1, count($data['pages']));
         $this->assertEquals($post_id, $data['pages'][0]['id']);
         $this->assertEquals('Test Page', $data['pages'][0]['title']);
+        $this->assertEquals(home_url().'/?page_id='.$post_id, $data['pages'][0]['link']);
         $this->assertEquals(1, $data['pages'][0]['order']);
         $this->assertEquals('', $data['pages'][0]['content']);
         $this->assertEquals(1, $data['pages'][0]['has_content']);

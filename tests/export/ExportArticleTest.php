@@ -138,9 +138,114 @@ class ExportArticleTest extends WP_UnitTestCase
         $this->assertArrayHasKey('article', $data);
         $this->assertEquals($cat_id, $data['article']['category_id']);
         $this->assertEquals('Visible Category', $data['article']['category_name']);
+        $this->assertEquals(array($cat_id), $data['article']['categories']);
 
         wp_delete_post($post_id);
         wp_delete_term($cat_id, 'category');
+    }
+
+    /**
+     * Calling export_article() with a post from multiple categories returns data json
+     */
+    function test_export_article_with_multiple_categories_returns_data()
+    {
+
+        $cat_id = $this->factory->category->create(
+            array(
+                'name' => 'Visible Category',
+
+            )
+        );
+
+        $cat_id2 = $this->factory->category->create(
+            array(
+                'name' => 'Visible Category 2',
+
+            )
+        );
+
+        $post_id = $this->factory->post->create(
+            array(
+                'post_category' => array($cat_id, $cat_id2)
+            )
+        );
+
+        $_GET['articleId'] = $post_id;
+
+        $export = new WMobilePack_Export();
+
+        $data = json_decode($export->export_article(), true);
+
+        $this->assertArrayHasKey('article', $data);
+
+        // post will be returned with one of the visible categories
+        $this->assertTrue(in_array($data['article']['category_id'], array($cat_id, $cat_id2)));
+        $this->assertTrue(in_array($data['article']['category_name'], array('Visible Category', 'Visible Category 2')));
+
+        $this->assertEquals(array($cat_id, $cat_id2), $data['article']['categories']);
+
+        wp_delete_post($post_id);
+        wp_delete_term($cat_id, 'category');
+        wp_delete_term($cat_id2, 'category');
+
+    }
+
+    /**
+     * Calling export_article() with a post from multiple categories, some inactive, returns data json
+     */
+    function test_export_article_with_multiple_inactive_categories_returns_data()
+    {
+
+        $cat_id = $this->factory->category->create(
+            array(
+                'name' => 'Visible Category',
+
+            )
+        );
+
+        $cat_id2 = $this->factory->category->create(
+            array(
+                'name' => 'Visible Category 2',
+
+            )
+        );
+
+        $cat_id3 = $this->factory->category->create(
+            array(
+                'name' => 'Hidden Category',
+
+            )
+        );
+
+        $post_id = $this->factory->post->create(
+            array(
+                'post_category' => array($cat_id, $cat_id2, $cat_id3)
+            )
+        );
+
+        $_GET['articleId'] = $post_id;
+
+        update_option('wmpack_inactive_categories', array($cat_id3));
+
+        $export = new WMobilePack_Export();
+
+        $data = json_decode($export->export_article(), true);
+
+        $this->assertArrayHasKey('article', $data);
+
+        // post will be returned with one of the visible categories
+        $this->assertTrue(in_array($data['article']['category_id'], array($cat_id, $cat_id2)));
+        $this->assertTrue(in_array($data['article']['category_name'], array('Visible Category', 'Visible Category 2')));
+
+        $this->assertEquals(array($cat_id, $cat_id2), $data['article']['categories']);
+
+        wp_delete_post($post_id);
+        wp_delete_term($cat_id, 'category');
+        wp_delete_term($cat_id2, 'category');
+        wp_delete_term($cat_id3, 'category');
+
+        update_option('wmpack_inactive_categories', array());
+
     }
 
     /**

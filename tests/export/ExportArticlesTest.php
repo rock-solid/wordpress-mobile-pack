@@ -108,6 +108,7 @@ class ExportArticlesTest extends WP_UnitTestCase
         // check category
         $this->assertEquals($visible_cat_id, $data['articles'][0]['category_id']);
         $this->assertEquals('Visible Test Category', $data['articles'][0]['category_name']);
+        $this->assertEquals(array($visible_cat_id), $data['articles'][0]['categories']);
 
         // check date
         $this->assertEquals($published, $data['articles'][0]['timestamp']);
@@ -115,6 +116,73 @@ class ExportArticlesTest extends WP_UnitTestCase
 
         wp_delete_post($post_id);
         wp_delete_term($visible_cat_id, 'category');
+    }
+
+
+    /**
+     * Calling export_articles() with posts from multiple categories returns data
+     */
+    function test_export_articles_with_visible_posts_multiple_categories_returns_data()
+    {
+        $published = strtotime('-2 days');
+
+        $visible_cat_id = $this->factory->category->create(
+            array(
+                'name' => 'Visible Test Category'
+            )
+        );
+
+        $visible_cat_id2 = $this->factory->category->create(
+            array(
+                'name' => 'Visible Test Category 2'
+            )
+        );
+
+        $hidden_cat_id = $this->factory->category->create(
+            array(
+                'name' => 'Hidden Test Category'
+            )
+        );
+
+        $post_id = $this->factory->post->create(
+            array(
+                'post_date' => date('Y-m-d H:i:s', $published),
+                'post_title' => 'Article Title',
+                'post_content' => 'test content',
+                'post_category' => array($visible_cat_id, $visible_cat_id2, $hidden_cat_id)
+            )
+        );
+
+        update_option('wmpack_inactive_categories', array($hidden_cat_id));
+
+        $export = new WMobilePack_Export();
+        $data = json_decode($export->export_articles(), true);
+
+        $this->assertArrayHasKey('articles', $data);
+        $this->assertEquals(1, count($data['articles']));
+
+        $this->assertEquals($post_id, $data['articles'][0]['id']);
+        $this->assertEquals('Article Title', $data['articles'][0]['title']);
+        $this->assertArrayHasKey('link', $data['articles'][0]);
+        $this->assertArrayHasKey('description', $data['articles'][0]);
+        $this->assertEquals('', $data['articles'][0]['content']);
+
+        // post will be returned with one of the visible categories
+        $this->assertTrue(in_array($data['articles'][0]['category_id'], array($visible_cat_id, $visible_cat_id2)));
+        $this->assertTrue(in_array($data['articles'][0]['category_name'], array('Visible Test Category', 'Visible Test Category 2')));
+
+        $this->assertEquals(array($visible_cat_id, $visible_cat_id2), $data['articles'][0]['categories']);
+
+        // check date
+        $this->assertEquals($published, $data['articles'][0]['timestamp']);
+        $this->assertEquals(date('D, F d', $published), $data['articles'][0]['date']);
+
+        wp_delete_post($post_id);
+        wp_delete_term($visible_cat_id, 'category');
+        wp_delete_term($visible_cat_id2, 'category');
+        wp_delete_term($hidden_cat_id, 'category');
+
+        update_option('wmpack_inactive_categories', array());
     }
 
 

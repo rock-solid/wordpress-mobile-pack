@@ -13,6 +13,8 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
      *
      * @improvement - Move this class to the frontend folder (similar to the PRO version)?
      *
+     * @todo (Future releases) Remove category_id and category_name from the exports after apps have been modified to use multiple categories per post
+     *
      */
     class WMobilePack_Export
     {
@@ -116,7 +118,8 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                     "date" => WMobilePack_Formatter::format_date(strtotime($post->post_date)),
                     "timestamp" => strtotime($post->post_date),
                     "description" => $description,
-                    "content" => $content
+                    "content" => $content,
+                    "categories" => $this->get_visible_categories_ids($post)
                 );
 
             } else {
@@ -130,7 +133,8 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                     "date" => WMobilePack_Formatter::format_date(strtotime($post->post_date)),
                     "timestamp" => strtotime($post->post_date),
                     "description" => $description,
-                    "content" => ''
+                    "content" => '',
+                    "categories" => $this->get_visible_categories_ids($post)
                 );
             }
 
@@ -276,6 +280,31 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
             }
 
             return $visible_category;
+        }
+
+
+        /**
+         * Returns a post's visible categories ids.
+         *
+         * @param $post
+         * @return null or category object
+         */
+        protected function get_visible_categories_ids($post)
+        {
+            // get post categories
+            $categories = get_the_category($post->ID);
+
+            // check if at least one of the categories is visible
+            $arr_categories_ids = array();
+
+            foreach ($categories as $category) {
+
+                if (!in_array($category->cat_ID, $this->inactive_categories)) {
+                    $arr_categories_ids[] = $category->cat_ID;
+                }
+            }
+
+            return $arr_categories_ids;
         }
 
         /**
@@ -949,6 +978,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
          * - comment_parent
          * - code = Access token for saving comments
          *
+         * @todo Translate error messages
          */
         public function save_comment()
         {
@@ -1160,7 +1190,6 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
          * - content = 'exportpages'
          *
          * @todo Remove the order_pages array after subpages support is added to themes 1 and 4
-         *
          */
         public function export_pages()
         {
@@ -1230,6 +1259,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                                 'parent_id' => intval($page->post_parent),
                                 'order' => $current_key,
                                 'title' => strip_tags(trim(get_the_title())),
+                                "link" => get_permalink(),
                                 'image' => !empty($image_details) ? $image_details : "",
                                 'content' => '',
                                 'has_content' => $content != '' ? 1 : 0
