@@ -287,7 +287,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
          * Returns a post's visible categories ids.
          *
          * @param $post
-         * @return null or category object
+         * @return array
          */
         protected function get_visible_categories_ids($post)
         {
@@ -1259,7 +1259,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                                 'parent_id' => intval($page->post_parent),
                                 'order' => $current_key,
                                 'title' => strip_tags(trim(get_the_title())),
-                                "link" => get_permalink(),
+                                'link' => get_permalink(),
                                 'image' => !empty($image_details) ? $image_details : "",
                                 'content' => '',
                                 'has_content' => $content != '' ? 1 : 0
