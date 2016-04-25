@@ -135,10 +135,10 @@ class ThemeAdditionalMethodsTest extends WP_UnitTestCase {
 
     /**
      *
-     * Calling update fonts with unchanged values does not generate theme and returns false
+     * Calling update fonts with unchanged values doesn't update options, but marks the theme as recompiled
      *
      */
-    function test_update_fonts_with_unchanged_values_returns_false()
+    function test_update_fonts_with_unchanged_custom_values_generates_theme()
     {
         $admin_ajax = $this->getMockBuilder('WMobilePack_Admin_Ajax')
             ->disableOriginalConstructor()
@@ -162,7 +162,7 @@ class ThemeAdditionalMethodsTest extends WP_UnitTestCase {
 
         $response = $method->invoke($admin_ajax, $data);
         $this->assertInternalType('array', $response);
-        $this->assertEquals($response['scss'], false);
+        $this->assertEquals($response['scss'], true);
         $this->assertEquals($response['updated'], false);
 
     }

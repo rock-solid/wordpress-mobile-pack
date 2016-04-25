@@ -38,6 +38,19 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 
         /**
          *
+         * Create an uploads management object and return it
+         *
+         * @return object
+         *
+         */
+        protected function get_uploads_manager()
+        {
+            return new WMobilePack_Uploads();
+        }
+
+
+        /**
+         *
          * Create a premium management object and return it
          *
          * @return object
@@ -84,11 +97,11 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 
                         WMobilePack_Options::update_settings('font_' . $font_type, $data['wmp_edittheme_font' . $font_type]);
                         $response['updated'] = true;
+                    }
 
-                        // if a font different from the default ones was selected, we need to compile the css file
-                        if ($data['wmp_edittheme_font' . $font_type] > 3) {
-                            $response['scss'] = true;
-                        }
+                    // if a font different from the default ones was selected, we need to compile the css file
+                    if ($data['wmp_edittheme_font' . $font_type] > 3) {
+                        $response['scss'] = true;
                     }
 
                     $font_families[] = $data['wmp_edittheme_font'.$font_type];
@@ -96,7 +109,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
             }
 
             // if the font settings are different for headlines, subtitles or paragraphs, we need to compile the css file
-            if ($response['updated'] == true && count(array_unique($font_families)) > 1){
+            if (count(array_unique($font_families)) > 1){
                 $response['scss'] = true;
             }
 
@@ -130,11 +143,11 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 
                     WMobilePack_Options::update_settings('color_scheme', $data['wmp_edittheme_colorscheme']);
                     $response['updated'] = true;
+                }
 
-                    // enable compiling for custom color schemes
-                    if ($data['wmp_edittheme_colorscheme'] == 0) {
-                        $response['scss'] = true;
-                    }
+                // enable compiling for custom color schemes
+                if ($data['wmp_edittheme_colorscheme'] == 0) {
+                    $response['scss'] = true;
                 }
             }
 
