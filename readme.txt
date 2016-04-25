@@ -2,7 +2,7 @@
 Contributors: jamesgpearce, andreatrasatti, edent, cborodescu, anghelalexandra
 Tags: mobile, mobile web, mobile internet, smartphone, iphone, android, windows 8, webkit, chrome, safari, mobile web app, html5, sencha touch, responsive ui
 Requires at least: 3.5
-Tested up to: 4.4.2
+Tested up to: 4.5
 Stable tag: 2.2.2
 License: GPLv2 or later
 
@@ -149,6 +149,10 @@ Adding tracking scripts in the source is possible if you place them in the <head
 Google Ad Sense / Google Double Click for Publishers is supported on the Premium version as of v2.1. Support for other ad networks will be added in future releases.
 
 == Changelog ==
+
+= 2.2.3 =
+* Translated app in Chinese (zh_CN). A big thanks to Na LI.
+* Added support for Youku embed code
 
 = 2.2.2 =
 * Added support for Spotify
@@ -386,6 +390,8 @@ We currently have two Github development repositories:
 
 A big thanks to all contributors that helped us translate the mobile web application:
 
+* Na LI (Chinese / zh_CN)
+* John Haverkate (Dutch)
 * Bernhard Steinbichler (German)
 * Péter Ágoston (Hungarian)
 * Sandra Gorgan (Romanian)
