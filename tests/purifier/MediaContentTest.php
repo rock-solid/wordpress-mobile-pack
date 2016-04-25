@@ -159,6 +159,14 @@ class MediaContentTest extends WP_UnitTestCase
         $this->assertEquals($this->purifier->purify($input), $output);
     }
 
+    public function test_youko()
+    {
+        $input = '<iframe height = 498 width = 510 src = "http://player.youku.com/embed/XMTUzMzc2MjE2MA==" frameborder = 0 allowfullscreen ></iframe>';
+        $output = '<iframe height="498" width="510" src="http://player.youku.com/embed/XMTUzMzc2MjE2MA==" frameborder="0" allowfullscreen=""></iframe>';
+
+        $this->assertEquals($this->purifier->purify($input), $output);
+    }
+
     public function test_video(){
 
         $input = '<video width="320" height="240" controls><source src="movie.mp4" type="video/mp4"><source src="movie.ogg" type="video/ogg">Your browser does not support the video tag.</video>';
