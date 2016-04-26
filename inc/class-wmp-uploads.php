@@ -193,7 +193,7 @@ if (!class_exists('WMobilePack_Uploads')) {
             // check the file exists and remove it
             if ($file_path != ''){
                 if (file_exists(WMP_FILES_UPLOADS_DIR.$file_path))
-                    return unlink(WMP_FILES_UPLOADS_URL.$file_path);
+                    return unlink(WMP_FILES_UPLOADS_DIR.$file_path);
             }
         }
         
