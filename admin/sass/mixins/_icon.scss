@@ -47,6 +47,7 @@
 
     @else if($name == "coins") { @return "\e80a"; }
     @else if($name == "headset") { @return "\e80b"; }
+    @else if($name == "pic") { @return "\e900"; }
 
     @else {
         // @debug "#icon: icon with name '#{$name}' not found.";
