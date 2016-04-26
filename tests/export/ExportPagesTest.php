@@ -214,7 +214,7 @@ class ExportPagesTest extends WP_UnitTestCase
                 'post_type' => 'page',
                 'post_title' => 'Test Page',
                 'post_content' => 'test content',
-                'post_parent' => 1234
+                'post_parent' => 0
             )
         );
 
@@ -229,7 +229,7 @@ class ExportPagesTest extends WP_UnitTestCase
         $this->assertEquals(1, $data['pages'][0]['order']);
         $this->assertEquals('', $data['pages'][0]['content']);
         $this->assertEquals(1, $data['pages'][0]['has_content']);
-        $this->assertEquals(1234, $data['pages'][0]['parent_id']);
+        $this->assertEquals(0, $data['pages'][0]['parent_id']);
 
         wp_delete_post($post_id);
     }
@@ -299,8 +299,6 @@ class ExportPagesTest extends WP_UnitTestCase
 
     /**
      * Calling export_pages() with ordered pages and password protected children returns data
-     *
-     * @todo Refactor after submenu support is added to themes 1 and 4
      */
     function test_export_pages_with_ordered_pages_and_password_protected_children_returns_data()
     {
@@ -430,5 +428,165 @@ class ExportPagesTest extends WP_UnitTestCase
         $this->assertEquals(0, $data['pages'][0]['parent_id']);
 
         wp_delete_post($post_id);
+    }
+
+    /**
+     *
+     * Calling export_pages() with hidden root pages returns empty
+     *
+     */
+    function test_export_pages_with_hidden_root_parent_returns_empty()
+    {
+        $parent_page_id = $this->factory->post->create(
+            array(
+                'post_type' => 'page',
+                'menu_order' => 1,
+                'post_title' => 'a',
+                'post_content' => 'test content'
+            )
+        );
+
+        $child_page_id = $this->factory->post->create(
+            array(
+                'post_type' => 'page',
+                'menu_order' => 2,
+                'post_title' => 'b',
+                'post_content' => 'test content',
+                'post_parent' => $parent_page_id
+            )
+        );
+
+        update_option(WMobilePack_Options::$prefix.'inactive_pages', array($parent_page_id));
+
+        $export = new WMobilePack_Export();
+        $data = json_decode($export->export_pages(), true);
+
+        $this->assertEquals(array('pages' => array()), $data);
+
+        wp_delete_post($parent_page_id);
+        wp_delete_post($child_page_id);
+    }
+
+    /**
+     *
+     * Calling export_pages() with hidden parent page does not return child pages
+     *
+     */
+    function test_export_pages_with_hidden_parent_page_returns_data_without_children()
+    {
+        $parent_page_id = $this->factory->post->create(
+            array(
+                'post_type' => 'page',
+                'menu_order' => 1,
+                'post_title' => 'visible root page',
+                'post_content' => 'test content'
+            )
+        );
+
+        $child_page_id = $this->factory->post->create(
+            array(
+                'post_type' => 'page',
+                'menu_order' => 2,
+                'post_title' => 'visible child page',
+                'post_content' => 'test content',
+                'post_parent' => $parent_page_id
+            )
+        );
+
+        $child_page_id2 = $this->factory->post->create(
+            array(
+                'post_type' => 'page',
+                'menu_order' => 3,
+                'post_title' => 'hidden child page',
+                'post_content' => 'test content',
+                'post_parent' => $parent_page_id
+            )
+        );
+
+        // add child for the hidden page
+        $grandchild_page_id = $this->factory->post->create(
+            array(
+                'post_type' => 'page',
+                'menu_order' => 4,
+                'post_title' => 'visible grandchild page',
+                'post_content' => 'test content',
+                'post_parent' => $child_page_id2
+            )
+        );
+
+        update_option(WMobilePack_Options::$prefix.'inactive_pages', array($child_page_id2));
+
+        $export = new WMobilePack_Export();
+        $data = json_decode($export->export_pages(), true);
+
+        $this->assertArrayHasKey('pages', $data);
+        $this->assertEquals(2, count($data['pages']));
+
+        $this->assertEquals($parent_page_id, $data['pages'][0]['id']);
+        $this->assertEquals('visible root page', $data['pages'][0]['title']);
+        $this->assertEquals(1, $data['pages'][0]['order']);
+        $this->assertEquals('', $data['pages'][0]['content']);
+        $this->assertEquals(1, $data['pages'][0]['has_content']);
+        $this->assertEquals(0, $data['pages'][0]['parent_id']);
+
+        $this->assertEquals($child_page_id, $data['pages'][1]['id']);
+        $this->assertEquals('visible child page', $data['pages'][1]['title']);
+        $this->assertEquals(2, $data['pages'][1]['order']);
+        $this->assertEquals('', $data['pages'][1]['content']);
+        $this->assertEquals(1, $data['pages'][1]['has_content']);
+        $this->assertEquals($parent_page_id, $data['pages'][1]['parent_id']);
+
+        wp_delete_post($parent_page_id);
+        wp_delete_post($child_page_id);
+        wp_delete_post($child_page_id2);
+        wp_delete_post($grandchild_page_id);
+    }
+
+    /**
+     *
+     * Calling export_pages() with hidden root page does not return child pages
+     *
+     */
+    function test_export_pages_with_hidden_root_page_returns_data_without_children()
+    {
+        $parent_page_id = $this->factory->post->create(
+            array(
+                'post_type' => 'page',
+                'menu_order' => 1,
+                'post_title' => 'hidden root page',
+                'post_content' => 'test content'
+            )
+        );
+
+        $child_page_id = $this->factory->post->create(
+            array(
+                'post_type' => 'page',
+                'menu_order' => 2,
+                'post_title' => 'visible child page',
+                'post_content' => 'test content',
+                'post_parent' => $parent_page_id
+            )
+        );
+
+        $grandchild_page_id = $this->factory->post->create(
+            array(
+                'post_type' => 'page',
+                'menu_order' => 4,
+                'post_title' => 'visible grandchild page',
+                'post_content' => 'test content',
+                'post_parent' => $child_page_id
+            )
+        );
+
+        update_option(WMobilePack_Options::$prefix.'inactive_pages', array($parent_page_id));
+
+        $export = new WMobilePack_Export();
+        $data = json_decode($export->export_pages(), true);
+
+        $this->assertEquals(array('pages' => array()), $data);
+
+        wp_delete_post($parent_page_id);
+        wp_delete_post($child_page_id);
+        wp_delete_post($grandchild_page_id);
     }
 }
