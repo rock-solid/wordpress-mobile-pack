@@ -47,6 +47,19 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
         /**
          *
+         * Create an uploads management object and return it
+         *
+         * @return object
+         *
+         */
+        protected function get_uploads_manager()
+        {
+            return new WMobilePack_Uploads();
+        }
+
+
+        /**
+         *
          * Verify if a post has a featured image and return it
          *
          * @param $post_id
@@ -284,6 +297,51 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
 
         /**
+         * Parse the 'categories_details' array and return an array with icon paths, indexed by category id.
+         * The method checks if an icon exists before adding it in the array.
+         *
+         * @return array
+         */
+        protected function get_categories_images(){
+
+            $categories_images = array();
+
+            $categories_details = WMobilePack_Options::get_setting('categories_details');
+
+            // create an uploads manager object
+            $WMP_Uploads = $this->get_uploads_manager();
+
+            if (is_array($categories_details) && !empty($categories_details)) {
+
+                foreach ($categories_details as $category_id => $category_details){
+
+                    if (is_array($category_details) && array_key_exists('icon', $category_details)) {
+
+                        $icon_path = $category_details['icon'];
+
+                        if ($icon_path != ''){
+                            $icon_path = $WMP_Uploads->get_file_url($icon_path);
+                        }
+
+                        if ($icon_path != ''){
+
+                            // categories icons are used as backgrounds,
+                            // so we can use the default width / height in the exports
+                            $categories_images[$category_id] = array(
+                                'src' => $icon_path,
+                                'width' => WMobilePack_Uploads::$allowed_files['category_icon']['max_width'],
+                                'height' => WMobilePack_Uploads::$allowed_files['category_icon']['max_height']
+                            );
+                        }
+                    }
+                }
+            }
+
+            return $categories_images;
+        }
+
+
+        /**
          * Returns a post's visible categories ids.
          *
          * @param $post
@@ -427,6 +485,8 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
             if (count($active_categories_ids) > 0) {
 
+                $categories_images = $this->get_categories_images();
+
                 foreach ($categories as $key => $category) {
 
                     if (in_array($category->cat_ID, $active_categories_ids)) {
@@ -439,7 +499,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                             'name' => $category->name,
                             'name_slug' => $category->slug,
                             'link' => get_category_link($category->term_id),
-                            'image' => ""
+                            'image' => array_key_exists($category->cat_ID, $categories_images) ? $categories_images[$category->cat_ID] : ''
                         );
 
                         // Reset query & search posts from this category
@@ -1398,14 +1458,14 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
             // load icon from the local settings and folder
             $icon_path = WMobilePack_Options::get_setting('icon');
 
-            if ($icon_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR . $icon_path)) {
-                $icon_path = false;
-            } else {
-                $icon_path = WMP_FILES_UPLOADS_URL . $icon_path;
+            if ($icon_path != '') {
+
+                $WPMP_Uploads = $this->get_uploads_manager();
+                $icon_path = $WPMP_Uploads->get_file_url($icon_path);
             }
 
             // set icon depending on the manifest file type
-            if ($icon_path != false) {
+            if ($icon_path != '') {
 
                 if ($_GET['content'] == 'androidmanifest') {
 
