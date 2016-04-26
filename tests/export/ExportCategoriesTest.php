@@ -12,6 +12,77 @@ class ExportCategoriesTest extends WP_UnitTestCase
         update_option('wmpack_ordered_categories', array());
     }
 
+
+    /**
+     *
+     * Calling the get_categories_images method will return array with images
+     *
+     */
+    function test_categories_images_returns_array(){
+
+        $categories_details = array(
+            1 => array(
+                'icon' => 'icon_path.jpg'
+            ),
+            2 => array(
+                'icon' => 'icon_path2.jpg'
+            )
+        );
+
+        update_option(WMobilePack_Options::$prefix.'categories_details', $categories_details);
+
+        $export_class = $this->getMockBuilder('WMobilePack_Export')
+            ->disableOriginalConstructor()
+            ->setMethods(array('get_uploads_manager'))
+            ->getMock();
+
+        // Mock the uploads manager that will check for the file paths
+        $uploads_mock = $this->getMockBuilder('Mocked_Uploads')
+            ->setMethods(array('get_file_url'))
+            ->getMock();
+
+        $uploads_mock->expects($this->exactly(2))
+            ->method('get_file_url')
+            ->withConsecutive(
+                $this->equalTo('icon_path.jpg'),
+                $this->equalTo('icon_path2.jpg')
+            )
+            ->will($this->returnCallback(
+                function($parameter) {
+
+                    // only the first icon file will exist
+                    if ($parameter == 'icon_path.jpg')
+                        return 'http://dummy.mydomain.com/icon_path.jpg';
+
+                    return '';
+                }
+            ));
+
+        $export_class->expects($this->once())
+            ->method('get_uploads_manager')
+            ->will($this->returnValue($uploads_mock));
+
+        // Allow the protected method to be accessed
+        $method = new ReflectionMethod(
+            'WMobilePack_Export', 'get_categories_images'
+        );
+        $method->setAccessible(true);
+
+        $response = $method->invoke($export_class);
+        $expected_data = array(
+            1 => array(
+                'src' => 'http://dummy.mydomain.com/icon_path.jpg',
+                'width' => 500,
+                'height' => 500
+            )
+        );
+
+        $this->assertEquals($response, $expected_data);
+
+        delete_option(WMobilePack_Options::$prefix.'categories_details');
+    }
+    
+    
     /**
      * Calling export_categories() with password protected posts returns empty
      */
@@ -526,5 +597,71 @@ class ExportCategoriesTest extends WP_UnitTestCase
         wp_delete_term($hidden_cat_id, 'category');
 
         update_option('wmpack_inactive_categories', array());
+    }
+
+    /**
+     *
+     * Calling the export_categories endpoint with custom images will return data
+     *
+     */
+    function test_export_categories_with_custom_images_returns_data(){
+
+        $visible_cat_id = $this->factory->category->create(
+            array(
+                'name' => 'Visible Test Category 1'
+            )
+        );
+
+        $visible_cat_id2 = $this->factory->category->create(
+            array(
+                'name' => 'Visible Test Category 2'
+            )
+        );
+
+        $published = strtotime('-2 days');
+
+        $post_id = $this->factory->post->create(
+            array(
+                'post_date' => date('Y-m-d H:i:s', $published),
+                'post_category' => array($visible_cat_id, $visible_cat_id2)
+            )
+        );
+
+        $categories_images = array(
+            $visible_cat_id => array(
+                'src' => 'http://dummy.appticles.com/icon_path'.$visible_cat_id.'.jpg',
+                'width' => 500,
+                'height' => 500
+            ),
+            $visible_cat_id2 => array(
+                'src' => 'http://dummy.appticles.com/icon_path'.$visible_cat_id2.'.jpg',
+                'width' => 500,
+                'height' => 500
+            )
+        );
+
+        $export_class = $this->getMockBuilder('WMobilePack_Export')
+            ->setMethods(array('get_categories_images'))
+            ->getMock();
+
+        $export_class->expects($this->once())
+            ->method('get_categories_images')
+            ->will($this->returnValue($categories_images));
+
+        $data = json_decode($export_class->export_categories(), true);
+
+        foreach ($data['categories'] as $key => $category_data){
+
+            // skip over the Latest category
+            if ($category_data['id'] != 0){
+                // verify that the category image was set to the custom image
+                $this->assertEquals($category_data['image'], $categories_images[ $category_data['id'] ]);
+            }
+        }
+
+        // clean-up
+        wp_delete_post($post_id);
+        wp_delete_term($visible_cat_id, 'category');
+        wp_delete_term($visible_cat_id2, 'category');
     }
 }

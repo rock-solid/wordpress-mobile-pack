@@ -357,4 +357,71 @@ class ExportArticlesTest extends WP_UnitTestCase
         wp_delete_term($cat_id, 'category');
         wp_delete_term($cat_id2, 'category');
     }
+
+
+    /**
+     * Calling export_articles() with posts and lastTimestamp is ordering articles by date
+     */
+    function test_export_articles_ordered_by_date_last_timestamp()
+    {
+        $published = strtotime('-2 days');
+        $published_new = strtotime('-1 day');
+
+        $visible_cat_id = $this->factory->category->create(
+            array(
+                'name' => 'Test Category'
+            )
+        );
+
+        $visible_cat_id2 = $this->factory->category->create(
+            array(
+                'name' => 'Test Category 2'
+            )
+        );
+
+        $post_id = $this->factory->post->create(
+            array(
+                'post_date' => date('Y-m-d H:i:s', $published),
+                'post_title' => 'Article Old',
+                'post_content' => 'test content',
+                'post_category' => array($visible_cat_id)
+            )
+        );
+
+        $post_id2 = $this->factory->post->create(
+            array(
+                'post_date' => date('Y-m-d H:i:s', $published_new),
+                'post_title' => 'Article New',
+                'post_content' => 'test content',
+                'post_category' => array($visible_cat_id, $visible_cat_id2)
+            )
+        );
+
+        $_GET['lastTimestamp'] = $published_new;
+
+        $export = new WMobilePack_Export();
+        $data = json_decode($export->export_articles(), true);
+
+        $this->assertArrayHasKey('articles', $data);
+        $this->assertEquals(1, count($data['articles']));
+
+        $this->assertEquals($post_id, $data['articles'][0]['id']);
+        $this->assertEquals('Article Old', $data['articles'][0]['title']);
+        $this->assertArrayHasKey('link', $data['articles'][0]);
+        $this->assertArrayHasKey('description', $data['articles'][0]);
+        $this->assertEquals('', $data['articles'][0]['content']);
+
+        // check category
+        $this->assertTrue(in_array($data['articles'][0]['category_id'], array($visible_cat_id, $visible_cat_id2)));
+        $this->assertTrue(in_array($data['articles'][0]['category_name'], array('Test Category', 'Test Category 2')));
+
+        // check date
+        $this->assertEquals($published, $data['articles'][0]['timestamp']);
+        $this->assertEquals(date('D, F d', $published), $data['articles'][0]['date']);
+
+        wp_delete_post($post_id);
+        wp_delete_post($post_id2);
+        wp_delete_term($visible_cat_id, 'category');
+        wp_delete_term($visible_cat_id2, 'category');
+    }
 }

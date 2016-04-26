@@ -58,6 +58,69 @@ class ExportManifestTest extends WP_UnitTestCase
         $this->assertEquals('Test Blog', $data['developer']['name']);
     }
 
+
+    /**
+     * Calling export_manifest() for Android / Firefox with icon returns data
+     */
+    function test_export_manifest_with_icon_returns_data()
+    {
+
+        update_option('blogname', 'Test Blog');
+        update_option('home', 'http://dummy.appticles.com/blabla');
+        update_option(WMobilePack_Options::$prefix.'icon', 'icon_path.jpg');
+
+        $_SERVER['HTTP_HOST'] = 'dummy.appticles.com';
+
+        $export_class = $this->getMockBuilder('WMobilePack_Export')
+            ->setMethods(array('get_uploads_manager'))
+            ->getMock();
+
+        // Mock the uploads manager that will check for the file paths
+        $uploads_mock = $this->getMockBuilder('Mocked_Uploads')
+            ->setMethods(array('get_file_url'))
+            ->getMock();
+
+        $uploads_mock->expects($this->exactly(2))
+            ->method('get_file_url')
+            ->with(
+                $this->equalTo('icon_path.jpg')
+            )
+            ->will($this->returnValue('http://dummy.appticles.com/icon_path.jpg'));
+
+        $export_class->expects($this->exactly(2))
+            ->method('get_uploads_manager')
+            ->will($this->returnValue($uploads_mock));
+
+        // Check Android manifest
+        $_GET['content'] = 'androidmanifest';
+        $data = json_decode($export_class->export_manifest(), true);
+
+        $this->assertEquals('Test Blog', $data['name']);
+        $this->assertEquals('http://dummy.appticles.com/blabla', $data['start_url']);
+        $this->assertEquals('standalone', $data['display']);
+        $this->assertEquals(
+            array(
+                array(
+                    'src' => 'http://dummy.appticles.com/icon_path.jpg',
+                    'sizes' => '192x192'
+                )
+            ),
+            $data['icons']
+        );
+
+        // Check Firefox manifest
+        $_GET['content'] = 'mozillamanifest';
+        $data = json_decode($export_class->export_manifest(), true);
+
+        $this->assertEquals('Test Blog', $data['name']);
+        $this->assertEquals('/blabla', $data['launch_path']);
+        $this->assertEquals('Test Blog', $data['developer']['name']);
+        $this->assertEquals(array('152' => 'http://dummy.appticles.com/icon_path.jpg'), $data['icons']);
+
+        delete_option(WMobilePack_Options::$prefix.'icon');
+    }
+    
+    
     /**
      * Calling export_manifest_premium() for Android without Premium settings does nothing
      */
