@@ -1460,8 +1460,8 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
             if ($icon_path != '') {
 
-                $WPMP_Uploads = $this->get_uploads_manager();
-                $icon_path = $WPMP_Uploads->get_file_url($icon_path);
+                $WMP_Uploads = $this->get_uploads_manager();
+                $icon_path = $WMP_Uploads->get_file_url($icon_path);
             }
 
             // set icon depending on the manifest file type
@@ -1638,25 +1638,27 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                 if (WMobilePack_Options::get_setting('premium_active') == 0) {
 
                     // check if logo exists
+                    $WMP_Uploads = $this->get_uploads_manager();
+
                     $logo_path = WMobilePack_Options::get_setting('logo');
-                    if ($logo_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$logo_path))
-                        $logo_path = '';
-                    else
-                        $logo_path = WMP_FILES_UPLOADS_URL.$logo_path;
+
+                    if ($logo_path != ''){
+                        $logo_path = $WMP_Uploads->get_file_url($logo_path);
+                    }
 
                     // check if icon exists
                     $icon_path = WMobilePack_Options::get_setting('icon');
-                    if ($icon_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$icon_path))
-                        $icon_path = '';
-                    else
-                        $icon_path = WMP_FILES_UPLOADS_URL.$icon_path;
+
+                    if ($icon_path != ''){
+                        $icon_path = $WMP_Uploads->get_file_url($icon_path);
+                    }
 
                     // check if cover exists
                     $cover_path = WMobilePack_Options::get_setting('cover');
-                    if ($cover_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$cover_path))
-                        $cover_path = '';
-                    else
-                        $cover_path = WMP_FILES_UPLOADS_URL.$cover_path;
+
+                    if ($cover_path != ''){
+                        $cover_path = $WMP_Uploads->get_file_url($cover_path);
+                    }
 
                     // check if google analytics id is set
                     $google_analytics_id = WMobilePack_Options::get_setting('google_analytics_id');
