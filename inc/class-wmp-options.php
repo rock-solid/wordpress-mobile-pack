@@ -39,6 +39,7 @@ if ( ! class_exists( 'WMobilePack_Options' ) ) {
             'inactive_pages' => array(),
             'ordered_categories' => array(),
             'ordered_pages' => array(), // this option is @deprecated starting from v2.2
+            'categories_details' => array(),
 
             // other settings
             'display_mode' => 'normal',

@@ -33,6 +33,11 @@ if (!class_exists('WMobilePack_Uploads')) {
                 'max_height' => 1000,
                 'extensions' => array('jpg', 'jpeg', 'png','gif')
             ),
+            'category_icon' => array(
+                'max_width' => 500,
+                'max_height' => 500,
+                'extensions' => array('jpg', 'jpeg', 'png','gif')
+            ),
         );
 
         protected static $htaccess_template = 'frontend/sections/htaccess-template.txt';
@@ -118,12 +123,23 @@ if (!class_exists('WMobilePack_Uploads')) {
         public function remove_uploads_dir()
         {
 
-            foreach (self::$allowed_files as $image_type => $image_settings) {
+            foreach (array('icon', 'logo', 'cover') as $image_type) {
 
                 $image_path = WMobilePack_Options::get_setting($image_type);
+                $this->remove_uploaded_file($image_path);
+            }
 
-                if ($image_path != '' && file_exists(WMP_FILES_UPLOADS_DIR . $image_path))
-                    unlink(WMP_FILES_UPLOADS_DIR . $image_path);
+            // remove categories images
+            $categories_details = WMobilePack_Options::get_setting('categories_details');
+
+            if (is_array($categories_details) && !empty($categories_details)) {
+
+                foreach ($categories_details as $category_id => $category_details) {
+
+                    if (is_array($category_details) && array_key_exists('icon', $category_details)) {
+                        $this->remove_uploaded_file($category_details['icon']);
+                    }
+                }
             }
 
             // remove compiled css file (if it exists)
@@ -149,6 +165,37 @@ if (!class_exists('WMobilePack_Uploads')) {
             rmdir(WMP_FILES_UPLOADS_DIR);
         }
 
+
+        /**
+         * Check if a file path exists in the uploads folder and returns its url.
+         *
+         * @param $file_path
+         * @return string
+         */
+        public function get_file_url($file_path){
+
+            if (file_exists(WMP_FILES_UPLOADS_DIR.$file_path)){
+                return WMP_FILES_UPLOADS_URL.$file_path;
+            }
+
+            return '';
+        }
+
+        /**
+         * Delete an uploaded file
+         *
+         * @param $file_path
+         * @return bool
+         *
+         */
+        public function remove_uploaded_file($file_path){
+
+            // check the file exists and remove it
+            if ($file_path != ''){
+                if (file_exists(WMP_FILES_UPLOADS_DIR.$file_path))
+                    return unlink(WMP_FILES_UPLOADS_URL.$file_path);
+            }
+        }
         
         /**
          *

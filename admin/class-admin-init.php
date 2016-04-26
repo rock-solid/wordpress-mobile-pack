@@ -186,8 +186,12 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
 
             if ($menu_name == 'wmp-options' || ($menu_name == 'wmp-options-premium' && $kit_type == 'wpmp')){
 
+                // fake submenu since it is not visible (for editing a category's details)
+                $category_page = add_submenu_page( null, 'Content', 'Category Details', 'manage_options', 'wmp-category-details', array( &$WMobilePackAdmin, 'category_content') );
+                add_action( 'load-' . $category_page, array( &$this, 'wmp_admin_load_category_js' ) );
+
                 // fake submenu since it is not visible (for editing a page's details)
-                $pages_page = add_submenu_page(null, 'Content', 'Details', 'manage_options', 'wmp-page-details', array(&$WMobilePackAdmin, 'page_content'));
+                $pages_page = add_submenu_page(null, 'Content', 'Page Details', 'manage_options', 'wmp-page-details', array(&$WMobilePackAdmin, 'page_content'));
                 add_action('load-' . $pages_page, array(&$this, 'wmp_admin_load_page_js'));
             }
         }
@@ -273,6 +277,16 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
             wp_enqueue_script('jquery-ui-sortable');
         }
 
+
+        /**
+         *
+         * Load specific javascript files for the admin category details
+         *
+         */
+        public function wmp_admin_load_category_js()
+        {
+            wp_enqueue_script(WMobilePack_Options::$prefix.'js_content_categorydetails', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_CATEGORY_DETAILS.min.js'), array(), WMP_VERSION);
+        }
 
         /**
          *

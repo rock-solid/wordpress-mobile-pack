@@ -136,6 +136,33 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
 
         /**
          *
+         * Method used to render a form with a category's details
+         *
+         */
+        public function category_content() {
+
+            if (isset($_GET) && is_array($_GET) && !empty($_GET)){
+
+                if (isset($_GET['id'])) {
+
+                    if (is_numeric($_GET['id'])) {
+
+                        // get category
+                        $category = get_category($_GET['id']);
+
+                        if ($category != null) {
+
+                            // load view
+                            include(WMP_PLUGIN_PATH.'admin/pages/category-details.php');
+                        }
+                    }
+                }
+            }
+        }
+
+
+        /**
+         *
          * Method used to render a form with a page's details
          *
          */

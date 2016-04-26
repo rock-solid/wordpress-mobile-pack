@@ -154,17 +154,48 @@
                                     
                             	} else
                             		$arrOrderedCategories = $categories;
-        
+
+                                $categories_details = WMobilePack_Options::get_setting('categories_details');
+
                                 foreach ($arrOrderedCategories as $key => $category):
                             
                                     $status = 'active';
                                     if (in_array($category->cat_ID, $inactive_categories))
                                         $status = 'inactive';
+
+                                    // check category icon path
+                                    $icon_path = '';
+                                    if (is_array($categories_details)) {
+
+                                        if (array_key_exists($category->cat_ID, $categories_details)) {
+
+                                            if (is_array($categories_details[$category->cat_ID])) {
+
+                                                if (array_key_exists('icon', $categories_details[$category->cat_ID])) {
+
+                                                    $icon_path = $categories_details[$category->cat_ID]['icon'];
+
+                                                    if ($icon_path != ''){
+                                                        if (!file_exists(WMP_FILES_UPLOADS_DIR . $icon_path))
+                                                            $icon_path = '';
+                                                        else
+                                                            $icon_path = WMP_FILES_UPLOADS_URL . $icon_path;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
                             ?>
                         	<li data-category-id="<?php echo $category->cat_ID;?>" data-order="<?php echo $key;?>">
-                            	<span class="status <?php echo $status;?>"><?php echo $status;?></span>
-                                <span class="title"><?php echo $category->name;?></span>
-                                <span class="posts"><?php echo $category->category_count != 1 ? $category->category_count.' posts' : '1 post';?> published</span>
+                                <div class="row">
+                                    <span class="status <?php echo $status;?>"><?php echo $status;?></span>
+                                    <span class="pic <?php echo $icon_path == '' ? 'default' : ''?>" <?php if ($icon_path != ''):?>style="background-image: url(<?php echo $icon_path;?>);"<?php endif;?>></span>
+                                    <span class="title"><?php echo $category->name;?></span>
+                                    <span class="posts"><?php echo $category->category_count != 1 ? $category->category_count.' posts' : '1 post';?> published</span>
+                                </div>
+                                <div class="buttons">
+                                    <a href="<?php echo admin_url('admin.php?page=wmp-category-details&id='.$category->cat_ID);?>" class="edit" title="Edit category for mobile"></a>
+                                </div>
                             </li>
                             <?php endforeach;?>
                         </ul>

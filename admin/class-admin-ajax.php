@@ -365,7 +365,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
         /**
          * Resize & copy image using Wordpress methods
          *
-         * @param $file_type = icon, logo or cover
+         * @param $file_type = icon, logo, cover or category_icon
          * @param $file_path
          * @param $file_name
          * @param string $error_message
@@ -404,7 +404,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 
                 } else {
 
-                    $error_message = "We encountered a problem resizing your " . $file_type . ". Please choose another image!";
+                    $error_message = "We encountered a problem resizing your " . ($file_type == 'category_icon' ? 'image' : $file_type) . ". Please choose another image!";
                 }
 
             }
@@ -418,6 +418,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
          * Remove image using the corresponding option's value for the filename
          *
          * @param $file_type = icon, logo or cover
+         * @return bool
          */
         protected function remove_image($file_type)
         {
@@ -427,9 +428,43 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 
             // check the file exists and remove it
             if ($previous_file_path != ''){
-                if (file_exists(WMP_FILES_UPLOADS_DIR.$previous_file_path))
-                    unlink(WMP_FILES_UPLOADS_DIR.$previous_file_path);
+                $WMP_Uploads = $this->get_uploads_manager();
+                return $WMP_Uploads->remove_uploaded_file($previous_file_path);
             }
+
+            return false;
+        }
+
+
+        /**
+         * Remove a category's icon file
+         *
+         * @param $category_id
+         * @return bool
+         */
+        protected function remove_image_category($category_id){
+
+            $categories_details = WMobilePack_Options::get_setting('categories_details');
+
+            if (is_array($categories_details)) {
+
+                if (array_key_exists($category_id, $categories_details)) {
+
+                    if (is_array($categories_details[$category_id])) {
+
+                        if (array_key_exists('icon', $categories_details[$category_id])) {
+
+                            $previous_file_path = $categories_details[$category_id]['icon'];
+
+                            // check the file exists and remove it
+                            $WMP_Uploads = $this->get_uploads_manager();
+                            return $WMP_Uploads->remove_uploaded_file($previous_file_path);
+                        }
+                    }
+                }
+            }
+
+            return false;
         }
 
         /**
@@ -491,17 +526,24 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                                         $file_type = 'logo';
                                     } elseif ($file == 'wmp_editcover_cover'){
                                         $file_type = 'cover';
+                                    } elseif ($file == 'wmp_categoryedit_icon') {
+                                        $file_type = 'category_icon';
                                     }
 
                                     if ($info['error'] >= 1 || $info['size'] <= 0 && array_key_exists($file_type, WMobilePack_Uploads::$allowed_files)) {
 
                                         $arr_response['status'] = 0;
-                                        $arr_response["messages"][] = "We encountered a problem processing your ".$file_type.". Please choose another image!";
+                                        $arr_response["messages"][] = "We encountered a problem processing your ".($file_type == 'category_icon' ? 'image' : $file_type).". Please choose another image!";
 
-                                    } elseif ( $info['size'] > 1048576){
+                                    } elseif ($info['size'] > 1048576){
 
                                         $arr_response['status'] = 0;
-                                        $arr_response["messages"][] = "Do not exceed the 1MB file size limit when uploading your custom ".$file_type.".";
+                                        $arr_response["messages"][] = "Do not exceed the 1MB file size limit when uploading your custom ".($file_type == 'category_icon' ? 'image' : $file_type).".";
+
+                                    } elseif ($file_type == 'category_icon' && (!isset($_POST['wmp_categoryedit_id']) || !is_numeric($_POST['wmp_categoryedit_id']))) {
+
+                                        // If the category icon file is NOT accompanied by the category ID, default to the error message
+                                        $arr_response['status'] = 0;
 
                                     } else {
 
@@ -520,7 +562,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                                         // check file extension
                                         if (!in_array(strtolower($fileExtension), $arrAllowedExtensions)) {
 
-                                            $arr_response['messages'][] = "Error saving image, please add a ".implode(' or ',$arrAllowedExtensions)." image for your ".$file_type."!";
+                                            $arr_response['messages'][] = "Error saving image, please add a ".implode(' or ',$arrAllowedExtensions)." image for your ".($file_type == 'category_icon' ? 'category' : $file_type)."!";
 
                                         } else {
 
@@ -564,11 +606,25 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 
                                                     if ($copied_and_resized) {
 
-                                                        // delete previous image
-                                                        $this->remove_image($file_type);
+                                                        if ($file_type == 'category_icon') {
 
-                                                        // save option
-                                                        WMobilePack_Options::update_settings($file_type, $uniqueFilename);
+                                                            // delete previous image
+                                                            $this->remove_image_category($_POST['wmp_categoryedit_id']);
+
+                                                            // update categories settings array
+                                                            $categories_details = WMobilePack_Options::get_setting('categories_details');
+                                                            $categories_details[$_POST['wmp_categoryedit_id']] = array('icon' => $uniqueFilename);
+
+                                                            WMobilePack_Options::update_settings('categories_details', $categories_details);
+
+                                                        } else {
+
+                                                            // delete previous image
+                                                            $this->remove_image($file_type);
+
+                                                            // save option
+                                                            WMobilePack_Options::update_settings($file_type, $uniqueFilename);
+                                                        }
 
                                                         // add path in the response
                                                         $arr_response['status'] = 1;
@@ -606,13 +662,29 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 
                             $file_type = $_GET['source'];
 
-                            // get the previous file name from the options table
-                            $this->remove_image($file_type);
+                            if ($file_type == 'category_icon' && isset($_GET['category_id']) && is_numeric($_GET['category_id'])) {
 
-                            // save option with an empty value
-                            WMobilePack_Options::update_settings($file_type, '');
+                                // delete previous image
+                                $this->remove_image_category($_GET['category_id']);
 
-                            $arr_response['status'] = 1;
+                                // update categories settings array
+                                $categories_details = WMobilePack_Options::get_setting('categories_details');
+                                unset($categories_details[ $_GET['category_id'] ]);
+
+                                WMobilePack_Options::update_settings('categories_details', $categories_details);
+
+                                $arr_response['status'] = 1;
+
+                            } elseif (in_array($file_type, array('icon', 'logo', 'cover'))) {
+
+                                // get the previous file name from the options table
+                                $this->remove_image($file_type);
+
+                                // save option with an empty value
+                                WMobilePack_Options::update_settings($file_type, '');
+
+                                $arr_response['status'] = 1;
+                            }
                         }
                     }
                 }

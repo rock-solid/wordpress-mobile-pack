@@ -72,8 +72,8 @@ function WMP_EDIT_CATEGORIES(){
 	    /*                                	CHANGE STATUS ITEM ACTIONS                                		 */
 	    /*                                                                                                   */
 	    /*****************************************************************************************************/
-	    
-        jQuery( "li", this.form ).on("click", function(){
+
+        jQuery("li div.row", this.form).on("click", function(){
 		
 			var isConfirmed = confirm("Are you sure you want to change the status for this category?");
 	
@@ -82,14 +82,14 @@ function WMP_EDIT_CATEGORIES(){
 				var currentStatus;
                 
                 var statusContainer = jQuery('.status',this);
-				var categoryId = jQuery(this).attr("data-category-id");
+                var categoryId = jQuery(this).parent().attr("data-category-id");
                 
 				if (statusContainer.hasClass("active") == false) {
 					currentStatus = "active";	
 				} else {
 					currentStatus = "inactive";
 				}
-					
+
 				if (JSObject.changingStatus == false) {
 					
                     WMPJSInterface.Preloader.start();

@@ -377,7 +377,7 @@ if (!class_exists('WMobilePack_Application')) {
             }
 
             // load images
-            foreach (WMobilePack_Uploads::$allowed_files as $file_type => $file_properties){
+            foreach (array('icon', 'logo', 'cover') as $file_type){
 
                 $file_path = WMobilePack_Options::get_setting($file_type);
 
