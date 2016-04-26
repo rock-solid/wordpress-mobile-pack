@@ -11,7 +11,11 @@ class ExportSettingsTest extends WP_UnitTestCase
         $arrData = array(
             'premium_api_key' => '',
             'premium_active'  => 0,
-            'premium_config_path'  => ''
+            'premium_config_path'  => '',
+            'icon' => '',
+            'logo' => '',
+            'cover' => '',
+            'google_analytics_id' => ''
         );
 
         // save options
@@ -68,10 +72,66 @@ class ExportSettingsTest extends WP_UnitTestCase
 
         $data = json_decode($export->export_settings(), true);
 
-        $this->assertArrayHasKey('icon', $data);
-        $this->assertArrayHasKey('logo', $data);
-        $this->assertArrayHasKey('cover', $data);
-        $this->assertArrayHasKey('google_analytics_id', $data);
+        $this->assertEquals('', $data['icon']);
+        $this->assertEquals('', $data['logo']);
+        $this->assertEquals('', $data['cover']);
+        $this->assertEquals('', $data['google_analytics_id']);
+        $this->assertEquals(1, $data['status']);
+    }
+
+    /**
+     * Calling export_settings() with images returns data
+     */
+    function test_export_settings_with_images_returns_data()
+    {
+
+        $_POST['apiKey'] = 'dummyapikey';
+
+        update_option('wmpack_premium_api_key', $_POST['apiKey']);
+        update_option('wmpack_premium_active', 0);
+
+        update_option(WMobilePack_Options::$prefix.'icon', 'icon_path.jpg');
+        update_option(WMobilePack_Options::$prefix.'logo', 'logo_path.jpg');
+        update_option(WMobilePack_Options::$prefix.'cover', 'cover_path.jpg');
+        update_option(WMobilePack_Options::$prefix.'google_analytics_id', 'UA-1234567-1');
+
+        $_SERVER['HTTP_HOST'] = 'dummy.appticles.com';
+
+        $export_class = $this->getMockBuilder('WMobilePack_Export')
+            ->setMethods(array('get_uploads_manager'))
+            ->getMock();
+
+        // Mock the uploads manager that will check for the file paths
+        $uploads_mock = $this->getMockBuilder('Mocked_Uploads')
+            ->setMethods(array('get_file_url'))
+            ->getMock();
+
+        $uploads_mock->expects($this->exactly(3))
+            ->method('get_file_url')
+            ->withConsecutive(
+                $this->equalTo('logo_path.jpg'),
+                $this->equalTo('icon_path.jpg'),
+                $this->equalTo('cover_path.jpg')
+            )
+            ->will(
+                $this->returnCallback(
+                    function($parameter) {
+                        return 'http://dummy.appticles.com/' . $parameter;
+                    }
+                )
+            );
+
+        $export_class->expects($this->once())
+            ->method('get_uploads_manager')
+            ->will($this->returnValue($uploads_mock));
+
+        // Call method
+        $data = json_decode($export_class->export_settings(), true);
+
+        $this->assertEquals('http://dummy.appticles.com/icon_path.jpg', $data['icon']);
+        $this->assertEquals('http://dummy.appticles.com/logo_path.jpg', $data['logo']);
+        $this->assertEquals('http://dummy.appticles.com/cover_path.jpg', $data['cover']);
+        $this->assertEquals('UA-1234567-1', $data['google_analytics_id']);
         $this->assertEquals(1, $data['status']);
     }
 }
