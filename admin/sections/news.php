@@ -37,7 +37,18 @@ if (!empty($news_updates)):
                 <!-- start news and updates -->
                 <?php foreach($arrNews as $key => $news):?>
                     <?php if(isset($news["title"]) && $news["title"] != ''):?>
-                    	<p class="news-title"><strong><?php echo $news["title"];?></strong></p>
+                    	<p class="news-title">
+                            <strong>
+                                <?php if(isset($news["link"]) && $news["link"] != ''):?>
+                                    <a href="<?php echo $news["link"];?>" target="_blank" title="read more"><?php echo $news["title"];?></a>
+                                <?php
+                                    else:
+                                        echo $news["title"];
+                                    endif;
+
+                                ?>
+                            </strong>
+                        </p>
                         <div class="spacer-2"></div>
                     <?php endif;?>
                     <p>
