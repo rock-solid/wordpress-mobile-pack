@@ -151,8 +151,13 @@ Google Ad Sense / Google Double Click for Publishers is supported on the Premium
 == Changelog ==
 
 = 2.2.3 =
+* Add / edit categories images
+* Increase basic font size for the mobile web app. Calculate headlines and subtitles font sizes depending on the base font size.
 * Translated app in Chinese (zh_CN). A big thanks to Na LI.
 * Added support for Youku embed code
+* API - Don't export child pages if their parent pages are disabled.
+* Fixed bug - the app was reverting to basic font settings when re-selecting a color scheme.
+* Fixed bug - show the number of comments on the comments icon
 
 = 2.2.2 =
 * Added support for Spotify
@@ -331,8 +336,8 @@ Two major issues were introduced in beta 1, now solved:
 
 == Upgrade Notice ==
 
-= 2.2.2 =
-* WP Mobile Pack allows you to 'package' your existing content into a cross-platform mobile web application. Starting from version 2.2+, you can create your own color scheme and choose different fonts for headlines, subtitles and paragraphs.
+= 2.2.3 =
+* WP Mobile Pack allows you to 'package' your existing content into a cross-platform mobile web application. The latest version allows you to customize your app's menu by adding images for categories. All app fonts sizes are adjusted for a better reading experience.
 
 
 == Screenshots ==
