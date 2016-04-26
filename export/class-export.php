@@ -1199,12 +1199,11 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
         /**
          *
-         * Return array with the pages keys, ordered by hierarchy
+         * Return array with the pages keys, ordered by hierarchy.
+         * Child pages will be excluded if their parents are hidden.
          *
          * @param int $limit
          * @return array
-         *
-         * @todo Delete this method after subpages support is added to themes 1 and 4
          *
          */
         protected function get_pages_order($limit = 100){
@@ -1249,7 +1248,6 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
          * - callback = The JavaScript callback method
          * - content = 'exportpages'
          *
-         * @todo Remove the order_pages array after subpages support is added to themes 1 and 4
          */
         public function export_pages()
         {
@@ -1302,28 +1300,28 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                             else
                                 $content = apply_filters("the_content", get_option(WMobilePack_Options::$prefix.'page_' . $page->ID));
 
-                            $last_key = count($arr_pages);
-                            $current_key = $last_key + 1;
-
                             // if we have a pages hierarchy, use the order from that array
                             if (!empty($order_pages)) {
 
+                                // if the page and its parent are visible, they should exist in the order array
                                 $index_order = array_search($page->ID, $order_pages);
 
-                                if (is_numeric($index_order))
-                                    $current_key = $index_order + 1;
-                            }
+                                if (is_numeric($index_order)) {
 
-                            $arr_pages[] = array(
-                                'id' => $page->ID,
-                                'parent_id' => intval($page->post_parent),
-                                'order' => $current_key,
-                                'title' => strip_tags(trim(get_the_title())),
-                                'link' => get_permalink(),
-                                'image' => !empty($image_details) ? $image_details : "",
-                                'content' => '',
-                                'has_content' => $content != '' ? 1 : 0
-                            );
+                                    $current_key = $index_order + 1;
+
+                                    $arr_pages[] = array(
+                                        'id' => $page->ID,
+                                        'parent_id' => intval($page->post_parent),
+                                        'order' => $current_key,
+                                        'title' => strip_tags(trim(get_the_title())),
+                                        'link' => get_permalink(),
+                                        'image' => !empty($image_details) ? $image_details : "",
+                                        'content' => '',
+                                        'has_content' => $content != '' ? 1 : 0
+                                    );
+                                }
+                            }
                         }
                     }
                 }
@@ -1355,6 +1353,8 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
          * - callback = The JavaScript callback method
          * - content = 'exportpage'
          * - pageId = The page's id
+         *
+         * @todo (Improvement) Don't export page if its parent is hidden
          *
          */
         public function export_page()
