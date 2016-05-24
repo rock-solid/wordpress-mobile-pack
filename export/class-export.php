@@ -72,14 +72,15 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
             if (has_post_thumbnail($post_id)) {
 
-                $image_data = wp_get_attachment_image_src(get_post_thumbnail_id($post_id), 'large');
+                $post_thumbnail_id = get_post_thumbnail_id($post_id);
+                $image_metadata = wp_get_attachment_metadata($post_thumbnail_id, true);
 
-                if (is_array($image_data) && !empty($image_data)) {
+                if (is_array($image_metadata) && !empty($image_metadata)) {
 
                     $image_details = array(
-                        "src" => $image_data[0],
-                        "width" => $image_data[1],
-                        "height" => $image_data[2]
+                        "src" => wp_get_attachment_url($post_thumbnail_id),
+                        "width" => $image_metadata['width'],
+                        "height" => $image_metadata['height']
                     );
                 }
             }
