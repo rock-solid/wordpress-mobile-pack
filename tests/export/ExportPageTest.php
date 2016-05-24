@@ -127,6 +127,7 @@ class ExportPageTest extends WP_UnitTestCase
 
         $attach_id = wp_insert_attachment( $attachment, $filename, $post_id );
         add_post_meta( $post_id, '_thumbnail_id', $attach_id, true );
+        wp_update_attachment_metadata( $attach_id, array('width' => 100, 'height' => 100));
 
         // make request and verify response
         $_GET['pageId'] = $post_id;

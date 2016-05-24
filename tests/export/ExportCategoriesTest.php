@@ -234,6 +234,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
 
         $attach_id = wp_insert_attachment( $attachment, $filename, $post_id );
         add_post_meta( $post_id, '_thumbnail_id', $attach_id, true );
+        wp_update_attachment_metadata( $attach_id, array('width' => 100, 'height' => 100));
 
         $export = new WMobilePack_Export();
         $data = json_decode($export->export_categories(), true);
@@ -467,6 +468,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
 
         $attach_id = wp_insert_attachment( $attachment, $filename, $post_id );
         add_post_meta( $post_id, '_thumbnail_id', $attach_id, true );
+        wp_update_attachment_metadata( $attach_id, array('width' => 100, 'height' => 100));
 
         // make request and check response
         $export = new WMobilePack_Export();
