@@ -94,34 +94,29 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
          * Compose array with a post's details
          *
          * @param $post
-         * @param int $description_length
          * @param bool $full_content
          * @return array
          *
          */
-        protected function format_post($post, $description_length = 200, $full_content = false)
+        protected function format_post($post, $full_content = false)
         {
 
             // check if the post has a post thumbnail assigned to it and save it in an array
             $image_details = $this->get_post_image($post->ID);
 
-            // get & filter content
-            $content = apply_filters("the_content", $post->post_content);
-
-            // remove script tags
-            $content = WMobilePack_Formatter::remove_script_tags($content);
-            $content = $this->purifier->purify($content);
-
-            // remove all urls from attachment images
-            $content = preg_replace(array('{<a(.*?)(wp-att|wp-content\/uploads|attachment)[^>]*><img}', '{ wp-image-[0-9]*" /></a>}'), array('<img', '" />'), $content);
-
-            $description = WMobilePack_Formatter::truncate_html($content, $description_length);
-            $description = $this->purifier->purify($description);
-
             // Build post array - get_the_title(), get_permalink() methods can be used inside or outside of The Loop.
             // If used outside the loop an ID must be specified.
 
             if ($full_content){
+
+                // get & filter content
+                $content = apply_filters("the_content", $post->post_content);
+
+                // remove script tags
+                $content = WMobilePack_Formatter::remove_script_tags($content);
+
+                // remove all urls from attachment images
+                $content = preg_replace(array('{<a(.*?)(wp-att|wp-content\/uploads|attachment)[^>]*><img}', '{ wp-image-[0-9]*" /></a>}'), array('<img', '" />'), $content);
 
                 $arr_article = array(
                     'id' => $post->ID,
@@ -131,8 +126,8 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                     "image" => !empty($image_details) ? $image_details : "",
                     "date" => WMobilePack_Formatter::format_date(strtotime($post->post_date)),
                     "timestamp" => strtotime($post->post_date),
-                    "description" => $description,
-                    "content" => $content,
+                    "description" => get_the_excerpt($post->ID),
+                    "content" => $this->purifier->purify($content),
                     "categories" => $this->get_visible_categories_ids($post)
                 );
 
@@ -146,7 +141,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                     "image" => !empty($image_details) ? $image_details : "",
                     "date" => WMobilePack_Formatter::format_date(strtotime($post->post_date)),
                     "timestamp" => strtotime($post->post_date),
-                    "description" => $description,
+                    "description" => get_the_excerpt(),
                     "content" => '',
                     "categories" => $this->get_visible_categories_ids($post)
                 );
@@ -452,7 +447,6 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
          * - callback = The JavaScript callback method
          * - content = 'exportcategories'
          * - limit = (optional) The number of articles to be added for each category. Default value is 7.
-         * - descriptionLength = (optional) The description length (in characters) for each post. Default value is 200.
          *
          */
         public function export_categories()
@@ -462,10 +456,6 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
             $limit = 7;
             if (isset($_GET["limit"]) && is_numeric($_GET["limit"]))
                 $limit = $_GET["limit"];
-
-            $description_length = 200;
-            if (isset($_GET["descriptionLength"]) && is_numeric($_GET["descriptionLength"]))
-                $description_length = $_GET["descriptionLength"];
 
             // get categories
             $categories = get_categories(array('hierarchical' => 0));
@@ -524,7 +514,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                                 if ($post->post_type == 'post' && $post->post_password == '' && $post->post_status == 'publish') {
 
                                     // retrieve array with the post's details
-                                    $post_details = $this->format_post($post, $description_length);
+                                    $post_details = $this->format_post($post);
 
                                     // if the category doesn't have a featured image yet, use the one from the current post
                                     if (!is_array($arr_categories[$current_key]["image"]) && !empty($post_details['image'])) {
@@ -587,7 +577,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                                 if ($post->post_type == 'post' && $post->post_password == '' && $post->post_status == 'publish') {
 
                                     // retrieve array with the post's details
-                                    $post_details = $this->format_post($post, $description_length);
+                                    $post_details = $this->format_post($post);
 
                                     // if the category doesn't have a featured image yet, use the one from the current post
                                     if (!is_array($arr_categories[0]["image"]) && !empty($post_details['image'])) {
@@ -679,10 +669,6 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
             if (isset($_GET["limit"]) && is_numeric($_GET["limit"]))
                 $limit = $_GET["limit"];
 
-            $description_length = 200;
-            if (isset($_GET["descriptionLength"]) && is_numeric($_GET["descriptionLength"]))
-                $description_length = $_GET["descriptionLength"];
-
             // set args for posts
             $args = array(
                 'date_query' => array('before' => $last_timestamp),
@@ -733,7 +719,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                         if ($post->post_type == 'post' && $post->post_password == '' && $post->post_status == 'publish') {
 
                             // retrieve array with the post's details
-                            $post_details = $this->format_post($post, $description_length);
+                            $post_details = $this->format_post($post);
 
                             // get post category
                             $category = null;
@@ -823,10 +809,6 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
             if (isset($_GET["articleId"]) && is_numeric($_GET["articleId"])) {
 
-                $description_length = 200;
-                if (isset($_GET["descriptionLength"]) && is_numeric($_GET["descriptionLength"]))
-                    $description_length = $_GET["descriptionLength"];
-
                 $post_details = array();
 
                 // get post by id
@@ -839,7 +821,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
                     if ($visible_category !== null) {
 
-                        $post_details = $this->format_post($post, $description_length, true);
+                        $post_details = $this->format_post($post, true);
 
                         // add category data
                         $post_details['category_id'] = $visible_category->term_id;
