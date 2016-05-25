@@ -30,6 +30,14 @@ class MediaContentTest extends WP_UnitTestCase
         $this->assertEquals($this->purifier->purify($input), $output);
     }
 
+    public function test_responsive_image(){
+
+        $input = '<img width="300" height="580" src="http://dummyblog.appticles.com/wp-content/uploads/2013/03/featured-image-vertical.jpg" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="Vertical Featured Image" srcset="http://dummyblog.appticles.com/wp-content/uploads/2013/03/featured-image-vertical.jpg 300w, http://dummyblog.appticles.com/wp-content/uploads/2013/03/featured-image-vertical-155x300.jpg 155w" sizes="(max-width: 709px) 85vw, (max-width: 909px) 67vw, (max-width: 984px) 60vw, (max-width: 1362px) 62vw, 840px" />';
+        $output = '<img width="300" height="580" src="http://dummyblog.appticles.com/wp-content/uploads/2013/03/featured-image-vertical.jpg" srcset="http://dummyblog.appticles.com/wp-content/uploads/2013/03/featured-image-vertical.jpg 300w, http://dummyblog.appticles.com/wp-content/uploads/2013/03/featured-image-vertical-155x300.jpg 155w" sizes="(max-width: 709px) 85vw, (max-width: 909px) 67vw, (max-width: 984px) 60vw, (max-width: 1362px) 62vw, 840px" alt="featured-image-vertical.jpg" />';
+
+        $this->assertEquals($this->purifier->purify($input), $output);
+    }
+
     public function test_links(){
 
         $input = '<a href="http://www.appticles.com" target="_blank" style="display:none; color:green;" class="linkstyling">link here</a><a href="tel:234234324" target="_blank" class="linkstyling" style="display:none; color:green;">link here</a>';

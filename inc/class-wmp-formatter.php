@@ -30,7 +30,7 @@ if ( ! class_exists( 'WMobilePack_Formatter' ) ) {
             $config->set('Core.Encoding', 'UTF-8');
 
             $config->set('HTML.AllowedElements', 'div,a,p,ol,li,ul,img,blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe,small,video,audio,source');
-            $config->set('HTML.AllowedAttributes', '*.style,*.width,*.height,*.src,a.href,a.target,iframe.frameborder,iframe.marginheight,iframe.marginwidth,iframe.scrolling,iframe.allowfullscreen,*.poster,*.preload,*.controls,*.type,*.data-type');
+            $config->set('HTML.AllowedAttributes', '*.style,*.width,*.height,*.src,a.href,a.target,img.srcset,img.sizes,iframe.frameborder,iframe.marginheight,iframe.marginwidth,iframe.scrolling,iframe.allowfullscreen,*.poster,*.preload,*.controls,*.type,*.data-type');
 
             $config->set('Attr.AllowedFrameTargets', '_blank, _parent, _self, _top');
             $config->set('URI.AllowedSchemes', array('http' => true, 'https' => true, 'mailto' => true, 'news' => true, 'tel' => true, 'callto' => true, 'skype' => true, 'sms' => true, 'whatsapp' => true));
