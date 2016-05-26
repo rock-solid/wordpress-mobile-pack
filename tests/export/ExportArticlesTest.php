@@ -425,4 +425,76 @@ class ExportArticlesTest extends WP_UnitTestCase
         wp_delete_term($visible_cat_id, 'category');
         wp_delete_term($visible_cat_id2, 'category');
     }
+
+    /**
+     * Calling export_articles() with posts with manual excerpts returns data
+     */
+    function test_export_articles_with_manual_excerpt_returns_data()
+    {
+        $published = strtotime('-2 days');
+
+        $visible_cat_id = $this->factory->category->create(
+            array(
+                'name' => 'Visible Test Category'
+            )
+        );
+
+        $post_id = $this->factory->post->create(
+            array(
+                'post_date' => date('Y-m-d H:i:s', $published),
+                'post_title' => 'Article Title',
+                'post_excerpt' => '<p>This is the <strong>post</strong> description right here</p>',
+                'post_content' => '<p>This is the <strong>post</strong> content right here</p>',
+                'post_category' => array($visible_cat_id)
+            )
+        );
+
+        $export = new WMobilePack_Export();
+        $data = json_decode($export->export_articles(), true);
+
+        $this->assertArrayHasKey('articles', $data);
+        $this->assertEquals(1, count($data['articles']));
+
+        $this->assertEquals($post_id, $data['articles'][0]['id']);
+        $this->assertEquals("<p>This is the <strong>post</strong> description right here</p>\n", $data['articles'][0]['description']);
+
+        wp_delete_post($post_id);
+        wp_delete_term($visible_cat_id, 'category');
+    }
+
+    /**
+     * Calling export_articles() with posts that don't have excerpts returns data
+     */
+    function test_export_articles_with_automated_excerpt_returns_data()
+    {
+        $published = strtotime('-2 days');
+
+        $visible_cat_id = $this->factory->category->create(
+            array(
+                'name' => 'Visible Test Category'
+            )
+        );
+
+        $post_id = $this->factory->post->create(
+            array(
+                'post_date' => date('Y-m-d H:i:s', $published),
+                'post_title' => 'Article Title',
+                'post_excerpt' => '',
+                'post_content' => '<p>This is the <strong>post</strong> content right here</p>',
+                'post_category' => array($visible_cat_id)
+            )
+        );
+
+        $export = new WMobilePack_Export();
+        $data = json_decode($export->export_articles(), true);
+
+        $this->assertArrayHasKey('articles', $data);
+        $this->assertEquals(1, count($data['articles']));
+
+        $this->assertEquals($post_id, $data['articles'][0]['id']);
+        $this->assertEquals("<p>This is the post content right here</p>\n", $data['articles'][0]['description']);
+
+        wp_delete_post($post_id);
+        wp_delete_term($visible_cat_id, 'category');
+    }
 }
