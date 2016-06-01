@@ -100,7 +100,7 @@
                                         
                                     </div>
                                 </div>
-                                <div class="spacer-30"></div>
+                                <div class="spacer-0"></div>
                                 
                             <?php
                                     if ($pos == 'left')
@@ -154,7 +154,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="spacer-30"></div>
+                    <div class="spacer-0"></div>
 
                     <div class="feature right">
 
@@ -169,7 +169,7 @@
                                 them by dragging the corresponding row on the desired position.</p>
                         </div>
                     </div>
-                    <div class="spacer-30"></div>
+                    <div class="spacer-0"></div>
 
                     <div class="feature left">
 
@@ -186,7 +186,7 @@
                                 the application.</p>
                         </div>
                     </div>
-                    <div class="spacer-30"></div>
+                    <div class="spacer-0"></div>
 
                     <div class="feature right">
 
@@ -204,19 +204,20 @@
                                     Mobile Pack PRO</a>.
                         </div>
                     </div>
-                    <div class="spacer-30"></div>
+                    <div class="spacer-0"></div>
 
                 </div>
 
             <?php endif;?>
+
+            <!-- add subscribe to mobile growth -->
+            <?php include_once(WMP_PLUGIN_PATH.'admin/sections/subscribe.php'); ?>
+
         </div>
         <div class="right-side"> 
             <!-- add news and updates -->
             <?php include_once(WMP_PLUGIN_PATH.'admin/sections/news.php'); ?>
 
-            <!-- waitlist form -->
-            <?php include_once(WMP_PLUGIN_PATH.'admin/sections/waitlist.php'); ?>
- 
             <!-- add feedback form -->
             <?php include_once(WMP_PLUGIN_PATH.'admin/sections/feedback.php'); ?>
         </div>
