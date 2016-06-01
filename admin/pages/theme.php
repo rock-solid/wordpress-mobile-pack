@@ -42,7 +42,7 @@
                             5 => 'Folio'
                         );
 
-                        $premium_link = add_query_arg(array('page'=>'wmp-options-upgrade'), network_admin_url('admin.php'));
+                        $premium_link = isset($wpmp_upgrade_pro_link) ? $wpmp_upgrade_pro_link : WMobilePack_Admin::upgrade_pro_link();
 
                         for ($i = 1; $i <= 5; $i++):
                     ?>
@@ -66,7 +66,7 @@
 
                                             <div id="wmp_waitlist_app<?php echo $i;?>_container">
                                                 <div id="wmp_waitlist_action">
-                                                    <a href="<?php echo $premium_link;?>" class="btn orange smaller">Available in PRO</a>
+                                                    <a href="<?php echo $premium_link;?>" target="_blank" class="btn orange smaller">Available in PRO</a>
                                                 </div>
                                             </div>
                                         <?php endif;?>

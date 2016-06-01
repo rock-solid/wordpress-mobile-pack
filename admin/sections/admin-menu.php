@@ -13,6 +13,8 @@ if ($screen->id !== '') {
 } else
     $current_page = '';
 
+$wpmp_upgrade_pro_link = WMobilePack_Admin::upgrade_pro_link();
+
 ?>
 <!-- add nav main menu -->
 <nav class="menu">
@@ -29,11 +31,11 @@ if ($screen->id !== '') {
         <li <?php echo $current_page == 'wmp-options-settings' ? 'class="selected"' : '';?>>
             <a href="<?php echo add_query_arg(array('page'=>'wmp-options-settings'), network_admin_url('admin.php'));?>">Settings</a>
         </li>
-        <li <?php echo $current_page == 'wmp-options-upgrade' ? 'class="selected"' : '';?>>
+        <li>
             <div class="ribbon relative">
                 <div class="indicator"></div>
             </div>
-            <a href="<?php echo add_query_arg(array('page'=>'wmp-options-upgrade'), network_admin_url('admin.php'));?>">PRO</a>
+            <a href="<?php echo $wpmp_upgrade_pro_link;?>" target="_blank">PRO</a>
         </li>
     </ul>
 </nav>

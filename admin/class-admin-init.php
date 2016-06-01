@@ -57,11 +57,6 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
                 'capability' => 'wmp-options-settings',
                 'function' => 'settings',
                 'enqueue_hook' => 'wmp_admin_load_settings_js'
-            ),
-            array(
-                'page_title' => "PRO",
-                'capability' => 'wmp-options-upgrade',
-                'function' => 'upgrade'
             )
         );
 

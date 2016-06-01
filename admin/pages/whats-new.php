@@ -200,7 +200,7 @@
                                 improve your mobile strategy and grow your mobile traffic. Upon graduating the first 10
                                 mobile growth lessons, you'll be awarded with a <strong>30% discount
                                 certificate</strong> to be used with <a
-                                href="<?php echo WMP_APPTICLES_PRO_LINK;?>" target="blank">WP
+                                href="<?php echo isset($wpmp_upgrade_pro_link) ? $wpmp_upgrade_pro_link : WMobilePack_Admin::upgrade_pro_link();?>" target="blank">WP
                                     Mobile Pack PRO</a>.
                         </div>
                     </div>
