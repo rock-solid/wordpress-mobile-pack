@@ -427,7 +427,7 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
 
                 if (array_key_exists('premium', $page_content)) {
 
-                    if (array_key_exists('packages', $page_content['premium']) && is_array($page_content['premium']['packages']) && count($page_content['premium']['packages'] == 2)) {
+                    if (array_key_exists('packages', $page_content['premium']) && is_array($page_content['premium']['packages']) && count($page_content['premium']['packages']) >= 1) {
 
                         $package = $page_content['premium']['packages'][0];
 
