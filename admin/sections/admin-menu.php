@@ -18,7 +18,7 @@ if ($screen->id !== '') {
 <nav class="menu">
     <ul>
         <li <?php echo $current_page == 'wmp-options' ? 'class="selected"' : '';?>>
-            <a href="<?php echo add_query_arg(array('page'=>'wmp-options'), network_admin_url('admin.php'));?>">What's New</a>
+            <a href="<?php echo add_query_arg(array('page'=>'wmp-options'), network_admin_url('admin.php'));?>">Quick Start</a>
         </li>
         <li <?php echo $current_page == 'wmp-options-theme' ? 'class="selected"' : '';?>>
             <a href="<?php echo add_query_arg(array('page'=>'wmp-options-theme'), network_admin_url('admin.php'));?>">Look & Feel</a>

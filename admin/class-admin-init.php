@@ -36,7 +36,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
          */
         private static $submenu_pages = array(
             array(
-                'page_title' => "What's New",
+                'page_title' => "Quick Start",
                 'capability' => 'wmp-options',
                 'function' => 'whatsnew',
             ),

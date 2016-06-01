@@ -74,22 +74,33 @@
                             ?>
                             
                                 <div class="feature <?php echo $pos;?>">
+
                                     <?php if (array_key_exists('image', $feature)):?>
-                                       <img src="<?php echo $feature['image'];?>" title="<?php echo array_key_exists('title', $feature) ? $feature['title'] : '';?>" />
+
+                                        <?php if (array_key_exists('image_link', $feature)):?>
+                                            <a href="<?php echo $feature['image_link'];?>" target="_blank">
+                                        <?php endif;?>
+
+                                        <img src="<?php echo $feature['image'];?>" title="<?php echo array_key_exists('title', $feature) ? $feature['title'] : '';?>" />
+
+                                        <?php if (array_key_exists('image_link', $feature)):?>
+                                            </a>
+                                        <?php endif;?>
+
                                     <?php endif;?>
-                                    
+
                                     <div class="text">
                                         <?php if (array_key_exists('title', $feature)):?>
                                            <span class="title"><?php echo $feature['title'];?></span>
                                         <?php endif;?>
                                         
                                         <?php if (array_key_exists('text', $feature)):?>
-                                           <span><?php echo $feature['text'];?></span>
+                                           <?php echo $feature['text'];?>
                                         <?php endif;?>
                                         
                                     </div>
                                 </div>
-                                <div class="spacer-10"></div>
+                                <div class="spacer-30"></div>
                                 
                             <?php
                                     if ($pos == 'left')
@@ -115,8 +126,88 @@
                             <span>We are unable to display the updates on this page due to the fact that both <a href="https://php.net/manual/en/book.curl.php" target="_blank">cURL</a> and <a href="http://www.php.net/manual/en/function.fopen.php" target="_blank">fopen</a> are disabled.</span> 
                         </div>
                     </div>
-                	<div class="spacer-10"></div>
-                </div>    
+                </div>
+
+                <div class="details features">
+                    <h2 class="title">Get Started with WordPress Mobile Pack</h2>
+                    <div class="spacer-15"></div>
+                    <div class="grey-line"></div>
+                    <div class="spacer-15"></div>
+
+                    <div class="feature left">
+
+                        <a href="https://www.youtube.com/watch?v=elxjfdbAoqM&feature=youtu.be" target="_blank">
+                            <img src="https://d3oqwjghculspf.cloudfront.net/dashboard/quick_start/images/customize.png"
+                                 title="Step 1. Customize your mobile web app's look &amp; feel"/>
+                        </a>
+
+                        <div class="text">
+                            <span class="title">Step 1. Customize your mobile web app's look &amp; feel</span>
+
+                            <p>Customize your mobile web application by choosing from the available color schemes &amp;
+                                fonts, adding your logo and app icon. The default theme comes with 6 abstract covers
+                                that are randomly displayed on the loading screen to give your app a magazine flavor.
+                                You can further personalize your mobile web application by uploading your own
+                                cover.<br/><br/>Check out this <a
+                                    href="https://www.youtube.com/watch?v=elxjfdbAoqM&feature=youtu.be" target="blank">short
+                                    video tutorial</a> to see how it's done.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="spacer-30"></div>
+
+                    <div class="feature right">
+
+                        <img src="https://d3oqwjghculspf.cloudfront.net/dashboard/quick_start/images/responsive.png"
+                             title="Step 2. Decide on the content you want for your app"/>
+
+                        <div class="text">
+                            <span class="title">Step 2. Decide on the content you want for your app</span>
+
+                            <p>From the <strong>Content</strong> tab, choose what categories & pages to be displayed in
+                                your mobile web application. Click on the rows to show/hide categories & pages and order
+                                them by dragging the corresponding row on the desired position.</p>
+                        </div>
+                    </div>
+                    <div class="spacer-30"></div>
+
+                    <div class="feature left">
+
+                        <img src="https://d3oqwjghculspf.cloudfront.net/dashboard/quick_start/images/social-buttons.png"
+                             title="Step 3. Edit your app's settings"/>
+
+                        <div class="text">
+                            <span class="title">Step 3. Edit your app's settings</span>
+
+                            <p>From the <strong>Settings</strong> tab, edit the <em>Display Mode</em> of your app to
+                                enable/disable it for your mobile readers. The <em>Preview</em> mode lets you edit your
+                                app without it being visible to anyone else.<br/><br/> You can also add your own <em>Google
+                                    Analytics ID</em> to get more insights on the way your mobile visitors interact with
+                                the application.</p>
+                        </div>
+                    </div>
+                    <div class="spacer-30"></div>
+
+                    <div class="feature right">
+
+                        <img src="https://d3oqwjghculspf.cloudfront.net/dashboard/quick_start/images/analytics.png"
+                             title="Step 4. Grow your mobile traffic"/>
+
+                        <div class="text">
+                            <span class="title">Step 4. Grow your mobile traffic</span>
+
+                            <p>Join our free <strong>Mobile Growth Academy</strong> and receive weekly lessons on how to
+                                improve your mobile strategy and grow your mobile traffic. Upon graduating the first 10
+                                mobile growth lessons, you'll be awarded with a <strong>30% discount
+                                certificate</strong> to be used with <a
+                                href="<?php echo WMP_APPTICLES_PRO_LINK;?>" target="blank">WP
+                                    Mobile Pack PRO</a>.
+                        </div>
+                    </div>
+                    <div class="spacer-30"></div>
+
+                </div>
+
             <?php endif;?>
         </div>
         <div class="right-side"> 
