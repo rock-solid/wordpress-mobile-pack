@@ -10,7 +10,8 @@
             "OTHERS": "Andere",
             "HEADLINES": "Überschriften",
             "INSIDE": "Inhalt",
-            "MENU": "Menu"
+            "MENU": "Menu",
+            "OPEN_APP": "OPEN"
         }, 
         "TEXTS": {
             "NO_PAGES": "Es gibt keine Seiten!",

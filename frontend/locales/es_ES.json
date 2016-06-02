@@ -10,7 +10,8 @@
 			"OTHERS": "Otros",
 			"HEADLINES": "Títulos",
 			"INSIDE": "Dentro",
-            "MENU": "Menú"
+            "MENU": "Menú",
+            "OPEN_APP": "OPEN"
 		},
 		"TEXTS": {
 			"NO_PAGES": "No existen páginas!",

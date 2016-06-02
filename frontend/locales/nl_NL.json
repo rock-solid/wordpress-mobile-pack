@@ -10,7 +10,8 @@
             "OTHERS": "Overige",
             "HEADLINES": "Headlines",
             "INSIDE": "Inhoud",
-            "MENU": "Menu"
+            "MENU": "Menu",
+            "OPEN_APP": "OPEN"
         }, 
         "TEXTS": {
             "NO_PAGES": "Er zijn geen pagina´s!",
