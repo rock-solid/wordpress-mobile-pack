@@ -5,6 +5,11 @@ require_once(WMP_PLUGIN_PATH.'inc/class-wmp-cookie.php');
 require_once(WMP_PLUGIN_PATH.'inc/class-wmp-options.php');
 
 
+/**
+ * Class LoadAppTest
+ * @todo Revise unit tests to separate check_automatic_redirects() method from check_load() method
+ *
+ */
 class LoadAppTest extends WP_UnitTestCase
 {
 
@@ -48,6 +53,27 @@ class LoadAppTest extends WP_UnitTestCase
 
         return $cookie_manager;
     }
+
+
+    /**
+     * Create a mock builder for the premium manager
+     *
+     * @param null $premium_config
+     * @return mixed
+     */
+    function mock_premium_manager($premium_config = null){
+
+        $premium_manager = $this->getMockBuilder('WMobilePack_Premium')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $premium_manager->expects($this->any())
+            ->method('get_premium_config')
+            ->will($this->returnValue($premium_config));
+
+        return $premium_manager;
+    }
+
 
     /**
      *
@@ -427,6 +453,234 @@ class LoadAppTest extends WP_UnitTestCase
             );
 
         $WMP_Application_Mock->expects($this->never())
+            ->method('load_app');
+
+        $WMP_Application_Mock->check_load();
+    }
+
+
+    /**
+     * Calling the check_load() method with a Premium hidden app does not load the app
+     */
+    function test_load_app_premium_hidden_app_does_not_load_app()
+    {
+
+        $premium_config = array(
+            'status' => 'hidden'
+        );
+
+        $WMP_Application_Mock = $this->getMockBuilder('WMobilePack_Application')
+            ->setMethods(array('check_display_mode', 'check_desktop_mode', 'get_cookie_manager', 'get_premium_manager', 'check_device', 'load_app'))
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $WMP_Application_Mock->expects($this->once())
+            ->method('get_premium_manager')
+            ->will(
+                $this->returnValue(
+                    $this->mock_premium_manager(json_decode(json_encode($premium_config)))
+                )
+            );
+
+        $WMP_Application_Mock->expects($this->never())
+            ->method('get_cookie_manager')
+            ->will($this->returnValue(true));
+
+        $WMP_Application_Mock->expects($this->never())
+            ->method('check_desktop_mode')
+            ->will($this->returnValue(false));
+
+        $WMP_Application_Mock->expects($this->never())
+            ->method('load_app');
+
+        $WMP_Application_Mock->check_load();
+    }
+
+    /**
+     * Calling the check_load() method with a Premium deactivated app does not load the app
+     */
+    function test_load_app_premium_deactivated_app_does_not_load_app()
+    {
+
+        $premium_config = array(
+            'deactivated' => 1
+        );
+
+        $WMP_Application_Mock = $this->getMockBuilder('WMobilePack_Application')
+            ->setMethods(array('check_display_mode', 'check_desktop_mode', 'get_cookie_manager', 'get_premium_manager', 'check_device', 'load_app'))
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $WMP_Application_Mock->expects($this->once())
+            ->method('get_premium_manager')
+            ->will(
+                $this->returnValue(
+                    $this->mock_premium_manager(json_decode(json_encode($premium_config)))
+                )
+            );
+
+        $WMP_Application_Mock->expects($this->never())
+            ->method('get_cookie_manager')
+            ->will($this->returnValue(true));
+
+        $WMP_Application_Mock->expects($this->never())
+            ->method('check_desktop_mode')
+            ->will($this->returnValue(false));
+
+        $WMP_Application_Mock->expects($this->never())
+            ->method('load_app');
+
+        $WMP_Application_Mock->check_load();
+    }
+
+
+    /**
+     * Calling the check_load() method with a Premium app with subdomain and smart app banner does not load the app
+     */
+    function test_load_app_premium_with_subdomain_and_smart_app_banner_does_not_load_app()
+    {
+
+        $premium_config = array(
+            'domain_name' => 'dummy.appticles.com',
+            'smart_app_banner' => 'gateway.apticles.com/redirect-abcdef.js',
+            'kit_type' => 'wpmp'
+        );
+
+        $WMP_Application_Mock = $this->getMockBuilder('WMobilePack_Application')
+            ->setMethods(array('check_display_mode', 'check_desktop_mode', 'get_cookie_manager', 'get_premium_manager', 'check_device', 'load_app'))
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $WMP_Application_Mock->expects($this->once())
+            ->method('get_premium_manager')
+            ->will(
+                $this->returnValue(
+                    $this->mock_premium_manager(json_decode(json_encode($premium_config)))
+                )
+            );
+
+        $WMP_Application_Mock->expects($this->never())
+            ->method('check_display_mode')
+            ->will($this->returnValue(true));
+
+        $WMP_Application_Mock->expects($this->once())
+            ->method('check_desktop_mode')
+            ->will($this->returnValue(false));
+
+        $WMP_Application_Mock->expects($this->once())
+            ->method('check_device')
+            ->will($this->returnValue(true));
+
+        $WMP_Application_Mock->expects($this->any())
+            ->method('get_cookie_manager')
+            ->will(
+                $this->returnValue(
+                    $this->mock_cookie_manager('load_app', null)
+                )
+            );
+
+        $WMP_Application_Mock->expects($this->never())
+            ->method('load_app');
+
+        $WMP_Application_Mock->check_load();
+    }
+
+    /**
+     * Calling the check_load() method with a Premium app without subdomain loads the app
+     */
+    function test_load_app_premium_without_subdomain_loads_app()
+    {
+
+        $premium_config = array(
+            'smart_app_banner' => 'gateway.apticles.com/redirect-abcdef.js',
+            'kit_type' => 'wpmp'
+        );
+
+        $WMP_Application_Mock = $this->getMockBuilder('WMobilePack_Application')
+            ->setMethods(array('check_display_mode', 'check_desktop_mode', 'get_cookie_manager', 'get_premium_manager', 'check_device', 'load_app'))
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $WMP_Application_Mock->expects($this->once())
+            ->method('get_premium_manager')
+            ->will(
+                $this->returnValue(
+                    $this->mock_premium_manager(json_decode(json_encode($premium_config)))
+                )
+            );
+
+        $WMP_Application_Mock->expects($this->never())
+            ->method('check_display_mode')
+            ->will($this->returnValue(true));
+
+        $WMP_Application_Mock->expects($this->once())
+            ->method('check_desktop_mode')
+            ->will($this->returnValue(false));
+
+        $WMP_Application_Mock->expects($this->once())
+            ->method('check_device')
+            ->will($this->returnValue(true));
+
+        $WMP_Application_Mock->expects($this->any())
+            ->method('get_cookie_manager')
+            ->will(
+                $this->returnValue(
+                    $this->mock_cookie_manager('load_app', null)
+                )
+            );
+
+        $WMP_Application_Mock->expects($this->once())
+            ->method('load_app');
+
+        $WMP_Application_Mock->check_load();
+    }
+
+
+    /**
+     * Calling the check_load() method with a Premium app with subdomain, but without smart app banner loads the app
+     */
+    function test_load_app_premium_without_smart_app_banner_loads_app()
+    {
+
+        $premium_config = array(
+            'domain_name' => 'dummy.appticles.com',
+            'kit_type' => 'wpmp'
+        );
+
+        $WMP_Application_Mock = $this->getMockBuilder('WMobilePack_Application')
+            ->setMethods(array('check_display_mode', 'check_desktop_mode', 'get_cookie_manager', 'get_premium_manager', 'check_device', 'load_app'))
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $WMP_Application_Mock->expects($this->once())
+            ->method('get_premium_manager')
+            ->will(
+                $this->returnValue(
+                    $this->mock_premium_manager(json_decode(json_encode($premium_config)))
+                )
+            );
+
+        $WMP_Application_Mock->expects($this->never())
+            ->method('check_display_mode')
+            ->will($this->returnValue(true));
+
+        $WMP_Application_Mock->expects($this->once())
+            ->method('check_desktop_mode')
+            ->will($this->returnValue(false));
+
+        $WMP_Application_Mock->expects($this->once())
+            ->method('check_device')
+            ->will($this->returnValue(true));
+
+        $WMP_Application_Mock->expects($this->any())
+            ->method('get_cookie_manager')
+            ->will(
+                $this->returnValue(
+                    $this->mock_cookie_manager('load_app', null)
+                )
+            );
+
+        $WMP_Application_Mock->expects($this->once())
             ->method('load_app');
 
         $WMP_Application_Mock->check_load();

@@ -24,6 +24,7 @@ class ConfigJsonWPMPTest extends WP_UnitTestCase
 
         'domain_name' => 'app.mydomain.com',
         'website_url' => 'http://www.mydomain.com?v=x',
+        'smart_app_banner' => 'gateway.appticles.com/redirect-uhnh96.js',
 
         'locale' => 'it_IT',
 

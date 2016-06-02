@@ -30,9 +30,29 @@ if (class_exists('WPMPTestsUtils')) {
 				$this->assertContains($rel_tag, $response['content']);
 			}
 		}
-		
-		
-		
+
+
+        /**
+         *
+         * Rel alternate as {blog_url}/#article/{post_id} should be the same even if we have other get params
+         *
+         */
+        function test_post_with_dummy_params() {
+
+            if (!WMobilePack_Options::get_setting('premium_active') || WMobilePack_Options::get_setting('premium_api_key') == '') {
+
+                $post_id = 1;
+                $request_url = WPMPTestsUtils::get_furl(home_url().'?p='.$post_id.'&utm_source=June+1+2016&utm_campaign=4.20.16&utm_medium=email');
+
+                $response = WPMPTestsUtils::make_request($request_url, false);
+
+                $rel_tag = '<link rel="alternate" media="only screen and (max-width: 640px)" href="'.home_url().'/#article/'.$post_id.'" />';
+
+                $this->assertContains($rel_tag, $response['content']);
+            }
+        }
+
+
 		/**
 		 *
 		 * Rel alternate as {blog_url}/#page/{page_id}
