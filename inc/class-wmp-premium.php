@@ -297,6 +297,7 @@ if (!class_exists('WMobilePack_Premium')) {
          *  // OPTIONAL fields
          *  'domain_name' : 'myapp.domain.com',
          *  'website_url' : 'http://mywebsiteurl.com',
+         *  'smart_app_banner' : 'gateway.appticles.com/redirect-abcdef.js',
          *  'deactivated' : 1,
          *  'logo_path' : '',
          *  'icon_path' : '',
@@ -373,6 +374,7 @@ if (!class_exists('WMobilePack_Premium')) {
                 // validate optional fields
                 (!isset($arr_app_settings['domain_name']) || $arr_app_settings['domain_name'] == '' || filter_var('http://'.$arr_app_settings['domain_name'], FILTER_VALIDATE_URL)) &&
                 (!isset($arr_app_settings['website_url']) || $arr_app_settings['website_url'] == '' || filter_var($arr_app_settings['website_url'], FILTER_VALIDATE_URL)) &&
+                (!isset($arr_app_settings['smart_app_banner']) || $arr_app_settings['smart_app_banner'] == '' || filter_var('http://'.$arr_app_settings['smart_app_banner'], FILTER_VALIDATE_URL)) &&
                 (!isset($arr_app_settings['deactivated']) || $arr_app_settings['deactivated'] == 0 || $arr_app_settings['deactivated'] == 1) &&
                 (!isset($arr_app_settings['logo_path']) || $arr_app_settings['logo_path'] == '' || $arr_app_settings['logo_path'] == strip_tags($arr_app_settings['logo_path'])) &&
                 (!isset($arr_app_settings['icon_path']) || $arr_app_settings['icon_path'] == '' || $arr_app_settings['icon_path'] == strip_tags($arr_app_settings['icon_path'])) &&

@@ -115,19 +115,43 @@ if (!class_exists('WMobilePack_Application')) {
                 // Check if the user deactivated the app display
                 $desktop_mode = $this->check_desktop_mode();
 
+                // Check if we need to display a Premium smart app banner instead of redirect automatically to the app
+                $automatic_redirects = $this->check_automatic_redirects($arr_config_premium);
+
                 if ($desktop_mode == false) {
 
-                    // We're loading the mobile web app, so we don't need the rel=alternate links
-                    $show_alternate = false;
-                    $this->load_app();
+                    // Check if the automatic redirects are enabled
+                    if ($automatic_redirects == true) {
+
+                        // We're loading the mobile web app, so we don't need the rel=alternate links
+                        $show_alternate = false;
+                        $this->load_app();
+
+                    } else {
+
+                        add_action('wp_head', array(&$this, 'show_smart_app_banner_premium'));
+                    }
 
                 } else {
+
+                    // The user returned to desktop, so show him a smart app banner
+                    if ($arr_config_premium === null) {
+
+                        // Use banner if we are on the FREE version
+                        add_action('wp_head', array(&$this, 'show_smart_app_banner'));
+
+                    } elseif ($automatic_redirects == false) {
+
+                        // Or we have a premium app with smart app banner
+                        add_action('wp_head', array(&$this, 'show_smart_app_banner_premium'));
+                    }
+
                     // Add hook in footer to show the switch to mobile link
-                    add_action('wp_footer', array(&$this,'show_mobile_link'));
+                    add_action('wp_footer', array(&$this, 'show_mobile_link'));
                 }
             }
 
-            // Add hook in header (for rel=alternate)
+            // Add hook in header (for rel=alternate) and smart app banner
             if ($show_alternate){
                 add_action('wp_head', array(&$this, 'show_rel'));
             }
@@ -245,6 +269,33 @@ if (!class_exists('WMobilePack_Application')) {
 
 
         /**
+         * Check if the Premium app has a subdomain and smart app banner that will disable automatic redirects
+         *
+         * @param $arr_config_premium
+         * @return bool
+         */
+        protected function check_automatic_redirects($arr_config_premium){
+
+            if ($arr_config_premium !== null) {
+
+                if (isset($arr_config_premium->kit_type) && $arr_config_premium->kit_type == 'wpmp') {
+
+                    // Check if we have a valid subdomain linked to the Premium theme
+                    if (isset($arr_config_premium->domain_name) && filter_var('http://' . $arr_config_premium->domain_name, FILTER_VALIDATE_URL)) {
+
+                        // Check if the app has an active smart app banner
+                        if (isset($arr_config_premium->smart_app_banner) && filter_var('http://' . $arr_config_premium->smart_app_banner, FILTER_VALIDATE_URL)) {
+                            return false;
+                        }
+                    }
+                }
+            }
+
+            return true;
+        }
+
+
+        /**
          *
          * Method that loads the mobile web application theme.
          *
@@ -274,20 +325,12 @@ if (!class_exists('WMobilePack_Application')) {
 
 
         /**
-         * Return path to the mobile themes folder
-         */
-        public function app_theme_root()
-        {
-            return WMP_PLUGIN_PATH . 'frontend/themes';
-        }
-
-
-        /**
          *
          * Method used to display a rel=alternate link in the header of the desktop theme
          *
          * This method is called from check_load()
          *
+         * @todo (Future releases) Don't set tag if a page's parent is deactivated
          */
         public function show_rel()
         {
@@ -310,6 +353,47 @@ if (!class_exists('WMobilePack_Application')) {
                 include(WMP_PLUGIN_PATH . 'frontend/sections/show-rel-external.php');
             else
                 include(WMP_PLUGIN_PATH.'frontend/sections/show-rel.php');
+        }
+
+
+        /**
+         *
+         * Method used to include a smart app banner in the header of the desktop theme,
+         * when the mobile theme is disabled.
+         *
+         * This method is called from check_load()
+         *
+         * @todo (Future releases) Don't set mobile url if a page's parent is deactivated
+         *
+         */
+        public function show_smart_app_banner()
+        {
+            include(WMP_PLUGIN_PATH.'frontend/sections/smart-app-banner.php');
+        }
+
+
+        /**
+         *
+         * Method used to include a smart app banner in the header of the desktop theme,
+         * when automatic redirects are disabled.
+         *
+         * This method is called from check_load()
+         *
+         * @todo (Future releases) Don't set mobile url if a page's parent is deactivated
+         *
+         */
+        public function show_smart_app_banner_premium()
+        {
+            include(WMP_PLUGIN_PATH.'frontend/sections/smart-app-banner-premium.php');
+        }
+
+
+        /**
+         * Return path to the mobile themes folder
+         */
+        public function app_theme_root()
+        {
+            return WMP_PLUGIN_PATH . 'frontend/themes';
         }
 
 
