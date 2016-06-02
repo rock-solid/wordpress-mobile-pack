@@ -21,7 +21,9 @@ if (!class_exists('WMobilePack_Application')) {
          */
         public function __construct()
         {
-            $this->check_load();
+            // Load application only if the PRO plugin is not active
+            if (!WMobilePack::is_active_plugin('WordPress Mobile Pack PRO'))
+                $this->check_load();
         }
 
         /**
@@ -151,7 +153,7 @@ if (!class_exists('WMobilePack_Application')) {
                 }
             }
 
-            // Add hook in header (for rel=alternate) and smart app banner
+            // Add hook in header (for rel=alternate)
             if ($show_alternate){
                 add_action('wp_head', array(&$this, 'show_rel'));
             }

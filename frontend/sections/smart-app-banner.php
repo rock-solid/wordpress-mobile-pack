@@ -24,7 +24,7 @@ if (class_exists('WMobilePack')):
             foreach ($post_categories as $post_category){
 
                 if (!in_array($post_category->cat_ID, $inactive_categories)) {
-                    $mobile_url .= "/#article/".get_the_ID();
+                    $mobile_url .= "#article/".get_the_ID();
                     break;
                 }
             }
@@ -35,7 +35,7 @@ if (class_exists('WMobilePack')):
             $inactive_pages = WMobilePack_Options::get_setting('inactive_pages');
 
             if (!in_array($page_id, $inactive_pages)){
-                $mobile_url .= "/#page/".$page_id;
+                $mobile_url .= "#page/".$page_id;
             }
 
         } elseif (is_category()) {
@@ -54,7 +54,7 @@ if (class_exists('WMobilePack')):
                     $inactive_categories = WMobilePack_Options::get_setting('inactive_categories');
 
                     if (!in_array($category_id, $inactive_categories)){
-                        $mobile_url .= "/#category/".$category_obj->slug.'/'.$category_id;
+                        $mobile_url .= "#category/".$category_obj->slug.'/'.$category_id;
                     }
                 }
             }

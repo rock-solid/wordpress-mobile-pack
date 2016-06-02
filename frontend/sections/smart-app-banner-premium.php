@@ -85,9 +85,7 @@ if (class_exists('WMobilePack')):
             var wmpAppBanner = wmpAppBanner || {};
             wmpAppBanner.WIDGET = wmpAppBanner.WIDGET || {};
             wmpAppBanner.WIDGET.ref = '<?php echo $mobile_url;?>';
-        </script>
 
-        <script type="text/javascript">
             (function() {
                 var wbz = document.createElement('script');
                 wbz.type = 'text/javascript';
