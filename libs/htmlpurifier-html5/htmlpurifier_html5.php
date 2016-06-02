@@ -83,6 +83,10 @@ class WMPHtmlPurifier
                 $def->addAttribute('img', 'data-mce-src', 'Text');
                 $def->addAttribute('img', 'data-mce-json', 'Text');
 
+                // Responsive images
+                $def->addAttribute('img', 'srcset', 'Text');
+                $def->addAttribute('img', 'sizes', 'Text');
+
                 // Others
                 $def->addAttribute('iframe', 'allowfullscreen', 'Text'); // maybe type should be "Bool" instead if "Text" ?
                 $def->addAttribute('table', 'height', 'Text');

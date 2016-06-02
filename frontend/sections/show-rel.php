@@ -79,9 +79,9 @@ if (class_exists('WMobilePack')):
         }
 
         if ($is_visible):
-            ?>
+?>
             <link rel="alternate" media="only screen and (max-width: 640px)" href="<?php echo $mobile_url;?>" />
-        <?php
+<?php
         endif;
     endif;
 endif;

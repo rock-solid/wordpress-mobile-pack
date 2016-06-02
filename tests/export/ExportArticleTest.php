@@ -344,6 +344,7 @@ class ExportArticleTest extends WP_UnitTestCase
 
         $attach_id = wp_insert_attachment( $attachment, $filename, $post_id );
         add_post_meta( $post_id, '_thumbnail_id', $attach_id, true );
+        wp_update_attachment_metadata($attach_id, array('width' => 100, 'height' => 100));
 
         // make request and verify response
         $_GET['articleId'] = $post_id;
@@ -409,5 +410,58 @@ class ExportArticleTest extends WP_UnitTestCase
         // clean-up data
         wp_delete_post($post_id);
         wp_delete_user($user_id);
+    }
+
+    /**
+     * Calling export_article() with a post with excerpt comments returns data json
+     */
+    function test_export_article_with_manual_excerpt_returns_data()
+    {
+
+        // mock post with a comment
+        $post_id = $this->factory->post->create(
+            array(
+                'post_excerpt' => '<p>This is the <strong>post</strong> description</p>'
+            )
+        );
+
+        // make request & verify data
+        $_GET['articleId'] = $post_id;
+
+        $export = new WMobilePack_Export();
+        $data = json_decode($export->export_article(), true);
+
+        $this->assertArrayHasKey('article', $data);
+        $this->assertEquals('<p>This is the <strong>post</strong> description</p>', $data['article']['description']);
+
+        // clean-up data
+        wp_delete_post($post_id);
+    }
+
+    /**
+     * Calling export_article() with a post with excerpt comments returns data json
+     */
+    function test_export_article_with_automated_excerpt_returns_data()
+    {
+
+        // mock post with a comment
+        $post_id = $this->factory->post->create(
+            array(
+                'post_excerpt' => '',
+                'post_content' => '<p>This is the <strong>post</strong> content right here</p>'
+            )
+        );
+
+        // make request & verify data
+        $_GET['articleId'] = $post_id;
+
+        $export = new WMobilePack_Export();
+        $data = json_decode($export->export_article(), true);
+
+        $this->assertArrayHasKey('article', $data);
+        $this->assertEquals("<p>This is the post content right here</p>\n", $data['article']['description']);
+
+        // clean-up data
+        wp_delete_post($post_id);
     }
 }

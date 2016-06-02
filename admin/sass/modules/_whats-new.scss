@@ -10,7 +10,15 @@
 			.details{
 				padding:30px;
 				background-color: $box-color; 
-				
+
+                &.waitlist {
+                    padding-top: 0px;
+
+                    .added {
+                        margin: inherit;
+                    }
+                }
+
 				h1{
 					font-family: 'OlRoundGothicLight', sans-serif;
 					font-size: 40px;
@@ -32,34 +40,43 @@
 					width: 671px;
 					margin: 0 auto;
 				}
-				.feature{
-					img{
-						height: 130px;
-						width: 130px;
-						float: left;	
-						margin: 0 30px 0 0;		
-					}
-					.text{
-						span{
-							font-family: "OpenSansRegular", sans-serif;
-							font-size: 14px;
-							color: $base-text-color;
-							
-							&.title{
-								display: block;
-								margin: 15px 0 8px 0;
-								font-size: 18px;
-								color: #333333;
-							}
-						}
-					}
-					&.right{
-						img{
-							float: right;
-							margin: 0 0 0 30px;	
-						}
-					}
-				}
+
+                &.features {
+
+                    padding-bottom: 0px;
+
+                    .feature {
+
+                        margin-bottom: 30px;
+
+                        img {
+                            width: 130px;
+                            height: auto;
+                            float: left;
+                            margin: 20px 30px 0 0;
+                        }
+                        .text {
+                            span {
+                                font-family: "OpenSansRegular", sans-serif;
+                                font-size: 14px;
+                                color: $base-text-color;
+
+                                &.title {
+                                    display: block;
+                                    margin: 15px 0 8px 0;
+                                    font-size: 18px;
+                                    color: #333333;
+                                }
+                            }
+                        }
+                        &.right {
+                            img {
+                                float: right;
+                                margin: 20px 0 0 30px;
+                            }
+                        }
+                    }
+                }
 			}
 		}
 	}

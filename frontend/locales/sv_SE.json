@@ -10,7 +10,8 @@
 			"OTHERS": "övriga",
 			"HEADLINES": "Rubriker",
 			"INSIDE": "Inuti",
-            "MENU": "Menu"
+            "MENU": "Menu",
+            "OPEN_APP": "OPEN"
 		},
 		"TEXTS": {
 			"NO_PAGES": "Det finns inga sidor!",

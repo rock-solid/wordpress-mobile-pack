@@ -356,6 +356,7 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
          *
          * The method returns an array containing the upgrade information or an empty array by default.
          *
+         * @todo (Future releases) Refactor / remove upgrade page if it will no longer be used
          */
         public static function more_updates() {
 
@@ -410,6 +411,35 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
 
             // by default return empty array
             return array();
+        }
+
+        /**
+         * Get the link to the WP Mobile Pack PRO purchase page
+         *
+         * @return string
+         */
+        public static function upgrade_pro_link(){
+
+            // Get premium link from the more json
+            $page_content = self::more_updates();
+
+            if  (is_array($page_content) && !empty($page_content)){
+
+                if (array_key_exists('premium', $page_content)) {
+
+                    if (array_key_exists('packages', $page_content['premium']) && is_array($page_content['premium']['packages']) && count($page_content['premium']['packages']) >= 1) {
+
+                        $package = $page_content['premium']['packages'][0];
+
+                        if (array_key_exists('button_text', $package) && array_key_exists('button_link', $package)) {
+
+                            return $package['button_link'] . '&wmp_v=21';
+                        }
+                    }
+                }
+            }
+
+            return WMP_APPTICLES_PRO_LINK;
         }
     }
 }

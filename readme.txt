@@ -2,8 +2,8 @@
 Contributors: jamesgpearce, andreatrasatti, edent, cborodescu, anghelalexandra
 Tags: mobile, mobile web, mobile internet, smartphone, iphone, android, windows 8, webkit, chrome, safari, mobile web app, html5, sencha touch, responsive ui
 Requires at least: 3.5
-Tested up to: 4.5
-Stable tag: 2.2.3
+Tested up to: 4.5.2
+Stable tag: 2.2.4
 License: GPLv2 or later
 
 The NEW WordPress Mobile Pack allows you to 'package' your existing content into a cross-platform mobile web application.
@@ -149,6 +149,15 @@ Adding tracking scripts in the source is possible if you place them in the <head
 Google Ad Sense / Google Double Click for Publishers is supported on the Premium version as of v2.1. Support for other ad networks will be added in future releases.
 
 == Changelog ==
+
+= 2.2.4 =
+* Display smart app banner when the user reverts to the desktop theme
+* Optimize app loading - check posts images size using post metadata
+* Optimize app loading - load 3 posts per category instead of 9 at initial loading
+* Optimize app loading - use HTMLPurifier only for exporting a post's or page's details
+* Optimize app loading - use WordPress post excerpts when exporting posts or pages lists
+* Optimize app loading - add responsive images attributes when exporting posts or pages
+* Replace "What's New" admin tab with a quick start guide
 
 = 2.2.3 =
 * Add / edit categories images
@@ -336,8 +345,8 @@ Two major issues were introduced in beta 1, now solved:
 
 == Upgrade Notice ==
 
-= 2.2.3 =
-* WP Mobile Pack allows you to 'package' your existing content into a cross-platform mobile web application. The latest version allows you to customize your app's menu by adding images for categories. All app fonts sizes are adjusted for a better reading experience.
+= 2.2.4 =
+* WP Mobile Pack allows you to 'package' your existing content into a cross-platform mobile web application. The latest version comes with loading speed optimization and smart app banners.
 
 
 == Screenshots ==
