@@ -166,10 +166,21 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                 $description = apply_filters('the_excerpt', $description);
             }
 
+
+            $avatar = "";            
+            $get_avatar = get_avatar($post->post_author, 50);
+            preg_match("/src='(.*?)'/i", $get_avatar, $matches);
+            if (isset($matches[1])) {
+                $avatar = $matches[1];
+            }
+
+
             $arr_article = array(
                 'id' => $post->ID,
                 "title" => get_the_title($post->ID),
                 "author" => get_the_author_meta('display_name', $post->post_author),
+                "author_description" => get_the_author_meta( 'description', $post->post_author ),
+                "author_avatar" => $avatar,   
                 "link" => get_permalink($post->ID),
                 "image" => !empty($image_details) ? $image_details : "",
                 "date" => WMobilePack_Formatter::format_date(strtotime($post->post_date)),
@@ -520,6 +531,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                             'order' => false,
                             'name' => $category->name,
                             'name_slug' => $category->slug,
+                            'parent_id' =>$category->category_parent,
                             'link' => get_category_link($category->term_id),
                             'image' => array_key_exists($category->cat_ID, $categories_images) ? $categories_images[$category->cat_ID] : ''
                         );
@@ -842,7 +854,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
                 // get post by id
                 $post = get_post($_GET["articleId"]);
-
+                
                 if ($post != null && $post->post_type == 'post' && $post->post_password == '' && $post->post_status == 'publish') {
 
                     // check if at least one of the post's categories is visible
@@ -870,11 +882,19 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                                     $comment_status = 'disabled';
                         }
 
+                        
+
+                        
+
+
                         // add comments data
                         $post_details['comment_status'] = $comment_status;
                         $post_details['no_comments'] = $no_comments;
                         $post_details['show_avatars'] = intval(get_option("show_avatars"));
                         $post_details['require_name_email'] = intval(get_option("require_name_email"));
+                        
+                        
+                       
                     }
                 }
 
@@ -883,6 +903,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
             return '{"error":"Invalid post id"}';
         }
+
 
 
         /**
