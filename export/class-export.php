@@ -167,7 +167,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
             }
 
 
-            $avatar = "";            
+            $avatar = "";
             $get_avatar = get_avatar($post->post_author, 50);
             preg_match("/src='(.*?)'/i", $get_avatar, $matches);
             if (isset($matches[1])) {
@@ -180,7 +180,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                 "title" => get_the_title($post->ID),
                 "author" => get_the_author_meta('display_name', $post->post_author),
                 "author_description" => get_the_author_meta( 'description', $post->post_author ),
-                "author_avatar" => $avatar,   
+                "author_avatar" => $avatar,
                 "link" => get_permalink($post->ID),
                 "image" => !empty($image_details) ? $image_details : "",
                 "date" => WMobilePack_Formatter::format_date(strtotime($post->post_date)),
@@ -463,6 +463,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
          *                    "width": 480,
          *                    "height": 270
          *                },
+         *                "parent_id":0,
          *                "articles": [
          *                    {
          *                        "id": "123456",
@@ -489,15 +490,34 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
          * - callback = The JavaScript callback method
          * - content = 'exportcategories'
          * - limit = (optional) The number of articles to be added for each category. Default value is 7.
-         *
+         * - withArticles = (optional) Whether the categories will be returned with articles or not. Default value is 1 and returns the articles, any other value will return no articles
+         * - page = number of the page to be displayed
+         * - rows = number of rows per page
          */
-        public function export_categories()
-        {
+         public function export_categories(){
+
+            $page = false;
+            if (isset($_GET["page"]) && is_numeric($_GET["page"]))
+                $page = $_GET["page"];
+
+            $rows = false;
+            if (isset($_GET["rows"]) && is_numeric($_GET["rows"]))
+                $rows = $_GET["rows"];
+
+            if ($page && $rows == false) {
+                $rows = 5;
+            } elseif ($rows && $page == false) {
+                $page = 1;
+            }
 
             // set default limit
             $limit = 7;
             if (isset($_GET["limit"]) && is_numeric($_GET["limit"]))
                 $limit = $_GET["limit"];
+
+            $with_articles = 1;
+            if (isset($_GET["withArticles"]) && is_numeric($_GET["withArticles"]))
+                $with_articles = $_GET["withArticles"];
 
             // get categories
             $categories = get_categories(array('hierarchical' => 0));
@@ -519,29 +539,17 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
             if (count($active_categories_ids) > 0) {
 
                 $categories_images = $this->get_categories_images();
-
+                print_r($categories);
                 foreach ($categories as $key => $category) {
 
                     if (in_array($category->cat_ID, $active_categories_ids)) {
 
-                        $current_key = $category->cat_ID;
-
-                        $arr_categories[$current_key] = array(
-                            'id' => $category->term_id,
-                            'order' => false,
-                            'name' => $category->name,
-                            'name_slug' => $category->slug,
-                            'parent_id' =>$category->category_parent,
-                            'link' => get_category_link($category->term_id),
-                            'image' => array_key_exists($category->cat_ID, $categories_images) ? $categories_images[$category->cat_ID] : ''
-                        );
-
-                        // Reset query & search posts from this category
                         $cat_posts_query = new WP_Query(
                             array(
-                                'numberposts' => $limit,
+                                'numberposts' => 1,
                                 'category__in' => $category->cat_ID,
-                                'posts_per_page' => $limit,
+                                'posts_per_page' => 1,
+                                'post_type' => 'post',
                                 'post_status' => 'publish',
                                 'post_password' => ''
                             )
@@ -549,37 +557,16 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
                         if ($cat_posts_query->have_posts()) {
 
-                            while ($cat_posts_query->have_posts()) {
-
-                                $cat_posts_query->the_post();
-                                $post = $cat_posts_query->post;
-
-                                if ($post->post_type == 'post' && $post->post_password == '' && $post->post_status == 'publish') {
-
-                                    // retrieve array with the post's details
-                                    $post_details = $this->format_post_short($post);
-
-                                    // if the category doesn't have a featured image yet, use the one from the current post
-                                    if (!is_array($arr_categories[$current_key]["image"]) && !empty($post_details['image'])) {
-                                        $arr_categories[$current_key]["image"] = $post_details['image'];
-                                    }
-
-                                    // if this is the first article from the category, create the 'articles' array
-                                    if (!isset($arr_categories[$current_key]["articles"]))
-                                        $arr_categories[$current_key]["articles"] = array();
-
-                                    $post_details['category_id'] = $category->term_id;
-                                    $post_details['category_name'] = $category->name;
-
-                                    // add article in the array
-                                    $arr_categories[$current_key]["articles"][] = $post_details;
-                                }
-                            }
+                            $arr_categories[$category->cat_ID] = array(
+                                'id' => $category->term_id,
+                                'order' => false,
+                                'name' => $category->name,
+                                'name_slug' => $category->slug,
+                                'parent_id' =>$category->category_parent,
+                                'link' => get_category_link($category->term_id),
+                                'image' => array_key_exists($category->cat_ID, $categories_images) ? $categories_images[$category->cat_ID] : ''
+                            );
                         }
-
-                        // check if the category has at least one post, otherwise delete it from the export array
-                        if (!isset($arr_categories[$current_key]["articles"]) || empty($arr_categories[$current_key]["articles"]))
-                            unset($arr_categories[$current_key]);
                     }
                 }
 
@@ -589,9 +576,10 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                     // read posts for the latest category (use all active categories)
                     $posts_query = new WP_Query(
                         array(
-                            'numberposts' => $limit,
+                            'numberposts' => 1,
                             'cat' => implode(', ', $active_categories_ids),
-                            "posts_per_page" => $limit,
+                            "posts_per_page" => 1,
+                            'post_type' => 'post',
                             'post_status' => 'publish',
                             'post_password' => ''
                         )
@@ -604,55 +592,187 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                             'order' => false,
                             'name' => 'Latest',
                             'name_slug' => 'Latest',
-                            'image' => ""
+                            'image' => "",
+                            'parent_id' => 0
                         );
+                    }
+                }
 
-                        while ($posts_query->have_posts()) {
+                $arr_categories = $this->order_categories($arr_categories);
 
-                            $posts_query->the_post();
-                            $post = $posts_query->post;
+                if ($page && $rows) {
 
-                            // get post category
-                            $visible_category = $this->get_visible_category($post);
+                    $nr_categories = count($arr_categories);
 
-                            if ($visible_category !== null) {
+                    if ($page > ceil($nr_categories/$rows)) {
+                        return '{"error":"Page too high"}';
+                    }
 
-                                if ($post->post_type == 'post' && $post->post_password == '' && $post->post_status == 'publish') {
+                    $start = $rows * ($page-1);
+                    $arr_categories = array_slice($arr_categories, $start, $rows );
+                }
 
-                                    // retrieve array with the post's details
-                                    $post_details = $this->format_post_short($post);
+                if ($with_articles == 1) {
 
-                                    // if the category doesn't have a featured image yet, use the one from the current post
-                                    if (!is_array($arr_categories[0]["image"]) && !empty($post_details['image'])) {
-                                        $arr_categories[0]["image"] = $post_details['image'];
-                                    }
+                    foreach ($arr_categories as $key => $arr_category) {
 
-                                    // if this is the first article from the category, create the 'articles' array
-                                    if (!isset($arr_categories[0]["articles"]))
-                                        $arr_categories[0]["articles"] = array();
+                         // Reset query & search posts from this category
+                         $posts_query = array(
+                             'numberposts' => $limit,
+                             'posts_per_page' => $limit,
+                             'post_type' => 'post',
+                             'post_status' => 'publish',
+                             'post_password' => ''
+                         );
 
-                                    $post_details['category_id'] = $visible_category->term_id;
-                                    $post_details['category_name'] = $visible_category->name;
+                         if ($arr_category['id'] == 0){
+                             // read posts for the latest category (use all active categories)
+                             $posts_query['cat'] = implode(', ', $active_categories_ids);
+                         } else {
+                             $posts_query['category__in'] = $arr_category['id'];
+                         }
 
-                                    $arr_categories[0]["articles"][] = $post_details;
-                                }
+                         $cat_posts_query = new WP_Query($posts_query);
+
+                         while ($cat_posts_query->have_posts()) {
+
+                             $cat_posts_query->the_post();
+                             $post = $cat_posts_query->post;
+
+                             if ($post->post_type == 'post' && $post->post_password == '' && $post->post_status == 'publish') {
+
+                             // retrieve array with the post's details
+                             $post_details = $this->format_post_short($post);
+
+                             // if the category doesn't have a featured image yet, use the one from the current post
+                             if (!is_array($arr_categories[$key]["image"]) && !empty($post_details['image'])) {
+                                 $arr_categories[$key]["image"] = $post_details['image'];
+                             }
+
+                             // if this is the first article from the category, create the 'articles' array
+                             if (!isset($arr_categories[$key]["articles"]))
+                                 $arr_categories[$key]["articles"] = array();
+
+                             if ($arr_category['id'] == 0){
+
+                                 // get post category
+                                 $visible_category = $this->get_visible_category($post);
+
+                                 if ($visible_category !== null) {
+                                     $post_details['category_id'] = $visible_category->term_id;
+                                     $post_details['category_name'] = $visible_category->name;
+                                 }
+
+                             } else {
+                                 $post_details['category_id'] = $arr_category['id'];
+                                 $post_details['category_name'] = $arr_category['name'];
+                             }
+
+                             // add article in the array
+                             $arr_categories[$key]["articles"][] = $post_details;
+                             }
+                         }
+                     }
+                 }
+
+                return '{"categories":' . json_encode($arr_categories) . ',"wpmp":"'.WMP_VERSION.'"}';
+
+             }
+            }
+
+
+          /**
+           *
+           * The export_category method is used for exporting a category's details without it's articles
+           *
+           *  This method returns a JSON with the following format:
+           *
+           *  - ex :
+           *    {
+           *        "category":
+           *            {
+           *              "id":"",
+           *               "name":"",
+           *               "name_slug":"",
+           *               "parent_id":"",
+           *               "link": "",
+           *               "image": {
+           *                  "src": "{image_path}",
+           *                  "width": 480,
+           *                  "height":270
+           *                }
+           *              }
+           *     }
+           *
+           *
+           *
+           * Receives the following GET params:
+           *
+           * - callback = The JavaScript callback method
+           * - content = 'exportcategory'
+           * - categoryId = The id of the category we want
+           *
+           */
+
+        public function export_category () {
+
+
+            if (isset($_GET["categoryId"]) && is_numeric($_GET["categoryId"])) {
+
+                $the_category = get_term($_GET["categoryId"], 'category' );
+
+                if ($the_category && $the_category->term_id !== null && !in_array($the_category->term_id, $this->inactive_categories)) {
+
+                    $category_image = array();
+
+                    $categories_details = WMobilePack_Options::get_setting('categories_details');
+
+                    if (is_array($categories_details) && !empty($categories_details)) {
+
+                        if (isset($category_details[$the_category->term_id]) &&
+                            is_array($category_details[$the_category->term_id]) &&
+                            array_key_exists('icon', $category_details[$the_category->term_id])) {
+
+                            $icon_path = $category_details[$the_category->term_id]['icon'];
+
+                            if ($icon_path != ''){
+
+                                $WMP_Uploads = $this->get_uploads_manager();
+                                $icon_path = $WMP_Uploads->get_file_url($icon_path);
+                            }
+
+                            if ($icon_path != ''){
+
+                                $category_image = array(
+                                    'src' => $icon_path,
+                                    'width' => WMobilePack_Uploads::$allowed_files['category_icon']['max_width'],
+                                    'height' => WMobilePack_Uploads::$allowed_files['category_icon']['max_height']
+                                );
                             }
                         }
                     }
 
-                    // check if the category has at least one post
-                    if (!isset($arr_categories[0]["articles"]) || empty($arr_categories[0]["articles"]))
-                        unset($arr_categories[0]);
+
+                    $arr_category = array (
+                        'id' => $the_category->term_id,
+                        'name' => $the_category->name,
+                        'name_slug' => $the_category->slug,
+                        'parent_id' => $the_category->parent,
+                        'link' => get_category_link($the_category->term_id),
+                        'image' => isset($category_image[0]) ? $category_image : ''
+                    );
+
+                    return '{"category":' . json_encode($arr_category) . '}' ;
                 }
+
+                return '{"error":"Category does not exist"}' ;
+
             }
 
-            // ------------------------------------ //
-
-            // order categories and display response
-            $arr_ordered_categories = $this->order_categories($arr_categories);
-            return '{"categories":' . json_encode($arr_ordered_categories) . ',"wpmp":"'.WMP_VERSION.'"}';
-
+            return '{"error":"Invalid category id"}' ;
         }
+
+
 
 
         /**
@@ -819,20 +939,23 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
          *      "article": {
          *        "id": "123456",
          *        "title": "Post title",
-         *        "timestamp": 1398960437,
          *        "author": "",
-         *        "date": "Thu, May 01, 2014 04:07",
+         *        "author_description":"",
+         *        "author_avatar":"",
          *        "link": "{post_link}",
          *        "image": "",
+         *        "date": "Thu, May 01, 2014 04:07",
+         *        "timestamp": 1398960437,
          *        "description":"<p>The first of the content goes here</p>",
          *        "content": "<p>The full content goes here</p>",
-         *        "comment_status": "open", (the values can be 'opened' or 'closed')
-         *       "no_comments": 2,
-         *       "show_avatars" : true,
-         *        "require_name_email" : true,
+         *        "categories":"",
          *        "category_id": 5,
          *        "category_name": "Post category"
-         *      }
+         *        "comment_status": "open", (the values can be 'opened' or 'closed')
+         *        "no_comments": 2,
+         *        "show_avatars" : true,
+         *        "require_name_email" : true,
+         *        }
          *    }
          *
          *
@@ -854,7 +977,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
                 // get post by id
                 $post = get_post($_GET["articleId"]);
-                
+
                 if ($post != null && $post->post_type == 'post' && $post->post_password == '' && $post->post_status == 'publish') {
 
                     // check if at least one of the post's categories is visible
@@ -882,9 +1005,9 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                                     $comment_status = 'disabled';
                         }
 
-                        
 
-                        
+
+
 
 
                         // add comments data
@@ -892,9 +1015,9 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                         $post_details['no_comments'] = $no_comments;
                         $post_details['show_avatars'] = intval(get_option("show_avatars"));
                         $post_details['require_name_email'] = intval(get_option("require_name_email"));
-                        
-                        
-                       
+
+
+
                     }
                 }
 
@@ -903,6 +1026,8 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
             return '{"error":"Invalid post id"}';
         }
+
+
 
 
 

@@ -29,6 +29,11 @@ if (isset($_GET['content'])) {
                 echo $callback . '(' . $export->export_categories() . ')';
                 break;
 
+            case 'exportcategory':
+            
+                echo $callback . '(' . $export->export_category() . ')';
+                break; 
+
             case 'exportarticles':
 
                 echo $callback . '(' . $export->export_articles() . ')';
