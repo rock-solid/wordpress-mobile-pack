@@ -28,6 +28,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
                 'icon' => 'icon_path2.jpg'
             )
         );
+        
 
         update_option(WMobilePack_Options::$prefix.'categories_details', $categories_details);
 
@@ -81,8 +82,8 @@ class ExportCategoriesTest extends WP_UnitTestCase
 
         delete_option(WMobilePack_Options::$prefix.'categories_details');
     }
-    
-    
+
+
     /**
      * Calling export_categories() with password protected posts returns empty
      */
@@ -177,7 +178,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
 
         $export = new WMobilePack_Export();
         $data = json_decode($export->export_categories(), true);
-        
+
         $this->assertArrayHasKey('categories', $data);
         $this->assertEquals(1, count($data['categories']));
 

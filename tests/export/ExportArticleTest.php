@@ -144,6 +144,49 @@ class ExportArticleTest extends WP_UnitTestCase
         wp_delete_term($cat_id, 'category');
     }
 
+    function test_export_article_with_author_avatar()
+    {
+        $user_id = $this->factory->user->create(
+            array(
+                'user_login' => 'pauluser',
+                'display_name' => 'paul',
+                'role' => 'author',
+                'first_name' => 'paul',
+                'last_name' => 'norris',
+                'description' => 'just a paul'
+                )
+        );
+
+
+        $post_id = $this->factory->post->create(
+            array(
+                'post_author' => $user_id
+            )
+        );
+
+        $avatar = "";
+        $get_avatar = get_avatar($user_id, 50);
+        preg_match("/src='(.*?)'/i", $get_avatar, $matches);
+        if (isset($matches[1])) {
+            $avatar = $matches[1];
+        }
+
+        $_GET['articleId'] = $post_id;
+
+        $export = new WMobilePack_Export();
+        $data = json_decode($export->export_article(), true);
+
+
+        $this->assertArrayHasKey('article', $data);
+        $this->assertEquals($avatar, $data['article']['author_avatar']);
+
+        
+        wp_delete_post($post_id);
+        wp_delete_user($user_id);
+    }
+
+
+
     /**
      * Calling export_article() with a post from multiple categories returns data json
      */
@@ -411,6 +454,54 @@ class ExportArticleTest extends WP_UnitTestCase
         wp_delete_post($post_id);
         wp_delete_user($user_id);
     }
+
+
+
+    function test_export_article_with_author_returns_author_description()
+    {
+
+        $user_id = $this->factory->user->create(
+            array(
+                'user_login' => 'pauluser',
+                'display_name' => 'paul',
+                'role' => 'author',
+                'first_name' => 'paul',
+                'last_name' => 'norris',
+                'description' => 'just a paul'
+            )
+        );
+
+        // mock post with a comment
+        $post_id = $this->factory->post->create(
+            array(
+                'post_author' => $user_id
+            )
+        );
+
+
+        $_GET['articleId'] = $post_id;
+
+        $export = new WMobilePack_Export();
+        $data = json_decode($export->export_article(), true);
+
+
+        $this->assertArrayHasKey('article', $data);
+        $this->assertEquals('just a paul', $data['article']['author_description']);
+
+        // clean-up data
+        wp_delete_post($post_id);
+        wp_delete_user($user_id);
+    }
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Calling export_article() with a post with excerpt comments returns data json
