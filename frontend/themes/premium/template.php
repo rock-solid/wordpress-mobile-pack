@@ -303,6 +303,23 @@ if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && strstr($_SERVER['HTTP_ACCEPT_ENCO
 
 </head>
 <body>
+
+<?php
+    // check if google tag manager id was set
+    $google_tag_manager_id = isset($app_settings['google_tag_manager_id']) ? $app_settings['google_tag_manager_id'] : '';
+    if ($google_tag_manager_id != ''):
+?>
+    <!-- Google Tag Manager -->
+    <noscript><iframe src='//www.googletagmanager.com/ns.html?id=<?php echo $google_tag_manager_id;?>'
+                      height='0' width='0' style='display:none;visibility:hidden'></iframe></noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','<?php echo $google_tag_manager_id;?>');</script>
+    <!-- End Google Tag Manager -->
+<?php endif;?>
+
 <div id="appLoadingIndicator">
     <div></div>
     <div></div>

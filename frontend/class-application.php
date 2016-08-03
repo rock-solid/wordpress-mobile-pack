@@ -619,6 +619,7 @@ if (!class_exists('WMobilePack_Application')) {
 
                 'google_internal_id',
                 'google_analytics_id',
+                'google_tag_manager_id',
                 'google_webmasters_code',
             );
 

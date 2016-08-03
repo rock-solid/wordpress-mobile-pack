@@ -35,6 +35,7 @@ class ConfigJsonWPMPTest extends WP_UnitTestCase
         'icon_path' => 'resources/icon_1457128845.jpg',
         'google_internal_id' => '17',
         'google_analytics_id' => '',
+        'google_tag_manager_id' => 'GTM-123456',
 
         'phone' => array(
             'theme' => '5',
