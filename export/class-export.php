@@ -539,7 +539,6 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
             if (count($active_categories_ids) > 0) {
 
                 $categories_images = $this->get_categories_images();
-                print_r($categories);
                 foreach ($categories as $key => $category) {
 
                     if (in_array($category->cat_ID, $active_categories_ids)) {
@@ -721,14 +720,14 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
                 $the_category = get_term($_GET["categoryId"], 'category' );
 
-                if ($the_category && $the_category->term_id !== null && !in_array($the_category->term_id, $this->inactive_categories)) {
+                if ($the_category && !in_array($the_category->term_id, $this->inactive_categories)) {
 
-                    $category_image = array();
 
-                    $categories_details = WMobilePack_Options::get_setting('categories_details');
 
-                    if (is_array($categories_details) && !empty($categories_details)) {
+                    $category_details = WMobilePack_Options::get_setting('categories_details');
 
+                    if (is_array($category_details) && !empty($category_details)) {
+                        var_dump($category_details);
                         if (isset($category_details[$the_category->term_id]) &&
                             is_array($category_details[$the_category->term_id]) &&
                             array_key_exists('icon', $category_details[$the_category->term_id])) {
@@ -748,6 +747,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                                     'width' => WMobilePack_Uploads::$allowed_files['category_icon']['max_width'],
                                     'height' => WMobilePack_Uploads::$allowed_files['category_icon']['max_height']
                                 );
+
                             }
                         }
                     }
@@ -759,7 +759,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                         'name_slug' => $the_category->slug,
                         'parent_id' => $the_category->parent,
                         'link' => get_category_link($the_category->term_id),
-                        'image' => isset($category_image[0]) ? $category_image : ''
+                        'image' => isset($category_image) ? $category_image : ''
                     );
 
                     return '{"category":' . json_encode($arr_category) . '}' ;
