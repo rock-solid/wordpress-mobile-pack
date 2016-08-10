@@ -4,6 +4,9 @@ if ( ! class_exists( 'WMobilePack_Formatter' ) ) {
     require_once(WMP_PLUGIN_PATH.'inc/class-wmp-formatter.php');
 }
 
+
+
+
 if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
     /**
@@ -443,6 +446,25 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
             return $comment_status;
         }
 
+        /**
+        * Filter for export_categories so that it only retrieves categories with published, not password protected posts
+        */
+
+        function get_terms_filter( $terms, $taxonomies, $args )
+        {
+           global $wpdb;
+           $taxonomy = $taxonomies[0];
+           if ( ! is_array($terms) && count($terms) < 1 )
+               return $terms;
+           $filtered_terms = array();
+           foreach ( $terms as $term )
+           {
+               $result = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->posts p JOIN $wpdb->term_relationships rl ON p.ID = rl.object_id WHERE rl.term_taxonomy_id = $term->term_id AND p.post_status = 'publish' AND p.post_password = '' LIMIT 1");
+               if ( intval($result) > 0 )
+                   $filtered_terms[] = $term;
+           }
+           return $filtered_terms;
+        }
 
         /**
          *
@@ -494,7 +516,11 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
          * - page = number of the page to be displayed
          * - rows = number of rows per page
          */
+
+
+
          public function export_categories(){
+
 
             $page = false;
             if (isset($_GET["page"]) && is_numeric($_GET["page"]))
@@ -519,15 +545,19 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
             if (isset($_GET["withArticles"]) && is_numeric($_GET["withArticles"]))
                 $with_articles = $_GET["withArticles"];
 
+            //add the filter for exporting only categories with  published posts and not password protected
+            add_filter('get_terms', array($this,'get_terms_filter'), 10, 3);
+
             // get categories
-            $categories = get_categories(array('hierarchical' => 0));
+            $categories = get_terms('category','hide_empty=1');
+                        
 
             // build array with the active categories ids
             $active_categories_ids = array();
 
             foreach ($categories as $category) {
-                if (!in_array($category->cat_ID, $this->inactive_categories))
-                    $active_categories_ids[] = $category->cat_ID;
+                if (!in_array($category->term_id, $this->inactive_categories))
+                    $active_categories_ids[] = $category->term_id;
             }
 
             // init categories array
@@ -541,143 +571,138 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                 $categories_images = $this->get_categories_images();
                 foreach ($categories as $key => $category) {
 
-                    if (in_array($category->cat_ID, $active_categories_ids)) {
+                    if (in_array($category->term_id, $active_categories_ids)) {
 
-                        $cat_posts_query = new WP_Query(
-                            array(
-                                'numberposts' => 1,
-                                'category__in' => $category->cat_ID,
-                                'posts_per_page' => 1,
-                                'post_type' => 'post',
-                                'post_status' => 'publish',
-                                'post_password' => ''
-                            )
-                        );
 
-                        if ($cat_posts_query->have_posts()) {
-
-                            $arr_categories[$category->cat_ID] = array(
+                            $arr_categories[$category->term_id] = array(
                                 'id' => $category->term_id,
                                 'order' => false,
                                 'name' => $category->name,
                                 'name_slug' => $category->slug,
                                 'parent_id' =>$category->category_parent,
                                 'link' => get_category_link($category->term_id),
-                                'image' => array_key_exists($category->cat_ID, $categories_images) ? $categories_images[$category->cat_ID] : ''
+                                'image' => array_key_exists($category->term_id, $categories_images) ? $categories_images[$category->term_id] : ''
                             );
-                        }
+
                     }
                 }
+            }
+            //remove the filter for exporting only categories with  published posts
+            remove_filter('get_terms', array('WMobilePack_Export','get_terms_filter'), 10);
 
-                // activate latest category only if we have at least 2 visible categories
-                if (count($arr_categories) > 1) {
+            // activate latest category only if we have at least 2 visible categories
+            if (count($arr_categories) > 1) {
 
-                    // read posts for the latest category (use all active categories)
-                    $posts_query = new WP_Query(
-                        array(
-                            'numberposts' => 1,
-                            'cat' => implode(', ', $active_categories_ids),
-                            "posts_per_page" => 1,
-                            'post_type' => 'post',
-                            'post_status' => 'publish',
-                            'post_password' => ''
-                        )
+                // read posts for the latest category (use all active categories)
+                $posts_query = new WP_Query(
+                    array(
+                        'numberposts' => 1,
+                        'cat' => implode(', ', $active_categories_ids),
+                        "posts_per_page" => 1,
+                        'post_type' => 'post',
+                        'post_status' => 'publish',
+                        'post_password' => ''
+                    )
+                );
+
+                if ($posts_query->have_posts()) {
+
+                    $arr_categories[0] = array(
+                        'id' => 0,
+                        'order' => false,
+                        'name' => 'Latest',
+                        'name_slug' => 'Latest',
+                        'image' => "",
+                        'parent_id' => 0
                     );
+                }
+            }
 
-                    if ($posts_query->have_posts()) {
+            $arr_categories = $this->order_categories($arr_categories);
 
-                        $arr_categories[0] = array(
-                            'id' => 0,
-                            'order' => false,
-                            'name' => 'Latest',
-                            'name_slug' => 'Latest',
-                            'image' => "",
-                            'parent_id' => 0
-                        );
-                    }
+            if ($page && $rows) {
+
+                $nr_categories = count($arr_categories);
+
+                if ($page > ceil($nr_categories/$rows)) {
+                    return '{"categories":' . json_encode(array()) . ',"page":"' .$page . '","rows":"' .$rows  .'"' .',"wpmp":"'.WMP_VERSION.'"}';
                 }
 
-                $arr_categories = $this->order_categories($arr_categories);
+                $start = $rows * ($page-1);
+                $arr_categories = array_slice($arr_categories, $start, $rows );
+            }
 
-                if ($page && $rows) {
+            if ($with_articles == 1) {
 
-                    $nr_categories = count($arr_categories);
+                foreach ($arr_categories as $key => $arr_category) {
 
-                    if ($page > ceil($nr_categories/$rows)) {
-                        return '{"error":"Page too high"}';
-                    }
+                     // Reset query & search posts from this category
+                     $posts_query = array(
+                         'numberposts' => $limit,
+                         'posts_per_page' => $limit,
+                         'post_type' => 'post',
+                         'post_status' => 'publish',
+                         'post_password' => ''
+                     );
 
-                    $start = $rows * ($page-1);
-                    $arr_categories = array_slice($arr_categories, $start, $rows );
-                }
+                     if ($arr_category['id'] == 0){
+                         // read posts for the latest category (use all active categories)
+                         $posts_query['cat'] = implode(', ', $active_categories_ids);
+                     } else {
+                         $posts_query['category__in'] = $arr_category['id'];
+                     }
 
-                if ($with_articles == 1) {
+                     $cat_posts_query = new WP_Query($posts_query);
 
-                    foreach ($arr_categories as $key => $arr_category) {
+                     while ($cat_posts_query->have_posts()) {
 
-                         // Reset query & search posts from this category
-                         $posts_query = array(
-                             'numberposts' => $limit,
-                             'posts_per_page' => $limit,
-                             'post_type' => 'post',
-                             'post_status' => 'publish',
-                             'post_password' => ''
-                         );
+                         $cat_posts_query->the_post();
+                         $post = $cat_posts_query->post;
 
-                         if ($arr_category['id'] == 0){
-                             // read posts for the latest category (use all active categories)
-                             $posts_query['cat'] = implode(', ', $active_categories_ids);
-                         } else {
-                             $posts_query['category__in'] = $arr_category['id'];
+                         if ($post->post_type == 'post' && $post->post_password == '' && $post->post_status == 'publish') {
+
+                         // retrieve array with the post's details
+                         $post_details = $this->format_post_short($post);
+
+                         // if the category doesn't have a featured image yet, use the one from the current post
+                         if (!is_array($arr_categories[$key]["image"]) && !empty($post_details['image'])) {
+                             $arr_categories[$key]["image"] = $post_details['image'];
                          }
 
-                         $cat_posts_query = new WP_Query($posts_query);
+                         // if this is the first article from the category, create the 'articles' array
+                         if (!isset($arr_categories[$key]["articles"]))
+                             $arr_categories[$key]["articles"] = array();
 
-                         while ($cat_posts_query->have_posts()) {
+                         if ($arr_category['id'] == 0){
 
-                             $cat_posts_query->the_post();
-                             $post = $cat_posts_query->post;
+                             // get post category
+                             $visible_category = $this->get_visible_category($post);
 
-                             if ($post->post_type == 'post' && $post->post_password == '' && $post->post_status == 'publish') {
-
-                             // retrieve array with the post's details
-                             $post_details = $this->format_post_short($post);
-
-                             // if the category doesn't have a featured image yet, use the one from the current post
-                             if (!is_array($arr_categories[$key]["image"]) && !empty($post_details['image'])) {
-                                 $arr_categories[$key]["image"] = $post_details['image'];
+                             if ($visible_category !== null) {
+                                 $post_details['category_id'] = $visible_category->term_id;
+                                 $post_details['category_name'] = $visible_category->name;
                              }
 
-                             // if this is the first article from the category, create the 'articles' array
-                             if (!isset($arr_categories[$key]["articles"]))
-                                 $arr_categories[$key]["articles"] = array();
+                         } else {
+                             $post_details['category_id'] = $arr_category['id'];
+                             $post_details['category_name'] = $arr_category['name'];
+                         }
 
-                             if ($arr_category['id'] == 0){
-
-                                 // get post category
-                                 $visible_category = $this->get_visible_category($post);
-
-                                 if ($visible_category !== null) {
-                                     $post_details['category_id'] = $visible_category->term_id;
-                                     $post_details['category_name'] = $visible_category->name;
-                                 }
-
-                             } else {
-                                 $post_details['category_id'] = $arr_category['id'];
-                                 $post_details['category_name'] = $arr_category['name'];
-                             }
-
-                             // add article in the array
-                             $arr_categories[$key]["articles"][] = $post_details;
-                             }
+                         // add article in the array
+                         $arr_categories[$key]["articles"][] = $post_details;
                          }
                      }
                  }
-
-                return '{"categories":' . json_encode($arr_categories) . ',"wpmp":"'.WMP_VERSION.'"}';
-
              }
-            }
+            if( (isset($_GET["page"]) && is_numeric($_GET["page"])) || ((isset($_GET["rows"]) && is_numeric($_GET["rows"]))) ) {
+                return '{"categories":' . json_encode($arr_categories) . ',"page":"' .$page . '","rows":"' .$rows  .'"' .',"wpmp":"'.WMP_VERSION.'"}'; 
+            }else {
+                return '{"categories":' . json_encode($arr_categories) . ',"wpmp":"'.WMP_VERSION.'"}';
+            } 
+            
+
+        }
+
 
 
           /**
@@ -718,6 +743,18 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
             if (isset($_GET["categoryId"]) && is_numeric($_GET["categoryId"])) {
 
+                if($_GET["categoryId"] == 0){
+
+                    $arr_category = array(
+                        'id' => 0,
+                        'name' => 'Latest',
+                        'name_slug' => 'Latest',
+                        'image' => ""
+                    );
+
+                    return '{"category":' . json_encode($arr_category) . '}' ;
+                }
+
                 $the_category = get_term($_GET["categoryId"], 'category' );
 
                 if ($the_category && !in_array($the_category->term_id, $this->inactive_categories)) {
@@ -727,7 +764,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                     $category_details = WMobilePack_Options::get_setting('categories_details');
 
                     if (is_array($category_details) && !empty($category_details)) {
-                        var_dump($category_details);
+
                         if (isset($category_details[$the_category->term_id]) &&
                             is_array($category_details[$the_category->term_id]) &&
                             array_key_exists('icon', $category_details[$the_category->term_id])) {
@@ -1004,11 +1041,6 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                                 if ($comment_count->approved == 0)
                                     $comment_status = 'disabled';
                         }
-
-
-
-
-
 
                         // add comments data
                         $post_details['comment_status'] = $comment_status;
