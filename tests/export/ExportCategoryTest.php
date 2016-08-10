@@ -161,6 +161,24 @@ class ExportCategoryTest extends WP_UnitTestCase
 
     }
 
+    public function test_if_categoryId_is_0_export_category_returns_latest_category ()
+    {
+        $export = new WMobilePack_Export();
+        $expected = array(
+            'id' => 0,
+            'name' => 'Latest',
+            'name_slug' => 'Latest',
+            'image' => ""
+        );
+
+        $_GET["categoryId"] = 0;
+        $this->assertEquals(
+            '{"category":' . json_encode($expected) . '}' ,
+            $export->export_category()
+        );
+
+    }
+
 
 
 
