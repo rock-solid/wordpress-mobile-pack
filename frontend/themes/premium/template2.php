@@ -5,6 +5,8 @@ $supported_gzip = false;
 if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && strstr($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip'))
     $supported_gzip = true;
 
+$export_path = plugins_url()."/".WMP_DOMAIN."/export/";
+
 ?>
 <!DOCTYPE HTML>
 <html manifest="" lang="<?php echo str_replace('_', '-', $app_settings['locale']);?>">
@@ -22,15 +24,7 @@ if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && strstr($_SERVER['HTTP_ACCEPT_ENCO
     <?php endif;?>
 
     <title><?php echo $app_settings['title'];?></title>
-    
-    <?php
-    if($app_settings['kit_type'] == 'wpmp') {
-        $export_path = plugins_url()."/".WMP_DOMAIN."/export/"; 
-    } else {
-        $export_path = $app_settings['api_content'];
-    }
-    ?>    
-    
+
     <script type="text/javascript" pagespeed_no_defer="">
         var appticles = {
 
@@ -43,58 +37,29 @@ if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && strstr($_SERVER['HTTP_ACCEPT_ENCO
 				posts: {
 					// Read posts from a category
 					list: '<?php echo $export_path;?>content.php?content=exportarticles',
-		
+
 					// Read a post's details
 					read: '<?php echo $export_path;?>content.php?content=exportarticle'
 				},
 				pages: {
 					// Read pages list
 					list: '<?php echo $export_path;?>content.php?content=exportpages',
-		
+
 					// Read a page's details
 					read: '<?php echo $export_path;?>content.php?content=exportpage'
 				},
 				comments: {
 					// Read comments for a post
 					list: '<?php echo $export_path;?>content.php?content=exportcomments',
-		
+
 					// Submit comment for a post
 					create: '<?php echo $export_path;?>content.php?content=savecomment'
 				}
 			},
-            
-            <?php if ($app_settings['kit_type'] == 'wpmp'):?>
-        
-                hasGoogle: <?php echo $app_settings['enable_google'] ? 'true' : 'false';?>,
-                commentsToken: "<?php echo $app_settings['comments_token'];?>",
-                articlesPerCard: <?php echo is_numeric($app_settings['posts_per_page']) ? $app_settings['posts_per_page'] : '"auto"' ;?>,
-                homeText: <?php echo str_replace('\n', '<br/>', json_encode($app_settings['cover_text']));?>,
 
-            <?php else:?>
-
-                webApp: "<?php echo $app_settings['webapp'];?>",
-                title: "<?php echo addslashes($app_settings['title']). 'ALSO THIS';?>",
-
-                socialApiPath: '<?php echo $app_settings['api_social'];?>',
-
-                <?php if (isset($app_settings['api_content_external'])):?>
-                    exportPathExternal: '<?php echo $app_settings['api_content_external'];?>',
-                <?php endif;?>
-
-                defaultPath: '<?php echo $app_settings['kits_path'];?>',
-                appPath: '<?php echo $app_settings['cdn_apps']."/".$app_settings['shorten_url'];?>',
-                appUrl: '<?php echo home_url();?>',
-                canonicalUrl: '<?php echo home_url();?>',
-
-                preview: 0,
-                language: '<?php echo $app_settings['locale'];?>',
-
-                hasIcons: <?php echo intval($app_settings['icon'] != "");?>,
-                hasStartups: <?php echo intval($app_settings['logo'] != "");?>,
-                iconTimestamp: '<?php echo $app_settings['icon_timestamp'];?>',
-                startupImageTimestamp: '<?php echo $app_settings['logo_timestamp'];?>',
-
-            <?php endif;?>
+			commentsToken: "<?php echo $app_settings['comments_token'];?>",
+			articlesPerCard: <?php echo is_numeric($app_settings['posts_per_page']) ? $app_settings['posts_per_page'] : '"auto"' ;?>,
+			homeText: <?php echo str_replace('\n', '<br/>', json_encode($app_settings['cover_text']));?>,
 
             <?php if (isset($app_settings['website_url']) && $app_settings['website_url'] != ''):?>
                 websiteUrl: '<?php echo $app_settings['website_url']; echo parse_url($app_settings['website_url'], PHP_URL_QUERY) ? '&' : '?'; echo WMobilePack_Cookie::$prefix; ?>theme_mode=desktop',
@@ -107,6 +72,7 @@ if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && strstr($_SERVER['HTTP_ACCEPT_ENCO
 
             hasFacebook: <?php echo $app_settings['enable_facebook'] ? 'true' : 'false';?>,
             hasTwitter: <?php echo $app_settings['enable_twitter'] ? 'true' : 'false';?>,
+			hasGoogle: <?php echo $app_settings['enable_google'] ? 'true' : 'false';?>,
 
             <?php if ($app_settings['has_phone_ads'] == 1 || $app_settings['has_tablet_ads'] == 1):?>
                 googleAds:{
@@ -242,12 +208,29 @@ if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && strstr($_SERVER['HTTP_ACCEPT_ENCO
 
 </head>
 <body>
-<?php if ($app_settings['theme'] == 6):?>
+
+	<?php
+		// check if google tag manager id was set
+		$google_tag_manager_id = isset($app_settings['google_tag_manager_id']) ? $app_settings['google_tag_manager_id'] : '';
+		if ($google_tag_manager_id != ''):
+	?>
+		<!-- Google Tag Manager -->
+		<noscript><iframe src='//www.googletagmanager.com/ns.html?id=<?php echo $google_tag_manager_id;?>'
+							height='0' width='0' style='display:none;visibility:hidden'></iframe></noscript>
+		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+				j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+				'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+			})(window,document,'script','dataLayer','<?php echo $google_tag_manager_id;?>');</script>
+		<!-- End Google Tag Manager -->
+	<?php endif;?>
+
+	<?php if ($app_settings['theme'] == 6):?>
 		<div data-ng-app="invisionApp" id="appLoadingIndicator">
 			<ion-nav-view></ion-nav-view>
 		</div>
 	<?php endif;?>
-	
+
 	<?php if ($app_settings['theme'] == 7):?>
 		<div data-ng-app="Theme7" ng-controller="ApplicationController as appCtrl">
 		  <ion-nav-view></ion-nav-view>

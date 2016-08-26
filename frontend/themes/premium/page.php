@@ -1,7 +1,7 @@
 <?php
 
 // check if the front page is a static page
-if(get_option('show_on_front') == 'page' && get_option('page_on_front') == get_the_ID()){
+if (get_option('show_on_front') == 'page' && get_option('page_on_front') == get_the_ID()){
 
 	// load app
 	$app_settings = WMobilePack_Application::load_app_settings_premium();
@@ -13,28 +13,11 @@ if(get_option('show_on_front') == 'page' && get_option('page_on_front') == get_t
     }
 
 	$theme = $app_settings['theme'];
-	switch ($theme) {
-		case 1:
-			require_once('template.php');
-			break;
-		case 2:
-			require_once('template.php');
-			break;
-		case 3:
-			require_once('template.php');
-			break;	
-		case 4:
-			require_once('template.php');
-			break;
-		case 5:
-			require_once('template.php');
-			break;
-		case 6:
-			require_once('template2.php');
-			break;	
-		case 7:
-			require_once('template2.php');
-			break;			
+
+	if ($app_settings['kit_type'] && ($theme == 6 || $theme == 7)) {
+		require_once('template2.php');
+	} else {
+		require_once('template.php');
 	}
 
 } else {

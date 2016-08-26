@@ -1,5 +1,4 @@
 <?php
-
 $app_settings = WMobilePack_Application::load_app_settings_premium();
 
 // if we have a valid domain, redirect to it
@@ -9,28 +8,10 @@ if (isset($app_settings['domain_name']) && filter_var('http://'.$app_settings['d
 }
 
 // load app
-
 $theme = $app_settings['theme'];
-	switch ($theme) {
-		case 1:
-			require_once('template.php');
-			break;
-		case 2:
-			require_once('template.php');
-			break;
-		case 3:
-			require_once('template.php');
-			break;	
-		case 4:
-			require_once('template.php');
-			break;
-		case 5:
-			require_once('template.php');
-			break;
-		case 6:
-			require_once('template2.php');
-			break;	
-		case 7:
-			require_once('template2.php');
-			break;			
-	}
+
+if ($app_settings['kit_type'] == 'wpmp' && ($theme == 6 || $theme == 7)) {
+	require_once('template2.php');
+} else {
+	require_once('template.php');
+}
