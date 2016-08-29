@@ -774,6 +774,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
 
     function test_export_categories_returns_correct_if_page_and_rows_are_given () 
     {
+
        $_GET["page"] = 1;
        $_GET["rows"] = 2;
 
@@ -789,17 +790,9 @@ class ExportCategoriesTest extends WP_UnitTestCase
             )
         );
 
-        $visible_cat_id3 = $this->factory->category->create(
-            array(
-                'name' => 'Visible Test Category 3'
-            )
-        );
-
         $cat = get_categories('hide_empty=0');
         unset($cat[0]);
-        $cat = array_values($cat);     
-        
-
+        $cat = array_values($cat);             
     
         $export_class = $this->getMockBuilder('WMobilePack_Export')
             ->setMethods(array('get_terms_filter'))
@@ -813,16 +806,15 @@ class ExportCategoriesTest extends WP_UnitTestCase
         $this->assertEquals(2, $test['rows']);
         $this->assertEquals(1, $test['page']);
         $this->assertEquals(2,count ($test['categories']));    
-        $this->assertEquals('Visible Test Category 1', $test['categories'][0]['name']);
-        $this->assertEquals('Visible Test Category 2', $test['categories'][1]['name']);
+        $this->assertEquals('Latest', $test['categories'][0]['name']);
+        $this->assertEquals('Visible Test Category 1', $test['categories'][1]['name']);
          
         
-
         wp_delete_term($visible_cat_id['term_id'], 'category');
         wp_delete_term($visible_cat_id2['term_id'], 'category');
-        wp_delete_term($visible_cat_id2['term_id'], 'category');
-
+        
     }
+
 
     function test_export_categories_returns_empty_and_page_and_rows_as_parameters_in_json_if_page_too_high () 
     {
@@ -864,7 +856,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
 
         wp_delete_term($visible_cat_id['term_id'], 'category');
         wp_delete_term($visible_cat_id2['term_id'], 'category');
-        wp_delete_term($visible_cat_id2['term_id'], 'category');
+        wp_delete_term($visible_cat_id3['term_id'], 'category');
     
 
         }
