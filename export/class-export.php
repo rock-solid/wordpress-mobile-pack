@@ -449,22 +449,22 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 		* @param $taxonomies
 		* @param $args
 		*/
-        function get_terms_filter($terms, $taxonomies, $args)
+        public function get_terms_filter($terms, $taxonomies, $args)
         {
-           global $wpdb;
+			global $wpdb;
 
-           $taxonomy = $taxonomies[0];
-           if (!is_array($terms) && count($terms) < 1)
-               return $terms;
+			$taxonomy = $taxonomies[0];
+			if (!is_array($terms) && count($terms) < 1)
+				return $terms;
 
-           $filtered_terms = array();
-           foreach ($terms as $term){
-               $result = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->posts p JOIN $wpdb->term_relationships rl ON p.ID = rl.object_id WHERE rl.term_taxonomy_id = $term->term_id AND p.post_status = 'publish' AND p.post_password = '' LIMIT 1");
-               if ( intval($result) > 0 )
-                   $filtered_terms[] = $term;
-           }
+			$filtered_terms = array();
+			foreach ($terms as $term){
+				$result = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->posts p JOIN $wpdb->term_relationships rl ON p.ID = rl.object_id WHERE rl.term_taxonomy_id = $term->term_id AND p.post_type = 'post' AND p.post_status = 'publish' AND p.post_password = '' LIMIT 1");
+				if (intval($result) > 0)
+					$filtered_terms[] = $term;
+			}
 
-           return $filtered_terms;
+			return $filtered_terms;
         }
 
         /**
