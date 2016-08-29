@@ -1,5 +1,4 @@
-
-<?php 
+<?php
 
 include_once(WMP_PLUGIN_PATH . '/inc/class-wmp-options.php');
 include_once(WMP_PLUGIN_PATH . '/inc/class-wmp-themes-config.php');
@@ -7,15 +6,12 @@ include_once(WMP_PLUGIN_PATH . '/inc/class-wmp-themes-config.php');
 $selected_theme = WMobilePack_Options::get_setting('theme');
 $scheme = WMobilePack_Options::get_setting('color_scheme');
 
-if( $scheme !== '0'){
+if ($scheme !== '0'){
 	$theme_settings = WMobilePack_Themes_Config::$color_schemes[$selected_theme];
 	$colors = $theme_settings['presets'][$scheme];
-}else{
+} else {
 	$colors = WMobilePack_Options::get_setting('custom_colors');
 }
-
-
-
 ?>
 /* cyrillic-ext */
 @font-face {
