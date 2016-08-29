@@ -337,7 +337,11 @@ if (!class_exists('WMobilePack_Application')) {
          */
         public function app_theme()
         {
-            if (WMobilePack_Options::get_setting('premium_active') == 1 && WMobilePack_Options::get_setting('premium_api_key') != '')
+            $premium_data = get_transient(WMobilePack_Options::$transient_prefix."premium_config_path");
+
+            if (WMobilePack_Options::get_setting('premium_active') == 1 &&
+                WMobilePack_Options::get_setting('premium_api_key') != '' &&
+                $premium_data !== false && $premium_data !== '')
                 return 'premium';
             else
                 return 'app'.WMobilePack_Options::get_setting('theme');

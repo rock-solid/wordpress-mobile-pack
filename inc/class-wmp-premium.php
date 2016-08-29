@@ -14,7 +14,8 @@ if (!class_exists('WMobilePack_Premium')) {
 
         /**
          * Method used to read the config js for the premium theme and save it to a transient
-         */
+         * @todo Possible fix for API keys - don't disconnect the API key, only load the free theme.
+	*/
         public function set_premium_config(){
 
             if (WMobilePack_Options::get_setting('premium_api_key') != '') {
