@@ -142,7 +142,7 @@ if ($texts_json_exists === false) {
     <?php endforeach;?>
 
     <script src="<?php echo $export_path.'content.php?content=apptexts&locale='.get_locale();?>" type="text/javascript"></script>
-    <script src="<?php echo $theme_path;?>js/app.js?date=20160624" type="text/javascript"></script>
+    <script src="<?php echo $theme_path;?>js/app.js?date=20160829" type="text/javascript"></script>
 
     <?php
         // check if google analytics id was set
