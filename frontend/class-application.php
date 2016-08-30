@@ -26,7 +26,7 @@ if (!class_exists('WMobilePack_Application')) {
                 $this->check_load();
 
             // Add filter for changing style path for Google AMP
-            if (WMobilePack::is_active_plugin('AMP')) {
+            if (WMobilePack::is_active_plugin('AMP') && $this->app_theme() !== 'premium') {
                 add_filter( 'amp_post_template_file', array($this, 'dbawp_amp_set_custom_template'), 10, 3);
             }
         }
