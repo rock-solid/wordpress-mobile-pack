@@ -576,7 +576,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 							'order' => false,
 							'name' => $category->name,
 							'name_slug' => $category->slug,
-							'parent_id' => $category->category_parent,
+							'parent_id' => isset($category->parent) ? $category->parent : 0,
 							'link' => get_category_link($category->term_id),
 							'image' => array_key_exists($category->term_id, $categories_images) ? $categories_images[$category->term_id] : ''
 						);
