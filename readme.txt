@@ -151,7 +151,7 @@ Google Ad Sense / Google Double Click for Publishers is supported on the Premium
 == Changelog ==
 
 = 2.2.5 =		
-* Integrate with Google AMP		
+* Integrate with the official [Google AMP plugin] (https://wordpress.org/plugins/amp/) 		
 * Add Google Maps embedded iframe support		
 * New API endpoints (export category, pagination params for export categories)		
 * Premium - add support for connecting with new themes (Popsicle and Invision)		
