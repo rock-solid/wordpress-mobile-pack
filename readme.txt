@@ -2,8 +2,8 @@
 Contributors: jamesgpearce, andreatrasatti, edent, cborodescu, anghelalexandra
 Tags: mobile, mobile web, mobile internet, smartphone, iphone, android, windows 8, webkit, chrome, safari, mobile web app, html5, sencha touch, responsive ui
 Requires at least: 3.5
-Tested up to: 4.5.2
-Stable tag: 2.2.4
+Tested up to: 4.6
+Stable tag: 2.2.5
 License: GPLv2 or later
 
 The NEW WordPress Mobile Pack allows you to 'package' your existing content into a cross-platform mobile web application.
@@ -149,6 +149,13 @@ Adding tracking scripts in the source is possible if you place them in the <head
 Google Ad Sense / Google Double Click for Publishers is supported on the Premium version as of v2.1. Support for other ad networks will be added in future releases.
 
 == Changelog ==
+
+= 2.2.5 =		
+* Integrate with Google AMP		
+* Add Google Maps embedded iframe support		
+* New API endpoints (export category, pagination params for export categories)		
+* Premium - add support for connecting with new themes (Popsicle and Invision)		
+* Premium - add support for embedding Google Tag Manager code
 
 = 2.2.4 =
 * Display smart app banner when the user reverts to the desktop theme
@@ -345,9 +352,8 @@ Two major issues were introduced in beta 1, now solved:
 
 == Upgrade Notice ==
 
-= 2.2.4 =
-* WP Mobile Pack allows you to 'package' your existing content into a cross-platform mobile web application. The latest version comes with loading speed optimization and smart app banners.
-
+= 2.2.5 =
+* WP Mobile Pack allows you to 'package' your existing content into a cross-platform mobile web application. The latest version comes with support for Google AMP and Google Maps embedded iframes.
 
 == Screenshots ==
 
