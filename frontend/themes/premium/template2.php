@@ -5,6 +5,8 @@ $supported_gzip = false;
 if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && strstr($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip'))
     $supported_gzip = true;
 
+$export_path = plugins_url()."/".WMP_DOMAIN."/export/";
+
 ?>
 <!DOCTYPE HTML>
 <html manifest="" lang="<?php echo str_replace('_', '-', $app_settings['locale']);?>">
@@ -14,7 +16,7 @@ if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && strstr($_SERVER['HTTP_ACCEPT_ENCO
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-touch-fullscreen" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <link rel="apple-touch-icon-precomposed" href="" />
+    <link rel="apple-touch-icon-precomposed" href="<?php echo isset($app_settings['icon']) && $app_settings['icon'] != '' ? $app_settings['icon'] : '';?>" />
     <link rel="manifest" href="<?php echo plugins_url()."/".WMP_DOMAIN."/export/content.php?content=androidmanifest&premium=1";?>" />
 
     <?php if ($app_settings['icon'] != ''): // icon path for Firefox ?>
@@ -22,112 +24,42 @@ if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && strstr($_SERVER['HTTP_ACCEPT_ENCO
     <?php endif;?>
 
     <title><?php echo $app_settings['title'];?></title>
-    <style type="text/css">
-        /**
-        * Example of an initial loading indicator.
-        * It is recommended to keep this as minimal as possible to provide instant feedback
-        * while other resources are still being loaded for the first time
-        */
-        html, body {
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            padding: 0;
-            background-color: #e5e8e3;
-        }
-
-        #appLoadingIndicator {
-            position: absolute;
-            top: 50%;
-            margin-top: -8px;
-            text-align: center;
-            width: 100%;
-            height: 16px;
-            -webkit-animation-name: appLoadingIndicator;
-            -webkit-animation-duration: 0.5s;
-            -webkit-animation-iteration-count: infinite;
-            -webkit-animation-direction: linear;
-            animation-name: appLoadingIndicator;
-            animation-duration: 0.5s;
-            animation-iteration-count: infinite;
-            animation-direction: linear;
-        }
-
-        #appLoadingIndicator > * {
-            background-color: #c6cdbe;
-            display: inline-block;
-            height: 16px;
-            width: 16px;
-            -webkit-border-radius: 8px;
-            -moz-border-radius: 8px;
-            border-radius: 8px;
-            margin: 0 2px;
-            opacity: 0.8;
-        }
-
-        @-webkit-keyframes appLoadingIndicator{
-            0% {
-                opacity: 0.8
-            }
-            50% {
-                opacity: 0
-            }
-            100% {
-                opacity: 0.8
-            }
-        }
-
-        @keyframes appLoadingIndicator{
-            0% {
-                opacity: 0.8
-            }
-            50% {
-                opacity: 0
-            }
-            100% {
-                opacity: 0.8
-            }
-        }
-    </style>
 
     <script type="text/javascript" pagespeed_no_defer="">
         var appticles = {
 
-            <?php if ($app_settings['kit_type'] == 'wpmp'):?>
+            // Define export paths
+			export: {
+				categories: {
+					// Read categories list
+					list: '<?php echo $export_path;?>content.php?content=exportcategories'
+				},
+				posts: {
+					// Read posts from a category
+					list: '<?php echo $export_path;?>content.php?content=exportarticles',
 
-                exportPath: '<?php echo plugins_url()."/".WMP_DOMAIN."/export/";?>',
+					// Read a post's details
+					read: '<?php echo $export_path;?>content.php?content=exportarticle'
+				},
+				pages: {
+					// Read pages list
+					list: '<?php echo $export_path;?>content.php?content=exportpages',
 
-                hasGoogle: <?php echo $app_settings['enable_google'] ? 'true' : 'false';?>,
-                commentsToken: "<?php echo $app_settings['comments_token'];?>",
-                articlesPerCard: <?php echo is_numeric($app_settings['posts_per_page']) ? $app_settings['posts_per_page'] : '"auto"' ;?>,
-                homeText: <?php echo str_replace('\n', '<br/>', json_encode($app_settings['cover_text']));?>,
+					// Read a page's details
+					read: '<?php echo $export_path;?>content.php?content=exportpage'
+				},
+				comments: {
+					// Read comments for a post
+					list: '<?php echo $export_path;?>content.php?content=exportcomments',
 
-            <?php else:?>
+					// Submit comment for a post
+					create: '<?php echo $export_path;?>content.php?content=savecomment'
+				}
+			},
 
-                webApp: "<?php echo $app_settings['webapp'];?>",
-                title: "<?php echo addslashes($app_settings['title']);?>",
-
-                exportPath: '<?php echo $app_settings['api_content'];?>',
-                socialApiPath: '<?php echo $app_settings['api_social'];?>',
-
-                <?php if (isset($app_settings['api_content_external'])):?>
-                    exportPathExternal: '<?php echo $app_settings['api_content_external'];?>',
-                <?php endif;?>
-
-                defaultPath: '<?php echo $app_settings['kits_path'];?>',
-                appPath: '<?php echo $app_settings['cdn_apps']."/".$app_settings['shorten_url'];?>',
-                appUrl: '<?php echo home_url();?>',
-                canonicalUrl: '<?php echo home_url();?>',
-
-                preview: 0,
-                language: '<?php echo $app_settings['locale'];?>',
-
-                hasIcons: <?php echo intval($app_settings['icon'] != "");?>,
-                hasStartups: <?php echo intval($app_settings['logo'] != "");?>,
-                iconTimestamp: '<?php echo $app_settings['icon_timestamp'];?>',
-                startupImageTimestamp: '<?php echo $app_settings['logo_timestamp'];?>',
-
-            <?php endif;?>
+			commentsToken: "<?php echo $app_settings['comments_token'];?>",
+			articlesPerCard: <?php echo is_numeric($app_settings['posts_per_page']) ? $app_settings['posts_per_page'] : '"auto"' ;?>,
+			homeText: <?php echo str_replace('\n', '<br/>', json_encode($app_settings['cover_text']));?>,
 
             <?php if (isset($app_settings['website_url']) && $app_settings['website_url'] != ''):?>
                 websiteUrl: '<?php echo $app_settings['website_url']; echo parse_url($app_settings['website_url'], PHP_URL_QUERY) ? '&' : '?'; echo WMobilePack_Cookie::$prefix; ?>theme_mode=desktop',
@@ -140,6 +72,7 @@ if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && strstr($_SERVER['HTTP_ACCEPT_ENCO
 
             hasFacebook: <?php echo $app_settings['enable_facebook'] ? 'true' : 'false';?>,
             hasTwitter: <?php echo $app_settings['enable_twitter'] ? 'true' : 'false';?>,
+			hasGoogle: <?php echo $app_settings['enable_google'] ? 'true' : 'false';?>,
 
             <?php if ($app_settings['has_phone_ads'] == 1 || $app_settings['has_tablet_ads'] == 1):?>
                 googleAds:{
@@ -168,34 +101,6 @@ if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && strstr($_SERVER['HTTP_ACCEPT_ENCO
             <?php endif;?>
         };
     </script>
-
-    <?php if (($app_settings['has_phone_ads'] == 1 && $app_settings['device'] == 'phone') ||
-              ($app_settings['has_tablet_ads'] == 1 && $app_settings['device'] == 'tablet')):?>
-
-        <!-- start Google Doubleclick for publishers -->
-        <script type='text/javascript' pagespeed_no_defer="">
-            var googletag = googletag || {};
-            googletag.cmd = googletag.cmd || [];
-            (function() {
-                var gads = document.createElement('script');
-                gads.async = true;
-                gads.type = 'text/javascript';
-                var useSSL = 'https:' == document.location.protocol;
-                gads.src = (useSSL ? 'https:' : 'http:') +
-                    '//www.googletagservices.com/tag/js/gpt.js';
-                var node = document.getElementsByTagName('script')[0];
-                node.parentNode.insertBefore(gads, node);
-            })();
-
-            googletag.cmd.push(function() {
-                googletag.pubads().enableSingleRequest();
-                googletag.pubads().disableInitialLoad();
-                googletag.pubads().collapseEmptyDivs(); 		// hide ad units when empty.
-                googletag.enableServices();
-            });
-        </script>
-        <!-- end Google Doubleclick for publishers -->
-    <?php endif;?>
 
     <?php
 
@@ -304,26 +209,32 @@ if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && strstr($_SERVER['HTTP_ACCEPT_ENCO
 </head>
 <body>
 
-<?php
-    // check if google tag manager id was set
-    $google_tag_manager_id = isset($app_settings['google_tag_manager_id']) ? $app_settings['google_tag_manager_id'] : '';
-    if ($google_tag_manager_id != ''):
-?>
-    <!-- Google Tag Manager -->
-    <noscript><iframe src='//www.googletagmanager.com/ns.html?id=<?php echo $google_tag_manager_id;?>'
-                      height='0' width='0' style='display:none;visibility:hidden'></iframe></noscript>
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-        })(window,document,'script','dataLayer','<?php echo $google_tag_manager_id;?>');</script>
-    <!-- End Google Tag Manager -->
-<?php endif;?>
+	<?php
+		// check if google tag manager id was set
+		$google_tag_manager_id = isset($app_settings['google_tag_manager_id']) ? $app_settings['google_tag_manager_id'] : '';
+		if ($google_tag_manager_id != ''):
+	?>
+		<!-- Google Tag Manager -->
+		<noscript><iframe src='//www.googletagmanager.com/ns.html?id=<?php echo $google_tag_manager_id;?>'
+							height='0' width='0' style='display:none;visibility:hidden'></iframe></noscript>
+		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+				new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+				j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+				'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+			})(window,document,'script','dataLayer','<?php echo $google_tag_manager_id;?>');</script>
+		<!-- End Google Tag Manager -->
+	<?php endif;?>
 
-<div id="appLoadingIndicator">
-    <div></div>
-    <div></div>
-    <div></div>
-</div>
+	<?php if ($app_settings['theme'] == 6):?>
+		<div data-ng-app="invisionApp" id="appLoadingIndicator">
+			<ion-nav-view></ion-nav-view>
+		</div>
+	<?php endif;?>
+
+	<?php if ($app_settings['theme'] == 7):?>
+		<div data-ng-app="Theme7" ng-controller="ApplicationController as appCtrl">
+		  <ion-nav-view></ion-nav-view>
+		</div>
+	<?php endif;?>
 </body>
 </html>

@@ -133,7 +133,7 @@ if ($texts_json_exists === false) {
     <?php if ($app_settings['theme_timestamp'] != ''):?>
         <link rel="stylesheet" href="<?php echo WMP_FILES_UPLOADS_URL.'theme-'.$app_settings['theme_timestamp'].'.css';?>" type="text/css" />
     <?php else: ?>
-        <link rel="stylesheet" href="<?php echo $theme_path;?>css/colors-<?php echo $app_settings['color_scheme'];?>-fonts-<?php echo $app_settings['font_headlines'];?>.css?date=20160425" type="text/css" />
+        <link rel="stylesheet" href="<?php echo $theme_path;?>css/colors-<?php echo $app_settings['color_scheme'];?>-fonts-<?php echo $app_settings['font_headlines'];?>.css?date=20160624" type="text/css" />
     <?php endif;?>
 
     <!-- custom fonts -->
@@ -142,7 +142,7 @@ if ($texts_json_exists === false) {
     <?php endforeach;?>
 
     <script src="<?php echo $export_path.'content.php?content=apptexts&locale='.get_locale();?>" type="text/javascript"></script>
-    <script src="<?php echo $theme_path;?>js/app.js?date=20160526" type="text/javascript"></script>
+    <script src="<?php echo $theme_path;?>js/app.js?date=20160829" type="text/javascript"></script>
 
     <?php
         // check if google analytics id was set

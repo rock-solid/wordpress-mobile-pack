@@ -1,5 +1,20 @@
 <?php
 
+/**
+ __        __                      _     _      _
+ \ \      / /__    __ _ _ __ ___  | |__ (_)_ __(_)_ __   __ _
+  \ \ /\ / / _ \  / _` | '__/ _ \ | '_ \| | '__| | '_ \ / _` |
+   \ V  V /  __/ | (_| | | |  __/ | | | | | |  | | | | | (_| |
+    \_/\_/ \___|  \__,_|_|  \___| |_| |_|_|_|  |_|_| |_|\__, |
+                                                        |___/
+Surprised? Don't be. Please do come in, we've been expecting you.
+http://www.appticles.com/jobs.html
+---------------------------------
+Growth Hackers: gh@appticles.com
+JS Developers: js@appticles.com
+*/
+
+
 if ( ! class_exists( 'WMobilePack_Options' ) ) {
     require_once(WMP_PLUGIN_PATH.'inc/class-wmp-options.php');
 }

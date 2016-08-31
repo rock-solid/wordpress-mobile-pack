@@ -1,101 +1,104 @@
 <?php
 
-header("Content-Type: application/json; charset=UTF-8");
+header( 'Content-Type: application/json; charset=UTF-8' );
 
-require_once("../../../../wp-config.php");
+require_once( '../../../../wp-config.php' );
 
 if ( ! class_exists( 'WMobilePack_Export' ) ) {
-    require_once(WMP_PLUGIN_PATH.'export/class-export.php');
+	require_once( WMP_PLUGIN_PATH . 'export/class-export.php' );
 }
 
 // Disable error reporting because these methods are used as callbacks by the mobile web app
-error_reporting(0);
+error_reporting( 0 );
 
-if (isset($_GET['content'])) {
+if ( isset( $_GET['content'] ) ) {
 
-    $export = new WMobilePack_Export();
+	$export = new WMobilePack_Export();
 
-    if (isset($_GET['callback'])){
+	if ( isset( $_GET['callback'] ) ) {
 
-        // filter callback param
-        $callback = $export->purifier->purify($_GET['callback']);
+		// filter callback param
+		$callback = $export->purifier->purify( $_GET['callback'] );
 
-        header('Content-Type: application/javascript');
+		header( 'Content-Type: application/javascript' );
 
-        switch ($_GET['content']) {
+		switch ( $_GET['content'] ) {
 
-            case 'exportcategories':
+			case 'exportcategories':
 
-                echo $callback . '(' . $export->export_categories() . ')';
-                break;
+				echo $callback . '(' . $export->export_categories() . ')';
+				break;
 
-            case 'exportarticles':
+			case 'exportcategory':
 
-                echo $callback . '(' . $export->export_articles() . ')';
-                break;
+				echo $callback . '(' . $export->export_category() . ')';
+				break;
 
-            case 'exportarticle':
+			case 'exportarticles':
 
-                echo $callback . '(' . $export->export_article() . ')';
-                break;
+				echo $callback . '(' . $export->export_articles() . ')';
+				break;
 
-            case 'exportcomments':
+			case 'exportarticle':
 
-                echo $callback . '(' . $export->export_comments() . ')';
-                break;
+				echo $callback . '(' . $export->export_article() . ')';
+				break;
 
-            case 'savecomment':
+			case 'exportcomments':
 
-                echo $callback . '(' . $export->save_comment() . ')';
-                break;
+				echo $callback . '(' . $export->export_comments() . ')';
+				break;
 
-            case 'exportpages':
+			case 'savecomment':
 
-                echo $callback . '(' . $export->export_pages() . ')';
-                break;
+				echo $callback . '(' . $export->save_comment() . ')';
+				break;
 
-            case 'exportpage':
+			case 'exportpages':
 
-                echo $callback . '(' . $export->export_page() . ')';
-                break;
+				echo $callback . '(' . $export->export_pages() . ')';
+				break;
 
-            default:
-                echo $callback . '({"error":"No export requested"})';
-        }
+			case 'exportpage':
 
-    } else {
+				echo $callback . '(' . $export->export_page() . ')';
+				break;
 
-        switch ($_GET['content']) {
+			default:
+				echo $callback . '({"error":"No export requested"})';
+		}
+	} else {
 
-            case 'androidmanifest':
-            case 'mozillamanifest':
+		switch ( $_GET['content'] ) {
 
-                if (isset($_GET['premium']) && $_GET['premium'] == 1) {
-                    echo $export->export_manifest_premium();
-                } else {
-                    echo $export->export_manifest();
-                }
-                break;
+			case 'androidmanifest':
+			case 'mozillamanifest':
 
-            case 'apptexts':
+				if ( isset( $_GET['premium'] ) && $_GET['premium'] == 1 ) {
+					echo $export->export_manifest_premium();
+				} else {
+					echo $export->export_manifest();
+				}
+				break;
 
-                $app_texts = $export->load_language($_GET['locale']);
+			case 'apptexts':
 
-                if ($app_texts !== false){
-                    header('Content-Type: application/javascript');
-                    echo $app_texts;
-                }
+				$app_texts = $export->load_language( $_GET['locale'] );
 
-                break;
+				if ( $app_texts !== false ) {
+					header( 'Content-Type: application/javascript' );
+					echo $app_texts;
+				}
 
-            case 'exportsettings':
+				break;
 
-                echo $export->export_settings();
-                break;
+			case 'exportsettings':
 
-            default:
-                echo '{"error":"No export requested","status":0}';
-        }
-    }
+				echo $export->export_settings();
+				break;
 
+			default:
+				echo '{"error":"No export requested","status":0}';
+		}
+	}
 }

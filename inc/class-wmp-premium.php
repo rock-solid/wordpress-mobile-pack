@@ -6,13 +6,16 @@ if (!class_exists('WMobilePack_Premium')) {
      *
      * Manage Premium settings
      *
+     * @todo Rebuilt the methods that are checking the JSON config params
+     *
      */
     class WMobilePack_Premium
     {
 
         /**
          * Method used to read the config js for the premium theme and save it to a transient
-         */
+         * @todo Possible fix for API keys - don't disconnect the API key, only load the free theme.
+	*/
         public function set_premium_config(){
 
             if (WMobilePack_Options::get_setting('premium_api_key') != '') {
@@ -236,6 +239,7 @@ if (!class_exists('WMobilePack_Premium')) {
                 (!isset($arr_app_settings['locale']) || $arr_app_settings['locale'] == '' || ctype_alnum(str_replace('_','', $arr_app_settings['locale']))) &&
                 (!isset($arr_app_settings['google_analytics_id']) || $arr_app_settings['google_analytics_id'] == '' || ctype_alnum(str_replace('-','', $arr_app_settings['google_analytics_id']))) &&
                 (!isset($arr_app_settings['google_internal_id']) || $arr_app_settings['google_internal_id'] == '' || is_numeric($arr_app_settings['google_internal_id'])) &&
+                (!isset($arr_app_settings['google_tag_manager_id']) || $arr_app_settings['google_tag_manager_id'] == '' || ctype_alnum(str_replace('-','', $arr_app_settings['google_tag_manager_id']))) &&
                 (!isset($arr_app_settings['google_webmasters_code']) || $arr_app_settings['google_webmasters_code'] == '' || $arr_app_settings['google_webmasters_code'] == strip_tags($arr_app_settings['google_webmasters_code'])) &&
 
                 (!isset($arr_app_settings['enable_facebook']) || $arr_app_settings['enable_facebook'] == '' || is_numeric($arr_app_settings['enable_facebook'])) &&
@@ -319,6 +323,7 @@ if (!class_exists('WMobilePack_Premium')) {
          *
          *  'google_analytics_id' : 'UA-XXXXXX-1',
          *  'google_internal_id' : 'xxxxx',
+         *  'google_tag_manager_id' : 'GTM-XXXXXX',
          *  'google_webmasters_code' : 'xxxxxx',
          *
          *  'timestamp' : 'numeric timestamp',
@@ -382,6 +387,7 @@ if (!class_exists('WMobilePack_Premium')) {
 
                 (!isset($arr_app_settings['google_analytics_id']) || $arr_app_settings['google_analytics_id'] == '' || ctype_alnum(str_replace('-','', $arr_app_settings['google_analytics_id']))) &&
                 (!isset($arr_app_settings['google_internal_id']) || $arr_app_settings['google_internal_id'] == '' || is_numeric($arr_app_settings['google_internal_id'])) &&
+                (!isset($arr_app_settings['google_tag_manager_id']) || $arr_app_settings['google_tag_manager_id'] == '' || ctype_alnum(str_replace('-','', $arr_app_settings['google_tag_manager_id']))) &&
                 (!isset($arr_app_settings['google_webmasters_code']) || $arr_app_settings['google_webmasters_code'] == '' || $arr_app_settings['google_webmasters_code'] == strip_tags($arr_app_settings['google_webmasters_code'])) &&
 
                 (!isset($arr_app_settings['enable_facebook']) || $arr_app_settings['enable_facebook'] == '' || is_numeric($arr_app_settings['enable_facebook'])) &&
