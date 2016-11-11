@@ -378,7 +378,7 @@ If your site uses a cache plugin, please note that a series of issues can occur 
 * Loading the desktop theme on a supported mobile device (even though the Wordpress Mobile Pack plugin is active)
 * Inconsistent switching between the desktop and the Wordpress Mobile Pack theme
 
-If you find yourself in one of these situation, please read [the docs](http://support.appticles.com/optimizing-cache-plugins-wordpress-mobile-pack/) and make the appropriate settings on your cache plugin.
+If you find yourself in one of these situations, please read [the docs](http://support.appticles.com/optimizing-cache-plugins-wordpress-mobile-pack/) and make the appropriate settings on your cache plugin.
 
 == Roadmap ==
 
