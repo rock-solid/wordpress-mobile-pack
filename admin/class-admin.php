@@ -22,15 +22,24 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
             include(WMP_PLUGIN_PATH.'admin/pages/whats-new.php');
         }
 
-
-        /**
+		/**
          *
          * Method used to render the themes selection page from the admin area
          *
          */
-        public function theme() {
+        public function themes() {
 
-            include(WMP_PLUGIN_PATH.'admin/pages/theme.php');
+            include(WMP_PLUGIN_PATH.'admin/pages/themes.php');
+        }
+
+        /**
+         *
+         * Method used to render the theme settings page from the admin area
+         *
+         */
+        public function theme_settings() {
+
+            include(WMP_PLUGIN_PATH.'admin/pages/theme-settings.php');
         }
 
 
@@ -81,9 +90,9 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
                 unset($pages_tree);
                 return $nodes_pages;
             }
-            
+
             return array();
-        
+
         }
 
 
@@ -111,16 +120,6 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
             include(WMP_PLUGIN_PATH.'admin/pages/settings.php');
         }
 
-
-        /**
-         *
-         * Method used to render the upgrade page from the admin area
-         *
-         */
-        public function upgrade() {
-
-            include(WMP_PLUGIN_PATH.'admin/pages/upgrade.php');
-        }
 
 
         /**
