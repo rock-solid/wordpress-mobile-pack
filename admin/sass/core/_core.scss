@@ -224,29 +224,39 @@ body{
                     height: 68px;
                     position: absolute;
                     top: -4px;
-                    right: auto;
-                    left: 98px;
+                    right: -4px;
                 }
             }
             ul{
                 list-style-type: none;
+				display: flex;
+				flex-direction: row;
                 height: 69px;
                 border-bottom: 1px solid #DADDDE;
 
                 li{
-                    min-width: 162px;
                     height: 68px;
-                    display: table-cell;
+					flex: 1 0 auto;
                     background-color: #f5f7f7;
                     vertical-align: middle;
                     text-align: center;
                     border-right: #daddde 1px solid;
                     border-bottom: #daddde 1px solid;
 
+					a{
+                        color: $base-text-color;
+                        font-family: 'AcordeRegular';
+                        font-size: 17px;
+                        line-height: normal;
+                        padding: 20px 0;
+                        width: 100%;
+                        display: block;
+                        border-top: 4px solid #f5f7f7;
+                    }
+
                     &:hover{
                         border-bottom: 1px solid #dce0e0;
                         background-color: #dce0e0;
-                        height: 68px;
 
                         a{
                             border-top: 4px solid #dce0e0;
@@ -262,16 +272,6 @@ body{
                             border-top: 4px solid $base-green;
                             border-bottom: 1px solid #ffffff;
                         }
-                    }
-                    a{
-                        color: $base-text-color;
-                        font-family: 'AcordeRegular';
-                        font-size: 17px;
-                        line-height: normal;
-                        padding: 20px 0;
-                        width: 100%;
-                        display: block;
-                        border-top: 4px solid #f5f7f7;
                     }
                 }
             }
