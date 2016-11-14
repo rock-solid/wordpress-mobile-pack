@@ -87,7 +87,6 @@
                                 background: $body-color;
                                 height: $theme-box-subsection-height;
                                 padding: 3px 10px;
-                                // display: block;
 								text-align: center;
                             }
                             .image{
@@ -235,28 +234,14 @@
                                     }
                                 }
 								.content {
-									.purchase {
+									a.btn.smaller {
+										width: 100%;
+									}
+
+									span.shopping {
+										@include wbz-inline-icon(shopping, 17px);
+										line-height: 33px;
 										color: #ffffff;
-										background: $base-green;
-										@include wbz-border-radius(33px);
-										width: auto;
-										height: 33px;
-										margin: 0 auto;
-
-										&:hover {
-											cursor: pointer;
-											background: lighten($base-green, 10%);
-										}
-
-										span {
-											color: inherit;
-											font-size: 15px;
-										}
-
-										span.shopping {
-											@include wbz-inline-icon(shopping, 17px);
-											line-height: 33px;
-										}
 									}
 								}
                             }

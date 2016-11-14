@@ -37,6 +37,8 @@
 						$arr_themes = array_merge($arr_themes, WMobilePack_Admin::upgrade_pro_themes());
 
 						foreach ($arr_themes as $theme):
+
+							$buy_link = isset($theme['buy']) ? $theme['buy']: '';
                     ?>
 
                         <div class="theme <?php echo isset($theme['price']) ? 'premium' : '';?>">
@@ -54,12 +56,12 @@
 											<div class="spacer-10"></div>
 											<div class="text-preview">Preview theme</div>
 
-											<?php if (isset($theme['bundle']) && $theme['bundle'] == 1 && isset($theme['buy'])): ?>
+											<?php if (isset($theme['bundle']) && $theme['bundle'] == 1 && $buy_link != ''): ?>
 												<div class="spacer-10"></div>
 
 												<div id="wmp_waitlist_app_container">
 													<div id="wmp_waitlist_action">
-														<a href="<?php echo esc_attr($theme['buy']); ?>" target="_blank" class="btn orange smaller">Available in PRO</a>
+														<a href="<?php echo esc_attr($buy_link); ?>" target="_blank" class="btn orange smaller">Available in PRO</a>
 													</div>
 												</div>
 											<?php endif;?>
@@ -72,10 +74,10 @@
 							</div>
 							<div class="content">
 								<?php if (isset($theme['price'])):?>
-									<div class="purchase">
-										<span class="shopping"></span>
-										<span>&nbsp;<?php echo $theme['price'];?></span>
-									</div>
+									<a href="<?php echo $buy_link != '' ? esc_attr($buy_link) : ''; ?>" class="btn green smaller" target="_blank">
+										<span class="shopping"></span>&nbsp;
+										<?php echo $theme['price'];?>
+									</a>
 								<?php endif ?>
 							</div>
                         </div>
