@@ -9,7 +9,7 @@
 
             $theme-box-width: 195px;
             $theme-box-height: 320px;
-            $theme-box-margin: 14px;
+            $theme-box-margin: 20px;
             $theme-box-subsection-height: 41px;
 
 			.corner{
@@ -84,7 +84,7 @@
                             .content{
 								font-size: 14px;
                                 color: $base-p-color;
-                                background: $body-color;
+                                // background: $body-color;
                                 height: $theme-box-subsection-height;
                                 padding: 3px 10px;
 								text-align: center;
@@ -155,7 +155,7 @@
                                 }
                             }
                             &.premium{
-                                .corner{
+                                /*.corner{
                                     .indicator{
                                         background: url(../images/ribbon-premium.png);
                                         width: 67px;
@@ -165,7 +165,7 @@
                                         right: -5px;
                                         left: $theme-box-width - 62px;
                                     }
-                                }
+                                }*/
                                 .overlay{
                                     background: rgba(#fdf7d3,0.9);
 

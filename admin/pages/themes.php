@@ -38,10 +38,10 @@
 
 						foreach ($arr_themes as $theme):
 
-							$buy_link = isset($theme['buy']) ? $theme['buy']: '';
+							$buy_link = isset($theme['buy_link']) ? $theme['buy_link']: '';
                     ?>
 
-                        <div class="theme <?php echo isset($theme['price']) ? 'premium' : '';?>">
+                        <div class="theme <?php echo $buy_link != '' ? 'premium' : '';?>">
                             <div class="corner relative <?php echo isset($theme['selected']) ? 'active' : '';?>">
                                 <div class="indicator"></div>
                             </div>
@@ -49,22 +49,12 @@
                                 <div class="relative">
 									<?php if (!isset($theme['selected']) || $theme['selected'] == 0): ?>
 										<div class="overlay">
-											<div class="spacer-70"></div>
+											<div class="spacer-100"></div>
 											<div class="actions">
 												<div class="preview" id="wmp_themes_preview"></div>
 											</div>
 											<div class="spacer-10"></div>
 											<div class="text-preview">Preview theme</div>
-
-											<?php if (isset($theme['bundle']) && $theme['bundle'] == 1 && $buy_link != ''): ?>
-												<div class="spacer-10"></div>
-
-												<div id="wmp_waitlist_app_container">
-													<div id="wmp_waitlist_action">
-														<a href="<?php echo esc_attr($buy_link); ?>" target="_blank" class="btn orange smaller">Available in PRO</a>
-													</div>
-												</div>
-											<?php endif;?>
 										</div>
 									<?php endif; ?>
                                 </div>
@@ -73,10 +63,10 @@
 								<?php echo isset($theme['title']) ? $theme['title'] : '';?>
 							</div>
 							<div class="content">
-								<?php if (isset($theme['price'])):?>
-									<a href="<?php echo $buy_link != '' ? esc_attr($buy_link) : ''; ?>" class="btn green smaller" target="_blank">
+								<?php if ($buy_link != ''):?>
+									<a href="<?php echo $buy_link != '' ? esc_attr($buy_link) : ''; ?>" class="btn orange smaller" target="_blank">
 										<span class="shopping"></span>&nbsp;
-										<?php echo $theme['price'];?>
+										<?php echo $theme['buy_text'];?>
 									</a>
 								<?php endif ?>
 							</div>
