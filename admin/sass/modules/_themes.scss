@@ -8,7 +8,7 @@
 			vertical-align: top;
 
             $theme-box-width: 195px;
-            $theme-box-height: 280px;
+            $theme-box-height: 320px;
             $theme-box-margin: 14px;
             $theme-box-subsection-height: 41px;
 
@@ -48,7 +48,6 @@
 				}
 
                 &.theming{
-                    background: $base-color-darken;
                     display: table;
                     width: 100%;
 
@@ -83,106 +82,19 @@
                                 text-transform: uppercase;
                             }
                             .content{
-                                font-family: 'AcordeRegular', sans-serif;
-                                font-size: 11px;
+								font-size: 14px;
                                 color: $base-p-color;
                                 background: $body-color;
                                 height: $theme-box-subsection-height;
-                                line-height: $theme-box-subsection-height;
-                                padding: 0 10px;
-                                display: block;
-                                @include wbz-display-box();
-                                display: flex;
-                                @include wbz-box-orient(horizontal);
-                                @include wbz-box-pack(start);
-                                @include wbz-box-align(center);
-
-                                span{
-                                    font-family: 'AcordeRegular', sans-serif;
-                                    font-size: 11px;
-                                    color: $base-p-color;
-                                    @include wbz-display-box();
-                                    margin: 0 10px 0 0;
-                                }
-
-                                .wordpress-icon{
-                                    @include wbz-inline-icon(wordpress, 19px);
-                                    color: $wordpress-color;
-                                    background: transparent;
-                                    width: 20px;
-                                    height: 20px;
-                                    display: inline-block;
-                                    line-height: normal;
-                                    margin: 0 2px;
-                                    @include wbz-display-box();
-
-                                    &::before{
-                                        width: 20px;
-                                        height: 20px;
-                                        //top: 5px;
-                                        left: 0px;
-                                    }
-                                }
-
-                                .rss-icon, .facebook-icon, .twitter-icon, .google-icon {
-
-                                    color: #ffffff;
-                                    @include wbz-border-radius(20px);
-                                    width: 20px;
-                                    height: 20px;
-                                    display: inline-block;
-                                    line-height: normal;
-                                    margin: 0 2px;
-                                    @include wbz-display-box();
-
-                                    &::before{
-                                        width: 20px;
-                                        height: 20px;
-                                    }
-                                }
-
-                                .facebook-icon{
-                                    @include wbz-inline-icon(facebook, 14px);
-                                    background: $facebook-color;
-
-                                    &::before{
-                                        top: 3px;
-                                        left: 3px;
-                                    }
-                                }
-                                .twitter-icon{
-                                    @include wbz-inline-icon(twitter, 13px);
-                                    background: $twitter-color;
-
-                                    &::before{
-                                        top: 4px;
-                                        left: 4px;
-                                    }
-                                }
-                                .rss-icon{
-                                    @include wbz-inline-icon(rss, 13px);
-                                    background: $rss-color;
-
-                                    &::before{
-                                        top: 3px;
-                                        left: 5px;
-                                    }
-                                }
-                                .google-icon{
-                                    @include wbz-inline-icon(google-plus, 13px);
-                                    background: $google-color;
-
-                                    &::before{
-                                        top: 4px;
-                                        left: 4px;
-                                    }
-                                }
+                                padding: 3px 10px;
+                                // display: block;
+								text-align: center;
                             }
                             .image{
                                 background-size: cover;
                                 background-repeat: no-repeat;
                                 width: 100%;
-                                height: $theme-box-height - $theme-box-subsection-height;
+                                height: $theme-box-height - $theme-box-subsection-height * 2;
                                 overflow: hidden;
                                 position: relative;
 
@@ -199,7 +111,7 @@
                                 background: rgba(154,202,64,0.9);
                                 position: absolute;
                                 width: $theme-box-width;
-                                height: $theme-box-height - $theme-box-subsection-height;
+                                height: $theme-box-height - $theme-box-subsection-height * 2;
                                 text-align: center;
 
                                 @include wbz-transform(translateX(-100%));
@@ -322,6 +234,31 @@
                                         }
                                     }
                                 }
+								.content {
+									.purchase {
+										color: #ffffff;
+										background: $base-green;
+										@include wbz-border-radius(33px);
+										width: auto;
+										height: 33px;
+										margin: 0 auto;
+
+										&:hover {
+											cursor: pointer;
+											background: lighten($base-green, 10%);
+										}
+
+										span {
+											color: inherit;
+											font-size: 15px;
+										}
+
+										span.shopping {
+											@include wbz-inline-icon(shopping, 17px);
+											line-height: 33px;
+										}
+									}
+								}
                             }
                         }
                     }
