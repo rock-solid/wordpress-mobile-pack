@@ -159,6 +159,41 @@
                 </div>
                 <div class="spacer-0"></div>
             </div>
+
+            <div class="spacer-15"></div>
+            <div class="details">
+                <div class="display-mode">
+                    <h2 class="title">Enable Facebook, Twitter, Google+</h2>
+                    <div class="spacer-20"></div>
+                    <form name="wmp_socialmedia_form" id="wmp_socialmedia_form" class="left" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_save" method="post">
+
+                        <?php
+                            foreach (array('facebook', 'twitter', 'google') as $social_network):
+
+                                $is_enabled = WMobilePack_Options::get_setting('enable_'.$social_network);
+                        ?>
+
+                            <input type="hidden" name="wmp_option_enable_<?php echo $social_network;?>" id="wmp_option_enable_<?php echo $social_network;?>" value="<?php echo $is_enabled;?>" />
+                            <input type="checkbox" name="wmp_socialmedia_<?php echo $social_network;?>_check" id="wmp_socialmedia_<?php echo $social_network;?>_check" value="1" <?php if ($is_enabled == 1) echo "checked" ;?> />
+                            <label for="wmp_socialmedia_<?php echo $social_network;?>_check">
+
+                                    <?php if ($social_network == 'facebook' || $social_network == 'twitter'):?>
+                                        Enable <?php echo ucfirst($social_network);?> sharing
+                                    <?php else:?>
+                                        Enable Google+ sharing
+                                    <?php endif;?>
+
+                            </label>
+                            <div class="spacer-10"></div>
+
+                        <?php endforeach;?>
+
+                        <div class="spacer-10"></div>
+                        <a href="javascript:void(0)" id="wmp_socialmedia_send_btn" class="btn green smaller">Save</a>
+                    </form>
+                </div>
+                <div class="spacer-0"></div>
+            </div>
             <div class="spacer-15"></div>
 
             <div class="details">
@@ -215,6 +250,7 @@ $is_secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SER
     if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
             window.WMPJSInterface.add("UI_editappsettings","WMP_APP_SETTINGS",{'DOMDoc':window.document}, window);
+			window.WMPJSInterface.add("UI_socialmedia","WMP_SOCIAL_MEDIA",{'DOMDoc':window.document}, window);
             window.WMPJSInterface.add("UI_connect",
                 "WMP_CONNECT",
                 {
