@@ -19,14 +19,6 @@
             <?php include_once(WMP_PLUGIN_PATH.'admin/sections/admin-menu.php'); ?>
             <div class="spacer-0"></div>
 
-            <!-- add content form -->
-            <div class="details">
-                <div class="spacer-10"></div>
-                <p>Customize your mobile web application by choosing from the below color schemes &amp; fonts, adding your logo and app icon. The default theme comes with 6 abstract covers that are randomly displayed on the loading screen to give your app a magazine flavor. You can further personalize your mobile web application by uploading your own cover.</p>
-                <div class="spacer-20"></div>
-            </div>
-            <div class="spacer-10"></div>
-
             <div class="details theming">
                 <h2 class="title">Choose Your Mobile Theme</h2>
                 <div class="spacer_15"></div>
@@ -34,48 +26,60 @@
                 <div class="themes">
 
                     <?php
-                        $arr_themes_names = array(
-                            1 => 'Obliq',
-                            2 => 'Mosaic',
-                            3 => 'Base',
-                            4 => 'Elevate',
-                            5 => 'Folio'
+                        $arr_themes = array(
+                        	array(
+								'title'=> 'Obliq',
+								'icon' => plugins_url().'/'.WMP_DOMAIN.'/admin/images/theme-obliq.jpg',
+								'selected' => 1
+							)
                         );
 
-                        $premium_link = isset($wpmp_upgrade_pro_link) ? $wpmp_upgrade_pro_link : WMobilePack_Admin::upgrade_pro_link();
+						$arr_themes = array_merge($arr_themes, WMobilePack_Admin::upgrade_pro_themes());
 
-                        for ($i = 1; $i <= 5; $i++):
+						foreach ($arr_themes as $theme):
                     ?>
 
-                        <div class="theme <?php echo $i >= 2 ? 'premium' : '';?>">
-                            <div class="corner relative <?php echo $i == 1 ? 'active' : '';?>">
+                        <div class="theme <?php echo isset($theme['price']) ? 'premium' : '';?>">
+                            <div class="corner relative <?php echo isset($theme['selected']) ? 'active' : '';?>">
                                 <div class="indicator"></div>
                             </div>
-                            <div class="image" style="background:url(<?php echo plugins_url()."/".WMP_DOMAIN;?>/admin/images/themes/theme-<?php echo $i;?>.jpg);">
+                            <div class="image" style="background:url(<?php echo isset($theme['icon']) ? esc_attr( $theme['icon'] ) : '' ?>);">
                                 <div class="relative">
-                                    <div class="overlay">
-                                        <div class="spacer-<?php echo $i >= 2 ? '70' : '100'; ?>"></div>
-                                        <div class="actions">
-                                            <div class="preview" id="wmp_themes_preview_<?php echo $i;?>"></div>
-                                        </div>
-                                        <div class="spacer-10"></div>
-                                        <div class="text-preview">Preview theme</div>
+									<?php if (!isset($theme['selected']) || $theme['selected'] == 0): ?>
+										<div class="overlay">
+											<div class="spacer-70"></div>
+											<div class="actions">
+												<div class="preview" id="wmp_themes_preview"></div>
+											</div>
+											<div class="spacer-10"></div>
+											<div class="text-preview">Preview theme</div>
 
-                                        <?php if ($i >= 2): ?>
-                                            <div class="spacer-10"></div>
+											<?php if (isset($theme['bundle']) && $theme['bundle'] == 1 && isset($theme['buy'])): ?>
+												<div class="spacer-10"></div>
 
-                                            <div id="wmp_waitlist_app<?php echo $i;?>_container">
-                                                <div id="wmp_waitlist_action">
-                                                    <a href="<?php echo $premium_link;?>" target="_blank" class="btn orange smaller">Available in PRO</a>
-                                                </div>
-                                            </div>
-                                        <?php endif;?>
-                                    </div>
+												<div id="wmp_waitlist_app_container">
+													<div id="wmp_waitlist_action">
+														<a href="<?php echo esc_attr($theme['buy']); ?>" target="_blank" class="btn orange smaller">Available in PRO</a>
+													</div>
+												</div>
+											<?php endif;?>
+										</div>
+									<?php endif; ?>
                                 </div>
                             </div>
-                            <div class="name"><?php echo $arr_themes_names[$i];?></div>
+                            <div class="name">
+								<?php echo isset($theme['title']) ? $theme['title'] : '';?>
+							</div>
+							<div class="content">
+								<?php if (isset($theme['price'])):?>
+									<div class="purchase">
+										<span class="shopping"></span>
+										<span>&nbsp;<?php echo $theme['price'];?></span>
+									</div>
+								<?php endif ?>
+							</div>
                         </div>
-                    <?php endfor;?>
+                    <?php endforeach;?>
                 </div>
             </div>
             <div class="spacer-10"></div>

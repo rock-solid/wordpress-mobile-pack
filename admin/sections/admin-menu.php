@@ -23,7 +23,7 @@ $wpmp_upgrade_pro_link = WMobilePack_Admin::upgrade_pro_link();
             <a href="<?php echo add_query_arg(array('page'=>'wmp-options'), network_admin_url('admin.php'));?>">Quick Start</a>
         </li>
         <li <?php echo $current_page == 'wmp-options-themes' ? 'class="selected"' : '';?>>
-            <a href="<?php echo add_query_arg(array('page'=>'wmp-options-themes'), network_admin_url('admin.php'));?>">Themes</a>
+            <a href="<?php echo add_query_arg(array('page'=>'wmp-options-themes'), network_admin_url('admin.php'));?>">App Themes</a>
         </li>
 		<li <?php echo $current_page == 'wmp-options-theme-settings' ? 'class="selected"' : '';?>>
             <a href="<?php echo add_query_arg(array('page'=>'wmp-options-theme-settings'), network_admin_url('admin.php'));?>">Look & Feel</a>

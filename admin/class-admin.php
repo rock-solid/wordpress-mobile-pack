@@ -355,7 +355,6 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
          *
          * The method returns an array containing the upgrade information or an empty array by default.
          *
-         * @todo (Future releases) Refactor / remove upgrade page if it will no longer be used
          */
         public static function more_updates() {
 
@@ -387,7 +386,7 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
                         return $response["content"];
                     }
 
-                } elseif($json_response == false) {
+                } elseif ($json_response == false) {
 
                     // Store this data in a transient
                     set_transient(WMobilePack_Options::$transient_prefix.'more_updates', 'warning', 3600*24*2 );
@@ -420,19 +419,18 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
         public static function upgrade_pro_link(){
 
             // Get premium link from the more json
-            $page_content = self::more_updates();
+            $upgrade_content = self::more_updates();
 
-            if  (is_array($page_content) && !empty($page_content)){
+            if  (is_array($upgrade_content) && !empty($upgrade_content)){
 
-                if (array_key_exists('premium', $page_content)) {
+                if (array_key_exists('premium', $upgrade_content)) {
 
-                    if (array_key_exists('packages', $page_content['premium']) && is_array($page_content['premium']['packages']) && count($page_content['premium']['packages']) >= 1) {
+                    if (array_key_exists('packages', $upgrade_content['premium']) && is_array($upgrade_content['premium']['packages']) && count($upgrade_content['premium']['packages']) >= 1) {
 
-                        $package = $page_content['premium']['packages'][0];
+                        $package = $upgrade_content['premium']['packages'][0];
 
-                        if (array_key_exists('button_text', $package) && array_key_exists('button_link', $package)) {
-
-                            return $package['button_link'] . '&wmp_v=21';
+                        if (array_key_exists('button_link', $package)) {
+                            return $package['button_link'];
                         }
                     }
                 }
@@ -440,5 +438,35 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
 
             return WMP_APPTICLES_PRO_LINK;
         }
+
+		/**
+         * Get array with the PRO themes.
+         *
+         * @return string
+         */
+		public static function upgrade_pro_themes(){
+
+			$themes = array();
+			$upgrade_content = self::more_updates();
+
+			if  (is_array($upgrade_content) && !empty($upgrade_content)){
+
+				if (array_key_exists('premium', $upgrade_content)) {
+
+					if (array_key_exists('themes', $upgrade_content['premium']) && is_array($upgrade_content['premium']['themes'])) {
+
+						foreach ($upgrade_content['premium']['themes'] as $theme){
+							if (isset($theme['title']) &&
+								(!isset($theme['bundle']) || is_numeric($theme['bundle']))
+							){
+								$themes[] = $theme;
+							}
+						}
+					}
+				}
+			}
+
+			return $themes;
+		}
     }
 }

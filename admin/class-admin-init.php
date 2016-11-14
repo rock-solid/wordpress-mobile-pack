@@ -41,7 +41,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
                 'function' => 'whatsnew',
             ),
 			array(
-                'page_title' => "Themes",
+                'page_title' => "App Themes",
                 'capability' => 'wmp-options-themes',
                 'function' => 'themes',
                 'enqueue_hook' => 'wmp_admin_load_themes_js'
