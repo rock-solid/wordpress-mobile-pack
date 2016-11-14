@@ -35,10 +35,12 @@ $wpmp_upgrade_pro_link = WMobilePack_Admin::upgrade_pro_link();
             <a href="<?php echo add_query_arg(array('page'=>'wmp-options-settings'), network_admin_url('admin.php'));?>">Settings</a>
         </li>
         <li>
-            <a href="<?php echo $wpmp_upgrade_pro_link;?>" target="_blank">PRO</a>
-			<div class="ribbon">
-                <div class="indicator"></div>
-            </div>
+            <a href="<?php echo $wpmp_upgrade_pro_link;?>" target="_blank">
+				PRO
+				<div class="ribbon">
+					<div class="indicator"></div>
+				</div>
+			</a>
         </li>
     </ul>
 </nav>
