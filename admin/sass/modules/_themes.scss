@@ -9,7 +9,7 @@
 
             $theme-box-width: 195px;
             $theme-box-height: 320px;
-            $theme-box-margin: 20px;
+            $theme-box-margin: 25px;
             $theme-box-subsection-height: 41px;
 
 			.corner{
@@ -80,13 +80,13 @@
                                 border-bottom: 1px solid #dce0e0;
                                 padding: 10px;
                                 text-transform: uppercase;
+								text-align: center;
                             }
                             .content{
 								font-size: 14px;
                                 color: $base-p-color;
-                                // background: $body-color;
                                 height: $theme-box-subsection-height;
-                                padding: 3px 10px;
+                                padding: 5px 5px;
 								text-align: center;
                             }
                             .image{
@@ -154,6 +154,12 @@
                                     text-align: center;
                                 }
                             }
+							span.price {
+								border-radius: 50px;
+								background: $base-orange;
+								color: #ffffff;
+								padding: 3px 5px;
+							}
                             &.premium{
                                 /*.corner{
                                     .indicator{
@@ -236,17 +242,22 @@
 								.content {
 									a.btn.smaller {
 										width: 100%;
-									}
-
-									span.shopping {
-										@include wbz-inline-icon(shopping, 17px);
-										line-height: 33px;
-										color: #ffffff;
+										line-height: normal;
 									}
 								}
                             }
+
+							&.bundle {
+								margin-bottom: 0;
+							}
                         }
                     }
+
+					span.shopping {
+						@include wbz-inline-icon(shopping, 17px);
+						line-height: 33px;
+						color: #ffffff;
+					}
                 }
 			}
 		}
