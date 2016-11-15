@@ -7,6 +7,35 @@
         });
     }
 </script>
+<?php
+	$arr_themes = array(
+		array(
+			'title'=> 'Obliq',
+			'icon' => plugins_url().'/'.WMP_DOMAIN.'/admin/images/theme-obliq.jpg',
+			'selected' => 1,
+			'bundle' => 1
+		)
+	);
+
+	$upgrade_content = WMobilePack_Admin::more_updates();
+
+	// get themes from the upgrade json
+	$arr_themes = array_merge($arr_themes, WMobilePack_Admin::upgrade_pro_themes($upgrade_content));
+
+	// filter bundled themes
+	function is_bundled($item){
+		return isset($item['bundle']) && $item['bundle'] == 1;
+	}
+
+	$arr_bundled_themes = array_filter($arr_themes, 'is_bundled');
+
+	// filter preorder themes
+	function is_preorder($item){
+		return isset($item['preorder']) && $item['preorder'] == 1;
+	}
+
+	$arr_preorder_themes = array_filter($arr_themes, 'is_preorder');
+?>
 <div id="wmpack-admin">
 	<div class="spacer-60"></div>
     <!-- set title -->
@@ -19,63 +48,65 @@
             <?php include_once(WMP_PLUGIN_PATH.'admin/sections/admin-menu.php'); ?>
             <div class="spacer-0"></div>
 
-            <div class="details theming">
-                <h2 class="title">Choose Your Mobile Theme</h2>
-                <div class="spacer_15"></div>
-                <div class="spacer-15"></div>
-                <div class="themes">
+			<?php if (count($arr_preorder_themes) > 0):?>
 
-                    <?php
-                        $arr_themes = array(
-                        	array(
-								'title'=> 'Obliq',
-								'icon' => plugins_url().'/'.WMP_DOMAIN.'/admin/images/theme-obliq.jpg',
-								'selected' => 1
-							)
-                        );
+				<div class="details theming">
 
-						$arr_themes = array_merge($arr_themes, WMobilePack_Admin::upgrade_pro_themes());
+					<?php if (isset($upgrade_content['premium']['preorder']['title'])):?>
+						<h2 class="title"><?php echo $upgrade_content['premium']['preorder']['title']; ?></h2>
+						<div class="spacer-30"></div>
+					<?php endif;?>
 
-						foreach ($arr_themes as $theme):
+					<div class="themes">
+						<?php
+							foreach ($arr_preorder_themes as $theme){
+								require(WMP_PLUGIN_PATH.'admin/sections/theme-box.php');
+							}
+						?>
+					</div>
+					<div class="spacer-10"></div>
 
-							$buy_link = isset($theme['buy_link']) ? $theme['buy_link']: '';
-                    ?>
+					<?php
+						if (isset($upgrade_content['premium']['preorder']['notice'])){
+							echo $upgrade_content['premium']['preorder']['notice'];
+						}
+					?>
 
-                        <div class="theme <?php echo $buy_link != '' ? 'premium' : '';?>">
-                            <div class="corner relative <?php echo isset($theme['selected']) ? 'active' : '';?>">
-                                <div class="indicator"></div>
-                            </div>
-                            <div class="image" style="background:url(<?php echo isset($theme['icon']) ? esc_attr( $theme['icon'] ) : '' ?>);">
-                                <div class="relative">
-									<?php if (!isset($theme['selected']) || $theme['selected'] == 0): ?>
-										<div class="overlay">
-											<div class="spacer-100"></div>
-											<div class="actions">
-												<div class="preview" id="wmp_themes_preview"></div>
-											</div>
-											<div class="spacer-10"></div>
-											<div class="text-preview">Preview theme</div>
-										</div>
-									<?php endif; ?>
-                                </div>
-                            </div>
-                            <div class="name">
-								<?php echo isset($theme['title']) ? $theme['title'] : '';?>
-							</div>
-							<div class="content">
-								<?php if ($buy_link != ''):?>
-									<a href="<?php echo $buy_link != '' ? esc_attr($buy_link) : ''; ?>" class="btn orange smaller" target="_blank">
-										<span class="shopping"></span>&nbsp;
-										<?php echo $theme['buy_text'];?>
-									</a>
-								<?php endif ?>
-							</div>
-                        </div>
-                    <?php endforeach;?>
-                </div>
-            </div>
-            <div class="spacer-10"></div>
+					<div class="spacer-10"></div>
+				</div>
+				<div class="spacer-10"></div>
+			<?php endif;?>
 
+			<?php if (count($arr_bundled_themes) > 0):?>
+
+				<div class="details theming">
+					<?php if (isset($upgrade_content['premium']['bundle']['title'])):?>
+						<h2 class="title"><?php echo $upgrade_content['premium']['bundle']['title']; ?></h2>
+					<?php endif;?>
+
+					<div class="spacer_15"></div>
+					<div class="spacer-15"></div>
+					<div class="themes">
+						<?php
+							foreach ($arr_bundled_themes as $theme){
+								require(WMP_PLUGIN_PATH.'admin/sections/theme-box.php');
+							}
+						?>
+					</div>
+
+					<?php
+						if (isset($upgrade_content['premium']['bundle']['buy']['text']) &&
+							isset($upgrade_content['premium']['bundle']['buy']['link']) &&
+							filter_var($upgrade_content['premium']['bundle']['buy']['link'], FILTER_VALIDATE_URL)):
+					?>
+						<a href="<?php echo esc_attr($upgrade_content['premium']['bundle']['buy']['link']);?>" class="btn turquoise" target="_blank" style="margin: 0 auto;">
+							<span class="shopping"></span>&nbsp;
+							<?php echo esc_attr($upgrade_content['premium']['bundle']['buy']['text']);?>
+						</a>
+					<?php endif;?>
+				</div>
+			<?php endif;?>
+			<div class="spacer-10"></div>
         </div>
 
         <div class="right-side">
@@ -91,7 +122,7 @@
 <script type="text/javascript">
     if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
-            window.WMPJSInterface.add("UI_previewthemesgallery","WMP_THEMES_GALLERY",{'DOMDoc':window.document, 'baseThemeUrl': '<?php echo plugins_url()."/".WMP_DOMAIN.'/frontend/themes/app1';?>'}, window);
+            window.WMPJSInterface.add("UI_previewthemesgallery","WMP_THEMES_GALLERY",{'DOMDoc':window.document}, window);
         });
     }
 </script>

@@ -444,10 +444,12 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
          *
          * @return string
          */
-		public static function upgrade_pro_themes(){
+		public static function upgrade_pro_themes($upgrade_content = false){
 
 			$themes = array();
-			$upgrade_content = self::more_updates();
+
+			if ($upgrade_content === false)
+				$upgrade_content = self::more_updates();
 
 			if  (is_array($upgrade_content) && !empty($upgrade_content)){
 
@@ -456,8 +458,11 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
 					if (array_key_exists('themes', $upgrade_content['premium']) && is_array($upgrade_content['premium']['themes'])) {
 
 						foreach ($upgrade_content['premium']['themes'] as $theme){
+
 							if (isset($theme['title']) &&
-								(!isset($theme['bundle']) || is_numeric($theme['bundle']))
+								isset($theme['icon']) && filter_var($theme['icon'], FILTER_VALIDATE_URL) &&
+								(!isset($theme['bundle']) || is_numeric($theme['bundle'])) &&
+								(!isset($theme['preorder']) || is_numeric($theme['preorder']))
 							){
 								$themes[] = $theme;
 							}
