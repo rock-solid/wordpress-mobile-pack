@@ -28,7 +28,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
                 'icon' => 'icon_path2.jpg'
             )
         );
-        
+
 
         update_option(WMobilePack_Options::$prefix.'categories_details', $categories_details);
 
@@ -102,16 +102,16 @@ class ExportCategoriesTest extends WP_UnitTestCase
                 'post_category' => array(2)
             )
         );
-    
+
         $export_class = $this->getMockBuilder('WMobilePack_Export')
             ->setMethods(array('get_terms_filter'))
-            ->getMock(); 
+            ->getMock();
 
         $export_class->expects($this->once())
             ->method('get_terms_filter')
-            ->will($this->returnValue(array()));    
+            ->will($this->returnValue(array()));
 
-       
+
         $this->assertEquals($export_class->export_categories(), json_encode(array('categories' => array(), 'wpmp' => WMP_VERSION)));
 
         wp_delete_post($post_id);
@@ -131,13 +131,13 @@ class ExportCategoriesTest extends WP_UnitTestCase
         );
         $export_class = $this->getMockBuilder('WMobilePack_Export')
             ->setMethods(array('get_terms_filter'))
-            ->getMock(); 
+            ->getMock();
 
         $export_class->expects($this->any())
             ->method('get_terms_filter')
-            ->will($this->returnValue(array()));  
+            ->will($this->returnValue(array()));
 
-       
+
         $this->assertEquals($export_class->export_categories(), json_encode(array('categories' => array(), 'wpmp' => WMP_VERSION)));
 
         wp_delete_post($post_id);
@@ -162,16 +162,16 @@ class ExportCategoriesTest extends WP_UnitTestCase
 
         $export_class = $this->getMockBuilder('WMobilePack_Export')
             ->setMethods(array('get_terms_filter'))
-            ->getMock(); 
+            ->getMock();
 
         $export_class->expects($this->any())
             ->method('get_terms_filter')
-            ->will($this->returnValue(array()));  
+            ->will($this->returnValue(array()));
 
 
         update_option('wmpack_inactive_categories', array($cat_id));
 
-        
+
         $this->assertEquals($export_class->export_categories(), json_encode(array('categories' => array(), 'wpmp' => WMP_VERSION)));
 
         wp_delete_post($post_id);
@@ -190,7 +190,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
                 'name' => 'Visible Test Category'
             )
         );
-        
+
         $post_id = $this->factory->post->create(
             array(
                 'post_date' => date('Y-m-d H:i:s', $published),
@@ -199,19 +199,19 @@ class ExportCategoriesTest extends WP_UnitTestCase
                 'post_category' => array($visible_cat_id)
             )
         );
-        $cat = get_categories();  
-        
+        $cat = get_categories();
+
         $export_class = $this->getMockBuilder('WMobilePack_Export')
             ->setMethods(array('get_terms_filter'))
-            ->getMock(); 
+            ->getMock();
 
         $export_class->expects($this->any())
             ->method('get_terms_filter')
-            ->will($this->returnValue($cat));  
+            ->will($this->returnValue($cat));
 
-            
+
         $data = json_decode($export_class->export_categories(), true);
-    
+
         $this->assertArrayHasKey('categories', $data);
         $this->assertEquals(1, count($data['categories']));
 
@@ -269,18 +269,18 @@ class ExportCategoriesTest extends WP_UnitTestCase
         $attach_id = wp_insert_attachment( $attachment, $filename, $post_id );
         add_post_meta( $post_id, '_thumbnail_id', $attach_id, true );
         wp_update_attachment_metadata( $attach_id, array('width' => 100, 'height' => 100));
-       
+
         $cat = get_categories();
 
         $export_class = $this->getMockBuilder('WMobilePack_Export')
             ->setMethods(array('get_terms_filter'))
-            ->getMock(); 
+            ->getMock();
 
         $export_class->expects($this->any())
             ->method('get_terms_filter')
-            ->will($this->returnValue($cat));  
+            ->will($this->returnValue($cat));
 
-        
+
         $data = json_decode($export_class->export_categories(), true);
 
         $this->assertArrayHasKey('categories', $data);
@@ -329,18 +329,18 @@ class ExportCategoriesTest extends WP_UnitTestCase
                 'post_author' => $user_id
             )
         );
-        
-        $cat = get_categories();  
-        
+
+        $cat = get_categories();
+
         $export_class = $this->getMockBuilder('WMobilePack_Export')
             ->setMethods(array('get_terms_filter'))
-            ->getMock(); 
+            ->getMock();
 
         $export_class->expects($this->any())
             ->method('get_terms_filter')
-            ->will($this->returnValue($cat)); 
+            ->will($this->returnValue($cat));
 
-        
+
         $data = json_decode($export_class->export_categories(), true);
 
         $this->assertArrayHasKey('categories', $data);
@@ -385,13 +385,13 @@ class ExportCategoriesTest extends WP_UnitTestCase
 
         $export_class = $this->getMockBuilder('WMobilePack_Export')
             ->setMethods(array('get_terms_filter'))
-            ->getMock(); 
+            ->getMock();
 
         $export_class->expects($this->any())
             ->method('get_terms_filter')
-            ->will($this->returnValue($cat));  
+            ->will($this->returnValue($cat));
 
-        
+
         $data = json_decode($export_class->export_categories(), true);
 
         $this->assertArrayHasKey('categories', $data);
@@ -457,13 +457,13 @@ class ExportCategoriesTest extends WP_UnitTestCase
 
         $export_class = $this->getMockBuilder('WMobilePack_Export')
             ->setMethods(array('get_terms_filter'))
-            ->getMock(); 
+            ->getMock();
 
         $export_class->expects($this->any())
             ->method('get_terms_filter')
             ->will($this->returnValue($cat));
 
-        
+
         $data = json_decode($export_class->export_categories(), true);
 
         $this->assertArrayHasKey('categories', $data);
@@ -545,18 +545,18 @@ class ExportCategoriesTest extends WP_UnitTestCase
         wp_update_attachment_metadata( $attach_id, array('width' => 100, 'height' => 100));
 
         // make request and check response
-        
+
         $cat = get_categories();
 
         $export_class = $this->getMockBuilder('WMobilePack_Export')
             ->setMethods(array('get_terms_filter'))
-            ->getMock(); 
+            ->getMock();
 
         $export_class->expects($this->any())
             ->method('get_terms_filter')
             ->will($this->returnValue($cat));
 
-        
+
         $data = json_decode($export_class->export_categories(), true);
 
         $this->assertArrayHasKey('categories', $data);
@@ -626,13 +626,13 @@ class ExportCategoriesTest extends WP_UnitTestCase
 
         $export_class = $this->getMockBuilder('WMobilePack_Export')
             ->setMethods(array('get_terms_filter'))
-            ->getMock(); 
+            ->getMock();
 
         $export_class->expects($this->any())
             ->method('get_terms_filter')
             ->will($this->returnValue($cat));
 
-        
+
         $data = json_decode($export_class->export_categories(), true);
 
 
@@ -737,9 +737,9 @@ class ExportCategoriesTest extends WP_UnitTestCase
                 'height' => 500
             )
         );
-        
+
         $cat = get_categories();
-        
+
         $export_class = $this->getMockBuilder('WMobilePack_Export')
             ->setMethods(array('get_categories_images', 'get_terms_filter'))
             ->getMock();
@@ -753,9 +753,9 @@ class ExportCategoriesTest extends WP_UnitTestCase
             ->method('get_terms_filter')
             ->will($this->returnValue($cat));
 
-        
+
         $data = json_decode($export_class->export_categories(), true);
-        
+
 
         foreach ($data['categories'] as $key => $category_data){
 
@@ -772,7 +772,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
         wp_delete_term($visible_cat_id2['term_id'], 'category');
     }
 
-    function test_export_categories_returns_correct_if_page_and_rows_are_given () 
+    function test_export_categories_returns_correct_if_page_and_rows_are_given ()
     {
 
        $_GET["page"] = 1;
@@ -792,31 +792,31 @@ class ExportCategoriesTest extends WP_UnitTestCase
 
         $cat = get_categories('hide_empty=0');
         unset($cat[0]);
-        $cat = array_values($cat);             
-    
+        $cat = array_values($cat);
+
         $export_class = $this->getMockBuilder('WMobilePack_Export')
             ->setMethods(array('get_terms_filter'))
-            ->getMock(); 
+            ->getMock();
 
         $export_class->expects($this->any())
             ->method('get_terms_filter')
             ->will($this->returnValue($cat));
 
-        $test = json_decode ($export_class->export_categories(),true); 
+        $test = json_decode ($export_class->export_categories(),true);
         $this->assertEquals(2, $test['rows']);
         $this->assertEquals(1, $test['page']);
-        $this->assertEquals(2,count ($test['categories']));    
+        $this->assertEquals(2,count ($test['categories']));
         $this->assertEquals('Latest', $test['categories'][0]['name']);
         $this->assertEquals('Visible Test Category 1', $test['categories'][1]['name']);
-         
-        
+
+
         wp_delete_term($visible_cat_id['term_id'], 'category');
         wp_delete_term($visible_cat_id2['term_id'], 'category');
-        
+
     }
 
 
-    function test_export_categories_returns_empty_and_page_and_rows_as_parameters_in_json_if_page_too_high () 
+    function test_export_categories_returns_empty_and_page_and_rows_as_parameters_in_json_if_page_too_high ()
     {
         $_GET["page"] = 5465;
         $_GET["rows"] = 5;
@@ -843,25 +843,25 @@ class ExportCategoriesTest extends WP_UnitTestCase
         $cat = array_values($cat);
         $export_class = $this->getMockBuilder('WMobilePack_Export')
             ->setMethods(array('get_terms_filter'))
-            ->getMock(); 
+            ->getMock();
 
         $export_class->expects($this->any())
             ->method('get_terms_filter')
             ->will($this->returnValue($cat));
 
         $this->assertEquals(
-            '{"categories":[],"page":"5465","rows":"5","wpmp":"2.2.5"}',
+            '{"categories":[],"page":"5465","rows":"5","wpmp":"2.2.6"}',
             $export_class->export_categories()
             );
 
         wp_delete_term($visible_cat_id['term_id'], 'category');
         wp_delete_term($visible_cat_id2['term_id'], 'category');
         wp_delete_term($visible_cat_id3['term_id'], 'category');
-    
+
 
         }
 
-    function test_if_withArticles_set_different_than_1_returns_categories_with_no_articles () 
+    function test_if_withArticles_set_different_than_1_returns_categories_with_no_articles ()
     {
         $_GET['withArticles'] = 23;
 
@@ -897,7 +897,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
 
         $export_class = $this->getMockBuilder('WMobilePack_Export')
             ->setMethods(array('get_terms_filter'))
-            ->getMock(); 
+            ->getMock();
 
         $export_class->expects($this->any())
             ->method('get_terms_filter')
@@ -908,13 +908,13 @@ class ExportCategoriesTest extends WP_UnitTestCase
         foreach( $test['categories'] as $test_one ){
             $this->assertArrayNotHasKey('articles', $test_one);
         }
-        
+
 
         wp_delete_post($post_id);
         wp_delete_post($post_id2);
         wp_delete_term($visible_cat_id['term_id'], 'category');
         wp_delete_term($visible_cat_id2['term_id'], 'category');
-         
-    }    
-  
+
+    }
+
 }
