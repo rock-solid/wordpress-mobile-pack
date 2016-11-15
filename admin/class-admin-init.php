@@ -318,6 +318,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
         public function wmp_admin_load_settings_js()
         {
             wp_enqueue_script(WMobilePack_Options::$prefix.'js_settings_editappsettings', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/WMP_APP_SETTINGS.min.js'), array(), WMP_VERSION);
+			wp_enqueue_script(WMobilePack_Options::$prefix.'js_settings_socialmedia', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/WMP_SOCIAL_MEDIA.min.js'), array(), WMP_VERSION);
             wp_enqueue_script(WMobilePack_Options::$prefix.'js_settings_connect', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/WMP_CONNECT.min.js'), array(), WMP_VERSION);
             wp_enqueue_script(WMobilePack_Options::$prefix.'js_settings_allowtracking', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/WMP_ALLOW_TRACKING.min.js'), array(), WMP_VERSION);
         }
