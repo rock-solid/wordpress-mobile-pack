@@ -82,6 +82,8 @@
 				<div class="details theming">
 					<?php if (isset($upgrade_content['premium']['bundle']['title'])):?>
 						<h2 class="title"><?php echo $upgrade_content['premium']['bundle']['title']; ?></h2>
+					<?php else: ?>
+						<h2 class="title">Mobile App Themes</h2>
 					<?php endif;?>
 
 					<div class="spacer_15"></div>
