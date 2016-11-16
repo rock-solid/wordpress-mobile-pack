@@ -459,7 +459,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
 			$filtered_terms = array();
 			foreach ($terms as $term){
-				$result = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->posts p JOIN $wpdb->term_relationships rl ON p.ID = rl.object_id WHERE rl.term_taxonomy_id = $term->term_id AND p.post_type = 'post' AND p.post_status = 'publish' AND p.post_password = '' LIMIT 1");
+				$result = $wpdb->get_var("SELECT * FROM $wpdb->posts p JOIN $wpdb->term_relationships rl ON p.ID = rl.object_id WHERE rl.term_taxonomy_id = $term->term_id AND p.post_type = 'post' AND p.post_status = 'publish' AND p.post_password = '' LIMIT 1");
 				if (intval($result) > 0)
 					$filtered_terms[] = $term;
 			}
