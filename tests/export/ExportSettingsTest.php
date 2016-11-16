@@ -45,28 +45,11 @@ class ExportSettingsTest extends WP_UnitTestCase
     }
 
     /**
-     * Calling export_settings() when premium_active is not zero returns error
-     */
-    function test_export_settings_premium_active_returns_error()
-    {
-        $_POST['apiKey'] = 'dummyapikey';
-
-        update_option('wmpack_premium_api_key', $_POST['apiKey']);
-        update_option('wmpack_premium_active', 1);
-
-        $export = new WMobilePack_Export();
-        $this->assertEquals($export->export_settings(), json_encode(array('error' => 'Premium plugin is not active.', 'status' => 0)));
-    }
-
-    /**
      * Calling export_settings() when premium_active is zero returns data
      */
     function test_export_settings_premium_inactive_returns_data()
     {
         $_POST['apiKey'] = 'dummyapikey';
-
-        update_option('wmpack_premium_api_key', $_POST['apiKey']);
-        update_option('wmpack_premium_active', 0);
 
         $export = new WMobilePack_Export();
 
@@ -86,9 +69,6 @@ class ExportSettingsTest extends WP_UnitTestCase
     {
 
         $_POST['apiKey'] = 'dummyapikey';
-
-        update_option('wmpack_premium_api_key', $_POST['apiKey']);
-        update_option('wmpack_premium_active', 0);
 
         update_option(WMobilePack_Options::$prefix.'icon', 'icon_path.jpg');
         update_option(WMobilePack_Options::$prefix.'logo', 'logo_path.jpg');
