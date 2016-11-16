@@ -165,7 +165,7 @@
                 <div class="display-mode">
                     <h2 class="title">Enable Facebook, Twitter, Google+</h2>
                     <div class="spacer-20"></div>
-                    <form name="wmp_socialmedia_form" id="wmp_socialmedia_form" class="left" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_save" method="post">
+                    <form name="wmp_socialmedia_form" id="wmp_socialmedia_form" class="left" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_save" method="post" style="min-width: 300px;">
 
                         <?php
                             foreach (array('facebook', 'twitter', 'google') as $social_network):
