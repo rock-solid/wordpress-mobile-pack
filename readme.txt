@@ -150,6 +150,12 @@ Google Ad Sense / Google Double Click for Publishers is supported on the Premium
 
 == Changelog ==
 
+= 2.2.6 =		
+* Add Facebook, Twitter and Google+ share buttons for posts. Social media settings are edited from the plugin's admin panel.
+* Translated app in Japaneze (ja). A big thanks to Miru Yamashiro.
+* Add pre-order options for Premium themes.
+* Add order option for PRO themes bundle.
+
 = 2.2.5 =		
 * Integrate with the official [Google AMP plugin] (https://wordpress.org/plugins/amp/) 		
 * Add Google Maps embedded iframe support		
@@ -352,8 +358,8 @@ Two major issues were introduced in beta 1, now solved:
 
 == Upgrade Notice ==
 
-= 2.2.5 =
-* WP Mobile Pack allows you to 'package' your existing content into a cross-platform mobile web application. The latest version comes with support for Google AMP and Google Maps embedded iframes.
+= 2.2.6 =
+* WP Mobile Pack allows you to 'package' your existing content into a cross-platform mobile web application. The latest version comes with Facebook, Twitter and Google Plus share buttons for posts.
 
 == Screenshots ==
 
@@ -378,7 +384,7 @@ If your site uses a cache plugin, please note that a series of issues can occur 
 * Loading the desktop theme on a supported mobile device (even though the Wordpress Mobile Pack plugin is active)
 * Inconsistent switching between the desktop and the Wordpress Mobile Pack theme
 
-If you find yourself in one of these situation, please read [the docs](http://support.appticles.com/optimizing-cache-plugins-wordpress-mobile-pack/) and make the appropriate settings on your cache plugin.
+If you find yourself in one of these situations, please read [the docs](http://support.appticles.com/optimizing-cache-plugins-wordpress-mobile-pack/) and make the appropriate settings on your cache plugin.
 
 == Roadmap ==
 
@@ -414,9 +420,10 @@ A big thanks to all contributors that helped us translate the mobile web applica
 * John Haverkate (Dutch)
 * Bernhard Steinbichler (German)
 * Péter Ágoston (Hungarian)
+* Fabiola Sguassero (Italian)
+* Emmanuel Andriulo (Italian)
+* Miru Yamashiro (Japanese)
 * Sandra Gorgan (Romanian)
 * Agnieszka Bugajska (Polish)
 * Mathias Wideroth (Swedish)
 * Diogo Desiderati (Portuguese)
-* Fabiola Sguassero (Italian)
-* Emmanuel Andriulo (Italian)

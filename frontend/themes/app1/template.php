@@ -121,9 +121,9 @@ if ($texts_json_exists === false) {
             icon: "<?php echo $app_settings['icon'];?>",
             defaultCover: "<?php echo $app_settings['cover'] != '' ? $app_settings['cover'] : $frontend_path."images/pattern-".rand(1, 6).".jpg";;?>",
             userCover: <?php echo intval($app_settings['cover'] != '');?>,
-            hasFacebook: 0,
-            hasTwitter: 0,
-            hasGoogle: 0,
+			hasFacebook: <?php echo intval($app_settings['enable_facebook']);?>,
+			hasTwitter: <?php echo intval($app_settings['enable_twitter']);?>,
+			hasGoogle: <?php echo intval($app_settings['enable_google']);?>,
             commentsToken: "<?php echo $app_settings['comments_token'];?>",
             articlesPerCard: <?php if ($app_settings['posts_per_page'] == 'single') echo 1; elseif ($app_settings['posts_per_page'] == 'double') echo 2; else echo '"auto"' ;?>
         }

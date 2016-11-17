@@ -1,13 +1,13 @@
 @mixin wbz-inline-icon($name, $font-size: 15px, $font-family: 'Appticles') {
 	$character: wbz-icon-character-for-name($name);
-	
+
 	&:before {
 	  position: relative;
 	  text-align: center;
 	  font-family: $font-family!important;
 	  font-size: $font-size!important;
 	  font-weight: normal!important;
-	
+
 	  @if $character {
 		  content: "#{$character}";
 	  } @else {
@@ -31,7 +31,7 @@
 
     @else if ($name == "close-x") { @return "\31"; }
     @else if ($name == "active") { @return "\32"; }
-    @else if ($name == "preview") { @return "\33"; }
+    @else if ($name == "preview") { @return "\113"; }
     @else if ($name == "edit") { @return "\34"; }
 
     @else if($name == "apple") { @return "\e800"; }
@@ -48,6 +48,8 @@
     @else if($name == "coins") { @return "\e80a"; }
     @else if($name == "headset") { @return "\e80b"; }
     @else if($name == "pic") { @return "\e900"; }
+
+	@else if ($name == "shopping") { @return "\115"; }
 
     @else {
         // @debug "#icon: icon with name '#{$name}' not found.";

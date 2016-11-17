@@ -40,11 +40,17 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
                 'capability' => 'wmp-options',
                 'function' => 'whatsnew',
             ),
+			array(
+                'page_title' => "App Themes",
+                'capability' => 'wmp-options-themes',
+                'function' => 'themes',
+                'enqueue_hook' => 'wmp_admin_load_themes_js'
+            ),
             array(
                 'page_title' => "Look & Feel",
-                'capability' => 'wmp-options-theme',
-                'function' => 'theme',
-                'enqueue_hook' => 'wmp_admin_load_theme_js'
+                'capability' => 'wmp-options-theme-settings',
+                'function' => 'theme_settings',
+                'enqueue_hook' => 'wmp_admin_load_theme_settings_js'
             ),
             array(
                 'page_title' => "Content",
@@ -227,12 +233,26 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
         }
 
 
+		/**
+         *
+         * Load specific javascript files for the admin Themes submenu page
+         *
+         */
+        public function wmp_admin_load_themes_js()
+        {
+
+            wp_enqueue_style(WMobilePack_Options::$prefix.'css_magnific_popup', plugins_url(WMP_DOMAIN.'/admin/css/magnific-popup.css'), array(), '0.9.9');
+            wp_enqueue_script(WMobilePack_Options::$prefix.'js_magnific_popup', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/jquery.magnific-popup.min.js'), array(), '0.9.9');
+            wp_enqueue_script(WMobilePack_Options::$prefix.'js_theming_preview', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Theming/WMP_THEMES_GALLERY.min.js'), array(), WMP_VERSION);
+        }
+
+
         /**
          *
          * Load specific javascript files for the admin Look & Feel submenu page
          *
          */
-        public function wmp_admin_load_theme_js()
+        public function wmp_admin_load_theme_settings_js()
         {
 
             $blog_version = floatval(get_bloginfo('version'));
@@ -247,10 +267,6 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
                 foreach ($allowed_fonts as $key => $font_family)
                     wp_enqueue_style(WMobilePack_Options::$prefix.'css_font'.($key+1), plugins_url(WMP_DOMAIN.'/frontend/fonts/font-'.($key+1).'.css'), array(), WMP_VERSION);
             }
-
-            wp_enqueue_style(WMobilePack_Options::$prefix.'css_magnific_popup', plugins_url(WMP_DOMAIN.'/admin/css/magnific-popup.css'), array(), '0.9.9');
-            wp_enqueue_script(WMobilePack_Options::$prefix.'js_magnific_popup', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/jquery.magnific-popup.min.js'), array(), '0.9.9');
-            wp_enqueue_script(WMobilePack_Options::$prefix.'js_theming_preview', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Theming/WMP_THEMES_GALLERY.min.js'), array(), WMP_VERSION);
 
             wp_enqueue_style('wp-color-picker');
 
@@ -302,6 +318,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
         public function wmp_admin_load_settings_js()
         {
             wp_enqueue_script(WMobilePack_Options::$prefix.'js_settings_editappsettings', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/WMP_APP_SETTINGS.min.js'), array(), WMP_VERSION);
+			wp_enqueue_script(WMobilePack_Options::$prefix.'js_settings_socialmedia', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/WMP_SOCIAL_MEDIA.min.js'), array(), WMP_VERSION);
             wp_enqueue_script(WMobilePack_Options::$prefix.'js_settings_connect', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/WMP_CONNECT.min.js'), array(), WMP_VERSION);
             wp_enqueue_script(WMobilePack_Options::$prefix.'js_settings_allowtracking', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Settings/WMP_ALLOW_TRACKING.min.js'), array(), WMP_VERSION);
         }

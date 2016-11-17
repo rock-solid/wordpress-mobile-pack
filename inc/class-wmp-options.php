@@ -51,6 +51,9 @@ if ( ! class_exists( 'WMobilePack_Options' ) ) {
             'premium_api_key'		 => '',
             'premium_config_path'	 => '',
             'premium_active'		 => 0,
+			'enable_facebook' => 1,
+			'enable_twitter' => 1,
+			'enable_google' => 1,
 
             // administrative
             'joined_waitlists' => array(),

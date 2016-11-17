@@ -453,7 +453,10 @@ if (!class_exists('WMobilePack_Application')) {
                 'font_paragraphs',
                 'google_analytics_id',
                 'display_website_link',
-                'posts_per_page'
+                'posts_per_page',
+				'enable_facebook',
+				'enable_twitter',
+				'enable_google'
             );
 
             $settings = array();

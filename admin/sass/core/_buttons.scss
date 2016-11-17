@@ -4,9 +4,9 @@
 		@include wbz-box-orient(horizontal);
 		@include wbz-box-pack(center);
 		@include wbz-box-align(center);
-		
+
 		display:flex;
-		
+
 		font-family: 'AcordeRegular', sans-serif;
 		width: $btn-size-normal;
 		height: $btn-height;
@@ -17,10 +17,10 @@
 		font-size: $btn-font-size;
 		@include wbz-border-radius($btn-radius);
 		border: $btn-border;
-		padding: 0 15px; 
+		padding: 0 15px;
 		margin: 0;
 		text-decoration: none;
-		
+
 		&.smallest{
 			width: $btn-size-smallest;
 		}
@@ -36,7 +36,7 @@
 		&.bigger{
 			width: $btn-size-bigger;
 		}
-		
+
 		strong{
 			@include wbz-display-inline-box();
 			font-family: 'AcordeSemiBold', sans-serif;
@@ -51,18 +51,18 @@
 			background: $base-green;
 			color: #ffffff;
 			border: 1px solid darken($base-green, $darken-amounth/2);
-			
+
 			&:hover{
 				background: darken($base-green, $darken-amounth/2);
 				border: 1px solid darken($base-green, $darken-amounth);
 			}
 		}
-		
+
 		&.blue{
 			background: $base-blue;
 			color: #ffffff;
 			border: 1px solid darken($base-blue, $darken-amounth/2);
-			
+
 			&:hover{
 				background: darken($base-blue, $darken-amounth/2);
 				border: 1px solid darken($base-blue, $darken-amounth);
@@ -75,7 +75,7 @@
 			background: $base-orange;
 			color: #ffffff;
 			border: 1px solid darken($base-orange, $darken-amounth/2);
-			
+
 			&:hover{
 				background: darken($base-orange, $darken-amounth/2);
 				border: 1px solid darken($base-orange, $darken-amounth);
@@ -86,10 +86,20 @@
 			color: #939494;
 			text-transform: uppercase;
 			border: 1px solid darken($base-grey, $darken-amounth/2);
-			
+
 			&:hover{
 				background: darken($base-grey, $darken-amounth/2);
 				border: 1px solid darken($base-grey, $darken-amounth);
+			}
+		}
+		&.turquoise {
+			background: $base-turquoise;
+			color: #ffffff;
+			border: 1px solid darken($base-turquoise, $darken-amounth/2);
+
+			&:hover{
+				background: darken($base-turquoise, $darken-amounth/2);
+				border: 1px solid darken($base-turquoise, $darken-amounth);
 			}
 		}
 	}

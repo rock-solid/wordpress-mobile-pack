@@ -1,39 +1,16 @@
 #wmpack-admin{
 	.look-and-feel{
 		display: table;
-		
+
 		.left-side{
 			width: 100%;
 			display: table;
 			vertical-align: top;
 
-            $theme-box-width: 195px;
-            $theme-box-height: 280px;
-            $theme-box-margin: 14px;
-            $theme-box-subsection-height: 41px;
-			
-			.corner{
-				z-index: 1;
-				
-				&.active{
-					.indicator{
-						@include wbz-inline-icon(active, 11px);
-						color: #ffffff;
-
-                        top: 0px;
-                        left: $theme-box-width - 44px;
-						
-						&::before{
-							top: -40px;
-							right: 18px;
-						}
-					}
-				}
-			}
 			.details{
 				padding:30px;
 				background-color: $box-color;
-				 
+
 				h2.title{
 					font-family: 'OlRoundGothicLight', sans-serif;
 					font-size: 25px;
@@ -46,286 +23,6 @@
 					line-height: normal;
 					color: $base-dark-blue;
 				}
-
-                &.theming{
-                    background: $base-color-darken;
-                    display: table;
-                    width: 100%;
-
-                    h2.title {
-                        text-align: center;
-                    }
-
-                    .themes{
-                        display: block;
-                        width: ($theme-box-width + $theme-box-margin) * 3 + 20;
-                        margin: 0 auto;
-
-                        .theme{
-                            display: inline-block;
-                            width: $theme-box-width;
-                            height: $theme-box-height;
-                            margin: 0 $theme-box-margin $theme-box-margin 0;
-                            position: relative;
-
-                            &:nth-child(3){
-                                margin: 0;
-                            }
-
-                            .name{
-                                font-family: 'AcordeRegular', sans-serif;
-                                font-size: 16px;
-                                color: $base-text-color;
-                                background: $base-color-lighter;
-                                height: $theme-box-subsection-height;
-                                border-bottom: 1px solid #dce0e0;
-                                padding: 10px;
-                                text-transform: uppercase;
-                            }
-                            .content{
-                                font-family: 'AcordeRegular', sans-serif;
-                                font-size: 11px;
-                                color: $base-p-color;
-                                background: $body-color;
-                                height: $theme-box-subsection-height;
-                                line-height: $theme-box-subsection-height;
-                                padding: 0 10px;
-                                display: block;
-                                @include wbz-display-box();
-                                display: flex;
-                                @include wbz-box-orient(horizontal);
-                                @include wbz-box-pack(start);
-                                @include wbz-box-align(center);
-
-                                span{
-                                    font-family: 'AcordeRegular', sans-serif;
-                                    font-size: 11px;
-                                    color: $base-p-color;
-                                    @include wbz-display-box();
-                                    margin: 0 10px 0 0;
-                                }
-
-                                .wordpress-icon{
-                                    @include wbz-inline-icon(wordpress, 19px);
-                                    color: $wordpress-color;
-                                    background: transparent;
-                                    width: 20px;
-                                    height: 20px;
-                                    display: inline-block;
-                                    line-height: normal;
-                                    margin: 0 2px;
-                                    @include wbz-display-box();
-
-                                    &::before{
-                                        width: 20px;
-                                        height: 20px;
-                                        //top: 5px;
-                                        left: 0px;
-                                    }
-                                }
-
-                                .rss-icon, .facebook-icon, .twitter-icon, .google-icon {
-
-                                    color: #ffffff;
-                                    @include wbz-border-radius(20px);
-                                    width: 20px;
-                                    height: 20px;
-                                    display: inline-block;
-                                    line-height: normal;
-                                    margin: 0 2px;
-                                    @include wbz-display-box();
-
-                                    &::before{
-                                        width: 20px;
-                                        height: 20px;
-                                    }
-                                }
-
-                                .facebook-icon{
-                                    @include wbz-inline-icon(facebook, 14px);
-                                    background: $facebook-color;
-
-                                    &::before{
-                                        top: 3px;
-                                        left: 3px;
-                                    }
-                                }
-                                .twitter-icon{
-                                    @include wbz-inline-icon(twitter, 13px);
-                                    background: $twitter-color;
-
-                                    &::before{
-                                        top: 4px;
-                                        left: 4px;
-                                    }
-                                }
-                                .rss-icon{
-                                    @include wbz-inline-icon(rss, 13px);
-                                    background: $rss-color;
-
-                                    &::before{
-                                        top: 3px;
-                                        left: 5px;
-                                    }
-                                }
-                                .google-icon{
-                                    @include wbz-inline-icon(google-plus, 13px);
-                                    background: $google-color;
-
-                                    &::before{
-                                        top: 4px;
-                                        left: 4px;
-                                    }
-                                }
-                            }
-                            .image{
-                                background-size: cover;
-                                background-repeat: no-repeat;
-                                width: 100%;
-                                height: $theme-box-height - $theme-box-subsection-height;
-                                overflow: hidden;
-                                position: relative;
-
-                                &:hover{
-                                    .overlay{
-                                        visibility: visible;
-                                        @include wbz-transform(translateX(0%));
-                                        @include wbz-opacity(1);
-                                        @include wbz-transition(all 0.3s ease-in-out);
-                                    }
-                                }
-                            }
-                            .overlay{
-                                background: rgba(154,202,64,0.9);
-                                position: absolute;
-                                width: $theme-box-width;
-                                height: $theme-box-height - $theme-box-subsection-height;
-                                text-align: center;
-
-                                @include wbz-transform(translateX(-100%));
-                                @include wbz-opacity(0);
-                                @include wbz-transition(all 0.3s ease-in-out);
-
-                                .actions {
-                                    @include wbz-display-box();
-                                    display: flex;
-                                    @include wbz-box-orient(horizontal);
-                                    @include wbz-box-align(center);
-                                    @include wbz-box-pack(center);
-
-                                    .preview {
-                                        @include wbz-inline-icon(preview, 20px);
-                                        color: #ffffff;
-                                        background: #333333;
-                                        @include wbz-border-radius(33px);
-                                        width: 33px;
-                                        height: 33px;
-                                        margin: 0 2px;
-                                        float: none;
-
-                                        &:hover {
-                                            cursor: pointer;
-                                            background: lighten(#333333, 10%);
-                                        }
-
-                                        &::before {
-                                            width: 33px;
-                                            height: 33px;
-                                            line-height: 33px;
-                                        }
-                                    }
-                                }
-
-                                [class^="text"] {
-                                    font-family: "OpenSansSemiBold", sans-serif;
-                                    font-size: 13px;
-                                    color: #333333;
-                                    text-align: center;
-                                }
-                            }
-                            &.premium{
-                                .corner{
-                                    .indicator{
-                                        background: url(../images/ribbon-premium.png);
-                                        width: 67px;
-                                        height: 68px;
-                                        position: absolute;
-                                        top: -4px;
-                                        right: -5px;
-                                        left: $theme-box-width - 62px;
-                                    }
-                                }
-                                .overlay{
-                                    background: rgba(#fdf7d3,0.9);
-
-                                    .unlock{
-                                        @include wbz-inline-icon(unlock, 17px);
-                                        color: #ffffff;
-                                        background: $base-orange;
-                                        @include wbz-border-radius(33px);
-                                        width: 33px;
-                                        height: 33px;
-                                        margin: 0 2px;
-                                        float: none;
-
-                                        &:hover{
-                                            cursor: pointer;
-                                            background: lighten($base-orange, 10%);
-                                        }
-
-                                        &::before{
-                                            width: 33px;
-                                            height: 33px;
-                                            top: 7px;
-                                            left: 0px;
-                                        }
-                                    }
-                                    .preview{
-                                        background: $base-orange;
-
-                                        &:hover{
-                                            background: lighten($base-orange, 10%);
-                                        }
-                                    }
-                                    .text{
-                                        font-family: "OpenSansSemiBold", sans-serif;
-                                        font-size: 13px;
-                                        color: $base-text-color;
-                                        text-align: center;
-                                        display: block;
-
-                                        &:last-child{
-                                            font-size: 12px;
-                                            font-family: "OpenSansRegular", sans-serif;
-                                        }
-                                        span{
-                                            font-size: 15px;
-                                            color: $base-text-color;
-                                            display: block;
-                                        }
-                                    }
-                                    .btn{
-                                        margin: 0 auto;
-                                        width: 150px;
-                                    }
-                                    .info{
-                                        margin: 0 auto;
-                                        width: $input-size-smaller + $btn-size-smallest + 10px;
-
-                                        input[type="text"]{
-                                            float: left;
-                                            background: rgba(250,250,250,0.8);
-                                        }
-                                        .btn{
-                                            float: left;
-                                            margin: 0 0 0 10px;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
 
                 .color-schemes{
                     width: 50%;
@@ -385,13 +82,11 @@
                 }
 
 				.font-chooser{
-					// width: 50%;
-					// float: left;
-					
+
 					label {
 						position: relative;
 						display: inline-block;
-						width: 135px;	
+						width: 135px;
 					}
 
                     .subtext {
@@ -409,14 +104,14 @@
 						font-size: 15px;
 						line-height: normal;
 						color: darken($base-blue,50%);
-						
+
 					}
 					.custom-upload {
 						position: relative;
 						height: 36px;
 						width: 450px;
 						margin: 10px 0;
-					
+
 						&:hover{
 							.fake-file{
 								.btn{
@@ -426,7 +121,7 @@
 								input{
 									outline:none;
 									border:1px solid darken($input-border,$darken-amounth);
-								}	
+								}
 							}
 						}
 						.remove{
@@ -441,7 +136,7 @@
 							background: $base-color-darken;
 							@include wbz-border-radius(16px);
 							padding: 3px;
-							
+
 							&::before{
 								top: -4px;
 								left: 0px;
@@ -452,7 +147,7 @@
 					.custom-upload input[type=file] {
 						outline: none;
 						position: relative;
-						text-align: right;    
+						text-align: right;
 						@include wbz-opacity(0);
 						z-index: 2;
 						width: 430px;
@@ -468,7 +163,7 @@
 						z-index: 1;
 						line-height: 100%;
 						@include wbz-display-box();
-						
+
 						.btn{
 							margin: 0px 0px 0px 10px;
 						}
@@ -483,7 +178,7 @@
 					.display-logo{
 						text-align: left;
 						height: 120px;
-						
+
 						.edit{
 							margin: 47px 0 0 0;
 							vertical-align: middle;
@@ -515,7 +210,7 @@
 						@include wbz-box-align(center);
 						text-align: left;
 						height: 120px;
-						
+
 						.edit{
 							margin: 47px 0 0 0;
 							vertical-align: middle;
@@ -544,7 +239,7 @@
 					}
 					.cancel-link{
 						position: relative;
-						
+
 						.cancel{
 							position: absolute;
 							top: -39px;
@@ -586,7 +281,6 @@
                         }
                     }
 				}
-			
 			}
 		}
 	}

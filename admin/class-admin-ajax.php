@@ -165,7 +165,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
          * - error = If set to true if we have invalid color codes or the number of colors is not the same
          * with the one from the theme.
          *
-         * 
+         *
          */
         protected function update_theme_colors($data)
         {
@@ -918,7 +918,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                 if (isset($_POST) && is_array($_POST) && !empty($_POST)) {
 
                     // handle opt-ins settings
-                    foreach (array('allow_tracking', 'upgrade_notice_updated') as $option_name) {
+                    foreach (array('enable_facebook', 'enable_twitter', 'enable_google','allow_tracking', 'upgrade_notice_updated') as $option_name) {
 
                         if (isset($_POST['wmp_option_'.$option_name]) && $_POST['wmp_option_'.$option_name] != '' && is_numeric($_POST['wmp_option_'.$option_name])) {
 

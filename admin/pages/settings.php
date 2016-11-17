@@ -14,7 +14,7 @@
 	<div class="spacer-20"></div>
 	<div class="settings">
         <div class="left-side">
-            
+
             <!-- add nav menu -->
             <?php include_once(WMP_PLUGIN_PATH.'admin/sections/admin-menu.php'); ?>
             <div class="spacer-0"></div>
@@ -37,13 +37,13 @@
                         <!-- add radio buttons -->
                         <input type="radio" name="wmp_editsettings_displaymode" id="wmp_editsettings_displaymode_normal" value="normal" <?php if ($display_mode == "normal") echo "checked" ;?> /><label for="wmp_editsettings_displaymode_normal"><strong>Normal</strong> (all mobile visitors)</label>
                         <div class="spacer-10"></div>
-                        
+
                         <input type="radio" name="wmp_editsettings_displaymode" id="wmp_editsettings_displaymode_preview" value="preview" <?php if ($display_mode == "preview") echo "checked" ;?> /><label for="wmp_editsettings_displaymode_preview"><strong>Preview</strong> (logged in administrators)</label>
                         <div class="spacer-10"></div>
-                        
+
                         <input type="radio" name="wmp_editsettings_displaymode" id="wmp_editsettings_displaymode_disabled" value="disabled" <?php if ($display_mode == "disabled") echo "checked" ;?> /><label for="wmp_editsettings_modedisplay_disabled"><strong>Disabled</strong> (hidden for all)</label>
                 		<div class="spacer-30"></div>
-                       
+
                         <p>Google Analytics Id:</p>
                         <div class="spacer-10"></div>
                         <input type="text" name="wmp_editsettings_ganalyticsid" id="wmp_editsettings_ganalyticsid" placeholder="UA-000000-01" class="small indent" value="<?php echo WMobilePack_Options::get_setting('google_analytics_id');?>" />
@@ -111,38 +111,33 @@
                     <h2 class="title">Connect with Appticles</h2>
                     <div class="spacer-20"></div>
                     <?php
-                    $premium_link = '';
+						$premium_link = '';
 
-                    // Get premium link from the more json
-                    $page_content = WMobilePack_Admin::more_updates();
+						// Get premium link from the more json
+						$upgrade_content = WMobilePack_Admin::more_updates();
 
-                    if  (is_array($page_content) && !empty($page_content)){
+						if  (is_array($upgrade_content) && !empty($upgrade_content)){
 
-                        if (array_key_exists('premium', $page_content)) {
+							if (array_key_exists('premium', $upgrade_content)) {
 
-                            if (array_key_exists('packages', $page_content['premium']) && is_array($page_content['premium']['packages']) && count($page_content['premium']['packages'] == 2)) {
+								if (array_key_exists('packages', $upgrade_content['premium']) && is_array($upgrade_content['premium']['packages']) && count($upgrade_content['premium']['packages'] == 2)) {
 
-                                $package = $page_content['premium']['packages'][1];
+									$package = $upgrade_content['premium']['packages'][1];
 
-                                if (array_key_exists('button_text', $package) && array_key_exists('button_link', $package)) {
+									if (array_key_exists('button_link', $package)) {
 
-                                    $premium_link = $package['button_link'] . '&wmp_v=21';
+										$feed_url = '';
 
-                                    if (array_key_exists('use_feed_param', $package) && $package['use_feed_param'] == 1) {
+										if (get_bloginfo('atom_url') != null && get_bloginfo('atom_url') != '')
+											$feed_url = '&feedurl=' . urlencode(get_bloginfo('atom_url'));
+										elseif (get_bloginfo('rss2_url') != null && get_bloginfo('rss2_url') != '')
+											$feed_url = '&feedurl=' . urlencode(get_bloginfo('rss2_url'));
 
-                                        $feed_url = '';
-
-                                        if (get_bloginfo('atom_url') != null && get_bloginfo('atom_url') != '')
-                                            $feed_url = '&feedurl=' . urlencode(get_bloginfo('atom_url'));
-                                        elseif (get_bloginfo('rss2_url') != null && get_bloginfo('rss2_url') != '')
-                                            $feed_url = '&feedurl=' . urlencode(get_bloginfo('rss2_url'));
-
-                                        $premium_link .=  $feed_url . '&wmp_v=21';
-                                    }
-                                }
-                            }
-                        }
-                    }
+										$premium_link =  $package['button_link'].$feed_url;
+									}
+								}
+							}
+						}
                     ?>
 
                     <p>Extend your WP Mobile Pack to the premium version by connecting with Appticles.com. Fill in the provided API Key to enable your WP Mobile Pack Cloud. <?php if ($premium_link):?><a href="<?php echo $premium_link;?>" target="_blank">Find out more about it here.</a><?php endif;?></p>
@@ -164,6 +159,41 @@
                 </div>
                 <div class="spacer-0"></div>
             </div>
+
+            <div class="spacer-15"></div>
+            <div class="details">
+                <div class="display-mode">
+                    <h2 class="title">Enable Facebook, Twitter, Google+</h2>
+                    <div class="spacer-20"></div>
+                    <form name="wmp_socialmedia_form" id="wmp_socialmedia_form" class="left" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_save" method="post" style="min-width: 300px;">
+
+                        <?php
+                            foreach (array('facebook', 'twitter', 'google') as $social_network):
+
+                                $is_enabled = WMobilePack_Options::get_setting('enable_'.$social_network);
+                        ?>
+
+                            <input type="hidden" name="wmp_option_enable_<?php echo $social_network;?>" id="wmp_option_enable_<?php echo $social_network;?>" value="<?php echo $is_enabled;?>" />
+                            <input type="checkbox" name="wmp_socialmedia_<?php echo $social_network;?>_check" id="wmp_socialmedia_<?php echo $social_network;?>_check" value="1" <?php if ($is_enabled == 1) echo "checked" ;?> />
+                            <label for="wmp_socialmedia_<?php echo $social_network;?>_check">
+
+                                    <?php if ($social_network == 'facebook' || $social_network == 'twitter'):?>
+                                        Enable <?php echo ucfirst($social_network);?> sharing
+                                    <?php else:?>
+                                        Enable Google+ sharing
+                                    <?php endif;?>
+
+                            </label>
+                            <div class="spacer-10"></div>
+
+                        <?php endforeach;?>
+
+                        <div class="spacer-10"></div>
+                        <a href="javascript:void(0)" id="wmp_socialmedia_send_btn" class="btn green smaller">Save</a>
+                    </form>
+                </div>
+                <div class="spacer-0"></div>
+            </div>
             <div class="spacer-15"></div>
 
             <div class="details">
@@ -177,13 +207,13 @@
                 </div>
                 <div class="spacer-0"></div>
             </div>
-            
+
             <div class="spacer-15"></div>
             <div class="details">
             	<div class="display-mode">
                  	<h2 class="title">Tracking</h2>
                     <div class="spacer-20"></div>
-                    
+
                     <form name="wmp_allowtracking_form" id="wmp_allowtracking_form" class="left" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_save" method="post">
                         <?php $enabled_tracking = WMobilePack_Options::get_setting('allow_tracking'); ?>
 
@@ -191,7 +221,7 @@
                         <input type="checkbox" name="wmp_allowtracking_check" id="wmp_allowtracking_check" value="1" <?php if ($enabled_tracking == 1) echo "checked" ;?> />
                         <label for="wmp_allowtracking_check"><strong>Allow tracking of this WordPress install's anonymous data.</strong></label>
                         <div class="spacer-10"></div>
-                        
+
                         <p style="padding-left: 25px;">To maintain this plugin as best as possible, we need to know what we're dealing with: what kinds of other plugins our users are using, what themes, etc. Please allow us to track that data from your install. It will not track any user details, so your security and privacy are safe with us.</p>
                         <div class="spacer-10"></div>
                         <a href="javascript:void(0)" id="wmp_allowtracking_send_btn" class="btn green smaller">Save</a>
@@ -220,6 +250,7 @@ $is_secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SER
     if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
             window.WMPJSInterface.add("UI_editappsettings","WMP_APP_SETTINGS",{'DOMDoc':window.document}, window);
+			window.WMPJSInterface.add("UI_socialmedia","WMP_SOCIAL_MEDIA",{'DOMDoc':window.document}, window);
             window.WMPJSInterface.add("UI_connect",
                 "WMP_CONNECT",
                 {

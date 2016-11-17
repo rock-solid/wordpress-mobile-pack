@@ -459,7 +459,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
 			$filtered_terms = array();
 			foreach ($terms as $term){
-				$result = $wpdb->get_var("SELECT COUNT(*) FROM $wpdb->posts p JOIN $wpdb->term_relationships rl ON p.ID = rl.object_id WHERE rl.term_taxonomy_id = $term->term_id AND p.post_type = 'post' AND p.post_status = 'publish' AND p.post_password = '' LIMIT 1");
+				$result = $wpdb->get_var("SELECT * FROM $wpdb->posts p JOIN $wpdb->term_relationships rl ON p.ID = rl.object_id WHERE rl.term_taxonomy_id = $term->term_id AND p.post_type = 'post' AND p.post_status = 'publish' AND p.post_password = '' LIMIT 1");
 				if (intval($result) > 0)
 					$filtered_terms[] = $term;
 			}
@@ -1792,48 +1792,44 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
             if (isset($_POST["apiKey"]) && preg_match('/^[a-zA-Z0-9]+$/', $_POST['apiKey'])) {
 
-                if (WMobilePack_Options::get_setting('premium_active') == 0) {
+				// check if logo exists
+				$WMP_Uploads = $this->get_uploads_manager();
 
-                    // check if logo exists
-                    $WMP_Uploads = $this->get_uploads_manager();
+				$logo_path = WMobilePack_Options::get_setting('logo');
 
-                    $logo_path = WMobilePack_Options::get_setting('logo');
+				if ($logo_path != ''){
+					$logo_path = $WMP_Uploads->get_file_url($logo_path);
+				}
 
-                    if ($logo_path != ''){
-                        $logo_path = $WMP_Uploads->get_file_url($logo_path);
-                    }
+				// check if icon exists
+				$icon_path = WMobilePack_Options::get_setting('icon');
 
-                    // check if icon exists
-                    $icon_path = WMobilePack_Options::get_setting('icon');
+				if ($icon_path != ''){
+					$icon_path = $WMP_Uploads->get_file_url($icon_path);
+				}
 
-                    if ($icon_path != ''){
-                        $icon_path = $WMP_Uploads->get_file_url($icon_path);
-                    }
+				// check if cover exists
+				$cover_path = WMobilePack_Options::get_setting('cover');
 
-                    // check if cover exists
-                    $cover_path = WMobilePack_Options::get_setting('cover');
+				if ($cover_path != ''){
+					$cover_path = $WMP_Uploads->get_file_url($cover_path);
+				}
 
-                    if ($cover_path != ''){
-                        $cover_path = $WMP_Uploads->get_file_url($cover_path);
-                    }
+				// check if google analytics id is set
+				$google_analytics_id = WMobilePack_Options::get_setting('google_analytics_id');
 
-                    // check if google analytics id is set
-                    $google_analytics_id = WMobilePack_Options::get_setting('google_analytics_id');
+				// set settings
+				$arr_settings = array(
+					'logo' => $logo_path,
+					'icon' => $icon_path,
+					'cover' => $cover_path,
+					'google_analytics_id' => $google_analytics_id,
+					'status' => 1
+				);
 
-                    // set settings
-                    $arr_settings = array(
-                        'logo' => $logo_path,
-                        'icon' => $icon_path,
-                        'cover' => $cover_path,
-                        'google_analytics_id' => $google_analytics_id,
-                        'status' => 1
-                    );
+				// return json
+				return json_encode($arr_settings);
 
-                    // return json
-                    return json_encode($arr_settings);
-
-                } else
-                    return '{"error":"Premium plugin is not active.","status":0}';
             } else
                 return '{"error":"Missing post data (API Key) or mismatch.","status":0}';
         }

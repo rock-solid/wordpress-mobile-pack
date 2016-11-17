@@ -1,0 +1,53 @@
+{
+  "APP_TEXTS": {
+    "LINKS": {
+      "VISIT_WEBSITE": "表示を切り替える",
+      "VISIT_APP": "モバイル版に切り替える",
+      "HOME": "Home",
+      "CREDITS": "Credits",
+      "CATEGORIES": "Categories",
+      "GO_TO": "Go to",
+      "OTHERS": "Others",
+      "HEADLINES": "Headlines",
+      "INSIDE": "Inside",
+      "MENU": "Menu",
+      "OPEN_APP": "OPEN"
+    },
+    "TEXTS": {
+      "NO_PAGES": "ページが見つかりません",
+      "NO_CATEGORIES": "カテゴリが見つかりません",
+      "NO_ARTICLES": "記事が見つかりません",
+      "NO_COMMENTS": "この記事に対するコメントはまだありません。あなたが初めてです！",
+      "NO_COMMENTS_SHORT": "この記事に対するコメントはありません",
+      "GOOGLE_ADS": "Ads by Google",
+      "COMMENTS": "コメント",
+      "LEAVE_COMMENTS": "コメントを残す",
+      "BY_AUTHOR": "by",
+      "LOADING": "Loading",
+      "LOAD_MORE": "続きを読み込む",
+      "LATEST": "新着記事",
+      "PAGE": "Page",
+      "SWIPE_FOR_MORE": "Swipe for more",
+      "SWIPE_TO_CONTINUE": "Swipe to continue",
+      "WEBSITE_CONFIRM": "PC版のサイトにアクセスしますか？",
+      "READ_MORE": "続きを読む"
+    },
+    "PULL_REFRESH": {
+      "PULL_COMMENTS": "プルダウンで新しいコメントが表示されます",
+      "RELEASE": "リリースして更新する",
+      "LAST_UPDATED": "最新"
+    },
+    "FORMS": {
+      "SEND": "送信",
+      "YOUR_NAME": "名前",
+      "YOUR_NAME_ERROR": "名前を入力してください",
+      "YOUR_EMAIL": "メールアドレス",
+      "YOUR_EMAIL_ERROR": "メールアドレスを入力してください",
+      "YOUR_EMAIL_ERROR2": "有効なメールアドレスを入力してください",
+      "YOUR_COMMENT": "コメント",
+      "YOUR_COMMENT_ERROR": "コメントを入力してください",
+      "SUBMIT_ERROR": "エラーが発生しました。少し時間をおいてご利用ください！",
+      "AWAITING_MODERATION": "コメントありがとうございます！"
+    }
+  }
+}
