@@ -1,4 +1,4 @@
-=== WordPress Mobile Pack - Mobile Plugin for Progressive Web Apps ===
+=== WordPress Mobile Pack - Mobile Plugin for Progressive Web Apps & Hybrid Mobile Apps ===
 Contributors: jamesgpearce, andreatrasatti, edent, cborodescu, anghelalexandra
 Tags: android, iOS, html5, iphone, mobile, mobile internet, mobile web, mobile web app, responsive ui, safari, sencha touch, smartphone, webkit, progressive web apps, app builder, apple, apps, convert to app, create blog app, ios app, ipad, make an app, mobile app plugin, mobile application, mobile blog app, mobile converter, mobile plugin, native app plugin, app theme, website to mobile app, WordPress android, WordPress app, WordPress iphone, WordPress mobile, WordPress mobile app
 Requires at least: 3.5
@@ -6,7 +6,7 @@ Tested up to: 4.6.1
 Stable tag: 2.2.6
 License: GPLv2 or later
 
-WordPress Mobile Pack is a mobile plugin that helps you transform your website's content into a progressive mobile web application.
+Mobile plugin that helps you package your content into a progressive web app or build a hybrid mobile app and submit it to App Stores.
 
 == Description ==
 
