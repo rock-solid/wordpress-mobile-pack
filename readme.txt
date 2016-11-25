@@ -6,7 +6,7 @@ Tested up to: 4.6.1
 Stable tag: 2.2.6
 License: GPLv2 or later
 
-Mobile plugin that helps you package your content into a progressive web app or build a hybrid mobile app and submit it to App Stores. Multiple mobile app themes available.
+Mobile plugin to package your content into a progressive web app, build a hybrid mobile app and submit it to App Stores. Multiple mobile app themes.
 
 == Description ==
 
