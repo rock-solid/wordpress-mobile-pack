@@ -67,28 +67,38 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
          */
         protected function get_post_image($post_id)
         {
-
-            $image_details = array();
-
             if (has_post_thumbnail($post_id)) {
 
-                $post_thumbnail_id = get_post_thumbnail_id($post_id);
-                $image_metadata = wp_get_attachment_metadata($post_thumbnail_id, true);
+				$post_thumbnail_id = get_post_thumbnail_id($post_id);
+				$full_url  = wp_get_attachment_url($post_thumbnail_id);
 
-                if (is_array($image_metadata) && !empty($image_metadata)) {
+				$image_metadata = wp_get_attachment_metadata($post_thumbnail_id, true);
 
-                    if (isset($image_metadata['width']) && isset($image_metadata['height'])) {
+				if ($full_url && is_array($image_metadata) && !empty($image_metadata)) {
 
-                        $image_details = array(
-                            "src" => wp_get_attachment_url($post_thumbnail_id),
+					$thumbnail = isset($image_metadata['sizes']['medium_large']) ? $image_metadata['sizes']['medium_large'] : $image_metadata['sizes']['large'];
+
+                    if (isset($thumbnail['file']) && isset($thumbnail['width']) && isset($thumbnail['height'])) {
+
+						return array(
+                            "src" => str_replace(basename($full_url), $thumbnail['file'], $full_url),
+                            "width" => $thumbnail['width'],
+                            "height" => $thumbnail['height']
+                        );
+					}
+
+					if (isset($image_metadata['width']) && isset($image_metadata['height'])) {
+
+                        return array(
+                            "src" => $full_url,
                             "width" => $image_metadata['width'],
                             "height" => $image_metadata['height']
                         );
                     }
-                }
+				}
             }
 
-            return $image_details;
+            return array();
         }
 
 
