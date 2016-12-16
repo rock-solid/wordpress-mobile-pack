@@ -14,8 +14,8 @@ function WMP_APP_SETTINGS(){
     this.DOMDoc;
 
     this.send_btn;
-	
-	
+
+
 	/*****************************************************************************************************/
     /*                                                                                                   */
     /*                              FUNCTION INIT - called from WMPJSInterface                              */
@@ -28,17 +28,17 @@ function WMP_APP_SETTINGS(){
 
         // save a reference to "SEND" Button
         this.send_btn = jQuery('#'+this.type+'_send_btn',this.DOMDoc).get(0);
-       
+
         // save a reference to the FORM and remove the default submit action
         this.form = this.DOMDoc.getElementById(this.type+'_form');
-		
+
         // add actions to send, cancel, ... buttons
         this.addButtonsActions();
 
         if (this.form == null){
             return;
         }
-        
+
         // custom validation for FORM's inputs
         this.initValidation();
     }
@@ -56,16 +56,16 @@ function WMP_APP_SETTINGS(){
         /*******************************************************/
 		/*                    VALIDATION RULES                 */
 		/*******************************************************/
-		
+
 		jQuery.validator.addMethod( "regex",function(value, element, regexp) {
-				
+
 				var re = new RegExp(regexp,"i");
-				
+
             	return this.optional(element) || re.test(value);
 			},
 			"Your code is invalid"
 		);
-		
+
         // this is the object that handles the form validations
 	    this.validator = jQuery("#"+this.form.id, this.DOMDoc).validate({
 
@@ -83,13 +83,22 @@ function WMP_APP_SETTINGS(){
                 var errorContainer = jQuery("#error_"+id+"_container",JSObject.DOMDoc);
 	            error.appendTo( errorContainer );
 	        },
-            
+
             errorElement: 'span'
 	    });
 
         /*******************************************************/
-        /*                     CHECKBOX EVENT                  */
+        /*                     CHECKBOX EVENTS                  */
         /*******************************************************/
+
+        jQuery("#wmp_enable_tablets_check",JSObject.DOMDoc).change(function() {
+
+          if (this.checked) {
+              jQuery("#"+JSObject.type+"_enable_tablets",JSObject.DOMDoc).val("1");
+          } else {
+              jQuery("#"+JSObject.type+"_enable_tablets",JSObject.DOMDoc).val("0");
+          }
+        });
 
         jQuery("#wmp_displaywebsitelink_check",JSObject.DOMDoc).change(function() {
 
@@ -101,7 +110,7 @@ function WMP_APP_SETTINGS(){
             }
         });
     }
-    
+
 
 	/*****************************************************************************************************/
     /*                                                                                                   */
@@ -119,8 +128,8 @@ function WMP_APP_SETTINGS(){
             JSObject.validate();
         })
         JSObject.enableButton(this.send_btn);
-		
-		
+
+
 		jQuery("#"+JSObject.form.id,JSObject.DOMDoc).bind("keypress", function (e) {
 			if (e.keyCode == 13) return false;
 		});
@@ -170,7 +179,7 @@ function WMP_APP_SETTINGS(){
             jQuery(container).animate({scrollTop: scrollTop + containerHeight }, 1000);
         }
     }
-    
+
 
     /*****************************************************************************************************/
     /*                                                                                                   */
@@ -206,75 +215,75 @@ function WMP_APP_SETTINGS(){
 
     /*****************************************************************************************************/
 	/*                                                                                                   */
-	/*                       FUNCTION SUBMIT FORM  THROUGH an IFRAME as target                           */          
+	/*                       FUNCTION SUBMIT FORM  THROUGH an IFRAME as target                           */
 	/*                                                                                                   */
 	/*****************************************************************************************************/
 	this.submitForm = function(){
 		return WMPJSInterface.AjaxUpload.dosubmit(JSObject.form, {'onStart' : JSObject.startUploadingData, 'onComplete' : JSObject.completeUploadingData});
 	}
-	
-	
+
+
 	/*****************************************************************************************************/
 	/*                                                                                                   */
-	/*                                      FUNCTION SEND DATA                                           */          
+	/*                                      FUNCTION SEND DATA                                           */
 	/*                                                                                                   */
 	/*****************************************************************************************************/
 	this.sendData = function(){
-		
+
 		jQuery("#"+this.form.id,this.DOMDoc).unbind("submit");
 		jQuery("#"+this.form.id,this.DOMDoc).bind("submit",function(){JSObject.submitForm();});
 		jQuery("#"+this.form.id,this.DOMDoc).submit();
-		
+
 		JSObject.disableButton(JSObject.send_btn);
 	}
-	
-	
+
+
 	/*****************************************************************************************************/
 	/*                                                                                                   */
-	/*                                FUNCTION START UPLOADING DATA                                      */          
+	/*                                FUNCTION START UPLOADING DATA                                      */
 	/*                                                                                                   */
 	/*****************************************************************************************************/
 	this.startUploadingData = function(){
 
 		WMPJSInterface.Preloader.start();
-		
+
 		//disable form elements
 		setTimeout(function(){
 						var aElems = JSObject.form.elements;
 						nElems = aElems.length;
-						
+
 						for (j=0; j<nElems; j++) {
 							aElems[j].disabled = true;
 						}
 					},300);
-		
+
 		return true;
 	}
-	
-	
-	
+
+
+
 	/*****************************************************************************************************/
 	/*                                                                                                   */
-	/*                              FUNCTION COMPLETE UPLOADING DATA                                     */          
+	/*                              FUNCTION COMPLETE UPLOADING DATA                                     */
 	/*                                                                                                   */
 	/*****************************************************************************************************/
 	this.completeUploadingData = function(response){
-		
+
 		jQuery("#"+JSObject.form.id,JSObject.DOMDoc).unbind("submit");
 		jQuery("#"+JSObject.form.id,JSObject.DOMDoc).bind("submit",function(){return false;});
-	
+
 		// remove preloader
 		WMPJSInterface.Preloader.remove(100);
 		response = Boolean(Number(String(response)));
-  
+
 		if (response == true){
-			
+
             // show message
             var message = 'Your app has been successfully modified!';
             WMPJSInterface.Loader.display({message: message});
-            
+
 		} else {
-			
+
 			var message = 'There was an error. Please reload the page and try again.';
 			WMPJSInterface.Loader.display({message: message});
 		}
@@ -287,10 +296,10 @@ function WMP_APP_SETTINGS(){
 							aElems[j].disabled = false;
 						}
 					},300);
-		
+
 		//enable buttons
 		JSObject.addButtonsActions();
-		
+
 	}
 
 }

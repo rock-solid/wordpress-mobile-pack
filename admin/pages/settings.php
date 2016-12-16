@@ -50,6 +50,15 @@
                         <div class="field-message error" id="error_ganalyticsid_container"></div>
                         <div class="spacer-20"></div>
 
+						<p>Tablets opt-in:</p>
+						<div class="spacer-10"></div>
+						<?php $enable_tablets = WMobilePack_Options::get_setting('enable_tablets'); ?>
+
+						<input type="hidden" name="wmp_editsettings_enable_tablets" id="wmp_editsettings_enable_tablets" value="<?php echo $enable_tablets;?>" />
+						<input type="checkbox" name="wmp_enable_tablets_check" id="wmp_enable_tablets_check" value="0" <?php if ($enable_tablets == 1) echo "checked" ;?> /><label for ="wmp_enable_tablets_check">Display on iOS and Android tablets</label>
+
+						<div class="spacer-20"></div>
+
                         <p>Menu options:</p>
                         <div class="spacer-10"></div>
                         <?php $display_website_link = WMobilePack_Options::get_setting('display_website_link'); ?>
