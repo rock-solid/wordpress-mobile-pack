@@ -31,7 +31,7 @@ define('WMP_APPTICLES_TRACKING_SSL','https://api.appticles.com/content1/wptracki
 
 define("WMP_APPTICLES_PREVIEW_DOMAIN", "app.appticles.com");
 
-define("WMP_APPTICLES_PRO_LINK", "https://www.appticles.com/wordpress-mobile-pack-pro.html");
+define("WMP_APPTICLES_PRO_LINK", "https://wpmobilepack.com");
 
 // define the string used for generating comments tokens (can be overwritten for increasing security)
 define('WMP_CODE_KEY','asdc%/dfr_A!8792*');
