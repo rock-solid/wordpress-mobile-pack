@@ -129,6 +129,34 @@ if (!class_exists('MobileDetectFreeTest')) {
             }
         }
 
+		/**
+         * Tablets should be allowed if the 'enable tablets' option is set
+         */
+        function test_tablets_enabled()
+        {
+
+			update_option('wmpack_enable_tablets', 1);
+
+            $WMobileDetect = $this->getMockBuilder('WMobilePack_Detect')
+                ->setMethods(array('set_load_app_cookie'))
+                ->getMock();
+
+            $WMobileDetect->expects($this->exactly(count(self::$tabletsUserAgents)))
+                ->method('set_load_app_cookie')
+                ->will($this->returnValue(true));
+
+            // test smartphones
+            foreach (self::$tabletsUserAgents as $user_agent) {
+
+                $_SERVER['HTTP_USER_AGENT'] = $user_agent;
+                $load_app = $WMobileDetect->detect_device();
+
+                $this->assertEquals(false, $load_app);
+            }
+
+			update_option('wmpack_enable_tablets', 0);
+        }
+
         /**
          * Desktop devices should not be allowed
          */
