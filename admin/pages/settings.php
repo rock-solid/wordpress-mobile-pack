@@ -55,7 +55,8 @@
 						<?php $enable_tablets = WMobilePack_Options::get_setting('enable_tablets'); ?>
 
 						<input type="hidden" name="wmp_editsettings_enable_tablets" id="wmp_editsettings_enable_tablets" value="<?php echo $enable_tablets;?>" />
-						<input type="checkbox" name="wmp_enable_tablets_check" id="wmp_enable_tablets_check" value="0" <?php if ($enable_tablets == 1) echo "checked" ;?> /><label for ="wmp_enable_tablets_check">Display on iOS and Android tablets</label>
+						<input type="checkbox" name="wmp_enable_tablets_check" id="wmp_enable_tablets_check" value="0" <?php if ($enable_tablets == 1) echo "checked" ;?> />
+						<label for ="wmp_enable_tablets_check">Display on iPad and Android tablets</label>
 
 						<div class="spacer-20"></div>
 
