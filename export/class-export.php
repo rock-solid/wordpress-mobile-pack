@@ -76,15 +76,18 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
 				if ($full_url && is_array($image_metadata) && !empty($image_metadata)) {
 
-					$thumbnail = isset($image_metadata['sizes']['medium_large']) ? $image_metadata['sizes']['medium_large'] : $image_metadata['sizes']['large'];
-
-                    if (isset($thumbnail['file']) && isset($thumbnail['width']) && isset($thumbnail['height'])) {
-
-						return array(
-                            "src" => str_replace(basename($full_url), $thumbnail['file'], $full_url),
-                            "width" => $thumbnail['width'],
-                            "height" => $thumbnail['height']
-                        );
+					if (isset($image_metadata['sizes']) && is_array($image_metadata['sizes'])){
+						
+						$thumbnail = isset($image_metadata['sizes']['medium_large']) ? $image_metadata['sizes']['medium_large'] : $image_metadata['sizes']['large'];
+	
+						if (isset($thumbnail['file']) && isset($thumbnail['width']) && isset($thumbnail['height'])) {
+	
+							return array(
+								"src" => str_replace(basename($full_url), $thumbnail['file'], $full_url),
+								"width" => $thumbnail['width'],
+								"height" => $thumbnail['height']
+							);
+						}
 					}
 
 					if (isset($image_metadata['width']) && isset($image_metadata['height'])) {
