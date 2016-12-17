@@ -145,13 +145,13 @@ if (!class_exists('MobileDetectFreeTest')) {
                 ->method('set_load_app_cookie')
                 ->will($this->returnValue(true));
 
-            // test smartphones
+            // test tablets
             foreach (self::$tabletsUserAgents as $user_agent) {
 
                 $_SERVER['HTTP_USER_AGENT'] = $user_agent;
                 $load_app = $WMobileDetect->detect_device();
 
-                $this->assertEquals(false, $load_app);
+                $this->assertEquals(true, $load_app);
             }
 
 			update_option('wmpack_enable_tablets', 0);
