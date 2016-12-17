@@ -344,25 +344,26 @@ class ExportPagesTest extends WP_UnitTestCase
 
         $export = new WMobilePack_Export();
         $data = json_decode($export->export_pages(), true);
-
+    
         $this->assertArrayHasKey('pages', $data);
         $this->assertEquals(3, count($data['pages']));
+        
         $this->assertEquals($post_id2, $data['pages'][0]['id']);
         $this->assertEquals(1, $data['pages'][0]['order']);
         $this->assertEquals(0, $data['pages'][0]['parent_id']);
         $this->assertEquals('b', $data['pages'][0]['title']);
         $this->assertEquals('', $data['pages'][0]['content']);
 
-        // order=2 is skipped because page 'c' is password protected
         // even is page 'a' appears first in the array, its order is higher than page 'd'
+        // because 'd' is a child of page 'b'
         $this->assertEquals($post_id, $data['pages'][1]['id']);
-        $this->assertEquals(4, $data['pages'][1]['order']);
+        $this->assertEquals(3, $data['pages'][1]['order']);
         $this->assertEquals(0, $data['pages'][1]['parent_id']);
         $this->assertEquals('a', $data['pages'][1]['title']);
         $this->assertEquals('', $data['pages'][1]['content']);
 
         $this->assertEquals($post_id4, $data['pages'][2]['id']);
-        $this->assertEquals(3, $data['pages'][2]['order']);
+        $this->assertEquals(2, $data['pages'][2]['order']);
         $this->assertEquals($post_id2, $data['pages'][2]['parent_id']);
         $this->assertEquals('d', $data['pages'][2]['title']);
         $this->assertEquals('', $data['pages'][2]['content']);
