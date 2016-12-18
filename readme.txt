@@ -162,6 +162,7 @@ There are almost 50,000 plugins in the WordPress.org repository. It's impossible
 * Optimize posts and pages featured images, use thumbnail if it exists
 * Optimize pages loading, exclude pages that belong to an inactive parent page
 * Fix display for images included in a div tag with fixed height
+* Fix for bug that hides tiny-mce dropdown in post edit view
 
 = 2.2.6 =		
 * Add Facebook, Twitter and Google+ share buttons for posts. Social media settings are edited from the plugin's admin panel.
