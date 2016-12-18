@@ -850,7 +850,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
             ->will($this->returnValue($cat));
 
         $this->assertEquals(
-            '{"categories":[],"page":"5465","rows":"5","wpmp":"2.2.6"}',
+            '{"categories":[],"page":"5465","rows":"5","wpmp":"2.2.7"}',
             $export_class->export_categories()
             );
 
