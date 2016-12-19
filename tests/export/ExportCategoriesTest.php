@@ -790,7 +790,21 @@ class ExportCategoriesTest extends WP_UnitTestCase
             )
         );
 
-        $cat = get_categories('hide_empty=0');
+		$article1 = $this->factory->post->create(
+			array(
+				'post_category' => array($visible_cat_id)
+			)
+		);
+
+		$article2 = $this->factory->post->create(
+			array(
+				'post_category' => array($visible_cat_id2)
+			)
+		);
+
+
+        $cat = get_categories();
+
         unset($cat[0]);
         $cat = array_values($cat);
 
@@ -838,7 +852,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
                 'name' => 'Visible Test Category 3'
             )
         );
-        $cat = get_categories('hide_empty=0');
+        $cat = get_categories();
         unset($cat[0]);
         $cat = array_values($cat);
         $export_class = $this->getMockBuilder('WMobilePack_Export')
