@@ -357,13 +357,13 @@ class ExportPagesTest extends WP_UnitTestCase
         // even is page 'a' appears first in the array, its order is higher than page 'd'
         // because 'd' is a child of page 'b'
         $this->assertEquals($post_id, $data['pages'][1]['id']);
-        $this->assertEquals(3, $data['pages'][1]['order']);
+        $this->assertEquals(get_bloginfo('version') >= 3.9 ? 3 : 4, $data['pages'][1]['order']);
         $this->assertEquals(0, $data['pages'][1]['parent_id']);
         $this->assertEquals('a', $data['pages'][1]['title']);
         $this->assertEquals('', $data['pages'][1]['content']);
 
         $this->assertEquals($post_id4, $data['pages'][2]['id']);
-        $this->assertEquals(2, $data['pages'][2]['order']);
+        $this->assertEquals(get_bloginfo('version') >= 3.9 ? 2 : 3, $data['pages'][2]['order']);
         $this->assertEquals($post_id2, $data['pages'][2]['parent_id']);
         $this->assertEquals('d', $data['pages'][2]['title']);
         $this->assertEquals('', $data['pages'][2]['content']);
