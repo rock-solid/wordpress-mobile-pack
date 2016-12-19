@@ -223,6 +223,48 @@
                 <div class="spacer-0"></div>
             </div>
 
+			<?php
+				// Get premium monetize message from the more json
+
+				if  (is_array($upgrade_content) && !empty($upgrade_content)):
+
+					if (array_key_exists('premium', $upgrade_content) && is_array($upgrade_content['premium'])):
+
+						if (array_key_exists('monetize', $upgrade_content['premium']) && is_array($upgrade_content['premium']['monetize'])):
+
+							if (array_key_exists('title', $upgrade_content['premium']['monetize']) &&
+								array_key_exists('buy', $upgrade_content['premium']['monetize'])):
+			?>
+								<div class="spacer-15"></div>
+								<div class="details">
+									<div class="display-mode">
+										<h2 class="title"><?php echo $upgrade_content['premium']['monetize']['title'];?>
+										<div class="spacer-20"></div>
+
+										<?php
+											if (array_key_exists('description', $upgrade_content['premium']['monetize'])){
+												echo $upgrade_content['premium']['monetize']['description'];
+											}
+										?>
+										<div class="spacer-10"></div>
+										<?php
+											if (is_array($upgrade_content['premium']['monetize']['buy']) &&
+											    array_key_exists('link', $upgrade_content['premium']['monetize']['buy']) &&
+												array_key_exists('text', $upgrade_content['premium']['monetize']['buy'])):
+										?>
+											<a href="<?php echo esc_attr($upgrade_content['premium']['monetize']['buy']['link']);?>" target="_blank" class="btn orange smaller">
+												<?php echo $upgrade_content['premium']['monetize']['buy']['text']; ?>
+											</a>
+										<?php endif;?>
+									</div>
+									<div class="spacer-0"></div>
+								</div>
+			<?php
+							endif;
+						endif;
+					endif;
+				endif;
+			?>
             <div class="spacer-15"></div>
             <div class="details">
             	<div class="display-mode">
