@@ -1,7 +1,7 @@
 === WordPress Mobile Pack - Mobile Plugin for Progressive Web Apps & Hybrid Mobile Apps ===
 Contributors: jamesgpearce, andreatrasatti, edent, cborodescu, anghelalexandra
 Tags: android, iOS, html5, iphone, mobile, mobile internet, mobile web, mobile web app, responsive ui, safari, sencha touch, smartphone, webkit, progressive web apps, app builder, apple, apps, convert to app, create blog app, ios app, ipad, make an app, mobile app plugin, mobile application, mobile blog app, mobile converter, mobile plugin, native app plugin, app theme, website to mobile app, WordPress android, WordPress app, WordPress iphone, WordPress mobile, WordPress mobile app
-Requires at least: 3.5
+Requires at least: 3.6
 Tested up to: 4.7
 Stable tag: 2.2.7
 License: GPLv2 or later
@@ -14,7 +14,7 @@ Mobile plugin to package your content into a progressive web app, build a hybrid
 
 WordPress Mobile Pack is **supported on** iOS and Android smartphones and tablets. **Compatible browsers**: Safari, Google Chrome, Android - Native Browser.
 
-The pack has been tested on WordPress 3.5 and later. Please read the [Known issues and limitations](https://wordpress.org/plugins/wordpress-mobile-pack/other_notes/) list before installing.
+The pack has been tested on WordPress 3.6 and later. Please read the [Known issues and limitations](https://wordpress.org/plugins/wordpress-mobile-pack/other_notes/) list before installing.
 
 What the WordPress Mobile Pack 2.0+ enables you to do:
 
@@ -70,7 +70,7 @@ Have fun on your mobile adventures.
 
 == Installation ==
 
-= Simple installation for WordPress v3.5 and later =
+= Simple installation for WordPress v3.6 and later =
 
 1.  Go to the 'Plugins' / 'Add new' menu
 1.	Upload wordpress-mobile-pack.zip then press 'Install now'.

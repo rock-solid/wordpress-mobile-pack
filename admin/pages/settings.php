@@ -48,7 +48,7 @@
                         <div class="spacer-10"></div>
                         <input type="text" name="wmp_editsettings_ganalyticsid" id="wmp_editsettings_ganalyticsid" placeholder="UA-000000-01" class="small indent" value="<?php echo WMobilePack_Options::get_setting('google_analytics_id');?>" />
                         <div class="field-message error" id="error_ganalyticsid_container"></div>
-                        <div class="spacer-20"></div>
+                        <div class="spacer-30"></div>
 
 						<p>Tablets opt-in:</p>
 						<div class="spacer-10"></div>
@@ -58,7 +58,7 @@
 						<input type="checkbox" name="wmp_enable_tablets_check" id="wmp_enable_tablets_check" value="0" <?php if ($enable_tablets == 1) echo "checked" ;?> />
 						<label for ="wmp_enable_tablets_check">Display on iPad and Android tablets</label>
 
-						<div class="spacer-20"></div>
+						<div class="spacer-30"></div>
 
                         <p>Menu options:</p>
                         <div class="spacer-10"></div>
@@ -67,7 +67,7 @@
                         <input type="hidden" name="wmp_editsettings_displaywebsitelink" id="wmp_editsettings_displaywebsitelink" value="<?php echo $display_website_link;?>" />
                         <input type="checkbox" name="wmp_displaywebsitelink_check" id="wmp_displaywebsitelink_check" value="1" <?php if ($display_website_link == 1) echo "checked" ;?> /><label for="wmp_displaywebsitelink_check">Display "Visit website" link</label>
 
-                        <div class="spacer-20"></div>
+                        <div class="spacer-30"></div>
 
                         <?php
                             $selected_theme = WMobilePack_Options::get_setting('theme');
@@ -103,6 +103,11 @@
                             By adding your <strong>Google Analytics ID</strong>, you will be able to track the mobile web application's visitors directly in your Google Analytics account.
                         </span>
                     </div>
+					<div class="notice notice-left right" style="width: 465px; margin: 10px 0 15px 0;">
+                        <span>
+							Clear mobile browser cache before testing tablets settings.
+						</span>
+                    </div>
                     <?php if (WMobilePack_Themes_Config::$color_schemes[$selected_theme]['posts_per_page'] == 1):?>
                         <div class="notice notice-left right" style="width: 465px; margin: 70px 0 15px 0;">
                             <span>
@@ -113,7 +118,51 @@
                 </div>
                 <div class="spacer-0"></div>
             </div>
-            <div class="spacer-15"></div>
+			<div class="spacer-15"></div>
+
+			<?php
+				// Get premium monetize message from the more json
+				$upgrade_content = WMobilePack_Admin::more_updates();
+
+				if  (is_array($upgrade_content) && !empty($upgrade_content)):
+
+					if (array_key_exists('premium', $upgrade_content) && is_array($upgrade_content['premium'])):
+
+						if (array_key_exists('monetize', $upgrade_content['premium']) && is_array($upgrade_content['premium']['monetize'])):
+
+							if (array_key_exists('title', $upgrade_content['premium']['monetize']) &&
+								array_key_exists('buy', $upgrade_content['premium']['monetize'])):
+			?>
+								<div class="details">
+									<div class="display-mode">
+										<h2 class="title"><?php echo $upgrade_content['premium']['monetize']['title'];?>
+										<div class="spacer-20"></div>
+
+										<?php
+											if (array_key_exists('description', $upgrade_content['premium']['monetize'])){
+												echo $upgrade_content['premium']['monetize']['description'];
+											}
+										?>
+										<div class="spacer-10"></div>
+										<?php
+											if (is_array($upgrade_content['premium']['monetize']['buy']) &&
+											    array_key_exists('link', $upgrade_content['premium']['monetize']['buy']) &&
+												array_key_exists('text', $upgrade_content['premium']['monetize']['buy'])):
+										?>
+											<a href="<?php echo esc_attr($upgrade_content['premium']['monetize']['buy']['link']);?>" target="_blank" class="btn orange smaller">
+												<?php echo $upgrade_content['premium']['monetize']['buy']['text']; ?>
+											</a>
+										<?php endif;?>
+									</div>
+									<div class="spacer-0"></div>
+								</div>
+								<div class="spacer-15"></div>
+			<?php
+							endif;
+						endif;
+					endif;
+				endif;
+			?>
 
             <a name="verifyapikey"></a>
             <div class="details">
@@ -124,8 +173,6 @@
 						$premium_link = '';
 
 						// Get premium link from the more json
-						$upgrade_content = WMobilePack_Admin::more_updates();
-
 						if  (is_array($upgrade_content) && !empty($upgrade_content)){
 
 							if (array_key_exists('premium', $upgrade_content)) {

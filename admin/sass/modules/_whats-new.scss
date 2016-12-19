@@ -5,17 +5,41 @@
 			width: 100%;
 			display: table;
 			vertical-align: top;
-			
-			
+
+
 			.details{
 				padding:30px;
-				background-color: $box-color; 
+				background-color: $box-color;
 
                 &.waitlist {
                     padding-top: 0px;
 
+					.waitlist-subscribe {
+						border: 2px dotted $base-green;
+						background: #f4f4f4;
+						padding: 20px;
+						margin: 0 20px 0 20px;
+
+						p {
+							text-align: center;
+						}
+
+						form {
+							float: none;
+							text-align: center;
+
+							.error {
+								width: 220px;
+								margin: 0 auto;
+							}
+
+							.btn {
+                        		margin: 0 auto;
+							}
+						}
+					}
                     .added {
-                        margin: inherit;
+                        margin: 0 auto;
                     }
                 }
 
