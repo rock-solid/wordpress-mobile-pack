@@ -46,9 +46,13 @@ if (!class_exists('WMobilePack_Detect')) {
                 $premium_manager = $this->get_premium_manager();
                 $arr_config_premium = $premium_manager->get_premium_config();
 
-                if ($arr_config_premium !== null && array_key_exists('tablet', $arr_config_premium))
+                if ($arr_config_premium !== null && array_key_exists('tablet', $arr_config_premium)){
                     return 1;
-            }
+				}
+
+            } elseif (WMobilePack_Options::get_setting('enable_tablets') == 1) {
+				return 1;
+			}
 
             return 0;
         }

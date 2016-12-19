@@ -1,12 +1,12 @@
-=== WordPress Mobile Pack - Mobile Plugin for Progressive Web Apps ===
+=== WordPress Mobile Pack - Mobile Plugin for Progressive Web Apps & Hybrid Mobile Apps ===
 Contributors: jamesgpearce, andreatrasatti, edent, cborodescu, anghelalexandra
 Tags: android, iOS, html5, iphone, mobile, mobile internet, mobile web, mobile web app, responsive ui, safari, sencha touch, smartphone, webkit, progressive web apps, app builder, apple, apps, convert to app, create blog app, ios app, ipad, make an app, mobile app plugin, mobile application, mobile blog app, mobile converter, mobile plugin, native app plugin, app theme, website to mobile app, WordPress android, WordPress app, WordPress iphone, WordPress mobile, WordPress mobile app
-Requires at least: 3.5
-Tested up to: 4.6.1
-Stable tag: 2.2.6
+Requires at least: 3.6
+Tested up to: 4.7
+Stable tag: 2.2.7
 License: GPLv2 or later
 
-WordPress Mobile Pack is a mobile plugin that helps you transform your website's content into a progressive mobile web application.
+Mobile plugin to package your content into a progressive web app, build a hybrid mobile app and submit it to App Stores. Multiple mobile app themes.
 
 == Description ==
 
@@ -14,7 +14,7 @@ WordPress Mobile Pack is a mobile plugin that helps you transform your website's
 
 WordPress Mobile Pack is **supported on** iOS and Android smartphones and tablets. **Compatible browsers**: Safari, Google Chrome, Android - Native Browser.
 
-The pack has been tested on WordPress 3.5 and later. Please read the [Known issues and limitations](https://wordpress.org/plugins/wordpress-mobile-pack/other_notes/) list before installing.
+The pack has been tested on WordPress 3.6 and later. Please read the [Known issues and limitations](https://wordpress.org/plugins/wordpress-mobile-pack/other_notes/) list before installing.
 
 What the WordPress Mobile Pack 2.0+ enables you to do:
 
@@ -29,27 +29,27 @@ What the WordPress Mobile Pack 2.0+ enables you to do:
 
 * **Responsive UI**. The mobile web application is sensitive to various screen sizes and orientation changes: landscape, portrait. In other words, the look and feel of the mobile web app seamlessly morphs into the screen size of users' devices.
 
-* **App Themes**. You can offer your users an exceptional reading experience by giving them a mobile web application with a native app-like look & feel. The default theme comes with 6 abstract covers that are randomly displayed on the loading screen to give the app a magazine flavour. More app themes available in [WordPress Mobile Pack PRO](https://www.appticles.com/wordpress-mobile-pack-pro.html).
+* **App Themes**. You can offer your users an exceptional reading experience by giving them a mobile web application with a native app-like look & feel. The default theme comes with 6 abstract covers that are randomly displayed on the loading screen to give the app a magazine flavour. More app themes available in [WordPress Mobile Pack PRO](https://wpmobilepack.com).
 
-* **Customize appearance**. Once a favorite theme has been selected, you can customize the colors & fonts, add your logo and graphic elements that can relate to your blog's identity. More customization options available in [WordPress Mobile Pack PRO](https://www.appticles.com/wordpress-mobile-pack-pro.html).
+* **Customize appearance**. Once a favorite theme has been selected, you can customize the colors & fonts, add your logo and graphic elements that can relate to your blog's identity. More customization options available in [WordPress Mobile Pack PRO](https://wpmobilepack.com).
 
 * **Posts Sync**. The articles/posts inside the mobile web application are organized into their corresponding categories, thus readers can simply swipe through articles and jump from category to category in a seamless way.
 
 * **Pages Sync**. Choose what pages you want to display on your mobile web application. You can edit, show/hide different pages and order them according to your needs. 
 
-* **Comments Sync**. All the comments that are displayed in the blog are also synchronized into the mobile web application. On top of that, comments that are posted from within the app are also displayed on the blog. Social media features are available in [WordPress Mobile Pack PRO](https://www.appticles.com/wordpress-mobile-pack-pro.html).
+* **Comments Sync**. All the comments that are displayed in the blog are also synchronized into the mobile web application. On top of that, comments that are posted from within the app are also displayed on the blog. Social media features are available in [WordPress Mobile Pack PRO](https://wpmobilepack.com).
 
 * **Analytics**. WordPress Mobile Pack easily integrates with Google Analytics.
 
 * **Add to Homescreen**. Readers can add the mobile web application to their homescreen and run it in full-screen mode.
 
-WordPress Mobile Pack also comes with a  **PRO version** suitable for **professional bloggers, publishing companies with multiple publications** in their portfolio or web agencies. Some of the benefits of using [WordPress Mobile Pack PRO](https://www.appticles.com/wordpress-mobile-pack-pro.html) are:
+WordPress Mobile Pack also comes with a  **PRO version** suitable for **professional bloggers, publishing companies with multiple publications** in their portfolio or web agencies. Some of the benefits of using [WordPress Mobile Pack PRO](https://wpmobilepack.com) are:
 
 * **Customize your mobile web app's appearance** to resemble your brand identity. 
 
-* Since mobile web apps don't have any shared revenue constraints, you can **take full control of your income**. [Wordpress Mobile Pack PRO](https://www.appticles.com/wordpress-mobile-pack-pro.html) allows you to easily connect with your Google DFP & AdSense campaigns. 
+* Since mobile web apps don't have any shared revenue constraints, you can **take full control of your income**. [Wordpress Mobile Pack PRO](https://wpmobilepack.com) allows you to easily connect with your Google DFP & AdSense campaigns. 
 
-* We take pride in offering fantastic [Wordpress Mobile Pack PRO](https://www.appticles.com/wordpress-mobile-pack-pro.html) **maintenance and hands-on support**. Our team of friendly mobile web experts makes sure technology doesn't stand in your way. 
+* We take pride in offering fantastic [Wordpress Mobile Pack PRO](https://wpmobilepack.com) **maintenance and hands-on support**. Our team of friendly mobile web experts makes sure technology doesn't stand in your way. 
 
 * **Access to multiple app themes** that can be purchased individually or as a bundle: BASE, MOSAIC, OBLIQ, ELEVATE, FOLIO, INVISION, POPSICLE, PULSE, GHOST, PHANTOM, LUCID, EXTRUDE, VEDI, BLEND, PURE, GOTHAM, FUTURE & PALM.
 
@@ -70,7 +70,7 @@ Have fun on your mobile adventures.
 
 == Installation ==
 
-= Simple installation for WordPress v3.5 and later =
+= Simple installation for WordPress v3.6 and later =
 
 1.  Go to the 'Plugins' / 'Add new' menu
 1.	Upload wordpress-mobile-pack.zip then press 'Install now'.
@@ -140,22 +140,29 @@ A responsive theme is all about screen-size: it loads the same styling as the de
 1.  Secured via HTTPS.
 
 = Am I able to use my own theme or customize the existing one? =
-WordPress Mobile Pack uses a variety of open source JavaScript frameworks from Sencha Touch to Angular/Ionic or React, that mimics a native app interface. Because of that, the app themes we've developed are not regular PHP based themes that can be easily customized by editing the source. It is still possible to make small changes (not recommended), but changing the theme structure will require advance knowledge. We're happy to assist if you're looking for a custom type of application - [please get in touch](https://www.appticles.com/contact.html) with us. 
+WordPress Mobile Pack uses a variety of open source JavaScript frameworks from Sencha Touch to Angular/Ionic or React, that mimics a native app interface. Because of that, the app themes we've developed are not regular PHP based themes that can be easily customized by editing the source. It is still possible to make small changes (not recommended), but changing the theme structure will require advance knowledge. We're happy to assist if you're looking for a custom type of application - [please get in touch](https://wpmobilepack.com/contact.html) with us. 
 
 = Am I able to add Javascript code inside the theme? =
 Adding tracking scripts in the source is possible if you place them in the section of the theme files. However, code that is placed inside the posts will not be executed. The theme is implemented enterily in JavaScript and that would mean JavaScript code inside another JavaScript code.
 
 = Am I able to integrate my own advertisement? =
-Google Ad Sense / Google Double Click for Publishers is supported on the PRO version as of v2.1. [Please get in touch](https://www.appticles.com/contact.html) if you want us to integrate with another 3rd party ad provider. 
+Google Ad Sense / Google Double Click for Publishers is supported on the PRO version as of v2.1. [Please get in touch](https://wpmobilepack.com/contact.html) if you want us to integrate with another 3rd party ad provider. 
 
 = What is a progressive web app? = 
 Please refer to this comprehensive article about it: https://www.appticles.com/blog/2016/09/progressive-web-apps-for-publishers/.
 
 = Why some 3rd party plugins are not visible on any of the app themes? =
-There are almost 50,000 plugins in the WordPress.org repository. It's impossible to support all of them. [Please get in touch](https://www.appticles.com/contact.html) if you want us to integrate with another 3rd party plugin. 
+There are almost 50,000 plugins in the WordPress.org repository. It's impossible to support all of them. [Please get in touch](https://wpmobilepack.com/contact.html) if you want us to integrate with another 3rd party plugin. 
 
 
 == Changelog ==
+
+= 2.2.7 =
+* Add opt-in for enabling mobile theme on tablets
+* Optimize posts and pages featured images, use thumbnail if it exists
+* Optimize pages loading, exclude pages that belong to an inactive parent page
+* Fix display for images included in a div tag with fixed height
+* Fix for bug that hides tiny-mce dropdown in post edit view
 
 = 2.2.6 =		
 * Add Facebook, Twitter and Google+ share buttons for posts. Social media settings are edited from the plugin's admin panel.
@@ -365,8 +372,8 @@ Two major issues were introduced in beta 1, now solved:
 
 == Upgrade Notice ==
 
-= 2.2.6 =
-* WordPress Mobile Pack allows you to 'package' your existing content into a cross-platform mobile web application. The latest version comes with Facebook, Twitter and Google Plus share buttons for posts.
+= 2.2.7 =
+* WordPress Mobile Pack packages your content into a progressive web app or a hybrid mobile app that can submitted to App Stores. The latest version comes with an opt-in for activating the mobile theme on iPad and Android tablets.
 
 == Screenshots ==
 

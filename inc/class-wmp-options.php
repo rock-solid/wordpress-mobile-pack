@@ -44,6 +44,7 @@ if ( ! class_exists( 'WMobilePack_Options' ) ) {
             // other settings
             'display_mode' => 'normal',
             'google_analytics_id' => '',
+			'enable_tablets' => 0,
             'display_website_link' => 1,
             'posts_per_page' => 'auto',
 

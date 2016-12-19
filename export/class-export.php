@@ -67,28 +67,41 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
          */
         protected function get_post_image($post_id)
         {
-
-            $image_details = array();
-
             if (has_post_thumbnail($post_id)) {
 
-                $post_thumbnail_id = get_post_thumbnail_id($post_id);
-                $image_metadata = wp_get_attachment_metadata($post_thumbnail_id, true);
+				$post_thumbnail_id = get_post_thumbnail_id($post_id);
+				$full_url  = wp_get_attachment_url($post_thumbnail_id);
 
-                if (is_array($image_metadata) && !empty($image_metadata)) {
+				$image_metadata = wp_get_attachment_metadata($post_thumbnail_id, true);
 
-                    if (isset($image_metadata['width']) && isset($image_metadata['height'])) {
+				if ($full_url && is_array($image_metadata) && !empty($image_metadata)) {
 
-                        $image_details = array(
-                            "src" => wp_get_attachment_url($post_thumbnail_id),
+					if (isset($image_metadata['sizes']) && is_array($image_metadata['sizes'])){
+						
+						$thumbnail = isset($image_metadata['sizes']['medium_large']) ? $image_metadata['sizes']['medium_large'] : $image_metadata['sizes']['large'];
+	
+						if (isset($thumbnail['file']) && isset($thumbnail['width']) && isset($thumbnail['height'])) {
+	
+							return array(
+								"src" => str_replace(basename($full_url), $thumbnail['file'], $full_url),
+								"width" => $thumbnail['width'],
+								"height" => $thumbnail['height']
+							);
+						}
+					}
+
+					if (isset($image_metadata['width']) && isset($image_metadata['height'])) {
+
+                        return array(
+                            "src" => $full_url,
                             "width" => $image_metadata['width'],
                             "height" => $image_metadata['height']
                         );
                     }
-                }
+				}
             }
 
-            return $image_details;
+            return array();
         }
 
 
@@ -1356,32 +1369,6 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
         /**
          *
-         * Return array with the pages keys, ordered by hierarchy.
-         * Child pages will be excluded if their parents are hidden.
-         *
-         * @param int $limit
-         * @return array
-         *
-         */
-        protected function get_pages_order($limit = 100){
-
-            $all_pages = get_pages(
-                array(
-                    'sort_column' => 'menu_order,post_title',
-                    'exclude' => implode(',', $this->inactive_pages),
-                    'post_status' => 'publish',
-                    'post_type' => 'page',
-                    'number' => $limit
-                )
-            );
-
-            $order_pages = array_keys(get_page_hierarchy($all_pages));
-            return $order_pages;
-        }
-
-
-        /**
-         *
          *  The exportPages method is used for exporting all the visible pages.
          *
          *  This method returns a JSON with the following format:
@@ -1425,12 +1412,12 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
             );
 
             if (get_bloginfo('version') >= 3.6) {
+
+				$args['post_parent__not_in'] = $this->inactive_pages;
+
                 $args['orderby'] = 'menu_order title';
                 $args['order'] = 'ASC';
             }
-
-            // get array with the ordered pages by hierarchy
-            $order_pages = $this->get_pages_order($limit);
 
             // remove inline style for the photos types of posts
             add_filter('use_default_gallery_style', '__return_false');
@@ -1439,26 +1426,28 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
             if ($pages_query->have_posts()) {
 
-                while ($pages_query->have_posts()) {
+				// get array with the ordered pages by hierarchy
+				$order_pages = array_keys(get_page_hierarchy($pages_query->posts));
 
-                    $pages_query->the_post();
-                    $page = $pages_query->post;
+				if (!empty($order_pages)) {
 
-                    if ($page->post_type == 'page' && $page->post_password == '' && $page->post_status == 'publish') {
+					while ($pages_query->have_posts()) {
 
-                        // if the page has a title that is not empty
-                        if (strip_tags(trim(get_the_title())) != '') {
+						$pages_query->the_post();
+						$page = $pages_query->post;
 
-                            // read featured image
-                            $image_details = $this->get_post_image($page->ID);
+						if ($page->post_type == 'page' && $page->post_password == '' && $page->post_status == 'publish') {
 
-                            if (get_option(WMobilePack_Options::$prefix.'page_' . $page->ID) === false)
-                                $content = apply_filters("the_content", $page->post_content);
-                            else
-                                $content = apply_filters("the_content", get_option(WMobilePack_Options::$prefix.'page_' . $page->ID));
+							// if the page has a title that is not empty
+							if (strip_tags(trim(get_the_title())) != '') {
 
-                            // if we have a pages hierarchy, use the order from that array
-                            if (!empty($order_pages)) {
+								// read featured image
+								$image_details = $this->get_post_image($page->ID);
+
+								if (get_option(WMobilePack_Options::$prefix.'page_' . $page->ID) === false)
+									$content = apply_filters("the_content", $page->post_content);
+								else
+									$content = apply_filters("the_content", get_option(WMobilePack_Options::$prefix.'page_' . $page->ID));
 
                                 // if the page and its parent are visible, they should exist in the order array
                                 $index_order = array_search($page->ID, $order_pages);

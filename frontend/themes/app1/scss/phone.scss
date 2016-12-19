@@ -8556,6 +8556,8 @@ a {
   margin: 5px auto 10px auto;
   font-size: 0;
   display: block;
+  max-width: 100% !important;
+  height: auto !important;
 }
 
 .articles-panel .article-card .article-image {
@@ -8621,6 +8623,13 @@ a {
 .articles-panel .article-card .content strong {
   font-family: $paragraphs-font;
   font-weight: bold;
+}
+
+.articles-panel .article-card .content div {
+  max-width: 100% !important;
+  height: auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 
@@ -10253,6 +10262,8 @@ a {
   margin: 5px auto 10px auto;
   font-size: 0;
   display: block;
+  max-width: 100% !important;
+  height: auto !important;
 }
 
 .page-panel .article-image {

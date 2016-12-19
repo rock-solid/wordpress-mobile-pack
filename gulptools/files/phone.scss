@@ -9347,12 +9347,14 @@ a {
   margin: 5px auto 10px auto;
   font-size: 0;
   display: block;
+  max-width: 100% !important;
+  height: auto !important;
 }
-/* line 163, ../../themes/phone/modules/_articles.scss */
+/* line 166, ../../themes/phone/modules/_articles.scss */
 .articles-panel .article-card .article-image {
   background: #ff0003;
 }
-/* line 166, ../../themes/phone/modules/_articles.scss */
+/* line 169, ../../themes/phone/modules/_articles.scss */
 .articles-panel .article-card .article-image > div {
   margin-bottom: 0px;
   background-position: center top;
@@ -9362,12 +9364,12 @@ a {
   -o-background-size: auto 101%;
   background-size: auto 101%;
 }
-/* line 173, ../../themes/phone/modules/_articles.scss */
+/* line 176, ../../themes/phone/modules/_articles.scss */
 .articles-panel .article-card .article-image-media {
   margin-bottom: 10px;
   background: #ff0003;
 }
-/* line 177, ../../themes/phone/modules/_articles.scss */
+/* line 180, ../../themes/phone/modules/_articles.scss */
 .articles-panel .article-card .article-image-media > div:first-child {
   margin-bottom: 0px;
   background-position: center center;
@@ -9378,7 +9380,7 @@ a {
   background-size: 100% auto;
   background-color: #ff0002;
 }
-/* line 185, ../../themes/phone/modules/_articles.scss */
+/* line 188, ../../themes/phone/modules/_articles.scss */
 .articles-panel .article-card .article-media {
   position: absolute;
   left: 0px;
@@ -9388,7 +9390,7 @@ a {
   background-repeat: no-repeat;
   background-color: transparent;
 }
-/* line 194, ../../themes/phone/modules/_articles.scss */
+/* line 197, ../../themes/phone/modules/_articles.scss */
 .articles-panel .article-card .article-media-default {
   position: absolute;
   left: 0px;
@@ -9398,7 +9400,7 @@ a {
   background-repeat: no-repeat;
   background-color: transparent;
 }
-/* line 203, ../../themes/phone/modules/_articles.scss */
+/* line 206, ../../themes/phone/modules/_articles.scss */
 .articles-panel .article-card .content {
   padding: 15px 15px 15px 15px;
   margin-bottom: 10px;
@@ -9408,10 +9410,17 @@ a {
   wbz-custom: 'font-size: $base-font-sizewbz-custom:';
   font-weight: normal;
 }
-/* line 212, ../../themes/phone/modules/_articles.scss */
+/* line 215, ../../themes/phone/modules/_articles.scss */
 .articles-panel .article-card .content strong {
   font-family: $paragraph-font;
   font-weight: bold;
+}
+/* line 219, ../../themes/phone/modules/_articles.scss */
+.articles-panel .article-card .content div {
+  max-width: 100% !important;
+  height: auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 /* line 3, ../../themes/phone/modules/_categories.scss */
@@ -11044,12 +11053,14 @@ a {
   margin: 5px auto 10px auto;
   font-size: 0;
   display: block;
+  max-width: 100% !important;
+  height: auto !important;
 }
-/* line 111, ../../themes/phone/modules/_pages.scss */
+/* line 114, ../../themes/phone/modules/_pages.scss */
 .page-panel .article-image {
   background: #ff0003;
 }
-/* line 114, ../../themes/phone/modules/_pages.scss */
+/* line 117, ../../themes/phone/modules/_pages.scss */
 .page-panel .article-image > div {
   margin-bottom: 0px;
   background-position: center top;
@@ -11059,12 +11070,12 @@ a {
   -o-background-size: auto 101%;
   background-size: auto 101%;
 }
-/* line 121, ../../themes/phone/modules/_pages.scss */
+/* line 124, ../../themes/phone/modules/_pages.scss */
 .page-panel .article-image-media {
   margin-bottom: 10px;
   background: #ff0003;
 }
-/* line 125, ../../themes/phone/modules/_pages.scss */
+/* line 128, ../../themes/phone/modules/_pages.scss */
 .page-panel .article-image-media > div:first-child {
   margin-bottom: 0px;
   background-position: center center;
@@ -11075,7 +11086,7 @@ a {
   background-size: 100% auto;
   background-color: #ff0002;
 }
-/* line 133, ../../themes/phone/modules/_pages.scss */
+/* line 136, ../../themes/phone/modules/_pages.scss */
 .page-panel .article-media {
   position: absolute;
   left: 0px;
@@ -11085,7 +11096,7 @@ a {
   background-repeat: no-repeat;
   background-color: transparent;
 }
-/* line 142, ../../themes/phone/modules/_pages.scss */
+/* line 145, ../../themes/phone/modules/_pages.scss */
 .page-panel .article-media-default {
   position: absolute;
   left: 0px;
@@ -11095,7 +11106,7 @@ a {
   background-repeat: no-repeat;
   background-color: transparent;
 }
-/* line 151, ../../themes/phone/modules/_pages.scss */
+/* line 154, ../../themes/phone/modules/_pages.scss */
 .page-panel .content {
   padding: 15px 15px 15px 15px;
   margin-bottom: 10px;
@@ -11108,16 +11119,16 @@ a {
    *  used when the first element in the content is a div with a fixed height that can affect scrolling
    */
 }
-/* line 162, ../../themes/phone/modules/_pages.scss */
+/* line 165, ../../themes/phone/modules/_pages.scss */
 .page-panel .content > div[style*="height"] {
   height: inherit !important;
 }
-/* line 166, ../../themes/phone/modules/_pages.scss */
+/* line 169, ../../themes/phone/modules/_pages.scss */
 .page-panel .content strong {
   font-family: $paragraph-font;
   font-weight: bold;
 }
-/* line 172, ../../themes/phone/modules/_pages.scss */
+/* line 175, ../../themes/phone/modules/_pages.scss */
 .page-panel .page-image .image-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -11137,7 +11148,7 @@ a {
   box-flex: 1;
   flex: 1 0 auto;
 }
-/* line 178, ../../themes/phone/modules/_pages.scss */
+/* line 181, ../../themes/phone/modules/_pages.scss */
 .page-panel .page-image .image-container .headline {
   margin: 0;
   padding: 0 15px 0 15px;
@@ -11158,14 +11169,14 @@ a {
   background: -ms-linear-gradient(bottom, #ff0002 0%, rgba(255, 0, 2, 0.8) 70%, rgba(255, 0, 2, 0.7));
   /* IE10+ */
 }
-/* line 187, ../../themes/phone/modules/_pages.scss */
+/* line 190, ../../themes/phone/modules/_pages.scss */
 .page-panel .page-image .image-container .headline h1 {
   margin: 0;
   padding: 10px 0 0 0;
   text-transform: none;
   font-weight: bold;
 }
-/* line 196, ../../themes/phone/modules/_pages.scss */
+/* line 199, ../../themes/phone/modules/_pages.scss */
 .page-panel .headline {
   margin: 0 15px;
   border-bottom: 1px solid #ff0003;
@@ -11175,7 +11186,7 @@ a {
   font-weight: normal;
   text-transform: uppercase;
 }
-/* line 205, ../../themes/phone/modules/_pages.scss */
+/* line 208, ../../themes/phone/modules/_pages.scss */
 .page-panel .headline.no-image {
   min-height: 60px;
   display: -webkit-box;
@@ -11191,14 +11202,14 @@ a {
   box-align: center;
   align-items: center;
 }
-/* line 211, ../../themes/phone/modules/_pages.scss */
+/* line 214, ../../themes/phone/modules/_pages.scss */
 .page-panel .headline.no-image .page-title {
   text-transform: none;
   font-size: 1.44rem;
   wbz-custom: 'font-size: $base-font-size * pow($multiplying-factor, 2)wbz-custom:';
   font-weight: bold;
 }
-/* line 219, ../../themes/phone/modules/_pages.scss */
+/* line 222, ../../themes/phone/modules/_pages.scss */
 .page-panel .close-x {
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
@@ -11218,11 +11229,11 @@ a {
   top: 0px !important;
   right: -20px !important;
 }
-/* line 231, ../../themes/phone/modules/_pages.scss */
+/* line 234, ../../themes/phone/modules/_pages.scss */
 .x-windowsphone.x-ie .page-panel .close-x {
   top: 8px !important;
 }
-/* line 234, ../../themes/phone/modules/_pages.scss */
+/* line 237, ../../themes/phone/modules/_pages.scss */
 .page-panel .close-x .close-icon {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -11252,15 +11263,15 @@ a {
   font-weight: normal!important;
   content: "\31";
 }
-/* line 244, ../../themes/phone/modules/_pages.scss */
+/* line 247, ../../themes/phone/modules/_pages.scss */
 .page-panel .close-x .close-icon::before {
   line-height: 38px;
 }
-/* line 247, ../../themes/phone/modules/_pages.scss */
+/* line 250, ../../themes/phone/modules/_pages.scss */
 .page-panel .close-x .close-icon.x-button-icon.x-hidden {
   display: block;
 }
-/* line 252, ../../themes/phone/modules/_pages.scss */
+/* line 255, ../../themes/phone/modules/_pages.scss */
 .page-panel .close-x.pressed .close-icon {
   width: 38px;
   height: 38px;
@@ -11268,11 +11279,11 @@ a {
   background-color: #ff0002;
   border: 1px solid #ff0007;
 }
-/* line 259, ../../themes/phone/modules/_pages.scss */
+/* line 262, ../../themes/phone/modules/_pages.scss */
 .page-panel .close-x.pressed .close-icon::before {
   line-height: 38px;
 }
-/* line 264, ../../themes/phone/modules/_pages.scss */
+/* line 267, ../../themes/phone/modules/_pages.scss */
 .page-panel .close-x .x-button-label, .page-panel .close-x .x-badge, .page-panel .close-x .x-hasbadge .x-badge, .x-hasbadge .page-panel .close-x .x-badge {
   display: none;
 }
