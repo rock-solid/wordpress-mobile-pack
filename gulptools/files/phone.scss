@@ -10189,6 +10189,11 @@ a {
   }
 }
 
+/* line 585, ../../themes/phone/modules/_categories.scss */
+.flex-fix-bug {
+  -moz-box-flex: 1 !important;
+}
+
 /* line 1, ../../themes/phone/modules/_cover.scss */
 .cover-box {
   background: none;
@@ -11933,3 +11938,4 @@ a {
     opacity: 0;
   }
 }
+

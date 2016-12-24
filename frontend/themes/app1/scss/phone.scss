@@ -9399,6 +9399,11 @@ a {
 }
 
 
+.flex-fix-bug {
+  -moz-box-flex: 1 !important;
+}
+
+
 .cover-box {
   background: none;
   width: 100%;
@@ -11137,3 +11142,4 @@ a {
     opacity: 0;
   }
 }
+
