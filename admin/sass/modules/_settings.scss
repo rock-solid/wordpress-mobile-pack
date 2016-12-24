@@ -1,16 +1,16 @@
 #wmpack-admin{
 	.settings{
 		display: table;
-	
+
 		.left-side{
 			width: 100%;
 			display: table;
 			vertical-align: top;
-			
+
 			.details{
 				padding: 30px;
-				background-color: $box-color; 
-				
+				background-color: $box-color;
+
 				h2.title{
 					font-family: 'OlRoundGothicLight', sans-serif;
 					font-size: 25px;
@@ -18,12 +18,20 @@
 					color: $base-text-color;
 				}
 				.display-mode{
-					
+
 					p, label{
 						font-family: 'AcordeRegular', sans-serif;
 						font-size:15px;
 						line-height: normal;
-						color: $base-text-color;	
+						color: $base-text-color;
+					}
+
+					.notices-container {
+						width: 465px;
+
+						.notice {
+							max-width: 90%;
+						}
 					}
 				}
 			}
