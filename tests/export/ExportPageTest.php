@@ -11,6 +11,10 @@ class ExportPageTest extends WP_UnitTestCase
         update_option('wmpack_inactive_pages', array());
     }
 
+	function tearDown(){
+        update_option('wmpack_inactive_pages', array());
+    }
+
     /**
      * Calling export_page() without a post id returns error
      */
@@ -243,5 +247,96 @@ class ExportPageTest extends WP_UnitTestCase
         // clean-up
         wp_delete_post($post_id);
 
+    }
+
+	/**
+     *
+     * Calling export_page() with hidden parent returns empty
+     *
+     */
+    function test_export_page_with_hidden_parent_returns_empty()
+    {
+        $parent_page_id = $this->factory->post->create(
+            array(
+                'post_type' => 'page',
+                'menu_order' => 1,
+                'post_title' => 'a',
+                'post_content' => 'test content'
+            )
+        );
+
+        $child_page_id = $this->factory->post->create(
+            array(
+                'post_type' => 'page',
+                'menu_order' => 2,
+                'post_title' => 'b',
+                'post_content' => 'test content',
+                'post_parent' => $parent_page_id
+            )
+        );
+
+        update_option('wmpack_inactive_pages', array($parent_page_id));
+
+		// make request and verify response
+        $_GET['pageId'] = $child_page_id;
+
+        $export = new WMobilePack_Export();
+        $data = json_decode($export->export_page(), true);
+
+        $this->assertEquals(array('page' => array()), $data);
+
+        wp_delete_post($parent_page_id);
+        wp_delete_post($child_page_id);
+    }
+
+	/**
+     *
+     * Calling export_page() with hidden grandparent returns empty
+     *
+     */
+    function test_export_page_with_hidden_grandparent_returns_empty()
+    {
+		$grandparent_page_id = $this->factory->post->create(
+            array(
+                'post_type' => 'page',
+                'menu_order' => 1,
+                'post_title' => 'a',
+                'post_content' => 'grandparent page'
+            )
+        );
+
+        $parent_page_id = $this->factory->post->create(
+            array(
+                'post_type' => 'page',
+                'menu_order' => 1,
+                'post_title' => 'b',
+                'post_content' => 'parent page',
+				'post_parent' => $grandparent_page_id
+            )
+        );
+
+        $child_page_id = $this->factory->post->create(
+            array(
+                'post_type' => 'page',
+                'menu_order' => 2,
+                'post_title' => 'c',
+                'post_content' => 'grandchild page',
+                'post_parent' => $parent_page_id
+            )
+        );
+
+        update_option('wmpack_inactive_pages', array($grandparent_page_id));
+
+		// make request and verify response
+        $_GET['pageId'] = $child_page_id;
+
+        $export = new WMobilePack_Export();
+        $data = json_decode($export->export_page(), true);
+
+        $this->assertEquals(array('page' => array()), $data);
+
+		wp_delete_post($grandparent_page_id);
+        wp_delete_post($parent_page_id);
+        wp_delete_post($child_page_id);
     }
 }
