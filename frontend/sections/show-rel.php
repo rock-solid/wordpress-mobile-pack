@@ -48,9 +48,15 @@ if (class_exists('WMobilePack')):
 
             if (!in_array($page_id, $inactive_pages)){
 
-                $is_visible = true;
+				$page_ancestors = get_post_ancestors($page_id);
 
-                $mobile_url .= "/#page/".$page_id;
+				// check if the page's ancestors are all visible
+				if (count(array_intersect($page_ancestors, $inactive_pages)) == 0){
+
+					$is_visible = true;
+
+                	$mobile_url .= "/#page/".$page_id;
+				}
             }
 
         } elseif (is_category()) {
