@@ -10,7 +10,7 @@ Mobile plugin to package your content into a progressive web app, build a hybrid
 
 == Description ==
 
-**WordPress Mobile Pack is a mobile plugin that helps you transform your website's content into a progressive mobile web application. It comes with multiple mobile app themes that you can purchase individually or as a bundle.** 
+**[WordPress Mobile Pack](https://wpmobilepack.com) is a mobile plugin that helps you transform your website's content into a progressive mobile web application. It comes with multiple mobile app themes that you can purchase individually or as a bundle.** 
 
 WordPress Mobile Pack is **supported on** iOS and Android smartphones and tablets. **Compatible browsers**: Safari, Google Chrome, Android - Native Browser.
 
