@@ -85,7 +85,9 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 							return array(
 								"src" => str_replace(basename($full_url), $thumbnail['file'], $full_url),
 								"width" => $thumbnail['width'],
-								"height" => $thumbnail['height']
+								"height" => $thumbnail['height'],
+								"full_url" => $full_url,
+								"meta_data" => $image_metadata
 							);
 						}
 					}
@@ -95,7 +97,9 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                         return array(
                             "src" => $full_url,
                             "width" => $image_metadata['width'],
-                            "height" => $image_metadata['height']
+                            "height" => $image_metadata['height'],
+							"full_url" => $full_url,
+							"meta_data" => $image_metadata
                         );
                     }
 				}
@@ -160,6 +164,23 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
             // get & filter content
             $content = apply_filters("the_content", $post->post_content);
+
+			if (isset($image_details) && !empty($image_details)) {
+
+				$file_name = basename($image_details['full_url']);
+				$path = str_replace($file_name, '', $image_details['full_url']);
+
+				$content = preg_replace( '!(<a\s[^>]+>)?<img([^>]+)src="'.$image_details['full_url'].'"([^>]*)>(</a>)?!i' , '' , $content );
+
+				if (isset($image_details['meta_data']['sizes']) && !empty($image_details['meta_data']['sizes'])) {
+
+					foreach( $image_details['meta_data']['sizes'] as $size){
+						$content = preg_replace( '!(<a\s[^>]+>)?<img([^>]+)src="'.$path.$size['file'].'"([^>]*)>(</a>)?!i' , '' , $content );
+					}
+
+				}
+
+			}
 
             // remove script tags
             $content = WMobilePack_Formatter::remove_script_tags($content);
