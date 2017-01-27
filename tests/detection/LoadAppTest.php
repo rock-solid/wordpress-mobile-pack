@@ -249,7 +249,7 @@ class LoadAppTest extends WP_UnitTestCase
     {
 
         $WMP_Application_Mock = $this->getMockBuilder('WMobilePack_Application')
-            ->setMethods(array('check_display_mode'))
+            ->setMethods(array('check_display_mode', 'load_app'))
             ->disableOriginalConstructor()
             ->getMock();
 

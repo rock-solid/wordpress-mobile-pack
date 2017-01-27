@@ -34,8 +34,14 @@ if (class_exists('WMobilePack')):
             $page_id = get_the_ID();
             $inactive_pages = WMobilePack_Options::get_setting('inactive_pages');
 
-            if (!in_array($page_id, $inactive_pages)){
-                $mobile_url .= "#page/".$page_id;
+			if (!in_array($page_id, $inactive_pages)){
+
+				$page_ancestors = get_post_ancestors($page_id);
+
+				// check if the page's ancestors are all visible
+				if (count(array_intersect($page_ancestors, $inactive_pages)) == 0){
+                	$mobile_url .= "#page/".$page_id;
+				}
             }
 
         } elseif (is_category()) {

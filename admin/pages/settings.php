@@ -97,24 +97,26 @@
 
                         <a href="javascript:void(0)" id="wmp_editsettings_send_btn" class="btn green smaller">Save</a>
                     </form>
-                    <div class="notice notice-left right" style="width: 465px; margin: 0px 0 15px 0;">
-                        <span>
-                            Edit the <strong>Display Mode</strong> of your app to enable/disable it for your mobile readers. The <strong>Preview mode</strong> lets you edit your app without it being visible to anyone else.<br/><br/><br/>
-                            By adding your <strong>Google Analytics ID</strong>, you will be able to track the mobile web application's visitors directly in your Google Analytics account.
-                        </span>
-                    </div>
-					<div class="notice notice-left right" style="width: 465px; margin: 10px 0 15px 0;">
-                        <span>
-							Clear mobile browser cache before testing tablets settings.
-						</span>
-                    </div>
-                    <?php if (WMobilePack_Themes_Config::$color_schemes[$selected_theme]['posts_per_page'] == 1):?>
-                        <div class="notice notice-left right" style="width: 465px; margin: 70px 0 15px 0;">
-                            <span>
-                                The '<strong>Two posts per page</strong>' option will display posts in groups of two, as long as the categories have an even number of posts. If a category has an odd number of posts, the last card will contain a single post.
-                            </span>
-                        </div>
-                    <?php endif;?>
+					<div class="notices-container left">
+						<div class="notice notice-left right" style="margin: 0px 0 15px 0;">
+							<span>
+								Edit the <strong>Display Mode</strong> of your app to enable/disable it for your mobile readers. The <strong>Preview mode</strong> lets you edit your app without it being visible to anyone else.<br/><br/><br/>
+								By adding your <strong>Google Analytics ID</strong>, you will be able to track the mobile web application's visitors directly in your Google Analytics account.
+							</span>
+						</div>
+						<div class="notice notice-left right" style="margin: 25px 0 15px 0;">
+							<span>
+								Clear mobile browser cache before testing tablets settings.
+							</span>
+						</div>
+						<?php if (WMobilePack_Themes_Config::$color_schemes[$selected_theme]['posts_per_page'] == 1):?>
+							<div class="notice notice-left right" style="margin: 70px 0 15px 0;">
+								<span>
+									The '<strong>Two posts per page</strong>' option will display posts in groups of two, as long as the categories have an even number of posts. If a category has an odd number of posts, the last card will contain a single post.
+								</span>
+							</div>
+						<?php endif;?>
+					</div>
                 </div>
                 <div class="spacer-0"></div>
             </div>
@@ -208,11 +210,13 @@
                         <div class="spacer-20"></div>
                         <a href="javascript:void(0)" id="wmp_connect_send_btn" class="btn green smaller">Save</a>
                     </form>
-                    <div class="notice notice-left right" style="width: 465px; margin: 0px 0 15px 0; top:-10px;">
-                        <span>
-                            Once your API key is validated, your WP Mobile Pack admin area will be transformed and you will be able to change your mobile web application settings from the Appticles.com dashboard.
-                        </span>
-                    </div>
+					<div class="notices-container left">
+						<div class="notice notice-left right" style="margin: 0px 0 15px 0; top:-10px;">
+							<span>
+								Once your API key is validated, your WP Mobile Pack admin area will be transformed and you will be able to change your mobile web application settings from the Appticles.com dashboard.
+							</span>
+						</div>
+					</div>
                 </div>
                 <div class="spacer-0"></div>
             </div>

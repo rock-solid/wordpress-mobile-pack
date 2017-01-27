@@ -77,11 +77,11 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 				if ($full_url && is_array($image_metadata) && !empty($image_metadata)) {
 
 					if (isset($image_metadata['sizes']) && is_array($image_metadata['sizes'])){
-						
+
 						$thumbnail = isset($image_metadata['sizes']['medium_large']) ? $image_metadata['sizes']['medium_large'] : $image_metadata['sizes']['large'];
-	
+
 						if (isset($thumbnail['file']) && isset($thumbnail['width']) && isset($thumbnail['height'])) {
-	
+
 							return array(
 								"src" => str_replace(basename($full_url), $thumbnail['file'], $full_url),
 								"width" => $thumbnail['width'],
@@ -1500,8 +1500,6 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
          * - content = 'exportpage'
          * - pageId = The page's id
          *
-         * @todo (Improvement) Don't export page if its parent is hidden
-         *
          */
         public function export_page()
         {
@@ -1519,10 +1517,21 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                 if ($post != null && $post->post_type == 'page' && $post->post_password == '' && $post->post_status == 'publish' && strip_tags(trim($post->post_title)) != '') {
 
                     // check if page is visible
-                    $is_visible = false;
+                    $is_visible = true;
 
-                    if (!in_array($post->ID, $this->inactive_pages))
-                        $is_visible = true;
+                    if (in_array($post->ID, $this->inactive_pages)){
+                        $is_visible = false;
+					}
+
+					// check if the page's ancestors are all visible
+					if ($is_visible) {
+
+						$ancestors = get_post_ancestors($post);
+
+						if (count(array_intersect($ancestors, $this->inactive_pages)) > 0){
+							$is_visible = false;
+						}
+					}
 
                     if ($is_visible) {
 

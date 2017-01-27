@@ -180,7 +180,7 @@ class ExportArticleTest extends WP_UnitTestCase
         $this->assertArrayHasKey('article', $data);
         $this->assertEquals($avatar, $data['article']['author_avatar']);
 
-        
+
         wp_delete_post($post_id);
         wp_delete_user($user_id);
     }

@@ -11,6 +11,10 @@ class ExportPagesTest extends WP_UnitTestCase
         update_option('wmpack_inactive_pages', array());
     }
 
+	function tearDown(){
+        update_option('wmpack_inactive_pages', array());
+    }
+
     /**
      * Calling export_pages() with password protected pages returns empty
      */
@@ -344,10 +348,10 @@ class ExportPagesTest extends WP_UnitTestCase
 
         $export = new WMobilePack_Export();
         $data = json_decode($export->export_pages(), true);
-    
+
         $this->assertArrayHasKey('pages', $data);
         $this->assertEquals(3, count($data['pages']));
-        
+
         $this->assertEquals($post_id2, $data['pages'][0]['id']);
         $this->assertEquals(1, $data['pages'][0]['order']);
         $this->assertEquals(0, $data['pages'][0]['parent_id']);
