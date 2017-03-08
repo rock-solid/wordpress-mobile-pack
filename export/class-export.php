@@ -78,9 +78,18 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
 					if (isset($image_metadata['sizes']) && is_array($image_metadata['sizes'])){
 
-						$thumbnail = isset($image_metadata['sizes']['medium_large']) ? $image_metadata['sizes']['medium_large'] : $image_metadata['sizes']['large'];
+						$thumbnail = false;
 
-						if (isset($thumbnail['file']) && isset($thumbnail['width']) && isset($thumbnail['height'])) {
+						// get the first image size that fits the format
+ 						foreach (array('medium_large', 'large') as $size_option){
+
+ 							if ( isset($image_metadata['sizes'][$size_option]) ){
+ 								$thumbnail = $image_metadata['sizes'][$size_option];
+ 								break;
+ 							}
+ 						}
+
+						if ($thumbnail !== false && isset($thumbnail['file']) && isset($thumbnail['width']) && isset($thumbnail['height'])) {
 
 							return array(
 								"src" => str_replace(basename($full_url), $thumbnail['file'], $full_url),
