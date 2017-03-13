@@ -505,6 +505,23 @@ if (!class_exists('WMobilePack_Application')) {
 
             $settings['comments_token'] = WMobilePack_Tokens::get_token();
 
+			// get manifest colors
+			switch(WMobilePack_Options::get_setting('color_scheme')) {
+
+				case 0 :
+					$settings['manifest_color'] = WMobilePack_Options::get_setting('custom_colors')[1];
+					break;
+				case 1 :
+					$settings['manifest_color'] = '#ffffff';
+					break;
+				case 2 :
+					$settings['manifest_color'] = '#212121';
+					break;
+				case 3 :
+					$settings['manifest_color'] = '#f5e4d2';
+					break;
+			}
+
             return $settings;
         }
 

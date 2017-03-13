@@ -34,6 +34,7 @@ if ($texts_json_exists === false) {
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <link rel="apple-touch-icon-precomposed" href="" />
     <meta name="mobile-web-app-capable" content="yes" />
+	<meta name="theme-color" content="<?php echo $app_settings['manifest_color']; ?>">
     <link rel="manifest" href="<?php echo $export_path."content.php?content=androidmanifest";?>" />
 
     <?php if ($app_settings['icon'] != ''): // icon path for Firefox ?>

@@ -1585,13 +1585,17 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
             // set blog name
             $blog_name = get_bloginfo("name");
 
+			$app_settings = WMobilePack_Application::load_app_settings();
+
             // init response depending on the manifest type
             if (isset($_GET['content']) && $_GET['content'] == 'androidmanifest') {
 
                 $arr_manifest = array(
                     'name' => $blog_name,
                     'start_url' => home_url(),
-                    'display' => 'standalone'
+                    'display' => 'standalone',
+					'theme_color' => $app_settings['manifest_color'],
+					'background_color' => $app_settings['manifest_color']
                 );
 
             } else {
