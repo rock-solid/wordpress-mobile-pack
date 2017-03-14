@@ -36,7 +36,7 @@ if ($texts_json_exists === false) {
     <meta name="mobile-web-app-capable" content="yes" />
 	<meta name="theme-color" content="<?php echo $app_settings['manifest_color']; ?>">
     <link rel="manifest" href="<?php echo $export_path."content.php?content=androidmanifest";?>" />
-
+	<noscript>Your browser does not support JavaScript!</noscript>
     <?php if ($app_settings['icon'] != ''): // icon path for Firefox ?>
         <link rel="shortcut icon" href="<?php echo $app_settings['icon'];?>"/>
     <?php endif;?>
