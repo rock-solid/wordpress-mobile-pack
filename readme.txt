@@ -2,8 +2,8 @@
 Contributors: jamesgpearce, andreatrasatti, edent, cborodescu, anghelalexandra
 Tags: android, iOS, html5, iphone, mobile, mobile internet, mobile web, mobile web app, responsive ui, safari, sencha touch, smartphone, webkit, progressive web apps, app builder, apple, apps, convert to app, create blog app, ios app, ipad, make an app, mobile app plugin, mobile application, mobile blog app, mobile converter, mobile plugin, native app plugin, app theme, website to mobile app, WordPress android, WordPress app, WordPress iphone, WordPress mobile, WordPress mobile app
 Requires at least: 3.6
-Tested up to: 4.7
-Stable tag: 2.2.8
+Tested up to: 4.7.3
+Stable tag: 2.2.9
 License: GPLv2 or later
 
 Mobile plugin to package your content into a progressive web app, build a hybrid mobile app and submit it to App Stores. Multiple mobile app themes.
@@ -156,6 +156,12 @@ There are almost 50,000 plugins in the WordPress.org repository. It's impossible
 
 
 == Changelog ==
+
+= 2.2.9 =
+* Add background color for the browser's address bar and splash screen (Progressive Web Apps features)
+* Update HTMLPurifier library to 4.8.0 for compatibility with PHP7
+* Fix notice from exporting posts and pages images
+* Eliminate WP 3.6 conditions for custom fonts selects
 
 = 2.2.8 =
 * App theme - fix articles carousel on Firefox
@@ -377,8 +383,8 @@ Two major issues were introduced in beta 1, now solved:
 
 == Upgrade Notice ==
 
-= 2.2.8 =
-* WordPress Mobile Pack packages your content into a progressive web app or a hybrid mobile app that can submitted to App Stores. The latest version comes with an opt-in for activating the mobile theme on iPad and Android tablets.
+= 2.2.9 =
+* WordPress Mobile Pack packages your content into a progressive web app or a hybrid mobile app that can submitted to App Stores. The latest version comes with new Progressive Web Apps features - background color for the browser's address bar and splash screen.
 
 == Screenshots ==
 

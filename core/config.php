@@ -1,6 +1,6 @@
 <?php
 
-define("WMP_VERSION", '2.2.8');
+define("WMP_VERSION", '2.2.9');
 define('WMP_PLUGIN_NAME', 'WP Mobile Pack');
 define('WMP_DOMAIN', 'wordpress-mobile-pack');
 
