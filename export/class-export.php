@@ -1595,7 +1595,8 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                     'start_url' => home_url(),
                     'display' => 'standalone',
 					'theme_color' => $app_settings['manifest_color'],
-					'background_color' => $app_settings['manifest_color']
+					'background_color' => $app_settings['manifest_color'],
+					'orientation' => 'any'
                 );
 
             } else {
