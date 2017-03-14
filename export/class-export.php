@@ -1585,6 +1585,9 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
             // set blog name
             $blog_name = get_bloginfo("name");
 
+			if (!class_exists('WMobilePack_Application'))
+            	require_once(WMP_PLUGIN_PATH.'frontend/class-application.php');
+
 			$app_settings = WMobilePack_Application::load_app_settings();
 
             // init response depending on the manifest type
