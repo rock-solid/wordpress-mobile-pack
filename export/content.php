@@ -18,7 +18,7 @@ if ( isset( $_GET['content'] ) ) {
 	if ( isset( $_GET['callback'] ) ) {
 
 		// filter callback param
-		$callback = $export->purifier->purify( $_GET['callback'] );
+		$callback = filter_var($_GET['callback'], FILTER_SANITIZE_STRING);
 
 		header( 'Content-Type: application/javascript' );
 

@@ -1,7 +1,7 @@
 <?php
 
 // set HTML Purifier
-require_once WMP_PLUGIN_PATH . 'libs/htmlpurifier-4.6.0/library/HTMLPurifier.safe-includes.php';
+require_once WMP_PLUGIN_PATH . 'libs/htmlpurifier-4.8.0/library/HTMLPurifier.safe-includes.php';
 require_once WMP_PLUGIN_PATH . 'libs/htmlpurifier-html5/htmlpurifier_html5.php';
 
 if ( ! class_exists( 'WMobilePack_Formatter' ) ) {
@@ -28,6 +28,8 @@ if ( ! class_exists( 'WMobilePack_Formatter' ) ) {
 
             $config->set('Cache.DefinitionImpl', null); // disable cache
             $config->set('Core.Encoding', 'UTF-8');
+
+			$config->set('HTML.TargetNoreferrer', false);
 
             $config->set('HTML.AllowedElements', 'div,a,p,ol,li,ul,img,blockquote,em,span,h1,h2,h3,h4,h5,h6,i,u,strong,b,sup,br,cite,iframe,small,video,audio,source');
             $config->set('HTML.AllowedAttributes', '*.style,*.width,*.height,*.src,a.href,a.target,img.srcset,img.sizes,iframe.frameborder,iframe.marginheight,iframe.marginwidth,iframe.scrolling,iframe.allowfullscreen,*.poster,*.preload,*.controls,*.type,*.data-type');

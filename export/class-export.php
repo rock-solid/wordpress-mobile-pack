@@ -1273,7 +1273,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                                         $comment_post_ID = $post->ID;
                                         $comment_author = (isset($_GET['author'])) ? trim(strip_tags($_GET['author'])) : '';
                                         $comment_author_email = (isset($_GET['email'])) ? trim($_GET['email']) : '';
-                                        $comment_author_url = (isset($_GET['url'])) ? trim($this->purifier->purify($_GET['url'])) : '';
+                                        $comment_author_url = (isset($_GET['url'])) ? trim(filter_var($_GET['url'], FILTER_SANITIZE_URL)) : '';
                                         $comment_content = (isset($_GET['comment'])) ? trim($this->purifier->purify($_GET['comment'])) : '';
                                         $comment_type = 'comment';
                                         $comment_parent = isset($_GET['comment_parent']) ? absint($_GET['comment_parent']) : 0;
@@ -1369,7 +1369,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                 'message' => 'Duplicate comment'
             );
 
-            echo $this->purifier->purify($_GET['callback']). '(' . json_encode($arr_response) . ')';
+            echo filter_var($_GET['callback'], FILTER_SANITIZE_STRING). '(' . json_encode($arr_response) . ')';
 
             // end
             exit();
