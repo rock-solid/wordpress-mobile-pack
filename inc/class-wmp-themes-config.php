@@ -93,6 +93,39 @@ if ( ! class_exists( 'WMobilePack_Themes_Config' ) ) {
                 'posts_per_page' => 1
             )
         );
+
+
+		/**
+		* Get the application's background color for the app manifest.
+		*
+		* @param int or null $color_scheme
+		* @return string or false
+		*/
+		public static function get_manifest_background($color_scheme = null)
+		{
+
+			if ($color_scheme == null){
+				$color_scheme = WMobilePack_Options::get_setting('color_scheme');
+			}
+
+			switch ($color_scheme) {
+
+				case 0 :
+					$custom_colors = WMobilePack_Options::get_setting('custom_colors');
+
+					if (is_array($custom_colors) && isset($custom_colors[1])) {
+						return $custom_colors[1];
+					}
+					break;
+
+				case 1 :
+				case 2 :
+				case 3 :
+					return self::$color_schemes[1]['presets'][$color_scheme][1];
+			}
+
+			return false;
+		}
     }
 }
 

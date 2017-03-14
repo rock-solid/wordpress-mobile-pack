@@ -23,9 +23,9 @@ class ExportManifestTest extends WP_UnitTestCase
     }
 
     /**
-     * Calling export_manifest() for Android returns data
+     * Calling export_manifest() for Android returns data for default color scheme
      */
-    function test_export_manifest_android_returns_data()
+    function test_export_manifest_android_returns_data_for_default_color_scheme()
     {
         $_GET['content'] = 'androidmanifest';
 
@@ -38,6 +38,46 @@ class ExportManifestTest extends WP_UnitTestCase
         $this->assertEquals('Test Blog', $data['name']);
         $this->assertEquals('http://dummy.appticles.com', $data['start_url']);
         $this->assertEquals('standalone', $data['display']);
+		$this->assertEquals('any', $data['orientation']);
+		$this->assertEquals('#ffffff', $data['theme_color']);
+		$this->assertEquals('#ffffff', $data['background_color']);
+    }
+
+    /**
+     * Calling export_manifest() for Android returns data for custom color scheme
+     */
+    function test_export_manifest_android_returns_data_for_custom_color_scheme()
+    {
+        $_GET['content'] = 'androidmanifest';
+
+		$custom_colors = array (
+			'#261587',
+			'#000000',
+			'#8224e3',
+			'#8224e3',
+			'#dd3333',
+			'#81d742',
+			'#8224e3',
+			'#eeee22',
+			'#1e73be',
+			'#e0003b'
+		);
+
+		update_option('wmpack_custom_colors', $custom_colors);
+		update_option('wmpack_color_scheme', 0);
+
+        update_option('blogname', 'Test Blog');
+        update_option('home', 'http://dummy.appticles.com');
+
+        $export = new WMobilePack_Export();
+        $data = json_decode($export->export_manifest(), true);
+
+        $this->assertEquals('Test Blog', $data['name']);
+        $this->assertEquals('http://dummy.appticles.com', $data['start_url']);
+        $this->assertEquals('standalone', $data['display']);
+		$this->assertEquals('any', $data['orientation']);
+		$this->assertEquals('#000000', $data['theme_color']);
+		$this->assertEquals('#000000', $data['background_color']);
     }
 
     /**
@@ -119,8 +159,8 @@ class ExportManifestTest extends WP_UnitTestCase
 
         delete_option(WMobilePack_Options::$prefix.'icon');
     }
-    
-    
+
+
     /**
      * Calling export_manifest_premium() for Android without Premium settings does nothing
      */

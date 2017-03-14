@@ -505,6 +505,12 @@ if (!class_exists('WMobilePack_Application')) {
 
             $settings['comments_token'] = WMobilePack_Tokens::get_token();
 
+			if (!class_exists('WMobilePack_Themes_Config')) {
+                require_once(WMP_PLUGIN_PATH . 'inc/class-wmp-themes-config.php');
+            }
+
+			$settings['manifest_color'] = WMobilePack_Themes_Config::get_manifest_background($settings['color_scheme']);
+
             return $settings;
         }
 

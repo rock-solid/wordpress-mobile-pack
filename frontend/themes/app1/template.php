@@ -34,6 +34,11 @@ if ($texts_json_exists === false) {
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <link rel="apple-touch-icon-precomposed" href="" />
     <meta name="mobile-web-app-capable" content="yes" />
+
+	<?php if ($app_settings['manifest_color'] !== false) :?>
+		<meta name="theme-color" content="<?php echo $app_settings['manifest_color']; ?>">
+	<?php endif;?>
+
     <link rel="manifest" href="<?php echo $export_path."content.php?content=androidmanifest";?>" />
 
     <?php if ($app_settings['icon'] != ''): // icon path for Firefox ?>
@@ -41,6 +46,8 @@ if ($texts_json_exists === false) {
     <?php endif;?>
 
     <title><?php echo get_bloginfo("name");?></title>
+	<noscript>Your browser does not support JavaScript!</noscript>
+
     <style type="text/css">
         /**
         * Example of an initial loading indicator.
