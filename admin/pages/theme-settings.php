@@ -31,14 +31,7 @@
 
                 $selected_theme = WMobilePack_Options::get_setting('theme');
 
-				$enable_custom_selects = false;
-
-				$blog_version = floatval(get_bloginfo('version'));
-
-				if ($blog_version >= WMobilePack_Admin_Init::$customselect_enable)
-					$enable_custom_selects = true;
-
-                if (array_key_exists($selected_theme, WMobilePack_Themes_Config::$color_schemes)):
+				if (array_key_exists($selected_theme, WMobilePack_Themes_Config::$color_schemes)):
                     $theme_settings = WMobilePack_Themes_Config::$color_schemes[$selected_theme];
             ?>
                     <div class="details">
@@ -157,20 +150,9 @@
 
                                 <select name="wmp_edittheme_fontheadlines" id="wmp_edittheme_fontheadlines">
 
-                                    <?php
-                                        foreach (WMobilePack_Themes_Config::$allowed_fonts as $key => $font_family):
-
-                                            if ($enable_custom_selects):
-                                    ?>
-                                                <option value="<?php echo $key+1;?>" data-text='<span style="font-family:<?php echo str_replace(" ", "", $font_family);?>"><?php echo $font_family;?></span>' <?php if ($font_headlines == $key+1) echo "selected";?>></option>
-
-                                            <?php else:?>
-
-                                                <option value="<?php echo $key+1;?>" <?php if ($font_headlines == $key+1) echo "selected";?>><?php echo $font_family;?></option>
-                                    <?php
-                                            endif;
-                                        endforeach;
-                                    ?>
+                                    <?php foreach (WMobilePack_Themes_Config::$allowed_fonts as $key => $font_family): ?>
+                                        <option value="<?php echo $key+1;?>" data-text='<span style="font-family:<?php echo str_replace(" ", "", $font_family);?>"><?php echo $font_family;?></span>' <?php if ($font_headlines == $key+1) echo "selected";?>></option>
+                                    <?php endforeach; ?>
                                 </select>
 
                                 <div class="spacer-10"></div>
@@ -183,20 +165,9 @@
 
                                 <label for="wmp_edittheme_fontsubtitles">Subtitles</label>
                                 <select name="wmp_edittheme_fontsubtitles" id="wmp_edittheme_fontsubtitles">
-                                    <?php
-                                        foreach (WMobilePack_Themes_Config::$allowed_fonts as $key => $font_family):
-
-                                            if ($enable_custom_selects):
-                                    ?>
-                                                <option value="<?php echo $key+1;?>" data-text='<span style="font-family:<?php echo str_replace(" ", "", $font_family);?>"><?php echo $font_family;?></span>' <?php if ($font_subtitles == $key+1) echo "selected";?>></option>
-
-                                            <?php else:?>
-
-                                                <option value="<?php echo $key+1;?>" <?php if ($font_subtitles == $key+1) echo "selected";?>><?php echo $font_family;?></option>
-                                    <?php
-                                            endif;
-                                        endforeach;
-                                    ?>
+                                    <?php foreach (WMobilePack_Themes_Config::$allowed_fonts as $key => $font_family): ?>
+										<option value="<?php echo $key+1;?>" data-text='<span style="font-family:<?php echo str_replace(" ", "", $font_family);?>"><?php echo $font_family;?></span>' <?php if ($font_subtitles == $key+1) echo "selected";?>></option>
+                                    <?php endforeach; ?>
                                 </select>
                                 <div class="spacer-10"></div>
 
@@ -208,20 +179,9 @@
 
                                 <label for="wmp_edittheme_fontparagraphs">Paragraphs</label>
                                 <select name="wmp_edittheme_fontparagraphs" id="wmp_edittheme_fontparagraphs">
-                                    <?php
-                                        foreach (WMobilePack_Themes_Config::$allowed_fonts as $key => $font_family):
-
-                                            if ($enable_custom_selects):
-                                    ?>
-                                                <option value="<?php echo $key+1;?>" data-text='<span style="font-family:<?php echo str_replace(" ", "", $font_family);?>"><?php echo $font_family;?></span>' <?php if ($font_paragraphs == $key+1) echo "selected";?>></option>
-
-                                            <?php else:?>
-
-                                                <option value="<?php echo $key+1;?>" <?php if ($font_paragraphs == $key+1) echo "selected";?>><?php echo $font_family;?></option>
-                                    <?php
-                                            endif;
-                                        endforeach;
-                                    ?>
+                                    <?php foreach (WMobilePack_Themes_Config::$allowed_fonts as $key => $font_family): ?>
+										<option value="<?php echo $key+1;?>" data-text='<span style="font-family:<?php echo str_replace(" ", "", $font_family);?>"><?php echo $font_family;?></span>' <?php if ($font_paragraphs == $key+1) echo "selected";?>></option>
+                                    <?php endforeach; ?>
                                 </select>
                                 <div class="spacer-20"></div>
                             </div>
@@ -451,7 +411,7 @@
     if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
 
-            window.WMPJSInterface.add("UI_customizetheme","WMP_EDIT_THEME",{'DOMDoc':window.document, 'enableCustomSelects': <?php echo intval($enable_custom_selects);?>}, window);
+            window.WMPJSInterface.add("UI_customizetheme","WMP_EDIT_THEME",{'DOMDoc':window.document}, window);
             window.WMPJSInterface.add("UI_editimages","WMP_EDIT_IMAGES",{'DOMDoc':window.document}, window);
             window.WMPJSInterface.add("UI_editcover","WMP_EDIT_COVER",{'DOMDoc':window.document}, window);
 

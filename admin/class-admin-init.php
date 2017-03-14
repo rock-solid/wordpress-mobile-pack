@@ -104,15 +104,6 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
 
 
         /**
-         *
-         * The oldest Wordpress version that will enable the custom select
-         * @var float
-         */
-        public static $customselect_enable = 3.6;
-
-
-
-        /**
          * Class constructor
          *
          * Init admin menu and enqueue general Javascript & CSS files
@@ -210,13 +201,8 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
             wp_enqueue_style(WMobilePack_Options::$prefix.'css_general', plugins_url(WMP_DOMAIN.'/admin/css/general.css'), array(), WMP_VERSION);
 
             // enqueue scripts
-            $blog_version = floatval(get_bloginfo('version'));
-            if ($blog_version < 3.6)
-                $dependencies = array('jquery');
-            else
-                $dependencies = array('jquery-core', 'jquery-migrate');
+            $dependencies = array('jquery-core', 'jquery-migrate');
 
-            // enqueue scripts
             wp_enqueue_script(WMobilePack_Options::$prefix.'js_validate', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/jquery.validate.min.js'), $dependencies, '1.11.1');
             wp_enqueue_script(WMobilePack_Options::$prefix.'js_validate_additional', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/validate-additional-methods.min.js'), $dependencies, '1.11.1');
             wp_enqueue_script(WMobilePack_Options::$prefix.'js_loader', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Loader.min.js'), $dependencies, WMP_VERSION);
@@ -255,18 +241,13 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
         public function wmp_admin_load_theme_settings_js()
         {
 
-            $blog_version = floatval(get_bloginfo('version'));
+			wp_enqueue_style(WMobilePack_Options::$prefix.'css_select_box_it', plugins_url(WMP_DOMAIN.'/admin/css/jquery.selectBoxIt.css'), array(), '3.8.1');
+			wp_enqueue_script(WMobilePack_Options::$prefix.'js_select_box_it', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/jquery.selectBoxIt.min.js'), array('jquery','jquery-ui-core', 'jquery-ui-widget'), '3.8.1');
 
-            // activate custom select for newer wp versions
-            if ($blog_version >= self::$customselect_enable) {
-
-                wp_enqueue_style(WMobilePack_Options::$prefix.'css_select_box_it', plugins_url(WMP_DOMAIN.'/admin/css/jquery.selectBoxIt.css'), array(), '3.8.1');
-                wp_enqueue_script(WMobilePack_Options::$prefix.'js_select_box_it', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/jquery.selectBoxIt.min.js'), array('jquery','jquery-ui-core', 'jquery-ui-widget'), '3.8.1');
-
-                $allowed_fonts = WMobilePack_Themes_Config::$allowed_fonts;
-                foreach ($allowed_fonts as $key => $font_family)
-                    wp_enqueue_style(WMobilePack_Options::$prefix.'css_font'.($key+1), plugins_url(WMP_DOMAIN.'/frontend/fonts/font-'.($key+1).'.css'), array(), WMP_VERSION);
-            }
+			$allowed_fonts = WMobilePack_Themes_Config::$allowed_fonts;
+			foreach ($allowed_fonts as $key => $font_family) {
+				wp_enqueue_style(WMobilePack_Options::$prefix.'css_font'.($key+1), plugins_url(WMP_DOMAIN.'/frontend/fonts/font-'.($key+1).'.css'), array(), WMP_VERSION);
+			}
 
             wp_enqueue_style('wp-color-picker');
 
