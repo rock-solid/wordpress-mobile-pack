@@ -505,22 +505,11 @@ if (!class_exists('WMobilePack_Application')) {
 
             $settings['comments_token'] = WMobilePack_Tokens::get_token();
 
-			// get manifest colors
-			switch(WMobilePack_Options::get_setting('color_scheme')) {
+			if (!class_exists('WMobilePack_Themes_Config')) {
+                require_once(WMP_PLUGIN_PATH . 'inc/class-wmp-themes-config.php');
+            }
 
-				case 0 :
-					$settings['manifest_color'] = WMobilePack_Options::get_setting('custom_colors')[1];
-					break;
-				case 1 :
-					$settings['manifest_color'] = '#ffffff';
-					break;
-				case 2 :
-					$settings['manifest_color'] = '#212121';
-					break;
-				case 3 :
-					$settings['manifest_color'] = '#f5e4d2';
-					break;
-			}
+			$settings['manifest_color'] = WMobilePack_Themes_Config::get_manifest_background($settings['color_scheme']);
 
             return $settings;
         }

@@ -1585,22 +1585,26 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
             // set blog name
             $blog_name = get_bloginfo("name");
 
-			if (!class_exists('WMobilePack_Application'))
-            	require_once(WMP_PLUGIN_PATH.'frontend/class-application.php');
-
-			$app_settings = WMobilePack_Application::load_app_settings();
-
-            // init response depending on the manifest type
+			// init response depending on the manifest type
             if (isset($_GET['content']) && $_GET['content'] == 'androidmanifest') {
 
-                $arr_manifest = array(
+				$arr_manifest = array(
                     'name' => $blog_name,
                     'start_url' => home_url(),
                     'display' => 'standalone',
-					'theme_color' => $app_settings['manifest_color'],
-					'background_color' => $app_settings['manifest_color'],
 					'orientation' => 'any'
                 );
+
+				if (!class_exists('WMobilePack_Themes_Config')) {
+					require_once(WMP_PLUGIN_PATH . 'inc/class-wmp-themes-config.php');
+				}
+
+				$background_color = WMobilePack_Themes_Config::get_manifest_background();
+
+				if ($background_color !== false){
+					$arr_manifest['theme_color'] = $background_color;
+					$arr_manifest['background_color'] = $background_color;
+				}
 
             } else {
 
