@@ -3,8 +3,8 @@
  * Plugin Name:  WordPress Mobile Pack
  * Plugin URI:  http://wordpress.org/plugins/wordpress-mobile-pack/
  * Description: WordPress Mobile Pack 2.0+ has been completely rebuilt from the ground up and repurposed to empower bloggers, publishers and other content creators to go beyond responsiveness and 'appify' the content of their blog.
- * Author: Appticles.com
- * Author URI: http://www.appticles.com/
+ * Author: WPMobilePack.com
+ * Author URI: https://wpmobilepack.com/
  * Version: 2.2.9
  * Copyright (c) 2009 - 2015 James Pearce, mTLD Top Level Domain Limited, ribot, Forum Nokia, Appticles.com
  * License: The WordPress Mobile Pack is Licensed under the Apache License, Version 2.0
