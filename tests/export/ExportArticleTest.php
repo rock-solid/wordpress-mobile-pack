@@ -387,7 +387,7 @@ class ExportArticleTest extends WP_UnitTestCase
 
         $attach_id = wp_insert_attachment( $attachment, $filename, $post_id );
         add_post_meta( $post_id, '_thumbnail_id', $attach_id, true );
-        wp_update_attachment_metadata($attach_id, array('width' => 100, 'height' => 100));
+        wp_update_attachment_metadata($attach_id, array('width' => 2000, 'height' => 2000));
 
         // make request and verify response
         $_GET['articleId'] = $post_id;
@@ -410,8 +410,203 @@ class ExportArticleTest extends WP_UnitTestCase
         // check image
         $this->assertArrayHasKey('image', $data['article']);
         $this->assertEquals($wp_upload_dir['baseurl'] . '/'.$filename, $data['article']['image']['src']);
-        $this->assertTrue(is_numeric($data['article']['image']['width']));
-        $this->assertTrue(is_numeric($data['article']['image']['height']));
+        $this->assertEquals(2000, $data['article']['image']['width']);
+        $this->assertEquals(2000, $data['article']['image']['height']);
+
+        // clean-up
+        wp_delete_post($post_id);
+        wp_delete_attachment($attach_id);
+    }
+
+	/**
+     * Calling export_article() with a post that has a medium large image returns data json
+     */
+    function test_export_article_with_medium_large_image_returns_data()
+    {
+
+        $published = time();
+
+        // mock post
+        $post_id = $this->factory->post->create(
+            array(
+                'post_title' => 'Article Title',
+                'post_date' => date('Y-m-d H:i:s', $published)
+            )
+        );
+
+        // mock an attachment image and link it to the post
+        $filename = "test_image.jpg";
+        $wp_upload_dir = wp_upload_dir();
+
+        $attachment = array(
+            'guid'           => $wp_upload_dir['url'] . '/' . basename( $filename ),
+            'post_mime_type' => 'image/jpeg',
+            'post_title'     => preg_replace( '/\.[^.]+$/', '', basename( $filename ) ),
+            'post_status'    => 'inherit'
+        );
+
+        $attach_id = wp_insert_attachment( $attachment, $filename, $post_id );
+        add_post_meta( $post_id, '_thumbnail_id', $attach_id, true );
+
+        wp_update_attachment_metadata(
+			$attach_id,
+			array(
+				'width' => 2000,
+				'height' => 2000,
+				'sizes' => array(
+					'medium_large' => array(
+						'file' => 'test_image-650x500.jpg',
+						'width' => 650,
+						'height' => 500,
+						'mime-type' => 'image/jpeg'
+					),
+					'large' => array(
+						'file' => 'test_image-1024x900.jpg',
+						'width' => 1024,
+						'height' => 900,
+						'mime-type' => 'image/jpeg'
+					)
+				)
+			)
+		);
+
+        // make request and verify response
+        $_GET['articleId'] = $post_id;
+
+        $export = new WMobilePack_Export();
+        $data = json_decode($export->export_article(), true);
+
+        // check image
+        $this->assertArrayHasKey('image', $data['article']);
+        $this->assertEquals($wp_upload_dir['baseurl'] . '/test_image-650x500.jpg', $data['article']['image']['src']);
+        $this->assertEquals(650, $data['article']['image']['width']);
+        $this->assertEquals(500, $data['article']['image']['height']);
+
+        // clean-up
+        wp_delete_post($post_id);
+        wp_delete_attachment($attach_id);
+    }
+
+	/**
+     * Calling export_article() with a post that has a medium large image returns data json
+     */
+    function test_export_article_with_large_image_returns_data()
+    {
+
+        $published = time();
+
+        // mock post
+        $post_id = $this->factory->post->create(
+            array(
+                'post_title' => 'Article Title',
+                'post_date' => date('Y-m-d H:i:s', $published)
+            )
+        );
+
+        // mock an attachment image and link it to the post
+        $filename = "test_image.jpg";
+        $wp_upload_dir = wp_upload_dir();
+
+        $attachment = array(
+            'guid'           => $wp_upload_dir['url'] . '/' . basename( $filename ),
+            'post_mime_type' => 'image/jpeg',
+            'post_title'     => preg_replace( '/\.[^.]+$/', '', basename( $filename ) ),
+            'post_status'    => 'inherit'
+        );
+
+        $attach_id = wp_insert_attachment( $attachment, $filename, $post_id );
+        add_post_meta( $post_id, '_thumbnail_id', $attach_id, true );
+
+        wp_update_attachment_metadata(
+			$attach_id,
+			array(
+				'width' => 2000,
+				'height' => 2000,
+				'sizes' => array(
+					'large' => array(
+						'file' => 'test_image-1024x900.jpg',
+						'width' => 1024,
+						'height' => 900,
+						'mime-type' => 'image/jpeg'
+					)
+				)
+			)
+		);
+
+        // make request and verify response
+        $_GET['articleId'] = $post_id;
+
+        $export = new WMobilePack_Export();
+        $data = json_decode($export->export_article(), true);
+
+        // check image
+        $this->assertArrayHasKey('image', $data['article']);
+        $this->assertEquals($wp_upload_dir['baseurl'] . '/test_image-1024x900.jpg', $data['article']['image']['src']);
+        $this->assertEquals(1024, $data['article']['image']['width']);
+        $this->assertEquals(900, $data['article']['image']['height']);
+
+        // clean-up
+        wp_delete_post($post_id);
+        wp_delete_attachment($attach_id);
+    }
+
+	/**
+     * Calling export_article() with a post that has image with other sizes returns data json with default image
+     */
+    function test_export_article_with_other_image_size_returns_data_with_default_size()
+    {
+
+        $published = time();
+
+        // mock post
+        $post_id = $this->factory->post->create(
+            array(
+                'post_title' => 'Article Title',
+                'post_date' => date('Y-m-d H:i:s', $published)
+            )
+        );
+
+        // mock an attachment image and link it to the post
+        $filename = "test_image.jpg";
+        $wp_upload_dir = wp_upload_dir();
+
+        $attachment = array(
+            'guid'           => $wp_upload_dir['url'] . '/' . basename( $filename ),
+            'post_mime_type' => 'image/jpeg',
+            'post_title'     => preg_replace( '/\.[^.]+$/', '', basename( $filename ) ),
+            'post_status'    => 'inherit'
+        );
+
+        $attach_id = wp_insert_attachment( $attachment, $filename, $post_id );
+        add_post_meta( $post_id, '_thumbnail_id', $attach_id, true );
+
+        wp_update_attachment_metadata(
+			$attach_id,
+			array(
+				'width' => 2000,
+				'height' => 2000,
+				'sizes' => array(
+					'medium' => array(
+						'file' => 'test_image-300x250.jpg',
+						'width' => 300,
+						'height' => 250,
+						'mime-type' => 'image/jpeg'
+					)
+				)
+			)
+		);
+
+        // make request and verify response
+        $_GET['articleId'] = $post_id;
+
+        $export = new WMobilePack_Export();
+        $data = json_decode($export->export_article(), true);
+
+        // check image
+        $this->assertArrayHasKey('image', $data['article']);
+        $this->assertEquals($wp_upload_dir['baseurl'] . '/test_image.jpg', $data['article']['image']['src']);
+        $this->assertEquals(2000, $data['article']['image']['width']);
+        $this->assertEquals(2000, $data['article']['image']['height']);
 
         // clean-up
         wp_delete_post($post_id);
@@ -492,15 +687,6 @@ class ExportArticleTest extends WP_UnitTestCase
         wp_delete_post($post_id);
         wp_delete_user($user_id);
     }
-
-
-
-
-
-
-
-
-
 
 
     /**
