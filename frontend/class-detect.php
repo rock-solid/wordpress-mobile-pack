@@ -96,8 +96,9 @@ if (!class_exists('WMobilePack_Detect')) {
 
             $is_allowed_tablets = $this->is_allowed_tablets();
 
-            if (!class_exists('WMP_Mobile_Detect'))
-                require_once (WMP_PLUGIN_PATH.'libs/Mobile-Detect-2.8.12/Mobile_Detect.php');
+            if (!class_exists('WMP_Mobile_Detect')) {
+                require_once (WMP_PLUGIN_PATH.'libs/Mobile-Detect-2.8.25/Mobile_Detect.php');
+			}
 
             $detect = new WMP_Mobile_Detect();
 
@@ -160,8 +161,9 @@ if (!class_exists('WMobilePack_Detect')) {
             $is_tablet = false;
             $is_IE_tablet = false;
 
-            if (!class_exists('WMP_Mobile_Detect'))
-                require_once (WMP_PLUGIN_PATH.'libs/Mobile-Detect-2.8.12/Mobile_Detect.php');
+            if (!class_exists('WMP_Mobile_Detect')) {
+                require_once (WMP_PLUGIN_PATH.'libs/Mobile-Detect-2.8.25/Mobile_Detect.php');
+			}
 
             $detect = new WMP_Mobile_Detect();
 
