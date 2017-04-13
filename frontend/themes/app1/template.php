@@ -114,6 +114,10 @@ if ($texts_json_exists === false) {
                 opacity: 0.8
             }
         }
+
+		body.x-android {
+			overflow-y: hidden;
+		}
     </style>
 
     <script type="text/javascript" pagespeed_no_defer="">

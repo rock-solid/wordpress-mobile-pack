@@ -88,6 +88,10 @@ if (isset($_SERVER['HTTP_ACCEPT_ENCODING']) && strstr($_SERVER['HTTP_ACCEPT_ENCO
                 opacity: 0.8
             }
         }
+
+		body.x-android {
+			overflow-y: hidden;
+		}
     </style>
 
     <script type="text/javascript" pagespeed_no_defer="">
