@@ -1784,6 +1784,8 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
                     if ($response_type == 'javascript')
                         return 'var APP_TEXTS = ' . json_encode($appTextsJson['APP_TEXTS']);
+                    elseif ($response_type == 'json')
+                        return json_encode($appTextsJson['APP_TEXTS']);
                     else
                         return $appTextsJson;
                 }

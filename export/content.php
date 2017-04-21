@@ -83,10 +83,15 @@ if ( isset( $_GET['content'] ) ) {
 
 			case 'apptexts':
 
-				$app_texts = $export->load_language( $_GET['locale'] );
+				$format = 'javascript';
+				if (isset($_GET['format']) && $_GET['format'] == 'json') {
+					$format = 'json';
+				}
+
+				$app_texts = $export->load_language($_GET['locale'], $format);
 
 				if ( $app_texts !== false ) {
-					header( 'Content-Type: application/javascript' );
+					header( 'Content-Type: application/' . $format);
 					echo $app_texts;
 				}
 
