@@ -1,6 +1,7 @@
 <?php
 
 require_once(WMP_PLUGIN_PATH."export/class-export.php");
+require_once(WMP_PLUGIN_PATH.'inc/class-wmp-options.php');
 
 class ExportPagesTest extends WP_UnitTestCase
 {
@@ -595,4 +596,82 @@ class ExportPagesTest extends WP_UnitTestCase
         wp_delete_post($child_page_id);
         wp_delete_post($grandchild_page_id);
     }
+
+
+	function test_export_pages_returns_correct_if_page_and_rows_are_given()
+	{
+		$pages_ids = array();
+
+		for ($i = 0; $i < 4; $i++){
+
+			$pages_ids[$i] = $this->factory->post->create(
+				array(
+					'post_type' => 'page',
+					'menu_order' => $i,
+					'post_title' => 'page '.$i,
+					'post_content' => 'test content'
+				)
+			);
+		}
+
+		update_option(WMobilePack_Options::$prefix.'inactive_pages', array());
+
+    	$_GET["rows"] = 2;
+
+		for ($page = 1; $page <= 2; $page++){
+
+			$_GET["page"] = $page;
+
+			$export = new WMobilePack_Export();
+			$data = json_decode($export->export_pages(), true);
+               
+			$this->assertArrayHasKey('pages', $data);
+			$this->assertEquals(2, count($data['pages']));
+			$this->assertEquals(array('page' => $page, 'rows' => 2), $data['pagination']);
+
+			foreach ($data['pages'] as $key => $data_page){
+
+				$i = ($page - 1) * $_GET["rows"] + $key;
+                
+				$this->assertEquals($pages_ids[$i], $data_page['id']);
+				$this->assertEquals('page '.$i, $data_page['title']);   
+				$this->assertEquals($i+1, $data_page['order']);
+				$this->assertEquals(0, $data_page['parent_id']);
+			}
+		}
+
+		foreach ($pages_ids as $page_id){
+			wp_delete_post($page_id);
+		}
+	}
+
+	function test_export_pages_returns_empty_and_page_and_rows_as_parameters_in_json_if_page_too_high ()
+    {
+        $_GET["page"] = 3;
+        $_GET["rows"] = 5;
+
+		for ($i = 0; $i < 4; $i++){
+
+			$pages_ids[$i] = $this->factory->post->create(
+				array(
+					'post_type' => 'page',
+					'menu_order' => $i,
+					'post_title' => 'page '.$i,
+					'post_content' => 'test content'
+				)
+			);
+		}
+
+		update_option(WMobilePack_Options::$prefix.'inactive_pages', array());
+
+		$export = new WMobilePack_Export();
+        $data = json_decode($export->export_pages(), true);
+
+        $this->assertEquals(array(), $data['pages']);
+		$this->assertEquals(array('page' => 3, 'rows' => 5), $data['pagination']);
+
+		foreach ($pages_ids as $page_id){
+			wp_delete_post($page_id);
+		}
+	}
 }
