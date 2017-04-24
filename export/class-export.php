@@ -1375,7 +1375,6 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
             exit();
         }
 
-
         /**
          *
          *  The exportPages method is used for exporting all the visible pages.
@@ -1400,7 +1399,11 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
          *
          * - callback = The JavaScript callback method
          * - content = 'exportpages'
+		 * - page = (optional) Used for pagination
+         * - rows = (optional) Number of rows per page, used for pagination
+		 * - limit = (optional) Deprecated, alias for 'rows'. Should be removed after migrating Sencha apps.
          *
+		 * @todo Eliminate pages with inactive grandparents when using pagination params ('page' and 'rows').
          */
         public function export_pages()
         {
@@ -1408,25 +1411,43 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
             // init pages arrays
             $arr_pages = array();
 
-            // set args for pages
-            $limit = 100;
+            // init pagination params
+            $pagination = false;
+            if (isset($_GET["page"]) && is_numeric($_GET["page"])) {
+                $pagination = $_GET["page"];
+            }
+            
+            $rows = false;
+
+            if (isset($_GET["rows"]) && is_numeric($_GET["rows"])){
+
+                $rows = $_GET["rows"];
+
+				if ($pagination === false){
+					$pagination = 1;
+				}
+
+			} elseif (isset($_GET["limit"]) && is_numeric($_GET["limit"])){
+				$rows = $_GET["limit"];
+			} else {
+				$rows = $pagination ? 5 : 100;
+			}
 
             $args = array(
-                'post__not_in' => $this->inactive_pages,
-                'numberposts' => $limit,
-                'posts_per_page' => $limit,
-                'post_status' => 'publish',
                 'post_type' => 'page',
-                'post_password' => ''
+                'post_status' => 'publish',
+                'post_password' => '',
+                'post__not_in' => $this->inactive_pages,
+                'posts_per_page' => $rows,
+                'post_parent__not_in' => $this->inactive_pages,
+                'orderby' => 'menu_order parent title',
+                'order' => 'ASC'
             );
 
-            if (get_bloginfo('version') >= 3.6) {
+            if ($pagination !== false){
+                $args['paged'] = $pagination;
+			}
 
-				$args['post_parent__not_in'] = $this->inactive_pages;
-
-                $args['orderby'] = 'menu_order title';
-                $args['order'] = 'ASC';
-            }
 
             // remove inline style for the photos types of posts
             add_filter('use_default_gallery_style', '__return_false');
@@ -1435,10 +1456,16 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
             if ($pages_query->have_posts()) {
 
-				// get array with the ordered pages by hierarchy
-				$order_pages = array_keys(get_page_hierarchy($pages_query->posts));
+                 // get array with the ordered pages by hierarchy
+				$order_pages = array();
 
-				if (!empty($order_pages)) {
+				if ($pagination === false){
+					$order_pages = array_keys(get_page_hierarchy($pages_query->posts));
+				}
+
+				if (!empty($order_pages) || $pagination !== false) {
+
+                    $index = 0;
 
 					while ($pages_query->have_posts()) {
 
@@ -1459,7 +1486,12 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 									$content = apply_filters("the_content", get_option(WMobilePack_Options::$prefix.'page_' . $page->ID));
 
                                 // if the page and its parent are visible, they should exist in the order array
-                                $index_order = array_search($page->ID, $order_pages);
+								if ($pagination === false) {
+                                	$index_order = array_search($page->ID, $order_pages);
+								} else {
+									$index_order = ($pagination - 1) * $rows + $index;
+									$index++;
+								}
 
                                 if (is_numeric($index_order)) {
 
@@ -1482,7 +1514,11 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                 }
             }
 
-            return '{"pages":' . json_encode($arr_pages) . "}";
+			if ($pagination && $rows) {
+                return '{"pages":' . json_encode($arr_pages) . ',"pagination":' .json_encode(array('page' => $pagination, 'rows' => $rows)).'}';
+            } else {
+                return '{"pages":' . json_encode($arr_pages) . '}';
+            }
         }
 
 
