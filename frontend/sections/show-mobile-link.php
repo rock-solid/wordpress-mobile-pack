@@ -1,11 +1,11 @@
 <?php
 if (class_exists('WMobilePack')):
 
-    if ( ! class_exists( 'WMobilePack_Export' ) ) {
-        require_once(WMP_PLUGIN_PATH.'export/class-export.php');
+    if ( ! class_exists( 'WMobilePack_Export_settings' ) ) {
+        require_once(WMP_PLUGIN_PATH.'export/class-export-settings.php');
     }
 
-    $wmp_export = new WMobilePack_Export();
+    $wmp_export = new WMobilePack_Export_settings();
     $wmp_texts_json = $wmp_export->load_language(get_locale(), 'list');
 
     $wmp_footer_text = 'Switch to mobile version';

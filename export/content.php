@@ -69,15 +69,21 @@ if ( isset( $_GET['content'] ) ) {
 		}
 	} else {
 
+		if ( ! class_exists( 'WMobilePack_Export_settings' ) ) {
+			require_once(WMP_PLUGIN_PATH.'/export/class-export-settings.php');
+		}
+
+		$export_settings = new WMobilePack_Export_settings();
+
 		switch ( $_GET['content'] ) {
 
 			case 'androidmanifest':
 			case 'mozillamanifest':
 
 				if ( isset( $_GET['premium'] ) && $_GET['premium'] == 1 ) {
-					echo $export->export_manifest_premium();
+					echo $export_settings->export_manifest_premium();
 				} else {
-					echo $export->export_manifest();
+					echo $export_settings->export_manifest();
 				}
 				break;
 
@@ -88,7 +94,7 @@ if ( isset( $_GET['content'] ) ) {
 					$format = 'json';
 				}
 
-				$app_texts = $export->load_language($_GET['locale'], $format);
+				$app_texts = $export_settings->load_language($_GET['locale'], $format);
 
 				if ( $app_texts !== false ) {
 					header( 'Content-Type: application/' . $format);
