@@ -1,14 +1,42 @@
 <?php 
 
-if ( ! class_exists( 'WMobilePack_Export_settings' ) ) {
+if ( ! class_exists( 'WMobilePack_Export_Settings' ) ) {
     
     /**
-     * Class WMobilePack_Export_settings
+     * Class WMobilePack_Export_Settings
      *
      * Contains methods for exporting settings, manifest and language files
      */
-     class WMobilePack_Export_settings
+     class WMobilePack_Export_Settings
      {
+
+        /**
+         *
+         * Create an uploads management object and return it
+         *
+         * @return object
+         *
+         */
+        protected function get_uploads_manager()
+        {
+            return new WMobilePack_Uploads();
+        }
+
+		/**
+         *
+         * Create a manager Application object and return it
+         *
+         * @return object
+         *
+         */
+        protected function get_application_manager()
+        {
+			if (!class_exists('WMobilePack_Application')){
+				require_once(WMP_PLUGIN_PATH.'frontend/class-application.php');
+			}
+
+            return new WMobilePack_Application();
+        }
 
         /**
          *
@@ -221,6 +249,83 @@ if ( ! class_exists( 'WMobilePack_Export_settings' ) ) {
                 }
             }
         }
+
+       /**
+         *
+         * Export settings file.
+		 *
+         */
+		public function export_settings()
+		{   
+     
+            $app = $this->get_application_manager();
+            $app_settings = $app->load_app_settings();
+            $frontend_path = plugins_url()."/".WMP_DOMAIN."/frontend/";
+            $theme_path = $frontend_path."themes/app".$app_settings['theme']."/";
+            
+            $settings = array();
+
+            $settings['export'] = array(
+
+                'categories' => array(
+                    'find' => $frontend_path . 'export/content.php?content=exportcategories',
+                    'findOne' => $frontend_path . 'export/content.php?content=exportcategory'
+                ),
+
+                'posts' => array(
+                    'find' => $frontend_path . 'export/content.php?content=exportarticles',
+                    'findOne' => $frontend_path . 'export/content.php?content=exportarticle'
+                ),
+
+                'pages' => array(
+                    'find' => $frontend_path . 'export/content.php?content=exportpages',
+                    'findOne' => $frontend_path . 'export/content.php?content=exportpage'
+                ),
+
+                'comments' => array(
+                    'find' => $frontend_path . 'export/content.php?content=exportcomments',
+                    'insert' => $frontend_path . 'export/content.php?content=savecomment'
+                )
+            );
+
+            $settings['translate'] = array(
+                'path' => $frontend_path.'export/content.php?content=apptexts&locale='.get_locale().'&format=json',
+                'language' => $app->get_language(get_locale())
+            );
+
+            $settings['socialMedia'] = array(
+                'facebook' => (bool)$app_settings['enable_facebook'],
+                'twitter' => (bool)$app_settings['enable_twitter'],
+                'google' => (bool)$app_settings['enable_google']
+            );
+
+            $settings['commentsToken'] = $app_settings['comments_token'];
+
+            if ($app_settings['posts_per_page'] == 'single') {
+                $settings['articlesPerCard'] = 1;
+
+            } elseif ($app_settings['posts_per_page'] == 'double') {
+                $settings['articlesPerCard'] = 2;
+
+            } else {
+                $settings['articlesPerCard'] = 'auto';
+            }
+
+            $settings['homeText'] = str_replace('\n', '<br/>', json_encode($app_settings['cover_text']));
+
+            if ($app_settings['display_website_link']) {
+                $spliter = parse_url(home_url(), PHP_URL_QUERY) ? '&' : '?';
+                $settings['websiteUrl'] = home_url() . $spliter . WMobilePack_Options::$prefix . 'theme_mode=desktop';
+            }
+            
+
+            $settings['logo'] = $app_settings['logo'];
+            $settings['icon'] = $app_settings['icon'];
+            $settings['defaultCover'] = $app_settings['cover'] != '' ? $app_settings['cover'] : $frontend_path."images/pattern-".rand(1, 6).".jpg";
+
+            return json_encode($settings);
+
+		}
 
      }
 }

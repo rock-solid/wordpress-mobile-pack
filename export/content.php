@@ -69,11 +69,11 @@ if ( isset( $_GET['content'] ) ) {
 		}
 	} else {
 
-		if ( ! class_exists( 'WMobilePack_Export_settings' ) ) {
+		if ( ! class_exists( 'WMobilePack_Export_Settings' ) ) {
 			require_once(WMP_PLUGIN_PATH.'/export/class-export-settings.php');
 		}
 
-		$export_settings = new WMobilePack_Export_settings();
+		$export_settings = new WMobilePack_Export_Settings();
 
 		switch ( $_GET['content'] ) {
 
@@ -105,7 +105,7 @@ if ( isset( $_GET['content'] ) ) {
 
 			case 'exportsettings':
 
-				echo $export->export_settings();
+				echo $export_settings->export_settings();
 				break;
 
 			default:

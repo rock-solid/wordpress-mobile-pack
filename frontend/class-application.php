@@ -514,6 +514,21 @@ if (!class_exists('WMobilePack_Application')) {
             return $settings;
         }
 
+		/**
+		* Get the language from the locale setting.
+		*
+		* @param string $locale (eg. 'en_EN')
+		* @return string (eg. 'en')
+		*/
+		public function get_language($locale)
+		{
+			if (array_key_exists($locale, WMobilePack_Options::$supported_languages)){
+				return WMobilePack_Options::$supported_languages[$locale];
+			}
+
+			return 'en';
+		}
+
 
         /**
          * Returns an array with the application's Premium theme settings

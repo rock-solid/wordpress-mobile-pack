@@ -32,7 +32,7 @@ class ExportManifestTest extends WP_UnitTestCase
         update_option('blogname', 'Test Blog');
         update_option('home', 'http://dummy.appticles.com');
 
-        $export = new WMobilePack_Export_settings();
+        $export = new WMobilePack_Export_Settings();
         $data = json_decode($export->export_manifest(), true);
 
         $this->assertEquals('Test Blog', $data['name']);
@@ -69,7 +69,7 @@ class ExportManifestTest extends WP_UnitTestCase
         update_option('blogname', 'Test Blog');
         update_option('home', 'http://dummy.appticles.com');
 
-        $export = new WMobilePack_Export_settings();
+        $export = new WMobilePack_Export_Settings();
         $data = json_decode($export->export_manifest(), true);
 
         $this->assertEquals('Test Blog', $data['name']);
@@ -90,7 +90,7 @@ class ExportManifestTest extends WP_UnitTestCase
 
         $_SERVER['HTTP_HOST'] = 'dummy.appticles.com';
 
-        $export = new WMobilePack_Export_settings();
+        $export = new WMobilePack_Export_Settings();
         $data = json_decode($export->export_manifest(), true);
 
         $this->assertEquals('Test Blog', $data['name']);
@@ -111,7 +111,7 @@ class ExportManifestTest extends WP_UnitTestCase
 
         $_SERVER['HTTP_HOST'] = 'dummy.appticles.com';
 
-        $export_class = $this->getMockBuilder('WMobilePack_Export_settings')
+        $export_class = $this->getMockBuilder('WMobilePack_Export_Settings')
             ->setMethods(array('get_uploads_manager'))
             ->getMock();
 
@@ -169,7 +169,7 @@ class ExportManifestTest extends WP_UnitTestCase
         $_GET['content'] = 'androidmanifest';
         $_GET['premium'] = 1;
 
-        $export = new WMobilePack_Export_settings();
+        $export = new WMobilePack_Export_Settings();
         $data = json_decode($export->export_manifest_premium(), true);
 
         $this->assertEquals(null, $data);
@@ -194,7 +194,7 @@ class ExportManifestTest extends WP_UnitTestCase
         update_option('wmpack_premium_config_path', "http://configdummy.appticles.com");
         set_transient('wmp_premium_config_path', json_encode($premium_config));
 
-        $export = new WMobilePack_Export_settings();
+        $export = new WMobilePack_Export_Settings();
         $data = json_decode($export->export_manifest_premium(), true);
 
         $this->assertEquals(null, $data);
@@ -220,7 +220,7 @@ class ExportManifestTest extends WP_UnitTestCase
 
         update_option('home', 'http://dummy.appticles.com/blabla');
 
-        $export = new WMobilePack_Export_settings();
+        $export = new WMobilePack_Export_Settings();
         $data = json_decode($export->export_manifest_premium(), true);
 
         $this->assertEquals('My new\' app', $data['name']);
@@ -256,7 +256,7 @@ class ExportManifestTest extends WP_UnitTestCase
 
         update_option('home', 'http://dummy.appticles.com/blabla');
 
-        $export = new WMobilePack_Export_settings();
+        $export = new WMobilePack_Export_Settings();
 
         $data = json_decode($export->export_manifest_premium(), true);
 
@@ -292,7 +292,7 @@ class ExportManifestTest extends WP_UnitTestCase
 
         update_option('home', 'http://dummy.appticles.com/blabla');
 
-        $export = new WMobilePack_Export_settings();
+        $export = new WMobilePack_Export_Settings();
 
         $data = json_decode($export->export_manifest_premium(), true);
 
@@ -332,7 +332,7 @@ class ExportManifestTest extends WP_UnitTestCase
 
         update_option('home', 'http://dummy.appticles.com/blabla');
 
-        $export = new WMobilePack_Export_settings();
+        $export = new WMobilePack_Export_Settings();
 
         $data = json_decode($export->export_manifest_premium(), true);
 

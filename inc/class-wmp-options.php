@@ -65,6 +65,23 @@ if ( ! class_exists( 'WMobilePack_Options' ) ) {
             'allow_tracking' => 0
         );
 
+        
+		public static $supported_languages = array(
+			'de_DE' => 'de',
+			'en_EN' => 'en',
+			'es_ES' => 'es',
+			'fr_FR' => 'fr',
+			'hu_HU' => 'hu',
+			'it_IT' => 'it',
+			'ja' => 'ja',
+			'nl_NL' => 'nl',
+			'pl_PL' => 'pl',
+			'pt_BR' => 'pt-br',
+			'ro_RO' => 'ro',
+			'sv_SE' => 'sv',
+			'zh_CN' => 'zh-cn'
+		);
+
         /* ----------------------------------*/
         /* Methods							 */
         /* ----------------------------------*/
