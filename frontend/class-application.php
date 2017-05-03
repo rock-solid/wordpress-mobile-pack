@@ -440,7 +440,7 @@ if (!class_exists('WMobilePack_Application')) {
          *
          * @return array
          */
-        public static function load_app_settings()
+        public function load_app_settings()
         {
 
             // load basic settings
@@ -684,7 +684,7 @@ if (!class_exists('WMobilePack_Application')) {
         /**
          *
          * Returns an array with all the application's frontend settings (Premium themes)
-         *
+         * @todo Remove static from this method
          */
         public static function load_app_settings_premium(){
 
