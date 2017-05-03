@@ -439,7 +439,7 @@ Our roadmap currently includes:
 We currently have two Github development repositories:
 
 * [https://github.com/appticles/wordpress-mobile-pack-backend](https://github.com/appticles/wordpress-mobile-pack-backend) - The plugin files, same as you will find for download on Wordpress.org, plus unit tests.
-* [https://github.com/appticles/wordpress-mobile-pack-app](https://github.com/appticles/wordpress-mobile-pack-app) - The mobile web application's development files (Javascript & CSS).
+* [https://github.com/appticles/theme-obliq](https://github.com/appticles/theme-obliq) - Development files for the new version of theme Obliq (Javascript & CSS).
 
 == Contributors ==
 
