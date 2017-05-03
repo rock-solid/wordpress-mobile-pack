@@ -28,6 +28,7 @@ if ( ! class_exists( 'WMobilePack_Options' ) ) {
             'font_headlines' => 1,
             'font_subtitles' => 1,
             'font_paragraphs' => 1,
+			'font_size' => 1, // unit measure is 'rem'
 
             // images
             'logo' => '',
@@ -47,6 +48,9 @@ if ( ! class_exists( 'WMobilePack_Options' ) ) {
 			'enable_tablets' => 0,
             'display_website_link' => 1,
             'posts_per_page' => 'auto',
+			'enable_facebook' => 1,
+            'enable_twitter' => 1,
+            'enable_google' => 1,
 
             // premium accounts with api key
             'premium_api_key'		 => '',
@@ -65,7 +69,7 @@ if ( ! class_exists( 'WMobilePack_Options' ) ) {
             'allow_tracking' => 0
         );
 
-        
+
 		public static $supported_languages = array(
 			'de_DE' => 'de',
 			'en_EN' => 'en',
@@ -88,34 +92,10 @@ if ( ! class_exists( 'WMobilePack_Options' ) ) {
 
         /**
          *
-         * Unserialize an option that was previously serialized.
-         *
-         * @param $option_name
-         * @param $option_value
-         * @return mixed
-         */
-        protected static function unserialize_data($option_name, $option_value){
-
-            if (in_array($option_name, array('inactive_categories', 'inactive_pages', 'ordered_categories', 'ordered_pages', 'joined_waitlists'))) {
-
-                $data = @unserialize($option_value);
-
-                if ($data !== false) {
-                    return $data;
-                }
-            }
-
-            return $option_value;
-        }
-
-        /**
-         *
          * The get_setting method is used to read an option value (or options) from the database.
          *
          * If the $option param is an array, the method will return an array with the values,
          * otherwise it will return only the requested option value.
-         *
-         * As of version 2.2, the method will automatically unserialize strings that were serialized.
          *
          * @param $option - array / string
          * @return mixed
@@ -133,7 +113,7 @@ if ( ! class_exists( 'WMobilePack_Options' ) ) {
                     if (get_option(self::$prefix . $option_name) === false) {
                         $wmp_settings[$option_name] = self::$options[$option_name];
                     } else {
-                        $wmp_settings[$option_name] = self::unserialize_data($option_name, get_option(self::$prefix . $option_name));
+                        $wmp_settings[$option_name] = get_option(self::$prefix . $option_name);
                     }
                 }
 
@@ -146,7 +126,7 @@ if ( ! class_exists( 'WMobilePack_Options' ) ) {
                 if (get_option(self::$prefix . $option) === false) {
                     $wmp_setting = self::$options[$option];
                 } else {
-                    $wmp_setting = self::unserialize_data($option, get_option(self::$prefix . $option));
+                    $wmp_setting = get_option(self::$prefix . $option);
                 }
 
                 return $wmp_setting;
