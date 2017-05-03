@@ -1,7 +1,7 @@
-<?php 
+<?php
 
 if ( ! class_exists( 'WMobilePack_Export_Settings' ) ) {
-    
+
     /**
      * Class WMobilePack_Export_Settings
      *
@@ -256,40 +256,41 @@ if ( ! class_exists( 'WMobilePack_Export_Settings' ) ) {
 		 *
          */
 		public function export_settings()
-		{   
-     
+		{
+
             $app = $this->get_application_manager();
             $app_settings = $app->load_app_settings();
-            $frontend_path = plugins_url()."/".WMP_DOMAIN."/frontend/";
-            $theme_path = $frontend_path."themes/app".$app_settings['theme']."/";
-            
+
+			$frontend_path = plugins_url()."/".WMP_DOMAIN."/frontend/";
+            $export_path = plugins_url()."/".WMP_DOMAIN."/export/";
+
             $settings = array();
 
             $settings['export'] = array(
 
                 'categories' => array(
-                    'find' => $frontend_path . 'export/content.php?content=exportcategories',
-                    'findOne' => $frontend_path . 'export/content.php?content=exportcategory'
+                    'find' => $export_path . 'content.php?content=exportcategories',
+                    'findOne' => $export_path . 'content.php?content=exportcategory'
                 ),
 
                 'posts' => array(
-                    'find' => $frontend_path . 'export/content.php?content=exportarticles',
-                    'findOne' => $frontend_path . 'export/content.php?content=exportarticle'
+                    'find' => $export_path . 'content.php?content=exportarticles',
+                    'findOne' => $export_path . 'content.php?content=exportarticle'
                 ),
 
                 'pages' => array(
-                    'find' => $frontend_path . 'export/content.php?content=exportpages',
-                    'findOne' => $frontend_path . 'export/content.php?content=exportpage'
+                    'find' => $export_path . 'content.php?content=exportpages',
+                    'findOne' => $export_path . 'content.php?content=exportpage'
                 ),
 
                 'comments' => array(
-                    'find' => $frontend_path . 'export/content.php?content=exportcomments',
-                    'insert' => $frontend_path . 'export/content.php?content=savecomment'
+                    'find' => $export_path . 'content.php?content=exportcomments',
+                    'insert' => $export_path . 'content.php?content=savecomment'
                 )
             );
 
             $settings['translate'] = array(
-                'path' => $frontend_path.'export/content.php?content=apptexts&locale='.get_locale().'&format=json',
+                'path' => $export_path.'content.php?content=apptexts&locale='.get_locale().'&format=json',
                 'language' => $app->get_language(get_locale())
             );
 
@@ -317,7 +318,7 @@ if ( ! class_exists( 'WMobilePack_Export_Settings' ) ) {
                 $spliter = parse_url(home_url(), PHP_URL_QUERY) ? '&' : '?';
                 $settings['websiteUrl'] = home_url() . $spliter . WMobilePack_Options::$prefix . 'theme_mode=desktop';
             }
-            
+
 
             $settings['logo'] = $app_settings['logo'];
             $settings['icon'] = $app_settings['icon'];
