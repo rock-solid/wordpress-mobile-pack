@@ -28,24 +28,24 @@ class ExportSettingsTest extends WP_UnitTestCase
     protected $expected = array(
 		'export' => array(
             'categories' => array(
-				'find' => 'wordpress-mobile-pack/frontend/export/content.php?content=exportcategories',
-				'findOne' => 'wordpress-mobile-pack/frontend/export/content.php?content=exportcategory'
+				'find' => 'wordpress-mobile-pack/export/content.php?content=exportcategories',
+				'findOne' => 'wordpress-mobile-pack/export/content.php?content=exportcategory'
 			),
             'posts' => array(
-				'find' => 'wordpress-mobile-pack/frontend/export/content.php?content=exportarticles',
-				'findOne' => 'wordpress-mobile-pack/frontend/export/content.php?content=exportarticle'
+				'find' => 'wordpress-mobile-pack/export/content.php?content=exportarticles',
+				'findOne' => 'wordpress-mobile-pack/export/content.php?content=exportarticle'
 			),
             'pages' => array(
-				'find' => 'wordpress-mobile-pack/frontend/export/content.php?content=exportpages',
-				'findOne' => 'wordpress-mobile-pack/frontend/export/content.php?content=exportpage'
+				'find' => 'wordpress-mobile-pack/export/content.php?content=exportpages',
+				'findOne' => 'wordpress-mobile-pack/export/content.php?content=exportpage'
 			),
             'comments' => array(
-				'find' => 'wordpress-mobile-pack/frontend/export/content.php?content=exportcomments',
-				'insert' => 'wordpress-mobile-pack/frontend/export/content.php?content=savecomment'
+				'find' => 'wordpress-mobile-pack/export/content.php?content=exportcomments',
+				'insert' => 'wordpress-mobile-pack/export/content.php?content=savecomment'
 			)
         ),
 		'translate' => array(
-			'path' => 'wordpress-mobile-pack/frontend/export/content.php?content=apptexts&locale=en_US&format=json',
+			'path' => 'wordpress-mobile-pack/export/content.php?content=apptexts&locale=en_US&format=json',
 			'language' => 'fr'
 		),
 		'socialMedia' => array(
