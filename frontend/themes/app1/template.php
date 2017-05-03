@@ -1,10 +1,11 @@
 <?php
 
-$app_settings = WMobilePack_Application::load_app_settings();
-
-$export_path = plugins_url()."/".WMP_DOMAIN."/export/";
+$app = new WMobilePack_Application();
+$app_settings = $app->load_app_settings();
 
 $frontend_path = plugins_url()."/".WMP_DOMAIN."/frontend/";
+$export_path = plugins_url()."/".WMP_DOMAIN."/export/";
+
 $theme_path = $frontend_path."themes/app".$app_settings['theme']."/";
 
 // check fonts
@@ -32,7 +33,6 @@ if ($texts_json_exists === false) {
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-touch-fullscreen" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <link rel="apple-touch-icon-precomposed" href="" />
     <meta name="mobile-web-app-capable" content="yes" />
 
 	<?php if ($app_settings['manifest_color'] !== false) :?>
@@ -41,8 +41,8 @@ if ($texts_json_exists === false) {
 
     <link rel="manifest" href="<?php echo $export_path."content.php?content=androidmanifest";?>" />
 
-    <?php if ($app_settings['icon'] != ''): // icon path for Firefox ?>
-        <link rel="shortcut icon" href="<?php echo $app_settings['icon'];?>"/>
+    <?php if ($app_settings['icon'] != ''): ?>
+        <link rel="apple-touch-icon" href="<?php echo $app_settings['icon'];?>" />
     <?php endif;?>
 
     <title><?php echo get_bloginfo("name");?></title>
@@ -144,12 +144,12 @@ if ($texts_json_exists === false) {
     <?php if ($app_settings['theme_timestamp'] != ''):?>
         <link rel="stylesheet" href="<?php echo WMP_FILES_UPLOADS_URL.'theme-'.$app_settings['theme_timestamp'].'.css';?>" type="text/css" />
     <?php else: ?>
-        <link rel="stylesheet" href="<?php echo $theme_path;?>css/colors-<?php echo $app_settings['color_scheme'];?>-fonts-<?php echo $app_settings['font_headlines'];?>.css?date=20161129" type="text/css" />
+		<link rel="stylesheet" href="<?php echo $theme_path;?>css/phone.css?date=20161128" type="text/css" />
     <?php endif;?>
 
     <!-- custom fonts -->
     <?php foreach ($loaded_fonts as $font_no):?>
-        <link rel="stylesheet" href="<?php echo $frontend_path."fonts/font-".$font_no.".css?date=20151207";?>" type="text/css">
+        <link rel="stylesheet" href="<?php echo $frontend_path."fonts/font-".$font_no.".css?date=20160106";?>" type="text/css">
     <?php endforeach;?>
 
     <script src="<?php echo $export_path.'content.php?content=apptexts&locale='.get_locale();?>" type="text/javascript"></script>
