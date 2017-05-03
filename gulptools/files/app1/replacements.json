@@ -1,0 +1,43 @@
+{
+	"app1": [{
+		"label": "Headlines and primary texts",
+		"name": "$base-text-color",
+		"hex": "#ff0001"
+	}, {
+		"label": "Article background",
+		"name": "$shape-bg-color",
+		"hex": "#ff0002"
+	}, {
+		"label": "Article border",
+		"name": "$article-border-color",
+		"hex": "#ff0003"
+	}, {
+		"label": "Secondary texts",
+		"name": "$extra-text-color",
+		"hex": "#ff0004"
+	}, {
+		"label": "Category label color",
+		"name": "$category-color",
+		"hex": "#ff0005"
+	}, {
+		"label": "Category text color",
+		"name": "$category-text-color",
+		"hex": "#ff0006"
+	}, {
+		"label": "Buttons",
+		"name": "$buttons-color",
+		"hex": "#ff0007"
+	}, {
+		"label": "Menu",
+		"name": "$menu-color",
+		"hex": "#ff0008"
+	}, {
+		"label": "Forms",
+		"name": "$form-color",
+		"hex": "#ff0009"
+	}, {
+		"label": "Cover text color",
+		"name": "$cover-text-color",
+		"hex": "#ff0101"
+	}]
+}

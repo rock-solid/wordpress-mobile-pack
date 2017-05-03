@@ -1,147 +1,146 @@
+/**
+ *
+ * Usage:
+ * For app 1: "gulp replace-reds --theme=1" -> generate clean scss file
+ * For all apps: "gulp compile-default-theme --theme=2" -> compile css
+ *
+ */
 var gulp = require('gulp'),
-    sass = require('gulp-ruby-sass'),
-    replace = require('gulp-batch-replace'),
-    stripCssComments = require('gulp-strip-css-comments'),
-    hex2rgb = require('hex2rgb'),
-    concat = require('gulp-concat');
+  sass = require('gulp-sass'),
+  replace = require('gulp-batch-replace'),
+  stripCssComments = require('gulp-strip-css-comments'),
+  hex2rgb = require('hex2rgb'),
+  concat = require('gulp-concat'),
+  fs = require('fs'),
+  argv = require('yargs').argv,
+  insert = require('gulp-insert');
 
-var colorVariables = [
-    {
-        label: "Headlines and primary texts",
-        name: "$base-text-color",
-        hex: "#ff0001"
-    },
-    {
-        label: "Article background",
-        name: "$shape-bg-color",
-        hex: "#ff0002"
-    },
-    {
-        label: "Article border",
-        name: "$article-border-color",
-        hex: "#ff0003"
-    },
-    {
-        label: "Secondary texts",
-        name: "$extra-text-color",
-        hex: "#ff0004"
-    },
-    {
-        label: "Category label color",
-        name: "$category-color",
-        hex: "#ff0005"
-    },
-    {
-        label: "Category text color",
-        name: "$category-text-color",
-        hex: "#ff0006"
-    },
-    {
-        label: "Buttons	",
-        name: "$buttons-color",
-        hex: "#ff0007"
-    },
-    {
-        label: "Menu",
-        name: "$menu-color",
-        hex: "#ff0008"
-    },
-    {
-        label: "Forms",
-        name: "$form-color",
-        hex: "#ff0009"
-    },
-    {
-        label: "Cover text color",
-        name: "$cover-text-color",
-        hex: "#ff0101"
-    }
-];
 
-function buildReplacementList(){
+/**
+ * Read JSON config file from the specified path
+ * @param path
+ */
+function readConfigFile(path) {
 
-    var arrReplacements = [
-        ['$paragraph-font', '$paragraphs-font']
-    ];
-
-    for (var i=0; i < colorVariables.length; i++) {
-        var item = colorVariables[i];
-        var name = item.name;
-        var hex = item.hex;
-        var rgb = hex2rgb(hex).rgb;
-
-        arrReplacements.push(
-            [hex, name],
-            [rgb.join(', '), name],
-            [rgb.join(','), name]
-        );
-    }
-
-    arrReplacements.push([/wbz\-custom\:(|\s| )(\'|\")/g, ""]);
-    return arrReplacements;
+  if (fs.existsSync(path))
+    return JSON.parse(fs.readFileSync(path));
 }
 
-gulp.task('replace-reds', function(){
 
-    var arrReplacements = buildReplacementList();
+/**
+ * Build list with the variables that will be replaced.
+ * @param theme
+ * @param colorVariables
+ */
+function buildReplacementList(theme, colorVariables) {
 
-    return gulp.src(['files/phone.scss'])
+  var arrReplacements = [
+    ['$paragraph-font', '$paragraphs-font']
+  ];
+
+  for (var i = 0; i < colorVariables['app' + String(theme)].length; i++) {
+    var item = colorVariables['app' + String(theme)][i];
+    var name = item.name;
+    var hex = item.hex;
+    var rgb = hex2rgb(hex).rgb;
+
+    arrReplacements.push(
+      [hex, name],
+      [rgb.join(', '), name],
+      [rgb.join(','), name]
+    );
+  }
+
+  arrReplacements.push([/wbz\-custom\:(|\s| )(\'|\")/g, '']);
+  return arrReplacements;
+}
+
+/**
+ * Process scss file and replace reds with variables names.
+ */
+gulp.task('replace-reds', function () {
+
+  if (argv.theme != null) {
+
+    var theme = argv.theme;
+    var json = readConfigFile('files/app' + String(theme) + '/replacements.json');
+
+    if (json == null || json['app' + String(theme)] == null) {
+      console.log('Invalid replacements json');
+    } else {
+      var arrReplacements = buildReplacementList(theme, json);
+
+      return gulp.src(['files/app' + String(theme) + '/phone.scss'])
         .pipe(replace(arrReplacements))
         .pipe(stripCssComments())
-        .pipe(gulp.dest('../frontend/themes/app1/scss/'));
+        .pipe(gulp.dest('../frontend/themes/app' + String(theme) + '/scss/'));
+    }
+
+  } else {
+    console.log('Missing theme argument');
+  }
 });
 
+/**
+ *
+ * Create a variables file from the two config arrays
+ *
+ * @param colorVariables
+ * @param fontsVariables
+ *
+ * @returns {string}
+ */
+function createVariablesFile(colorVariables, fontsVariables) {
 
-// Build arrays with the different combinations for compiling the themes
-var mergeCssFiles = {};
-var compileCssFiles = {};
+  var contents = '';
 
-for (var colors = 1; colors <= 3; colors++){
-    for (var fonts = 1; fonts <= 3; fonts++){
+  for (var color in colorVariables) {
+    contents = contents + '$' + String(color) + ':' + String(colorVariables[color]) + ';\n';
+  }
 
-        mergeCssFiles['mergeScss' + String(colors) + '_' + String(fonts)] = {
-            'colors': colors,
-            'fonts': fonts
-        };
+  for (var font in fontsVariables) {
+    if (fontsVariables[font].indexOf('rem') >= 0)
+      contents = contents + '$' + String(font) + ':' + String(fontsVariables[font]) + ';\n';
+    else
+      contents = contents + '$' + String(font) + ':"' + String(fontsVariables[font]) + '";\n';
+  }
 
-        compileCssFiles['compileScss' + String(colors) + '_' + String(fonts)] = {
-            'colors': colors,
-            'fonts': fonts
-        };
-    }
+  return contents;
 }
 
-// Create one merged scss file for each color scheme / fonts option
-var mergeTasks = Object.keys(mergeCssFiles);
+/**
+ *
+ * Compile CSS file for a single theme
+ *
+ */
+gulp.task('compile-default-theme', function () {
 
-mergeTasks.forEach(function(taskName) {
-    gulp.task(taskName, function() {
+  if (argv.theme != null) {
 
-        var colorScheme = String(mergeCssFiles[taskName].colors);
-        var fonts = String(mergeCssFiles[taskName].fonts);
+    var theme = argv.theme;
+    var json = readConfigFile('../frontend/themes/app' + String(theme) + '/presets.json');
 
-        return gulp.src(['files/_variables_colors' + colorScheme + '.scss', 'files/_variables_fonts' + fonts + '.scss', '../frontend/themes/app1/scss/phone.scss'])
-            .pipe(concat({ path: 'colors-' + colorScheme + '-fonts-' + fonts + '.scss', stat: { mode: 0666 }}))
-            .pipe(gulp.dest('merged/'));
+    if (json == null || json['vars'] == null || json['presets'] == null || json['fonts'] == null) {
+      console.log('Missing colors or fonts from the SCSS config file');
+    } else {
 
-    });
+      // Merge variable names and color settings into a single object
+      var colorVariables = {};
+      for (var i = 0; i < json['vars'].length; i++) {
+        colorVariables[ json['vars'][i] ] = json['presets']['1'][i];
+      }
+
+      // Create a string with all the variables settings
+      var contents = createVariablesFile(colorVariables, json['fonts']);
+
+      // Compile SCSS file and write it in the resources folder
+      return gulp.src('../frontend/themes/app' + String(theme) + '/scss/phone.scss')
+        .pipe(insert.prepend(contents))
+        .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
+        .pipe(gulp.dest('../frontend/themes/app' + String(theme) + '/css/'));
+    }
+
+  } else {
+    console.log('Missing theme argument');
+  }
 });
-
-gulp.task('merge-scss', mergeTasks);
-
-// Compile each color scheme / fonts option
-var compileTasks = Object.keys(compileCssFiles);
-
-compileTasks.forEach(function(taskName) {
-    gulp.task(taskName, function() {
-
-        var colorScheme = String(compileCssFiles[taskName].colors);
-        var fontsScheme = String(compileCssFiles[taskName].fonts);
-
-        return sass('merged/colors-' + colorScheme + '-fonts-' + fontsScheme + '.scss', { style: 'compressed' })
-            .on('error', sass.logError)
-            .pipe(gulp.dest('../frontend/themes/app1/css/'));
-    });
-});
-
-gulp.task('compile-scss', compileTasks);
