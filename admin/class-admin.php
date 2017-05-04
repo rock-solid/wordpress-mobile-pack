@@ -461,8 +461,8 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
 
 							if (isset($theme['title']) &&
 								isset($theme['icon']) && filter_var($theme['icon'], FILTER_VALIDATE_URL) &&
-								(!isset($theme['bundle']) || is_numeric($theme['bundle'])) &&
-								(!isset($theme['preorder']) || is_numeric($theme['preorder']))
+								(!isset($theme['demo']['link']) || filter_var($theme['demo']['link'], FILTER_VALIDATE_URL)) &&
+								(!isset($theme['details']['link']) || filter_var($theme['details']['link'], FILTER_VALIDATE_URL))
 							){
 								$themes[] = $theme;
 							}

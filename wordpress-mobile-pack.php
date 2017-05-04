@@ -47,6 +47,7 @@ if (class_exists( 'WMobilePack' ) && class_exists( 'WMobilePack' )) {
 
             $wmobile_pack_ajax = new WMobilePack_Admin_Ajax();
 
+			add_action('wp_ajax_wmp_theme_switch', array( &$wmobile_pack_ajax, 'theme_switch' ) );
             add_action('wp_ajax_wmp_theme_settings', array(&$wmobile_pack_ajax, 'theme_settings'));
             add_action('wp_ajax_wmp_theme_editimages', array(&$wmobile_pack_ajax, 'theme_editimages'));
 
