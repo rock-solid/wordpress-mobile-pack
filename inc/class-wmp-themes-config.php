@@ -24,105 +24,112 @@ if ( ! class_exists( 'WMobilePack_Themes_Config' ) ) {
             'Gotham Book'
         );
 
-        public static $color_schemes = array(
-
-            1 => array (
-                'labels' => array(
-                    'Headlines and primary texts',
-                    'Article background',
-                    'Article border',
-                    'Secondary texts - dates and other messages',
-                    'Category label color',
-                    'Category text color',
-                    'Buttons',
-                    'Side menu background',
-                    'Form inputs text',
-                    'Cover text color'
-                ),
-                'vars' => array(
-                    'base-text-color',
-                    'shape-bg-color',
-                    'article-border-color',
-                    'extra-text-color',
-                    'category-color',
-                    'category-text-color',
-                    'buttons-color',
-                    'menu-color',
-                    'form-color',
-                    'cover-text-color'
-                ),
-                'presets' => array(
-                    1 => array(
-                        '#000000',
-                        '#ffffff',
-                        '#c3c3c3',
-                        '#2f2f2f',
-                        '#63a9dd',
-                        '#ffffff',
-                        '#37454c',
-                        '#f0f0f0',
-                        '#5c5c5c',
-                        '#ffffff'
-                    ),
-                    2 => array(
-                        '#ffffff',
-                        '#212121',
-                        '#6e6e6e',
-                        '#eeeeee',
-                        '#ff4f64',
-                        '#ffffff',
-                        '#63a9dd',
-                        '#40454a',
-                        '#ededed',
-                        '#ffffff'
-                    ),
-                    3 => array(
-                        '#4d3c2c',
-                        '#f5e4d2',
-                        '#cba37d',
-                        '#655547',
-                        '#f18a2e',
-                        '#ffffff',
-                        '#75ae62',
-                        '#dfccb8',
-                        '#f9efe4',
-                        '#ffffff'
-                    )
-                ),
-                'cover' => 1,
-                'posts_per_page' => 1
+        /**
+         * Allowed font sizes are float numbers. Their unit measure is 'rem'.
+         * @var array
+         */
+        public static $allowed_fonts_sizes = array(
+            array(
+                'label' => 'Small',
+                'size' => 0.875
+            ),
+            array(
+                'label' => 'Normal',
+                'size' => 1
+            ),
+            array(
+                'label' => 'Large',
+                'size' => 1.125
             )
         );
 
+		/**
+        * Allowed themes.
+        * @var array
+        */
+        protected static $allowed_themes = array(
+			2 => 'Obliq (new)',
+			1 => 'Obliq (deprecated)',
+        );
+
+		/**
+        * Get list with the allowed themes.
+        * This method can be modified to dinamically read and allow access to different themes.
+        *
+        * @return array
+        */
+        public static function get_allowed_themes()
+        {
+            return self::$allowed_themes;
+        }
+
+
+		/**
+        * Theme config json. Use this only for admin purposes.
+        * If the theme param is missing, the method will return the settings of the current selected theme.
+        *
+        * @param int $theme
+        *
+        * @return array or false
+        */
+        public static function get_theme_config($theme = null){
+
+            if ($theme == null){
+                $theme = WMobilePack_Options::get_setting('theme');
+            }
+
+            $theme_config_path = WMP_PLUGIN_PATH.'frontend/themes/app'.$theme.'/presets.json';
+
+            if (file_exists($theme_config_path)){
+
+                $theme_config = file_get_contents($theme_config_path);
+                $theme_config_json = json_decode($theme_config, true);
+
+                if ($theme_config_json && !empty($theme_config_json) &&
+                    array_key_exists('vars', $theme_config_json) && is_array($theme_config_json['vars']) &&
+                    array_key_exists('labels', $theme_config_json) && is_array($theme_config_json['labels']) &&
+                    array_key_exists('presets', $theme_config_json) && is_array($theme_config_json['presets']) &&
+					array_key_exists('fonts', $theme_config_json) && is_array($theme_config_json['fonts']) &&
+					array_key_exists('cover', $theme_config_json) && is_numeric($theme_config_json['cover']) &&
+					array_key_exists('posts_per_page', $theme_config_json) && is_numeric($theme_config_json['posts_per_page'])) {
+
+					return $theme_config_json;
+                }
+            }
+
+            return false;
+        }
 
 		/**
 		* Get the application's background color for the app manifest.
 		*
 		* @param int or null $color_scheme
 		* @return string or false
+		*
+		* @todo Update this method for multiple app themes
 		*/
 		public static function get_manifest_background($color_scheme = null)
 		{
 
-			if ($color_scheme == null){
-				$color_scheme = WMobilePack_Options::get_setting('color_scheme');
-			}
+			// if ($color_scheme == null){
+			// 	$color_scheme = WMobilePack_Options::get_setting('color_scheme');
+			// }
 
-			switch ($color_scheme) {
+			// switch ($color_scheme) {
 
-				case 0 :
-					$custom_colors = WMobilePack_Options::get_setting('custom_colors');
+			// 	case 0 :
+			// 		$custom_colors = WMobilePack_Options::get_setting('custom_colors');
 
-					if (is_array($custom_colors) && isset($custom_colors[1])) {
-						return $custom_colors[1];
-					}
-					break;
+			// 		if (is_array($custom_colors) && isset($custom_colors[1])) {
+			// 			return $custom_colors[1];
+			// 		}
+			// 		break;
 
-				case 1 :
-				case 2 :
-				case 3 :
-					return self::$color_schemes[1]['presets'][$color_scheme][1];
-			}
+			// 	case 1 :
+			// 	case 2 :
+			// 	case 3 :
+			// 		return self::$color_schemes[1]['presets'][$color_scheme][1];
+			// }
 
 			return false;
 		}

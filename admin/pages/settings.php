@@ -70,11 +70,13 @@
                         <div class="spacer-30"></div>
 
                         <?php
-                            $selected_theme = WMobilePack_Options::get_setting('theme');
                             $posts_per_page = WMobilePack_Options::get_setting('posts_per_page');
 
-                            // Check if the theme has a posts_per_page setting
-                            if (WMobilePack_Themes_Config::$color_schemes[$selected_theme]['posts_per_page'] == 1):
+							// Check if the theme has a posts_per_page setting
+                            $theme_config = WMobilePack_Themes_Config::get_theme_config();
+                            $allow_posts_per_page = $theme_config !== false && $theme_config['posts_per_page'] == 1;
+
+                            if ($allow_posts_per_page):
                         ?>
 
                             <p>Choose how posts are displayed:</p>
@@ -109,7 +111,7 @@
 								Clear mobile browser cache before testing tablets settings.
 							</span>
 						</div>
-						<?php if (WMobilePack_Themes_Config::$color_schemes[$selected_theme]['posts_per_page'] == 1):?>
+						<?php if ($allow_posts_per_page):?>
 							<div class="notice notice-left right" style="margin: 70px 0 15px 0;">
 								<span>
 									The '<strong>Two posts per page</strong>' option will display posts in groups of two, as long as the categories have an even number of posts. If a category has an odd number of posts, the last card will contain a single post.
