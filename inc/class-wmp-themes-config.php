@@ -108,28 +108,32 @@ if ( ! class_exists( 'WMobilePack_Themes_Config' ) ) {
 		*
 		* @todo Update this method for multiple app themes
 		*/
-		public static function get_manifest_background($color_scheme = null)
+		public static function get_manifest_background($color_scheme = null, $theme = null)
 		{
 
-			// if ($color_scheme == null){
-			// 	$color_scheme = WMobilePack_Options::get_setting('color_scheme');
-			// }
+			if ($color_scheme == null && $theme == null){
+				$color_scheme = WMobilePack_Options::get_setting('color_scheme');
+                $theme = WMobilePack_Options::get_setting('theme');
+			}
 
-			// switch ($color_scheme) {
+            $background = $theme == 1 ? 1 : 10;
 
-			// 	case 0 :
-			// 		$custom_colors = WMobilePack_Options::get_setting('custom_colors');
+			switch ($color_scheme) {
 
-			// 		if (is_array($custom_colors) && isset($custom_colors[1])) {
-			// 			return $custom_colors[1];
-			// 		}
-			// 		break;
+				case 0 :
+					$custom_colors = WMobilePack_Options::get_setting('custom_colors');
 
-			// 	case 1 :
-			// 	case 2 :
-			// 	case 3 :
-			// 		return self::$color_schemes[1]['presets'][$color_scheme][1];
-			// }
+					if (is_array($custom_colors) && isset($custom_colors[$background])) {
+						return $custom_colors[$background];
+					}
+					break;
+
+				case 1 :
+				case 2 :
+				case 3 :
+                    $theme_settings = self::get_theme_config($theme);
+					return $theme_settings['presets'][$color_scheme][$background];
+			}
 
 			return false;
 		}
