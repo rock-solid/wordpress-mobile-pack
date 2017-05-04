@@ -14,8 +14,8 @@ define('WMP_NEWS_UPDATES_HTTPS','https://d3oqwjghculspf.cloudfront.net/dashboard
 define('WMP_WHATSNEW_UPDATES','http://cdn-wpmp.appticles.com/dashboard/quick_start/content.json');
 define('WMP_WHATSNEW_UPDATES_HTTPS','https://d3oqwjghculspf.cloudfront.net/dashboard/quick_start/content_https.json');
 
-define('WMP_MORE_UPDATES','http://cdn-wpmp.appticles.com/dashboard/more/more3.json');
-define('WMP_MORE_UPDATES_HTTPS','https://d3oqwjghculspf.cloudfront.net/dashboard/more/more3_https.json');
+define('WMP_MORE_UPDATES','http://cdn-wpmp.appticles.com/dashboard/more/more4.json');
+define('WMP_MORE_UPDATES_HTTPS','https://d3oqwjghculspf.cloudfront.net/dashboard/more/more4.json');
 
 define('WMP_WAITLIST_PATH','http://gateway.appticles.com/waitlist/api/subscribe');
 define('WMP_WAITLIST_PATH_HTTPS','https://gateway.appticles.com/waitlist/api/subscribe');
