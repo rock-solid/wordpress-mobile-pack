@@ -10,6 +10,27 @@ require_once(WMP_PLUGIN_PATH.'inc/class-wmp-options.php');
  */
 class ThemeAdditionalMethodsTest extends WP_UnitTestCase {
 
+	protected $color_vars = array(
+		"base-text-color",
+        "base-bg-color",
+        "article-border-color",
+        "extra-text-color",
+        "category-color",
+        "category-text-color",
+        "buttons-bg-color",
+        "buttons-color",
+        "actions-panel-background",
+        "actions-panel-color",
+        "actions-panel-border",
+        "form-color",
+        "cover-text-color"
+	);
+
+	protected $allowed_fonts = array(
+		'headlines-font' => '',
+		'subtitles-font' => '',
+		'paragraphs-font' => ''
+	);
 
     /**
      *
@@ -28,7 +49,7 @@ class ThemeAdditionalMethodsTest extends WP_UnitTestCase {
         );
         $method->setAccessible(true);
 
-        $response = $method->invoke($admin_ajax, array());
+        $response = $method->invoke($admin_ajax, array(), $this->allowed_fonts);
         $this->assertInternalType('array', $response);
         $this->assertEquals($response['scss'], false);
         $this->assertEquals($response['updated'], false);
@@ -53,12 +74,12 @@ class ThemeAdditionalMethodsTest extends WP_UnitTestCase {
         $method->setAccessible(true);
 
         $data = array(
-            'wmp_edittheme_fontheadlines' => 1,
-            'wmp_edittheme_fontsubtitles' => 2,
-            'wmp_edittheme_fontparagraphs' => 3
+            'wmp_edittheme_fontheadlines' => 2,
+            'wmp_edittheme_fontsubtitles' => 3,
+            'wmp_edittheme_fontparagraphs' => 4
         );
 
-        $response = $method->invoke($admin_ajax, $data);
+        $response = $method->invoke($admin_ajax, $data, $this->allowed_fonts);
         $this->assertInternalType('array', $response);
         $this->assertEquals($response['scss'], true);
         $this->assertEquals($response['updated'], true);
@@ -86,18 +107,51 @@ class ThemeAdditionalMethodsTest extends WP_UnitTestCase {
         update_option(WMobilePack_Options::$prefix.'font_paragraphs', 4);
 
         $data = array(
-            'wmp_edittheme_fontheadlines' => 3,
-            'wmp_edittheme_fontsubtitles' => 3,
-            'wmp_edittheme_fontparagraphs' => 3
+            'wmp_edittheme_fontheadlines' => 1,
+            'wmp_edittheme_fontsubtitles' => 1,
+            'wmp_edittheme_fontparagraphs' => 1
         );
 
-        $response = $method->invoke($admin_ajax, $data);
+        $response = $method->invoke($admin_ajax, $data, $this->allowed_fonts);
         $this->assertInternalType('array', $response);
         $this->assertEquals($response['scss'], false);
         $this->assertEquals($response['updated'], true);
 
     }
 
+	/**
+     *
+     * Calling update fonts with unchanged values does not generate theme and returns false
+     *
+     */
+    function test_update_fonts_with_unchanged_values_returns_false()
+    {
+        $admin_ajax = $this->getMockBuilder('WMobilePack_Admin_Ajax')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        // Allow the protected method to be accessed
+        $method = new ReflectionMethod(
+            'WMobilePack_Admin_Ajax', 'update_theme_fonts'
+        );
+        $method->setAccessible(true);
+
+        update_option(WMobilePack_Options::$prefix.'font_headlines', 2);
+        update_option(WMobilePack_Options::$prefix.'font_subtitles', 3);
+        update_option(WMobilePack_Options::$prefix.'font_paragraphs', 4);
+
+        $data = array(
+            'wmp_edittheme_fontheadlines' => 2,
+            'wmp_edittheme_fontsubtitles' => 3,
+            'wmp_edittheme_fontparagraphs' => 4
+        );
+
+        $response = $method->invoke($admin_ajax, $data, $this->allowed_fonts);
+        $this->assertInternalType('array', $response);
+        $this->assertEquals($response['scss'], true);
+        $this->assertEquals($response['updated'], false);
+
+    }
 
     /**
      *
@@ -126,20 +180,21 @@ class ThemeAdditionalMethodsTest extends WP_UnitTestCase {
             'wmp_edittheme_fontparagraphs' => 3
         );
 
-        $response = $method->invoke($admin_ajax, $data);
+        $response = $method->invoke($admin_ajax, $data, $this->allowed_fonts);
         $this->assertInternalType('array', $response);
         $this->assertEquals($response['scss'], true);
         $this->assertEquals($response['updated'], true);
 
     }
 
-    /**
-     *
-     * Calling update fonts with unchanged values doesn't update options, but marks the theme as recompiled
-     *
-     */
-    function test_update_fonts_with_unchanged_custom_values_generates_theme()
-    {
+	/**
+	*
+	* Calling update fonts with not allowed font returns false and does not generate theme
+	*
+	*/
+	function test_update_fonts_with_not_allowed_fonts_does_not_generate_theme()
+	{
+
         $admin_ajax = $this->getMockBuilder('WMobilePack_Admin_Ajax')
             ->disableOriginalConstructor()
             ->getMock();
@@ -150,23 +205,17 @@ class ThemeAdditionalMethodsTest extends WP_UnitTestCase {
         );
         $method->setAccessible(true);
 
-        update_option(WMobilePack_Options::$prefix.'font_headlines', 2);
-        update_option(WMobilePack_Options::$prefix.'font_subtitles', 3);
-        update_option(WMobilePack_Options::$prefix.'font_paragraphs', 4);
-
         $data = array(
-            'wmp_edittheme_fontheadlines' => 2,
-            'wmp_edittheme_fontsubtitles' => 3,
-            'wmp_edittheme_fontparagraphs' => 4
+            'wmp_edittheme_fontheadlineswrong' => 2,
+            'wmp_edittheme_fontsubtitleswrong' => 3,
+            'wmp_edittheme_fontsparagraphswrong' => 4,
         );
 
-        $response = $method->invoke($admin_ajax, $data);
+        $response = $method->invoke($admin_ajax, $data, $this->allowed_fonts);
         $this->assertInternalType('array', $response);
-        $this->assertEquals($response['scss'], true);
+        $this->assertEquals($response['scss'], false);
         $this->assertEquals($response['updated'], false);
-
-    }
-
+	}
 
     /**
      *
@@ -210,7 +259,7 @@ class ThemeAdditionalMethodsTest extends WP_UnitTestCase {
         $method->setAccessible(true);
 
         $data = array(
-            'wmp_edittheme_colorscheme' => 0
+            'wmp_edittheme_colorscheme' => 2
         );
 
         $response = $method->invoke($admin_ajax, $data);
@@ -239,7 +288,7 @@ class ThemeAdditionalMethodsTest extends WP_UnitTestCase {
         update_option(WMobilePack_Options::$prefix.'color_scheme', 2);
 
         $data = array(
-            'wmp_edittheme_colorscheme' => 3
+            'wmp_edittheme_colorscheme' => 1
         );
 
         $response = $method->invoke($admin_ajax, $data);
@@ -273,7 +322,7 @@ class ThemeAdditionalMethodsTest extends WP_UnitTestCase {
 
         $response = $method->invoke($admin_ajax, $data);
         $this->assertInternalType('array', $response);
-        $this->assertEquals($response['scss'], false);
+        $this->assertEquals($response['scss'], true);
         $this->assertEquals($response['updated'], false);
 
     }
@@ -296,7 +345,7 @@ class ThemeAdditionalMethodsTest extends WP_UnitTestCase {
         );
         $method->setAccessible(true);
 
-        $response = $method->invoke($admin_ajax, array());
+        $response = $method->invoke($admin_ajax, array(), $this->color_vars);
         $this->assertInternalType('array', $response);
         $this->assertEquals($response['scss'], false);
         $this->assertEquals($response['error'], true);
@@ -320,10 +369,11 @@ class ThemeAdditionalMethodsTest extends WP_UnitTestCase {
         );
         $method->setAccessible(true);
 
-        update_option(WMobilePack_Options::$prefix.'theme', 1);
+        update_option(WMobilePack_Options::$prefix.'theme', 2);
         update_option(WMobilePack_Options::$prefix.'custom_colors', array());
 
-        $colors = WMobilePack_Themes_Config::$color_schemes[1]['presets'][1];
+        $theme_config = WMobilePack_Themes_Config::get_theme_config();
+		$colors = $theme_config['presets'][1];
 
         $data = array();
 
@@ -331,7 +381,7 @@ class ThemeAdditionalMethodsTest extends WP_UnitTestCase {
             $data['wmp_edittheme_customcolor'.$key] = $color;
         }
 
-        $response = $method->invoke($admin_ajax, $data);
+        $response = $method->invoke($admin_ajax, $data, $theme_config['vars']);
         $this->assertInternalType('array', $response);
         $this->assertEquals($response['scss'], true);
         $this->assertEquals($response['error'], false);
@@ -356,9 +406,10 @@ class ThemeAdditionalMethodsTest extends WP_UnitTestCase {
         );
         $method->setAccessible(true);
 
-        $colors = WMobilePack_Themes_Config::$color_schemes[1]['presets'][1];
+        $theme_config = WMobilePack_Themes_Config::get_theme_config();
+		$colors = $theme_config['presets'][1];
 
-        update_option(WMobilePack_Options::$prefix.'theme', 1);
+        update_option(WMobilePack_Options::$prefix.'theme', 2);
         update_option(WMobilePack_Options::$prefix.'custom_colors', $colors);
 
         $data = array();
@@ -367,10 +418,47 @@ class ThemeAdditionalMethodsTest extends WP_UnitTestCase {
             $data['wmp_edittheme_customcolor'.$key] = $color;
         }
 
-        $response = $method->invoke($admin_ajax, $data);
+        $response = $method->invoke($admin_ajax, $data, $theme_config['vars']);
         $this->assertInternalType('array', $response);
         $this->assertEquals($response['scss'], false);
         $this->assertEquals($response['error'], false);
 
     }
+
+	/**
+	*
+	* Save colors only if all the colors from the theme have been set
+	*
+	*/
+	function test_colors_are_saved_only_if_all_the_colors_from_the_theme_have_been_set()
+	{
+
+		$admin_ajax = $this->getMockBuilder('WMobilePack_Admin_Ajax')
+					->disableOriginalConstructor()
+					->getMock();
+
+        // Allow the protected method to be accessed
+        $method = new ReflectionMethod(
+            'WMobilePack_Admin_Ajax', 'update_theme_colors'
+        );
+
+        $method->setAccessible(true);
+
+		$theme_config = WMobilePack_Themes_Config::get_theme_config();
+		$colors = $theme_config['presets'][1];
+
+        update_option(WMobilePack_Options::$prefix.'theme', 2);
+        update_option(WMobilePack_Options::$prefix.'custom_colors', $colors);
+
+        $data = array();
+
+        foreach ($colors as $key => $color){
+            $data['wmp_edittheme_customcolor'.$key] = $color;
+        }
+		$theme_config['vars'][] = 'extra-color';
+		$response = $method->invoke($admin_ajax, $data, $theme_config['vars']);
+        $this->assertInternalType('array', $response);
+        $this->assertEquals($response['scss'], false);
+        $this->assertEquals($response['error'], true);
+	}
 }

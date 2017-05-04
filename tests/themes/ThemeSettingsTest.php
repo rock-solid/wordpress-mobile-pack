@@ -123,7 +123,7 @@ class ThemeSettingsTest extends WP_Ajax_UnitTestCase
         $this->assertArrayHasKey('status', $response);
         $this->assertArrayHasKey('messages', $response);
         $this->assertEquals(0, $response['status']);
-        $this->assertEquals(array(), $response['messages']);
+		$this->assertEquals('Please select all colors before saving the custom color scheme!', $response['messages'][0]);
 
     }
 
@@ -453,10 +453,10 @@ class ThemeSettingsTest extends WP_Ajax_UnitTestCase
         // Add hook for the ajax method
         add_action('wp_ajax_wmp_theme_settings', array( &$admin_ajax, 'theme_settings' ) );
 
-        $_POST['wmp_edittheme_colorscheme'] = "3";
-        $_POST['wmp_edittheme_fontheadlines'] = "2";
-        $_POST['wmp_edittheme_fontsubtitles'] = "2";
-        $_POST['wmp_edittheme_fontparagraphs'] = "2";
+        $_POST['wmp_edittheme_colorscheme'] = "1";
+        $_POST['wmp_edittheme_fontheadlines'] = "1";
+        $_POST['wmp_edittheme_fontsubtitles'] = "1";
+        $_POST['wmp_edittheme_fontparagraphs'] = "1";
 
         // Assume we have a previous theme that must be deleted
         update_option(WMobilePack_Options::$prefix.'theme_timestamp', '123456');
@@ -478,8 +478,61 @@ class ThemeSettingsTest extends WP_Ajax_UnitTestCase
         $this->assertArrayHasKey('messages', $response);
         $this->assertEquals(1, $response['status']);
         $this->assertEquals(array(), $response['messages']);
-    }
+	}
 
+	/**
+     *
+     * Calling update theme with a color scheme that is not the default one compiles the theme and removes previous css file
+     *
+     */
+    function test_settings_with_not_default_color_scheme_compiles_theme_and_removes_old_css()
+    {
+
+        // Mock admin ajax class
+        $admin_ajax = $this->getMockBuilder('WMobilePack_Admin_Ajax')
+            ->setMethods(array('update_theme_color_scheme', 'get_theme_manager'))
+            ->getMock();
+
+        $admin_ajax->expects($this->once())
+            ->method('update_theme_color_scheme')
+            ->will($this->returnValue(array('scss' => true, 'updated' => true)));
+
+        // Mock theme manager class
+        $theme_manager = $this->mock_theme_manager(
+            array('compiled' => true, 'error' => false),
+            '123456'
+        );
+
+        $admin_ajax->expects($this->once())
+            ->method('get_theme_manager')
+            ->will($this->returnValue($theme_manager));
+
+        // Add hook for the ajax method
+        add_action('wp_ajax_wmp_theme_settings', array( &$admin_ajax, 'theme_settings' ) );
+
+        $_POST['wmp_edittheme_colorscheme'] = "2";
+        $_POST['wmp_edittheme_fontheadlines'] = "1";
+        $_POST['wmp_edittheme_fontsubtitles'] = "1";
+        $_POST['wmp_edittheme_fontparagraphs'] = "1";
+
+        // Assume we have a previous theme that must be deleted
+        update_option(WMobilePack_Options::$prefix.'theme_timestamp', '123456');
+
+        // Make the request
+        try {
+            $this->_handleAjax('wmp_theme_settings');
+        } catch (WPAjaxDieContinueException $e) {
+            unset($e);
+        }
+
+        $response = json_decode($this->_last_response, true);
+
+        $this->assertInternalType('array', $response);
+        $this->assertArrayHasKey('status', $response);
+        $this->assertArrayHasKey('messages', $response);
+        $this->assertEquals(1, $response['status']);
+        $this->assertEquals(array(), $response['messages']);
+    }
 
     /**
      *
@@ -586,10 +639,10 @@ class ThemeSettingsTest extends WP_Ajax_UnitTestCase
 
     /**
      *
-     * Calling update theme with a new font setting recompiles the SCSS even if the color scheme is default
+     * Calling update theme with a default font recompiles the SCSS for a non-default color scheme
      *
      */
-    function test_settings_with_custom_font_compiles_theme_for_default_color_scheme()
+    function test_settings_with_default_font_compiles_theme_for_non_default_color_scheme()
     {
 
         // Mock admin ajax class
@@ -610,9 +663,9 @@ class ThemeSettingsTest extends WP_Ajax_UnitTestCase
         // Add hook for the ajax method
         add_action('wp_ajax_wmp_theme_settings', array( &$admin_ajax, 'theme_settings' ) );
 
-        // Change font headlines, keep other settings unchanged
+        // Revert to default font variables, but keep a non-default value for the color scheme
         $_POST['wmp_edittheme_colorscheme'] = "2";
-        $_POST['wmp_edittheme_fontheadlines'] = "2";
+        $_POST['wmp_edittheme_fontheadlines'] = "1";
         $_POST['wmp_edittheme_fontsubtitles'] = "1";
         $_POST['wmp_edittheme_fontparagraphs'] = "1";
 
@@ -620,74 +673,11 @@ class ThemeSettingsTest extends WP_Ajax_UnitTestCase
         update_option(WMobilePack_Options::$prefix.'color_scheme', '2');
 
         // Assume that the headlines font was set to a custom value
-        update_option(WMobilePack_Options::$prefix.'font_headlines', '3');
+        update_option(WMobilePack_Options::$prefix.'font_headlines', '2');
 
         // The other font variables have default value
         update_option(WMobilePack_Options::$prefix.'font_subtitles', '1');
         update_option(WMobilePack_Options::$prefix.'font_paragraphs', '1');
-
-        // Assume we have a previous theme
-        update_option(WMobilePack_Options::$prefix.'theme_timestamp', '123456');
-
-        // Make the request
-        try {
-            $this->_handleAjax('wmp_theme_settings');
-        } catch (WPAjaxDieContinueException $e) {
-            unset($e);
-        }
-
-        $response = json_decode($this->_last_response, true);
-
-        $this->assertInternalType('array', $response);
-        $this->assertArrayHasKey('status', $response);
-        $this->assertArrayHasKey('messages', $response);
-        $this->assertEquals(1, $response['status']);
-        $this->assertEquals(array(), $response['messages']);
-    }
-
-
-    /**
-     *
-     * Calling update theme with a new font setting recompiles the SCSS even if the color scheme is default.
-     * Similar to the test above, but the fonts settings will all be equal
-     *
-     */
-    function test_settings_with_custom_font_compiles_theme_for_default_color_scheme2()
-    {
-
-        // Mock admin ajax class
-        $admin_ajax = $this->getMockBuilder('WMobilePack_Admin_Ajax')
-            ->setMethods(array('get_theme_manager'))
-            ->getMock();
-
-        // Mock theme manager class
-        $theme_manager = $this->mock_theme_manager(
-            array('compiled' => true, 'error' => false),
-            '123456'
-        );
-
-        $admin_ajax->expects($this->once())
-            ->method('get_theme_manager')
-            ->will($this->returnValue($theme_manager));
-
-        // Add hook for the ajax method
-        add_action('wp_ajax_wmp_theme_settings', array( &$admin_ajax, 'theme_settings' ) );
-
-        // Change font headlines, keep other settings unchanged
-        $_POST['wmp_edittheme_colorscheme'] = "2";
-        $_POST['wmp_edittheme_fontheadlines'] = "4";
-        $_POST['wmp_edittheme_fontsubtitles'] = "4";
-        $_POST['wmp_edittheme_fontparagraphs'] = "4";
-
-        // Assume that the color scheme has not changed
-        update_option(WMobilePack_Options::$prefix.'color_scheme', '2');
-
-        // Assume that the headlines font was set to a custom value
-        update_option(WMobilePack_Options::$prefix.'font_headlines', '3');
-
-        // The other font variables have default value
-        update_option(WMobilePack_Options::$prefix.'font_subtitles', '4');
-        update_option(WMobilePack_Options::$prefix.'font_paragraphs', '4');
 
         // Assume we have a previous theme
         update_option(WMobilePack_Options::$prefix.'theme_timestamp', '123456');
@@ -735,19 +725,81 @@ class ThemeSettingsTest extends WP_Ajax_UnitTestCase
         // Add hook for the ajax method
         add_action('wp_ajax_wmp_theme_settings', array( &$admin_ajax, 'theme_settings' ) );
 
-        // Change color scheme, keep other settings unchanged
+        // Change font headlines, keep other settings unchanged
         $_POST['wmp_edittheme_colorscheme'] = "1";
-        $_POST['wmp_edittheme_fontheadlines'] = "4";
-        $_POST['wmp_edittheme_fontsubtitles'] = "4";
-        $_POST['wmp_edittheme_fontparagraphs'] = "4";
+        $_POST['wmp_edittheme_fontheadlines'] = "2";
+        $_POST['wmp_edittheme_fontsubtitles'] = "1";
+        $_POST['wmp_edittheme_fontparagraphs'] = "1";
+
+        // Assume that the color scheme has not changed
+        update_option(WMobilePack_Options::$prefix.'color_scheme', '2');
+
+        // Assume that the headlines font was set to a custom value
+        update_option(WMobilePack_Options::$prefix.'font_headlines', '2');
+
+        // The other font variables have default value
+        update_option(WMobilePack_Options::$prefix.'font_subtitles', '1');
+        update_option(WMobilePack_Options::$prefix.'font_paragraphs', '1');
+
+        // Assume we have a previous theme
+        update_option(WMobilePack_Options::$prefix.'theme_timestamp', '123456');
+
+        // Make the request
+        try {
+            $this->_handleAjax('wmp_theme_settings');
+        } catch (WPAjaxDieContinueException $e) {
+            unset($e);
+        }
+
+        $response = json_decode($this->_last_response, true);
+
+        $this->assertInternalType('array', $response);
+        $this->assertArrayHasKey('status', $response);
+        $this->assertArrayHasKey('messages', $response);
+        $this->assertEquals(1, $response['status']);
+        $this->assertEquals(array(), $response['messages']);
+    }
+
+
+    /**
+     *
+     * Calling update theme with a default color scheme recompiles the SCSS for a non-default font size
+     *
+     */
+    function test_settings_with_default_color_scheme_compiles_theme_for_non_default_font_size()
+    {
+
+        // Mock admin ajax class
+        $admin_ajax = $this->getMockBuilder('WMobilePack_Admin_Ajax')
+            ->setMethods(array('get_theme_manager'))
+            ->getMock();
+
+        // Mock theme manager class
+        $theme_manager = $this->mock_theme_manager(
+            array('compiled' => true, 'error' => false),
+            '123456'
+        );
+
+        $admin_ajax->expects($this->once())
+            ->method('get_theme_manager')
+            ->will($this->returnValue($theme_manager));
+
+        // Add hook for the ajax method
+        add_action('wp_ajax_wmp_theme_settings', array( &$admin_ajax, 'theme_settings' ) );
+
+        // Revert to default variables, but keep a non-default value for the font headlines
+        $_POST['wmp_edittheme_colorscheme'] = "1";
+        $_POST['wmp_edittheme_fontheadlines'] = "2";
+        $_POST['wmp_edittheme_fontsubtitles'] = "1";
+        $_POST['wmp_edittheme_fontparagraphs'] = "1";
 
         // Assume that the color scheme has changed
         update_option(WMobilePack_Options::$prefix.'color_scheme', '2');
 
         // The other font variables have custom (unchanged) values
-        update_option(WMobilePack_Options::$prefix.'font_headlines', '4');
-        update_option(WMobilePack_Options::$prefix.'font_subtitles', '4');
-        update_option(WMobilePack_Options::$prefix.'font_paragraphs', '4');
+        update_option(WMobilePack_Options::$prefix.'font_headlines', '1');
+        update_option(WMobilePack_Options::$prefix.'font_subtitles', '1');
+        update_option(WMobilePack_Options::$prefix.'font_paragraphs', '1');
 
         // Assume we have a previous theme
         update_option(WMobilePack_Options::$prefix.'theme_timestamp', '123456');
