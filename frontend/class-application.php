@@ -24,11 +24,6 @@ if (!class_exists('WMobilePack_Application')) {
             // Load application only if the PRO plugin is not active
             if (!WMobilePack::is_active_plugin('WordPress Mobile Pack PRO'))
                 $this->check_load();
-
-            // Add filter for changing style path for Google AMP
-            if (WMobilePack::is_active_plugin('AMP') && $this->app_theme() !== 'premium') {
-                add_filter( 'amp_post_template_file', array($this, 'dbawp_amp_set_custom_template'), 10, 3);
-            }
         }
 
         /**
@@ -301,20 +296,6 @@ if (!class_exists('WMobilePack_Application')) {
             return true;
         }
 
-
-        /**
-         * Change the path to Google AMP's CSS file, to use the colors from WP Mobile Pack.
-         * Add filter for Google AMP custom style.
-         */
-        public function dbawp_amp_set_custom_template($file, $type, $post)
-        {
-            if ('style' === $type) {
-                $file = WMP_PLUGIN_PATH . 'frontend/themes/app1/amp/style.php';
-            }
-            return $file;
-        }
-
-
         /**
          *
          * Method that loads the mobile web application theme.
@@ -509,7 +490,7 @@ if (!class_exists('WMobilePack_Application')) {
                 require_once(WMP_PLUGIN_PATH . 'inc/class-wmp-themes-config.php');
             }
 
-			$settings['manifest_color'] = WMobilePack_Themes_Config::get_manifest_background($settings['color_scheme']);
+			$settings['manifest_color'] = WMobilePack_Themes_Config::get_manifest_background($settings['color_scheme'], $settings['theme']);
 
             return $settings;
         }
