@@ -312,8 +312,6 @@ if ( ! class_exists( 'WMobilePack_Export_Settings' ) ) {
                 $settings['articlesPerCard'] = 'auto';
             }
 
-            $settings['homeText'] = str_replace('\n', '<br/>', json_encode($app_settings['cover_text']));
-
             if ($app_settings['display_website_link']) {
                 $spliter = parse_url(home_url(), PHP_URL_QUERY) ? '&' : '?';
                 $settings['websiteUrl'] = home_url() . $spliter . WMobilePack_Options::$prefix . 'theme_mode=desktop';
