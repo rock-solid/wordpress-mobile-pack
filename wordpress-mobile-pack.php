@@ -5,7 +5,7 @@
  * Description: WordPress Mobile Pack 2.0+ has been completely rebuilt from the ground up and repurposed to empower bloggers, publishers and other content creators to go beyond responsiveness and 'appify' the content of their blog.
  * Author: WPMobilePack.com
  * Author URI: https://wpmobilepack.com/
- * Version: 2.2.10
+ * Version: 3.0
  * Copyright (c) 2009 - 2015 James Pearce, mTLD Top Level Domain Limited, ribot, Forum Nokia, Appticles.com
  * License: The WordPress Mobile Pack is Licensed under the Apache License, Version 2.0
  * Text Domain: wordpress-mobile-pack
@@ -47,6 +47,7 @@ if (class_exists( 'WMobilePack' ) && class_exists( 'WMobilePack' )) {
 
             $wmobile_pack_ajax = new WMobilePack_Admin_Ajax();
 
+			add_action('wp_ajax_wmp_theme_switch', array( &$wmobile_pack_ajax, 'theme_switch' ) );
             add_action('wp_ajax_wmp_theme_settings', array(&$wmobile_pack_ajax, 'theme_settings'));
             add_action('wp_ajax_wmp_theme_editimages', array(&$wmobile_pack_ajax, 'theme_editimages'));
 

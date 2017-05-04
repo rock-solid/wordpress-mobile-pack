@@ -47,6 +47,19 @@
 					color: $base-dark-blue;
 				}
 
+				.ribbon{
+					float:right;
+
+					.starred{
+						background: url(../images/ribbon-premium.png);
+						width: 67px;
+						height: 68px;
+						position: absolute;
+						top: -35px;
+						right: -35px;
+					}
+				}
+
                 &.theming{
                     display: table;
                     width: 100%;
@@ -124,8 +137,7 @@
                                     @include wbz-box-align(center);
                                     @include wbz-box-pack(center);
 
-                                    .preview {
-                                        @include wbz-inline-icon(preview, 20px);
+                                    .preview, .select {
                                         color: #ffffff;
                                         background: #333333;
                                         @include wbz-border-radius(33px);
@@ -145,6 +157,14 @@
                                             line-height: 33px;
                                         }
                                     }
+
+									.preview {
+                                        @include wbz-inline-icon(preview, 20px);
+                                    }
+
+                                    .select {
+                                        @include wbz-inline-icon(active, 14px);
+                                    }
                                 }
 
                                 [class^="text"] {
@@ -161,7 +181,7 @@
 								padding: 3px 5px;
 							}
                             &.premium{
-                                /*.corner{
+								/*.corner{
                                     .indicator{
                                         background: url(../images/ribbon-premium.png);
                                         width: 67px;
@@ -246,18 +266,8 @@
 									}
 								}
                             }
-
-							&.bundle {
-								margin-bottom: 0;
-							}
                         }
                     }
-
-					span.shopping {
-						@include wbz-inline-icon(shopping, 17px);
-						line-height: 33px;
-						color: #ffffff;
-					}
                 }
 			}
 		}

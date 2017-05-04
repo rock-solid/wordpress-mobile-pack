@@ -198,7 +198,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
         public function wmp_admin_enqueue_scripts()
         {
             // enqueue styles
-            wp_enqueue_style(WMobilePack_Options::$prefix.'css_general', plugins_url(WMP_DOMAIN.'/admin/css/general.css'), array(), WMP_VERSION);
+            wp_enqueue_style(WMobilePack_Options::$prefix.'css_general', plugins_url(WMP_DOMAIN.'/admin/css/general-1493903913.css'), array(), WMP_VERSION);
 
             // enqueue scripts
             $dependencies = array('jquery-core', 'jquery-migrate');
@@ -227,9 +227,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
         public function wmp_admin_load_themes_js()
         {
 
-            wp_enqueue_style(WMobilePack_Options::$prefix.'css_magnific_popup', plugins_url(WMP_DOMAIN.'/admin/css/magnific-popup.css'), array(), '0.9.9');
-            wp_enqueue_script(WMobilePack_Options::$prefix.'js_magnific_popup', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/jquery.magnific-popup.min.js'), array(), '0.9.9');
-            wp_enqueue_script(WMobilePack_Options::$prefix.'js_theming_preview', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Theming/WMP_THEMES_GALLERY.min.js'), array(), WMP_VERSION);
+            wp_enqueue_script(WMobilePack_Options::$prefix.'js_switchtheme', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Theming/WMP_SWITCH_THEME.min.js'), array(), WMP_VERSION);
         }
 
 

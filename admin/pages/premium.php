@@ -39,12 +39,12 @@ $arr_wmp_config = $premium_manager->get_premium_config(false);
                 <div class="spacer-10"></div>
 
                 <?php if (is_array($upgrade_content) && !empty($upgrade_content)): ?>
-                    <?php if (array_key_exists('premium', $upgrade_content) && array_key_exists('upgraded', $upgrade_content)): ?>
+                    <?php if (array_key_exists('upgraded', $upgrade_content)): ?>
 
-                        <?php if (array_key_exists('showcase_image', $upgrade_content['premium']) && array_key_exists('dashboard_url', $upgrade_content['upgraded'])):?>
+                        <?php if (array_key_exists('showcase_image', $upgrade_content['upgraded']) && array_key_exists('dashboard_url', $upgrade_content['upgraded'])):?>
                             <div class="showcase">
                                 <a href="<?php echo esc_attr($upgrade_content['upgraded']['dashboard_url']);?>" target="_blank">
-                                    <img src="<?php echo esc_attr($upgrade_content['premium']['showcase_image']);?>" />
+                                    <img src="<?php echo esc_attr($upgrade_content['upgraded']['showcase_image']);?>" />
                                 </a>
                                 <div class="spacer-10"></div>
                             </div>
