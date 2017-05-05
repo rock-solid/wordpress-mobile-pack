@@ -47,6 +47,11 @@
 					<h2 class="title">Available Mobile App Themes</h2>
 					<div class="spacer-30"></div>
 
+					<?php if (isset($upgrade_content['premium']['themes']['message'])):?>
+						<p><?php echo $upgrade_content['premium']['themes']['message'];?></p>
+						<div class="spacer-30"></div>
+					<?php endif;?>
+
 					<div class="themes" style="width: 450px;">
 						<?php
 							foreach ($arr_themes as $theme){
@@ -67,8 +72,8 @@
 						<div class="starred"></div>
 					</div>
 
-					<?php if (isset($upgrade_content['premium']['themes_title'])):?>
-						<h2 class="title"><?php echo $upgrade_content['premium']['themes_title']; ?></h2>
+					<?php if (isset($upgrade_content['premium']['themes']['title'])):?>
+						<h2 class="title"><?php echo $upgrade_content['premium']['themes']['title']; ?></h2>
 					<?php else: ?>
 						<h2 class="title">Premium Mobile App Themes</h2>
 					<?php endif;?>

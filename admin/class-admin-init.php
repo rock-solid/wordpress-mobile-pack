@@ -63,6 +63,11 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
                 'capability' => 'wmp-options-settings',
                 'function' => 'settings',
                 'enqueue_hook' => 'wmp_admin_load_settings_js'
+            ),
+            array(
+                'page_title' => "PRO",
+                'capability' => 'wmp-options-pro',
+                'function' => 'pro'
             )
         );
 
@@ -198,7 +203,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
         public function wmp_admin_enqueue_scripts()
         {
             // enqueue styles
-            wp_enqueue_style(WMobilePack_Options::$prefix.'css_general', plugins_url(WMP_DOMAIN.'/admin/css/general-1493903913.css'), array(), WMP_VERSION);
+            wp_enqueue_style(WMobilePack_Options::$prefix.'css_general', plugins_url(WMP_DOMAIN.'/admin/css/general-1493993256.css'), array(), WMP_VERSION);
 
             // enqueue scripts
             $dependencies = array('jquery-core', 'jquery-migrate');

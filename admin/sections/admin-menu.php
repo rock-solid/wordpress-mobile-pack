@@ -34,13 +34,22 @@ $wpmp_upgrade_pro_link = WMobilePack_Admin::upgrade_pro_link();
         <li <?php echo $current_page == 'wmp-options-settings' ? 'class="selected"' : '';?>>
             <a href="<?php echo add_query_arg(array('page'=>'wmp-options-settings'), network_admin_url('admin.php'));?>">Settings</a>
         </li>
-        <li>
-            <a href="<?php echo $wpmp_upgrade_pro_link;?>" target="_blank">
-				PRO
-				<div class="ribbon">
-					<div class="indicator"></div>
-				</div>
-			</a>
+        <li <?php echo $current_page == 'wmp-options-pro' ? 'class="selected"' : '';?>>
+			<?php if ($wpmp_upgrade_pro_link) :?>
+				<a href="<?php echo esc_attr($wpmp_upgrade_pro_link);?>" target="_blank">
+					PRO
+					<div class="ribbon">
+						<div class="indicator"></div>
+					</div>
+				</a>
+			<?php else: ?>
+				<a href="<?php echo add_query_arg(array('page'=>'wmp-options-pro'), network_admin_url('admin.php'));?>">
+					PRO
+					<div class="ribbon">
+						<div class="indicator"></div>
+					</div>
+				</a>
+			<?php endif; ?>
         </li>
     </ul>
 </nav>

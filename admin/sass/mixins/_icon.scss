@@ -50,6 +50,7 @@
     @else if($name == "pic") { @return "\e900"; }
 
 	@else if ($name == "shopping") { @return "\115"; }
+    @else if($name == "notification") { @return "\e901"; }
 
     @else {
         // @debug "#icon: icon with name '#{$name}' not found.";
