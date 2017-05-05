@@ -79,7 +79,7 @@ function WMP_SWITCH_THEME() {
 
           // hide the actions panel for the selected theme
           selectThemeButton.hide();
-          jQuery('.text-select', themeBox).text('');
+          jQuery('.text-select', themeBox).text('Enabled');
 
           // show the select button for the deactivated theme
           var previousThemeButton = jQuery('.' + JSObject.type + '_select[data-theme="' + String(JSObject.selectedTheme) + '"]');
@@ -96,7 +96,7 @@ function WMP_SWITCH_THEME() {
           // memorize new selected theme
           JSObject.selectedTheme = newTheme;
 
-          var message = 'Your theme has been successfully changed.';
+          var message = 'Your mobile app theme has been successfully changed.';
           WMPJSInterface.Loader.display({ message: message });
 
         } else {

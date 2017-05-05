@@ -21,7 +21,7 @@ if (isset($theme)):
 							<div class="select wmp_themes_select" data-theme="<?php echo esc_attr($theme['id']);?>" style="display: <?php echo $is_selected ? 'none' : 'block';?>"></div>
 						</div>
 						<div class="spacer-10"></div>
-						<div class="text-select"><?php echo !$is_selected ? 'Activate' : '';?></div>
+						<div class="text-select"><?php echo $is_selected ? 'Enabled' : 'Activate';?></div>
 
 					<?php endif;?>
 
