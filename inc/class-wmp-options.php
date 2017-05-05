@@ -21,7 +21,7 @@ if ( ! class_exists( 'WMobilePack_Options' ) ) {
         public static $options = array(
 
             // themes
-            'theme' => 1,
+            'theme' => 2,
             'color_scheme' => 1,
             'custom_colors' => array(),
             'theme_timestamp' => '',
