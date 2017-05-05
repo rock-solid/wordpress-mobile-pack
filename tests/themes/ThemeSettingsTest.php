@@ -18,6 +18,7 @@ class ThemeSettingsTest extends WP_Ajax_UnitTestCase
 
         // Become an administrator
         $this->_setRole( 'administrator' );
+        update_option('wmpack_theme', 1);
 
     }
 
@@ -185,7 +186,7 @@ class ThemeSettingsTest extends WP_Ajax_UnitTestCase
         }
 
         $response = json_decode($this->_last_response, true);
-
+        
         $this->assertInternalType('array', $response);
         $this->assertArrayHasKey('status', $response);
         $this->assertArrayHasKey('messages', $response);
