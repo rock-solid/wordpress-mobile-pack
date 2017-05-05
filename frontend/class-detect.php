@@ -87,12 +87,13 @@ if (!class_exists('WMobilePack_Detect')) {
                 $is_tablet = 1;
 			}
 
-            if ($detect->is('iOS') || $detect->is('AndroidOS') || $detect->is('WindowsPhoneOS') ||  $detect->is('WindowsMobileOS')) {
+            if ($detect->is('iOS') || $detect->is('AndroidOS')) {
                 $is_supported_os = 1;
             }
 
-            if ($detect->is('WebKit') || ($detect->is('IE') && intval($detect->version('IE')) >= 10))
+            if ($detect->is('WebKit')) {
                 $is_supported_browser = 1;
+			}
 
             // set load app variable
             $load_app = false;
