@@ -314,9 +314,8 @@ if ( ! class_exists( 'WMobilePack_Export_Settings' ) ) {
 
             if ($app_settings['display_website_link']) {
                 $spliter = parse_url(home_url(), PHP_URL_QUERY) ? '&' : '?';
-                $settings['websiteUrl'] = home_url() . $spliter . WMobilePack_Options::$prefix . 'theme_mode=desktop';
+                $settings['websiteUrl'] = home_url() . $spliter . WMobilePack_Cookie::$prefix . 'theme_mode=desktop';
             }
-
 
             $settings['logo'] = $app_settings['logo'];
             $settings['icon'] = $app_settings['icon'];
