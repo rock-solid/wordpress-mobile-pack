@@ -12,12 +12,12 @@
             "INSIDE": "Inhoud",
             "MENU": "Menu",
             "OPEN_APP": "OPEN"
-        }, 
+        },
         "TEXTS": {
             "NO_PAGES": "Er zijn geen pagina´s!",
             "NO_CATEGORIES": "Er zijn geen categoriën!",
             "NO_ARTICLES": "Er zijn geen artikelen!",
-            "NO_COMMENTS": "Er zijn geen berichten voor dit artikel.<br/>Laat het eerste bericht achter!",
+            "NO_COMMENTS": "Er zijn geen berichten voor dit artikel. Laat het eerste bericht achter!",
             "NO_COMMENTS_SHORT": "Er zijn geen berichten voor dit artikel.",
             "GOOGLE_ADS": "Ads by Google",
             "COMMENTS": "Opmerkingen",
