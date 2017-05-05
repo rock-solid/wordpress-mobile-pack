@@ -162,7 +162,7 @@ There are almost 50,000 plugins in the WordPress.org repository. It's impossible
 * Refactor "App Themes" tab
 * Refactor export settings method
 * Add pagination params for exporting pages
-* Deprecated Firefox and IE tablets support
+* Deprecated Firefox and Windows Phone support
 * Refactor mobile app styling compiler
 * Remove integration with the Google AMP stylesheet
 
