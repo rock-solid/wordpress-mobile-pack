@@ -124,51 +124,7 @@
             </div>
 			<div class="spacer-15"></div>
 
-			<?php
-				// Get premium monetize message from the more json
-				$upgrade_content = WMobilePack_Admin::more_updates();
-
-				if  (is_array($upgrade_content) && !empty($upgrade_content)):
-
-					if (array_key_exists('premium', $upgrade_content) && is_array($upgrade_content['premium'])):
-
-						if (array_key_exists('monetize', $upgrade_content['premium']) && is_array($upgrade_content['premium']['monetize'])):
-
-							if (array_key_exists('title', $upgrade_content['premium']['monetize']) &&
-								array_key_exists('buy', $upgrade_content['premium']['monetize'])):
-			?>
-								<div class="details">
-									<div class="display-mode">
-										<h2 class="title"><?php echo $upgrade_content['premium']['monetize']['title'];?>
-										<div class="spacer-20"></div>
-
-										<?php
-											if (array_key_exists('description', $upgrade_content['premium']['monetize'])){
-												echo $upgrade_content['premium']['monetize']['description'];
-											}
-										?>
-										<div class="spacer-10"></div>
-										<?php
-											if (is_array($upgrade_content['premium']['monetize']['buy']) &&
-											    array_key_exists('link', $upgrade_content['premium']['monetize']['buy']) &&
-												array_key_exists('text', $upgrade_content['premium']['monetize']['buy'])):
-										?>
-											<a href="<?php echo esc_attr($upgrade_content['premium']['monetize']['buy']['link']);?>" target="_blank" class="btn orange smaller">
-												<?php echo $upgrade_content['premium']['monetize']['buy']['text']; ?>
-											</a>
-										<?php endif;?>
-									</div>
-									<div class="spacer-0"></div>
-								</div>
-								<div class="spacer-15"></div>
-			<?php
-							endif;
-						endif;
-					endif;
-				endif;
-			?>
-
-            <div class="details">
+			<div class="details">
                 <div class="display-mode">
                     <h2 class="title">Enable Facebook, Twitter, Google+</h2>
                     <div class="spacer-20"></div>
@@ -223,7 +179,7 @@
                     <h2 class="title">Connect with Appticles</h2>
                     <div class="spacer-20"></div>
 
-                    <p>Looking for VIP services? Check out <a href="https://www.appticles.com" target="_blank">Appticles.com</a>, a multi-channel mobile publishing platform that empowers digital publishers to grow their mobile audience. </p>
+                    <p>Looking for VIP services? Check out <a href="https://www.appticles.com?wp_mobile_pack=settings" target="_blank">Appticles.com</a>, a multi-channel mobile publishing platform that empowers digital publishers to grow their mobile audience. </p>
                     <div class="spacer-20"></div>
                     <form name="wmp_connect_form" id="wmp_connect_form" class="left" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_premium_save" method="post">
                         <input type="hidden" name="wmp_connect_settings" id="wmp_connect_settings"  value="<?php echo plugins_url()."/".WMP_DOMAIN.'/export/content.php?content=exportsettings';?>" />
