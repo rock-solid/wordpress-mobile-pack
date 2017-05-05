@@ -2,7 +2,7 @@
 /**
  * Plugin Name:  WordPress Mobile Pack
  * Plugin URI:  http://wordpress.org/plugins/wordpress-mobile-pack/
- * Description: WordPress Mobile Pack 2.0+ has been completely rebuilt from the ground up and repurposed to empower bloggers, publishers and other content creators to go beyond responsiveness and 'appify' the content of their blog.
+ * Description: WordPress Mobile Pack 3.0+ has been completely rebuilt from the ground up and repurposed to empower bloggers, publishers and other content creators to go beyond responsiveness and 'appify' the content of their blog.
  * Author: WPMobilePack.com
  * Author URI: https://wpmobilepack.com/
  * Version: 3.0

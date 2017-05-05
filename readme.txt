@@ -16,7 +16,7 @@ WordPress Mobile Pack is **supported on** iOS and Android smartphones and tablet
 
 The pack has been tested on WordPress 3.6 and later. Please read the [Known issues and limitations](https://wordpress.org/plugins/wordpress-mobile-pack/other_notes/) list before installing.
 
-What the WordPress Mobile Pack 2.0+ enables you to do:
+What the WordPress Mobile Pack 3.0+ enables you to do:
 
 * **Progressive Web Apps**. Some of the key features of progressive web apps are: 
 
@@ -164,6 +164,7 @@ There are almost 50,000 plugins in the WordPress.org repository. It's impossible
 * Add pagination params for exporting pages
 * Deprecated Firefox and IE tablets support
 * Refactor mobile app styling compiler
+* Remove integration with the Google AMP stylesheet
 
 = 2.2.10 =
 * Update MobileDetect library to 2.8.25
