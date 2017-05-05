@@ -168,62 +168,6 @@
 				endif;
 			?>
 
-            <a name="verifyapikey"></a>
-            <div class="details">
-                <div class="display-mode">
-                    <h2 class="title">Connect with Appticles</h2>
-                    <div class="spacer-20"></div>
-                    <?php
-						$premium_link = '';
-
-						// Get premium link from the more json
-						if  (is_array($upgrade_content) && !empty($upgrade_content)){
-
-							if (array_key_exists('premium', $upgrade_content)) {
-
-								if (array_key_exists('packages', $upgrade_content['premium']) && is_array($upgrade_content['premium']['packages']) && count($upgrade_content['premium']['packages'] == 2)) {
-
-									$package = $upgrade_content['premium']['packages'][1];
-
-									if (array_key_exists('button_link', $package)) {
-
-										$feed_url = '';
-
-										if (get_bloginfo('atom_url') != null && get_bloginfo('atom_url') != '')
-											$feed_url = '&feedurl=' . urlencode(get_bloginfo('atom_url'));
-										elseif (get_bloginfo('rss2_url') != null && get_bloginfo('rss2_url') != '')
-											$feed_url = '&feedurl=' . urlencode(get_bloginfo('rss2_url'));
-
-										$premium_link =  $package['button_link'].$feed_url;
-									}
-								}
-							}
-						}
-                    ?>
-
-                    <p>Extend your WP Mobile Pack to the premium version by connecting with Appticles.com. Fill in the provided API Key to enable your WP Mobile Pack Cloud. <?php if ($premium_link):?><a href="<?php echo $premium_link;?>" target="_blank">Find out more about it here.</a><?php endif;?></p>
-                    <div class="spacer-20"></div>
-                    <form name="wmp_connect_form" id="wmp_connect_form" class="left" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_premium_save" method="post">
-                        <input type="hidden" name="wmp_connect_settings" id="wmp_connect_settings"  value="<?php echo plugins_url()."/".WMP_DOMAIN.'/export/content.php?content=exportsettings';?>" />
-                        <p>API Key:</p>
-                        <div class="spacer-10"></div>
-                        <input type="text" name="wmp_connect_apikey" id="wmp_connect_apikey" class="small indent" value="" />
-                        <div class="field-message error" id="error_apikey_container"></div>
-                        <div class="spacer-20"></div>
-                        <a href="javascript:void(0)" id="wmp_connect_send_btn" class="btn green smaller">Save</a>
-                    </form>
-					<div class="notices-container left">
-						<div class="notice notice-left right" style="margin: 0px 0 15px 0; top:-10px;">
-							<span>
-								Once your API key is validated, your WP Mobile Pack admin area will be transformed and you will be able to change your mobile web application settings from the Appticles.com dashboard.
-							</span>
-						</div>
-					</div>
-                </div>
-                <div class="spacer-0"></div>
-            </div>
-
-            <div class="spacer-15"></div>
             <div class="details">
                 <div class="display-mode">
                     <h2 class="title">Enable Facebook, Twitter, Google+</h2>
@@ -272,6 +216,37 @@
             </div>
 
             <div class="spacer-15"></div>
+
+			<a name="verifyapikey"></a>
+            <div class="details">
+                <div class="display-mode">
+                    <h2 class="title">Connect with Appticles</h2>
+                    <div class="spacer-20"></div>
+
+                    <p>Looking for VIP services? Check out <a href="https://www.appticles.com" target="_blank">Appticles.com</a>, a multi-channel mobile publishing platform that empowers digital publishers to grow their mobile audience. </p>
+                    <div class="spacer-20"></div>
+                    <form name="wmp_connect_form" id="wmp_connect_form" class="left" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_premium_save" method="post">
+                        <input type="hidden" name="wmp_connect_settings" id="wmp_connect_settings"  value="<?php echo plugins_url()."/".WMP_DOMAIN.'/export/content.php?content=exportsettings';?>" />
+                        <p>API Key:</p>
+                        <div class="spacer-10"></div>
+                        <input type="text" name="wmp_connect_apikey" id="wmp_connect_apikey" class="small indent" value="" />
+                        <div class="field-message error" id="error_apikey_container"></div>
+                        <div class="spacer-20"></div>
+                        <a href="javascript:void(0)" id="wmp_connect_send_btn" class="btn green smaller">Save</a>
+                    </form>
+					<div class="notices-container left">
+						<div class="notice notice-left right" style="margin: 0px 0 15px 0; top:-10px;">
+							<span>
+								Once your Appticles API key is validated, your WP Mobile Pack admin area will be transformed and you will be able to change your mobile web application settings from the Appticles.com dashboard.
+							</span>
+						</div>
+					</div>
+                </div>
+                <div class="spacer-0"></div>
+            </div>
+
+            <div class="spacer-15"></div>
+
             <div class="details">
             	<div class="display-mode">
                  	<h2 class="title">Tracking</h2>
