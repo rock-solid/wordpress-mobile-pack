@@ -54,7 +54,7 @@ class ExportSettingsTest extends WP_UnitTestCase
 		),
 		'commentsToken' => 'NGJiZmFiZTM1NzUxNDdlODg1ZjkxMzAxZDhlOGRiYThfMTQ4MjQwOTExMQ==',
 		'articlesPerCard' => 1,
-		'websiteUrl' => '?wmpack_theme_mode=desktop',
+		'websiteUrl' => '?wmp_theme_mode=desktop',
 		'logo' => '/wp-content/uploads/wordpress-mobile-pack/logo_1482240179.png',
 		'icon' => '/wp-content/uploads/wordpress-mobile-pack/icon_1482240188.png',
 		'defaultCover' => '/wp-content/uploads/wordpress-mobile-pack/cover_1482241639.png',
