@@ -80,6 +80,14 @@
 								<a href="<?php echo esc_attr($upgrade_content['premium']['packages']['button']['link']);?>" class="btn orange smaller" target="_blank">
 									<?php echo $upgrade_content['premium']['packages']['button']['text'];?>
 								</a>
+								<?php if (isset($upgrade_content['premium']['packages']['button']['subtext']['discount']) &&
+										 isset($upgrade_content['premium']['packages']['button']['subtext']['text'])) :?>
+									<div class="spacer-2"></div>
+									<p class="upgrade-subtext">
+										<span class="save"><?php echo $upgrade_content['premium']['packages']['button']['subtext']['discount'];?></span>
+										<?php echo $upgrade_content['premium']['packages']['button']['subtext']['text'];?>
+									</p>
+								<?php endif;?>
 							</div>
 							<div class="spacer-40"></div>
 						<?php endif;?>
@@ -119,6 +127,14 @@
 								<a href="<?php echo esc_attr($upgrade_content['premium']['packages']['button']['link']);?>" class="btn orange smaller" target="_blank">
 									<?php echo $upgrade_content['premium']['packages']['button']['text'];?>
 								</a>
+								<?php if (isset($upgrade_content['premium']['packages']['button']['subtext']['discount']) &&
+									isset($upgrade_content['premium']['packages']['button']['subtext']['text'])) :?>
+									<div class="spacer-2"></div>
+									<p class="upgrade-subtext">
+										<span class="save"><?php echo $upgrade_content['premium']['packages']['button']['subtext']['discount'];?></span>
+										<?php echo $upgrade_content['premium']['packages']['button']['subtext']['text'];?>
+									</p>
+								<?php endif;?>
 							</div>
 							<div class="spacer-40"></div>
 						<?php endif;?>
