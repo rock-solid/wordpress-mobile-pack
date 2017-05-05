@@ -103,20 +103,23 @@ if ( ! class_exists( 'WMobilePack_Themes_Config' ) ) {
 		/**
 		* Get the application's background color for the app manifest.
 		*
+		* @param int or null $theme
 		* @param int or null $color_scheme
 		* @return string or false
 		*
-		* @todo Update this method for multiple app themes
+		* @todo Update this method to use a separate color variable.
 		*/
-		public static function get_manifest_background($color_scheme = null, $theme = null)
+		public static function get_manifest_background($theme = null, $color_scheme = null)
 		{
-
-			if ($color_scheme == null && $theme == null){
-				$color_scheme = WMobilePack_Options::get_setting('color_scheme');
+			if ($theme == null){
                 $theme = WMobilePack_Options::get_setting('theme');
-			}
+            }
 
-            $background = $theme == 1 ? 1 : 10;
+			if ($color_scheme == null){
+                $color_scheme = WMobilePack_Options::get_setting('color_scheme');
+            }
+
+            $background = $theme == 1 ? 1 : 9;
 
 			switch ($color_scheme) {
 
