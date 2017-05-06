@@ -369,52 +369,54 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
 
             $json_data =  get_transient(WMobilePack_Options::$transient_prefix.'more_updates');
 
-            // the transient is not set or expired
-            if (!$json_data) {
+			if ($json_data){
 
-                // check if we have a https connection
-                $is_secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
-
-                // JSON URL that should be requested
-                $json_url = ($is_secure ? WMP_MORE_UPDATES_HTTPS : WMP_MORE_UPDATES);
-
-                // get response
-                $json_response = WMobilePack::read_data($json_url);
-
-                if ($json_response !== false && $json_response != '') {
-
-                    // Store this data in a transient
-                    set_transient(WMobilePack_Options::$transient_prefix.'more_updates', $json_response, 3600*24*2);
-
-                    // get response
-                    $response = json_decode($json_response, true);
-
-                    if (isset($response["content"]) && is_array($response["content"]) && !empty($response["content"])){
-
-                        // return response
-                        return $response["content"];
-                    }
-
-                } elseif ($json_response == false) {
-
-                    // Store this data in a transient
-                    set_transient(WMobilePack_Options::$transient_prefix.'more_updates', 'warning', 3600*24*2 );
-
-                    // return message
-                    return 'warning';
-                }
-
-            } else {
-
-                if ($json_data == 'warning')
+				if ($json_data == 'warning') {
                     return $json_data;
+				}
 
                 // get response
                 $response = json_decode($json_data, true);
 
-                if (isset($response["content"]) && is_array($response["content"]) && !empty($response["content"]))
-                    return $response["content"];
-            }
+                if (isset($response["content"]) && is_array($response["content"]) && !empty($response["content"])) {
+
+					if (isset($response['content']['version']) && $response['content']['version'] == WMP_MORE_UPDATES_VERSION) {
+                    	return $response["content"];
+					}
+				}
+			}
+
+			// check if we have a https connection
+			$is_secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
+
+			// JSON URL that should be requested
+			$json_url = ($is_secure ? WMP_MORE_UPDATES_HTTPS : WMP_MORE_UPDATES);
+
+			// get response
+			$json_response = WMobilePack::read_data($json_url);
+
+			if ($json_response !== false && $json_response != '') {
+
+				// Store this data in a transient
+				set_transient(WMobilePack_Options::$transient_prefix.'more_updates', $json_response, 3600*24*2);
+
+				// get response
+				$response = json_decode($json_response, true);
+
+				if (isset($response["content"]) && is_array($response["content"]) && !empty($response["content"])){
+
+					// return response
+					return $response["content"];
+				}
+
+			} elseif ($json_response == false) {
+
+				// Store this data in a transient
+				set_transient(WMobilePack_Options::$transient_prefix.'more_updates', 'warning', 3600*24*2 );
+
+				// return message
+				return 'warning';
+			}
 
             // by default return empty array
             return array();

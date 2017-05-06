@@ -16,6 +16,7 @@ define('WMP_WHATSNEW_UPDATES_HTTPS','https://d3oqwjghculspf.cloudfront.net/dashb
 
 define('WMP_MORE_UPDATES','http://cdn-wpmp.appticles.com/dashboard/more/more4.json');
 define('WMP_MORE_UPDATES_HTTPS','https://d3oqwjghculspf.cloudfront.net/dashboard/more/more4.json');
+define('WMP_MORE_UPDATES_VERSION', 4);
 
 define('WMP_WAITLIST_PATH','http://gateway.appticles.com/waitlist/api/subscribe');
 define('WMP_WAITLIST_PATH_HTTPS','https://gateway.appticles.com/waitlist/api/subscribe');
