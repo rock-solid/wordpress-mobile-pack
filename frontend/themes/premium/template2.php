@@ -59,7 +59,6 @@ $export_path = plugins_url()."/".WMP_DOMAIN."/export/";
 
 			commentsToken: "<?php echo $app_settings['comments_token'];?>",
 			articlesPerCard: <?php echo is_numeric($app_settings['posts_per_page']) ? $app_settings['posts_per_page'] : '"auto"' ;?>,
-			homeText: <?php echo str_replace('\n', '<br/>', json_encode($app_settings['cover_text']));?>,
 
             <?php if (isset($app_settings['website_url']) && $app_settings['website_url'] != ''):?>
                 websiteUrl: '<?php echo $app_settings['website_url']; echo parse_url($app_settings['website_url'], PHP_URL_QUERY) ? '&' : '?'; echo WMobilePack_Cookie::$prefix; ?>theme_mode=desktop',

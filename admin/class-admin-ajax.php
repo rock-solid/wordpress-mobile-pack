@@ -67,17 +67,45 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
         }
 
 
+		/**
+         * Validate the new font settings, using the theme's configuration.
+         *
+         * @param $data = array with POST data
+         * @param $allowed_font_settings = array with the allowed font settings from the theme's configuration
+		 *
+         * @return bool
+         */
+		protected function validate_theme_fonts($data, $allowed_font_settings)
+		{
+
+			foreach (array('headlines', 'subtitles', 'paragraphs') as $font_type){
+
+				if (array_key_exists($font_type.'-font', $allowed_font_settings)) {
+
+					if (!isset($data['wmp_edittheme_font'.$font_type]) ||
+						!in_array($data['wmp_edittheme_font'.$font_type] - 1, array_keys(WMobilePack_Themes_Config::$allowed_fonts))){
+
+						return false;
+					}
+				}
+			}
+
+			return true;
+		}
+
+
         /**
          * Save new font settings into the database. Returns true if we need to compile the css file.
          *
          * @param $data = array with POST data
+		 * @param $allowed_font_settings = array with the allowed font settings from the theme's configuration
          *
          * @return array with the following properties:
          * - scss - If we need to compile the theme
          * - updated - If any of the font settings have changed
          *
          */
-        protected function update_theme_fonts($data)
+        protected function update_theme_fonts($data, $allowed_font_settings)
         {
 
             // check if we have to compile the scss file
@@ -86,31 +114,22 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                 'updated' => false
             );
 
-            $font_families = array();
+			foreach (array('headlines', 'subtitles', 'paragraphs') as $font_type) {
 
-            foreach (array('headlines', 'subtitles', 'paragraphs') as $font_type) {
+                if (isset($data['wmp_edittheme_font'.$font_type]) && array_key_exists($font_type.'-font', $allowed_font_settings)) {
 
-                // check if the font settings have changed
-                if (isset($data['wmp_edittheme_font'.$font_type])) {
-
+                    // check if the font settings have changed
                     if ($data['wmp_edittheme_font'.$font_type] != WMobilePack_Options::get_setting('font_'.$font_type)) {
 
                         WMobilePack_Options::update_settings('font_' . $font_type, $data['wmp_edittheme_font' . $font_type]);
                         $response['updated'] = true;
                     }
 
-                    // if a font different from the default ones was selected, we need to compile the css file
-                    if ($data['wmp_edittheme_font' . $font_type] > 3) {
+                    // if a font different from the default one was selected, we need to compile the css file
+                    if ($data['wmp_edittheme_font'.$font_type] != 1) {
                         $response['scss'] = true;
                     }
-
-                    $font_families[] = $data['wmp_edittheme_font'.$font_type];
                 }
-            }
-
-            // if the font settings are different for headlines, subtitles or paragraphs, we need to compile the css file
-            if (count(array_unique($font_families)) > 1){
-                $response['scss'] = true;
             }
 
             return $response;
@@ -145,8 +164,8 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                     $response['updated'] = true;
                 }
 
-                // enable compiling for custom color schemes
-                if ($data['wmp_edittheme_colorscheme'] == 0) {
+                // enable compiling for the second & third color schemes
+                if ($data['wmp_edittheme_colorscheme'] != 1) {
                     $response['scss'] = true;
                 }
             }
@@ -159,6 +178,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
          * Save new colors settings into the database. Returns true if we need to compile the css file.
          *
          * @param $data = array with POST data
+		 * @param $colors_variables = array with the color variables names from the theme configuration
          *
          * @return array with the following properties:
          * - scss - If we need to compile the theme
@@ -167,7 +187,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
          *
          *
          */
-        protected function update_theme_colors($data)
+        protected function update_theme_colors($data, $colors_variables)
         {
 
             $response = array(
@@ -178,11 +198,10 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
             $arr_custom_colors = array();
 
             // read theme and custom colors options
-            $selected_theme = WMobilePack_Options::get_setting('theme');
             $selected_custom_colors = WMobilePack_Options::get_setting('custom_colors');
 
             // how many colors does the theme have
-            $no_theme_colors = count(WMobilePack_Themes_Config::$color_schemes[$selected_theme]['vars']);
+            $no_theme_colors = count($colors_variables);
 
             for ($i = 0; $i < $no_theme_colors; $i++) {
 
@@ -220,6 +239,25 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
             return $response;
         }
 
+		/**
+         *
+         * Reset all theme settings when a theme is changed
+         *
+         */
+        protected function reset_theme_settings()
+        {
+
+            // reset color schemes and fonts
+            WMobilePack_Options::update_settings('color_scheme', 1);
+            WMobilePack_Options::update_settings('custom_colors', array());
+            WMobilePack_Options::update_settings('font_headlines', 1);
+            WMobilePack_Options::update_settings('font_subtitles', 1);
+            WMobilePack_Options::update_settings('font_paragraphs', 1);
+            WMobilePack_Options::update_settings('font_size', 1);
+
+            $this->remove_custom_theme();
+        }
+
 
         /**
          *
@@ -243,6 +281,38 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
         }
 
 
+		/**
+         *
+         * Method used to switch to a new theme
+         *
+         */
+        public function theme_switch()
+        {
+
+            if (current_user_can('manage_options')) {
+
+                $status = 0;
+
+                if (!empty($_GET) && isset($_GET['theme'])){
+                    if (in_array($_GET['theme'], array_keys(WMobilePack_Themes_Config::get_allowed_themes()) )) {
+
+                        $new_theme = $_GET['theme'];
+
+                        if (WMobilePack_Options::get_setting('theme') != $new_theme){
+
+                            $status = 1;
+                            WMobilePack_Options::update_settings('theme', $new_theme);
+                            $this->reset_theme_settings();
+                        }
+                    }
+                }
+
+                echo $status;
+            }
+
+            exit();
+        }
+
         /**
          *
          * Method used to save the custom settings for a theme.
@@ -256,8 +326,6 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
          * - settings were not changed
          * - other error messages resulted from compiling the theme
          *
-         * @todo Revert to old fonts settings if the theme was not successfully compiled.
-         *
          */
         public function theme_settings()
         {
@@ -268,16 +336,20 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                     'messages' => array()
                 );
 
-                // handle color schemes and fonts (look & feel page)
-                if (isset($_POST['wmp_edittheme_colorscheme']) && is_numeric($_POST['wmp_edittheme_colorscheme']) &&
-                    isset($_POST['wmp_edittheme_fontheadlines']) && is_numeric($_POST['wmp_edittheme_fontheadlines']) &&
-                    isset($_POST['wmp_edittheme_fontsubtitles']) && is_numeric($_POST['wmp_edittheme_fontsubtitles']) &&
-                    isset($_POST['wmp_edittheme_fontparagraphs']) && is_numeric($_POST['wmp_edittheme_fontparagraphs'])){
+				// get the theme's  configuration
+            	$theme_config = WMobilePack_Themes_Config::get_theme_config();
 
-                    if (in_array($_POST['wmp_edittheme_colorscheme'], array(0,1,2,3)) &&
-                        in_array($_POST['wmp_edittheme_fontheadlines']-1, array_keys(WMobilePack_Themes_Config::$allowed_fonts)) &&
-                        in_array($_POST['wmp_edittheme_fontsubtitles']-1, array_keys(WMobilePack_Themes_Config::$allowed_fonts)) &&
-                        in_array($_POST['wmp_edittheme_fontparagraphs']-1, array_keys(WMobilePack_Themes_Config::$allowed_fonts))){
+            	if ($theme_config !== false) {
+
+					// build array with the allowed fonts sizes
+					$allowed_fonts_sizes = array();
+					foreach (WMobilePack_Themes_Config::$allowed_fonts_sizes as $allowed_font_size) {
+						$allowed_fonts_sizes[] = $allowed_font_size['size'];
+					}
+
+					// handle color schemes and fonts (look & feel page)
+					if ($this->validate_theme_fonts($_POST, $theme_config['fonts']) &&
+						isset($_POST['wmp_edittheme_colorscheme']) && in_array($_POST['wmp_edittheme_colorscheme'], array(0,1,2,3))){
 
                         // check if the theme compiler can be successfully loaded
                         $wmp_themes_compiler = $this->get_theme_manager();
@@ -293,7 +365,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 
                             if ($_POST['wmp_edittheme_colorscheme'] == 0) {
 
-                                $updated_colors = $this->update_theme_colors($_POST);
+                                $updated_colors = $this->update_theme_colors($_POST, $theme_config['vars']);
 
                                 // if the colors were not successfully processed, display error message and exit
                                 if ($updated_colors['error']) {
@@ -306,7 +378,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                             }
 
                             // update fonts and check if we need to compile the scss file
-                            $updated_fonts = $this->update_theme_fonts($_POST);
+                            $updated_fonts = $this->update_theme_fonts($_POST, $theme_config['fonts']);
 
                             // update color scheme
                             $updated_color_scheme = $this->update_theme_color_scheme($_POST);
@@ -346,7 +418,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 
                                 } else {
 
-                                    // we have reverted to the first color scheme (which is 1), remove custom theme file
+                                    // we have reverted to the default theme settings, remove custom theme file
                                     $this->remove_custom_theme();
                                     $arr_response['status'] = 1;
                                 }

@@ -3,7 +3,7 @@ Contributors: jamesgpearce, andreatrasatti, edent, cborodescu, anghelalexandra
 Tags: android, iOS, html5, iphone, mobile, mobile internet, mobile web, mobile web app, responsive ui, safari, sencha touch, smartphone, webkit, progressive web apps, app builder, apple, apps, convert to app, create blog app, ios app, ipad, make an app, mobile app plugin, mobile application, mobile blog app, mobile converter, mobile plugin, native app plugin, app theme, website to mobile app, WordPress android, WordPress app, WordPress iphone, WordPress mobile, WordPress mobile app
 Requires at least: 3.6
 Tested up to: 4.7.3
-Stable tag: 2.2.10
+Stable tag: 3.0
 License: GPLv2 or later
 
 Mobile plugin to package your content into a progressive web app, build a hybrid mobile app and submit it to App Stores. Multiple mobile app themes.
@@ -16,7 +16,7 @@ WordPress Mobile Pack is **supported on** iOS and Android smartphones and tablet
 
 The pack has been tested on WordPress 3.6 and later. Please read the [Known issues and limitations](https://wordpress.org/plugins/wordpress-mobile-pack/other_notes/) list before installing.
 
-What the WordPress Mobile Pack 2.0+ enables you to do:
+What the WordPress Mobile Pack 3.0+ enables you to do:
 
 * **Progressive Web Apps**. Some of the key features of progressive web apps are: 
 
@@ -156,6 +156,15 @@ There are almost 50,000 plugins in the WordPress.org repository. It's impossible
 
 
 == Changelog ==
+
+= 3.0 =
+* New Obliq mobile app theme, built on AngularJS & Ionic 1
+* Refactor "App Themes" tab
+* Refactor export settings method
+* Add pagination params for exporting pages
+* Deprecated Firefox and Windows Phone support
+* Refactor mobile app styling compiler
+* Remove integration with the Google AMP stylesheet
 
 = 2.2.10 =
 * Update MobileDetect library to 2.8.25
@@ -387,8 +396,8 @@ Two major issues were introduced in beta 1, now solved:
 
 == Upgrade Notice ==
 
-= 2.2.10 =
-* WordPress Mobile Pack packages your content into a progressive web app or a hybrid mobile app that can submitted to App Stores. The latest version comes with new Progressive Web Apps features - background color for the browser's address bar and splash screen.
+= 3.0 =
+* WordPress Mobile Pack packages your content into a progressive web app or a hybrid mobile app that can submitted to App Stores. The latest version comes with a brand new Obliq theme, built on Angular JS & Ionic 1.
 
 == Screenshots ==
 

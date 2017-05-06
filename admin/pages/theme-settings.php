@@ -27,170 +27,175 @@
             </div>
             <div class="spacer-10"></div>
 
-            <?php
+			<?php
+                $theme_settings = WMobilePack_Themes_Config::get_theme_config();
 
-                $selected_theme = WMobilePack_Options::get_setting('theme');
-
-				if (array_key_exists($selected_theme, WMobilePack_Themes_Config::$color_schemes)):
-                    $theme_settings = WMobilePack_Themes_Config::$color_schemes[$selected_theme];
+                if ($theme_settings !== false):
             ?>
-                    <div class="details">
-                        <h2 class="title">Customize Color Schemes and Fonts</h2>
-                        <div class="spacer-15"></div>
-                        <div class="grey-line"></div>
-                        <div class="spacer-30"></div>
 
-                        <?php if (version_compare(PHP_VERSION, '5.3') < 0) :?>
-                            <div class="message-container warning">
-                                <div class="wrapper">
-                                    <span>Customizing the theme's colors and fonts requires PHP5.3 or greater. Your PHP version (<?php echo PHP_VERSION;?>) is not supported.</span>
-                                </div>
-                            </div>
-                            <div class="spacer-20"></div>
-                        <?php endif;?>
+				<div class="details">
+					<h2 class="title">Customize Color Schemes and Fonts</h2>
+					<div class="spacer-15"></div>
+					<div class="grey-line"></div>
+					<div class="spacer-30"></div>
 
-                        <form name="wmp_edittheme_form" id="wmp_edittheme_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_theme_settings" method="post">
+					<?php if (version_compare(PHP_VERSION, '5.3') < 0) :?>
+						<div class="message-container warning">
+							<div class="wrapper">
+								<span>Customizing the theme's colors and fonts requires PHP5.3 or greater. Your PHP version (<?php echo PHP_VERSION;?>) is not supported.</span>
+							</div>
+						</div>
+						<div class="spacer-20"></div>
+					<?php endif;?>
 
-                            <div class="color-schemes">
-                                <p class="section-header">Select Color Scheme</p>
-                                <div class="spacer-20"></div>
+					<form name="wmp_edittheme_form" id="wmp_edittheme_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_theme_settings" method="post">
 
-                                <!-- add labels -->
-                                <div class="colors description">
-                                    <?php foreach ($theme_settings['labels'] as $key => $description):?>
-                                        <div class="color-" title="<?php echo $description;?>"><?php echo $key+1;?></div>
-                                    <?php endforeach; ?>
-                                </div>
-                                <div class="spacer-15"></div>
+						<div class="color-schemes">
+							<p class="section-header">Select Color Scheme</p>
+							<div class="spacer-20"></div>
 
-                                <!-- add presets radio buttons & colors -->
-                                <?php
-                                    $selected_color_scheme = WMobilePack_Options::get_setting('color_scheme');
-                                    if ($selected_color_scheme == '')
-                                        $selected_color_scheme = 1;
+							<!-- add labels -->
+							<div class="colors description">
+								<?php foreach ($theme_settings['labels'] as $key => $description):?>
+									<div class="color-" title="<?php echo $description;?>"><?php echo $key+1;?></div>
+								<?php endforeach; ?>
+							</div>
+							<div class="spacer-15"></div>
 
-                                    foreach ($theme_settings['presets'] as $color_scheme => $default_colors):
-                                ?>
-                                    <input type="radio" name="wmp_edittheme_colorscheme" id="wmp_edittheme_colorscheme" value="<?php echo $color_scheme;?>" <?php if ($color_scheme == $selected_color_scheme) echo 'checked="checked"';?> autocomplete="off" />
-                                    <div class="colors">
+							<!-- add presets radio buttons & colors -->
+							<?php
+								$selected_color_scheme = WMobilePack_Options::get_setting('color_scheme');
+								if ($selected_color_scheme == '')
+									$selected_color_scheme = 1;
 
-                                        <?php foreach ($theme_settings['labels'] as $key => $description):?>
-                                            <div class="color-<?php echo $color_scheme.'-'.$key;?>" title="<?php echo $description;?>" style="background: <?php echo $theme_settings['presets'][$color_scheme][$key];?>"></div>
-                                        <?php endforeach;?>
+								foreach ($theme_settings['presets'] as $color_scheme => $default_colors):
+							?>
+								<input type="radio" name="wmp_edittheme_colorscheme" id="wmp_edittheme_colorscheme" value="<?php echo $color_scheme;?>" <?php if ($color_scheme == $selected_color_scheme) echo 'checked="checked"';?> autocomplete="off" />
+								<div class="colors">
 
-                                    </div>
-                                    <div class="spacer-20"></div>
-                                <?php endforeach;?>
+									<?php foreach ($theme_settings['labels'] as $key => $description):?>
+										<div class="color-<?php echo $color_scheme.'-'.$key;?>" title="<?php echo $description;?>" style="background: <?php echo $theme_settings['presets'][$color_scheme][$key];?>"></div>
+									<?php endforeach;?>
 
-                                <!-- add custom scheme radio button -->
-                                <input type="radio" name="wmp_edittheme_colorscheme" id="wmp_edittheme_colorscheme" value="0" <?php echo $selected_color_scheme == 0 ? 'checked="checked"' : '';?> autocomplete="off" />
-                                <p>Edit custom colors</p>
-                            </div>
+								</div>
+								<div class="spacer-20"></div>
+							<?php endforeach;?>
 
-                            <!-- start notice -->
-                            <div class="notice notice-left left" style="width: 50%;">
-                                <span>
-                                    The color scheme will impact the following sections within the mobile web application:<br/><br/>
-                                    <?php
-                                        foreach ($theme_settings['labels'] as $key => $description)
-                                            echo ($key+1).'.&nbsp;'.$description.'<br/>';
-                                    ?>
-                                </span>
-                            </div>
+							<!-- add custom scheme radio button -->
+							<input type="radio" name="wmp_edittheme_colorscheme" id="wmp_edittheme_colorscheme" value="0" <?php echo $selected_color_scheme == 0 ? 'checked="checked"' : '';?> autocomplete="off" />
+							<p>Edit custom colors</p>
+						</div>
 
-                            <div class="spacer-20"></div>
+						<!-- start notice -->
+						<div class="notice notice-left left" style="width: 50%;">
+							<span>
+								The color scheme will impact the following sections within the mobile web application:<br/><br/>
+								<?php
+									foreach ($theme_settings['labels'] as $key => $description)
+										echo ($key+1).'.&nbsp;'.$description.'<br/>';
+								?>
+							</span>
+						</div>
 
-                            <!-- start color pickers -->
-                            <div class="color-schemes-custom" style="display: <?php echo $selected_color_scheme == 0 ? 'block' : 'none';?>;">
+						<div class="spacer-20"></div>
 
-                                <p class="section-header">Your Custom Scheme</p>
-                                <div class="spacer-20"></div>
+						<!-- start color pickers -->
+						<div class="color-schemes-custom" style="display: <?php echo $selected_color_scheme == 0 ? 'block' : 'none';?>;">
 
-                                <div class="set">
-                                    <?php
-                                        // display color pickers and divide them into two columns
-                                        $half = ceil( count($theme_settings['labels']) / 2);
+							<p class="section-header">Your Custom Scheme</p>
+							<div class="spacer-20"></div>
 
-                                        // read the custom colors options array
-                                        $selected_custom_colors = WMobilePack_Options::get_setting('custom_colors');
+							<div class="set">
+								<?php
+									// display color pickers and divide them into two columns
+									$half = ceil( count($theme_settings['labels']) / 2);
 
-                                        foreach ($theme_settings['labels'] as $key => $description):
+									// read the custom colors options array
+									$selected_custom_colors = WMobilePack_Options::get_setting('custom_colors');
 
-                                            $color_value = '';
-                                            if (!empty($selected_custom_colors) && array_key_exists($key, $selected_custom_colors))
-                                                $color_value = $selected_custom_colors[$key];
-                                    ?>
-                                        <label for="wmp_edittheme_customcolor<?php echo $key;?>"><?php echo ($key+1).'. '.$description;?></label>
-                                        <input type="text" name="wmp_edittheme_customcolor<?php echo $key;?>" id="wmp_edittheme_customcolor<?php echo $key;?>" value="<?php echo $color_value;?>" autocomplete="off" />
-                                        <div class="spacer-10"></div>
+									foreach ($theme_settings['labels'] as $key => $description):
 
-                                        <?php if ($key + 1 == $half):?>
-                                            </div>
-                                            <div class="set">
-                                        <?php endif;?>
+										$color_value = '';
+										if (!empty($selected_custom_colors) && array_key_exists($key, $selected_custom_colors))
+											$color_value = $selected_custom_colors[$key];
+								?>
+									<label for="wmp_edittheme_customcolor<?php echo $key;?>"><?php echo ($key+1).'. '.$description;?></label>
+									<input type="text" name="wmp_edittheme_customcolor<?php echo $key;?>" id="wmp_edittheme_customcolor<?php echo $key;?>" value="<?php echo $color_value;?>" autocomplete="off" />
+									<div class="spacer-10"></div>
 
-                                    <?php endforeach;?>
-                                </div>
-                            </div>
-                            <div class="spacer-20"></div>
+									<?php if ($key + 1 == $half):?>
+										</div>
+										<div class="set">
+									<?php endif;?>
 
-                            <!-- choose fonts -->
-                            <div class="font-chooser">
-                                <p class="section-header">Select Fonts</p>
-                                <div class="spacer-20"></div>
+								<?php endforeach;?>
+							</div>
+						</div>
+						<div class="spacer-20"></div>
 
-                                <!-- add radio buttons -->
-                                <?php
-                                    $font_headlines = WMobilePack_Options::get_setting('font_headlines');
-                                    if ($font_headlines == '')
-                                        $font_headlines = 1;
-                                ?>
+						<!-- choose fonts -->
+						<div class="font-chooser">
+							<p class="section-header">Select Fonts</p>
+							<div class="spacer-20"></div>
 
-                                <label for="wmp_edittheme_fontheadlines">Headlines</label>
+							<!-- add radio buttons -->
+							<?php if (array_key_exists('headlines-font', $theme_settings['fonts'])): ?>
+								<?php
+									$font_headlines = WMobilePack_Options::get_setting('font_headlines');
+									if ($font_headlines == '')
+										$font_headlines = 1;
+								?>
 
-                                <select name="wmp_edittheme_fontheadlines" id="wmp_edittheme_fontheadlines">
+								<label for="wmp_edittheme_fontheadlines">Headlines</label>
 
-                                    <?php foreach (WMobilePack_Themes_Config::$allowed_fonts as $key => $font_family): ?>
-                                        <option value="<?php echo $key+1;?>" data-text='<span style="font-family:<?php echo str_replace(" ", "", $font_family);?>"><?php echo $font_family;?></span>' <?php if ($font_headlines == $key+1) echo "selected";?>></option>
-                                    <?php endforeach; ?>
-                                </select>
+								<select name="wmp_edittheme_fontheadlines" id="wmp_edittheme_fontheadlines">
 
-                                <div class="spacer-10"></div>
+									<?php foreach (WMobilePack_Themes_Config::$allowed_fonts as $key => $font_family): ?>
+										<option value="<?php echo $key+1;?>" data-text='<span style="font-family:<?php echo str_replace(" ", "", $font_family);?>"><?php echo $font_family;?></span>' <?php if ($font_headlines == $key+1) echo "selected";?>></option>
+									<?php endforeach; ?>
+								</select>
 
-                                <?php
-                                    $font_subtitles = WMobilePack_Options::get_setting('font_subtitles');
-                                    if ($font_subtitles == '')
-                                        $font_subtitles = 1;
-                                ?>
+								<div class="spacer-10"></div>
+							<?php endif; ?>
 
-                                <label for="wmp_edittheme_fontsubtitles">Subtitles</label>
-                                <select name="wmp_edittheme_fontsubtitles" id="wmp_edittheme_fontsubtitles">
-                                    <?php foreach (WMobilePack_Themes_Config::$allowed_fonts as $key => $font_family): ?>
+							<?php if (array_key_exists('subtitles-font', $theme_settings['fonts'])): ?>
+								<?php
+									$font_subtitles = WMobilePack_Options::get_setting('font_subtitles');
+									if ($font_subtitles == '')
+										$font_subtitles = 1;
+								?>
+
+								<label for="wmp_edittheme_fontsubtitles">Subtitles</label>
+								<select name="wmp_edittheme_fontsubtitles" id="wmp_edittheme_fontsubtitles">
+									<?php foreach (WMobilePack_Themes_Config::$allowed_fonts as $key => $font_family): ?>
 										<option value="<?php echo $key+1;?>" data-text='<span style="font-family:<?php echo str_replace(" ", "", $font_family);?>"><?php echo $font_family;?></span>' <?php if ($font_subtitles == $key+1) echo "selected";?>></option>
-                                    <?php endforeach; ?>
-                                </select>
-                                <div class="spacer-10"></div>
+									<?php endforeach; ?>
+								</select>
+								<div class="spacer-10"></div>
+							<?php endif; ?>
 
-                                <?php
-                                    $font_paragraphs = WMobilePack_Options::get_setting('font_paragraphs');
-                                    if ($font_paragraphs == '')
-                                        $font_paragraphs = 1;
-                                ?>
+							<?php if(array_key_exists('paragraphs-font', $theme_settings['fonts'])): ?>
+								<?php
+									$font_paragraphs = WMobilePack_Options::get_setting('font_paragraphs');
+									if ($font_paragraphs == '')
+										$font_paragraphs = 1;
+								?>
 
-                                <label for="wmp_edittheme_fontparagraphs">Paragraphs</label>
-                                <select name="wmp_edittheme_fontparagraphs" id="wmp_edittheme_fontparagraphs">
-                                    <?php foreach (WMobilePack_Themes_Config::$allowed_fonts as $key => $font_family): ?>
+								<label for="wmp_edittheme_fontparagraphs">Paragraphs</label>
+								<select name="wmp_edittheme_fontparagraphs" id="wmp_edittheme_fontparagraphs">
+									<?php foreach (WMobilePack_Themes_Config::$allowed_fonts as $key => $font_family): ?>
 										<option value="<?php echo $key+1;?>" data-text='<span style="font-family:<?php echo str_replace(" ", "", $font_family);?>"><?php echo $font_family;?></span>' <?php if ($font_paragraphs == $key+1) echo "selected";?>></option>
-                                    <?php endforeach; ?>
-                                </select>
-                                <div class="spacer-20"></div>
-                            </div>
+									<?php endforeach; ?>
+								</select>
+								<div class="spacer-20"></div>
+							<?php endif;?>
+						</div>
 
-                            <div class="spacer-20"></div>
-                            <a href="javascript:void(0);" id="wmp_edittheme_send_btn" class="btn green smaller" >Save</a>
-                        </form>
-                    </div>
-                    <div class="spacer-15"></div>
+						<div class="spacer-20"></div>
+						<a href="javascript:void(0);" id="wmp_edittheme_send_btn" class="btn green smaller" >Save</a>
+					</form>
+				</div>
+				<div class="spacer-15"></div>
             <?php endif;?>
 
             <div class="details branding">

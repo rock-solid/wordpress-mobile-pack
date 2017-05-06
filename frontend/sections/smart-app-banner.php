@@ -82,11 +82,11 @@ if (class_exists('WMobilePack')):
     }
 
     // Load 'Open' app button translation
-    if ( ! class_exists( 'WMobilePack_Export' ) ) {
-        require_once(WMP_PLUGIN_PATH.'export/class-export.php');
+    if ( ! class_exists( 'WMobilePack_Export_Settings' ) ) {
+        require_once(WMP_PLUGIN_PATH.'export/class-export-settings.php');
     }
 
-    $wmp_export = new WMobilePack_Export();
+    $wmp_export = new WMobilePack_Export_Settings();
     $wmp_texts_json = $wmp_export->load_language(get_locale(), 'list');
 
     $open_btn_text = 'Open';

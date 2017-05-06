@@ -1,0 +1,123 @@
+#wmpack-admin{
+	.pro{
+		display: table;
+
+		.left-side{
+			width: 100%;
+			display: table;
+			vertical-align: top;
+
+			.details{
+				padding:30px;
+				background-color: $box-color;
+
+				h1 {
+					font-family: 'OlRoundGothicLight', sans-serif;
+					font-size: 40px;
+					line-height: 40px;
+					color: $base-text-color;
+					text-align: center;
+					letter-spacing: 0.5px;
+				}
+
+				h2, h3 {
+					text-align: center;
+				}
+
+                .showcase{
+                    width: 671px;
+                    margin: 0 auto;
+                }
+
+                .package {
+                    width: 30%;
+                    float: left;
+                    margin: 10px;
+                    padding: 20px 0 10px 0;
+                    background: #fffced;
+
+                    p {
+                        text-align: center;
+                        font-size:13px;
+						padding: 10px;
+                    }
+
+                    .features-list{
+                        display: block;
+                        margin: 0 auto;
+                        width: 90%;
+
+                        > div {
+                            padding: 10px 5px;
+                            border-bottom: 1px solid #ededed;
+                            font-family: 'OpenSansRegular', sans-serif;
+                            font-size: 14px;
+                            line-height: 22px;
+
+                            &:last-child{
+                                border-bottom: none;
+                            }
+                            span{
+                                display: block;
+                                margin-top: 3px;
+								text-align: center;
+                            }
+                        }
+                    }
+
+					[class^="icon-"]{
+						overflow: hidden;
+						line-height: 40px;
+						color: darken($base-color-darken, 20%);
+
+						&::before{
+							display: block;
+							margin: 0 auto;
+						}
+					}
+
+					.icon-theming{
+						@include wbz-inline-icon(paint, 33px);
+					}
+
+					.icon-monetize{
+						@include wbz-inline-icon(coins, 40px);
+					}
+
+					.icon-notification{
+						@include wbz-inline-icon(notification, 35px);
+					}
+                }
+
+                .upgrade-btns {
+
+                    .btn {
+                        margin: 0 auto;
+                        width: 150px;
+                    }
+
+                    .upgrade-subtext {
+                        text-align: center;
+                        margin-top: 10px;
+
+                        p, a{
+                            font-size: 13px;
+                            line-height: normal;
+                        }
+
+                        a {
+                            text-decoration: underline;
+                        }
+
+						.save {
+							background-color: #66cc80;
+							border-radius: 50px;
+							color: white;
+							padding: 8px;
+						}
+                    }
+                }
+			}
+		}
+	}
+}

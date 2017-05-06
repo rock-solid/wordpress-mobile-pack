@@ -17,7 +17,7 @@
 			"NO_PAGES": "No existen páginas!",
 			"NO_CATEGORIES": "No existen categorías!",
 			"NO_ARTICLES": "No existen artículos!",
-			"NO_COMMENTS": "No existe ningún comentario para este artículo.<br/>¡Sé el primero en comentarlo!",
+			"NO_COMMENTS": "No existe ningún comentario para este artículo. ¡Sé el primero en comentarlo!",
 			"NO_COMMENTS_SHORT": "No existe ningún comentario para este artículo.",
 			"GOOGLE_ADS": "Publicidad de Google",
 			"COMMENTS": "Comentarios",
@@ -47,6 +47,6 @@
 			"YOUR_COMMENT_ERROR": "Por favor, escribe un comentario!",
 			"SUBMIT_ERROR": "Hubo un error. Por favor, inténtelo de nuevo más tarde.",
 			"AWAITING_MODERATION": "Tu comentario está a la espera de aprobación!"
-		}		
+		}
 	}
 }

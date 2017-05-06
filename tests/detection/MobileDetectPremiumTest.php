@@ -26,16 +26,8 @@ if (!class_exists('MobileDetectPremiumTest')) {
             'Mozilla/5.0 (Linux; Android 5.0.2; HTC One Build/LRX22G) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/33.0.0.0 Mobile Safari/537.36',
 
             // Android (Chrome)
-            'Mozilla/5.0 (Linux; Android 5.0.2; HTC One Build/LRX22G) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36',
+            'Mozilla/5.0 (Linux; Android 5.0.2; HTC One Build/LRX22G) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Mobile Safari/537.36'
 
-            // Android (Firefox)
-            'Mozilla/5.0 (Android; Mobile; rv:37.0) Gecko/37.0 Firefox/37.0',
-
-            // Windows Phone 8
-            'Mozilla/5.0 (Windows Phone 8.1; ARM; Trident/7.0; Touch; rv:11.0; IEMobile/11.0; NOKIA; 909; Vodafone) like Gecko',
-
-            // Firefox OS
-            'Mozilla/5.0 (Mobile; rv:32.0) Gecko/32.0 Firefox/32.0'
         );
 
 
@@ -52,12 +44,6 @@ if (!class_exists('MobileDetectPremiumTest')) {
 
             // Android (Chrome)
             'Mozilla/5.0 (Linux; Android 5.0.2; Nexus 7 Build/LRX22G) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.96 Safari/537.36',
-
-            // Android (Firefox)
-            'Mozilla/5.0 (Android; Tablet; rv:37.0) Gecko/37.0 Firefox/37.0',
-
-            // Windows tablet
-            'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; Touch; rv:11.0) like Gecko',
         );
 
 
@@ -74,14 +60,30 @@ if (!class_exists('MobileDetectPremiumTest')) {
         );
 
 
-        public static $bbUserAgents = array(
+        public static $otherUserAgents = array(
 
             // BB Q10
             'Mozilla/5.0 (BB10; Touch) AppleWebKit/537.10+ (KHTML, like Gecko) Version/10.1.0.1429 Mobile Safari/537.10+',
 
             // BB Z10
-            'Mozilla/5.0 (BB10; Touch) AppleWebKit/537.35+ (KHTML, like Gecko) Version/10.3.1.2243 Mobile Safari/537.35+'
+            'Mozilla/5.0 (BB10; Touch) AppleWebKit/537.35+ (KHTML, like Gecko) Version/10.3.1.2243 Mobile Safari/537.35+',
+
+			// Firefox OS
+            'Mozilla/5.0 (Mobile; rv:32.0) Gecko/32.0 Firefox/32.0',
+
+			// Android smartphone (Firefox)
+            'Mozilla/5.0 (Android; Mobile; rv:37.0) Gecko/37.0 Firefox/37.0',
+
+			// Android tablet (Firefox)
+            'Mozilla/5.0 (Android; Tablet; rv:37.0) Gecko/37.0 Firefox/37.0',
+
+			// Windows Phone 8
+            'Mozilla/5.0 (Windows Phone 8.1; ARM; Trident/7.0; Touch; rv:11.0; IEMobile/11.0; NOKIA; 909; Vodafone) like Gecko',
+
+            // Windows tablet
+            'Mozilla/5.0 (Windows NT 6.3; Trident/7.0; Touch; rv:11.0) like Gecko'
         );
+
 
 
         function setUp()
@@ -238,12 +240,12 @@ if (!class_exists('MobileDetectPremiumTest')) {
                 ->setMethods(array('set_load_app_cookie'))
                 ->getMock();
 
-            $WMobileDetect->expects($this->exactly(count(self::$bbUserAgents)))
+            $WMobileDetect->expects($this->exactly(count(self::$otherUserAgents)))
                 ->method('set_load_app_cookie')
                 ->with($this->equalTo(false))
                 ->will($this->returnValue(true));
 
-            foreach (self::$bbUserAgents as $user_agent) {
+            foreach (self::$otherUserAgents as $user_agent) {
 
                 $_SERVER['HTTP_USER_AGENT'] = $user_agent;
                 $load_app = $WMobileDetect->detect_device();

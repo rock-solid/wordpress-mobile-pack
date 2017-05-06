@@ -8,33 +8,25 @@
     }
 </script>
 <?php
-	$arr_themes = array(
-		array(
-			'title'=> 'Obliq',
-			'icon' => plugins_url().'/'.WMP_DOMAIN.'/admin/images/theme-obliq.jpg',
-			'selected' => 1,
-			'bundle' => 1
-		)
-	);
+
+	$selected_theme = WMobilePack_Options::get_setting('theme');
+
+	$arr_themes = array();
+
+	foreach (WMobilePack_Themes_Config::get_allowed_themes() as $i => $theme){
+
+		$arr_themes[] = array(
+			'id' => $i,
+			'title'=> $theme,
+			'icon' => plugins_url().'/'.WMP_DOMAIN.'/admin/images/themes/theme-'.$i.'.jpg',
+			'selected' => intval($selected_theme == $i)
+		);
+	}
 
 	$upgrade_content = WMobilePack_Admin::more_updates();
 
 	// get themes from the upgrade json
-	$arr_themes = array_merge($arr_themes, WMobilePack_Admin::upgrade_pro_themes($upgrade_content));
-
-	// filter bundled themes
-	function is_bundled($item){
-		return isset($item['bundle']) && $item['bundle'] == 1;
-	}
-
-	$arr_bundled_themes = array_filter($arr_themes, 'is_bundled');
-
-	// filter preorder themes
-	function is_preorder($item){
-		return isset($item['preorder']) && $item['preorder'] == 1;
-	}
-
-	$arr_preorder_themes = array_filter($arr_themes, 'is_preorder');
+	$arr_pro_themes = WMobilePack_Admin::upgrade_pro_themes($upgrade_content);
 ?>
 <div id="wmpack-admin">
 	<div class="spacer-60"></div>
@@ -48,64 +40,52 @@
             <?php include_once(WMP_PLUGIN_PATH.'admin/sections/admin-menu.php'); ?>
             <div class="spacer-0"></div>
 
-			<?php if (count($arr_preorder_themes) > 0):?>
+			<?php if (count($arr_themes) > 0):?>
 
 				<div class="details theming">
 
-					<?php if (isset($upgrade_content['premium']['preorder']['title'])):?>
-						<h2 class="title"><?php echo $upgrade_content['premium']['preorder']['title']; ?></h2>
+					<h2 class="title">Available Mobile App Themes</h2>
+					<div class="spacer-30"></div>
+
+					<?php if (isset($upgrade_content['premium']['themes']['message'])):?>
+						<p><?php echo $upgrade_content['premium']['themes']['message'];?></p>
 						<div class="spacer-30"></div>
 					<?php endif;?>
 
-					<div class="themes">
+					<div class="themes" style="width: 450px;">
 						<?php
-							foreach ($arr_preorder_themes as $theme){
+							foreach ($arr_themes as $theme){
 								require(WMP_PLUGIN_PATH.'admin/sections/theme-box.php');
 							}
 						?>
 					</div>
-					<div class="spacer-10"></div>
-
-					<?php
-						if (isset($upgrade_content['premium']['preorder']['notice'])){
-							echo $upgrade_content['premium']['preorder']['notice'];
-						}
-					?>
-
-					<div class="spacer-10"></div>
+					<div class="spacer-0"></div>
 				</div>
 				<div class="spacer-10"></div>
+
 			<?php endif;?>
 
-			<?php if (count($arr_bundled_themes) > 0):?>
+			<?php if (count($arr_pro_themes) > 0):?>
 
 				<div class="details theming">
-					<?php if (isset($upgrade_content['premium']['bundle']['title'])):?>
-						<h2 class="title"><?php echo $upgrade_content['premium']['bundle']['title']; ?></h2>
+					<div class="ribbon relative">
+						<div class="starred"></div>
+					</div>
+
+					<?php if (isset($upgrade_content['premium']['themes']['title'])):?>
+						<h2 class="title"><?php echo $upgrade_content['premium']['themes']['title']; ?></h2>
 					<?php else: ?>
-						<h2 class="title">Mobile App Themes</h2>
+						<h2 class="title">Premium Mobile App Themes</h2>
 					<?php endif;?>
 
-					<div class="spacer_15"></div>
-					<div class="spacer-15"></div>
+					<div class="spacer-30"></div>
 					<div class="themes">
 						<?php
-							foreach ($arr_bundled_themes as $theme){
+							foreach ($arr_pro_themes as $theme){
 								require(WMP_PLUGIN_PATH.'admin/sections/theme-box.php');
 							}
 						?>
 					</div>
-
-					<?php
-						if (isset($upgrade_content['premium']['bundle']['buy']['text']) &&
-							isset($upgrade_content['premium']['bundle']['buy']['link']) &&
-							filter_var($upgrade_content['premium']['bundle']['buy']['link'], FILTER_VALIDATE_URL)):
-					?>
-						<a href="<?php echo esc_attr($upgrade_content['premium']['bundle']['buy']['link']);?>" class="btn turquoise" target="_blank" style="margin: 0 auto;">
-							<span class="shopping"></span>&nbsp;
-							<?php echo esc_attr($upgrade_content['premium']['bundle']['buy']['text']);?>
-						</a>
-					<?php endif;?>
 				</div>
 			<?php endif;?>
 			<div class="spacer-10"></div>
@@ -124,7 +104,7 @@
 <script type="text/javascript">
     if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
-            window.WMPJSInterface.add("UI_previewthemesgallery","WMP_THEMES_GALLERY",{'DOMDoc':window.document}, window);
+            window.WMPJSInterface.add("UI_switchtheme","WMP_SWITCH_THEME",{'DOMDoc':window.document, 'selectedTheme': <?php echo $selected_theme?>}, window);
         });
     }
 </script>

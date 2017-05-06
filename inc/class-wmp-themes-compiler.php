@@ -117,31 +117,42 @@ if ( ! class_exists( 'WMobilePack_Themes_Compiler' ) ) {
             if ($fp !== false) {
 
                 // read theme settings
-                $theme = WMobilePack_Options::get_setting('theme');
-                $color_scheme = WMobilePack_Options::get_setting('color_scheme');
+				$theme_config = WMobilePack_Themes_Config::get_theme_config();
 
-                if ($color_scheme == 0){
-                    $colors = WMobilePack_Options::get_setting('custom_colors');
-                } else {
-                    $colors = WMobilePack_Themes_Config::$color_schemes[$theme]['presets'][$color_scheme];
-                }
+				if ($theme_config !== false){
 
-                // write fonts
-                foreach (array('headlines', 'subtitles', 'paragraphs') as $font_type){
+					$color_scheme = WMobilePack_Options::get_setting('color_scheme');
 
-                    $font_setting = WMobilePack_Options::get_setting('font_'.$font_type);
-                    $font_family = WMobilePack_Themes_Config::$allowed_fonts[$font_setting-1];
+					if ($color_scheme == 0){
+						$colors = WMobilePack_Options::get_setting('custom_colors');
+					} else {
+						$colors = $theme_config['presets'][$color_scheme];
+					}
 
-                    fwrite($fp, '$'.$font_type."-font:'".str_replace(" ","",$font_family)."';\r\n");
-                }
+					// write fonts
+					foreach (array('headlines', 'subtitles', 'paragraphs') as $font_type){
 
-                // write colors
-                foreach (WMobilePack_Themes_Config::$color_schemes[$theme]['vars'] as $key => $var_name){
-                    fwrite($fp, '$'.$var_name.":".$colors[$key].";\r\n");
-                }
+						// check if the theme has a particular font setting
+						if (array_key_exists($font_type.'-font', $theme_config['fonts'])) {
 
-                fclose($fp);
-                return true;
+							$font_setting = WMobilePack_Options::get_setting('font_'.$font_type);
+							$font_family = WMobilePack_Themes_Config::$allowed_fonts[$font_setting-1];
+
+							fwrite($fp, '$'.$font_type."-font:'".str_replace(" ","",$font_family)."';\r\n");
+						}
+					}
+
+					// write font size
+                    fwrite($fp, '$base-font-size:'.WMobilePack_Options::get_setting('font_size')."rem;\r\n");
+
+					// write colors
+					foreach ($theme_config['vars'] as $key => $var_name){
+                        fwrite($fp, '$'.$var_name.":".$colors[$key].";\r\n");
+                    }
+
+					fclose($fp);
+					return true;
+				}
 
             } else {
 

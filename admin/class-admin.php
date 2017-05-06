@@ -120,11 +120,20 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
             include(WMP_PLUGIN_PATH.'admin/pages/settings.php');
         }
 
+		/**
+         *
+         * Method used to render the PRO page from the admin area
+         *
+         */
+        public function pro(){
+
+            include(WMP_PLUGIN_PATH.'admin/pages/pro.php');
+        }
 
 
         /**
          *
-         * Method used to render the Premium page from the admin area
+         * Method used to render the Premium page from the admin area (connected API key)
          *
          */
         public function premium(){
@@ -425,14 +434,13 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
 
                 if (array_key_exists('premium', $upgrade_content)) {
 
-                    if (array_key_exists('packages', $upgrade_content['premium']) && is_array($upgrade_content['premium']['packages']) && count($upgrade_content['premium']['packages']) >= 1) {
+                    if (isset($upgrade_content['premium']['packages']['upgrade_link']) &&
+						filter_var($upgrade_content['premium']['packages']['upgrade_link'], FILTER_VALIDATE_URL)) {
 
-                        $package = $upgrade_content['premium']['packages'][0];
-
-                        if (array_key_exists('button_link', $package)) {
-                            return $package['button_link'];
-                        }
+						return $upgrade_content['premium']['packages']['upgrade_link'];
                     }
+
+					return false;
                 }
             }
 
@@ -453,16 +461,16 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
 
 			if  (is_array($upgrade_content) && !empty($upgrade_content)){
 
-				if (array_key_exists('premium', $upgrade_content)) {
+				if (array_key_exists('premium', $upgrade_content) && array_key_exists('themes', $upgrade_content['premium'])) {
 
-					if (array_key_exists('themes', $upgrade_content['premium']) && is_array($upgrade_content['premium']['themes'])) {
+					if (array_key_exists('list', $upgrade_content['premium']['themes']) && is_array($upgrade_content['premium']['themes']['list'])) {
 
-						foreach ($upgrade_content['premium']['themes'] as $theme){
+						foreach ($upgrade_content['premium']['themes']['list'] as $theme){
 
 							if (isset($theme['title']) &&
 								isset($theme['icon']) && filter_var($theme['icon'], FILTER_VALIDATE_URL) &&
-								(!isset($theme['bundle']) || is_numeric($theme['bundle'])) &&
-								(!isset($theme['preorder']) || is_numeric($theme['preorder']))
+								(!isset($theme['demo']['link']) || filter_var($theme['demo']['link'], FILTER_VALIDATE_URL)) &&
+								(!isset($theme['details']['link']) || filter_var($theme['details']['link'], FILTER_VALIDATE_URL))
 							){
 								$themes[] = $theme;
 							}

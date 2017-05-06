@@ -12,12 +12,12 @@
             "INSIDE": "Inhalt",
             "MENU": "Menu",
             "OPEN_APP": "OPEN"
-        }, 
+        },
         "TEXTS": {
             "NO_PAGES": "Es gibt keine Seiten!",
             "NO_CATEGORIES": "Es gibt keine Seiten!",
             "NO_ARTICLES": "Es gibt keine Artikel!",
-            "NO_COMMENTS": "Es gibt keine Kommentare für diesen Artikel.<br/>Sei der erste der einen Kommentar dazu hinterlässt!",
+            "NO_COMMENTS": "Es gibt keine Kommentare für diesen Artikel. Sei der erste der einen Kommentar dazu hinterlässt!",
             "NO_COMMENTS_SHORT": "Es gibt keine Kommentare für diesen Artikel.",
             "GOOGLE_ADS": "Ads by Google",
             "COMMENTS": "Kommentare",

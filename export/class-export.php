@@ -1375,7 +1375,6 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
             exit();
         }
 
-
         /**
          *
          *  The exportPages method is used for exporting all the visible pages.
@@ -1400,7 +1399,11 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
          *
          * - callback = The JavaScript callback method
          * - content = 'exportpages'
+		 * - page = (optional) Used for pagination
+         * - rows = (optional) Number of rows per page, used for pagination
+		 * - limit = (optional) Deprecated, alias for 'rows'. Should be removed after migrating Sencha apps.
          *
+		 * @todo Eliminate pages with inactive grandparents when using pagination params ('page' and 'rows').
          */
         public function export_pages()
         {
@@ -1408,25 +1411,43 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
             // init pages arrays
             $arr_pages = array();
 
-            // set args for pages
-            $limit = 100;
+            // init pagination params
+            $pagination = false;
+            if (isset($_GET["page"]) && is_numeric($_GET["page"])) {
+                $pagination = $_GET["page"];
+            }
+            
+            $rows = false;
+
+            if (isset($_GET["rows"]) && is_numeric($_GET["rows"])){
+
+                $rows = $_GET["rows"];
+
+				if ($pagination === false){
+					$pagination = 1;
+				}
+
+			} elseif (isset($_GET["limit"]) && is_numeric($_GET["limit"])){
+				$rows = $_GET["limit"];
+			} else {
+				$rows = $pagination ? 5 : 100;
+			}
 
             $args = array(
-                'post__not_in' => $this->inactive_pages,
-                'numberposts' => $limit,
-                'posts_per_page' => $limit,
-                'post_status' => 'publish',
                 'post_type' => 'page',
-                'post_password' => ''
+                'post_status' => 'publish',
+                'post_password' => '',
+                'post__not_in' => $this->inactive_pages,
+                'posts_per_page' => $rows,
+                'post_parent__not_in' => $this->inactive_pages,
+                'orderby' => 'menu_order parent title',
+                'order' => 'ASC'
             );
 
-            if (get_bloginfo('version') >= 3.6) {
+            if ($pagination !== false){
+                $args['paged'] = $pagination;
+			}
 
-				$args['post_parent__not_in'] = $this->inactive_pages;
-
-                $args['orderby'] = 'menu_order title';
-                $args['order'] = 'ASC';
-            }
 
             // remove inline style for the photos types of posts
             add_filter('use_default_gallery_style', '__return_false');
@@ -1435,10 +1456,16 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
             if ($pages_query->have_posts()) {
 
-				// get array with the ordered pages by hierarchy
-				$order_pages = array_keys(get_page_hierarchy($pages_query->posts));
+                 // get array with the ordered pages by hierarchy
+				$order_pages = array();
 
-				if (!empty($order_pages)) {
+				if ($pagination === false){
+					$order_pages = array_keys(get_page_hierarchy($pages_query->posts));
+				}
+
+				if (!empty($order_pages) || $pagination !== false) {
+
+                    $index = 0;
 
 					while ($pages_query->have_posts()) {
 
@@ -1459,7 +1486,12 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 									$content = apply_filters("the_content", get_option(WMobilePack_Options::$prefix.'page_' . $page->ID));
 
                                 // if the page and its parent are visible, they should exist in the order array
-                                $index_order = array_search($page->ID, $order_pages);
+								if ($pagination === false) {
+                                	$index_order = array_search($page->ID, $order_pages);
+								} else {
+									$index_order = ($pagination - 1) * $rows + $index;
+									$index++;
+								}
 
                                 if (is_numeric($index_order)) {
 
@@ -1482,7 +1514,11 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                 }
             }
 
-            return '{"pages":' . json_encode($arr_pages) . "}";
+			if ($pagination && $rows) {
+                return '{"pages":' . json_encode($arr_pages) . ',"pagination":' .json_encode(array('page' => $pagination, 'rows' => $rows)).'}';
+            } else {
+                return '{"pages":' . json_encode($arr_pages) . '}';
+            }
         }
 
 
@@ -1577,280 +1613,6 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
             }
 
             return '{"error":"Invalid post id"}';
-        }
-
-
-        /**
-         *
-         * Export manifest files for Android or Mozilla.
-         *
-         * The method receives a single GET param:
-         *
-         * - content = 'androidmanifest' or 'mozillamanifest'
-         */
-        public function export_manifest()
-        {
-
-            // set blog name
-            $blog_name = get_bloginfo("name");
-
-			// init response depending on the manifest type
-            if (isset($_GET['content']) && $_GET['content'] == 'androidmanifest') {
-
-				$arr_manifest = array(
-                    'name' => $blog_name,
-                    'start_url' => home_url(),
-                    'display' => 'standalone',
-					'orientation' => 'any'
-                );
-
-				if (!class_exists('WMobilePack_Themes_Config')) {
-					require_once(WMP_PLUGIN_PATH . 'inc/class-wmp-themes-config.php');
-				}
-
-				$background_color = WMobilePack_Themes_Config::get_manifest_background();
-
-				if ($background_color !== false){
-					$arr_manifest['theme_color'] = $background_color;
-					$arr_manifest['background_color'] = $background_color;
-				}
-
-            } else {
-
-                // remove domain name from the launch path
-                $launch_path = home_url();
-                $launch_path = str_replace('http://' . $_SERVER['HTTP_HOST'], '', $launch_path);
-                $launch_path = str_replace('https://' . $_SERVER['HTTP_HOST'], '', $launch_path);
-
-                $arr_manifest = array(
-                    'name' => $blog_name,
-                    'launch_path' => $launch_path,
-                    'developer' => array(
-                        "name" => $blog_name
-                    )
-                );
-            }
-
-            // load icon from the local settings and folder
-            $icon_path = WMobilePack_Options::get_setting('icon');
-
-            if ($icon_path != '') {
-
-                $WMP_Uploads = $this->get_uploads_manager();
-                $icon_path = $WMP_Uploads->get_file_url($icon_path);
-            }
-
-            // set icon depending on the manifest file type
-            if ($icon_path != '') {
-
-                if ($_GET['content'] == 'androidmanifest') {
-
-                    $arr_manifest['icons'] = array(
-                        array(
-                            "src" => $icon_path,
-                            "sizes" => "192x192"
-                        )
-                    );
-
-                } else {
-                    $arr_manifest['icons'] = array(
-                        '152' => $icon_path,
-                    );
-                }
-            }
-
-            return json_encode($arr_manifest);
-
-        }
-
-
-        /**
-         * Export manifest files for Android or Mozilla (Premium settings).
-         *
-         * The method receives a single GET param:
-         *
-         * - content = 'androidmanifest' or 'mozillamanifest'
-         *
-         * @return string
-         */
-        public function export_manifest_premium(){
-
-            if (WMobilePack_Options::get_setting('premium_active') == 1 && WMobilePack_Options::get_setting('premium_api_key') != ''){
-
-                if (!class_exists('WMobilePack_Premium'))
-                    require_once(WMP_PLUGIN_PATH.'inc/class-wmp-premium.php');
-
-                $premium_manager = new WMobilePack_Premium();
-                $arr_config_premium = $premium_manager->get_premium_config();
-
-                if ($arr_config_premium !== null){
-
-                    if (!isset($arr_config_premium['domain_name']) || $arr_config_premium['domain_name'] == '') {
-
-                        $blog_name = $arr_config_premium['title'];
-
-                        if (isset($arr_config_premium['kit_type']) && $arr_config_premium['kit_type'] == 'wpmp') {
-                            $blog_name = urldecode($blog_name);
-                        }
-
-                        // init response depending on the manifest type
-                        if (isset($_GET['content']) && $_GET['content'] == 'androidmanifest') {
-
-                            $arr_manifest = array(
-                                'name' => $blog_name,
-                                'start_url' => home_url(),
-                                'display' => 'standalone'
-                            );
-
-                        } else {
-
-                            // remove domain name from the launch path
-                            $launch_path = home_url();
-                            $launch_path = str_replace('http://' . $_SERVER['HTTP_HOST'], '', $launch_path);
-                            $launch_path = str_replace('https://' . $_SERVER['HTTP_HOST'], '', $launch_path);
-
-                            $arr_manifest = array(
-                                'name' => $blog_name,
-                                'launch_path' => $launch_path,
-                                'developer' => array(
-                                    "name" => $blog_name
-                                )
-                            );
-                        }
-
-                        // load icon path
-                        $icon_path = false;
-
-                        if (isset($arr_config_premium['icon_path']) && $arr_config_premium['icon_path'] != '') {
-
-                            // Check if we have a secure https connection
-                            $is_secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
-
-                            $cdn_apps = $is_secure ? $arr_config_premium['cdn_apps_https'] : $arr_config_premium['cdn_apps'];
-                            $icon_path = $cdn_apps . "/" . $arr_config_premium['shorten_url'] . '/' . $arr_config_premium['icon_path'];
-                        }
-
-                        // set icon depending on the manifest file type
-                        if ($icon_path != false) {
-
-                            if ($_GET['content'] == 'androidmanifest') {
-
-                                $arr_manifest['icons'] = array(
-                                    array(
-                                        "src" => $icon_path,
-                                        "sizes" => "192x192"
-                                    )
-                                );
-
-                            } else {
-                                $arr_manifest['icons'] = array(
-                                    '152' => $icon_path,
-                                );
-                            }
-                        }
-
-                        return json_encode($arr_manifest);
-                    }
-                }
-            }
-        }
-
-
-        /**
-         *
-         * Load app texts for the current locale.
-         *
-         * The JSON files with translations for each language are located in frontend/locales.
-         *
-         * @param $locale
-         * @param $response_type = javascript | list
-         * @return bool|mixed
-         *
-         */
-        public function load_language($locale, $response_type = 'javascript')
-        {
-
-            if (!class_exists('WMobilePack_Application'))
-                require_once(WMP_PLUGIN_PATH.'frontend/class-application.php');
-
-            $language_file = WMobilePack_Application::check_language_file($locale);
-
-            if ($language_file !== false) {
-
-                $appTexts = file_get_contents($language_file);
-                $appTextsJson = json_decode($appTexts, true);
-
-                if ($appTextsJson && !empty($appTextsJson) && array_key_exists('APP_TEXTS', $appTextsJson)) {
-
-                    if ($response_type == 'javascript')
-                        return 'var APP_TEXTS = ' . json_encode($appTextsJson['APP_TEXTS']);
-                    else
-                        return $appTextsJson;
-                }
-            }
-
-            return false;
-        }
-
-        /**
-         *
-         *  The export_settings method is used for exporting the main settings, when connecting with a Premium API key.
-         *
-         *  The method returns a JSON with the following format:
-         *
-         *  - ex :
-         *		{
-         *			"logo": "",
-         *			"icon": "",
-         *			"cover": "",
-         *          "google_analytics_id": "UA-1234567-1"
-         *          "status": 0/1
-         *		}
-         */
-        public function export_settings() {
-
-            if (isset($_POST["apiKey"]) && preg_match('/^[a-zA-Z0-9]+$/', $_POST['apiKey'])) {
-
-				// check if logo exists
-				$WMP_Uploads = $this->get_uploads_manager();
-
-				$logo_path = WMobilePack_Options::get_setting('logo');
-
-				if ($logo_path != ''){
-					$logo_path = $WMP_Uploads->get_file_url($logo_path);
-				}
-
-				// check if icon exists
-				$icon_path = WMobilePack_Options::get_setting('icon');
-
-				if ($icon_path != ''){
-					$icon_path = $WMP_Uploads->get_file_url($icon_path);
-				}
-
-				// check if cover exists
-				$cover_path = WMobilePack_Options::get_setting('cover');
-
-				if ($cover_path != ''){
-					$cover_path = $WMP_Uploads->get_file_url($cover_path);
-				}
-
-				// check if google analytics id is set
-				$google_analytics_id = WMobilePack_Options::get_setting('google_analytics_id');
-
-				// set settings
-				$arr_settings = array(
-					'logo' => $logo_path,
-					'icon' => $icon_path,
-					'cover' => $cover_path,
-					'google_analytics_id' => $google_analytics_id,
-					'status' => 1
-				);
-
-				// return json
-				return json_encode($arr_settings);
-
-            } else
-                return '{"error":"Missing post data (API Key) or mismatch.","status":0}';
         }
     }
 }

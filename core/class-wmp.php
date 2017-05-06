@@ -87,6 +87,11 @@ if ( ! class_exists( 'WMobilePack' ) ) {
             $WMP_Uploads->create_uploads_dir();
 
             $this->backwards_compatibility();
+
+			// set a transient that will display a temporary notice for upgrading the theme
+			if (WMobilePack_Options::get_setting('theme') == 1) {
+				set_transient( WMobilePack_Options::$transient_prefix.'upgrade_theme_notice', true, 600);
+			}
         }
 
 
@@ -136,8 +141,13 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                 return;
             }
 
-            // display upgrade to pro notice
+			// display upgrade to pro notice
             $this->display_pro_release_notice();
+
+			// display a notice for upgrading the theme
+			if (get_transient(WMobilePack_Options::$transient_prefix.'upgrade_theme_notice')){
+				echo '<div class="notice is-dismissible"><p>&#x1F680; '. WMP_PLUGIN_NAME .' now comes with mobile app theme <strong>Obliq V2.0</strong> - faster, optimized and with an improved UI/UX. <a href="'. add_query_arg(array('page'=>'wmp-options-themes'), network_admin_url('admin.php')) .'">Make the switch here</a>.</p></div>';
+			}
         }
 
         /**
@@ -191,13 +201,13 @@ if ( ! class_exists( 'WMobilePack' ) ) {
             if ( ! class_exists( 'WMobilePack_Themes_Config' )) {
                 require_once(WMP_PLUGIN_PATH.'inc/class-wmp-themes-config.php');
             }
-            
+
             if (class_exists('WMobilePack_Themes_Config')){
 
                 foreach (array('headlines', 'subtitles', 'paragraphs') as $font_type) {
-    
+
                     $font_option = WMobilePack_Options::get_setting('font_'.$font_type);
-    
+
                     if (!is_numeric($font_option)){
                         $new_font_option = array_search($font_option, WMobilePack_Themes_Config::$allowed_fonts) + 1;
                         WMobilePack_Options::update_settings('font_'.$font_type, $new_font_option);

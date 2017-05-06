@@ -1,0 +1,89 @@
+{
+  "name": "Obliq",
+  "version": "2.0.0",
+  "labels": [
+    "Side menu categories, categories labels text",
+    "Cover text",
+    "Transparent overlay (cover, side menu images)",
+    "Buttons icon",
+    "Buttons background",
+    "Categories labels background (post details)",
+    "Side menu background",
+    "Side menu text and icons",
+    "Borders",
+    "Post and page background",
+    "Comments list header",
+    "Main text",
+    "Links"
+  ],
+  "vars": [
+    "text-color",
+    "cover-text-color",
+    "overlay-bg",
+    "btn-color",
+    "btn-bg",
+    "label-bg",
+    "side-nav-bg",
+    "side-nav-color",
+    "border-color",
+    "post-bg",
+    "secondary-bg",
+    "post-text-color",
+    "link-color"
+  ],
+  "presets": {
+    "1": [
+      "#ffffff",
+      "#ffffff",
+      "#000000",
+      "#ffffff",
+      "#37454c",
+      "#63a9dd",
+      "#f0f0f0",
+      "#2f2f2f",
+      "#cccccc",
+      "#ffffff",
+      "#dddddd",
+      "#000000",
+      "#800080"
+    ],
+    "2": [
+      "#F1F5F4",
+      "#ffffff",
+      "#2D363E",
+      "#F1F5F4",
+      "#2D363E",
+      "#E07564",
+      "#F1F5F4",
+      "#2D363E",
+      "#E1DBDF",
+      "#F1F5F4",
+      "#B5C9C3",
+      "#2D363E",
+      "#6DBCBC"
+    ],
+    "3": [
+      "#383D3B",
+      "#ffffff",
+      "#FCFBFC",
+      "#383D3B",
+      "#FCFBFC",
+      "#49A078",
+      "#383D3B",
+      "#FCFBFC",
+      "#E1DBDF",
+      "#383D3B",
+      "#49A078",
+      "#FCFBFC",
+      "#9CC5A1"
+    ]
+  },
+  "cover": 1,
+  "cover_text": 0,
+  "posts_per_page": 1,
+  "fonts": {
+    "headlines-font": "RobotoLightCondensed",
+    "paragraphs-font": "RobotoLightCondensed",
+    "base-font-size": "1rem"
+  }
+}

@@ -1,6 +1,6 @@
 <?php
 
-require_once(WMP_PLUGIN_PATH."export/class-export.php");
+require_once(WMP_PLUGIN_PATH."export/class-export-settings.php");
 
 class ExportManifestTest extends WP_UnitTestCase
 {
@@ -32,7 +32,7 @@ class ExportManifestTest extends WP_UnitTestCase
         update_option('blogname', 'Test Blog');
         update_option('home', 'http://dummy.appticles.com');
 
-        $export = new WMobilePack_Export();
+        $export = new WMobilePack_Export_Settings();
         $data = json_decode($export->export_manifest(), true);
 
         $this->assertEquals('Test Blog', $data['name']);
@@ -60,16 +60,35 @@ class ExportManifestTest extends WP_UnitTestCase
 			'#8224e3',
 			'#eeee22',
 			'#1e73be',
-			'#e0003b'
+			'#e0003b',
+            '#8267e3',
+            '#9a67e3',
+            '#b231ed'
 		);
 
+        // Test for new Oblique
 		update_option('wmpack_custom_colors', $custom_colors);
 		update_option('wmpack_color_scheme', 0);
-
+        
         update_option('blogname', 'Test Blog');
         update_option('home', 'http://dummy.appticles.com');
 
-        $export = new WMobilePack_Export();
+        $export = new WMobilePack_Export_Settings();
+        $data = json_decode($export->export_manifest(), true);
+
+        $this->assertEquals('Test Blog', $data['name']);
+        $this->assertEquals('http://dummy.appticles.com', $data['start_url']);
+        $this->assertEquals('standalone', $data['display']);
+		$this->assertEquals('any', $data['orientation']);
+		$this->assertEquals('#e0003b', $data['theme_color']);
+		$this->assertEquals('#e0003b', $data['background_color']);
+
+        // Test for old Oblique
+        $custom_colors = array_slice($custom_colors, 0, -3);
+   
+        update_option('wmpack_custom_colors', $custom_colors);
+        update_option('wmpack_theme', 1);
+
         $data = json_decode($export->export_manifest(), true);
 
         $this->assertEquals('Test Blog', $data['name']);
@@ -78,6 +97,7 @@ class ExportManifestTest extends WP_UnitTestCase
 		$this->assertEquals('any', $data['orientation']);
 		$this->assertEquals('#000000', $data['theme_color']);
 		$this->assertEquals('#000000', $data['background_color']);
+
     }
 
     /**
@@ -90,7 +110,7 @@ class ExportManifestTest extends WP_UnitTestCase
 
         $_SERVER['HTTP_HOST'] = 'dummy.appticles.com';
 
-        $export = new WMobilePack_Export();
+        $export = new WMobilePack_Export_Settings();
         $data = json_decode($export->export_manifest(), true);
 
         $this->assertEquals('Test Blog', $data['name']);
@@ -111,7 +131,7 @@ class ExportManifestTest extends WP_UnitTestCase
 
         $_SERVER['HTTP_HOST'] = 'dummy.appticles.com';
 
-        $export_class = $this->getMockBuilder('WMobilePack_Export')
+        $export_class = $this->getMockBuilder('WMobilePack_Export_Settings')
             ->setMethods(array('get_uploads_manager'))
             ->getMock();
 
@@ -169,7 +189,7 @@ class ExportManifestTest extends WP_UnitTestCase
         $_GET['content'] = 'androidmanifest';
         $_GET['premium'] = 1;
 
-        $export = new WMobilePack_Export();
+        $export = new WMobilePack_Export_Settings();
         $data = json_decode($export->export_manifest_premium(), true);
 
         $this->assertEquals(null, $data);
@@ -194,7 +214,7 @@ class ExportManifestTest extends WP_UnitTestCase
         update_option('wmpack_premium_config_path', "http://configdummy.appticles.com");
         set_transient('wmp_premium_config_path', json_encode($premium_config));
 
-        $export = new WMobilePack_Export();
+        $export = new WMobilePack_Export_Settings();
         $data = json_decode($export->export_manifest_premium(), true);
 
         $this->assertEquals(null, $data);
@@ -220,7 +240,7 @@ class ExportManifestTest extends WP_UnitTestCase
 
         update_option('home', 'http://dummy.appticles.com/blabla');
 
-        $export = new WMobilePack_Export();
+        $export = new WMobilePack_Export_Settings();
         $data = json_decode($export->export_manifest_premium(), true);
 
         $this->assertEquals('My new\' app', $data['name']);
@@ -256,7 +276,7 @@ class ExportManifestTest extends WP_UnitTestCase
 
         update_option('home', 'http://dummy.appticles.com/blabla');
 
-        $export = new WMobilePack_Export();
+        $export = new WMobilePack_Export_Settings();
 
         $data = json_decode($export->export_manifest_premium(), true);
 
@@ -292,7 +312,7 @@ class ExportManifestTest extends WP_UnitTestCase
 
         update_option('home', 'http://dummy.appticles.com/blabla');
 
-        $export = new WMobilePack_Export();
+        $export = new WMobilePack_Export_Settings();
 
         $data = json_decode($export->export_manifest_premium(), true);
 
@@ -332,7 +352,7 @@ class ExportManifestTest extends WP_UnitTestCase
 
         update_option('home', 'http://dummy.appticles.com/blabla');
 
-        $export = new WMobilePack_Export();
+        $export = new WMobilePack_Export_Settings();
 
         $data = json_decode($export->export_manifest_premium(), true);
 

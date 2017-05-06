@@ -1,117 +1,104 @@
 <?php
 
-require_once(WMP_PLUGIN_PATH."export/class-export.php");
+require_once(WMP_PLUGIN_PATH."export/class-export-settings.php");
 
 class ExportSettingsTest extends WP_UnitTestCase
 {
 
-    function tearDown(){
+	protected $app_settings = array(
+		'theme' => 1,
+		'color_scheme' => 1,
+		'theme_timestamp' => '',
+		'font_headlines' => 1,
+		'font_subtitles' => 1,
+		'font_paragraphs' => 1,
+		'google_analytics_id' => '',
+		'display_website_link' => 1,
+		'posts_per_page' => 'single',
+		'enable_facebook' => 1,
+		'enable_twitter' => 1,
+		'enable_google' => 1,
+		'icon' => '/wp-content/uploads/wordpress-mobile-pack/icon_1482240188.png',
+		'logo' => '/wp-content/uploads/wordpress-mobile-pack/logo_1482240179.png',
+		'cover' => '/wp-content/uploads/wordpress-mobile-pack/cover_1482241639.png',
+		'comments_token' => 'NGJiZmFiZTM1NzUxNDdlODg1ZjkxMzAxZDhlOGRiYThfMTQ4MjQwOTExMQ=='
+	);
 
-        // disable connection with the API key
-        $arrData = array(
-            'premium_api_key' => '',
-            'premium_active'  => 0,
-            'premium_config_path'  => '',
-            'icon' => '',
-            'logo' => '',
-            'cover' => '',
-            'google_analytics_id' => ''
-        );
+    protected $expected = array(
+		'export' => array(
+            'categories' => array(
+				'find' => 'wordpress-mobile-pack/export/content.php?content=exportcategories',
+				'findOne' => 'wordpress-mobile-pack/export/content.php?content=exportcategory'
+			),
+            'posts' => array(
+				'find' => 'wordpress-mobile-pack/export/content.php?content=exportarticles',
+				'findOne' => 'wordpress-mobile-pack/export/content.php?content=exportarticle'
+			),
+            'pages' => array(
+				'find' => 'wordpress-mobile-pack/export/content.php?content=exportpages',
+				'findOne' => 'wordpress-mobile-pack/export/content.php?content=exportpage'
+			),
+            'comments' => array(
+				'find' => 'wordpress-mobile-pack/export/content.php?content=exportcomments',
+				'insert' => 'wordpress-mobile-pack/export/content.php?content=savecomment'
+			)
+        ),
+		'translate' => array(
+			'path' => 'wordpress-mobile-pack/export/content.php?content=apptexts&locale=en_US&format=json',
+			'language' => 'fr'
+		),
+		'socialMedia' => array(
+			'facebook' => true,
+			'twitter' => true,
+			'google' => true,
+		),
+		'commentsToken' => 'NGJiZmFiZTM1NzUxNDdlODg1ZjkxMzAxZDhlOGRiYThfMTQ4MjQwOTExMQ==',
+		'articlesPerCard' => 1,
+		'websiteUrl' => '?wmp_theme_mode=desktop',
+		'logo' => '/wp-content/uploads/wordpress-mobile-pack/logo_1482240179.png',
+		'icon' => '/wp-content/uploads/wordpress-mobile-pack/icon_1482240188.png',
+		'defaultCover' => '/wp-content/uploads/wordpress-mobile-pack/cover_1482241639.png',
+	);
 
-        // save options
-        WMobilePack_Options::update_settings($arrData);
+	function setUp(){
+        parent::setUp();
 
-        parent::tearDown();
+        foreach ($this->expected['export'] as $index => $paths){
+			foreach ($paths as $key => $path){
+				$this->expected['export'][$index][$key] = plugins_url().'/'.$path;
+			}
+		}
+
+		$this->expected['translate']['path'] = plugins_url().'/'.$this->expected['translate']['path'];
+		$this->expected['websiteUrl'] = home_url().$this->expected['websiteUrl'];
     }
 
-    /**
-     * Calling export_settings() without an api key returns error
-     */
-    function test_export_settings_without_api_key_returns_error()
-    {
-        $export = new WMobilePack_Export();
-        $this->assertEquals($export->export_settings(), json_encode(array('error' => 'Missing post data (API Key) or mismatch.', 'status' => 0)));
-    }
+	public function test_export_settings_return_correct_data()
+	{
 
-    /**
-     * Calling export_settings() with an api key that doesn't match option returns error
-     */
-    function test_export_settings_with_invalid_api_key_returns_error()
-    {
-        $_POST['apiKey'] = 'dummyapikey@@#';
-
-        $export = new WMobilePack_Export();
-        $this->assertEquals($export->export_settings(), json_encode(array('error' => 'Missing post data (API Key) or mismatch.', 'status' => 0)));
-    }
-
-    /**
-     * Calling export_settings() when premium_active is zero returns data
-     */
-    function test_export_settings_premium_inactive_returns_data()
-    {
-        $_POST['apiKey'] = 'dummyapikey';
-
-        $export = new WMobilePack_Export();
-
-        $data = json_decode($export->export_settings(), true);
-
-        $this->assertEquals('', $data['icon']);
-        $this->assertEquals('', $data['logo']);
-        $this->assertEquals('', $data['cover']);
-        $this->assertEquals('', $data['google_analytics_id']);
-        $this->assertEquals(1, $data['status']);
-    }
-
-    /**
-     * Calling export_settings() with images returns data
-     */
-    function test_export_settings_with_images_returns_data()
-    {
-
-        $_POST['apiKey'] = 'dummyapikey';
-
-        update_option(WMobilePack_Options::$prefix.'icon', 'icon_path.jpg');
-        update_option(WMobilePack_Options::$prefix.'logo', 'logo_path.jpg');
-        update_option(WMobilePack_Options::$prefix.'cover', 'cover_path.jpg');
-        update_option(WMobilePack_Options::$prefix.'google_analytics_id', 'UA-1234567-1');
-
-        $_SERVER['HTTP_HOST'] = 'dummy.appticles.com';
-
-        $export_class = $this->getMockBuilder('WMobilePack_Export')
-            ->setMethods(array('get_uploads_manager'))
+        $export_settings = $this->getMockBuilder('WMobilePack_Export_Settings')
+            ->disableOriginalConstructor()
+            ->setMethods(array('get_application_manager'))
             ->getMock();
 
-        // Mock the uploads manager that will check for the file paths
-        $uploads_mock = $this->getMockBuilder('Mocked_Uploads')
-            ->setMethods(array('get_file_url'))
+
+        $settings_mock = $this->getMockBuilder('Mocked_Settings')
+            ->setMethods(array('load_app_settings', 'get_language'))
             ->getMock();
 
-        $uploads_mock->expects($this->exactly(3))
-            ->method('get_file_url')
-            ->withConsecutive(
-                $this->equalTo('logo_path.jpg'),
-                $this->equalTo('icon_path.jpg'),
-                $this->equalTo('cover_path.jpg')
-            )
-            ->will(
-                $this->returnCallback(
-                    function($parameter) {
-                        return 'http://dummy.appticles.com/' . $parameter;
-                    }
-                )
-            );
+        $settings_mock->expects($this->once())
+            ->method('load_app_settings')
+            ->will($this->returnValue($this->app_settings));
 
-        $export_class->expects($this->once())
-            ->method('get_uploads_manager')
-            ->will($this->returnValue($uploads_mock));
+		$settings_mock->expects($this->once())
+            ->method('get_language')
+            ->will($this->returnValue('fr'));
 
-        // Call method
-        $data = json_decode($export_class->export_settings(), true);
+        $export_settings->expects($this->once())
+            ->method('get_application_manager')
+            ->will($this->returnValue($settings_mock));
 
-        $this->assertEquals('http://dummy.appticles.com/icon_path.jpg', $data['icon']);
-        $this->assertEquals('http://dummy.appticles.com/logo_path.jpg', $data['logo']);
-        $this->assertEquals('http://dummy.appticles.com/cover_path.jpg', $data['cover']);
-        $this->assertEquals('UA-1234567-1', $data['google_analytics_id']);
-        $this->assertEquals(1, $data['status']);
-    }
+		$this->assertEquals(json_encode($this->expected), $export_settings->export_settings());
+	}
+
 }
