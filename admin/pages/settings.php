@@ -182,7 +182,6 @@
                     <p>Looking for VIP services? Check out <a href="https://www.appticles.com?wp_mobile_pack=settings" target="_blank">Appticles.com</a>, a multi-channel mobile publishing platform that empowers digital publishers to grow their mobile audience. </p>
                     <div class="spacer-20"></div>
                     <form name="wmp_connect_form" id="wmp_connect_form" class="left" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_premium_save" method="post">
-                        <input type="hidden" name="wmp_connect_settings" id="wmp_connect_settings"  value="<?php echo plugins_url()."/".WMP_DOMAIN.'/export/content.php?content=exportsettings';?>" />
                         <p>API Key:</p>
                         <div class="spacer-10"></div>
                         <input type="text" name="wmp_connect_apikey" id="wmp_connect_apikey" class="small indent" value="" />
