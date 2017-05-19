@@ -22,7 +22,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
         /* ----------------------------------*/
         /* Attributes						 */
         /* ----------------------------------*/
-
+            
         public $purifier;
         private $inactive_categories = array();
         private $inactive_pages = array();
@@ -463,32 +463,6 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
             return $comment_status;
         }
 
-		/**
-		* Filter for export_categories.
-		* It only retrieves categories with published, not password protected posts.
-		*
-		* @param $terms
-		* @param $taxonomies
-		* @param $args
-		*/
-        public function get_terms_filter($terms, $taxonomies, $args)
-        {
-			global $wpdb;
-
-			$taxonomy = $taxonomies[0];
-			if (!is_array($terms) && count($terms) < 1)
-				return $terms;
-
-			$filtered_terms = array();
-			foreach ($terms as $term){
-				$result = $wpdb->get_var("SELECT * FROM $wpdb->posts p JOIN $wpdb->term_relationships rl ON p.ID = rl.object_id WHERE rl.term_taxonomy_id = $term->term_id AND p.post_type = 'post' AND p.post_status = 'publish' AND p.post_password = '' LIMIT 1");
-				if (intval($result) > 0)
-					$filtered_terms[] = $term;
-			}
-
-			return $filtered_terms;
-        }
-
         /**
          *
          * The export_categories method is used for exporting every category with a fixed number of articles.
@@ -566,11 +540,9 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
             if (isset($_GET["withArticles"]) && is_numeric($_GET["withArticles"]))
                 $with_articles = $_GET["withArticles"];
 
-            // add the filter for exporting only categories with published posts
-            add_filter('get_terms', array($this, 'get_terms_filter'), 10, 3);
 
             // get categories that have posts
-            $categories = get_terms('category', 'hide_empty=1');
+            $categories = get_categories(array('hierarchal' => 0, 'hide_empty' => 1));
 
             // build array with the active categories ids
             $active_categories_ids = array();
@@ -605,9 +577,6 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                     }
                 }
             }
-
-            // remove the filter for exporting only categories with published posts
-			remove_filter('get_terms', array($this, 'get_terms_filter'), 10);
 
             // activate latest category only if we have at least 2 visible categories
             if (count($arr_categories) > 1) {
@@ -697,6 +666,14 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                          }
                      }
                  }
+
+                foreach ($arr_categories as $key => $arr_category) {
+                    if (!isset($arr_category['articles']) || empty($arr_category['articles'])) {
+                        unset($arr_categories[$key]);
+                    }
+                }
+
+                $arr_categories = array_values($arr_categories);
             }
 
             if ($page && $rows) {
