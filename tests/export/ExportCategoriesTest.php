@@ -103,16 +103,17 @@ class ExportCategoriesTest extends WP_UnitTestCase
             )
         );
 
-        $export_class = $this->getMockBuilder('WMobilePack_Export')
-            ->setMethods(array('get_terms_filter'))
-            ->getMock();
+        $export_class = new WMobilePack_Export ();
 
-        $export_class->expects($this->once())
-            ->method('get_terms_filter')
-            ->will($this->returnValue(array()));
-
-
+        //Case where withArticles is not given so it defaults to 1
         $this->assertEquals($export_class->export_categories(), json_encode(array('categories' => array(), 'wpmp' => WMP_VERSION)));
+
+        //Case where withArticles is give and set to 0, the category is returned but empty
+        $_GET['withArticles'] = 0;
+		$home_url = json_encode(home_url('/'));
+		$home_url = str_replace('"','',$home_url);
+        
+        $this->assertEquals('{"categories":[{"id":1,"order":1,"name":"Uncategorized","name_slug":"uncategorized","parent_id":0,"link":"'.$home_url.'?cat=1","image":""}],"wpmp":"'.WMP_VERSION.'"}', $export_class->export_categories());
 
         wp_delete_post($post_id);
         wp_delete_post($post_id2);
@@ -129,14 +130,8 @@ class ExportCategoriesTest extends WP_UnitTestCase
                 'post_status' => 'draft'
             )
         );
-        $export_class = $this->getMockBuilder('WMobilePack_Export')
-            ->setMethods(array('get_terms_filter'))
-            ->getMock();
 
-        $export_class->expects($this->any())
-            ->method('get_terms_filter')
-            ->will($this->returnValue(array()));
-
+        $export_class = new WMobilePack_Export ();
 
         $this->assertEquals($export_class->export_categories(), json_encode(array('categories' => array(), 'wpmp' => WMP_VERSION)));
 
@@ -160,17 +155,9 @@ class ExportCategoriesTest extends WP_UnitTestCase
             )
         );
 
-        $export_class = $this->getMockBuilder('WMobilePack_Export')
-            ->setMethods(array('get_terms_filter'))
-            ->getMock();
-
-        $export_class->expects($this->any())
-            ->method('get_terms_filter')
-            ->will($this->returnValue(array()));
-
-
         update_option('wmpack_inactive_categories', array($cat_id));
-
+        
+        $export_class = new WMobilePack_Export ();
 
         $this->assertEquals($export_class->export_categories(), json_encode(array('categories' => array(), 'wpmp' => WMP_VERSION)));
 
@@ -201,14 +188,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
         );
         $cat = get_categories();
 
-        $export_class = $this->getMockBuilder('WMobilePack_Export')
-            ->setMethods(array('get_terms_filter'))
-            ->getMock();
-
-        $export_class->expects($this->any())
-            ->method('get_terms_filter')
-            ->will($this->returnValue($cat));
-
+        $export_class = new WMobilePack_Export ();
 
         $data = json_decode($export_class->export_categories(), true);
 
@@ -270,16 +250,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
         add_post_meta( $post_id, '_thumbnail_id', $attach_id, true );
         wp_update_attachment_metadata( $attach_id, array('width' => 100, 'height' => 100));
 
-        $cat = get_categories();
-
-        $export_class = $this->getMockBuilder('WMobilePack_Export')
-            ->setMethods(array('get_terms_filter'))
-            ->getMock();
-
-        $export_class->expects($this->any())
-            ->method('get_terms_filter')
-            ->will($this->returnValue($cat));
-
+        $export_class = new WMobilePack_Export ();
 
         $data = json_decode($export_class->export_categories(), true);
 
@@ -332,14 +303,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
 
         $cat = get_categories();
 
-        $export_class = $this->getMockBuilder('WMobilePack_Export')
-            ->setMethods(array('get_terms_filter'))
-            ->getMock();
-
-        $export_class->expects($this->any())
-            ->method('get_terms_filter')
-            ->will($this->returnValue($cat));
-
+        $export_class = new WMobilePack_Export ();
 
         $data = json_decode($export_class->export_categories(), true);
 
@@ -381,16 +345,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
 
         update_option('wmpack_inactive_categories', array($hidden_cat_id));
 
-        $cat = get_categories();
-
-        $export_class = $this->getMockBuilder('WMobilePack_Export')
-            ->setMethods(array('get_terms_filter'))
-            ->getMock();
-
-        $export_class->expects($this->any())
-            ->method('get_terms_filter')
-            ->will($this->returnValue($cat));
-
+        $export_class = new WMobilePack_Export ();
 
         $data = json_decode($export_class->export_categories(), true);
 
@@ -453,17 +408,8 @@ class ExportCategoriesTest extends WP_UnitTestCase
         update_option('wmpack_inactive_categories', array($hidden_cat_id));
         update_option('wmpack_ordered_categories', array($visible_cat_id2, $visible_cat_id, $hidden_cat_id));
 
-        $cat = get_categories();
-
-        $export_class = $this->getMockBuilder('WMobilePack_Export')
-            ->setMethods(array('get_terms_filter'))
-            ->getMock();
-
-        $export_class->expects($this->any())
-            ->method('get_terms_filter')
-            ->will($this->returnValue($cat));
-
-
+        $export_class = new WMobilePack_Export ();
+    
         $data = json_decode($export_class->export_categories(), true);
 
         $this->assertArrayHasKey('categories', $data);
@@ -546,16 +492,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
 
         // make request and check response
 
-        $cat = get_categories();
-
-        $export_class = $this->getMockBuilder('WMobilePack_Export')
-            ->setMethods(array('get_terms_filter'))
-            ->getMock();
-
-        $export_class->expects($this->any())
-            ->method('get_terms_filter')
-            ->will($this->returnValue($cat));
-
+        $export_class = new WMobilePack_Export ();
 
         $data = json_decode($export_class->export_categories(), true);
 
@@ -622,16 +559,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
 
         update_option('wmpack_inactive_categories', array($hidden_cat_id));
 
-        $cat = get_categories();
-
-        $export_class = $this->getMockBuilder('WMobilePack_Export')
-            ->setMethods(array('get_terms_filter'))
-            ->getMock();
-
-        $export_class->expects($this->any())
-            ->method('get_terms_filter')
-            ->will($this->returnValue($cat));
-
+        $export_class = new WMobilePack_Export ();
 
         $data = json_decode($export_class->export_categories(), true);
 
@@ -738,21 +666,13 @@ class ExportCategoriesTest extends WP_UnitTestCase
             )
         );
 
-        $cat = get_categories();
-
         $export_class = $this->getMockBuilder('WMobilePack_Export')
-            ->setMethods(array('get_categories_images', 'get_terms_filter'))
+            ->setMethods(array('get_categories_images'))
             ->getMock();
 
         $export_class->expects($this->once())
             ->method('get_categories_images')
             ->will($this->returnValue($categories_images));
-
-
-        $export_class->expects($this->once())
-            ->method('get_terms_filter')
-            ->will($this->returnValue($cat));
-
 
         $data = json_decode($export_class->export_categories(), true);
 
@@ -802,19 +722,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
 			)
 		);
 
-
-        $cat = get_categories();
-
-        unset($cat[0]);
-        $cat = array_values($cat);
-
-        $export_class = $this->getMockBuilder('WMobilePack_Export')
-            ->setMethods(array('get_terms_filter'))
-            ->getMock();
-
-        $export_class->expects($this->any())
-            ->method('get_terms_filter')
-            ->will($this->returnValue($cat));
+        $export_class = new WMobilePack_Export ();
 
         $test = json_decode ($export_class->export_categories(),true);
         $this->assertEquals(2, $test['rows']);
@@ -852,16 +760,8 @@ class ExportCategoriesTest extends WP_UnitTestCase
                 'name' => 'Visible Test Category 3'
             )
         );
-        $cat = get_categories();
-        unset($cat[0]);
-        $cat = array_values($cat);
-        $export_class = $this->getMockBuilder('WMobilePack_Export')
-            ->setMethods(array('get_terms_filter'))
-            ->getMock();
-
-        $export_class->expects($this->any())
-            ->method('get_terms_filter')
-            ->will($this->returnValue($cat));
+        
+        $export_class = new WMobilePack_Export ();
 
         $this->assertEquals(
             '{"categories":[],"page":"5465","rows":"5","wpmp":"3.0"}',
@@ -907,15 +807,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
             )
         );
 
-        $cat = get_categories();
-
-        $export_class = $this->getMockBuilder('WMobilePack_Export')
-            ->setMethods(array('get_terms_filter'))
-            ->getMock();
-
-        $export_class->expects($this->any())
-            ->method('get_terms_filter')
-            ->will($this->returnValue($cat));
+        $export_class = new WMobilePack_Export ();
 
         $test = json_decode($export_class->export_categories(), true);
 
