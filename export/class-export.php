@@ -22,7 +22,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
         /* ----------------------------------*/
         /* Attributes						 */
         /* ----------------------------------*/
-            
+
         public $purifier;
         private $inactive_categories = array();
         private $inactive_pages = array();
@@ -542,7 +542,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
 
             // get categories that have posts
-            $categories = get_categories(array('hierarchal' => 0, 'hide_empty' => 1));
+            $categories = get_categories(array('hide_empty' => 1));
 
             // build array with the active categories ids
             $active_categories_ids = array();
@@ -1393,7 +1393,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
             if (isset($_GET["page"]) && is_numeric($_GET["page"])) {
                 $pagination = $_GET["page"];
             }
-            
+
             $rows = false;
 
             if (isset($_GET["rows"]) && is_numeric($_GET["rows"])){
