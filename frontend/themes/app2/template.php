@@ -43,6 +43,7 @@ if ($texts_json_exists === false) {
     <?php endif;?>
 
     <title><?php echo get_bloginfo("name");?></title>
+	<noscript>Your browser does not support JavaScript!</noscript>
 
 	<!-- load css -->
 	<link rel="stylesheet" href="<?php echo $theme_path;?>css/bundle.css?date=20170503">
