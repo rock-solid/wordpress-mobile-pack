@@ -154,7 +154,11 @@ if ($texts_json_exists === false) {
 
     <script src="<?php echo $export_path.'content.php?content=apptexts&locale='.get_locale();?>" type="text/javascript"></script>
     <script src="<?php echo $theme_path;?>js/app.js?date=20161129" type="text/javascript"></script>
-
+	<script>
+		if ('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('/sw.js');
+		}
+	</script>
     <?php
         // check if google analytics id was set
         if ($app_settings['google_analytics_id'] != ''):
