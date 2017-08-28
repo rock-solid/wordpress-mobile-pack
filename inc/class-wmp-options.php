@@ -86,7 +86,8 @@ if ( ! class_exists( 'WMobilePack_Options' ) ) {
 			'pt_BR' => 'pt-br',
 			'ro_RO' => 'ro',
 			'sv_SE' => 'sv',
-			'zh_CN' => 'zh-cn'
+			'zh_CN' => 'zh-cn',
+			'bs_BA' => 'bs-ba'
 		);
 
         /* ----------------------------------*/
