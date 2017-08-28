@@ -40,7 +40,7 @@ if (!class_exists('WMobilePack_Uploads')) {
             ),
 		);
 
-		public static $manifest_sizes = array( 48, 96, 144, 196 );
+		public static $manifest_sizes = array(48, 96, 144, 196);
 
         protected static $htaccess_template = 'frontend/sections/htaccess-template.txt';
 

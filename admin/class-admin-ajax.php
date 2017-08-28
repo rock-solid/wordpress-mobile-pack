@@ -459,13 +459,13 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 
 					$image_size = $image->get_size();
 
-					if ( $file_type == 'icon' ) {
+					if ($file_type == 'icon') {
 
 						foreach (WMobilePack_Uploads::$manifest_sizes as $manifest_size) {
 
 							$manifest_image = wp_get_image_editor($file_path);;
 							$manifest_image->resize($manifest_size, $manifest_size, true);
-							$manifest_image->save( WMP_FILES_UPLOADS_DIR . $manifest_size . $file_name);
+							$manifest_image->save(WMP_FILES_UPLOADS_DIR . $manifest_size . $file_name);
 						}
 
 					}
@@ -510,13 +510,13 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
             $previous_file_path = WMobilePack_Options::get_setting($file_type);
 
             // check the file exists and remove it
-            if ($previous_file_path != ''){
+            if ($previous_file_path != '') {
 				$WMP_Uploads = $this->get_uploads_manager();
 
-				if ( $file_type === 'icon' ) {
+				if ($file_type == 'icon') {
 
-					foreach (WMobilePack_Uploads::$manifest_sizes as $size) {
-						$WMP_Uploads->remove_uploaded_file($size . $previous_file_path);
+					foreach (WMobilePack_Uploads::$manifest_sizes as $manifest_size) {
+						$WMP_Uploads->remove_uploaded_file($manifest_size . $previous_file_path);
 					}
 
 				}
@@ -788,6 +788,37 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
             exit();
         }
 
+		/**
+		*
+		* Method use to update the service worker installation option.
+		*
+		*/
+		public function service_worker()
+		{
+
+			if (current_user_can( 'manage_options' )) {
+				$status = 0;
+
+				if (isset($_POST) && is_array($_POST) && !empty($_POST)) {
+
+					if (isset($_POST['wmp_service_worker_installed']) && $_POST['wmp_service_worker_installed'] != '' && is_numeric($_POST['wmp_service_worker_installed'])) {
+
+						$installed= intval($_POST['wmp_service_worker_installed']);
+
+						if ($installed == 0 || $installed == 1) {
+
+							$status = 1;
+							// save option
+							WMobilePack_Options::update_settings('service_worker_installed', $installed);
+
+						}
+					}
+				}
+				echo $status;
+			}
+			exit();
+
+		}
 
 
         /**
@@ -994,34 +1025,6 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
             }
 
             exit();
-		}
-
-
-		public function service_worker()
-		{
-
-			if (current_user_can( 'manage_options' )) {
-				$status = 0;
-
-				if (isset($_POST) && is_array($_POST) && !empty($_POST)) {
-
-					if (isset($_POST['wmp_service_worker_installed']) && $_POST['wmp_service_worker_installed'] != '' && is_numeric($_POST['wmp_service_worker_installed'])) {
-
-						$installed= intval($_POST['wmp_service_worker_installed']);
-
-						if ($installed == 0 || $installed == 1) {
-
-							$status = 1;
-							// save option
-							WMobilePack_Options::update_settings('service_worker_installed', $installed);
-
-						}
-					}
-				}
-				echo $status;
-			}
-			exit();
-
 		}
 
 
