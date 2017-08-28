@@ -152,6 +152,7 @@ if ( ! class_exists( 'WMobilePack_Export_Settings' ) ) {
 
 				}
 			} elseif ($icon_path != '') {
+				$WMP_Uploads = $this->get_uploads_manager();
 
 				$icon_path = $WMP_Uploads->get_file_url($icon_path);
 

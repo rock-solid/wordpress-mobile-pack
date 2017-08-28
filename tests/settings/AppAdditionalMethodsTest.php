@@ -54,10 +54,19 @@ class AppAdditionalMethodsTest extends WP_UnitTestCase {
             ->setMethods(array('remove_uploaded_file'))
             ->getMock();
 
-        $uploads_mock->expects($this->once())
-            ->method('remove_uploaded_file')
-            ->with($this->equalTo('icon_path.jpg'))
-            ->will($this->returnValue(true));
+		$sizes = array(48, 96, 144, 196);
+
+		foreach ($sizes as $i => $size) {
+			$uploads_mock->expects($this->at($i))
+				->method('remove_uploaded_file')
+				->with($this->equalTo( $size . 'icon_path.jpg'))
+				->will($this->returnValue(true));
+		}
+
+		$uploads_mock->expects($this->at(4))
+			->method('remove_uploaded_file')
+			->with($this->equalTo('icon_path.jpg'))
+			->will($this->returnValue(true));
 
         $admin_ajax->expects($this->once())
             ->method('get_uploads_manager')
