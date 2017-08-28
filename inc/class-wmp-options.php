@@ -66,7 +66,10 @@ if ( ! class_exists( 'WMobilePack_Options' ) ) {
             'whats_new_last_updated' => 0,
             'upgrade_notice_updated' => 0, // if we should display the upgrade notice
             'upgrade_notice_last_updated' => 0, // upgrade timestamp
-            'allow_tracking' => 0
+			'allow_tracking' => 0,
+
+			// service worker related
+			'service_worker_installed' => 0
         );
 
 

@@ -158,20 +158,6 @@
                 <div class="spacer-0"></div>
             </div>
             <div class="spacer-15"></div>
-
-            <div class="details">
-                <div class="display-mode">
-                    <h2 class="title">Add to Home Screen</h2>
-                    <div class="spacer-20"></div>
-                    <p>In order for your users to be prompted to add the app to their home screen you must add a service worker to the root of your domain.</p>
-                    <div class="spacer-10"></div>
-                    <p>Move the 'sw.js' file which is located in the 'wordpress-mobile-pack' plugin directory to the root of your domain '/'.</p>
-                    <div class="spacer-10"></div>
-                </div>
-                <div class="spacer-0"></div>
-            </div>
-            <div class="spacer-15"></div>
-
             <div class="details">
                 <div class="display-mode">
                     <h2 class="title">Language Settings</h2>

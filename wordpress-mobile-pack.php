@@ -49,7 +49,8 @@ if (class_exists( 'WMobilePack' ) && class_exists( 'WMobilePack' )) {
 
 			add_action('wp_ajax_wmp_theme_switch', array( &$wmobile_pack_ajax, 'theme_switch' ) );
             add_action('wp_ajax_wmp_theme_settings', array(&$wmobile_pack_ajax, 'theme_settings'));
-            add_action('wp_ajax_wmp_theme_editimages', array(&$wmobile_pack_ajax, 'theme_editimages'));
+			add_action('wp_ajax_wmp_theme_editimages', array(&$wmobile_pack_ajax, 'theme_editimages'));
+			add_action('wp_ajax_wmp_service_worker', array(&$wmobile_pack_ajax, 'service_worker'));
 
             add_action('wp_ajax_wmp_content_status', array(&$wmobile_pack_ajax, 'content_status'));
             add_action('wp_ajax_wmp_content_pagedetails', array(&$wmobile_pack_ajax, 'content_pagedetails'));
