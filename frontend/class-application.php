@@ -437,7 +437,8 @@ if (!class_exists('WMobilePack_Application')) {
                 'posts_per_page',
 				'enable_facebook',
 				'enable_twitter',
-				'enable_google'
+				'enable_google',
+				'service_worker_installed'
             );
 
             $settings = array();
