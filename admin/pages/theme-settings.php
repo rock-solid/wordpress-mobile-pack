@@ -327,7 +327,7 @@
 			<div class="spacer-15"></div>
 			<div class="details">
 			<div class="display-mode">
-				<h2 class="title">Service Worker</h2>
+				<h2 class="title">Add To Home Screen</h2>
 				<div class="spacer-20"></div>
 				<p>In order for your users to be prompted to add the app to their home screen you must add a service worker to the root of your domain.</p>
 				<div class="spacer-10"></div>
