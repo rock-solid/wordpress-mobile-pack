@@ -59,9 +59,9 @@ class MediaContentTest extends WP_UnitTestCase
 
         $input = '<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<script>
-        
+
         StackExchange.ready(function () {
-                
+
                 StackExchange.using("snippets", function () {
                     StackExchange.snippets.initSnippetRenderer();
                 });
@@ -174,6 +174,12 @@ class MediaContentTest extends WP_UnitTestCase
 
         $this->assertEquals($this->purifier->purify($input), $output);
     }
+
+	public function test_giggle_tourism()
+	{
+		$input = '<iframe height = 498 width = 510 src = "http://app.giggle-tourism.com/locations" frameborder = 0 allowfullscreen ></iframe>';
+		$output = '<iframe height = 498 width = 510 src = "http://app.giggle-tourism.com/locations" frameborder = 0 allowfullscreen ></iframe>';
+	}
 
     public function test_video(){
 
