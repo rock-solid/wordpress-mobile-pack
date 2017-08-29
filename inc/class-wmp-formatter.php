@@ -38,7 +38,7 @@ if ( ! class_exists( 'WMobilePack_Formatter' ) ) {
             $config->set('URI.AllowedSchemes', array('http' => true, 'https' => true, 'mailto' => true, 'news' => true, 'tel' => true, 'callto' => true, 'skype' => true, 'sms' => true, 'whatsapp' => true));
 
             $config->set('HTML.SafeIframe', 1);
-            $config->set('URI.SafeIframeRegexp', "%^(https?:)?(http?:)?//(www\.youtube(?:-nocookie)?\.com/embed/|player.vimeo.com|www\.dailymotion.com|w.soundcloud.com|fast.wistia.net|fast.wistia.com|wi.st|flickrit.com|www.spreaker.com|spreaker.com|instagram.com|www.instagram.com|embed.spotify.com|play.spotify.com|spotify.com|player.youku.com|youku.com|maps.google.com)%");
+            $config->set('URI.SafeIframeRegexp', "%^(https?:)?(http?:)?//(www\.youtube(?:-nocookie)?\.com/embed/|player.vimeo.com|www\.dailymotion.com|w.soundcloud.com|fast.wistia.net|fast.wistia.com|wi.st|flickrit.com|www.spreaker.com|spreaker.com|instagram.com|www.instagram.com|embed.spotify.com|play.spotify.com|spotify.com|player.youku.com|youku.com|maps.google.com|app.giggle-tourism.com)%");
 
             // extend purifier
             $Html5Purifier = new WMPHtmlPurifier();
