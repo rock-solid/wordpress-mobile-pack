@@ -206,6 +206,31 @@
                 <div class="spacer-20"></div>
                 <p>You can also personalize your app by adding <strong>your own logo and icon</strong>. The logo will be displayed on the home page of your mobile web app, while the icon will be used when readers add your app to their homescreen.</p>
                 <div class="spacer-20"></div>
+
+				<?php
+					$warning_message = '';
+					$icon_filename = WMobilePack_Options::get_setting('icon');
+
+					if ($icon_filename == '') {
+						$warning_message = 'Upload an App Icon to take advantage of the Add To Home Screen functionality!';
+
+					} elseif ($icon_filename != '' && file_exists(WMP_FILES_UPLOADS_DIR . $icon_filename)) {
+						foreach (WMobilePack_Uploads::$manifest_sizes as $manifest_size) {
+							if (!file_exists(WMP_FILES_UPLOADS_DIR . $manifest_size . $icon_filename)) {
+								$warning_message = 'WP Mobile Pack Version 3.1 comes with Add To Home Screen functionality which requires you to reupload your App Icon.';
+								break;
+							}
+						}
+					}
+				?>
+
+				<div id="wmp_editimages_warning" class="message-container warning" style="display:<?php echo ($warning_message != '') ? 'block':'none' ?>">
+					<div class="wrapper">
+						<div class="relative"><a class="close-x"></a></div>
+						<span><?php echo $warning_message; ?></span>
+					</div>
+					<div class="spacer-10"></div>
+				</div>
                 <div class="left">
                     <form name="wmp_editimages_form" id="wmp_editimages_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_theme_editimages&type=upload" method="post" enctype="multipart/form-data">
 
