@@ -331,7 +331,7 @@
 				<div class="spacer-20"></div>
 				<p>In order for your users to be prompted to add the app to their home screen you must add a service worker to the root of your domain.</p>
 				<div class="spacer-10"></div>
-				<p>Move the 'sw.js' file which is located in the 'wordpress-mobile-pack' plugin directory to the root of your domain '/'.</p>
+				<p>Move the 'sw.js' file which is located in the 'wordpress-mobile-pack' plugin directory to the root of your domain '/' using FTP.</p>
 				<div class="spacer-10"></div>
 				<p>Once you have moved the file to your root, check the box bellow and click 'save'.</p>
 				<div class="spacer-30"></div>
