@@ -129,7 +129,7 @@ if (!class_exists('WMobilePack_Uploads')) {
 
 				$image_path = WMobilePack_Options::get_setting($image_type);
 
-				if ($image_type == 'icon' && $image_path != '') {
+				if ($image_path != '' && $image_type == 'icon') {
 					foreach (self::$manifest_sizes as $manifest_size) {
 						$this->remove_uploaded_file($manifest_size . $image_path);
 					}
