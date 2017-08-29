@@ -159,7 +159,7 @@ There are almost 50,000 plugins in the WordPress.org repository. It's impossible
 
 = 3.1 =
 * Implemented Add to Home Screen functionality
-* Translated app to Bosnian
+* Translated app in Bosnian (bs_BA)
 
 = 3.0 =
 * New Obliq mobile app theme, built on AngularJS & Ionic 1
