@@ -358,7 +358,7 @@
 				<div class="spacer-10"></div>
 				<p>Move the 'sw.js' file which is located in the 'wordpress-mobile-pack' plugin directory to the root of your domain '/' using FTP.</p>
 				<div class="spacer-10"></div>
-				<p>Once you have moved the file to your root, check the box bellow and click 'save'.</p>
+				<p>Once you have moved the file to your root, check the box bellow and click 'save'. For more details visit the <a href="https://docs.wpmobilepack.com/wp-mobile-pack-free/look-and-feel.html" target="_blank">support page.</a></p>
 				<div class="spacer-30"></div>
 				<form name="wmp_service_worker_form" id="wmp_service_worker_form" class="left" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_save" method="post" style="min-width: 300px;">
 					<?php $installed = WMobilePack_Options::get_setting('service_worker_installed'); ?>
