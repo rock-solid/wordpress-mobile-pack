@@ -463,7 +463,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 
 						foreach (WMobilePack_Uploads::$manifest_sizes as $manifest_size) {
 
-							$manifest_image = wp_get_image_editor($file_path);;
+							$manifest_image = wp_get_image_editor($file_path);
 							$manifest_image->resize($manifest_size, $manifest_size, true);
 							$manifest_image->save(WMP_FILES_UPLOADS_DIR . $manifest_size . $file_name);
 						}
