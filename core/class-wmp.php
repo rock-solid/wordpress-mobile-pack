@@ -195,6 +195,8 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 						return;
 					}
 				}
+			} elseif ($icon_filename == '') {
+				echo '<div class="error"><p>Upload an <a href="' . get_admin_url() . 'admin.php?page=wmp-options-theme-settings"/>App Icon</a> to take advantage of the Add To Home Screen functionality!</p></div>';
 			}
 		 }
 
