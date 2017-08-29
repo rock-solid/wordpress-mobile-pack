@@ -788,37 +788,6 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
             exit();
         }
 
-		/**
-		*
-		* Method use to update the service worker installation option.
-		*
-		*/
-		public function service_worker()
-		{
-
-			if (current_user_can( 'manage_options' )) {
-				$status = 0;
-
-				if (isset($_POST) && is_array($_POST) && !empty($_POST)) {
-
-					if (isset($_POST['wmp_service_worker_installed']) && $_POST['wmp_service_worker_installed'] != '' && is_numeric($_POST['wmp_service_worker_installed'])) {
-
-						$installed= intval($_POST['wmp_service_worker_installed']);
-
-						if ($installed == 0 || $installed == 1) {
-
-							$status = 1;
-							// save option
-							WMobilePack_Options::update_settings('service_worker_installed', $installed);
-
-						}
-					}
-				}
-				echo $status;
-			}
-			exit();
-
-		}
 
 
         /**
@@ -1043,7 +1012,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                 if (isset($_POST) && is_array($_POST) && !empty($_POST)) {
 
                     // handle opt-ins settings
-                    foreach (array('enable_facebook', 'enable_twitter', 'enable_google','allow_tracking', 'upgrade_notice_updated') as $option_name) {
+                    foreach (array('enable_facebook', 'enable_twitter', 'enable_google','allow_tracking', 'upgrade_notice_updated', 'service_worker_installed') as $option_name) {
 
                         if (isset($_POST['wmp_option_'.$option_name]) && $_POST['wmp_option_'.$option_name] != '' && is_numeric($_POST['wmp_option_'.$option_name])) {
 

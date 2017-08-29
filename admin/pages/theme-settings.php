@@ -335,9 +335,9 @@
 				<div class="spacer-10"></div>
 				<p>Once you have moved the file to your root, check the box bellow and click 'save'.</p>
 				<div class="spacer-30"></div>
-				<form name="wmp_service_worker_form" id="wmp_service_worker_form" class="left" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_service_worker" method="post" style="min-width: 300px;">
+				<form name="wmp_service_worker_form" id="wmp_service_worker_form" class="left" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_save" method="post" style="min-width: 300px;">
 					<?php $installed = WMobilePack_Options::get_setting('service_worker_installed'); ?>
-					<input type="hidden" name="wmp_service_worker_installed" id="wmp_service_worker_installed" value="<?php echo $installed; ?>"/>
+					<input type="hidden" name="wmp_option_service_worker_installed" id="wmp_option_service_worker_installed" value="<?php echo $installed; ?>"/>
 					<input type="checkbox" name="wmp_service_worker_installed_check" id="wmp_service_worker_installed_check" value="1" <?php if ($installed == 1) echo "checked" ;?> />
 					<label for="wmp_service_worker_installed_check"> Service Worker Installed </label>
 					<div class="spacer-40"></div>
