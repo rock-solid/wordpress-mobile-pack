@@ -69,7 +69,7 @@ class ExportManifestTest extends WP_UnitTestCase
         // Test for new Oblique
 		update_option('wmpack_custom_colors', $custom_colors);
 		update_option('wmpack_color_scheme', 0);
-        
+
         update_option('blogname', 'Test Blog');
         update_option('home', 'http://dummy.appticles.com');
 
@@ -85,7 +85,7 @@ class ExportManifestTest extends WP_UnitTestCase
 
         // Test for old Oblique
         $custom_colors = array_slice($custom_colors, 0, -3);
-   
+
         update_option('wmpack_custom_colors', $custom_colors);
         update_option('wmpack_theme', 1);
 
@@ -140,12 +140,24 @@ class ExportManifestTest extends WP_UnitTestCase
             ->setMethods(array('get_file_url'))
             ->getMock();
 
-        $uploads_mock->expects($this->exactly(2))
-            ->method('get_file_url')
-            ->with(
-                $this->equalTo('icon_path.jpg')
-            )
-            ->will($this->returnValue('http://dummy.appticles.com/icon_path.jpg'));
+		$sizes = array(48, 96, 144, 196);
+
+		foreach ($sizes as $i => $size) {
+
+			$uploads_mock->expects($this->at($i))
+				->method('get_file_url')
+				->with(
+					$this->equalTo($size. 'icon_path.jpg')
+				)
+				->will($this->returnValue('http://dummy.appticles.com/'. $size . 'icon_path.jpg'));
+		}
+
+		$uploads_mock->expects($this->at(4))
+			->method('get_file_url')
+			->with(
+				$this->equalTo('icon_path.jpg')
+			)
+			->will($this->returnValue('http://dummy.appticles.com/icon_path.jpg'));
 
         $export_class->expects($this->exactly(2))
             ->method('get_uploads_manager')
@@ -161,8 +173,24 @@ class ExportManifestTest extends WP_UnitTestCase
         $this->assertEquals(
             array(
                 array(
-                    'src' => 'http://dummy.appticles.com/icon_path.jpg',
-                    'sizes' => '192x192'
+                    'src' => 'http://dummy.appticles.com/48icon_path.jpg',
+                    'sizes' => '48x48',
+					"type" => "image/png"
+                ),
+					array(
+                    'src' => 'http://dummy.appticles.com/96icon_path.jpg',
+                    'sizes' => '96x96',
+					"type" => "image/png"
+                ),
+					array(
+                    'src' => 'http://dummy.appticles.com/144icon_path.jpg',
+                    'sizes' => '144x144',
+					"type" => "image/png"
+                ),
+					array(
+                    'src' => 'http://dummy.appticles.com/196icon_path.jpg',
+                    'sizes' => '196x196',
+					"type" => "image/png"
                 )
             ),
             $data['icons']

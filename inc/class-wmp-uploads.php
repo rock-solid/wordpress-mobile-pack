@@ -38,7 +38,9 @@ if (!class_exists('WMobilePack_Uploads')) {
                 'max_height' => 500,
                 'extensions' => array('jpg', 'jpeg', 'png','gif')
             ),
-        );
+		);
+
+		public static $manifest_sizes = array(48, 96, 144, 196);
 
         protected static $htaccess_template = 'frontend/sections/htaccess-template.txt';
 
@@ -86,7 +88,7 @@ if (!class_exists('WMobilePack_Uploads')) {
                 return;
             }
         }
-        
+
 
         /**
          *
@@ -125,7 +127,14 @@ if (!class_exists('WMobilePack_Uploads')) {
 
             foreach (array('icon', 'logo', 'cover') as $image_type) {
 
-                $image_path = WMobilePack_Options::get_setting($image_type);
+				$image_path = WMobilePack_Options::get_setting($image_type);
+
+				if ($image_path != '' && $image_type == 'icon') {
+					foreach (self::$manifest_sizes as $manifest_size) {
+						$this->remove_uploaded_file($manifest_size . $image_path);
+					}
+				}
+
                 $this->remove_uploaded_file($image_path);
             }
 
@@ -150,7 +159,7 @@ if (!class_exists('WMobilePack_Uploads')) {
                 if ( ! class_exists( 'WMobilePack_Themes_Compiler' ) && version_compare(PHP_VERSION, '5.3') >= 0 ) {
                     require_once(WMP_PLUGIN_PATH.'inc/class-wmp-themes-compiler.php');
                 }
-                
+
                 if (class_exists('WMobilePack_Themes_Compiler')) {
 
                     $wmp_themes = new WMobilePack_Themes_Compiler();
@@ -196,7 +205,7 @@ if (!class_exists('WMobilePack_Uploads')) {
                     return unlink(WMP_FILES_UPLOADS_DIR.$file_path);
             }
         }
-        
+
         /**
          *
          * Create a .htaccess file with rules for compressing and caching static files for the plugin's upload folder

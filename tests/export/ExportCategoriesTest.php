@@ -112,7 +112,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
         $_GET['withArticles'] = 0;
 		$home_url = json_encode(home_url('/'));
 		$home_url = str_replace('"','',$home_url);
-        
+
         $this->assertEquals('{"categories":[{"id":1,"order":1,"name":"Uncategorized","name_slug":"uncategorized","parent_id":0,"link":"'.$home_url.'?cat=1","image":""}],"wpmp":"'.WMP_VERSION.'"}', $export_class->export_categories());
 
         wp_delete_post($post_id);
@@ -156,7 +156,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
         );
 
         update_option('wmpack_inactive_categories', array($cat_id));
-        
+
         $export_class = new WMobilePack_Export ();
 
         $this->assertEquals($export_class->export_categories(), json_encode(array('categories' => array(), 'wpmp' => WMP_VERSION)));
@@ -409,7 +409,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
         update_option('wmpack_ordered_categories', array($visible_cat_id2, $visible_cat_id, $hidden_cat_id));
 
         $export_class = new WMobilePack_Export ();
-    
+
         $data = json_decode($export_class->export_categories(), true);
 
         $this->assertArrayHasKey('categories', $data);
@@ -760,11 +760,11 @@ class ExportCategoriesTest extends WP_UnitTestCase
                 'name' => 'Visible Test Category 3'
             )
         );
-        
+
         $export_class = new WMobilePack_Export ();
 
         $this->assertEquals(
-            '{"categories":[],"page":"5465","rows":"5","wpmp":"3.0"}',
+            '{"categories":[],"page":"5465","rows":"5","wpmp":"3.1"}',
             $export_class->export_categories()
             );
 

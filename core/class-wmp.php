@@ -148,6 +148,10 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 			if (get_transient(WMobilePack_Options::$transient_prefix.'upgrade_theme_notice')){
 				echo '<div class="notice is-dismissible"><p>&#x1F680; '. WMP_PLUGIN_NAME .' now comes with mobile app theme <strong>Obliq V2.0</strong> - faster, optimized and with an improved UI/UX. <a href="'. add_query_arg(array('page'=>'wmp-options-themes'), network_admin_url('admin.php')) .'">Make the switch here</a>.</p></div>';
 			}
+
+			// display notice to reupload icon
+			$this->display_icon_reupload_notice();
+
         }
 
         /**
@@ -171,8 +175,30 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                     }
                 }
             }
-        }
+		}
 
+
+		/**
+		 *
+		 * Display icon reupload notice if icon is uploaded and manifest icon sizes are missing.
+		 *
+		 */
+		 public function display_icon_reupload_notice(){
+
+			$icon_filename = WMobilePack_Options::get_setting('icon');
+
+			if ($icon_filename == '') {
+				echo '<div class="notice notice-warning is-dismissible"><p>WP Mobile Pack: Upload an <a href="' . get_admin_url() . 'admin.php?page=wmp-options-theme-settings"/>App Icon</a> to take advantage of the Add To Home Screen functionality!</p></div>';
+
+			} elseif ($icon_filename != '' && file_exists(WMP_FILES_UPLOADS_DIR . $icon_filename)) {
+				foreach (WMobilePack_Uploads::$manifest_sizes as $manifest_size) {
+					if (!file_exists(WMP_FILES_UPLOADS_DIR . $manifest_size . $icon_filename)) {
+						echo '<div class="notice notice-warning is-dismissible"><p>WP Mobile Pack Version 3.1 comes with Add To Home Screen functionality which requires you to reupload your <a href="' . get_admin_url() . 'admin.php?page=wmp-options-theme-settings"/>App Icon</a>!</p></div>';
+						return;
+					}
+				}
+			}
+		}
 
         /**
          *

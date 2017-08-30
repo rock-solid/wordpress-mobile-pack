@@ -457,7 +457,18 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 
                 if (!is_wp_error($image)) {
 
-                    $image_size = $image->get_size();
+					$image_size = $image->get_size();
+
+					if ($file_type == 'icon') {
+
+						foreach (WMobilePack_Uploads::$manifest_sizes as $manifest_size) {
+
+							$manifest_image = wp_get_image_editor($file_path);
+							$manifest_image->resize($manifest_size, $manifest_size, true);
+							$manifest_image->save(WMP_FILES_UPLOADS_DIR . $manifest_size . $file_name);
+						}
+
+					}
 
                     // if the image exceeds the size limits
                     if ($image_size['width'] > $arrMaximumSize['max_width'] || $image_size['height'] > $arrMaximumSize['max_height']) {
@@ -482,7 +493,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
             }
 
             return $copied_and_resized;
-        }
+		}
 
 
         /**
@@ -499,8 +510,17 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
             $previous_file_path = WMobilePack_Options::get_setting($file_type);
 
             // check the file exists and remove it
-            if ($previous_file_path != ''){
-                $WMP_Uploads = $this->get_uploads_manager();
+            if ($previous_file_path != '') {
+				$WMP_Uploads = $this->get_uploads_manager();
+
+				if ($file_type == 'icon') {
+
+					foreach (WMobilePack_Uploads::$manifest_sizes as $manifest_size) {
+						$WMP_Uploads->remove_uploaded_file($manifest_size . $previous_file_path);
+					}
+
+				}
+
                 return $WMP_Uploads->remove_uploaded_file($previous_file_path);
             }
 
@@ -974,7 +994,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
             }
 
             exit();
-        }
+		}
 
 
         /**
@@ -992,7 +1012,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                 if (isset($_POST) && is_array($_POST) && !empty($_POST)) {
 
                     // handle opt-ins settings
-                    foreach (array('enable_facebook', 'enable_twitter', 'enable_google','allow_tracking', 'upgrade_notice_updated') as $option_name) {
+                    foreach (array('enable_facebook', 'enable_twitter', 'enable_google','allow_tracking', 'upgrade_notice_updated', 'service_worker_installed') as $option_name) {
 
                         if (isset($_POST['wmp_option_'.$option_name]) && $_POST['wmp_option_'.$option_name] != '' && is_numeric($_POST['wmp_option_'.$option_name])) {
 

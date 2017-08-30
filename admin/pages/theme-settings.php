@@ -206,6 +206,31 @@
                 <div class="spacer-20"></div>
                 <p>You can also personalize your app by adding <strong>your own logo and icon</strong>. The logo will be displayed on the home page of your mobile web app, while the icon will be used when readers add your app to their homescreen.</p>
                 <div class="spacer-20"></div>
+
+				<?php
+					$warning_message = '';
+					$icon_filename = WMobilePack_Options::get_setting('icon');
+
+					if ($icon_filename == '') {
+						$warning_message = 'Upload an App Icon to take advantage of the Add To Home Screen functionality!';
+
+					} elseif ($icon_filename != '' && file_exists(WMP_FILES_UPLOADS_DIR . $icon_filename)) {
+						foreach (WMobilePack_Uploads::$manifest_sizes as $manifest_size) {
+							if (!file_exists(WMP_FILES_UPLOADS_DIR . $manifest_size . $icon_filename)) {
+								$warning_message = 'WP Mobile Pack Version 3.1 comes with Add To Home Screen functionality which requires you to reupload your App Icon.';
+								break;
+							}
+						}
+					}
+				?>
+
+				<div id="wmp_editimages_warning" class="message-container warning" style="display:<?php echo ($warning_message != '') ? 'block':'none' ?>">
+					<div class="wrapper">
+						<div class="relative"><a class="close-x"></a></div>
+						<span><?php echo $warning_message; ?></span>
+					</div>
+					<div class="spacer-10"></div>
+				</div>
                 <div class="left">
                     <form name="wmp_editimages_form" id="wmp_editimages_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_theme_editimages&type=upload" method="post" enctype="multipart/form-data">
 
@@ -305,11 +330,11 @@
                             <!-- edit/delete icon links -->
                             <a href="javascript:void(0);" class="wmp_editimages_changeicon btn grey smaller edit">Change</a>
                             <a href="#" class="wmp_editimages_deleteicon smaller remove">remove</a>
-                        </div>
+						</div>
 
-                        <div class="spacer-20"></div>
+						<div class="spacer-20"></div>
 
-                        <a href="javascript:void(0);" id="wmp_editimages_send_btn" class="btn green smaller">Save</a>
+						<a href="javascript:void(0);" id="wmp_editimages_send_btn" class="btn green smaller">Save</a>
 
                     </form>
                 </div>
@@ -322,7 +347,30 @@
                     </span>
                 </div>
                 <div class="spacer-0"></div>
-            </div>
+			</div>
+
+			<div class="spacer-15"></div>
+			<div class="details">
+			<div class="display-mode">
+				<h2 class="title">Add to Home Screen</h2>
+				<div class="spacer-20"></div>
+				<p>In order for your users to be prompted to add the app to their home screen you must add a service worker to the root of your domain.</p>
+				<div class="spacer-10"></div>
+				<p>Move the 'sw.js' file which is located in the 'wordpress-mobile-pack' plugin directory to the root of your domain '/' using FTP.</p>
+				<div class="spacer-10"></div>
+				<p>Once you have moved the file to your root, check the box bellow and click 'save'. For more details visit the <a href="https://docs.wpmobilepack.com/wp-mobile-pack-free/look-and-feel.html" target="_blank">support page.</a></p>
+				<div class="spacer-30"></div>
+				<form name="wmp_service_worker_form" id="wmp_service_worker_form" class="left" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_save" method="post" style="min-width: 300px;">
+					<?php $installed = WMobilePack_Options::get_setting('service_worker_installed'); ?>
+					<input type="hidden" name="wmp_option_service_worker_installed" id="wmp_option_service_worker_installed" value="<?php echo $installed; ?>"/>
+					<input type="checkbox" name="wmp_service_worker_installed_check" id="wmp_service_worker_installed_check" value="1" <?php if ($installed == 1) echo "checked" ;?> />
+					<label for="wmp_service_worker_installed_check"> Service Worker Installed </label>
+					<div class="spacer-40"></div>
+					<a href="javascript:void(0);" id="wmp_service_worker_send_btn" class="btn green smaller">Save</a>
+				</form>
+			</div>
+			<div class="spacer-0"></div>
+			</div>
 
 
             <div class="spacer-15"></div>
@@ -418,7 +466,8 @@
 
             window.WMPJSInterface.add("UI_customizetheme","WMP_EDIT_THEME",{'DOMDoc':window.document}, window);
             window.WMPJSInterface.add("UI_editimages","WMP_EDIT_IMAGES",{'DOMDoc':window.document}, window);
-            window.WMPJSInterface.add("UI_editcover","WMP_EDIT_COVER",{'DOMDoc':window.document}, window);
+			window.WMPJSInterface.add("UI_editcover","WMP_EDIT_COVER",{'DOMDoc':window.document}, window);
+			window.WMPJSInterface.add("UI_service_worker","WMP_SERVICE_WORKER",{'DOMDoc':window.document}, window);
 
         });
     }
