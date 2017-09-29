@@ -193,7 +193,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 			} elseif ($icon_filename != '' && file_exists(WMP_FILES_UPLOADS_DIR . $icon_filename)) {
 				foreach (WMobilePack_Uploads::$manifest_sizes as $manifest_size) {
 					if (!file_exists(WMP_FILES_UPLOADS_DIR . $manifest_size . $icon_filename)) {
-						echo '<div class="notice notice-warning is-dismissible"><p>WP Mobile Pack Version 3.1 comes with Add To Home Screen functionality which requires you to reupload your <a href="' . get_admin_url() . 'admin.php?page=wmp-options-theme-settings"/>App Icon</a>!</p></div>';
+						echo '<div class="notice notice-warning is-dismissible"><p>WP Mobile Pack Version 3.2 comes with Add To Home Screen functionality which requires you to reupload your <a href="' . get_admin_url() . 'admin.php?page=wmp-options-theme-settings"/>App Icon</a>!</p></div>';
 						return;
 					}
 				}
