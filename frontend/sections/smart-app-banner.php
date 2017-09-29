@@ -99,8 +99,8 @@ if (class_exists('WMobilePack')):
 	}
 
 	$app_url = home_url();
-	if (strlen($app_url) > 30) {
-		$app_url = substr($app_url, 0, 30).' ... ';
+	if (strlen($app_url) > 20) {
+		$app_url = substr($app_url, 0, 20).' ... ';
 	}
 
 	$is_secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
