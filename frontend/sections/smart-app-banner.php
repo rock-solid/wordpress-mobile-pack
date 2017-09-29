@@ -111,7 +111,6 @@ if (class_exists('WMobilePack')):
 	<script src="<?php echo plugins_url()."/".WMP_DOMAIN;?>/frontend/sections/notification-banner/notification-banner.js" type="text/javascript" pagespeed_no_defer=""></script>
 
     <script type="text/javascript" pagespeed_no_defer="">
-
 		jQuery(document).ready(function(){
 
 			const wmpIconPath = "<?php echo esc_attr($app_icon_path);?>";
@@ -125,5 +124,5 @@ if (class_exists('WMobilePack')):
 			WMPAppBanner.cookiePrefix = "<?php echo WMobilePack_Cookie::$prefix;?>";
 			WMPAppBanner.isSecure = <?php echo $is_secure ? "true" : "false";?>;
 		});
-</script>
+	</script>
 <?php endif; ?>

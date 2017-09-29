@@ -23,7 +23,6 @@ if (class_exists('WMobilePack')):
     }
 
     // Smart app banner is loaded only for apps with subdomains & smart app banners
-    // @todo (Future releases) Load smart app banner for apps without subdomains
     if ($smart_app_banner !== false):
 
         if (is_single() || is_page() || is_category()){
@@ -77,23 +76,24 @@ if (class_exists('WMobilePack')):
                     }
                 }
             }
-        }
+		}
+
+		$app_url = $mobile_url;
+		if (strlen($app_url) > 30) {
+			$app_url = substr($app_url, 0, 30).' ... ';
+		}
 ?>
         <script type="text/javascript" pagespeed_no_defer="">
-            var appticlesRedirectToMobile = "<?php echo $mobile_url;?>";
+			jQuery(document).ready(function(){
 
-            var wmpAppBanner = wmpAppBanner || {};
-            wmpAppBanner.WIDGET = wmpAppBanner.WIDGET || {};
-            wmpAppBanner.WIDGET.ref = '<?php echo $mobile_url;?>';
+				WMPAppBanner.message =
+					'<p><span><?php echo $app_url;?></span></p>' +
+					'<a href="<?php echo $mobile_url;?>"><span>Open</span></a>';
 
-            (function() {
-                var wbz = document.createElement('script');
-                wbz.type = 'text/javascript';
-                wbz.async = true;
-                wbz.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + '<?php echo $smart_app_banner;?>';
-                var s = document.getElementsByTagName('script')[0];
-                s.parentNode.insertBefore(wbz, s); })();
-        </script>
+				WMPAppBanner.cookiePrefix = "<?php echo WMobilePack_Cookie::$prefix;?>";
+				WMPAppBanner.isSecure = <?php echo $is_secure ? "true" : "false";?>;
+			});
+		</script>
 <?php
     endif;
 endif;
