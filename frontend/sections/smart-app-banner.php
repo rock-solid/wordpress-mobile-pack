@@ -1,6 +1,5 @@
 <?php
 
-// @todo (Future releases) Find a more efficient way to feed params to the banner script
 if (class_exists('WMobilePack')):
 
     // The mobile web app paths will be set relative to the home url and will deactivate the desktop theme
@@ -92,31 +91,38 @@ if (class_exists('WMobilePack')):
     $open_btn_text = 'Open';
     if ($wmp_texts_json !== false && isset($wmp_texts_json['APP_TEXTS']['LINKS']) && isset($wmp_texts_json['APP_TEXTS']['LINKS']['OPEN_APP'])) {
         $open_btn_text = $wmp_texts_json['APP_TEXTS']['LINKS']['OPEN_APP'];
-    }
+	}
 
+	$app_name = get_bloginfo("name");
+	if (strlen($app_name) > 20) {
+		$app_name = substr($app_name, 0, 20).' ... ';
+	}
+
+	$app_url = home_url();
+	if (strlen($app_url) > 20) {
+		$app_url = substr($app_url, 0, 20).' ... ';
+	}
+
+	$is_secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
 ?>
+
+	<link href="<?php echo plugins_url()."/".WMP_DOMAIN;?>/frontend/sections/notification-banner/lib/noty.css" rel="stylesheet">
+	<script src="<?php echo plugins_url()."/".WMP_DOMAIN;?>/frontend/sections/notification-banner/lib/noty.min.js" type="text/javascript" pagespeed_no_defer=""></script>
+	<script src="<?php echo plugins_url()."/".WMP_DOMAIN;?>/frontend/sections/notification-banner/notification-banner.js" type="text/javascript" pagespeed_no_defer=""></script>
+
     <script type="text/javascript" pagespeed_no_defer="">
+		jQuery(document).ready(function(){
 
-        var wmpAppBanner = wmpAppBanner || {};
-        wmpAppBanner.WIDGET = wmpAppBanner.WIDGET || {};
-        wmpAppBanner.WIDGET.appUrl = '<?php echo home_url();?>';
-        wmpAppBanner.WIDGET.appIcon = '<?php echo $app_icon_path;?>';
-        wmpAppBanner.WIDGET.appName = '<?php echo get_bloginfo("name");?>';
-        wmpAppBanner.WIDGET.ref = '<?php echo $mobile_url;?>';
-        wmpAppBanner.WIDGET.trustedDevice = 1;
-        wmpAppBanner.WIDGET.iframeUrl = '<?php echo plugins_url()."/".WMP_DOMAIN;?>/frontend/sections/smart-app-banner/iframe/bar.html';
-        wmpAppBanner.WIDGET.cssPath = '<?php echo plugins_url()."/".WMP_DOMAIN;?>/frontend/sections/smart-app-banner/css/style-light.min.css';
-        wmpAppBanner.WIDGET.openAppButton = '<?php echo $open_btn_text;?>';
-        wmpAppBanner.WIDGET.cookiePrefix = '<?php echo WMobilePack_Cookie::$prefix;?>';
+			const wmpIconPath = "<?php echo esc_attr($app_icon_path);?>";
 
-        (function () {
-             var wmp = document.createElement('script');
-             wmp.async = true;
-             wmp.type = 'text/javascript';
-             wmp.src = '<?php echo plugins_url()."/".WMP_DOMAIN;?>/frontend/sections/smart-app-banner/js/smart-app-banner.min.js';
-             var node = document.getElementsByTagName('script')[0];
-             node.parentNode.insertBefore(wmp, node);
-         })();
+			WMPAppBanner.message =
+				(wmpIconPath !== '' ? '<img src="<?php echo esc_attr($app_icon_path);?>" />' : '') +
+				'<p><?php echo $app_name;?><br/> ' +
+				'<span><?php echo $app_url;?></span></p>' +
+				'<a href="<?php echo $mobile_url;?>"><span><?php echo $open_btn_text;?></span></a>';
 
-    </script>
+			WMPAppBanner.cookiePrefix = "<?php echo WMobilePack_Cookie::$prefix;?>";
+			WMPAppBanner.isSecure = <?php echo $is_secure ? "true" : "false";?>;
+		});
+	</script>
 <?php endif; ?>

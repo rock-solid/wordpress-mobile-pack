@@ -2,7 +2,11 @@
 
 if (class_exists('WMobilePack')):
 
-    $smart_app_banner = false;
+	$smart_app_banner = false;
+	$app_name = null;
+	$icon_path = '';
+
+	$is_secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
 
     // Load config json
     if (WMobilePack_Options::get_setting('premium_active') == 1 && WMobilePack_Options::get_setting('premium_api_key') != '') {
@@ -14,17 +18,32 @@ if (class_exists('WMobilePack')):
 
             // Check if we have a valid subdomain linked to the Premium theme
             if (isset($arr_config_premium['domain_name']) && filter_var('http://' . $arr_config_premium['domain_name'], FILTER_VALIDATE_URL) &&
-                isset($arr_config_premium['smart_app_banner']) && filter_var('http://' . $arr_config_premium['smart_app_banner'], FILTER_VALIDATE_URL)) {
+				isset($arr_config_premium['smart_app_banner']) && filter_var('http://' . $arr_config_premium['smart_app_banner'], FILTER_VALIDATE_URL) &&
+				isset($arr_config_premium['cdn_apps_https']) && filter_var($arr_config_premium['cdn_apps_https'],FILTER_VALIDATE_URL) &&
+				isset($arr_config_premium['cdn_apps']) && filter_var($arr_config_premium['cdn_apps'],FILTER_VALIDATE_URL) &&
+				isset($arr_config_premium['shorten_url']) && ctype_alnum($arr_config_premium['shorten_url']) &&
+				(!isset($arr_config_premium['icon_path']) || $arr_config_premium['icon_path'] == '' || $arr_config_premium['icon_path'] == strip_tags($arr_config_premium['icon_path']))) {
 
                 $mobile_url = "http://" . $arr_config_premium['domain_name'];
-                $smart_app_banner = $arr_config_premium['smart_app_banner'];
+				$smart_app_banner = $arr_config_premium['smart_app_banner'];
+
+				$app_name = $arr_config_premium['title'];
+
+				if (isset($arr_config_premium['kit_type']) && $arr_config_premium['kit_type'] == 'wpmp') {
+					$app_name = htmlspecialchars_decode(urldecode(strip_tags($app_name)));
+				}
+
+				$cdn_apps = ($is_secure ? $arr_config_premium['cdn_apps_https'] : $arr_config_premium['cdn_apps']);
+
+				if (isset($arr_config_premium['icon_path']) && $arr_config_premium['icon_path'] != '') {
+					$icon_path = $cdn_apps."/".$arr_config_premium['shorten_url'].'/'.$arr_config_premium['icon_path'];
+				}
             }
         }
     }
 
     // Smart app banner is loaded only for apps with subdomains & smart app banners
-    // @todo (Future releases) Load smart app banner for apps without subdomains
-    if ($smart_app_banner !== false):
+    if ($smart_app_banner !== false && $app_name !== null):
 
         if (is_single() || is_page() || is_category()){
 
@@ -77,23 +96,32 @@ if (class_exists('WMobilePack')):
                     }
                 }
             }
-        }
+		}
+
+		$app_url = $mobile_url;
+		if (strlen($app_url) > 30) {
+			$app_url = substr($app_url, 0, 30).' ... ';
+		}
 ?>
+		<link href="<?php echo plugins_url()."/".WMP_DOMAIN;?>/frontend/sections/notification-banner/lib/noty.css" rel="stylesheet">
+		<script src="<?php echo plugins_url()."/".WMP_DOMAIN;?>/frontend/sections/notification-banner/lib/noty.min.js" type="text/javascript" pagespeed_no_defer=""></script>
+		<script src="<?php echo plugins_url()."/".WMP_DOMAIN;?>/frontend/sections/notification-banner/notification-banner.js" type="text/javascript" pagespeed_no_defer=""></script>
+
         <script type="text/javascript" pagespeed_no_defer="">
-            var appticlesRedirectToMobile = "<?php echo $mobile_url;?>";
+			jQuery(document).ready(function(){
 
-            var wmpAppBanner = wmpAppBanner || {};
-            wmpAppBanner.WIDGET = wmpAppBanner.WIDGET || {};
-            wmpAppBanner.WIDGET.ref = '<?php echo $mobile_url;?>';
+				const wmpIconPath = "<?php echo $icon_path;?>";
 
-            (function() {
-                var wbz = document.createElement('script');
-                wbz.type = 'text/javascript';
-                wbz.async = true;
-                wbz.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + '<?php echo $smart_app_banner;?>';
-                var s = document.getElementsByTagName('script')[0];
-                s.parentNode.insertBefore(wbz, s); })();
-        </script>
+				WMPAppBanner.message =
+					(wmpIconPath !== '' ? '<img src="<?php echo $icon_path;?>" />' : '') +
+					'<p><?php echo $app_name;?><br/> ' +
+					'<span><?php echo $app_url;?></span></p>' +
+					'<a href="<?php echo $mobile_url;?>"><span>OPEN</span></a>';
+
+				WMPAppBanner.cookiePrefix = "<?php echo WMobilePack_Cookie::$prefix;?>";
+				WMPAppBanner.isSecure = <?php echo $is_secure ? "true" : "false";?>;
+			});
+		</script>
 <?php
     endif;
 endif;
