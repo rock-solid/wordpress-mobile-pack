@@ -1,6 +1,13 @@
 WordPress Mobile Pack
 =================
-![GitHub tag](https://img.shields.io/github/tag/appticles/wordpress-mobile-pack.svg)]
+[![GitHub release](https://img.shields.io/github/release/appticles/wordpress-mobile-pack.svg)](https://github.com/appticles/wordpress-mobile-pack )
+[![GitHub closed issues](https://img.shields.io/github/issues-closed/appticles/wordpress-mobile-pack.svg)](https://github.com/appticles/wordpress-mobile-pack)
+
+[![WordPress](https://img.shields.io/wordpress/v/wordpress-mobile-pack.svg)](https://wordpress.org/plugins/wordpress-mobile-pack/)
+[![WordPress](https://img.shields.io/wordpress/plugin/dt/wordpress-mobile-pack.svg)](https://wordpress.org/plugins/wordpress-mobile-pack/)
+[![WordPress rating](https://img.shields.io/wordpress/plugin/r/wordpress-mobile-pack.svg)](https://wordpress.org/plugins/wordpress-mobile-pack/)
+[![Open Source](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://github.com/appticles/wordpress-mobile-pack)
+
 
 Mobile [WordPress](https://wordpress.org/) plugin to package your content into a [Progressive Web App](https://developers.google.com/web/progressive-web-apps/), build a hybrid mobile app and submit it to App Stores.
 
