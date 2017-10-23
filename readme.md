@@ -11,7 +11,7 @@ WordPress Mobile Pack
  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp; ![demo](http://d3oqwjghculspf.cloudfront.net/github/wordpress-mobile-pack/FYwy5UH.gif) &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; ![demo](http://d3oqwjghculspf.cloudfront.net/github/wordpress-mobile-pack/hOTltV9.gif) &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; ![demo](http://d3oqwjghculspf.cloudfront.net/github/wordpress-mobile-pack/uhfONuq.gif) &nbsp; &nbsp;  &nbsp; &nbsp;
 
 
-Mobile [WordPress](https://wordpress.org/) plugin to package your content into a [Progressive Web App](https://developers.google.com/web/progressive-web-apps/), build a hybrid mobile app and submit it to App Stores.
+Mobile [WordPress](https://wordpress.org/) plugin to package your content into a [Progressive Web App](https://wpmobilepack.com/), build a hybrid mobile app and submit it to App Stores.
 
 
 ### Description 
