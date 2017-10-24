@@ -13,6 +13,7 @@ WordPress Mobile Pack
 
 Mobile [WordPress](https://wordpress.org/) plugin to package your content into a [Progressive Web App](https://wpmobilepack.com/), build a hybrid mobile app and submit it to App Stores.
 
+DEMO: [https://bit.ly/pwa-obliq2](https://bit.ly/pwa-obliq2)
 
 ### Description 
 
