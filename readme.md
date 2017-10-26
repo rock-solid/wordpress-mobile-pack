@@ -54,7 +54,9 @@ WordPress Mobile Pack also comes with a **PRO version** suitable for **professio
 |:----:|:----------:|
 |<a href="https://www.youtube.com/watch?v=elxjfdbAoqM"><img src="https://dm6mgg4whxzuh.cloudfront.net/website-wpmp/1492598027925/img/wpmp/wpmp-customize-app-themes.png"/></a>|<a href="https://www.youtube.com/watch?v=JSjhK8YI98M"><img src="https://dm6mgg4whxzuh.cloudfront.net/website-wpmp/1492598027925/img/wpmp/wpmp-monetization.png"/></a>|
 
-The Benefits of Using WordPress Mobile Pack:
+> Please find [here more step-by-step documentation](https://docs.wpmobilepack.com/) on how to get up and running with WordPress Mobile Pack.
+
+<h2>The Benefits of Using WordPress Mobile Pack</h2>
 
 * **MULTIPLE MOBILE APP THEMES**
 
