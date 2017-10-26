@@ -76,44 +76,7 @@ We take pride in offering fantastic WP Mobile Pack PRO maintenance and hands-on 
 
 <h2>Frequently Asked Questions</h2> 
 
-**When I visit my website from a smartphone, I don't see any posts or pages**
-
-Please make sure that the endpoint exporting the content can be accessed and doesn't show errors or notices. From a browser, go to the following address: 
-
-
-http://yoursite.com/wp-content/plugins/wordpress-mobile-pack/export/content.php?content=exportcategories&limit=5&callback=Ext.data.JsonP.callback
-
-
-You should see a text starting with "Ext.data.JsonP.callback". If the page displays a "403 forbidden" message or has any errors / notices, it means that the content will not be available to the mobile web app.
-
-**I have enabled Wordpress Mobile Pack, but I still see the desktop theme on my smartphone**
-
-If you are using a cache plugin, please check the [docs](http://support.appticles.com/optimizing-cache-plugins-wordpress-mobile-pack/). Some additional settings on the cache plugin might be required to correctly enable the mobile detection from Wordpress Mobile Pack.
-
-**What can I use to replace contact forms?**
-Most of the sites we come across use contact forms to allow users to get in touch or/and send messages. However, when targeting mobile users, forcing them to fill out a dull form (usually pretty long) is the worst UX you can offer to your mobile audience. Instead, here are [a couple of approaches](http://support.appticles.com/replacing-contact-forms-with-click-to-call-links-for-your-mobile-web-application/) you could try out in your mobile web application:
-
-**What devices and operating systems are supported by my mobile web application?**
-
-WordPress Mobile Pack is supported on iOS and Android smartphones and tablets. Compatible browsers: Safari, Google Chrome, Android - Native Browser.
-
- **How can my readers switch back to the desktop theme from my mobile web application?**
- 
-The side menu of the mobile web application contains a 'Switch to website' button that will take readers back to the desktop theme. Their option will be remembered the next time they visit your blog.
-
-**How can my readers switch back to the mobile web application from the desktop theme?**
-
-A link called 'Switch to mobile version' will be displayed in the footer of your desktop theme, only for readers that are viewing the site from a supported device and browser. Their option will be remembered the next time they visit your blog.
-
-**I want to temporarily deactivate my mobile web application. What steps must I follow?**
-
-The mobile web application can be deactivated from the "Settings" page of the admin panel. This option will not delete any settings that you have done so far, like customizing the look & feel of your application, but mobile readers will no longer be able to see it on their devices.
-
-**What is the difference between my new mobile web application and a mobile friendly site?**
-
-The short answer is that a mobile web application is an enriched version of a mobile-friendly site; it's not only about screen size, it's also about functionality (offline mode, for example). The long answer comes in a form of an article, you can check it out here: http://www.appticles.com/blog/2014/05/mobile-web-dying-shifting/.
-
-**What is the difference between my mobile web application and a responsive theme?**
+**What is the difference between a progressive web application and a responsive WordPress theme?**
 
 A responsive theme is all about screen-size: it loads the same styling as the desktop view, adjusting it to fit a smaller screen. On the other hand a mobile web application combines the versatility of the web with the functionality of touch-enabled devices and can support native app-like features such as:
 
@@ -143,9 +106,9 @@ Please refer to this comprehensive article about it: https://www.appticles.com/b
 
 There are almost 50,000 plugins in the WordPress.org repository. It's impossible to support all of them. [Please get in touch](https://wpmobilepack.com/contact.html) if you want us to integrate with another 3rd party plugin.
 
-### Contributors 
+<h2>Contributors</h2> 
 
-A big thanks to all contributors that helped us translate the mobile web application:
+A big thanks to all contributors that helped us translate the OBLIQ progressive web application:
 
 * Na LI (Chinese / zh_CN)
 * John Haverkate (Dutch)
