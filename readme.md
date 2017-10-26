@@ -57,22 +57,22 @@ WordPress Mobile Pack also comes with a **PRO version** suitable for **professio
 The Benefits of Using WordPress Mobile Pack:
 
 * **MULTIPLE MOBILE APP THEMES**
-<br/>
+
 Reach and engage your mobile users by choosing a customizable mobile app theme with a native app-like look & feel. Check out our collection of mobile app themes: OBLIQ, PALM, PHANTOM, EXTRUDE, POPSICLE, GHOST, INVISION, BLEND, FUTURE, LUCID, BASE, MOSAIC, ELEVATE, FOLIO, VEDI, FOTOLIA, PULSE, PURE, GOTHAM.
 
 * **CUSTOMIZE APPEARANCE**
-<br/>
+
 Once a favorite app theme has been selected, you can customize the colors & fonts, add your logo and graphic elements that can relate to your website's identity.
 
 * **NO TECHNICAL SKILLS REQUIRED**
-<br/>
+
 Simply download and install it, just like you would do with any other WordPress plugin. The dashboard is user-friendly and all the technical aspects are already taken care of behind the scenes.
 
 * **HANDS-ON SUPPORT**
-<br/>
+
 We take pride in offering fantastic WP Mobile Pack PRO maintenance and hands-on support. Our team of friendly WordPress experts makes sure technology doesn't stand in your way.
 
-### Frequently Asked Questions 
+<h2>Frequently Asked Questions</h2> 
 
 **When I visit my website from a smartphone, I don't see any posts or pages**
 
