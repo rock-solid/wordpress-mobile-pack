@@ -21,11 +21,9 @@ DEMO: [https://bit.ly/pwa-obliq2](https://bit.ly/pwa-obliq2)
 
 &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp; ![demo](http://d3oqwjghculspf.cloudfront.net/github/wordpress-mobile-pack/FYwy5UH.gif) &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; ![demo](http://d3oqwjghculspf.cloudfront.net/github/wordpress-mobile-pack/hOTltV9.gif) &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; ![demo](http://d3oqwjghculspf.cloudfront.net/github/wordpress-mobile-pack/uhfONuq.gif) &nbsp; &nbsp;  &nbsp; &nbsp;
 
-### Description 
+<h2>Introduction</h2> 
 
-WordPress Mobile Pack is **supported on** iOS and Android smartphones and tablets. **Compatible browsers**: Safari, Google Chrome, Android - Native Browser.
-
-The pack has been tested on WordPress 3.6 and later. Please read the [Known issues and limitations](https://wordpress.org/plugins/wordpress-mobile-pack/other_notes/) list before installing.
+WordPress Mobile Pack is **supported on** iOS and Android smartphones and tablets. **Compatible browsers**: Safari, Google Chrome, Android - Native Browser. The plugin has been tested on WordPress 3.6 and later. Please read the [Known issues and limitations](https://wordpress.org/plugins/wordpress-mobile-pack/other_notes/) list before installing.
 
 What the WordPress Mobile Pack 3.0+ enables you to do:
 
