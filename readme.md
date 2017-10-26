@@ -78,7 +78,7 @@ We take pride in offering fantastic WP Mobile Pack PRO maintenance and hands-on 
 
 1. **What is the difference between a progressive web application and a responsive WordPress theme?**
 
-A responsive theme is all about screen-size: it loads the same styling as the desktop view, adjusting it to fit a smaller screen. On the other hand a mobile web application combines the versatility of the web with the functionality of touch-enabled devices and can support native app-like features such as:
+A responsive theme is all about screen-size: it loads the same styling as the desktop view, adjusting it to fit a smaller screen. On the other hand a progressive web application combines the versatility of the web with the functionality of touch-enabled devices and can support native app-like features such as:
 
 * Apps load nearly instantly and are reliable, no matter what kind of network connection your user is on.
 * Web app install banners give users the ability to quickly and seamlessly add your mobile app to their home screen, making it easy to launch and return to your app.
@@ -86,7 +86,8 @@ A responsive theme is all about screen-size: it loads the same styling as the de
 * Smooth animations, scrolling, and navigations keep the experience silky Smooth.
 * Secured via HTTPS.
 
-Please refer to this comprehensive article about it: https://www.appticles.com/blog/2016/09/progressive-web-apps-for-publishers/.
+Additionally, we're heavily relying on WordPress REST API to feed content to the Progressive Web Application. 
+
 
 2. **Am I able to use the existing WordPress theme?**
 
