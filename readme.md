@@ -27,14 +27,8 @@ WordPress Mobile Pack is **supported on** iOS and Android smartphones and tablet
 
 What the WordPress Mobile Pack 3.0+ enables you to do:
 
-* **Progressive Web Apps**. Some of the key features of progressive web apps are:
-
- 1. Apps load nearly instantly and are reliable, no matter what kind of network connection your user is on.
- 1. Web app install banners give users the ability to quickly and seamlessly add your mobile app to their home screen, making it easy to launch and return to your app.
- 1. Web push notifications makes it easy to re-engage with users by showing relevant, timely, and contextual notifications, even when the browser is closed.
- 1. Smooth animations, scrolling, and navigations keep the experience silky smooth.
- 1. Secured via HTTPS.
- 1. Responsive UI.
+* **Progressive Web Apps**. Some of the key features of progressive web apps are: (1) Apps load nearly instantly and are reliable, no matter what kind of network connection your user is on; (2) Web app install banners give users the ability to quickly and seamlessly add your mobile app to their home screen, making it easy to launch and return to your app; (3) Web push notifications makes it easy to re-engage with users by showing relevant, timely, and contextual notifications, even when the browser is closed; (4) Smooth animations, scrolling, and navigations keep the experience silky smooth; (5) Secured via HTTPS;
+ (6) Responsive UI.
 
 * **Responsive UI**. The mobile web application is sensitive to various screen sizes and orientation changes: landscape, portrait. In other words, the look and feel of the mobile web app seamlessly morphs into the screen size of users' devices.
 
