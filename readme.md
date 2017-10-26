@@ -10,7 +10,6 @@
 [![WordPress rating](https://img.shields.io/wordpress/plugin/r/wordpress-mobile-pack.svg)](https://wordpress.org/plugins/wordpress-mobile-pack/)
 [![Open Source](https://badges.frapsoft.com/os/v1/open-source.png?v=103)](https://github.com/appticles/wordpress-mobile-pack)
 
-<br>
 
 # [WordPress Mobile Pack](https://wpmobilepack.com) &nbsp; [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Progressive%20Web%20Apps%20plugin%20for%20@WordPress&url=https://wpmobilepack.com&via=wpmobilepack&hashtags=pwa,mobile,javascript,wordpress)
 
