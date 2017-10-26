@@ -51,8 +51,26 @@ What the WordPress Mobile Pack 3.0+ enables you to do:
 WordPress Mobile Pack also comes with a **PRO version** suitable for **professional bloggers, publishing companies with multiple publications in their portfolio** or **web agencies**. 
 
 |App Customization in WordPress Mobile Pack PRO	|Monetize Your App with WordPress Mobile Pack PRO|
-|:----:|:----------|
+|:----:|:----------:|
 |<a href="https://www.youtube.com/watch?v=elxjfdbAoqM"><img src="https://dm6mgg4whxzuh.cloudfront.net/website-wpmp/1492598027925/img/wpmp/wpmp-customize-app-themes.png"/></a>|<a href="https://www.youtube.com/watch?v=JSjhK8YI98M"><img src="https://dm6mgg4whxzuh.cloudfront.net/website-wpmp/1492598027925/img/wpmp/wpmp-monetization.png"/></a>|
+
+The Benefits of Using WordPress Mobile Pack:
+
+* **MULTIPLE MOBILE APP THEMES**
+<br/>
+Reach and engage your mobile users by choosing a customizable mobile app theme with a native app-like look & feel. Check out our collection of mobile app themes: OBLIQ, PALM, PHANTOM, EXTRUDE, POPSICLE, GHOST, INVISION, BLEND, FUTURE, LUCID, BASE, MOSAIC, ELEVATE, FOLIO, VEDI, FOTOLIA, PULSE, PURE, GOTHAM.
+
+* **CUSTOMIZE APPEARANCE**
+<br/>
+Once a favorite app theme has been selected, you can customize the colors & fonts, add your logo and graphic elements that can relate to your website's identity.
+
+* **NO TECHNICAL SKILLS REQUIRED**
+<br/>
+Simply download and install it, just like you would do with any other WordPress plugin. The dashboard is user-friendly and all the technical aspects are already taken care of behind the scenes.
+
+* **HANDS-ON SUPPORT**
+<br/>
+We take pride in offering fantastic WP Mobile Pack PRO maintenance and hands-on support. Our team of friendly WordPress experts makes sure technology doesn't stand in your way.
 
 ### Frequently Asked Questions 
 
