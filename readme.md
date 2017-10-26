@@ -76,33 +76,31 @@ We take pride in offering fantastic WP Mobile Pack PRO maintenance and hands-on 
 
 <h2>Frequently Asked Questions</h2> 
 
-**What is the difference between a progressive web application and a responsive WordPress theme?**
+1. **What is the difference between a progressive web application and a responsive WordPress theme?**
 
 A responsive theme is all about screen-size: it loads the same styling as the desktop view, adjusting it to fit a smaller screen. On the other hand a mobile web application combines the versatility of the web with the functionality of touch-enabled devices and can support native app-like features such as:
 
-1. Apps load nearly instantly and are reliable, no matter what kind of network connection your user is on.
-1.  Web app install banners give users the ability to quickly and seamlessly add your mobile app to their home screen, making it easy to launch and return to your app.
-1.  Web push notifications makes it easy to re-engage with users by showing relevant, timely, and contextual notifications, even when the browser is closed.
-1.  Smooth animations, scrolling, and navigations keep the experience silky Smooth.
-1.  Secured via HTTPS.
-
-**Am I able to use my own theme or customize the existing one?**
-
-WordPress Mobile Pack uses a variety of open source JavaScript frameworks from Sencha Touch to Angular/Ionic or React, that mimics a native app interface. Because of that, the app themes we've developed are not regular PHP based themes that can be easily customized by editing the source. It is still possible to make small changes (not recommended), but changing the theme structure will require advance knowledge. We're happy to assist if you're looking for a custom type of application - [please get in touch](https://wpmobilepack.com/contact.html) with us.
-
-**Am I able to add Javascript code inside the theme?**
-
-Adding tracking scripts in the source is possible if you place them in the section of the theme files. However, code that is placed inside the posts will not be executed. The theme is implemented enterily in JavaScript and that would mean JavaScript code inside another JavaScript code.
-
-**Am I able to integrate my own advertisement?**
-
-Google Ad Sense / Google Double Click for Publishers is supported on the PRO version as of v2.1. [Please get in touch](https://wpmobilepack.com/contact.html) if you want us to integrate with another 3rd party ad provider.
-
-**What is a progressive web app?**
+* Apps load nearly instantly and are reliable, no matter what kind of network connection your user is on.
+* Web app install banners give users the ability to quickly and seamlessly add your mobile app to their home screen, making it easy to launch and return to your app.
+* Web push notifications makes it easy to re-engage with users by showing relevant, timely, and contextual notifications, even when the browser is closed.
+* Smooth animations, scrolling, and navigations keep the experience silky Smooth.
+* Secured via HTTPS.
 
 Please refer to this comprehensive article about it: https://www.appticles.com/blog/2016/09/progressive-web-apps-for-publishers/.
 
-**Why some 3rd party plugins are not visible on any of the app themes?**
+2. **Am I able to use the existing WordPress theme?**
+
+WordPress Mobile Pack uses a variety of open source JavaScript frameworks from Angular/Ionic to React or Vue, that mimics a native app interface. Because of that, the PWA themes we've developed are not regular PHP based themes that can be easily customized by editing the source. It is still possible to make small changes (not recommended), but changing the theme structure will require advance JavaScript knowledge. We're happy to assist if you're looking for a custom type of application - [please get in touch](https://wpmobilepack.com/contact.html) with us.
+
+3. **Am I able to add Javascript code inside the theme?**
+
+Adding tracking scripts in the source is possible if you place them in the section of the theme files. However, code that is placed inside the posts will not be executed. The theme is implemented enterily in JavaScript and that would mean JavaScript code inside another JavaScript code.
+
+4. **Am I able to integrate my own advertisement?**
+
+Google Ad Sense / Google Double Click for Publishers is supported on the PRO version as of v2.1. [Please get in touch](https://wpmobilepack.com/contact.html) if you want us to integrate with another 3rd party ad provider.
+
+5. **Why some 3rd party plugins are not visible on any of the PWA themes?**
 
 There are almost 50,000 plugins in the WordPress.org repository. It's impossible to support all of them. [Please get in touch](https://wpmobilepack.com/contact.html) if you want us to integrate with another 3rd party plugin.
 
