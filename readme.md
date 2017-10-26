@@ -2,9 +2,9 @@
 <a href="https://wpmobilepack.com"><img width="100" heigth="100" src="https://github.com/appticles/wordpress-mobile-pack/blob/master/wpmp-logo-100.png"></a>
   <br>
   <br> 
-[![GitHub release](https://img.shields.io/github/release/appticles/wordpress-mobile-pack.svg)](https://github.com/appticles/wordpress-mobile-pack )
+  
+[![GitHub release](https://img.shields.io/github/release/appticles/wordpress-mobile-pack.svg)](https://github.com/appticles/wordpress-mobile-pack)
 [![GitHub closed issues](https://img.shields.io/github/issues-closed/appticles/wordpress-mobile-pack.svg)](https://github.com/appticles/wordpress-mobile-pack)
-
 [![WordPress](https://img.shields.io/wordpress/v/wordpress-mobile-pack.svg)](https://wordpress.org/plugins/wordpress-mobile-pack/)
 [![WordPress](https://img.shields.io/wordpress/plugin/dt/wordpress-mobile-pack.svg)](https://wordpress.org/plugins/wordpress-mobile-pack/)
 [![WordPress rating](https://img.shields.io/wordpress/plugin/r/wordpress-mobile-pack.svg)](https://wordpress.org/plugins/wordpress-mobile-pack/)
@@ -17,12 +17,14 @@
 </div>
 
 
- &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp; ![demo](http://d3oqwjghculspf.cloudfront.net/github/wordpress-mobile-pack/FYwy5UH.gif) &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; ![demo](http://d3oqwjghculspf.cloudfront.net/github/wordpress-mobile-pack/hOTltV9.gif) &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; ![demo](http://d3oqwjghculspf.cloudfront.net/github/wordpress-mobile-pack/uhfONuq.gif) &nbsp; &nbsp;  &nbsp; &nbsp;
+ 
 
 
 Mobile [WordPress](https://wordpress.org/) plugin to package your content into a [Progressive Web App](https://wpmobilepack.com/), build a hybrid mobile app and submit it to App Stores.
 
 DEMO: [https://bit.ly/pwa-obliq2](https://bit.ly/pwa-obliq2)
+
+&nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp;  &nbsp; &nbsp; ![demo](http://d3oqwjghculspf.cloudfront.net/github/wordpress-mobile-pack/FYwy5UH.gif) &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; ![demo](http://d3oqwjghculspf.cloudfront.net/github/wordpress-mobile-pack/hOTltV9.gif) &nbsp; &nbsp;  &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; ![demo](http://d3oqwjghculspf.cloudfront.net/github/wordpress-mobile-pack/uhfONuq.gif) &nbsp; &nbsp;  &nbsp; &nbsp;
 
 ### Description 
 
