@@ -46,11 +46,13 @@ What the WordPress Mobile Pack 3.0+ enables you to do:
 
 * **Add to Homescreen**. Readers can add the mobile web application to their homescreen and run it in full-screen mode.
 
-WordPress Mobile Pack also comes with a  **PRO version** suitable for **professional bloggers, publishing companies with multiple publications** in their portfolio or web agencies. 
+<h2>Quick Start with WordPress Mobile Pack PRO</h2>
 
-We enjoy writing and maintaining this plugin. If you like it too, please star us. But if you don't, let us know how we can improve it.
+WordPress Mobile Pack also comes with a **PRO version** suitable for **professional bloggers, publishing companies with multiple publications in their portfolio** or **web agencies**. 
 
-Have fun on your mobile adventures.
+|App Customization in WordPress Mobile Pack PRO	|Monetize Your App with WordPress Mobile Pack PRO|
+|:----:|:----------|
+|<a href="https://www.youtube.com/watch?v=elxjfdbAoqM"><img src="https://dm6mgg4whxzuh.cloudfront.net/website-wpmp/1492598027925/img/wpmp/wpmp-customize-app-themes.png"/></a>|<a href="https://www.youtube.com/watch?v=JSjhK8YI98M"><img src="https://dm6mgg4whxzuh.cloudfront.net/website-wpmp/1492598027925/img/wpmp/wpmp-monetization.png"/></a>|
 
 ### Frequently Asked Questions 
 
