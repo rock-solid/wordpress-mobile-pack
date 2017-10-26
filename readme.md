@@ -1,4 +1,13 @@
+<div align="center">
+<a href="https://wpmobilepack.com">
+    <img width="100" heigth="100" src="https://github.com/appticles/wordpress-mobile-pack/blob/master/wpmp-logo-100.png">
+</a>
+  <br>
+  <br> 
+
 # [WordPress Mobile Pack](https://wpmobilepack.com) &nbsp; [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social)](https://twitter.com/intent/tweet?text=Progressive%20Web%20Apps%20plugin%20for%20@WordPress&url=https://wpmobilepack.com&via=wpmobilepack&hashtags=pwa,mobile,javascript,wordpress)
+
+</div>
 
 [![GitHub release](https://img.shields.io/github/release/appticles/wordpress-mobile-pack.svg)](https://github.com/appticles/wordpress-mobile-pack )
 [![GitHub closed issues](https://img.shields.io/github/issues-closed/appticles/wordpress-mobile-pack.svg)](https://github.com/appticles/wordpress-mobile-pack)
