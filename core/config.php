@@ -21,13 +21,6 @@ define('WMP_MORE_UPDATES_VERSION', 4);
 define('WMP_WAITLIST_PATH','http://gateway.appticles.com/waitlist/api/subscribe');
 define('WMP_WAITLIST_PATH_HTTPS','https://gateway.appticles.com/waitlist/api/subscribe');
 
-// define connect with appticles path
-define('WMP_APPTICLES_CONNECT','http://api.appticles.com/content1/wpconnect');
-define('WMP_APPTICLES_CONNECT_SSL','https://api.appticles.com/content1/wpconnect');
-
-define('WMP_APPTICLES_DISCONNECT','http://api.appticles.com/content1/wpdisconnect');
-define('WMP_APPTICLES_DISCONNECT_SSL','https://api.appticles.com/content1/wpdisconnect');
-
 define('WMP_APPTICLES_TRACKING_SSL','https://api.appticles.com/content1/wptracking');
 
 define("WMP_APPTICLES_PREVIEW_DOMAIN", "app.appticles.com");

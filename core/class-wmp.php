@@ -202,23 +202,6 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 
         /**
          *
-         * Get Premium kit type
-         *
-         * @return string
-         */
-        public static function get_kit_type(){
-
-            if (!class_exists('WMobilePack_Premium')) {
-                require_once(WMP_PLUGIN_PATH . 'inc/class-wmp-premium.php');
-            }
-
-            $premium_manager = new WMobilePack_Premium();
-            return $premium_manager->get_kit_type();
-        }
-
-
-        /**
-         *
          * Transform settings to fit the new plugin structure
          *
          */

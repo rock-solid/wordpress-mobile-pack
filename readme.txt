@@ -101,9 +101,6 @@ You can also download a number of mobile emulators that can run on a desktop PC 
 
 Please note that the mobile web app will be enabled only on supported devices: iPhones, Android smartphones, Windows Phone 8 and Firefox OS. Only the following browsers are compatible: Safari, Google Chrome, Android - Native Browser, Internet Explorer 10 and Firefox (as of 2.0.2).
 
-= Connecting the API Key (Premium Cloud accounts) =
-We have wrote a complete guide about [connecting your plugin with the hosted platform](http://support.appticles.com/connecting-your-website-with-your-companion-mobile-web-application/#apikey) by using the API Key.
-
 == Frequently Asked Questions ==
 
 = When I visit my website from a smartphone, I don't see any posts or pages =

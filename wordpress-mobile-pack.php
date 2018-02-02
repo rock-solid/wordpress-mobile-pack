@@ -58,10 +58,6 @@ if (class_exists( 'WMobilePack' ) && class_exists( 'WMobilePack' )) {
             add_action('wp_ajax_wmp_settings_save', array(&$wmobile_pack_ajax, 'settings_save'));
             add_action('wp_ajax_wmp_settings_app', array(&$wmobile_pack_ajax, 'settings_app'));
 
-            add_action( 'wp_ajax_wmp_premium_save', array( &$wmobile_pack_ajax, 'premium_save' ) );
-            add_action( 'wp_ajax_wmp_premium_connect', array( &$wmobile_pack_ajax, 'premium_connect' ) );
-            add_action( 'wp_ajax_wmp_premium_disconnect', array( &$wmobile_pack_ajax, 'premium_disconnect' ) );
-
             add_action('wp_ajax_wmp_join_waitlist', array(&$wmobile_pack_ajax, 'settings_waitlist'));
             add_action('wp_ajax_wmp_send_feedback', array(&$wmobile_pack_ajax, 'send_feedback'));
 

@@ -131,17 +131,7 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
         }
 
 
-        /**
-         *
-         * Method used to render the Premium page from the admin area (connected API key)
-         *
-         */
-        public function premium(){
-
-            include(WMP_PLUGIN_PATH.'admin/pages/premium.php');
-        }
-
-
+        
         /**
          *
          * Method used to render a form with a category's details

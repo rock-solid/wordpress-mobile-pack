@@ -8,18 +8,6 @@ if (class_exists('WMobilePack')):
         $mobile_url = home_url();
         $is_visible = false;
 
-        // Load config json
-        if (WMobilePack_Options::get_setting('premium_active') == 1 && WMobilePack_Options::get_setting('premium_api_key') != '') {
-
-            $premium_manager = new WMobilePack_Premium();
-            $arr_config_premium = $premium_manager->get_premium_config();
-
-            // Check if we have a valid subdomain linked to the Premium theme
-            if ($arr_config_premium !== null && isset($arr_config_premium['domain_name']) && filter_var('http://' . $arr_config_premium['domain_name'], FILTER_VALIDATE_URL)) {
-                $mobile_url = "http://" . $arr_config_premium['domain_name'];
-            }
-        }
-
         if (is_single()){
 
             // Read inactive categories
