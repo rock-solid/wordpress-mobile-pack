@@ -87,11 +87,6 @@ if ( ! class_exists( 'WMobilePack' ) ) {
             $WMP_Uploads->create_uploads_dir();
 
             $this->backwards_compatibility();
-
-			// set a transient that will display a temporary notice for upgrading the theme
-			if (WMobilePack_Options::get_setting('theme') == 1) {
-				set_transient( WMobilePack_Options::$transient_prefix.'upgrade_theme_notice', true, 600);
-			}
         }
 
 
@@ -143,11 +138,6 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 
 			// display upgrade to pro notice
             $this->display_pro_release_notice();
-
-			// display a notice for upgrading the theme
-			if (get_transient(WMobilePack_Options::$transient_prefix.'upgrade_theme_notice')){
-				echo '<div class="notice is-dismissible"><p>&#x1F680; '. WMP_PLUGIN_NAME .' now comes with mobile app theme <strong>Obliq V2.0</strong> - faster, optimized and with an improved UI/UX. <a href="'. add_query_arg(array('page'=>'wmp-options-themes'), network_admin_url('admin.php')) .'">Make the switch here</a>.</p></div>';
-			}
 
 			// display notice to reupload icon
 			$this->display_icon_reupload_notice();

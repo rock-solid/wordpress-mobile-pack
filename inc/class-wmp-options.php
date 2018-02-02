@@ -267,7 +267,7 @@ if ( ! class_exists( 'WMobilePack_Options' ) ) {
             delete_option('WPMP_Tracking_Hash');
 
             // remove transients
-            foreach (array('whats_new_updates', 'news_updates', 'more_updates', 'tracking_cache', 'upgrade_theme_notice') as $transient_name) {
+            foreach (array('whats_new_updates', 'news_updates', 'more_updates', 'tracking_cache') as $transient_name) {
 
                 if (get_transient(self::$transient_prefix.$transient_name) !== false)
                     delete_transient(self::$transient_prefix.$transient_name);

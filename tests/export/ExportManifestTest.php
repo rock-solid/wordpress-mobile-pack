@@ -49,7 +49,6 @@ class ExportManifestTest extends WP_UnitTestCase
             '#b231ed'
 		);
 
-        // Test for new Oblique
 		update_option('wmpack_custom_colors', $custom_colors);
 		update_option('wmpack_color_scheme', 0);
 
@@ -65,22 +64,6 @@ class ExportManifestTest extends WP_UnitTestCase
 		$this->assertEquals('any', $data['orientation']);
 		$this->assertEquals('#e0003b', $data['theme_color']);
 		$this->assertEquals('#e0003b', $data['background_color']);
-
-        // Test for old Oblique
-        $custom_colors = array_slice($custom_colors, 0, -3);
-
-        update_option('wmpack_custom_colors', $custom_colors);
-        update_option('wmpack_theme', 1);
-
-        $data = json_decode($export->export_manifest(), true);
-
-        $this->assertEquals('Test Blog', $data['name']);
-        $this->assertEquals('http://dummy.appticles.com', $data['start_url']);
-        $this->assertEquals('standalone', $data['display']);
-		$this->assertEquals('any', $data['orientation']);
-		$this->assertEquals('#000000', $data['theme_color']);
-		$this->assertEquals('#000000', $data['background_color']);
-
     }
 
     /**

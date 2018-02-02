@@ -221,7 +221,7 @@ if (!class_exists('WMobilePack_Application')) {
          */
         public function app_theme()
         {
-            return 'app'.WMobilePack_Options::get_setting('theme');
+            return 'app2';
         }
 
 

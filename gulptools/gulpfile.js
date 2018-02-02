@@ -1,7 +1,6 @@
 /**
  *
  * Usage:
- * For app 1: "gulp replace-reds --theme=1" -> generate clean scss file
  * For all apps: "gulp compile-default-theme --theme=2" -> compile css
  *
  */
@@ -26,60 +25,6 @@ function readConfigFile(path) {
     return JSON.parse(fs.readFileSync(path));
 }
 
-
-/**
- * Build list with the variables that will be replaced.
- * @param theme
- * @param colorVariables
- */
-function buildReplacementList(theme, colorVariables) {
-
-  var arrReplacements = [
-    ['$paragraph-font', '$paragraphs-font']
-  ];
-
-  for (var i = 0; i < colorVariables['app' + String(theme)].length; i++) {
-    var item = colorVariables['app' + String(theme)][i];
-    var name = item.name;
-    var hex = item.hex;
-    var rgb = hex2rgb(hex).rgb;
-
-    arrReplacements.push(
-      [hex, name],
-      [rgb.join(', '), name],
-      [rgb.join(','), name]
-    );
-  }
-
-  arrReplacements.push([/wbz\-custom\:(|\s| )(\'|\")/g, '']);
-  return arrReplacements;
-}
-
-/**
- * Process scss file and replace reds with variables names.
- */
-gulp.task('replace-reds', function () {
-
-  if (argv.theme != null) {
-
-    var theme = argv.theme;
-    var json = readConfigFile('files/app' + String(theme) + '/replacements.json');
-
-    if (json == null || json['app' + String(theme)] == null) {
-      console.log('Invalid replacements json');
-    } else {
-      var arrReplacements = buildReplacementList(theme, json);
-
-      return gulp.src(['files/app' + String(theme) + '/phone.scss'])
-        .pipe(replace(arrReplacements))
-        .pipe(stripCssComments())
-        .pipe(gulp.dest('../frontend/themes/app' + String(theme) + '/scss/'));
-    }
-
-  } else {
-    console.log('Missing theme argument');
-  }
-});
 
 /**
  *

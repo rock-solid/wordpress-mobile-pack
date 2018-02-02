@@ -49,7 +49,6 @@ if ( ! class_exists( 'WMobilePack_Themes_Config' ) ) {
         */
         protected static $allowed_themes = array(
 			2 => 'Obliq V2.0',
-			1 => 'Obliq *',
         );
 
 		/**
