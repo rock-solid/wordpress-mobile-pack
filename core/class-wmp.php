@@ -212,9 +212,50 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                         WMobilePack_Options::update_settings('font_'.$font_type, $new_font_option);
                     }
                 }
-            }
-        }
+			}
+			
+			// switch from Obliq v1 to v2
+			$theme = WMobilePack_Options::get_setting('theme');
 
+			if ($theme == 1) {
+				$this->reset_theme_settings();
+				WMobilePack_Options::update_settings('theme', 2);
+			}
+
+			// delete premium options
+			delete_option(WMobilePack_Options::$prefix . 'premium_api_key');
+			delete_option(WMobilePack_Options::$prefix . 'premium_config_path');
+			delete_option(WMobilePack_Options::$prefix . 'premium_active');
+		}
+		
+
+		/**
+		 * Reset theme settings (for migrating from Obliq v1 to Obliq v2)
+		 */
+		protected function reset_theme_settings(){
+
+			// reset color schemes and fonts
+			WMobilePack_Options::update_settings('color_scheme', 1);
+			WMobilePack_Options::update_settings('custom_colors', array());
+			WMobilePack_Options::update_settings('font_headlines', 1);
+			WMobilePack_Options::update_settings('font_subtitles', 1);
+			WMobilePack_Options::update_settings('font_paragraphs', 1);
+			WMobilePack_Options::update_settings('font_size', 1);
+
+			// remove compiled css file (if it exists)
+			$theme_timestamp = WMobilePack_Options::get_setting('theme_timestamp');
+
+			if ($theme_timestamp != ''){
+
+				$file_path = WMP_FILES_UPLOADS_DIR.'theme-'.$theme_timestamp.'.css';
+
+				if (file_exists($file_path)) {
+					unlink($file_path);
+				}
+
+				WMobilePack_Options::update_settings('theme_timestamp', '');
+			}
+		}
 
         /**
          *
