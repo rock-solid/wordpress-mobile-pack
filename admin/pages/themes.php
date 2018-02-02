@@ -52,7 +52,7 @@
 						<div class="spacer-30"></div>
 					<?php endif;?>
 
-					<div class="themes" style="width: 450px;">
+					<div class="themes" style="width: 220px;">
 						<?php
 							foreach ($arr_themes as $theme){
 								require(WMP_PLUGIN_PATH.'admin/sections/theme-box.php');
