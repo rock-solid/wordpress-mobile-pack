@@ -2,8 +2,8 @@
 Contributors: jamesgpearce, andreatrasatti, cborodescu, anghelalexandra
 Tags: android, iOS, html5, iphone, mobile, mobile internet, mobile web, mobile web app, responsive ui, safari, sencha touch, smartphone, webkit, progressive web apps, app builder, apple, apps, convert to app, create blog app, ios app, ipad, make an app, mobile app plugin, mobile application, mobile blog app, mobile converter, mobile plugin, native app plugin, app theme, website to mobile app, WordPress android, WordPress app, WordPress iphone, WordPress mobile, WordPress mobile app
 Requires at least: 3.6
-Tested up to: 4.7.3
-Stable tag: 3.2
+Tested up to: 4.9.4
+Stable tag: 3.3
 License: GPLv2 or later
 
 Mobile plugin to package your content into a progressive web app, build a hybrid mobile app and submit it to App Stores. Multiple mobile app themes.
@@ -101,9 +101,6 @@ You can also download a number of mobile emulators that can run on a desktop PC 
 
 Please note that the mobile web app will be enabled only on supported devices: iPhones, Android smartphones, Windows Phone 8 and Firefox OS. Only the following browsers are compatible: Safari, Google Chrome, Android - Native Browser, Internet Explorer 10 and Firefox (as of 2.0.2).
 
-= Connecting the API Key (Premium Cloud accounts) =
-We have wrote a complete guide about [connecting your plugin with the hosted platform](http://support.appticles.com/connecting-your-website-with-your-companion-mobile-web-application/#apikey) by using the API Key.
-
 == Frequently Asked Questions ==
 
 = When I visit my website from a smartphone, I don't see any posts or pages =
@@ -156,6 +153,10 @@ There are almost 50,000 plugins in the WordPress.org repository. It's impossible
 
 
 == Changelog ==
+
+= 3.3 =
+* Remove option to connect to the Appticles platform using API key
+* Remove old Obliq app theme (v1)
 
 = 3.2 =
 * Security fix, replaced Smart App Banner script with jQuery Noty plugin

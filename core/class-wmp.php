@@ -87,11 +87,6 @@ if ( ! class_exists( 'WMobilePack' ) ) {
             $WMP_Uploads->create_uploads_dir();
 
             $this->backwards_compatibility();
-
-			// set a transient that will display a temporary notice for upgrading the theme
-			if (WMobilePack_Options::get_setting('theme') == 1) {
-				set_transient( WMobilePack_Options::$transient_prefix.'upgrade_theme_notice', true, 600);
-			}
         }
 
 
@@ -144,11 +139,6 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 			// display upgrade to pro notice
             $this->display_pro_release_notice();
 
-			// display a notice for upgrading the theme
-			if (get_transient(WMobilePack_Options::$transient_prefix.'upgrade_theme_notice')){
-				echo '<div class="notice is-dismissible"><p>&#x1F680; '. WMP_PLUGIN_NAME .' now comes with mobile app theme <strong>Obliq V2.0</strong> - faster, optimized and with an improved UI/UX. <a href="'. add_query_arg(array('page'=>'wmp-options-themes'), network_admin_url('admin.php')) .'">Make the switch here</a>.</p></div>';
-			}
-
 			// display notice to reupload icon
 			$this->display_icon_reupload_notice();
 
@@ -193,29 +183,12 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 			} elseif ($icon_filename != '' && file_exists(WMP_FILES_UPLOADS_DIR . $icon_filename)) {
 				foreach (WMobilePack_Uploads::$manifest_sizes as $manifest_size) {
 					if (!file_exists(WMP_FILES_UPLOADS_DIR . $manifest_size . $icon_filename)) {
-						echo '<div class="notice notice-warning is-dismissible"><p>WP Mobile Pack Version 3.2 comes with Add To Home Screen functionality which requires you to reupload your <a href="' . get_admin_url() . 'admin.php?page=wmp-options-theme-settings"/>App Icon</a>!</p></div>';
+						echo '<div class="notice notice-warning is-dismissible"><p>WP Mobile Pack Version 3.2+ comes with Add To Home Screen functionality which requires you to reupload your <a href="' . get_admin_url() . 'admin.php?page=wmp-options-theme-settings"/>App Icon</a>!</p></div>';
 						return;
 					}
 				}
 			}
 		}
-
-        /**
-         *
-         * Get Premium kit type
-         *
-         * @return string
-         */
-        public static function get_kit_type(){
-
-            if (!class_exists('WMobilePack_Premium')) {
-                require_once(WMP_PLUGIN_PATH . 'inc/class-wmp-premium.php');
-            }
-
-            $premium_manager = new WMobilePack_Premium();
-            return $premium_manager->get_kit_type();
-        }
-
 
         /**
          *
@@ -239,9 +212,50 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                         WMobilePack_Options::update_settings('font_'.$font_type, $new_font_option);
                     }
                 }
-            }
-        }
+			}
+			
+			// switch from Obliq v1 to v2
+			$theme = WMobilePack_Options::get_setting('theme');
 
+			if ($theme == 1) {
+				$this->reset_theme_settings();
+				WMobilePack_Options::update_settings('theme', 2);
+			}
+
+			// delete premium options
+			delete_option(WMobilePack_Options::$prefix . 'premium_api_key');
+			delete_option(WMobilePack_Options::$prefix . 'premium_config_path');
+			delete_option(WMobilePack_Options::$prefix . 'premium_active');
+		}
+		
+
+		/**
+		 * Reset theme settings (for migrating from Obliq v1 to Obliq v2)
+		 */
+		protected function reset_theme_settings(){
+
+			// reset color schemes and fonts
+			WMobilePack_Options::update_settings('color_scheme', 1);
+			WMobilePack_Options::update_settings('custom_colors', array());
+			WMobilePack_Options::update_settings('font_headlines', 1);
+			WMobilePack_Options::update_settings('font_subtitles', 1);
+			WMobilePack_Options::update_settings('font_paragraphs', 1);
+			WMobilePack_Options::update_settings('font_size', 1);
+
+			// remove compiled css file (if it exists)
+			$theme_timestamp = WMobilePack_Options::get_setting('theme_timestamp');
+
+			if ($theme_timestamp != ''){
+
+				$file_path = WMP_FILES_UPLOADS_DIR.'theme-'.$theme_timestamp.'.css';
+
+				if (file_exists($file_path)) {
+					unlink($file_path);
+				}
+
+				WMobilePack_Options::update_settings('theme_timestamp', '');
+			}
+		}
 
         /**
          *

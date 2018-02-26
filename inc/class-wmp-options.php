@@ -52,14 +52,6 @@ if ( ! class_exists( 'WMobilePack_Options' ) ) {
             'enable_twitter' => 1,
             'enable_google' => 1,
 
-            // premium accounts with api key
-            'premium_api_key'		 => '',
-            'premium_config_path'	 => '',
-            'premium_active'		 => 0,
-			'enable_facebook' => 1,
-			'enable_twitter' => 1,
-			'enable_google' => 1,
-
             // administrative
             'joined_waitlists' => array(),
             'whats_new_updated' => 0,
@@ -275,7 +267,7 @@ if ( ! class_exists( 'WMobilePack_Options' ) ) {
             delete_option('WPMP_Tracking_Hash');
 
             // remove transients
-            foreach (array('whats_new_updates', 'news_updates', 'more_updates', 'premium_config_path', 'tracking_cache', 'upgrade_theme_notice') as $transient_name) {
+            foreach (array('whats_new_updates', 'news_updates', 'more_updates', 'tracking_cache') as $transient_name) {
 
                 if (get_transient(self::$transient_prefix.$transient_name) !== false)
                     delete_transient(self::$transient_prefix.$transient_name);

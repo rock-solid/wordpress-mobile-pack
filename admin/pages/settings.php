@@ -172,36 +172,7 @@
 
             <div class="spacer-15"></div>
 
-			<a name="verifyapikey"></a>
-            <div class="details">
-                <div class="display-mode">
-                    <h2 class="title">Connect with Appticles</h2>
-                    <div class="spacer-20"></div>
-
-                    <p>Looking for VIP services? Check out <a href="https://www.appticles.com?wp_mobile_pack=settings" target="_blank">Appticles.com</a>, a multi-channel mobile publishing platform that empowers digital publishers to grow their mobile audience. </p>
-                    <div class="spacer-20"></div>
-                    <form name="wmp_connect_form" id="wmp_connect_form" class="left" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_premium_save" method="post">
-                        <p>API Key:</p>
-                        <div class="spacer-10"></div>
-                        <input type="text" name="wmp_connect_apikey" id="wmp_connect_apikey" class="small indent" value="" />
-                        <div class="field-message error" id="error_apikey_container"></div>
-                        <div class="spacer-20"></div>
-                        <a href="javascript:void(0)" id="wmp_connect_send_btn" class="btn green smaller">Save</a>
-                    </form>
-					<div class="notices-container left">
-						<div class="notice notice-left right" style="margin: 0px 0 15px 0; top:-10px;">
-							<span>
-								Once your Appticles API key is validated, your WP Mobile Pack admin area will be transformed and you will be able to change your mobile web application settings from the Appticles.com dashboard.
-							</span>
-						</div>
-					</div>
-                </div>
-                <div class="spacer-0"></div>
-            </div>
-
-            <div class="spacer-15"></div>
-
-            <div class="details">
+			<div class="details">
             	<div class="display-mode">
                  	<h2 class="title">Tracking</h2>
                     <div class="spacer-20"></div>
@@ -243,16 +214,6 @@ $is_secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SER
         jQuery(document).ready(function(){
             window.WMPJSInterface.add("UI_editappsettings","WMP_APP_SETTINGS",{'DOMDoc':window.document}, window);
 			window.WMPJSInterface.add("UI_socialmedia","WMP_SOCIAL_MEDIA",{'DOMDoc':window.document}, window);
-            window.WMPJSInterface.add("UI_connect",
-                "WMP_CONNECT",
-                {
-                    'DOMDoc':       window.document,
-                    'submitURL' :   '<?php echo $is_secure ? WMP_APPTICLES_CONNECT_SSL : WMP_APPTICLES_CONNECT;?>',
-                    'redirectTo' :  '<?php echo admin_url('admin.php?page=wmp-options-premium');?>'
-                },
-                window
-            );
-
             window.WMPJSInterface.add("UI_allowtracking","WMP_ALLOW_TRACKING",{'DOMDoc':window.document}, window);
         });
     }

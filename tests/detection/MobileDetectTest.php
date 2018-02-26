@@ -2,9 +2,9 @@
 
 require_once(WMP_PLUGIN_PATH.'frontend/class-detect.php');
 
-if (!class_exists('MobileDetectFreeTest')) {
+if (!class_exists('MobileDetectTest')) {
 
-    class MobileDetectFreeTest extends WP_UnitTestCase
+    class MobileDetectTest extends WP_UnitTestCase
     {
 
         public static $smartphoneUserAgents = array(

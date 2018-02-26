@@ -5,8 +5,8 @@
  * Description: WordPress Mobile Pack 3.0+ is a mobile plugin that helps you transform your WordPress-based content (posts/articles, categories, pages) into a progressive web application. It comes with multiple mobile app themes and extensions that you can purchase individually or as a bundle.
  * Author: WPMobilePack.com
  * Author URI: https://wpmobilepack.com/
- * Version: 3.2
- * Copyright (c) 2009 - 2017 James Pearce, mTLD Top Level Domain Limited, ribot, Forum Nokia, Appticles.com
+ * Version: 3.3
+ * Copyright (c) 2009 - 2018 James Pearce, mTLD Top Level Domain Limited, ribot, Forum Nokia, Appticles.com
  * License: The WordPress Mobile Pack is Licensed under the Apache License, Version 2.0
  * Text Domain: wordpress-mobile-pack
  */
@@ -57,10 +57,6 @@ if (class_exists( 'WMobilePack' ) && class_exists( 'WMobilePack' )) {
 
             add_action('wp_ajax_wmp_settings_save', array(&$wmobile_pack_ajax, 'settings_save'));
             add_action('wp_ajax_wmp_settings_app', array(&$wmobile_pack_ajax, 'settings_app'));
-
-            add_action( 'wp_ajax_wmp_premium_save', array( &$wmobile_pack_ajax, 'premium_save' ) );
-            add_action( 'wp_ajax_wmp_premium_connect', array( &$wmobile_pack_ajax, 'premium_connect' ) );
-            add_action( 'wp_ajax_wmp_premium_disconnect', array( &$wmobile_pack_ajax, 'premium_disconnect' ) );
 
             add_action('wp_ajax_wmp_join_waitlist', array(&$wmobile_pack_ajax, 'settings_waitlist'));
             add_action('wp_ajax_wmp_send_feedback', array(&$wmobile_pack_ajax, 'send_feedback'));
