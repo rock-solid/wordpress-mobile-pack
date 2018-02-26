@@ -18,7 +18,7 @@ class ThemeSettingsTest extends WP_Ajax_UnitTestCase
 
         // Become an administrator
         $this->_setRole( 'administrator' );
-        update_option('wmpack_theme', 1);
+        update_option('wmpack_theme', 2);
 
     }
 
@@ -164,35 +164,35 @@ class ThemeSettingsTest extends WP_Ajax_UnitTestCase
     /**
      *
      * Calling update theme with invalid font subtitles returns status zero
-     *
+     * @todo Remove this test if the font_subtitles option is removed.
      */
-    function test_settings_with_invalid_font_subtitles_returns_status_zero()
-    {
+    // function test_settings_with_invalid_font_subtitles_returns_status_zero()
+    // {
 
-        // Add hook for the ajax method
-        $wmobile_pack_admin_ajax = new WMobilePack_Admin_Ajax();
-        add_action('wp_ajax_wmp_theme_settings', array( &$wmobile_pack_admin_ajax, 'theme_settings' ) );
+    //     // Add hook for the ajax method
+    //     $wmobile_pack_admin_ajax = new WMobilePack_Admin_Ajax();
+    //     add_action('wp_ajax_wmp_theme_settings', array( &$wmobile_pack_admin_ajax, 'theme_settings' ) );
 
-        $_POST['wmp_edittheme_colorscheme'] = "1";
-        $_POST['wmp_edittheme_fontheadlines'] = "1";
-        $_POST['wmp_edittheme_fontsubtitles'] = "invalidfont";
-        $_POST['wmp_edittheme_fontparagraphs'] = "1";
+    //     $_POST['wmp_edittheme_colorscheme'] = "1";
+    //     $_POST['wmp_edittheme_fontheadlines'] = "1";
+    //     $_POST['wmp_edittheme_fontsubtitles'] = "invalidfont";
+    //     $_POST['wmp_edittheme_fontparagraphs'] = "1";
 
-        // Make the request
-        try {
-            $this->_handleAjax('wmp_theme_settings');
-        } catch (WPAjaxDieContinueException $e) {
-            unset($e);
-        }
+    //     // Make the request
+    //     try {
+    //         $this->_handleAjax('wmp_theme_settings');
+    //     } catch (WPAjaxDieContinueException $e) {
+    //         unset($e);
+    //     }
 
-        $response = json_decode($this->_last_response, true);
-        
-        $this->assertInternalType('array', $response);
-        $this->assertArrayHasKey('status', $response);
-        $this->assertArrayHasKey('messages', $response);
-        $this->assertEquals(0, $response['status']);
-        $this->assertEquals(array(), $response['messages']);
-    }
+    //     $response = json_decode($this->_last_response, true);
+
+    //     $this->assertInternalType('array', $response);
+    //     $this->assertArrayHasKey('status', $response);
+    //     $this->assertArrayHasKey('messages', $response);
+    //     $this->assertEquals(0, $response['status']);
+    //     $this->assertEquals(array(), $response['messages']);
+    // }
 
     /**
      *

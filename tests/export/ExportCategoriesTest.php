@@ -764,7 +764,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
         $export_class = new WMobilePack_Export ();
 
         $this->assertEquals(
-            '{"categories":[],"page":"5465","rows":"5","wpmp":"3.1"}',
+            '{"categories":[],"page":"5465","rows":"5","wpmp":"3.3"}',
             $export_class->export_categories()
             );
 

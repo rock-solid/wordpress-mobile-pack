@@ -59,7 +59,6 @@ class MediaContentTest extends WP_UnitTestCase
 
         $input = '<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<script>
-
         StackExchange.ready(function () {
 
                 StackExchange.using("snippets", function () {
