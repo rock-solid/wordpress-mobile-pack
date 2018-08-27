@@ -232,7 +232,7 @@ if (!class_exists('WMobilePack_Application')) {
         {
             return WMP_PLUGIN_PATH . 'frontend/themes';
 		}
-		
+
 
         /**
          *
@@ -263,7 +263,7 @@ if (!class_exists('WMobilePack_Application')) {
             include(WMP_PLUGIN_PATH.'frontend/sections/smart-app-banner.php');
         }
 
-		
+
         /**
          *
          * Method used to display a box on the footer of the theme
@@ -300,7 +300,6 @@ if (!class_exists('WMobilePack_Application')) {
 				'enable_facebook',
 				'enable_twitter',
 				'enable_google',
-				'service_worker_installed'
             );
 
             $settings = array();

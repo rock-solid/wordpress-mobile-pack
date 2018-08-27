@@ -349,28 +349,6 @@
                 <div class="spacer-0"></div>
 			</div>
 
-			<div class="spacer-15"></div>
-			<div class="details">
-			<div class="display-mode">
-				<h2 class="title">Add to Home Screen</h2>
-				<div class="spacer-20"></div>
-				<p>In order for your users to be prompted to add the app to their home screen you must add a service worker to the root of your domain.</p>
-				<div class="spacer-10"></div>
-				<p>Move the 'sw.js' file which is located in the 'wordpress-mobile-pack' plugin directory to the root of your domain '/' using FTP.</p>
-				<div class="spacer-10"></div>
-				<p>Once you have moved the file to your root, check the box bellow and click 'save'. For more details visit the <a href="https://docs.wpmobilepack.com/wp-mobile-pack-free/look-and-feel.html" target="_blank">support page.</a></p>
-				<div class="spacer-30"></div>
-				<form name="wmp_service_worker_form" id="wmp_service_worker_form" class="left" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_save" method="post" style="min-width: 300px;">
-					<?php $installed = WMobilePack_Options::get_setting('service_worker_installed'); ?>
-					<input type="hidden" name="wmp_option_service_worker_installed" id="wmp_option_service_worker_installed" value="<?php echo $installed; ?>"/>
-					<input type="checkbox" name="wmp_service_worker_installed_check" id="wmp_service_worker_installed_check" value="1" <?php if ($installed == 1) echo "checked" ;?> />
-					<label for="wmp_service_worker_installed_check"> Service Worker Installed </label>
-					<div class="spacer-40"></div>
-					<a href="javascript:void(0);" id="wmp_service_worker_send_btn" class="btn green smaller">Save</a>
-				</form>
-			</div>
-			<div class="spacer-0"></div>
-			</div>
 
 
             <div class="spacer-15"></div>
@@ -467,7 +445,6 @@
             window.WMPJSInterface.add("UI_customizetheme","WMP_EDIT_THEME",{'DOMDoc':window.document}, window);
             window.WMPJSInterface.add("UI_editimages","WMP_EDIT_IMAGES",{'DOMDoc':window.document}, window);
 			window.WMPJSInterface.add("UI_editcover","WMP_EDIT_COVER",{'DOMDoc':window.document}, window);
-			window.WMPJSInterface.add("UI_service_worker","WMP_SERVICE_WORKER",{'DOMDoc':window.document}, window);
 
         });
     }

@@ -61,7 +61,7 @@ if ( ! class_exists( 'WMobilePack_Options' ) ) {
 			'allow_tracking' => 0,
 
 			// service worker related
-			'service_worker_installed' => 0
+			'service_worker_installed' => 0, // this option is @deprecated starting from v3.4
         );
 
 
