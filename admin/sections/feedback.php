@@ -31,6 +31,14 @@
         <textarea name="wmp_feedback_message" id="wmp_feedback_message" placeholder="You're awesome, did you know that?" class="small"></textarea>
         <div id="error_message_container" class="field-message error"></div>
         <div class="spacer-10"></div>
+
+		<p>Webcrumbz will use the information you provide on this form to be in touch with you and to provide updates and marketing. Please let us know all the ways you would like to hear from us:</p>
+		<div class="spacer-10"></div>
+		<input type="checkbox" name="wmp_feedback_permissions_email" id="wmp_feedback_permissions_email" value="1" /> Email
+		<div class="spacer-10"></div>
+		<input type="checkbox" name="wmp_feedback_permissions_directemail" id="wmp_feedback_permissions_directemail" value="1" /> Direct Email
+		<div class="spacer-10"></div>
+
         <a class="btn green smaller" href="javascript:void(0)" id="wmp_feedback_send_btn">Send</a>
     </form>
 </div>
