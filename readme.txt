@@ -2,8 +2,8 @@
 Contributors: jamesgpearce, andreatrasatti, cborodescu, anghelalexandra
 Tags: android, iOS, html5, iphone, mobile, mobile internet, mobile web, mobile web app, responsive ui, safari, sencha touch, smartphone, webkit, progressive web apps, app builder, apple, apps, convert to app, create blog app, ios app, ipad, make an app, mobile app plugin, mobile application, mobile blog app, mobile converter, mobile plugin, native app plugin, app theme, website to mobile app, WordPress android, WordPress app, WordPress iphone, WordPress mobile, WordPress mobile app
 Requires at least: 3.6
-Tested up to: 4.9.4
-Stable tag: 3.3
+Tested up to: 4.9.8
+Stable tag: 3.4
 License: GPLv2 or later
 
 Mobile plugin to package your content into a progressive web app, build a hybrid mobile app and submit it to App Stores. Multiple mobile app themes.
@@ -153,6 +153,10 @@ There are almost 50,000 plugins in the WordPress.org repository. It's impossible
 
 
 == Changelog ==
+
+= 3.4 =
+* Add 512x512 icon size for the app manifest
+* Add GDRP consent for the feedback form from the WP Mobile Pack admin panel
 
 = 3.3 =
 * Remove option to connect to the Appticles platform using API key

@@ -342,7 +342,7 @@
                 <div class="notice notice-left right" style="width: 265px;">
                     <span>
                         Add your logo in a .png format with a transparent background. This will be displayed on the cover of your app.<br /><br />
-                        Your icon should be square with a recommended size of 256 x 256 px. This will be displayed when the app will be added to the homescreen.<br /><br />
+                        Your icon should be square with a recommended size of 512 x 512 px. This will be displayed when the app will be added to the homescreen.<br /><br />
                         The file size for uploaded images should not exceed 1MB.
                     </span>
                 </div>

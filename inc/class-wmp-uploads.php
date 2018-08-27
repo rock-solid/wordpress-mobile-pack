@@ -24,8 +24,8 @@ if (!class_exists('WMobilePack_Uploads')) {
                 'extensions' => array('png')
             ),
             'icon' => array(
-                'max_width' => 256,
-                'max_height' => 256,
+                'max_width' => 512,
+                'max_height' => 512,
                 'extensions' => array('jpg', 'jpeg', 'png','gif')
             ),
             'cover' => array(
@@ -40,7 +40,7 @@ if (!class_exists('WMobilePack_Uploads')) {
             ),
 		);
 
-		public static $manifest_sizes = array(48, 96, 144, 196);
+		public static $manifest_sizes = array(48, 96, 144, 196, 512);
 
         protected static $htaccess_template = 'frontend/sections/htaccess-template.txt';
 
