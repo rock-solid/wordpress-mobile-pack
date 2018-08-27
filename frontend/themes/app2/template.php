@@ -66,14 +66,7 @@ if ($texts_json_exists === false) {
 		};
 	</script>
 	<script src="<?php echo $theme_path;?>js/app.js?date=20170503" type="text/javascript"></script>
-	<?php if ($app_settings['service_worker_installed'] == 1): ?>
-		<script>
-			if ('serviceWorker' in navigator) {
-				navigator.serviceWorker.register('/sw.js');
-			}
-		</script>
-	<?php endif; ?>
-    <?php
+	<?php
         // check if google analytics id was set
         if ($app_settings['google_analytics_id'] != ''):
     ?>

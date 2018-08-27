@@ -23,6 +23,15 @@ function wmobilepack_frontend_init() {
     new WMobilePack_Application();
 }
 
+/**
+ * Register service worker.
+ */
+function wpmobilepack_register_service_worker() {
+	if ( function_exists( 'wp_register_service_worker' ) ) {
+		wp_register_service_worker( 'wpmobilepack-service-worker', plugin_dir_url( __FILE__ ) . 'sw.js' );
+	}
+}
+
 function wmobilepack_admin_init() {
 
     require_once('admin/class-admin-init.php');
@@ -66,7 +75,8 @@ if (class_exists( 'WMobilePack' ) && class_exists( 'WMobilePack' )) {
         }
 
     } else {
-        add_action('plugins_loaded', 'wmobilepack_frontend_init');
+		add_action('plugins_loaded', 'wmobilepack_frontend_init');
+		add_action('plugins_loaded', 'wpmobilepack_register_service_worker' );
     }
 
 }
