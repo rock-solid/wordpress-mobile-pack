@@ -48,14 +48,24 @@ if (!class_exists('WMobilePack_Application')) {
          */
         public function check_load()
         {
-
             // Set app as visible by default
             $visible_app = true;
 
-			// Check if the display mode is set to 'normal' or 'preview' and the admin is logged in
-			if (!$this->check_display_mode()) {
-				$visible_app = false;
-			}
+            if($_GET["noapp"] || $_REQUEST["noapp"]){
+                $visible_app = false;
+            }
+
+            if (strpos($_SERVER['REQUEST_URI'], 'about-us') || 
+                strpos($_SERVER['REQUEST_URI'], 'contact-us') ||
+                strpos($_SERVER['REQUEST_URI'], 'contact') ||
+                strpos($_SERVER['REQUEST_URI'], 'win') ||
+                strpos($_SERVER['REQUEST_URI'], 'advertise') ||
+                strpos($_SERVER['REQUEST_URI'], 'terms') ||
+                strpos($_SERVER['REQUEST_URI'], 'cookie-policy') ||
+                strpos($_SERVER['REQUEST_URI'], 'privacy-policy'))
+            {
+                $visible_app = false;
+            }
 
             // Assume the app will not be loaded
             $load_app = false;
@@ -64,8 +74,8 @@ if (!class_exists('WMobilePack_Application')) {
 
                 // Check if the load app cookie is 1 or the user came from a mobile device
                 $cookie_manager = $this->get_cookie_manager();
-                $load_app_cookie = $cookie_manager->get_cookie('load_app');
-
+                // $load_app_cookie = $cookie_manager->get_cookie('load_app');
+                $load_app_cookie = null;
                 // If the load_app cookie is not set, verify the device
                 if ($load_app_cookie === null) {
                     $load_app = $this->check_device();

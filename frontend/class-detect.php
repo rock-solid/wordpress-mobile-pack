@@ -73,7 +73,7 @@ if (!class_exists('WMobilePack_Detect')) {
             }
 
             // set load app cookie
-            $this->set_load_app_cookie(intval($load_app));
+           // $this->set_load_app_cookie(intval($load_app));
 
             return $load_app;
         }
