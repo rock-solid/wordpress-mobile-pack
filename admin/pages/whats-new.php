@@ -10,7 +10,7 @@
 <div id="wmpack-admin">
     <div class="spacer-60"></div>
     <!-- set title -->
-    <h1><?php echo WMP_PLUGIN_NAME.' '.WMP_VERSION;?></h1>
+    <h1>Publisher's Toolbox PWA <?php echo WMP_VERSION;?></h1>
     <div class="spacer-20"></div>
     <?php $page_content = WMobilePack_Admin::whatsnew_updates();?>
     <div class="whats-new">
@@ -216,10 +216,10 @@
         </div>
         <div class="right-side"> 
             <!-- add news and updates -->
-            <?php include_once(WMP_PLUGIN_PATH.'admin/sections/news.php'); ?>
+            <?php #include_once(WMP_PLUGIN_PATH.'admin/sections/news.php'); ?>
 
             <!-- add feedback form -->
-            <?php include_once(WMP_PLUGIN_PATH.'admin/sections/feedback.php'); ?>
+            <?php #include_once(WMP_PLUGIN_PATH.'admin/sections/feedback.php'); ?>
         </div>
     </div>
 </div>

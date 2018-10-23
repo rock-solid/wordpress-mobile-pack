@@ -10,7 +10,7 @@
 <div id="wmpack-admin">
 	<div class="spacer-60"></div>
     <!-- set title -->
-    <h1><?php echo WMP_PLUGIN_NAME.' '.WMP_VERSION;?></h1>
+    <h1>Publisher's Toolbox PWA <?php echo WMP_VERSION;?></h1>
 	<div class="spacer-20"></div>
 	<div class="settings">
         <div class="left-side">
@@ -158,30 +158,30 @@
                 <div class="spacer-0"></div>
             </div>
             <div class="spacer-15"></div>
-            <div class="details">
+            <!--<div class="details">
                 <div class="display-mode">
                     <h2 class="title">Language Settings</h2>
                     <div class="spacer-20"></div>
                     <p>Wordpress Mobile Pack will automatically translate your mobile web app in one of the supported languages: Bosnian, Chinese (zh_CN), Dutch, English, French, German, Hungarian, Italian, Polish, Portuguese (Brazil), Romanian, Spanish or Swedish. This is done based on your Wordpress settings and doesn't require additional changes from the plugin. A big thanks to all of our <a href="https://wordpress.org/plugins/wordpress-mobile-pack/other_notes/" target="_blank">contributors</a>.</p>
                     <div class="spacer-10"></div>
-                    <p>However, if you wish to add another language or change the labels for your current one, you can do so by editing the language files located in <strong><?php echo WMP_PLUGIN_PATH."frontend/locales";?></strong>. To ensure your translation file will not be overwritten by future updates, please send it to our <a href="mailto:<?php echo WMP_FEEDBACK_EMAIL;?>">support team</a>.</p>
+                    <p>However, if you wish to add another language or change the labels for your current one, you can do so by editing the language files located in <strong><?php #echo WMP_PLUGIN_PATH."frontend/locales";?></strong>. To ensure your translation file will not be overwritten by future updates, please send it to our <a href="mailto:<?php #echo WMP_FEEDBACK_EMAIL;?>">support team</a>.</p>
                     <div class="spacer-10"></div>
                 </div>
                 <div class="spacer-0"></div>
-            </div>
+            </div>-->
 
             <div class="spacer-15"></div>
 
-			<div class="details">
+			<!--<div class="details">
             	<div class="display-mode">
                  	<h2 class="title">Tracking</h2>
                     <div class="spacer-20"></div>
 
-                    <form name="wmp_allowtracking_form" id="wmp_allowtracking_form" class="left" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_save" method="post">
-                        <?php $enabled_tracking = WMobilePack_Options::get_setting('allow_tracking'); ?>
+                    <form name="wmp_allowtracking_form" id="wmp_allowtracking_form" class="left" action="<?php #echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_save" method="post">
+                        <?php #$enabled_tracking = WMobilePack_Options::get_setting('allow_tracking'); ?>
 
-                        <input type="hidden" name="wmp_option_allow_tracking" id="wmp_option_allow_tracking" value="<?php echo $enabled_tracking;?>" />
-                        <input type="checkbox" name="wmp_allowtracking_check" id="wmp_allowtracking_check" value="1" <?php if ($enabled_tracking == 1) echo "checked" ;?> />
+                        <input type="hidden" name="wmp_option_allow_tracking" id="wmp_option_allow_tracking" value="<?php #echo $enabled_tracking;?>" />
+                        <input type="checkbox" name="wmp_allowtracking_check" id="wmp_allowtracking_check" value="1" <?php #if ($enabled_tracking == 1) echo "checked" ;?> />
                         <label for="wmp_allowtracking_check"><strong>Allow tracking of this WordPress install's anonymous data.</strong></label>
                         <div class="spacer-10"></div>
 
@@ -192,14 +192,14 @@
                 </div>
                  <div class="spacer-0"></div>
             </div>
-        </div>
+        </div>-->
 
         <div class="right-side">
             <!-- waitlist form -->
-            <?php include_once(WMP_PLUGIN_PATH.'admin/sections/waitlist.php'); ?>
+            <?php #include_once(WMP_PLUGIN_PATH.'admin/sections/waitlist.php'); ?>
 
             <!-- add feedback form -->
-            <?php include_once(WMP_PLUGIN_PATH.'admin/sections/feedback.php'); ?>
+            <?php #include_once(WMP_PLUGIN_PATH.'admin/sections/feedback.php'); ?>
         </div>
 	</div>
 </div>
