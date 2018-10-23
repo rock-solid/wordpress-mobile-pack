@@ -2,7 +2,7 @@
 
 define("WMP_VERSION", '3.4');
 define('WMP_PLUGIN_NAME', 'PT PWA');
-define('WMP_DOMAIN', 'wordpress-mobile-pack');
+define('WMP_DOMAIN', 'wordpress-pwa');
 
 define('WMP_PLUGIN_PATH', WP_PLUGIN_DIR . '/'.WMP_DOMAIN.'/');
 
