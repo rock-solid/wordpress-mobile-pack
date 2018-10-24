@@ -50,8 +50,8 @@
 
 					<form name="wmp_edittheme_form" id="wmp_edittheme_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_theme_settings" method="post">
 
-						<div class="color-schemes">
-							<p class="section-header">Select Color Scheme</p>
+						<div class="color-schemes" style="display:none;">
+							<p class="section-header">Select Colour Scheme</p>
 							<div class="spacer-20"></div>
 
 							<!-- add labels -->
@@ -81,13 +81,13 @@
 								<div class="spacer-20"></div>
 							<?php endforeach;?>
 
-							<!-- add custom scheme radio button -->
+							<!-- add custom scheme radio button
 							<input type="radio" name="wmp_edittheme_colorscheme" id="wmp_edittheme_colorscheme" value="0" <?php echo $selected_color_scheme == 0 ? 'checked="checked"' : '';?> autocomplete="off" />
-							<p>Edit custom colors</p>
+							<p>Edit custom colors</p>-->
 						</div>
 
 						<!-- start notice -->
-						<div class="notice notice-left left" style="width: 50%;">
+						<div class="notice notice-left left" style="width: 50%; display:none;">
 							<span>
 								The color scheme will impact the following sections within the mobile web application:<br/><br/>
 								<?php
@@ -100,9 +100,9 @@
 						<div class="spacer-20"></div>
 
 						<!-- start color pickers -->
-						<div class="color-schemes-custom" style="display: <?php echo $selected_color_scheme == 0 ? 'block' : 'none';?>;">
-
-							<p class="section-header">Your Custom Scheme</p>
+						<!--<div class="color-schemes-custom" style="display: <?php echo $selected_color_scheme == 0 ? 'block' : 'none';?>;">-->
+						<div class="color-schemes-custom" style="display:block;">	
+							<p class="section-header">Select Colour Scheme</p>
 							<div class="spacer-20"></div>
 
 							<div class="set">
