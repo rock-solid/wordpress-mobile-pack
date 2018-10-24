@@ -1,3 +1,9 @@
+<script>$('#colorpicker').on('change', function() {
+	$('#hexcolor').val(this.value);
+});
+$('#hexcolor').on('change', function() {
+  $('#colorpicker').val(this.value);
+});</script>
 <script type="text/javascript">
     if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
@@ -7,6 +13,30 @@
         });
     }
 </script>
+
+
+
+<style>
+
+.color-schemes-custom  input {
+	margin: .4rem;
+}
+
+.color-schemes-custom label {
+	
+	text-align: right;
+}
+
+.wp-picker-holder {
+	display:none;
+}
+
+.wp-color-result-text {
+	display:none;
+}
+
+</style>
+
 <div id="wmpack-admin">
 	<div class="spacer-60"></div>
     <!-- set title -->
@@ -104,8 +134,42 @@
 						<div class="color-schemes-custom" style="display:block;">	
 							<p class="section-header">Select Colour Scheme</p>
 							<div class="spacer-20"></div>
-
-							<div class="set">
+							<fieldset>
+								<div class="bmBurgerBarsBackground">
+									<label>Mobile Menu Bar Background Colour</label>
+									<input type="text" name="wmp_edittheme_customcolor<?php echo $key;?>" id="wmp_edittheme_customcolor<?php echo $key;?>" value="<?php echo $color_value;?>" autocomplete="off" />
+								</div>	
+								<div class="bmCrossBackground">
+									<label for="bmCrossBackground">Close Button Background Colour</label>
+									<input type="text" name="wmp_edittheme_customcolor<?php echo $key;?>" id="wmp_edittheme_customcolor<?php echo $key;?>" value="<?php echo $color_value;?>" autocomplete="off" />
+								</div>
+								<div class="bmMenuBackground">
+									<label for="bmMenuBackground">Mobile Menu Background Colour</label>
+									<input type="text" name="wmp_edittheme_customcolor<?php echo $key;?>" id="wmp_edittheme_customcolor<?php echo $key;?>" value="<?php echo $color_value;?>" autocomplete="off" />
+								</div>
+								<div class="bmItemListColor">
+									<label for="bmItemListColor">Mobile Menu Item List Colour</label>
+									<input type="text" name="wmp_edittheme_customcolor<?php echo $key;?>" id="wmp_edittheme_customcolor<?php echo $key;?>" value="<?php echo $color_value;?>" autocomplete="off" />
+								</div>
+								<div class="selectedBackground">
+									<label for="SelectedBackground">Selected Item Background Colour</label>
+									<input type="text" name="wmp_edittheme_customcolor<?php echo $key;?>" id="wmp_edittheme_customcolor<?php echo $key;?>" value="<?php echo $color_value;?>" autocomplete="off" />
+								</div>			
+								<div class="selectedText">
+									<label for="selectedText">Selected Text Background Color</label>
+									<input type="text" name="wmp_edittheme_customcolor<?php echo $key;?>" id="wmp_edittheme_customcolor<?php echo $key;?>" value="<?php echo $color_value;?>" autocomplete="off" />
+								</div>
+								<div class="themeColour">
+									<label for="themeColour">Theme Colour</label>
+									<input type="text" name="wmp_edittheme_customcolor<?php echo $key;?>" id="wmp_edittheme_customcolor<?php echo $key;?>" value="<?php echo $color_value;?>" autocomplete="off" />
+								</div>
+								<div class="backgroundColour">
+									<label for="backgroundColour">Background Colour</label>
+									<input type="text" name="wmp_edittheme_customcolor<?php echo $key;?>" id="wmp_edittheme_customcolor<?php echo $key;?>" value="<?php echo $color_value;?>" autocomplete="off" />
+								</div>				
+							</fieldset>	
+							</div>
+							<!--<div class="set">
 								<?php
 									// display color pickers and divide them into two columns
 									$half = ceil( count($theme_settings['labels']) / 2);
@@ -125,20 +189,18 @@
 
 									<?php if ($key + 1 == $half):?>
 										</div>
-										<div class="set">
+										<div class="set"> 
 									<?php endif;?>
 
 								<?php endforeach;?>
-							</div>
-						</div>
+							</div>-->
+						
 						<div class="spacer-20"></div>
 
 						<!-- choose fonts -->
-						<div class="font-chooser">
+						<!--<div class="font-chooser">
 							<p class="section-header">Select Fonts</p>
 							<div class="spacer-20"></div>
-
-							<!-- add radio buttons -->
 							<?php if (array_key_exists('headlines-font', $theme_settings['fonts'])): ?>
 								<?php
 									$font_headlines = WMobilePack_Options::get_setting('font_headlines');
@@ -189,7 +251,7 @@
 								</select>
 								<div class="spacer-20"></div>
 							<?php endif;?>
-						</div>
+						</div>-->
 
 						<div class="spacer-20"></div>
 						<a href="javascript:void(0);" id="wmp_edittheme_send_btn" class="btn green smaller" >Save</a>
