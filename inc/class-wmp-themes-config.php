@@ -48,8 +48,8 @@ if ( ! class_exists( 'WMobilePack_Themes_Config' ) ) {
         * @var array
         */
         protected static $allowed_themes = array(
-            3 => 'Magazine',
-            4 => 'Newspaper'
+            3 => 'Newspaper',
+            4 => 'Magazine'
         );
 
 		/**
