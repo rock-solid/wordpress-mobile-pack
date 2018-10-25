@@ -129,7 +129,7 @@
                 </div>
 
                 <div class="details features">
-                    <h2 class="title">Get Started with WordPress Mobile Pack</h2>
+                    <h2 class="title">Get Started with the Publisher's Toolbox PWA</h2>
                     <div class="spacer-15"></div>
                     <div class="grey-line"></div>
                     <div class="spacer-15"></div>
