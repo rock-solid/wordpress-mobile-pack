@@ -1,9 +1,34 @@
-<script>$('#colorpicker').on('change', function() {
-	$('#hexcolor').val(this.value);
+<script type="text/javascript">
+jQuery(document).ready(function() {
+	jQuery("#save").click(function(e) {
+		var jsonData1 = {};
+		
+		var fieldsetData = jQuery("#color-settings").serializeArray();
+		var _this = this;
+		jQuery.each(fieldsetData, function() {
+			
+			var custKey = jQuery('input[name="' + this.name + '"')[0].classList[0];
+			// var deconc = this.name
+			// console.log(_this.getAttribute('class'));
+			jsonData1[custKey] = this.value || '';
+		});
+		 console.log(jsonData1);
+         var output1 = JSON.stringify(jQuery("#color-settings").serializeArray());
+		jQuery.ajax(
+		{
+
+			url : "http://gt.localhost",
+			type: "POST",
+			data: output1,
+			success: function(response) {
+				alert("Settings saved.");
+			}
+		}); 
+		e.preventDefault();
+	});	
 });
-$('#hexcolor').on('change', function() {
-  $('#colorpicker').val(this.value);
-});</script>
+</script>	<!--must be used as a fallback in case the php doesn't work-->
+
 <script type="text/javascript">
     if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
@@ -78,8 +103,7 @@ $('#hexcolor').on('change', function() {
 						<div class="spacer-20"></div>
 					<?php endif;?>
 
-					<form name="wmp_edittheme_form" id="wmp_edittheme_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_theme_settings" method="post">
-
+					<form name="wmp_edittheme_form" id="wmp_edittheme_form" action="" method="post">
 						<div class="color-schemes" style="display:none;">
 							<p class="section-header">Select Colour Scheme</p>
 							<div class="spacer-20"></div>
@@ -134,127 +158,43 @@ $('#hexcolor').on('change', function() {
 						<div class="color-schemes-custom" style="display:block;">	
 							<p class="section-header">Select Colour Scheme</p>
 							<div class="spacer-20"></div>
-							<fieldset>
-								<div class="bmBurgerBarsBackground">
+							<fieldset id="color-settings">
+								<div class="holder">
 									<label>Mobile Menu Bar Background Colour</label>
-									<input type="text" name="wmp_edittheme_customcolor<?php echo $key;?>" id="wmp_edittheme_customcolor<?php echo $key;?>" value="<?php echo $color_value;?>" autocomplete="off" />
+									<input class="bmBurgerBarsBackground" type="text" name="wmp_edittheme_customcolor1-bmBurgerBarsBackground" id="bmBurgerBarsBackground" value="<?php echo $color_value;?>" autocomplete="off" />
 								</div>	
-								<div class="bmCrossBackground">
+								<div class="holder">
 									<label for="bmCrossBackground">Close Button Background Colour</label>
-									<input type="text" name="wmp_edittheme_customcolor<?php echo $key;?>" id="wmp_edittheme_customcolor<?php echo $key;?>" value="<?php echo $color_value;?>" autocomplete="off" />
+									<input class="bmCrossBackground" type="text" name="wmp_edittheme_customcolor2" id="wmp_edittheme_customcolor2" value="<?php echo $color_value;?>" autocomplete="off" />
 								</div>
-								<div class="bmMenuBackground">
+								<div class="holder">
 									<label for="bmMenuBackground">Mobile Menu Background Colour</label>
-									<input type="text" name="wmp_edittheme_customcolor<?php echo $key;?>" id="wmp_edittheme_customcolor<?php echo $key;?>" value="<?php echo $color_value;?>" autocomplete="off" />
+									<input class="bmMenuBackground" type="text" name="wmp_edittheme_customcolor3" id="wmp_edittheme_customcolor3" value="<?php echo $color_value;?>" autocomplete="off" />
 								</div>
-								<div class="bmItemListColor">
+								<div class="holder">
 									<label for="bmItemListColor">Mobile Menu Item List Colour</label>
-									<input type="text" name="wmp_edittheme_customcolor<?php echo $key;?>" id="wmp_edittheme_customcolor<?php echo $key;?>" value="<?php echo $color_value;?>" autocomplete="off" />
+									<input class="bmItemListColor" type="text" name="wmp_edittheme_customcolor4" id="wmp_edittheme_customcolor4" value="<?php echo $color_value;?>" autocomplete="off" />
 								</div>
-								<div class="selectedBackground">
+								<div class="holder">
 									<label for="SelectedBackground">Selected Item Background Colour</label>
-									<input type="text" name="wmp_edittheme_customcolor<?php echo $key;?>" id="wmp_edittheme_customcolor<?php echo $key;?>" value="<?php echo $color_value;?>" autocomplete="off" />
+									<input class="selectedBackground" type="text" name="wmp_edittheme_customcolor5" id="wmp_edittheme_customcolor5" value="<?php echo $color_value;?>" autocomplete="off" />
 								</div>			
-								<div class="selectedText">
+								<div class="holder">
 									<label for="selectedText">Selected Text Background Color</label>
-									<input type="text" name="wmp_edittheme_customcolor<?php echo $key;?>" id="wmp_edittheme_customcolor<?php echo $key;?>" value="<?php echo $color_value;?>" autocomplete="off" />
+									<input class="selectedText" type="text" name="wmp_edittheme_customcolor6" id="wmp_edittheme_customcolor6" value="<?php echo $color_value;?>" autocomplete="off" />
 								</div>
-								<div class="themeColour">
+								<div class="holder">
 									<label for="themeColour">Theme Colour</label>
-									<input type="text" name="wmp_edittheme_customcolor<?php echo $key;?>" id="wmp_edittheme_customcolor<?php echo $key;?>" value="<?php echo $color_value;?>" autocomplete="off" />
+									<input class="themeColour" type="text" name="wmp_edittheme_customcolor7" id="wmp_edittheme_customcolor7" value="<?php echo $color_value;?>" autocomplete="off" />
 								</div>
-								<div class="backgroundColour">
+								<div class="holder">
 									<label for="backgroundColour">Background Colour</label>
-									<input type="text" name="wmp_edittheme_customcolor<?php echo $key;?>" id="wmp_edittheme_customcolor<?php echo $key;?>" value="<?php echo $color_value;?>" autocomplete="off" />
-								</div>				
+									<input class="backgroundColour" type="text" name="wmp_edittheme_customcolor8" id="wmp_edittheme_customcolor8" value="<?php echo $color_value;?>" autocomplete="off" />
+								</div>
+						<div class="spacer-20"></div>
+						<div class="submit"><input type="button" id="save" class="save" value="Save Settings"/></div>				
 							</fieldset>	
 							</div>
-							<!--<div class="set">
-								<?php
-									// display color pickers and divide them into two columns
-									$half = ceil( count($theme_settings['labels']) / 2);
-
-									// read the custom colors options array
-									$selected_custom_colors = WMobilePack_Options::get_setting('custom_colors');
-
-									foreach ($theme_settings['labels'] as $key => $description):
-
-										$color_value = '';
-										if (!empty($selected_custom_colors) && array_key_exists($key, $selected_custom_colors))
-											$color_value = $selected_custom_colors[$key];
-								?>
-									<label for="wmp_edittheme_customcolor<?php echo $key;?>"><?php echo ($key+1).'. '.$description;?></label>
-									<input type="text" name="wmp_edittheme_customcolor<?php echo $key;?>" id="wmp_edittheme_customcolor<?php echo $key;?>" value="<?php echo $color_value;?>" autocomplete="off" />
-									<div class="spacer-10"></div>
-
-									<?php if ($key + 1 == $half):?>
-										</div>
-										<div class="set"> 
-									<?php endif;?>
-
-								<?php endforeach;?>
-							</div>-->
-						
-						<div class="spacer-20"></div>
-
-						<!-- choose fonts -->
-						<!--<div class="font-chooser">
-							<p class="section-header">Select Fonts</p>
-							<div class="spacer-20"></div>
-							<?php if (array_key_exists('headlines-font', $theme_settings['fonts'])): ?>
-								<?php
-									$font_headlines = WMobilePack_Options::get_setting('font_headlines');
-									if ($font_headlines == '')
-										$font_headlines = 1;
-								?>
-
-								<label for="wmp_edittheme_fontheadlines">Headlines</label>
-
-								<select name="wmp_edittheme_fontheadlines" id="wmp_edittheme_fontheadlines">
-
-									<?php foreach (WMobilePack_Themes_Config::$allowed_fonts as $key => $font_family): ?>
-										<option value="<?php echo $key+1;?>" data-text='<span style="font-family:<?php echo str_replace(" ", "", $font_family);?>"><?php echo $font_family;?></span>' <?php if ($font_headlines == $key+1) echo "selected";?>></option>
-									<?php endforeach; ?>
-								</select>
-
-								<div class="spacer-10"></div>
-							<?php endif; ?>
-
-							<?php if (array_key_exists('subtitles-font', $theme_settings['fonts'])): ?>
-								<?php
-									$font_subtitles = WMobilePack_Options::get_setting('font_subtitles');
-									if ($font_subtitles == '')
-										$font_subtitles = 1;
-								?>
-
-								<label for="wmp_edittheme_fontsubtitles">Subtitles</label>
-								<select name="wmp_edittheme_fontsubtitles" id="wmp_edittheme_fontsubtitles">
-									<?php foreach (WMobilePack_Themes_Config::$allowed_fonts as $key => $font_family): ?>
-										<option value="<?php echo $key+1;?>" data-text='<span style="font-family:<?php echo str_replace(" ", "", $font_family);?>"><?php echo $font_family;?></span>' <?php if ($font_subtitles == $key+1) echo "selected";?>></option>
-									<?php endforeach; ?>
-								</select>
-								<div class="spacer-10"></div>
-							<?php endif; ?>
-
-							<?php if(array_key_exists('paragraphs-font', $theme_settings['fonts'])): ?>
-								<?php
-									$font_paragraphs = WMobilePack_Options::get_setting('font_paragraphs');
-									if ($font_paragraphs == '')
-										$font_paragraphs = 1;
-								?>
-
-								<label for="wmp_edittheme_fontparagraphs">Paragraphs</label>
-								<select name="wmp_edittheme_fontparagraphs" id="wmp_edittheme_fontparagraphs">
-									<?php foreach (WMobilePack_Themes_Config::$allowed_fonts as $key => $font_family): ?>
-										<option value="<?php echo $key+1;?>" data-text='<span style="font-family:<?php echo str_replace(" ", "", $font_family);?>"><?php echo $font_family;?></span>' <?php if ($font_paragraphs == $key+1) echo "selected";?>></option>
-									<?php endforeach; ?>
-								</select>
-								<div class="spacer-20"></div>
-							<?php endif;?>
-						</div>-->
-
-						<div class="spacer-20"></div>
-						<a href="javascript:void(0);" id="wmp_edittheme_send_btn" class="btn green smaller" >Save</a>
 					</form>
 				</div>
 				<div class="spacer-15"></div>
