@@ -1,3 +1,4 @@
+<?php require_once('C:\wamp64\www\gt\wp-admin\admin-header.php'); ?>
 <script type="text/javascript">
     if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
@@ -12,7 +13,7 @@
     <!-- set title -->
     <h1>Publisher's Toolbox PWA <?php echo WMP_VERSION;?></h1>
     <div class="spacer-20"></div>
-    <?php $page_content = WMobilePack_Admin::whatsnew_updates();?>
+   <?php #$page_content = WMobilePack_Admin::whatsnew_updates();?>
     <div class="whats-new">
         <div class="left-side"> 
         
@@ -115,8 +116,9 @@
                     </div>
                 <?php endif;?>
                 
-        	<?php elseif ($page_content == 'warning'):?>
-            	<div class="details">
+        	<?php elseif ($page_content == 'warning'): ?>
+                  <?php endif;?>
+            	<!--<div class="details">
                     <div class="spacer-10"></div>
                     <div class="message-container warning">
                         <div class="wrapper">
@@ -126,10 +128,10 @@
                             <span>We are unable to display the updates on this page due to the fact that both <a href="https://php.net/manual/en/book.curl.php" target="_blank">cURL</a> and <a href="http://www.php.net/manual/en/function.fopen.php" target="_blank">fopen</a> are disabled.</span> 
                         </div>
                     </div>
-                </div>
+                </div>-->
 
                 <div class="details features">
-                    <h2 class="title">Get Started with the Publisher's Toolbox PWA</h2>
+                    <h2 class="title">Get started with the Publisher's Toolbox PWA</h2>
                     <div class="spacer-15"></div>
                     <div class="grey-line"></div>
                     <div class="spacer-15"></div>
@@ -142,7 +144,7 @@
                         </a>
 
                         <div class="text">
-                            <span class="title">Step 1. Customize your mobile web app's look &amp; feel</span>
+                            <span class="title">Step 1. Customise your mobile web app's look &amp; feel</span>
 
                             <p>Customize your mobile web application by choosing from the available color schemes &amp;
                                 fonts, adding your logo and app icon. The default theme comes with 6 abstract covers
@@ -188,7 +190,7 @@
                     </div>
                     <div class="spacer-0"></div>
 
-                    <div class="feature right">
+                    <!--<div class="feature right">
 
                         <img src="https://d3oqwjghculspf.cloudfront.net/dashboard/quick_start/images/analytics.png"
                              title="Step 4. Grow your mobile traffic"/>
@@ -203,12 +205,12 @@
                                 href="<?php echo isset($wpmp_upgrade_pro_link) ? $wpmp_upgrade_pro_link : WMobilePack_Admin::upgrade_pro_link();?>" target="blank">WP
                                     Mobile Pack PRO</a>.
                         </div>
-                    </div>
+                    </div>-->
                     <div class="spacer-0"></div>
 
                 </div>
 
-            <?php endif;?>
+          
 
             <!-- add subscribe to mobile growth -->
             <?php include_once(WMP_PLUGIN_PATH.'admin/sections/subscribe.php'); ?>
