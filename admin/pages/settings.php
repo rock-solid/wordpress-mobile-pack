@@ -1,12 +1,35 @@
-<script type="text/javascript">
-    if (window.WMPJSInterface && window.WMPJSInterface != null){
-        jQuery(document).ready(function(){
 
-            WMPJSInterface.localpath = "<?php echo plugins_url()."/".WMP_DOMAIN."/"; ?>";
-            WMPJSInterface.init();
+<script type="text/javascript">
+jQuery(document).ready(function() {
+    jQuery("#save").click(function(e) {
+        var jsonData2 = {};
+        
+        var fieldsetData = jQuery("#core-settings").serializeArray();
+        var _this = this;
+        jQuery.each(fieldsetData, function() {
+            
+            var custKey = jQuery('input[name="' + this.name + '"')[0].classList[0];
+            // var deconc = this.name
+            // console.log(_this.getAttribute('class'));
+            jsonData2[custKey] = this.value || '';
         });
-    }
+         console.log(jsonData2);
+         var output2 = JSON.stringify(jQuery("#core-settings").serializeArray());
+        jQuery.ajax(
+        {
+
+            url : "http://gt.localhost",
+            type: "POST",
+            data: output2,
+            success: function(response) {
+                alert("Settings saved.");
+            }
+        }); 
+        e.preventDefault();
+    }); 
+});
 </script>
+
 <div id="wmpack-admin">
 	<div class="spacer-60"></div>
     <!-- set title -->
@@ -20,143 +43,83 @@
             <div class="spacer-0"></div>
 
             <div class="details">
-                <div class="display-mode">
+                
                     <h2 class="title">App Settings</h2>
                     <div class="spacer-20"></div>
-                    <form name="wmp_editsettings_form" id="wmp_editsettings_form" class="left" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_app" method="post" enctype="multipart/form-data">
-
-                        <p>Choose display mode:</p>
+                    <form id="core-settings">
                         <div class="spacer-10"></div>
-
-                        <?php
-                            $display_mode = WMobilePack_Options::get_setting('display_mode');
-                            if ($display_mode == '')
-                                $display_mode = 'normal';
-                        ?>
-
-                        <!-- add radio buttons -->
-                        <input type="radio" name="wmp_editsettings_displaymode" id="wmp_editsettings_displaymode_normal" value="normal" <?php if ($display_mode == "normal") echo "checked" ;?> /><label for="wmp_editsettings_displaymode_normal"><strong>Normal</strong> (all mobile visitors)</label>
-                        <div class="spacer-10"></div>
-
-                        <input type="radio" name="wmp_editsettings_displaymode" id="wmp_editsettings_displaymode_preview" value="preview" <?php if ($display_mode == "preview") echo "checked" ;?> /><label for="wmp_editsettings_displaymode_preview"><strong>Preview</strong> (logged in administrators)</label>
-                        <div class="spacer-10"></div>
-
-                        <input type="radio" name="wmp_editsettings_displaymode" id="wmp_editsettings_displaymode_disabled" value="disabled" <?php if ($display_mode == "disabled") echo "checked" ;?> /><label for="wmp_editsettings_modedisplay_disabled"><strong>Disabled</strong> (hidden for all)</label>
-                		<div class="spacer-30"></div>
-
-                        <p>Google Analytics Id:</p>
-                        <div class="spacer-10"></div>
-                        <input type="text" name="wmp_editsettings_ganalyticsid" id="wmp_editsettings_ganalyticsid" placeholder="UA-000000-01" class="small indent" value="<?php echo WMobilePack_Options::get_setting('google_analytics_id');?>" />
-                        <div class="field-message error" id="error_ganalyticsid_container"></div>
+                        <label>Application Name</label>
+                        <input class="appName" type="text" name="appName" id="appName" value="Gay Times" readonly/>
+                        <div class="spacer-20"></div>
+                        <label>Application Meta Description</label>
+                        <input class="metaDescription" type="text" name="metaDescription" id="metaDescription" value="Gay Times Description" readonly/> 
+                        <div class="spacer-20"></div>
+                        <label>Host URL</label>
+                        <input class="hostUrl" type="text" name="hostUrl" id="hostUrl" value="https://www.gaytimes.co.uk" readonly/>  
+                		<div class="spacer-20"></div>
+                        <label>Manifest URL</label>
+                        <input class="manifestUrl" type="text" name="manifestUrl" id="manifestUrl" value="static/www.gaytimes.co.uk/manifest.json" readonly/>
+                        <div class="spacer-20"></div>
+                        <label>Date Format</label>
+                        <select class="newsItemDateFormat" id="newsItemDateFormat">
+                            <option value="dd-mm-yyyy">DD-MM-YYYY</option>
+                            <option value="yyyy-mm-dd">YYYY-MM-DD</option>
+                            <option value="dd-mmmm-yy">DD-MMMM-YY</option>
+                            <option value="yy-mmmm-dd">YY-MMMM-DD</option>
+                            <option value="dd-mmm-yyyy">DD-MMM-YYYY</option>
+                            <option value="yyyy-mmm-dd">YYYY-MM-DD</option>
+                        </select>
+                        <div class="spacer-20"></div>
+                        <label>Time Format</label>
+                        <select class="newsItemTimeFormat" id="newsItemTimeFormat">
+                            <option value="12h">12 Hours</option>
+                            <option value="24h">24 Hours</option>
+                        </select>    
+						<div class="spacer-20"></div>
+						<label>Default Feed Page Size (W x H)</label>
+                        <select class="defaultFeedPageSize" id="defaultFeedPageSize">
+                            <option value="313x420">313 x 420</option>
+                            <option value="626x840">626 x 840</option>
+                        </select> <!-- values taken from here: https://www.postplanner.com/ultimate-guide-to-facebook-dimensions-cheat-sheet/ -->   
+						<div class="spacer-20"></div>
+                        <label>Google Tag Manager ID</label>
+                        <input class="GTMID" type="text" name="GTMID" id="GTMID" value="GTM-XXXXX" />
+                        <div class="spacer-20"></div>
+                        <label>Google Analytics Tracking Code</label>
+                        <input class="GATrackingCode" type="text" name="GATrackingCode" value="UA-000000-01" />
                         <div class="spacer-30"></div>
-
-						<p>Tablets opt-in:</p>
-						<div class="spacer-10"></div>
-						<?php $enable_tablets = WMobilePack_Options::get_setting('enable_tablets'); ?>
-
-						<input type="hidden" name="wmp_editsettings_enable_tablets" id="wmp_editsettings_enable_tablets" value="<?php echo $enable_tablets;?>" />
-						<input type="checkbox" name="wmp_enable_tablets_check" id="wmp_enable_tablets_check" value="0" <?php if ($enable_tablets == 1) echo "checked" ;?> />
-						<label for ="wmp_enable_tablets_check">Display on iPad and Android tablets</label>
-
-						<div class="spacer-30"></div>
-
-                        <p>Menu options:</p>
-                        <div class="spacer-10"></div>
-                        <?php $display_website_link = WMobilePack_Options::get_setting('display_website_link'); ?>
-
-                        <input type="hidden" name="wmp_editsettings_displaywebsitelink" id="wmp_editsettings_displaywebsitelink" value="<?php echo $display_website_link;?>" />
-                        <input type="checkbox" name="wmp_displaywebsitelink_check" id="wmp_displaywebsitelink_check" value="1" <?php if ($display_website_link == 1) echo "checked" ;?> /><label for="wmp_displaywebsitelink_check">Display "Visit website" link</label>
-
-                        <div class="spacer-30"></div>
-
-                        <?php
-                            $posts_per_page = WMobilePack_Options::get_setting('posts_per_page');
-
-							// Check if the theme has a posts_per_page setting
-                            $theme_config = WMobilePack_Themes_Config::get_theme_config();
-                            $allow_posts_per_page = $theme_config !== false && $theme_config['posts_per_page'] == 1;
-
-                            if ($allow_posts_per_page):
-                        ?>
-
-                            <p>Choose how posts are displayed:</p>
+                        <div class="submit"><input type="button" id="save" class="save" value="Save Settings"/></div>   
+                         </form>   
                             <div class="spacer-10"></div>
 
-                            <!-- add radio buttons -->
-                            <input type="radio" name="wmp_editsettings_postsperpage" id="wmp_editsettings_postsperpage_auto" value="auto" <?php if ($posts_per_page == "auto") echo "checked" ;?> /><label for="wmp_editsettings_postsperpage_auto"><strong>Auto</strong> (1 or 2 posts per page)</label>
+                            
                             <div class="spacer-10"></div>
 
-                            <input type="radio" name="wmp_editsettings_postsperpage" id="wmp_editsettings_postsperpage_single" value="single" <?php if ($posts_per_page == "single") echo "checked" ;?> /><label for="wmp_editsettings_postsperpage_single">One post per page</label>
+                            
                             <div class="spacer-10"></div>
 
-                            <input type="radio" name="wmp_editsettings_postsperpage" id="wmp_editsettings_postsperpage_double" value="double" <?php if ($posts_per_page == "double") echo "checked" ;?> /><label for="wmp_editsettings_postsperpage_double">Two posts per page</label>
+                           
 
                             <div class="spacer-20"></div>
 
-                        <?php else: // otherwise, use the current value ?>
-                            <input type="hidden" name="wmp_editsettings_postsperpage" id="wmp_editsettings_postsperpage" value="<?php echo $posts_per_page;?>" />
-                        <?php endif;?>
-
-                        <a href="javascript:void(0)" id="wmp_editsettings_send_btn" class="btn green smaller">Save</a>
-                    </form>
-					<div class="notices-container left">
-						<div class="notice notice-left right" style="margin: 0px 0 15px 0;">
-							<span>
-								Edit the <strong>Display Mode</strong> of your app to enable/disable it for your mobile readers. The <strong>Preview mode</strong> lets you edit your app without it being visible to anyone else.<br/><br/><br/>
-								By adding your <strong>Google Analytics ID</strong>, you will be able to track the mobile web application's visitors directly in your Google Analytics account.
-							</span>
-						</div>
-						<div class="notice notice-left right" style="margin: 25px 0 15px 0;">
-							<span>
-								Clear mobile browser cache before testing tablets settings.
-							</span>
-						</div>
-						<?php if ($allow_posts_per_page):?>
-							<div class="notice notice-left right" style="margin: 70px 0 15px 0;">
-								<span>
-									The '<strong>Two posts per page</strong>' option will display posts in groups of two, as long as the categories have an even number of posts. If a category has an odd number of posts, the last card will contain a single post.
-								</span>
-							</div>
-						<?php endif;?>
-					</div>
-                </div>
+                       
+                  
                 <div class="spacer-0"></div>
-            </div>
+           
 			<div class="spacer-15"></div>
-
+</form>
 			<div class="details">
-                <div class="display-mode">
-                    <h2 class="title">Enable Facebook, Twitter, Google+</h2>
+                
                     <div class="spacer-20"></div>
-                    <form name="wmp_socialmedia_form" id="wmp_socialmedia_form" class="left" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_save" method="post" style="min-width: 300px;">
-
-                        <?php
-                            foreach (array('facebook', 'twitter', 'google') as $social_network):
-
-                                $is_enabled = WMobilePack_Options::get_setting('enable_'.$social_network);
-                        ?>
-
-                            <input type="hidden" name="wmp_option_enable_<?php echo $social_network;?>" id="wmp_option_enable_<?php echo $social_network;?>" value="<?php echo $is_enabled;?>" />
-                            <input type="checkbox" name="wmp_socialmedia_<?php echo $social_network;?>_check" id="wmp_socialmedia_<?php echo $social_network;?>_check" value="1" <?php if ($is_enabled == 1) echo "checked" ;?> />
-                            <label for="wmp_socialmedia_<?php echo $social_network;?>_check">
-
-                                    <?php if ($social_network == 'facebook' || $social_network == 'twitter'):?>
-                                        Enable <?php echo ucfirst($social_network);?> sharing
-                                    <?php else:?>
-                                        Enable Google+ sharing
-                                    <?php endif;?>
-
-                            </label>
+                    
                             <div class="spacer-10"></div>
 
-                        <?php endforeach;?>
+                       
 
                         <div class="spacer-10"></div>
-                        <a href="javascript:void(0)" id="wmp_socialmedia_send_btn" class="btn green smaller">Save</a>
-                    </form>
-                </div>
+                       
                 <div class="spacer-0"></div>
-            </div>
+          
             <div class="spacer-15"></div>
             <!--<div class="details">
                 <div class="display-mode">
@@ -194,7 +157,7 @@
             </div>
         </div>-->
 
-        <div class="right-side">
+       
             <!-- waitlist form -->
             <?php #include_once(WMP_PLUGIN_PATH.'admin/sections/waitlist.php'); ?>
 
@@ -203,7 +166,8 @@
         </div>
 	</div>
 </div>
-
+</div>
+</div>
 <?php
 // check if we have a https connection
 $is_secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
