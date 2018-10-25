@@ -1,6 +1,6 @@
 <?php
 
-define("WMP_VERSION", '3.4');
+define("WMP_VERSION", '1.0');
 define('WMP_PLUGIN_NAME', 'PT PWA');
 define('WMP_DOMAIN', 'wordpress-pwa');
 
