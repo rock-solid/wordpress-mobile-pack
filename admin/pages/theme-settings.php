@@ -60,6 +60,25 @@ jQuery(document).ready(function() {
 	display:none;
 }
 
+.headerImage, .hamburgerImage, .loadingSpinner {
+	min-width: 250px;
+	min-height: 36px;
+}
+
+.save {
+	background: #9aca40;
+    color: #ffffff;
+    border: 1px solid #7ea82f;
+    border-radius: 3px;
+    padding: 7px 15px 7px 15px;
+    min-width: 120px;
+}
+
+.button.wp-color-result {
+	min-width: 255px;
+	min-height: 36px;
+}
+
 </style>
 
 <div id="wmpack-admin">
@@ -157,42 +176,64 @@ jQuery(document).ready(function() {
 						<!--<div class="color-schemes-custom" style="display: <?php echo $selected_color_scheme == 0 ? 'block' : 'none';?>;">-->
 						<div class="color-schemes-custom" style="display:block;">	
 							<p class="section-header">Select Colour Scheme</p>
+							<p style="font-size: 8px;">To choose a colour, click the swatch and enter its hexcode</p> 
 							<div class="spacer-20"></div>
 							<fieldset id="color-settings">
 								<div class="holder">
-									<label>Mobile Menu Bar Background Colour</label>
-									<input class="bmBurgerBarsBackground" type="text" name="wmp_edittheme_customcolor1-bmBurgerBarsBackground" id="bmBurgerBarsBackground" value="<?php echo $color_value;?>" autocomplete="off" />
+									<label>Mobile Menu Bar Background Colour</label><input class="bmBurgerBarsBackground" type="text" name="wmp_edittheme_customcolor1-bmBurgerBarsBackground" id="bmBurgerBarsBackground" value="<?php echo $color_value;?>" autocomplete="off" />
 								</div>	
+								<div class="spacer-15"></div>
 								<div class="holder">
 									<label for="bmCrossBackground">Close Button Background Colour</label>
 									<input class="bmCrossBackground" type="text" name="wmp_edittheme_customcolor2" id="wmp_edittheme_customcolor2" value="<?php echo $color_value;?>" autocomplete="off" />
 								</div>
+								<div class="spacer-15"></div>
 								<div class="holder">
 									<label for="bmMenuBackground">Mobile Menu Background Colour</label>
 									<input class="bmMenuBackground" type="text" name="wmp_edittheme_customcolor3" id="wmp_edittheme_customcolor3" value="<?php echo $color_value;?>" autocomplete="off" />
 								</div>
+								<div class="spacer-15"></div>
 								<div class="holder">
 									<label for="bmItemListColor">Mobile Menu Item List Colour</label>
 									<input class="bmItemListColor" type="text" name="wmp_edittheme_customcolor4" id="wmp_edittheme_customcolor4" value="<?php echo $color_value;?>" autocomplete="off" />
 								</div>
+								<div class="spacer-15"></div>
 								<div class="holder">
 									<label for="SelectedBackground">Selected Item Background Colour</label>
 									<input class="selectedBackground" type="text" name="wmp_edittheme_customcolor5" id="wmp_edittheme_customcolor5" value="<?php echo $color_value;?>" autocomplete="off" />
 								</div>			
+								<div class="spacer-15"></div>
 								<div class="holder">
 									<label for="selectedText">Selected Text Background Color</label>
 									<input class="selectedText" type="text" name="wmp_edittheme_customcolor6" id="wmp_edittheme_customcolor6" value="<?php echo $color_value;?>" autocomplete="off" />
 								</div>
+								<div class="spacer-15"></div>
 								<div class="holder">
 									<label for="themeColour">Theme Colour</label>
 									<input class="themeColour" type="text" name="wmp_edittheme_customcolor7" id="wmp_edittheme_customcolor7" value="<?php echo $color_value;?>" autocomplete="off" />
 								</div>
+								<div class="spacer-15"></div>
 								<div class="holder">
 									<label for="backgroundColour">Background Colour</label>
 									<input class="backgroundColour" type="text" name="wmp_edittheme_customcolor8" id="wmp_edittheme_customcolor8" value="<?php echo $color_value;?>" autocomplete="off" />
 								</div>
+								<div class="spacer-15"></div>
+								<div class="holder">
+									<label for="headerImage">Header Image (Paste URL)</label>
+									<input class="headerImage" type="url" name="headerImage" id="headerImage" placeholder="www.example.com/header-image.png"/>
+								</div>
+								<div class="spacer-15"></div>	
+								<div class="holder">
+									<label for="hamburgerImage">Mobile Menu Bar Image (Paste URL)</label>
+									<input class="hamburgerImage" type="url" name="hamburgerImage" id="hamburgerImage" placeholder="www.example.com/mobile-menu-image.png"/>
+								</div>
+								<div class="spacer-15"></div>
+								<div class="holder">
+									<label for="loadingSpinner">Loading Spinner Image (Paste URL)</label>
+									<input class="loadingSpinner" type="url" name="loadingSpinner" id="loadingSpinner" placeholder="www.example.com/spinner.gif"/>
+								</div>
 						<div class="spacer-20"></div>
-						<div class="submit"><input type="button" id="save" class="save" value="Save Settings"/></div>				
+						<div class="submit"><input type="button" id="save" class="save" value="Save"/></div>				
 							</fieldset>	
 							</div>
 					</form>
