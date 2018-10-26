@@ -94,12 +94,6 @@ jQuery(document).ready(function() {
             <div class="spacer-0"></div>
 
             <!-- add content form -->
-            <div class="details">
-                <div class="spacer-10"></div>
-                <p><p>Customize your mobile web application by choosing from the below color schemes &amp; fonts, adding your logo and app icon. The default theme comes with 6 abstract covers that are randomly displayed on the loading screen to give your app a magazine flavor. You can further personalize your mobile web application by uploading your own cover.</p>
-                <div class="spacer-20"></div>
-            </div>
-            <div class="spacer-10"></div>
 
 			<?php
                 $theme_settings = WMobilePack_Themes_Config::get_theme_config();
@@ -393,104 +387,11 @@ jQuery(document).ready(function() {
 			</div>
 
 			<div class="spacer-15"></div>
-			<div class="details">
-			<div class="display-mode">
-				<h2 class="title">Add to Home Screen</h2>
-				<div class="spacer-20"></div>
-				<p>In order for your users to be prompted to add the app to their home screen you must add a service worker to the root of your domain.</p>
-				<div class="spacer-10"></div>
-				<p>Move the 'sw.js' file which is located in the 'wordpress-mobile-pack' plugin directory to the root of your domain '/' using FTP.</p>
-				<div class="spacer-10"></div>
-				<p>Once you have moved the file to your root, check the box bellow and click 'save'. For more details visit the <a href="https://docs.wpmobilepack.com/wp-mobile-pack-free/look-and-feel.html" target="_blank">support page.</a></p>
-				<div class="spacer-30"></div>
-				<form name="wmp_service_worker_form" id="wmp_service_worker_form" class="left" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_save" method="post" style="min-width: 300px;">
-					<?php $installed = WMobilePack_Options::get_setting('service_worker_installed'); ?>
-					<input type="hidden" name="wmp_option_service_worker_installed" id="wmp_option_service_worker_installed" value="<?php echo $installed; ?>"/>
-					<input type="checkbox" name="wmp_service_worker_installed_check" id="wmp_service_worker_installed_check" value="1" <?php if ($installed == 1) echo "checked" ;?> />
-					<label for="wmp_service_worker_installed_check"> Service Worker Installed </label>
-					<div class="spacer-40"></div>
-					<a href="javascript:void(0);" id="wmp_service_worker_send_btn" class="btn green smaller">Save</a>
-				</form>
-			</div>
-			<div class="spacer-0"></div>
-			</div>
 
 
             <div class="spacer-15"></div>
 
-                <div class="details branding">
-
-				<h2 class="title">Customize Your App's Cover</h2>
-				<div class="spacer-15"></div>
-				<div class="grey-line"></div>
-				<div class="spacer-20"></div>
-				<p>Each theme comes with 6 abstract covers that are randomly displayed on the loading screen to give your app a magazine flavor. You can further personalize your mobile web application by uploading your own cover.</p>
-				<div class="spacer-20"></div>
-
-				<form name="wmp_editcover_form" id="wmp_editcover_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_theme_editimages&type=upload" method="post" enctype="multipart/form-data">
-					<div class="left">
-						<?php
-							$cover_path = WMobilePack_Options::get_setting('cover');
-
-							if ($cover_path != "") {
-
-								if (!file_exists(WMP_FILES_UPLOADS_DIR . $cover_path))
-									$cover_path = '';
-								else
-									$cover_path = WMP_FILES_UPLOADS_URL . $cover_path;
-							}
-						?>
-
-						<!-- upload cover field -->
-						<div class="wmp_editcover_uploadcover" style="display: <?php echo $cover_path == '' ? 'block' : 'none';?>;">
-
-							<label for="wmp_editcover_cover">Upload your app cover:</label>
-
-							<div class="custom-upload">
-
-								<input type="file" id="wmp_editcover_cover" name="wmp_editcover_cover" />
-								<div class="fake-file">
-									<input type="text" id="fakefilecover" disabled="disabled" />
-									<a href="#" class="btn grey smaller">Browse</a>
-								</div>
-
-								<a href="javascript:void(0)" id="wmp_editcover_cover_removenew" class="remove" style="display: none;"></a>
-							</div>
-
-							<!-- cancel upload cover button -->
-							<div class="wmp_editcover_changecover_cancel cancel-link" style="display: none;">
-								<a href="javascript:void(0);" class="cancel">cancel</a>
-							</div>
-							<div class="field-message error" id="error_cover_container"></div>
-
-						</div>
-
-						<!-- cover image -->
-						<div class="wmp_editcover_covercontainer display-logo" style="display: <?php echo $cover_path != '' ? 'block' : 'none';?>;">
-
-							<label for="branding_cover">App cover:</label>
-							<div class="img" id="wmp_editcover_currentcover" style="background:url(<?php echo $cover_path;?>); background-size:contain; background-repeat: no-repeat; background-position: center"></div>
-
-							<!-- edit/delete cover links -->
-							<a href="javascript:void(0);" class="wmp_editcover_changecover btn grey smaller edit">Change</a>
-							<a href="#" class="wmp_editcover_deletecover smaller remove">remove</a>
-
-						</div>
-					</div>
-
-					<div class="notice notice-left right" style="width: 265px;">
-						<span>
-						   Your cover will be used in portrait and landscape modes, so choose something that will look good on different screen sizes. <br />
-						   We recommend using a square image of minimum 500 x 500 px. The file size for uploaded images should not exceed 1MB.
-						</span>
-					</div>
-
-					<div class="spacer-20"></div>
-					<a href="javascript:void(0);" id="wmp_editcover_send_btn" class="btn green smaller">Save</a>
-
-				</form>
-				<div class="spacer-0"></div>
-			</div>
+ 
         </div>
 
         <div class="right-side">
