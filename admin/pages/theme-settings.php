@@ -17,7 +17,7 @@ jQuery(document).ready(function() {
 		jQuery.ajax(
 		{
 
-			url : "http://gt.localhost",
+			url : <?php echo '"'. home_url() .'"'; ?>,
 			type: "POST",
 			data: output1,
 			success: function(response) {
