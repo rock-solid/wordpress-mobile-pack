@@ -1,4 +1,35 @@
 <script type="text/javascript">
+jQuery(document).ready(function() {
+	jQuery("#save").click(function(e) {
+		var jsonData1 = {};
+		
+		var fieldsetData = jQuery("#color-settings").serializeArray();
+		var _this = this;
+		jQuery.each(fieldsetData, function() {
+			
+			var custKey = jQuery('input[name="' + this.name + '"')[0].classList[0];
+			// var deconc = this.name
+			// console.log(_this.getAttribute('class'));
+			jsonData1[custKey] = this.value || '';
+		});
+		 console.log(jsonData1);
+         var output1 = JSON.stringify(jQuery("#color-settings").serializeArray());
+		jQuery.ajax(
+		{
+
+			url : <?php echo '"'. home_url() .'"'; ?>,
+			type: "POST",
+			data: output1,
+			success: function(response) {
+				alert("Settings saved.");
+			}
+		}); 
+		e.preventDefault();
+	});	
+});
+</script>	<!--must be used as a fallback in case the php doesn't work-->
+
+<script type="text/javascript">
     if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
 
@@ -7,10 +38,53 @@
         });
     }
 </script>
+
+
+
+<style>
+
+.color-schemes-custom  input {
+	margin: .4rem;
+}
+
+.color-schemes-custom label {
+	
+	text-align: right;
+}
+
+.wp-picker-holder {
+	display:none;
+}
+
+.wp-color-result-text {
+	display:none;
+}
+
+.headerImage, .hamburgerImage, .loadingSpinner {
+	min-width: 250px;
+	min-height: 36px;
+}
+
+.save {
+	background: #9aca40;
+    color: #ffffff;
+    border: 1px solid #7ea82f;
+    border-radius: 3px;
+    padding: 7px 15px 7px 15px;
+    min-width: 120px;
+}
+
+.button.wp-color-result {
+	min-width: 255px;
+	min-height: 36px;
+}
+
+</style>
+
 <div id="wmpack-admin">
 	<div class="spacer-60"></div>
     <!-- set title -->
-    <h1><?php echo WMP_PLUGIN_NAME.' '.WMP_VERSION;?></h1>
+    <h1>Publisher's Toolbox PWA <?php echo WMP_VERSION;?></h1>
 	<div class="spacer-20"></div>
 	<div class="look-and-feel">
         <div class="left-side">
@@ -20,12 +94,6 @@
             <div class="spacer-0"></div>
 
             <!-- add content form -->
-            <div class="details">
-                <div class="spacer-10"></div>
-                <p><p>Customize your mobile web application by choosing from the below color schemes &amp; fonts, adding your logo and app icon. The default theme comes with 6 abstract covers that are randomly displayed on the loading screen to give your app a magazine flavor. You can further personalize your mobile web application by uploading your own cover.</p>
-                <div class="spacer-20"></div>
-            </div>
-            <div class="spacer-10"></div>
 
 			<?php
                 $theme_settings = WMobilePack_Themes_Config::get_theme_config();
@@ -48,10 +116,9 @@
 						<div class="spacer-20"></div>
 					<?php endif;?>
 
-					<form name="wmp_edittheme_form" id="wmp_edittheme_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_theme_settings" method="post">
-
-						<div class="color-schemes">
-							<p class="section-header">Select Color Scheme</p>
+					<form name="wmp_edittheme_form" id="wmp_edittheme_form" action="" method="post">
+						<div class="color-schemes" style="display:none;">
+							<p class="section-header">Select Colour Scheme</p>
 							<div class="spacer-20"></div>
 
 							<!-- add labels -->
@@ -81,13 +148,13 @@
 								<div class="spacer-20"></div>
 							<?php endforeach;?>
 
-							<!-- add custom scheme radio button -->
+							<!-- add custom scheme radio button
 							<input type="radio" name="wmp_edittheme_colorscheme" id="wmp_edittheme_colorscheme" value="0" <?php echo $selected_color_scheme == 0 ? 'checked="checked"' : '';?> autocomplete="off" />
-							<p>Edit custom colors</p>
+							<p>Edit custom colors</p>-->
 						</div>
 
 						<!-- start notice -->
-						<div class="notice notice-left left" style="width: 50%;">
+						<div class="notice notice-left left" style="width: 50%; display:none;">
 							<span>
 								The color scheme will impact the following sections within the mobile web application:<br/><br/>
 								<?php
@@ -100,99 +167,69 @@
 						<div class="spacer-20"></div>
 
 						<!-- start color pickers -->
-						<div class="color-schemes-custom" style="display: <?php echo $selected_color_scheme == 0 ? 'block' : 'none';?>;">
-
-							<p class="section-header">Your Custom Scheme</p>
+						<!--<div class="color-schemes-custom" style="display: <?php echo $selected_color_scheme == 0 ? 'block' : 'none';?>;">-->
+						<div class="color-schemes-custom" style="display:block;">	
+							<p class="section-header">Select Colour Scheme</p>
+							<p style="font-size: 8px;">To choose a colour, click the swatch and enter its hexcode</p> 
 							<div class="spacer-20"></div>
-
-							<div class="set">
-								<?php
-									// display color pickers and divide them into two columns
-									$half = ceil( count($theme_settings['labels']) / 2);
-
-									// read the custom colors options array
-									$selected_custom_colors = WMobilePack_Options::get_setting('custom_colors');
-
-									foreach ($theme_settings['labels'] as $key => $description):
-
-										$color_value = '';
-										if (!empty($selected_custom_colors) && array_key_exists($key, $selected_custom_colors))
-											$color_value = $selected_custom_colors[$key];
-								?>
-									<label for="wmp_edittheme_customcolor<?php echo $key;?>"><?php echo ($key+1).'. '.$description;?></label>
-									<input type="text" name="wmp_edittheme_customcolor<?php echo $key;?>" id="wmp_edittheme_customcolor<?php echo $key;?>" value="<?php echo $color_value;?>" autocomplete="off" />
-									<div class="spacer-10"></div>
-
-									<?php if ($key + 1 == $half):?>
-										</div>
-										<div class="set">
-									<?php endif;?>
-
-								<?php endforeach;?>
+							<fieldset id="color-settings">
+								<div class="holder">
+									<label>Mobile Menu Bar Background Colour</label><input class="bmBurgerBarsBackground" type="text" name="wmp_edittheme_customcolor1-bmBurgerBarsBackground" id="bmBurgerBarsBackground" value="<?php echo $color_value;?>" autocomplete="off" />
+								</div>	
+								<div class="spacer-15"></div>
+								<div class="holder">
+									<label for="bmCrossBackground">Close Button Background Colour</label>
+									<input class="bmCrossBackground" type="text" name="wmp_edittheme_customcolor2" id="wmp_edittheme_customcolor2" value="<?php echo $color_value;?>" autocomplete="off" />
+								</div>
+								<div class="spacer-15"></div>
+								<div class="holder">
+									<label for="bmMenuBackground">Mobile Menu Background Colour</label>
+									<input class="bmMenuBackground" type="text" name="wmp_edittheme_customcolor3" id="wmp_edittheme_customcolor3" value="<?php echo $color_value;?>" autocomplete="off" />
+								</div>
+								<div class="spacer-15"></div>
+								<div class="holder">
+									<label for="bmItemListColor">Mobile Menu Item List Colour</label>
+									<input class="bmItemListColor" type="text" name="wmp_edittheme_customcolor4" id="wmp_edittheme_customcolor4" value="<?php echo $color_value;?>" autocomplete="off" />
+								</div>
+								<div class="spacer-15"></div>
+								<div class="holder">
+									<label for="SelectedBackground">Selected Item Background Colour</label>
+									<input class="selectedBackground" type="text" name="wmp_edittheme_customcolor5" id="wmp_edittheme_customcolor5" value="<?php echo $color_value;?>" autocomplete="off" />
+								</div>			
+								<div class="spacer-15"></div>
+								<div class="holder">
+									<label for="selectedText">Selected Text Background Color</label>
+									<input class="selectedText" type="text" name="wmp_edittheme_customcolor6" id="wmp_edittheme_customcolor6" value="<?php echo $color_value;?>" autocomplete="off" />
+								</div>
+								<div class="spacer-15"></div>
+								<div class="holder">
+									<label for="themeColour">Theme Colour</label>
+									<input class="themeColour" type="text" name="wmp_edittheme_customcolor7" id="wmp_edittheme_customcolor7" value="<?php echo $color_value;?>" autocomplete="off" />
+								</div>
+								<div class="spacer-15"></div>
+								<div class="holder">
+									<label for="backgroundColour">Background Colour</label>
+									<input class="backgroundColour" type="text" name="wmp_edittheme_customcolor8" id="wmp_edittheme_customcolor8" value="<?php echo $color_value;?>" autocomplete="off" />
+								</div>
+								<div class="spacer-15"></div>
+								<div class="holder">
+									<label for="headerImage">Header Image (Paste URL)</label>
+									<input class="headerImage" type="url" name="headerImage" id="headerImage" placeholder="www.example.com/header-image.png"/>
+								</div>
+								<div class="spacer-15"></div>	
+								<div class="holder">
+									<label for="hamburgerImage">Mobile Menu Bar Image (Paste URL)</label>
+									<input class="hamburgerImage" type="url" name="hamburgerImage" id="hamburgerImage" placeholder="www.example.com/mobile-menu-image.png"/>
+								</div>
+								<div class="spacer-15"></div>
+								<div class="holder">
+									<label for="loadingSpinner">Loading Spinner Image (Paste URL)</label>
+									<input class="loadingSpinner" type="url" name="loadingSpinner" id="loadingSpinner" placeholder="www.example.com/spinner.gif"/>
+								</div>
+						<div class="spacer-20"></div>
+						<div class="submit"><input type="button" id="save" class="save" value="Save"/></div>				
+							</fieldset>	
 							</div>
-						</div>
-						<div class="spacer-20"></div>
-
-						<!-- choose fonts -->
-						<div class="font-chooser">
-							<p class="section-header">Select Fonts</p>
-							<div class="spacer-20"></div>
-
-							<!-- add radio buttons -->
-							<?php if (array_key_exists('headlines-font', $theme_settings['fonts'])): ?>
-								<?php
-									$font_headlines = WMobilePack_Options::get_setting('font_headlines');
-									if ($font_headlines == '')
-										$font_headlines = 1;
-								?>
-
-								<label for="wmp_edittheme_fontheadlines">Headlines</label>
-
-								<select name="wmp_edittheme_fontheadlines" id="wmp_edittheme_fontheadlines">
-
-									<?php foreach (WMobilePack_Themes_Config::$allowed_fonts as $key => $font_family): ?>
-										<option value="<?php echo $key+1;?>" data-text='<span style="font-family:<?php echo str_replace(" ", "", $font_family);?>"><?php echo $font_family;?></span>' <?php if ($font_headlines == $key+1) echo "selected";?>></option>
-									<?php endforeach; ?>
-								</select>
-
-								<div class="spacer-10"></div>
-							<?php endif; ?>
-
-							<?php if (array_key_exists('subtitles-font', $theme_settings['fonts'])): ?>
-								<?php
-									$font_subtitles = WMobilePack_Options::get_setting('font_subtitles');
-									if ($font_subtitles == '')
-										$font_subtitles = 1;
-								?>
-
-								<label for="wmp_edittheme_fontsubtitles">Subtitles</label>
-								<select name="wmp_edittheme_fontsubtitles" id="wmp_edittheme_fontsubtitles">
-									<?php foreach (WMobilePack_Themes_Config::$allowed_fonts as $key => $font_family): ?>
-										<option value="<?php echo $key+1;?>" data-text='<span style="font-family:<?php echo str_replace(" ", "", $font_family);?>"><?php echo $font_family;?></span>' <?php if ($font_subtitles == $key+1) echo "selected";?>></option>
-									<?php endforeach; ?>
-								</select>
-								<div class="spacer-10"></div>
-							<?php endif; ?>
-
-							<?php if(array_key_exists('paragraphs-font', $theme_settings['fonts'])): ?>
-								<?php
-									$font_paragraphs = WMobilePack_Options::get_setting('font_paragraphs');
-									if ($font_paragraphs == '')
-										$font_paragraphs = 1;
-								?>
-
-								<label for="wmp_edittheme_fontparagraphs">Paragraphs</label>
-								<select name="wmp_edittheme_fontparagraphs" id="wmp_edittheme_fontparagraphs">
-									<?php foreach (WMobilePack_Themes_Config::$allowed_fonts as $key => $font_family): ?>
-										<option value="<?php echo $key+1;?>" data-text='<span style="font-family:<?php echo str_replace(" ", "", $font_family);?>"><?php echo $font_family;?></span>' <?php if ($font_paragraphs == $key+1) echo "selected";?>></option>
-									<?php endforeach; ?>
-								</select>
-								<div class="spacer-20"></div>
-							<?php endif;?>
-						</div>
-
-						<div class="spacer-20"></div>
-						<a href="javascript:void(0);" id="wmp_edittheme_send_btn" class="btn green smaller" >Save</a>
 					</form>
 				</div>
 				<div class="spacer-15"></div>
@@ -350,112 +387,19 @@
 			</div>
 
 			<div class="spacer-15"></div>
-			<div class="details">
-			<div class="display-mode">
-				<h2 class="title">Add to Home Screen</h2>
-				<div class="spacer-20"></div>
-				<p>In order for your users to be prompted to add the app to their home screen you must add a service worker to the root of your domain.</p>
-				<div class="spacer-10"></div>
-				<p>Move the 'sw.js' file which is located in the 'wordpress-mobile-pack' plugin directory to the root of your domain '/' using FTP.</p>
-				<div class="spacer-10"></div>
-				<p>Once you have moved the file to your root, check the box bellow and click 'save'. For more details visit the <a href="https://docs.wpmobilepack.com/wp-mobile-pack-free/look-and-feel.html" target="_blank">support page.</a></p>
-				<div class="spacer-30"></div>
-				<form name="wmp_service_worker_form" id="wmp_service_worker_form" class="left" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_settings_save" method="post" style="min-width: 300px;">
-					<?php $installed = WMobilePack_Options::get_setting('service_worker_installed'); ?>
-					<input type="hidden" name="wmp_option_service_worker_installed" id="wmp_option_service_worker_installed" value="<?php echo $installed; ?>"/>
-					<input type="checkbox" name="wmp_service_worker_installed_check" id="wmp_service_worker_installed_check" value="1" <?php if ($installed == 1) echo "checked" ;?> />
-					<label for="wmp_service_worker_installed_check"> Service Worker Installed </label>
-					<div class="spacer-40"></div>
-					<a href="javascript:void(0);" id="wmp_service_worker_send_btn" class="btn green smaller">Save</a>
-				</form>
-			</div>
-			<div class="spacer-0"></div>
-			</div>
 
 
             <div class="spacer-15"></div>
 
-                <div class="details branding">
-
-				<h2 class="title">Customize Your App's Cover</h2>
-				<div class="spacer-15"></div>
-				<div class="grey-line"></div>
-				<div class="spacer-20"></div>
-				<p>Each theme comes with 6 abstract covers that are randomly displayed on the loading screen to give your app a magazine flavor. You can further personalize your mobile web application by uploading your own cover.</p>
-				<div class="spacer-20"></div>
-
-				<form name="wmp_editcover_form" id="wmp_editcover_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_theme_editimages&type=upload" method="post" enctype="multipart/form-data">
-					<div class="left">
-						<?php
-							$cover_path = WMobilePack_Options::get_setting('cover');
-
-							if ($cover_path != "") {
-
-								if (!file_exists(WMP_FILES_UPLOADS_DIR . $cover_path))
-									$cover_path = '';
-								else
-									$cover_path = WMP_FILES_UPLOADS_URL . $cover_path;
-							}
-						?>
-
-						<!-- upload cover field -->
-						<div class="wmp_editcover_uploadcover" style="display: <?php echo $cover_path == '' ? 'block' : 'none';?>;">
-
-							<label for="wmp_editcover_cover">Upload your app cover:</label>
-
-							<div class="custom-upload">
-
-								<input type="file" id="wmp_editcover_cover" name="wmp_editcover_cover" />
-								<div class="fake-file">
-									<input type="text" id="fakefilecover" disabled="disabled" />
-									<a href="#" class="btn grey smaller">Browse</a>
-								</div>
-
-								<a href="javascript:void(0)" id="wmp_editcover_cover_removenew" class="remove" style="display: none;"></a>
-							</div>
-
-							<!-- cancel upload cover button -->
-							<div class="wmp_editcover_changecover_cancel cancel-link" style="display: none;">
-								<a href="javascript:void(0);" class="cancel">cancel</a>
-							</div>
-							<div class="field-message error" id="error_cover_container"></div>
-
-						</div>
-
-						<!-- cover image -->
-						<div class="wmp_editcover_covercontainer display-logo" style="display: <?php echo $cover_path != '' ? 'block' : 'none';?>;">
-
-							<label for="branding_cover">App cover:</label>
-							<div class="img" id="wmp_editcover_currentcover" style="background:url(<?php echo $cover_path;?>); background-size:contain; background-repeat: no-repeat; background-position: center"></div>
-
-							<!-- edit/delete cover links -->
-							<a href="javascript:void(0);" class="wmp_editcover_changecover btn grey smaller edit">Change</a>
-							<a href="#" class="wmp_editcover_deletecover smaller remove">remove</a>
-
-						</div>
-					</div>
-
-					<div class="notice notice-left right" style="width: 265px;">
-						<span>
-						   Your cover will be used in portrait and landscape modes, so choose something that will look good on different screen sizes. <br />
-						   We recommend using a square image of minimum 500 x 500 px. The file size for uploaded images should not exceed 1MB.
-						</span>
-					</div>
-
-					<div class="spacer-20"></div>
-					<a href="javascript:void(0);" id="wmp_editcover_send_btn" class="btn green smaller">Save</a>
-
-				</form>
-				<div class="spacer-0"></div>
-			</div>
+ 
         </div>
 
         <div class="right-side">
             <!-- waitlist form -->
-            <?php include_once(WMP_PLUGIN_PATH.'admin/sections/waitlist.php'); ?>
+            <?php #include_once(WMP_PLUGIN_PATH.'admin/sections/waitlist.php'); ?>
 
             <!-- add feedback form -->
-            <?php include_once(WMP_PLUGIN_PATH.'admin/sections/feedback.php'); ?>
+            <?php #include_once(WMP_PLUGIN_PATH.'admin/sections/feedback.php'); ?>
         </div>
 	</div>
 </div>

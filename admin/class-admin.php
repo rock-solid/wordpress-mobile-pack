@@ -125,10 +125,10 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
          * Method used to render the PRO page from the admin area
          *
          */
-        public function pro(){
+        /* public function pro(){
 
             include(WMP_PLUGIN_PATH.'admin/pages/pro.php');
-        }
+        } */
 
 
         

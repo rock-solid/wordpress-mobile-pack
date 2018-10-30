@@ -48,7 +48,8 @@ if ( ! class_exists( 'WMobilePack_Themes_Config' ) ) {
         * @var array
         */
         protected static $allowed_themes = array(
-			2 => 'Obliq V2.0',
+            3 => 'Newspaper',
+            4 => 'Magazine'
         );
 
 		/**
@@ -77,7 +78,7 @@ if ( ! class_exists( 'WMobilePack_Themes_Config' ) ) {
                 $theme = WMobilePack_Options::get_setting('theme');
             }
 
-            $theme_config_path = WMP_PLUGIN_PATH.'frontend/themes/app'.$theme.'/presets.json';
+            $theme_config_path = WMP_PLUGIN_PATH.'frontend/themes/app'.$theme.'/presets.json'; 
 
             if (file_exists($theme_config_path)){
 
