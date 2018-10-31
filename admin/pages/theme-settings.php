@@ -34,9 +34,22 @@
 
 								$man = $_SERVER['DOCUMENT_ROOT'].'/manifest.json';
 
+
+								$test = fopen($man, 'w+');
+
+								$test_data = "{ 'data1' : 1, 'data2' : 2 }";
+
+								fwrite($test, $test_data);
+
+								fclose($test);
+
 								$skim = fopen($man, 'r');
 
 								$man_update_out = fread($skim, filesize($man)); 
+
+								echo $man_update_out;
+							
+
 								fclose($skim);
 								$man_update_in = json_decode($man_update_out, true);
 
@@ -55,7 +68,7 @@
     						fclose($man_link);
 
     						echo 'The file has been written to: '.$_SERVER['DOCUMENT_ROOT'].'/manifest.json';
-} 
+							} 
 
 
 							$man = $_SERVER['DOCUMENT_ROOT'].'/manifest.json';
@@ -74,6 +87,10 @@
 							'display' => 'standalone',
 							'orientation' => 'portrait',
 						); 
+
+							echo "<pre>";
+							print_r($defaults);
+							echo "</pre>";
 
     					
 							$man = $_SERVER['DOCUMENT_ROOT'].'/manifest.json';
@@ -171,7 +188,7 @@
 }
 
 .save {
-	background: #9aca40;
+	background: #0c4b7f;
     color: #ffffff;
     border: 1px solid #7ea82f;
     border-radius: 3px;
