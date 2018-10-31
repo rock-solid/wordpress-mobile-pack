@@ -137,84 +137,79 @@
                     <div class="spacer-15"></div>
 
                     <div class="feature left">
+                            <?php
 
-                        <a href="https://www.youtube.com/watch?v=elxjfdbAoqM&feature=youtu.be" target="_blank">
-                            <img src="https://d3oqwjghculspf.cloudfront.net/dashboard/quick_start/images/customize.png"
-                                 title="Step 1. Customize your mobile web app's look &amp; feel"/>
+                            $step1 = get_home_url()."\wp-content\plugins\wordpress-pwa\admin\images\step1.png";
+
+                            ?>
+
+                            <img src="<?php echo $step1; ?>"
+                                 title="Step 1: Choose between two available app themes"/>
                         </a>
 
                         <div class="text">
-                            <span class="title">Step 1. Customise your mobile web app's look &amp; feel</span>
+                            <span class="title">Step 1: Choose between two available app themes</span>
 
-                            <p>Customize your mobile web application by choosing from the available color schemes &amp;
-                                fonts, adding your logo and app icon. The default theme comes with 6 abstract covers
-                                that are randomly displayed on the loading screen to give your app a magazine flavor.
-                                You can further personalize your mobile web application by uploading your own
-                                cover.<br/><br/>Check out this <a
-                                    href="https://www.youtube.com/watch?v=elxjfdbAoqM&feature=youtu.be" target="blank">short
-                                    video tutorial</a> to see how it's done.
+                            <p>There are two available themes listed to choose from: Newspaper and Magazine. This will determine the layout and presentation of the content. Any one theme will be activated, simply by clicking on the preferred option. To switch between the themes, simply click to activate the alternative theme.
                             </p>
                         </div>
                     </div>
                     <div class="spacer-0"></div>
 
-                    <div class="feature right">
+                    <div class="feature left">
+                        <?php 
 
-                        <img src="https://d3oqwjghculspf.cloudfront.net/dashboard/quick_start/images/responsive.png"
-                             title="Step 2. Decide on the content you want for your app"/>
+                        $step2 = get_home_url()."\wp-content\plugins\wordpress-pwa\admin\images\step2.png";
+
+                        ?>
+                        <img src="<?php echo $step2; ?>"
+                             title="Step 2: Tailor the look & feel to suit your website"/>
 
                         <div class="text">
-                            <span class="title">Step 2. Decide on the content you want for your app</span>
+                            <span class="title">Step 2: Tailor the look & feel to suit your website</span>
 
-                            <p>From the <strong>Content</strong> tab, choose what categories & pages to be displayed in
-                                your mobile web application. Click on the rows to show/hide categories & pages and order
-                                them by dragging the corresponding row on the desired position.</p>
+                            <p>Tailor the look & feel by choosing from the available color schemes, various images, adding your logo and app icon.</p>
                         </div>
                     </div>
                     <div class="spacer-0"></div>
 
                     <div class="feature left">
+                        <?php
 
-                        <img src="https://d3oqwjghculspf.cloudfront.net/dashboard/quick_start/images/social-buttons.png"
-                             title="Step 3. Edit your app's settings"/>
+                        $step3 = get_home_url()."\wp-content\plugins\wordpress-pwa\admin\images\step3.png";
+                        
+                        ?>
+                        <img src="<?php echo $step3; ?>"
+                             title="Step 3. Decide on the content to be included in your layout"/>
 
                         <div class="text">
-                            <span class="title">Step 3. Edit your app's settings</span>
+                            <span class="title">Step 3: Decide on the content to be included in your layout</span>
 
-                            <p>From the <strong>Settings</strong> tab, edit the <em>Display Mode</em> of your app to
-                                enable/disable it for your mobile readers. The <em>Preview</em> mode lets you edit your
-                                app without it being visible to anyone else.<br/><br/> You can also add your own <em>Google
-                                    Analytics ID</em> to get more insights on the way your mobile visitors interact with
-                                the application.</p>
+                            <p>Initially all content will be activated to show on your mobile web application. Decide between various pages & categories to be activated/deactivated, by simply clicking on the row & selecting to activate/deactivate it. Categories & pages can also be rearranged by dragging the corresponding row to the desired position.</p>
+                        </div>
+                    </div>
+                    <div class="spacer-0"></div>
+                    <?php 
+
+                     $step4 = get_home_url()."\wp-content\plugins\wordpress-pwa\admin\images\step4.png";   
+
+                    ?>
+                    <div class="feature left">
+                        <img src="<?php echo $step4 ?>"
+                             title="Step 4:  Change your settings, implement Google Analytics & social sharing"/>
+
+                        <div class="text">
+                            <span class="title">Step 4: Change your settings, implement Google Analytics & social sharing</span>
+
+                            <p>Edit the app settings & add Google Tag Manager ID & Google Analytics Tracking Code to get insights from your visitors’ behaviour on your mobile web application. You also have the option to enable social sharing by activating/deactivating it.</p>
+
                         </div>
                     </div>
                     <div class="spacer-0"></div>
 
-                    <!--<div class="feature right">
-
-                        <img src="https://d3oqwjghculspf.cloudfront.net/dashboard/quick_start/images/analytics.png"
-                             title="Step 4. Grow your mobile traffic"/>
-
-                        <div class="text">
-                            <span class="title">Step 4. Grow your mobile traffic</span>
-
-                            <p>Join our free <strong>Mobile Growth Academy</strong> and receive weekly lessons on how to
-                                improve your mobile strategy and grow your mobile traffic. Upon graduating the first 10
-                                mobile growth lessons, you'll be awarded with a <strong>30% discount
-                                certificate</strong> to be used with <a
-                                href="<?php echo isset($wpmp_upgrade_pro_link) ? $wpmp_upgrade_pro_link : WMobilePack_Admin::upgrade_pro_link();?>" target="blank">WP
-                                    Mobile Pack PRO</a>.
-                        </div>
-                    </div>-->
-                    <div class="spacer-0"></div>
-
                 </div>
 
-          
-
-            <!-- add subscribe to mobile growth -->
-            <?php include_once(WMP_PLUGIN_PATH.'admin/sections/subscribe.php'); ?>
-
+        
         </div>
         <div class="right-side"> 
             <!-- add news and updates -->
