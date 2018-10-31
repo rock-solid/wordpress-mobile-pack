@@ -120,7 +120,7 @@
                                 }
                             }
                             .overlay{
-                                background: rgba(154,202,64,0.9);
+                                background: rgba(12, 144, 195,0.9);
                                 position: absolute;
                                 width: $theme-box-width;
                                 height: $theme-box-height - $theme-box-subsection-height * 2;
@@ -193,7 +193,7 @@
                                     }
                                 }*/
                                 .overlay{
-                                    background: rgba(#fdf7d3,0.9);
+                                    background: rgba(#0c4b7f,0.9);
 
                                     .unlock{
                                         @include wbz-inline-icon(unlock, 17px);
