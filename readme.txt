@@ -129,5 +129,3 @@ Please refer to this comprehensive article about it: https://www.appticles.com/b
 = Why some 3rd party plugins are not visible on any of the app themes? =
 There are almost 50,000 plugins in the WordPress.org repository. It's impossible to support all of them. [Please get in touch](https://wpmobilepack.com/contact.html) if you want us to integrate with another 3rd party plugin. 
 
-
-
