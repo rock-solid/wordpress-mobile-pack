@@ -1,7 +1,18 @@
+<?php
+
+	$themeManager = new ThemeManager();
+	$themeContents = $themeManager.read();
+	$theme = new Theme();
+	if (!empty($themeContents)) {
+		$theme = $themeManager.deserialize($themeContents);
+	}
+	
+
+?>
+
 <script type="text/javascript">
     if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
-
             WMPJSInterface.localpath = "<?php echo plugins_url()."/".WMP_DOMAIN."/"; ?>";
             WMPJSInterface.init();
         });
@@ -29,130 +40,130 @@
         }
 </script>
 
-<?php
-							function read_manifest_from_disk(){
+// <?php
+// 							function read_manifest_from_disk(){
 
-								$man = $_SERVER['DOCUMENT_ROOT'].'/manifest.json';
+// 								$man = $_SERVER['DOCUMENT_ROOT'].'/manifest.json';
 
 
-								$test = fopen($man, 'w+');
+// 								$test = fopen($man, 'w+');
 
-								$test_data = "{ 'data1' : 1, 'data2' : 2 }";
+// 								$test_data = "{ 'data1' : 1, 'data2' : 2 }";
 
-								fwrite($test, $test_data);
+// 								fwrite($test, $test_data);
 
-								fclose($test);
+// 								fclose($test);
 
-								$skim = fopen($man, 'r');
+// 								$skim = fopen($man, 'r');
 
-								$man_update_out = fread($skim, filesize($man));
+// 								$man_update_out = fread($skim, filesize($man));
 							
 
-								fclose($skim);
-								$man_update_in = json_decode($man_update_out, true);
+// 								fclose($skim);
+// 								$man_update_in = json_decode($man_update_out, true);
 
-								return $man_update_out;
-							}
-
-
-							 function write_manifest_to_disk() {
-    						$man = $_SERVER['DOCUMENT_ROOT'].'/manifest.json';
+// 								return $man_update_out;
+// 							}
 
 
-    						$man_link = fopen($man, 'a') or die("Can't open file");
-
-    						fwrite($man_link, $man_update_out);
-
-    						fclose($man_link);
-							} 
+// 							 function write_manifest_to_disk() {
+//     						$man = $_SERVER['DOCUMENT_ROOT'].'/manifest.json';
 
 
-							$man = $_SERVER['DOCUMENT_ROOT'].'/manifest.json';
+//     						$man_link = fopen($man, 'a') or die("Can't open file");
 
-							if(isset($_POST["save"])) {
+//     						fwrite($man_link, $man_update_out);
+
+//     						fclose($man_link);
+// 							} 
+
+
+// 							$man = $_SERVER['DOCUMENT_ROOT'].'/manifest.json';
+
+// 							if(isset($_POST["save"])) {
 
 
 
-							$defaults = array(
-							'name' => get_bloginfo('name').'|'.get_bloginfo('description'),
-							'short_name' => (mb_strstr(get_bloginfo('name'), ' ', true, 'utf-8') ) ? mb_strstr(get_bloginfo('name'), ' ', true, 'utf-8') : get_bloginfo('name'),
-							'description' => get_bloginfo('description'),
-							'background-color' => '#E4E4E4',
-							'theme_color' => '#E4E4E4',
-							'start_url' => trailingslashit(get_bloginfo('url')),
-							'display' => 'standalone',
-							'orientation' => 'portrait',
-						); 
+// 							$defaults = array(
+// 							'name' => get_bloginfo('name').'|'.get_bloginfo('description'),
+// 							'short_name' => (mb_strstr(get_bloginfo('name'), ' ', true, 'utf-8') ) ? mb_strstr(get_bloginfo('name'), ' ', true, 'utf-8') : get_bloginfo('name'),
+// 							'description' => get_bloginfo('description'),
+// 							'background-color' => '#E4E4E4',
+// 							'theme_color' => '#E4E4E4',
+// 							'start_url' => trailingslashit(get_bloginfo('url')),
+// 							'display' => 'standalone',
+// 							'orientation' => 'portrait',
+// 						); 
 
     					
-							$man = $_SERVER['DOCUMENT_ROOT'].'/manifest.json';
-						}
+// 							$man = $_SERVER['DOCUMENT_ROOT'].'/manifest.json';
+// 						}
 
-						if(file_exists($man)) {
+// 						if(file_exists($man)) {
 
-							read_manifest_from_disk();
+// 							read_manifest_from_disk();
 
-						}
+// 						}
 
 
-    						$man_update_in[] = $defaults;
+//     						$man_update_in[] = $defaults;
     						
-    						$man_update_out = json_encode($man_update_in);
+//     						$man_update_out = json_encode($man_update_in);
 
-    					write_manifest_to_disk();	
-
-
-
-						?>
+//     					write_manifest_to_disk();	
 
 
-						<?php
-							$user_settings = $_SERVER['DOCUMENT_ROOT'].'/wp-content/uploads/wordpress-pwa/theme.json';
-							$success = ' ';
-							$failure = ' ';
 
-							if(isset($_POST["save"])) {
-
-							$input_proc = array(
-
-									'bmBurgerBarsBackground' => $_POST['bmBurgerBarsBackground'],
-									'bmCrossBackground' => $_POST['bmCrossBackground'],
-									'bmMenuBackground' => $_POST['bmMenuBackground'],
-									'bmItemListColor' => $_POST['bmItemListColor'],
-									'selectedBackground' => $_POST['selectedBackground'],
-									'selectedText' => $_POST['selectedText'],
-									'themeColour' => $_POST['themeColour'],
-									'backgroundColour' => $_POST['backgroundColour']
-
-							);
-
-							$user_settings = $_SERVER['DOCUMENT_ROOT'].'/wp-content/uploads/wordpress-pwa/theme.json';
+// 						?>
 
 
-							if(file_exists($user_settings)) {
+// 						<?php
+// 							$user_settings = $_SERVER['DOCUMENT_ROOT'].'/wp-content/uploads/wordpress-pwa/theme.json';
+// 							$success = ' ';
+// 							$failure = ' ';
 
-								$output = file_get_contents($user_settings); //Need to substitute for fread.
+// 							if(isset($_POST["save"])) {
 
-								$array_data = json_decode($output, true);
+// 							$input_proc = array(
+
+// 									'bmBurgerBarsBackground' => $_POST['bmBurgerBarsBackground'],
+// 									'bmCrossBackground' => $_POST['bmCrossBackground'],
+// 									'bmMenuBackground' => $_POST['bmMenuBackground'],
+// 									'bmItemListColor' => $_POST['bmItemListColor'],
+// 									'selectedBackground' => $_POST['selectedBackground'],
+// 									'selectedText' => $_POST['selectedText'],
+// 									'themeColour' => $_POST['themeColour'],
+// 									'backgroundColour' => $_POST['backgroundColour']
+
+// 							);
+
+// 							$user_settings = $_SERVER['DOCUMENT_ROOT'].'/wp-content/uploads/wordpress-pwa/theme.json';
+
+
+// 							if(file_exists($user_settings)) {
+
+// 								$output = file_get_contents($user_settings); //Need to substitute for fread.
+
+// 								$array_data = json_decode($output, true);
 						
-							}
+// 							}
 
 
-							$array_data[] = $input_proc; #appends the array with new form data.
+// 							$array_data[] = $input_proc; #appends the array with new form data.
 				
-							$output = json_encode($array_data);
+// 							$output = json_encode($array_data);
 
-							#file_put_contents($user_settings, $output);
+// 							#file_put_contents($user_settings, $output);
 				 
 
-							if(file_put_contents($user_settings, $output)) {
+// 							if(file_put_contents($user_settings, $output)) {
 
-								$success = "<label class='text-success'> Your settings have been saved. </label>";
-								}
-							else {
-								$failure = 'JSON file does not exist';
-							} 	
-						}		
+// 								$success = "<label class='text-success'> Your settings have been saved. </label>";
+// 								}
+// 							else {
+// 								$failure = 'JSON file does not exist';
+// 							} 	
+// 						}		
  						?>
 
 <style>
