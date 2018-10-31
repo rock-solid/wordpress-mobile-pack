@@ -1,35 +1,4 @@
 <script type="text/javascript">
-jQuery(document).ready(function() {
-	jQuery("#save").click(function(e) {
-		var jsonData1 = {};
-		
-		var fieldsetData = jQuery("#color-settings").serializeArray();
-		var _this = this;
-		jQuery.each(fieldsetData, function() {
-			
-			var custKey = jQuery('input[name="' + this.name + '"')[0].classList[0];
-			// var deconc = this.name
-			// console.log(_this.getAttribute('class'));
-			jsonData1[custKey] = this.value || '';
-		});
-		 console.log(jsonData1);
-         var output1 = JSON.stringify(jQuery("#color-settings").serializeArray());
-		jQuery.ajax(
-		{
-
-			url : <?php echo '"'. home_url() .'"'; ?>,
-			type: "POST",
-			data: output1,
-			success: function(response) {
-				alert("Settings saved.");
-			}
-		}); 
-		e.preventDefault();
-	});	
-});
-</script>	<!--must be used as a fallback in case the php doesn't work-->
-
-<script type="text/javascript">
     if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
 
@@ -39,7 +8,143 @@ jQuery(document).ready(function() {
     }
 </script>
 
+<script type="text/javascript">
+        document.getElementById("bmBurgerBarsBackground").value = getSavedValue("bmBurgerBarsBackground");    // set the value to this input
+        document.getElementById("bmCrossBackground").value = getSavedValue("bmCrossBackground");   // set the value to this input
+        /* Here you can add more inputs to set value. if it's saved */
 
+        //Save the value function - save it to localStorage as (ID, VALUE)
+        function saveValue(e){
+            var id = e.id;  // get the sender's id to save it . 
+            var val = e.value; // get the value. 
+            localStorage.setItem(id, val);// Every time user writing something, the localStorage's value will override . 
+        }
+
+        //get the saved value function - return the value of "v" from localStorage. 
+        function getSavedValue  (v){
+            if (localStorage.getItem(v) === null) {
+                return "";// You can change this to your default value. 
+            }
+            return localStorage.getItem(v);
+        }
+</script>
+
+<?php
+							function read_manifest_from_disk(){
+
+								$man = $_SERVER['DOCUMENT_ROOT'].'/manifest.json';
+
+								$skim = fopen($man, 'r');
+
+								$man_update_out = fread($skim, filesize($man)); 
+								fclose($skim);
+								$man_update_in = json_decode($man_update_out, true);
+
+								return $man_update_out;
+							}
+
+
+							 function write_manifest_to_disk() {
+    						$man = $_SERVER['DOCUMENT_ROOT'].'/manifest.json';
+
+
+    						$man_link = fopen($man, 'a') or die("Can't open file");
+
+    						fwrite($man_link, $man_update_out);
+
+    						fclose($man_link);
+
+    						echo 'The file has been written to: '.$_SERVER['DOCUMENT_ROOT'].'/manifest.json';
+} 
+
+
+							$man = $_SERVER['DOCUMENT_ROOT'].'/manifest.json';
+
+							if(isset($_POST["save"])) {
+
+
+
+							$defaults = array(
+							'name' => get_bloginfo('name').'|'.get_bloginfo('description'),
+							'short_name' => (mb_strstr(get_bloginfo('name'), ' ', true, 'utf-8') ) ? mb_strstr(get_bloginfo('name'), ' ', true, 'utf-8') : get_bloginfo('name'),
+							'description' => get_bloginfo('description'),
+							'background-color' => '#E4E4E4',
+							'theme_color' => '#E4E4E4',
+							'start_url' => trailingslashit(get_bloginfo('url')),
+							'display' => 'standalone',
+							'orientation' => 'portrait',
+						); 
+
+    					
+							$man = $_SERVER['DOCUMENT_ROOT'].'/manifest.json';
+						}
+
+						if(file_exists($man)) {
+
+							read_manifest_from_disk();
+
+						}
+
+
+    						$man_update_in[] = $defaults;
+    						
+    						$man_update_out = json_encode($man_update_in);
+
+    					write_manifest_to_disk();	
+
+
+
+						?>
+
+
+						<?php
+							$user_settings = $_SERVER['DOCUMENT_ROOT'].'/wp-content/uploads/wordpress-pwa/theme.json';
+							$success = ' ';
+							$failure = ' ';
+
+							if(isset($_POST["save"])) {
+
+							$input_proc = array(
+
+									'bmBurgerBarsBackground' => $_POST['bmBurgerBarsBackground'],
+									'bmCrossBackground' => $_POST['bmCrossBackground'],
+									'bmMenuBackground' => $_POST['bmMenuBackground'],
+									'bmItemListColor' => $_POST['bmItemListColor'],
+									'selectedBackground' => $_POST['selectedBackground'],
+									'selectedText' => $_POST['selectedText'],
+									'themeColour' => $_POST['themeColour'],
+									'backgroundColour' => $_POST['backgroundColour']
+
+							);
+
+							$user_settings = $_SERVER['DOCUMENT_ROOT'].'/wp-content/uploads/wordpress-pwa/theme.json';
+
+
+							if(file_exists($user_settings)) {
+
+								$output = file_get_contents($user_settings); //Need to substitute for fread.
+
+								$array_data = json_decode($output, true);
+						
+							}
+
+
+							$array_data[] = $input_proc; #appends the array with new form data.
+				
+							$output = json_encode($array_data);
+
+							#file_put_contents($user_settings, $output);
+				 
+
+							if(file_put_contents($user_settings, $output)) {
+
+								$success = "<label class='text-success'> Your settings have been saved. </label>";
+								}
+							else {
+								$failure = 'JSON file does not exist';
+							} 	
+						}		
+ 						?>
 
 <style>
 
@@ -102,135 +207,182 @@ jQuery(document).ready(function() {
             ?>
 
 				<div class="details">
-					<h2 class="title">Customize Color Schemes and Fonts</h2>
-					<div class="spacer-15"></div>
-					<div class="grey-line"></div>
-					<div class="spacer-30"></div>
-
-					<?php if (version_compare(PHP_VERSION, '5.3') < 0) :?>
-						<div class="message-container warning">
-							<div class="wrapper">
-								<span>Customizing the theme's colors and fonts requires PHP5.3 or greater. Your PHP version (<?php echo PHP_VERSION;?>) is not supported.</span>
-							</div>
-						</div>
-						<div class="spacer-20"></div>
-					<?php endif;?>
-
-					<form name="wmp_edittheme_form" id="wmp_edittheme_form" action="" method="post">
-						<div class="color-schemes" style="display:none;">
 							<p class="section-header">Select Colour Scheme</p>
 							<div class="spacer-20"></div>
+							<form method="post" id="color-settings" enctype="multipart/form-data">
+								<?php 
 
-							<!-- add labels -->
-							<div class="colors description">
-								<?php foreach ($theme_settings['labels'] as $key => $description):?>
-									<div class="color-" title="<?php echo $description;?>"><?php echo $key+1;?></div>
-								<?php endforeach; ?>
-							</div>
-							<div class="spacer-15"></div>
+								if(isset($failure)) {
 
-							<!-- add presets radio buttons & colors -->
-							<?php
-								$selected_color_scheme = WMobilePack_Options::get_setting('color_scheme');
-								if ($selected_color_scheme == '')
-									$selected_color_scheme = 1;
-
-								foreach ($theme_settings['presets'] as $color_scheme => $default_colors):
-							?>
-								<input type="radio" name="wmp_edittheme_colorscheme" id="wmp_edittheme_colorscheme" value="<?php echo $color_scheme;?>" <?php if ($color_scheme == $selected_color_scheme) echo 'checked="checked"';?> autocomplete="off" />
-								<div class="colors">
-
-									<?php foreach ($theme_settings['labels'] as $key => $description):?>
-										<div class="color-<?php echo $color_scheme.'-'.$key;?>" title="<?php echo $description;?>" style="background: <?php echo $theme_settings['presets'][$color_scheme][$key];?>"></div>
-									<?php endforeach;?>
-
-								</div>
-								<div class="spacer-20"></div>
-							<?php endforeach;?>
-
-							<!-- add custom scheme radio button
-							<input type="radio" name="wmp_edittheme_colorscheme" id="wmp_edittheme_colorscheme" value="0" <?php echo $selected_color_scheme == 0 ? 'checked="checked"' : '';?> autocomplete="off" />
-							<p>Edit custom colors</p>-->
-						</div>
-
-						<!-- start notice -->
-						<div class="notice notice-left left" style="width: 50%; display:none;">
-							<span>
-								The color scheme will impact the following sections within the mobile web application:<br/><br/>
-								<?php
-									foreach ($theme_settings['labels'] as $key => $description)
-										echo ($key+1).'.&nbsp;'.$description.'<br/>';
+									echo $failure;
+								}
 								?>
-							</span>
-						</div>
-
-						<div class="spacer-20"></div>
-
-						<!-- start color pickers -->
-						<!--<div class="color-schemes-custom" style="display: <?php echo $selected_color_scheme == 0 ? 'block' : 'none';?>;">-->
-						<div class="color-schemes-custom" style="display:block;">	
-							<p class="section-header">Select Colour Scheme</p>
-							<p style="font-size: 8px;">To choose a colour, click the swatch and enter its hexcode</p> 
-							<div class="spacer-20"></div>
-							<fieldset id="color-settings">
 								<div class="holder">
-									<label>Mobile Menu Bar Background Colour</label><input class="bmBurgerBarsBackground" type="text" name="wmp_edittheme_customcolor1-bmBurgerBarsBackground" id="bmBurgerBarsBackground" value="<?php echo $color_value;?>" autocomplete="off" />
+									<label>Mobile Menu Bar Background Colour</label><input class="bmBurgerBarsBackground" type="text" name="bmBurgerBarsBackground" id="bmBurgerBarsBackground" placeholder="Enter hex value" onkeyup="changeColour(this.className); saveValue(this)" /><div class="changedElement" style="height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;"></div>
+									<script>
+										function changeColour(className){
+											document.getElementsByClassName("changedElement")[0].style.background = document.getElementsByClassName("bmBurgerBarsBackground")[0].value;
+										}
+									</script>
+									<script>
+										var input = document.getElementById('bmBurgerBarsBackground');
+										input.addEventListener("keyup", function() {
+											changeColour(input.className);
+											saveValue(input.id);
+										})
+									</script>	
+
 								</div>	
 								<div class="spacer-15"></div>
 								<div class="holder">
+
 									<label for="bmCrossBackground">Close Button Background Colour</label>
-									<input class="bmCrossBackground" type="text" name="wmp_edittheme_customcolor2" id="wmp_edittheme_customcolor2" value="<?php echo $color_value;?>" autocomplete="off" />
+									<input type="text" class="bmCrossBackground" name="bmCrossBackground" id="bmCrossBackground" placeholder="Enter hex value" onkeyup="changeColour2(this.className);" /><div class="changedElement2" style="height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;"></div>
+										<script>
+										function changeColour2(className){
+											document.getElementsByClassName("changedElement2")[0].style.background = document.getElementsByClassName("bmCrossBackground")[0].value;
+										}
+									</script>
 								</div>
 								<div class="spacer-15"></div>
 								<div class="holder">
 									<label for="bmMenuBackground">Mobile Menu Background Colour</label>
-									<input class="bmMenuBackground" type="text" name="wmp_edittheme_customcolor3" id="wmp_edittheme_customcolor3" value="<?php echo $color_value;?>" autocomplete="off" />
+									<input class="bmMenuBackground" type="text" name="bmMenuBackground" placeholder="Enter hex value" onkeyup="changeColour3(this.className)" /><div class="changedElement3" style="height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;"></div>
+									<script>
+										function changeColour3(className){
+											document.getElementsByClassName("changedElement3")[0].style.background = document.getElementsByClassName("bmMenuBackground")[0].value;
+										}
+									</script>
 								</div>
 								<div class="spacer-15"></div>
 								<div class="holder">
 									<label for="bmItemListColor">Mobile Menu Item List Colour</label>
-									<input class="bmItemListColor" type="text" name="wmp_edittheme_customcolor4" id="wmp_edittheme_customcolor4" value="<?php echo $color_value;?>" autocomplete="off" />
+									<input class="bmItemListColor" type="text" name="bmItemListColor" placeholder="Enter hex value" onkeyup="changeColour4(this.className)" /><div class="changedElement4" style="height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;"></div>
+									<script>
+										function changeColour4(className){
+											document.getElementsByClassName("changedElement4")[0].style.background = document.getElementsByClassName("bmItemListColor")[0].value;
+										}
+									</script>
 								</div>
 								<div class="spacer-15"></div>
 								<div class="holder">
-									<label for="SelectedBackground">Selected Item Background Colour</label>
-									<input class="selectedBackground" type="text" name="wmp_edittheme_customcolor5" id="wmp_edittheme_customcolor5" value="<?php echo $color_value;?>" autocomplete="off" />
+									<label for="selectedBackground">Selected Item Background Colour</label>
+									<input class="selectedBackground" type="text" name="selectedBackground" placeholder="Enter hex value" onkeyup="changeColour5(this.className)" /><div class="changedElement5" style="height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;"></div>
+									<script>
+										function changeColour5(className){
+											document.getElementsByClassName("changedElement5")[0].style.background = document.getElementsByClassName("selectedBackground")[0].value;
+										}
+									</script>
 								</div>			
 								<div class="spacer-15"></div>
 								<div class="holder">
 									<label for="selectedText">Selected Text Background Color</label>
-									<input class="selectedText" type="text" name="wmp_edittheme_customcolor6" id="wmp_edittheme_customcolor6" value="<?php echo $color_value;?>" autocomplete="off" />
+									<input class="selectedText" type="text" name="selectedText" placeholder="Enter hex value" onkeyup="changeColour6(this.className)" /><div class="changedElement6" style="height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;"></div>
+									<script>
+										function changeColour6(className){
+											document.getElementsByClassName("changedElement6")[0].style.background = document.getElementsByClassName("selectedText")[0].value;
+										}
+									</script>
 								</div>
 								<div class="spacer-15"></div>
 								<div class="holder">
 									<label for="themeColour">Theme Colour</label>
-									<input class="themeColour" type="text" name="wmp_edittheme_customcolor7" id="wmp_edittheme_customcolor7" value="<?php echo $color_value;?>" autocomplete="off" />
+									<input class="themeColour" type="text" name="themeColour" placeholder="Enter hex value" onkeyup="changeColour7(this.className)" /><div class="changedElement7" style="height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;"></div>
+									<script>
+										function changeColour7(className){
+											document.getElementsByClassName("changedElement7")[0].style.background = document.getElementsByClassName("selectedText")[0].value;
+										}
+									</script>
 								</div>
 								<div class="spacer-15"></div>
 								<div class="holder">
 									<label for="backgroundColour">Background Colour</label>
-									<input class="backgroundColour" type="text" name="wmp_edittheme_customcolor8" id="wmp_edittheme_customcolor8" value="<?php echo $color_value;?>" autocomplete="off" />
+									<input class="backgroundColour" type="text" name="backgroundColour" placeholder="Enter hex value" onkeyup="changeColour8(this.className)" /><div class="changedElement8" style="height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;"></div>
+									<script>
+										function changeColour8(className){
+											document.getElementsByClassName("changedElement8")[0].style.background = document.getElementsByClassName("selectedText")[0].value;
+										}
+									</script>
 								</div>
 								<div class="spacer-15"></div>
 								<div class="holder">
-									<label for="headerImage">Header Image (Paste URL)</label>
-									<input class="headerImage" type="url" name="headerImage" id="headerImage" placeholder="www.example.com/header-image.png"/>
+									<label for="headerImage">Header Image</label>
+									<input class="headerImage" type="file" name="headerImage" id="headerImage"/>
+									<?php
+
+									function header_retrieve(){
+										if(isset($_FILES['headerImage'])){
+											$headerImage = $_FILES['header'];
+											$uploaded1 = media_handle_upload('headerImage', 0);
+
+											if(is_wp_error($uploaded1)){
+												echo "There was a problem uploading the file. Please try again.". $uploaded1->get_error_message();
+											} else {
+												echo "The file has been uploaded successfully.";
+											}
+										}
+									} 
+									?>
+									<?php header_retrieve(); ?>
+									<?php submit_button('Upload') ?>
 								</div>
 								<div class="spacer-15"></div>	
 								<div class="holder">
-									<label for="hamburgerImage">Mobile Menu Bar Image (Paste URL)</label>
-									<input class="hamburgerImage" type="url" name="hamburgerImage" id="hamburgerImage" placeholder="www.example.com/mobile-menu-image.png"/>
+									<label for="hamburgerImage">Mobile Menu Bar Image</label>
+									<input class="hamburgerImage" type="file" name="hamburgerImage" id="hamburgerImage"/>
+										<?php
+
+									function hamburger_retrieve(){
+										if(isset($_FILES['hamburgerImage'])){
+											$headerImage = $_FILES['header'];
+											$uploaded2 = media_handle_upload('hamburgerImage', 0);
+
+											if(is_wp_error($uploaded2)){
+												echo "There was a problem uploading the file. Please try again. ". $uploaded2->get_error_message();
+											} else {
+												echo "The file has been uploaded successfully.";
+											}
+										}
+									} 
+									?>
+									<?php hamburger_retrieve(); ?>
+									<?php submit_button('Upload') ?>
 								</div>
 								<div class="spacer-15"></div>
 								<div class="holder">
-									<label for="loadingSpinner">Loading Spinner Image (Paste URL)</label>
-									<input class="loadingSpinner" type="url" name="loadingSpinner" id="loadingSpinner" placeholder="www.example.com/spinner.gif"/>
+									<label for="loadingSpinner">Loading Spinner Image</label>
+									<input class="loadingSpinner" type="file" name="loadingSpinner" id="loadingSpinner"/>
+									<?php
+
+									function spinner_retrieve(){
+										if(isset($_FILES['loadingSpinner'])){
+											$headerImage = $_FILES['header'];
+											$uploaded3 = media_handle_upload('loadingSpinner', 0);
+
+											if(is_wp_error($uploaded3)){
+												echo "There was a problem uploading the file. Please try again. ". $uploaded3->get_error_message();
+											} else {
+												echo "The file has been uploaded successfully.";
+											}
+										}
+									} 
+									?>
+									<?php spinner_retrieve(); ?>
+									<?php submit_button('Upload') ?>
 								</div>
 						<div class="spacer-20"></div>
-						<div class="submit"><input type="button" id="save" class="save" value="Save"/></div>				
-							</fieldset>	
-							</div>
-					</form>
+						<div class="submit"><input type="submit" name="save" class="save" value="Save"/></div>	
+							<?php 
+
+							if(isset($success)) {
+
+									echo $success;
+
+									print_r($output);
+							}
+
+							?>	
+						</form>			
 				</div>
 				<div class="spacer-15"></div>
             <?php endif;?>

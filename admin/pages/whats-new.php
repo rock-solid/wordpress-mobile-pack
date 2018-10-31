@@ -1,4 +1,4 @@
-<?php require_once('C:\wamp64\www\gt\wp-admin\admin-header.php'); ?>
+
 <script type="text/javascript">
     if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
