@@ -8,6 +8,14 @@ if (!empty($themeContents)) {
 
 $theme = $themeManager->getTheme();
 
+// $manifestManager = new ManifestManager(new Manifest());
+// $manifestContents = $manifestManager->read();
+// if (!empty($manifestContents)) {
+// 	$manifestManager->setManifest($manifestManager->deserialize($manifestContents));
+// }
+
+// $manifest = $manifestManager->getManifest();
+
 if (isset($_POST["save"])) {
 
 	if (isset($_FILES['logo'])) {

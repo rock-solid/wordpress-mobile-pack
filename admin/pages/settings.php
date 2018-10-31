@@ -63,44 +63,22 @@ jQuery(document).ready(function() {
                     <form id="core-settings">
                         <div class="spacer-10"></div>
                         <label>Application Name</label>
-                        <input class="appName" type="text" name="appName" id="appName" value="Gay Times" readonly/>
+                        <input class="appName" type="text" name="appName" id="appName" value=""/>
                         <div class="spacer-20"></div>
                         <label>Application Meta Description</label>
-                        <input class="metaDescription" type="text" name="metaDescription" id="metaDescription" value="Gay Times Description" readonly/> 
+                        <input class="metaDescription" type="text" name="metaDescription" id="metaDescription" value=""/> 
                         <div class="spacer-20"></div>
                         <label>Host URL</label>
-                        <input class="hostUrl" type="text" name="hostUrl" id="hostUrl" value="https://www.gaytimes.co.uk" readonly/>  
+                        <input class="hostUrl" type="text" name="hostUrl" id="hostUrl" value=""/>  
                 		<div class="spacer-20"></div>
                         <label>Manifest URL</label>
-                        <input class="manifestUrl" type="text" name="manifestUrl" id="manifestUrl" value="static/www.gaytimes.co.uk/manifest.json" readonly/>
+                        <input class="manifestUrl" type="text" name="manifestUrl" id="manifestUrl" value="" />
                         <div class="spacer-20"></div>
-                        <label>Date Format</label>
-                        <select class="newsItemDateFormat" id="newsItemDateFormat">
-                            <option value="dd-mm-yyyy">DD-MM-YYYY</option>
-                            <option value="yyyy-mm-dd">YYYY-MM-DD</option>
-                            <option value="dd-mmmm-yy">DD-MMMM-YY</option>
-                            <option value="yy-mmmm-dd">YY-MMMM-DD</option>
-                            <option value="dd-mmm-yyyy">DD-MMM-YYYY</option>
-                            <option value="yyyy-mmm-dd">YYYY-MM-DD</option>
-                        </select>
-                        <div class="spacer-20"></div>
-                        <label>Time Format</label>
-                        <select class="newsItemTimeFormat" id="newsItemTimeFormat">
-                            <option value="12h">12 Hours</option>
-                            <option value="24h">24 Hours</option>
-                        </select>    
-						<div class="spacer-20"></div>
-						<label>Default Feed Page Size (W x H)</label>
-                        <select class="defaultFeedPageSize" id="defaultFeedPageSize">
-                            <option value="313x420">313 x 420</option>
-                            <option value="626x840">626 x 840</option>
-                        </select> <!-- values taken from here: https://www.postplanner.com/ultimate-guide-to-facebook-dimensions-cheat-sheet/ -->   
-						<div class="spacer-20"></div>
                         <label>Google Tag Manager ID</label>
-                        <input class="GTMID" type="text" name="GTMID" id="GTMID" value="GTM-XXXXX" />
+                        <input class="GTMID" type="text" name="GTMID" id="GTMID" value="" />
                         <div class="spacer-20"></div>
                         <label>Google Analytics Tracking Code</label>
-                        <input class="GATrackingCode" type="text" name="GATrackingCode" value="UA-000000-01" />
+                        <input class="GATrackingCode" type="text" name="GATrackingCode" value="" />
                         <div class="spacer-20"></div>
                         <div class="submit"><input type="button" id="save" class="save" value="Save"/></div>   
                          </form>   

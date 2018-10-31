@@ -16,9 +16,9 @@ class Theme
 
     private $defaultFeedPageSize = 20;
 
-    private $bmBurgerBarsBackground = "#000000";
+    private $bmBurgerBarsBackground = "#ffffff";
 
-    private $bmCrossBackground = "#000000";
+    private $bmCrossBackground = "#ffffff";
 
     private $bmMenuBackground = "#fff";
 
@@ -28,7 +28,7 @@ class Theme
 
     private $selectedBackground = "moon-gray";
 
-    private $selectedText = "#099ee2";
+    private $selectedText = "#ee3224";
 
     private $themeColour = "#fff";
 

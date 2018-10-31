@@ -35,6 +35,18 @@ if ( ! class_exists( 'ThemeManager' ) ) {
     require_once(WMP_PLUGIN_PATH.'inc/class-theme-manager.php');
 }
 
+if ( ! class_exists( 'Manifest' ) ) {
+    require_once(WMP_PLUGIN_PATH.'inc/class-manifest.php');
+}
+
+if ( ! class_exists( 'ManifestManager' ) ) {
+    require_once(WMP_PLUGIN_PATH.'inc/class-manifest-manager.php');
+}
+
+if ( ! class_exists( 'Icon' ) ) {
+    require_once(WMP_PLUGIN_PATH.'inc/class-icon.php');
+}
+
 if ( ! class_exists( 'FileHelper' ) ) {
     require_once(WMP_PLUGIN_PATH.'inc/class-file-helper.php');
 }
