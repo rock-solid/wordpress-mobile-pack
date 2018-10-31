@@ -1,135 +1,158 @@
-<?php
-
-
-?>
-
-
-
-
 <script type="text/javascript">
     if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
+
             WMPJSInterface.localpath = "<?php echo plugins_url()."/".WMP_DOMAIN."/"; ?>";
             WMPJSInterface.init();
         });
     }
 </script>
 
+<script type="text/javascript">
+        document.getElementById("bmBurgerBarsBackground").value = getSavedValue("bmBurgerBarsBackground");    // set the value to this input
+        document.getElementById("bmCrossBackground").value = getSavedValue("bmCrossBackground");   // set the value to this input
+        /* Here you can add more inputs to set value. if it's saved */
+
+        //Save the value function - save it to localStorage as (ID, VALUE)
+        function saveValue(e){
+            var id = e.id;  // get the sender's id to save it . 
+            var val = e.value; // get the value. 
+            localStorage.setItem(id, val);// Every time user writing something, the localStorage's value will override . 
+        }
+
+        //get the saved value function - return the value of "v" from localStorage. 
+        function getSavedValue  (v){
+            if (localStorage.getItem(v) === null) {
+                return "";// You can change this to your default value. 
+            }
+            return localStorage.getItem(v);
+        }
+</script>
+
 <?php
-// 							function read_manifest_from_disk(){
+							function read_manifest_from_disk(){
 
-// 								$man = $_SERVER['DOCUMENT_ROOT'].'/manifest.json';
-
-// 								$skim = fopen($man, 'r');
-
-// 								$man_update_out = fread($skim, filesize($man)); 
-// 								fclose($skim);
-// 								$man_update_in = json_decode($man_update_out, true);
-
-// 								return $man_update_out;
-// 							}
+								$man = $_SERVER['DOCUMENT_ROOT'].'/manifest.json';
 
 
-// 							 function write_manifest_to_disk() {
-//     						$man = $_SERVER['DOCUMENT_ROOT'].'/manifest.json';
+								$test = fopen($man, 'w+');
+
+								$test_data = "{ 'data1' : 1, 'data2' : 2 }";
+
+								fwrite($test, $test_data);
+
+								fclose($test);
+
+								$skim = fopen($man, 'r');
+
+								$man_update_out = fread($skim, filesize($man));
+							
+
+								fclose($skim);
+								$man_update_in = json_decode($man_update_out, true);
+
+								return $man_update_out;
+							}
 
 
-//     						$man_link = fopen($man, 'a') or die("Can't open file");
-
-//     						fwrite($man_link, $man_update_out);
-
-//     						fclose($man_link);
-
-//     						echo 'The file has been written to: '.$_SERVER['DOCUMENT_ROOT'].'/manifest.json';
-// } 
+							 function write_manifest_to_disk() {
+    						$man = $_SERVER['DOCUMENT_ROOT'].'/manifest.json';
 
 
-// 							$man = $_SERVER['DOCUMENT_ROOT'].'/manifest.json';
+    						$man_link = fopen($man, 'a') or die("Can't open file");
 
-// 							if(isset($_POST["save"])) {
+    						fwrite($man_link, $man_update_out);
+
+    						fclose($man_link);
+							} 
+
+
+							$man = $_SERVER['DOCUMENT_ROOT'].'/manifest.json';
+
+							if(isset($_POST["save"])) {
 
 
 
-// 							$defaults = array(
-// 							'name' => get_bloginfo('name').'|'.get_bloginfo('description'),
-// 							'short_name' => (mb_strstr(get_bloginfo('name'), ' ', true, 'utf-8') ) ? mb_strstr(get_bloginfo('name'), ' ', true, 'utf-8') : get_bloginfo('name'),
-// 							'description' => get_bloginfo('description'),
-// 							'background-color' => '#E4E4E4',
-// 							'theme_color' => '#E4E4E4',
-// 							'start_url' => trailingslashit(get_bloginfo('url')),
-// 							'display' => 'standalone',
-// 							'orientation' => 'portrait',
-// 						); 
+							$defaults = array(
+							'name' => get_bloginfo('name').'|'.get_bloginfo('description'),
+							'short_name' => (mb_strstr(get_bloginfo('name'), ' ', true, 'utf-8') ) ? mb_strstr(get_bloginfo('name'), ' ', true, 'utf-8') : get_bloginfo('name'),
+							'description' => get_bloginfo('description'),
+							'background-color' => '#E4E4E4',
+							'theme_color' => '#E4E4E4',
+							'start_url' => trailingslashit(get_bloginfo('url')),
+							'display' => 'standalone',
+							'orientation' => 'portrait',
+						); 
 
     					
-// 							$man = $_SERVER['DOCUMENT_ROOT'].'/manifest.json';
-// 						}
+							$man = $_SERVER['DOCUMENT_ROOT'].'/manifest.json';
+						}
 
-// 						if(file_exists($man)) {
+						if(file_exists($man)) {
 
-// 							read_manifest_from_disk();
+							read_manifest_from_disk();
 
-// 						}
+						}
 
 
-//     						$man_update_in[] = $defaults;
+    						$man_update_in[] = $defaults;
     						
-//     						$man_update_out = json_encode($man_update_in);
+    						$man_update_out = json_encode($man_update_in);
 
-//     					write_manifest_to_disk();	
-
-
-
-// 						?>
+    					write_manifest_to_disk();	
 
 
-// 						<?php
-// 							$user_settings = $_SERVER['DOCUMENT_ROOT'].'/wp-content/uploads/wordpress-pwa/theme.json';
-// 							$success = ' ';
-// 							$failure = ' ';
 
-// 							if(isset($_POST["save"])) {
-
-// 							$input_proc = array(
-
-// 									'bmBurgerBarsBackground' => $_POST['bmBurgerBarsBackground'],
-// 									'bmCrossBackground' => $_POST['bmCrossBackground'],
-// 									'bmMenuBackground' => $_POST['bmMenuBackground'],
-// 									'bmItemListColor' => $_POST['bmItemListColor'],
-// 									'selectedBackground' => $_POST['selectedBackground'],
-// 									'selectedText' => $_POST['selectedText'],
-// 									'themeColour' => $_POST['themeColour'],
-// 									'backgroundColour' => $_POST['backgroundColour']
-
-// 							);
-
-// 							$user_settings = $_SERVER['DOCUMENT_ROOT'].'/wp-content/uploads/wordpress-pwa/theme.json';
+						?>
 
 
-// 							if(file_exists($user_settings)) {
+						<?php
+							$user_settings = $_SERVER['DOCUMENT_ROOT'].'/wp-content/uploads/wordpress-pwa/theme.json';
+							$success = ' ';
+							$failure = ' ';
 
-// 								$output = file_get_contents($user_settings); //Need to substitute for fread.
+							if(isset($_POST["save"])) {
 
-// 								$array_data = json_decode($output, true);
+							$input_proc = array(
+
+									'bmBurgerBarsBackground' => $_POST['bmBurgerBarsBackground'],
+									'bmCrossBackground' => $_POST['bmCrossBackground'],
+									'bmMenuBackground' => $_POST['bmMenuBackground'],
+									'bmItemListColor' => $_POST['bmItemListColor'],
+									'selectedBackground' => $_POST['selectedBackground'],
+									'selectedText' => $_POST['selectedText'],
+									'themeColour' => $_POST['themeColour'],
+									'backgroundColour' => $_POST['backgroundColour']
+
+							);
+
+							$user_settings = $_SERVER['DOCUMENT_ROOT'].'/wp-content/uploads/wordpress-pwa/theme.json';
+
+
+							if(file_exists($user_settings)) {
+
+								$output = file_get_contents($user_settings); //Need to substitute for fread.
+
+								$array_data = json_decode($output, true);
 						
-// 							}
+							}
 
 
-// 							$array_data[] = $input_proc; #appends the array with new form data.
+							$array_data[] = $input_proc; #appends the array with new form data.
 				
-// 							$output = json_encode($array_data);
+							$output = json_encode($array_data);
 
-// 							#file_put_contents($user_settings, $output);
+							#file_put_contents($user_settings, $output);
 				 
 
-// 							if(file_put_contents($user_settings, $output)) {
+							if(file_put_contents($user_settings, $output)) {
 
-// 								$success = "<label class='text-success'> Your settings have been saved. </label>";
-// 								}
-// 							else {
-// 								$failure = 'JSON file does not exist';
-// 							} 	
-// 						}		
+								$success = "<label class='text-success'> Your settings have been saved. </label>";
+								}
+							else {
+								$failure = 'JSON file does not exist';
+							} 	
+						}		
  						?>
 
 <style>
@@ -157,7 +180,7 @@
 }
 
 .save {
-	background: #9aca40;
+	background: #0c4b7f;
     color: #ffffff;
     border: 1px solid #7ea82f;
     border-radius: 3px;
@@ -196,13 +219,6 @@
 							<p class="section-header">Select Colour Scheme</p>
 							<div class="spacer-20"></div>
 							<form method="post" id="color-settings" enctype="multipart/form-data">
-								<?php 
-
-								if(isset($failure)) {
-
-									echo $failure;
-								}
-								?>
 								<div class="holder">
 									<label>Mobile Menu Bar Background Colour</label><input class="bmBurgerBarsBackground" type="text" name="bmBurgerBarsBackground" id="bmBurgerBarsBackground" placeholder="Enter hex value" onkeyup="changeColour(this.className); saveValue(this)" /><div class="changedElement" style="height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;"></div>
 									<script>
@@ -357,17 +373,7 @@
 									<?php submit_button('Upload') ?>
 								</div>
 						<div class="spacer-20"></div>
-						<div class="submit"><input type="submit" name="save" class="save" value="Save"/></div>	
-							<?php 
-
-							if(isset($success)) {
-
-									echo $success;
-
-									print_r($output);
-							}
-
-							?>	
+						<div class="submit"><input type="submit" name="save" class="save" value="Save"/></div>		
 						</form>			
 				</div>
 				<div class="spacer-15"></div>
