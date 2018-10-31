@@ -7,6 +7,16 @@
         });
     }
 </script>
+
+<style>
+
+#wmpack-admin .content .left-side ul.categories li span.status.active::before, #wmpack-admin .content .left-side ul.categories li a.status.active::before {
+
+        background-color: #0c90c3;
+
+   } 
+
+</style>
 <?php
 
 	$categories = get_categories();
