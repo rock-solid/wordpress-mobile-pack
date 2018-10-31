@@ -27,6 +27,22 @@ if ( ! class_exists( 'WMobilePack_Cookie' ) ) {
     require_once(WMP_PLUGIN_PATH.'inc/class-wmp-cookie.php');
 }
 
+if ( ! class_exists( 'Theme' ) ) {
+    require_once(WMP_PLUGIN_PATH.'inc/class-theme.php');
+}
+
+if ( ! class_exists( 'ThemeManager' ) ) {
+    require_once(WMP_PLUGIN_PATH.'inc/class-theme-manager.php');
+}
+
+if ( ! class_exists( 'FileHelper' ) ) {
+    require_once(WMP_PLUGIN_PATH.'inc/class-file-helper.php');
+}
+
+if ( ! class_exists( 'JsonSerializer' ) ) {
+    require_once (WMP_PLUGIN_PATH.'libs/json-serializer/JsonSerializer/JsonSerializer.php');
+}
+
 if ( ! class_exists( 'WMobilePack' ) ) {
 
     /**
