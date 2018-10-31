@@ -45,9 +45,7 @@
 
 								$skim = fopen($man, 'r');
 
-								$man_update_out = fread($skim, filesize($man)); 
-
-								echo $man_update_out;
+								$man_update_out = fread($skim, filesize($man));
 							
 
 								fclose($skim);
@@ -66,8 +64,6 @@
     						fwrite($man_link, $man_update_out);
 
     						fclose($man_link);
-
-    						echo 'The file has been written to: '.$_SERVER['DOCUMENT_ROOT'].'/manifest.json';
 							} 
 
 
@@ -87,10 +83,6 @@
 							'display' => 'standalone',
 							'orientation' => 'portrait',
 						); 
-
-							echo "<pre>";
-							print_r($defaults);
-							echo "</pre>";
 
     					
 							$man = $_SERVER['DOCUMENT_ROOT'].'/manifest.json';
@@ -227,13 +219,6 @@
 							<p class="section-header">Select Colour Scheme</p>
 							<div class="spacer-20"></div>
 							<form method="post" id="color-settings" enctype="multipart/form-data">
-								<?php 
-
-								if(isset($failure)) {
-
-									echo $failure;
-								}
-								?>
 								<div class="holder">
 									<label>Mobile Menu Bar Background Colour</label><input class="bmBurgerBarsBackground" type="text" name="bmBurgerBarsBackground" id="bmBurgerBarsBackground" placeholder="Enter hex value" onkeyup="changeColour(this.className); saveValue(this)" /><div class="changedElement" style="height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;"></div>
 									<script>
@@ -388,17 +373,7 @@
 									<?php submit_button('Upload') ?>
 								</div>
 						<div class="spacer-20"></div>
-						<div class="submit"><input type="submit" name="save" class="save" value="Save"/></div>	
-							<?php 
-
-							if(isset($success)) {
-
-									echo $success;
-
-									print_r($output);
-							}
-
-							?>	
+						<div class="submit"><input type="submit" name="save" class="save" value="Save"/></div>		
 						</form>			
 				</div>
 				<div class="spacer-15"></div>
