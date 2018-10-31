@@ -33,9 +33,9 @@ jQuery(document).ready(function() {
 <style>
 
 .save {
-    background: #9aca40;
+    background: #0c4b7f;
     color: #ffffff;
-    border: 1px solid #7ea82f;
+    border: 1px solid #0c90c3;
     border-radius: 3px;
     padding: 7px 15px 7px 15px;
     min-width: 120px;
