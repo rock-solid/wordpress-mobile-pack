@@ -13,20 +13,50 @@
 
 	$arr_themes = array();
 
-	foreach (WMobilePack_Themes_Config::get_allowed_themes() as $i => $theme){
+	$themeManager = new ThemeManager(new Theme());
+	$themeContents = $themeManager->read();
+	if (!empty($themeContents)) {
+		$themeManager->setTheme($themeManager->deserialize($themeContents));
+	}
+
+	$themeFile = $themeManager->getTheme();
+
+	if(isset($_POST['Newspaper'])) {
+		$themeFile->setLayout(1);
+		$success = $themeManager->write();
+		if($success) {
+			header("Refresh:3");
+		}
+	} elseif(isset($_POST['Magazine'])) {
+		$themeFile->setLayout(2);
+		$success = $themeManager->write();
+		if($success) {
+			header("Refresh:3");
+		}
+	}
+
+	foreach (WMobilePack_Themes_Config::get_allowed_themes() as $i => $theme) {
+		$pwa_layout_id = null;
+
+		if($i == 3) {
+			// Set to Newspaper
+			$pwa_layout_id = 1;
+		} else {
+			// Set to Magazine
+			$pwa_layout_id = 2;
+		}
 
 		$arr_themes[] = array(
 			'id' => $i,
+			'pwa_layout_id' => $pwa_layout_id,
 			'title'=> $theme,
 			'icon' => plugins_url().'/'.WMP_DOMAIN.'/admin/images/themes/theme-'.$i.'.jpg',
-			'selected' => intval($selected_theme == $i)
+			'selected' => intval($themeFile->getLayout() == $pwa_layout_id)
 		);
 	}
 
-	$upgrade_content = WMobilePack_Admin::more_updates();
 
-	// get themes from the upgrade json
-	$arr_pro_themes = WMobilePack_Admin::upgrade_pro_themes($upgrade_content);
+
 ?>
 <div id="wmpack-admin">
 	<div class="spacer-60"></div>
@@ -39,72 +69,31 @@
             <!-- add nav menu -->
             <?php include_once(WMP_PLUGIN_PATH.'admin/sections/admin-menu.php'); ?>
             <div class="spacer-0"></div>
+			<form method="post" enctype="multipart/form-data">
+				<?php if (count($arr_themes) > 0):?>
 
-			<?php if (count($arr_themes) > 0):?>
+					<div class="details theming">
 
-				<div class="details theming">
-
-					<h2 class="title">Available Mobile App Themes</h2>
-					<div class="spacer-30"></div>
-
-					<?php if (isset($upgrade_content['premium']['themes']['message'])):?>
-						<p><?php echo $upgrade_content['premium']['themes']['message'];?></p>
+						<h2 class="title">Available Mobile App Themes</h2>
 						<div class="spacer-30"></div>
-					<?php endif;?>
 
-					<div class="themes" style="width: 220px;">
-						<?php
-							foreach ($arr_themes as $theme){
-								require(WMP_PLUGIN_PATH.'admin/sections/theme-box.php');
-							}
-						?>
+						<div class="themes" style="width: 220px;">
+							<?php
+								foreach ($arr_themes as $theme){
+									require(WMP_PLUGIN_PATH.'admin/sections/theme-box.php');
+								}
+							?>
+						</div>
+						<div class="spacer-0"></div>
 					</div>
-					<div class="spacer-0"></div>
-				</div>
-				<div class="spacer-10"></div>
+					<div class="spacer-10"></div>
 
-			<?php endif;?>
-
-			<?php if (count($arr_pro_themes) > 0):?>
-
-				<div class="details theming" style="display:none;">
-					<div class="ribbon relative">
-						<div class="starred"></div>
-					</div>
-
-					<?php if (isset($upgrade_content['premium']['themes']['title'])):?>
-						<h2 class="title"><?php echo $upgrade_content['premium']['themes']['title']; ?></h2>
-					<?php else: ?>
-						<h2 class="title">Premium Mobile App Themes</h2>
-					<?php endif;?>
-
-					<div class="spacer-30"></div>
-					<div class="themes">
-						<?php
-							foreach ($arr_pro_themes as $theme){
-								require(WMP_PLUGIN_PATH.'admin/sections/theme-box.php');
-							}
-						?>
-					</div>
-				</div>
-			<?php endif;?>
+				<?php endif;?>
+			</form>
 			<div class="spacer-10"></div>
         </div>
 
         <div class="right-side">
-            <!-- waitlist form -->
-            <?php #include_once(WMP_PLUGIN_PATH.'admin/sections/waitlist.php'); ?>
-
-            <!-- add feedback form -->
-            <?php #include_once(WMP_PLUGIN_PATH.'admin/sections/feedback.php'); ?>
         </div>
 	</div>
 </div>
-
-<script type="text/javascript">
-    if (window.WMPJSInterface && window.WMPJSInterface != null){
-        jQuery(document).ready(function(){
-            window.WMPJSInterface.add("UI_switchtheme","WMP_SWITCH_THEME",{'DOMDoc':window.document, 'selectedTheme': <?php echo $selected_theme?>}, window);
-        });
-    }
-</script>

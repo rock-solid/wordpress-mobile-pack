@@ -11,27 +11,30 @@
 <style>
 
 #wmpack-admin .content .left-side ul.categories li span.status.active::before, #wmpack-admin .content .left-side ul.categories li a.status.active::before {
-
-        background-color: #0c90c3;
-
-   } 
+    background-color: #0c90c3;
+}
 
 </style>
 <?php
 
 	$categories = get_categories();
 
-	$order_categories = WMobilePack_Options::get_setting('ordered_categories');
-
+    $order_categories = WMobilePack_Options::get_setting('ordered_categories');
+    
     // Depending on the language settings, not all categories might be visible at the same time
     $setting_inactive_categories = WMobilePack_Options::get_setting('inactive_categories');
-	$inactive_categories = array();
-	
+    $inactive_categories = array();
+    
+    // Capture excluded sections for theme file
+    $excludedSections = array();
+    
 	// Compose inactive pages array with only the visible pages
 	foreach ($categories as $category){
-		if (in_array($category->cat_ID, $setting_inactive_categories))
-			$inactive_categories[] = $category->cat_ID;
-	}
+        if (in_array($category->cat_ID, $setting_inactive_categories)) {
+            $inactive_categories[] = $category->cat_ID;
+            $excludedSections[] = $category->cat_name;
+        }
+    }
 
 	// ------------------------------------ //
 
@@ -58,8 +61,33 @@
                 $inactive_root_pages++;
             }
         }
-	}
+    }
+    $themeManager = new ThemeManager(new Theme());
+    $themeContents = $themeManager->read();
+    if (!empty($themeContents)) {
+        $themeManager->setTheme($themeManager->deserialize($themeContents));
+    }
+
+    $theme = $themeManager->getTheme();
+    $extraLinks  = [];
+
+    foreach($pages as $page) {
+        $link = array(
+            'label' => $page['obj']->post_title,
+        );
+        $link['link'] = '/' . $page['obj']->post_name;
+        
+        if(in_array($page['obj']->ID, $inactive_pages)) {
+            $link['link'] = $link['link'] . '?noapp=true';
+        }
+        $extraLinks[] = $link;
+    }
+
+    $theme->setExtraLinks($extraLinks);
+    $theme->setExcludedSections($excludedSections);
+    $themeManager->write();
 ?>
+
 <div id="wmpack-admin">
 	<div class="spacer-60"></div>
     <!-- set title -->
@@ -182,9 +210,6 @@
                                     <span class="title"><?php echo $category->name;?></span>
                                     <span class="posts"><?php echo $category->category_count != 1 ? $category->category_count.' posts' : '1 post';?> published</span>
                                 </div>
-                                <div class="buttons">
-                                    <a href="<?php echo admin_url('admin.php?page=wmp-category-details&id='.$category->cat_ID);?>" class="edit" title="Edit category for mobile"></a>
-                                </div>
                             </li>
                             <?php endforeach;?>
                         </ul>
@@ -256,10 +281,6 @@
                                                 ?>
                                             </span>
                                         </div>
-                                        <div class="buttons">
-                                            <a href="<?php echo admin_url('admin.php?page=wmp-page-details&id='.$page['obj']->ID);?>" class="edit" title="Edit page for mobile"></a>
-                                            <span class="delete" title="Delete page" style="display: none;"></span>
-                                        </div>
                                     </li>
                         <?php
                                     if (!empty($page['child'])):?>
@@ -289,13 +310,7 @@
             </div>
         </div>
     
-        <div class="right-side">
-            <!-- waitlist form -->
-            <?php #include_once(WMP_PLUGIN_PATH.'admin/sections/waitlist.php');?>
-
-            <!-- add feedback form -->
-            <?php #include_once(WMP_PLUGIN_PATH.'admin/sections/feedback.php'); ?>
-        </div>
+        <div class="right-side"></div>
 	</div>
 </div>
 

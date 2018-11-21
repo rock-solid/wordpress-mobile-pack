@@ -159,11 +159,6 @@
         </div>
 
         <div class="right-side">
-            <!-- waitlist form -->
-            <?php #include_once(WMP_PLUGIN_PATH.'admin/sections/waitlist.php'); ?>
-
-            <!-- add feedback form -->
-            <?php #include_once(WMP_PLUGIN_PATH.'admin/sections/feedback.php'); ?>
         </div>
     </div>
 </div>

@@ -100,21 +100,14 @@
                         </div>
                     </form>
                 </div>
-
-
                 <div class="spacer-0"></div>
+
             </div>
             <div class="spacer-15"></div>
+            
         </div>
 
-
-        <div class="right-side">
-            <!-- waitlist form -->
-            <?php #include_once(WMP_PLUGIN_PATH.'admin/sections/waitlist.php');?>
-
-            <!-- add feedback form -->
-            <?php #include_once(WMP_PLUGIN_PATH.'admin/sections/feedback.php'); ?>
-        </div>
+        <div class="right-side"></div>
     </div>
 </div>
 
