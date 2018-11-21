@@ -27,6 +27,10 @@ if ( ! class_exists( 'WMobilePack_Cookie' ) ) {
     require_once(WMP_PLUGIN_PATH.'inc/class-wmp-cookie.php');
 }
 
+if ( ! interface_exists( 'Manager' ) ) {
+    require_once(WMP_PLUGIN_PATH.'inc/interface-manager.php');
+}
+
 if ( ! class_exists( 'Theme' ) ) {
     require_once(WMP_PLUGIN_PATH.'inc/class-theme.php');
 }
