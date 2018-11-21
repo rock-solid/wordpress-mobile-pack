@@ -36,7 +36,7 @@ class Theme
 
     private $textColour = "#000";
 
-    private $headerImageType;
+    private $headerImageType = 'full';
 
     private $headerImage;
 
@@ -44,63 +44,63 @@ class Theme
 
     private $loadingSpinner;
 
-    private $menuSlideOutWidth;
+    private $menuSlideOutWidth = '75%';
 
-    private $DFTNetworkId;
+    private $DFTNetworkId = NULL; 
 
-    private $AdUnit;
+    private $AdUnit = ""; 
 
     private $AdUnitSectionExtended;
 
-    private $GATrackingCode;
+    private $GATrackingCode; 
 
-    private $GTMID;
+    private $GTMID; 
 
-    private $sectionSliderTextColor;
+    private $sectionSliderTextColor = '#000';
 
-    private $sectionSliderBackground;
+    private $sectionSliderBackground = '#FFF';
 
     private $listAdInterval;
 
-    private $listAdMax;
+    private $listAdMax; 
 
-    private $highlightsColour;
+    private $highlightsColour = '#099ee2';
 
-    private $borderColour;
+    private $borderColour = '#099ee2';
 
-    private $sectionDownloadEnabled;
+    private $sectionDownloadEnabled = false;
 
     private $routes;
 
-    private $layout;
+    private $layout = 1;
 
-    private $multiSection;
+    private $multiSection = false;
 
-    private $flattenSections;
+    private $flattenSections = false;
 
     private $serviceWorkerUrl;
 
     private $showDateBlockOnFeedListItem;
 
-    private $showAllFeed;
+    private $showAllFeed = true;
 
-    private $showClassicSwitch;
+    private $showClassicSwitch = false;
 
     private $imageGalleryHeight;
 
     private $mastHeadHeight;
 
-    private $showDatesOnList;
+    private $showDatesOnList = false;
 
-    private $searchLightTheme;
+    private $searchLightTheme = false;
 
-    private $showSearch;
+    private $showSearch = false;
 
     private $searchParam;
 
     private $searchAction;
 
-    private $maxWidth;
+    private $maxWidth = 1024;
 
     private $priorityTags;
 
@@ -110,29 +110,27 @@ class Theme
 
     private $addThisCode;
 
-    private $socialShareKitButtons;
+    private $socialShareKitButtons = [];
 
     private $extraLinks;
+    
+    private $excludedSections = [];
+    
+    private $twitterEmbedUrl = "https://platform.twitter.com/widgets.js";
 
-    private $twitterEmbedUrl;
-
-    private $instagramEmbedUrl;
+    private $instagramEmbedUrl = "https://www.instagram.com/embed.js";
 
     private $shareTitlePrefix;
 
     private $customStyles;
 
-    private $moreBlockTags;
-
     private $hamburgerImageMarginTop;
 
     private $customHtml;
 
-    private $infiniteVerticalArticleScroll;
+    private $infiniteVerticalArticleScroll = false;
 
-    private $infiniteHorizontalArticleScroll;
-
-    private $remote;
+    private $infiniteHorizontalArticleScroll = true;
 
 
     /**
@@ -1432,6 +1430,26 @@ class Theme
     public function setRemote($remote)
     {
         $this->remote = $remote;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of excludedSections
+     */ 
+    public function getExcludedSections()
+    {
+        return $this->excludedSections;
+    }
+
+    /**
+     * Set the value of excludedSections
+     *
+     * @return  self
+     */ 
+    public function setExcludedSections($excludedSections)
+    {
+        $this->excludedSections = $excludedSections;
 
         return $this;
     }
