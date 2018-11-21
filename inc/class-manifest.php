@@ -20,7 +20,6 @@ class Manifest {
 
     private $orientation = "portrait";
      
-
     /**
      * Get the value of name
      */ 
@@ -44,7 +43,7 @@ class Manifest {
     /**
      * Get the value of short_name
      */ 
-    public function getShort_name()
+    public function getShortName()
     {
         return $this->short_name;
     }
@@ -54,7 +53,7 @@ class Manifest {
      *
      * @return  self
      */ 
-    public function setShort_name($short_name)
+    public function setShortName($short_name)
     {
         $this->short_name = $short_name;
 
@@ -104,7 +103,7 @@ class Manifest {
     /**
      * Get the value of theme_color
      */ 
-    public function getTheme_color()
+    public function getThemeColor()
     {
         return $this->theme_color;
     }
@@ -114,7 +113,7 @@ class Manifest {
      *
      * @return  self
      */ 
-    public function setTheme_color($theme_color)
+    public function setThemeColor($theme_color)
     {
         $this->theme_color = $theme_color;
 
@@ -124,7 +123,7 @@ class Manifest {
     /**
      * Get the value of background_color
      */ 
-    public function getBackground_color()
+    public function getBackgroundColor()
     {
         return $this->background_color;
     }
@@ -134,7 +133,7 @@ class Manifest {
      *
      * @return  self
      */ 
-    public function setBackground_color($background_color)
+    public function setBackgroundColor($background_color)
     {
         $this->background_color = $background_color;
 
@@ -144,7 +143,7 @@ class Manifest {
     /**
      * Get the value of start_url
      */ 
-    public function getStart_url()
+    public function getStartUrl()
     {
         return $this->start_url;
     }
@@ -154,7 +153,7 @@ class Manifest {
      *
      * @return  self
      */ 
-    public function setStart_url($start_url)
+    public function setStartUrl($start_url)
     {
         $this->start_url = $start_url;
 
