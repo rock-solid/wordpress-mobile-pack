@@ -3,6 +3,8 @@
 class Theme
 {
     private $appName;
+    
+    private $appEndpoint = "https://pwa-cdn.baobabsuite.com";
 
     private $metaDescription;
 
@@ -16,7 +18,7 @@ class Theme
 
     private $defaultFeedPageSize = 20;
 
-    private $bmBurgerBarsBackground = "#ffffff";
+    private $bmBurgerBarsBackground = "#000";
 
     private $bmCrossBackground = "#ffffff";
 
@@ -132,6 +134,7 @@ class Theme
 
     private $infiniteHorizontalArticleScroll = true;
 
+    private $excludedPageIds = [];
 
     /**
      * Get the value of appName
@@ -1454,4 +1457,23 @@ class Theme
         return $this;
     }
 
+    /**
+     * Get the value of appEndpoint
+     */ 
+    public function getAppEndpoint()
+    {
+        return $this->appEndpoint;
+    }
+
+    /**
+     * Set the value of appEndpoint
+     *
+     * @return  self
+     */ 
+    public function setAppEndpoint($appEndpoint)
+    {
+        $this->appEndpoint = $appEndpoint;
+
+        return $this;
+    }
 }

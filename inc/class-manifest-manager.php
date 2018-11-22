@@ -35,6 +35,11 @@ class ManifestManager implements Manager {
      */ 
     public function getManifest()
     {
+        $manifestContents = $this->read();
+        if (!empty($manifestContents)) {
+            $this->setManifest($this->deserialize($manifestContents));
+        }
+
         return $this->manifest;
     }
 

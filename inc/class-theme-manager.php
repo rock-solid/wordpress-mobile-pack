@@ -1,6 +1,5 @@
 <?php
 
-
 class ThemeManager implements Manager {
 
     private $theme;
@@ -79,6 +78,7 @@ class ThemeManager implements Manager {
         // // Add Host and Manifest URLs
         $theme->setHostUrl(get_site_url());
         $theme->setManifestUrl($_SERVER['DOCUMENT_ROOT'].'/manifest.json');
+        $theme->setServiceWorkerUrl($_SERVER['DOCUMENT_ROOT'].'/service-worker.js');
         $this->theme = $theme;      
     }
 
@@ -108,6 +108,11 @@ class ThemeManager implements Manager {
      */ 
     public function getTheme()
     {
+        $themeContents = $this->read();
+        if (!empty($themeContents)) {
+            $this->setTheme($this->deserialize($themeContents));
+        }
+
         return $this->theme;
     }
 
