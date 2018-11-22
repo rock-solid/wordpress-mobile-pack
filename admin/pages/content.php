@@ -63,11 +63,6 @@
         }
     }
     $themeManager = new ThemeManager(new Theme());
-    $themeContents = $themeManager->read();
-    if (!empty($themeContents)) {
-        $themeManager->setTheme($themeManager->deserialize($themeContents));
-    }
-
     $theme = $themeManager->getTheme();
     $extraLinks  = [];
 
@@ -91,7 +86,7 @@
 <div id="wmpack-admin">
 	<div class="spacer-60"></div>
     <!-- set title -->
-    <h1>Publisher's Toolbox PWA <?php echo WMP_VERSION;?></h1>
+    <h1>Publisher's Toolbox PWA <?= WMP_VERSION;?></h1>
 	<div class="spacer-20"></div>
 	<div class="content">
         <div class="left-side">
@@ -317,7 +312,6 @@
 <script type="text/javascript">
     if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
-
             window.WMPJSInterface.add("UI_editcategories","WMP_EDIT_CATEGORIES",{'DOMDoc':window.document}, window);
             window.WMPJSInterface.add("UI_editpages","WMP_EDIT_PAGES",{'DOMDoc':window.document}, window);
         });

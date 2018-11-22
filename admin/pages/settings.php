@@ -1,19 +1,9 @@
 <?php
 
 $themeManager = new ThemeManager(new Theme());
-$themeContents = $themeManager->read();
-if (!empty($themeContents)) {
-	$themeManager->setTheme($themeManager->deserialize($themeContents));
-}
-
 $theme = $themeManager->getTheme();
 
 $manifestManager = new ManifestManager(new Manifest());
-$manifestContents = $manifestManager->read();
-if (!empty($manifestContents)) {
-	$manifestManager->setManifest($manifestManager->deserialize($manifestContents));
-}
-
 $manifest = $manifestManager->getManifest();
 
 if (isset($_POST["save"])) {
@@ -29,21 +19,13 @@ if (isset($_POST["save"])) {
     $theme->setGTMID($_POST['GTMID']);
     $theme->setGATrackingCode($_POST['GATrackingCode']);
     $theme->setSocialShareKitButtons($_POST['socialMedia']);
+    $theme->setAppEndpoint($_POST['appEndpoint']);
 
 	$manifestManager->write();
 	$themeManager->write();
 }
 
 ?>
-
-<script type="text/javascript">
-    if (window.WMPJSInterface && window.WMPJSInterface != null) {
-        jQuery(document).ready(function() {
-            WMPJSInterface.localpath = "<?php echo plugins_url() . "/" . WMP_DOMAIN . "/"; ?>";
-            WMPJSInterface.init();
-        });
-    }
-</script>
 
 <style>
 
@@ -79,7 +61,6 @@ if (isset($_POST["save"])) {
             <div class="spacer-10"></div>
 
             <form id="core-settings" method="post" enctype="multipart/form-data">
-
                 <label>Application Name</label>
                 <input type="text" name="appName" value="<?= $manifest->getName() ?>"/>
                 <div class="spacer-20"></div>
@@ -94,6 +75,10 @@ if (isset($_POST["save"])) {
 
                 <label>Google Analytics Tracking Code</label>
                 <input type="text" name="GATrackingCode" value="<?= $theme->getGATrackingCode() ?>" />
+                <div class="spacer-20"></div>
+
+                <label>PWA App Endpoint</label>
+                <input type="text" name="appEndpoint" value="<?= $theme->getAppEndpoint() ?>" />
                 <div class="spacer-20"></div>
                  
                 <div class="spacer-0"></div>
