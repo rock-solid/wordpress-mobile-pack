@@ -168,37 +168,10 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                 return;
             }
 
-			// display upgrade to pro notice
-            $this->display_pro_release_notice();
-
 			// display notice to reupload icon
 			$this->display_icon_reupload_notice();
 
         }
-
-        /**
-         *
-         * Display a dismissible admin notice when a new version of the PRO plugin is released
-         *
-         */
-        public function display_pro_release_notice(){
-
-            if (WMobilePack_Options::get_setting('upgrade_notice_updated') == 1) {
-
-                $whats_new_updates = WMobilePack_Admin::whatsnew_updates();
-
-                if (is_array($whats_new_updates) && !empty($whats_new_updates)) {
-
-                    if (array_key_exists('pro_release', $whats_new_updates) && is_array($whats_new_updates['pro_release'])) {
-
-                        if (array_key_exists('text', $whats_new_updates['pro_release'])) {
-                            echo '<div class="notice is-dismissible '.WMobilePack_Cookie::$prefix.'upgrade_notice">' . $whats_new_updates['pro_release']['text'] . '</div>';
-                        }
-                    }
-                }
-            }
-		}
-
 
 		/**
 		 *

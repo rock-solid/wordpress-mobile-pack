@@ -44,13 +44,11 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
                 'page_title' => "App Themes",
                 'capability' => 'wmp-options-themes',
                 'function' => 'themes',
-                'enqueue_hook' => 'wmp_admin_load_themes_js'
             ),
             array(
                 'page_title' => "Look & Feel",
                 'capability' => 'wmp-options-theme-settings',
                 'function' => 'theme_settings',
-                'enqueue_hook' => 'wmp_admin_load_theme_settings_js'
             ),
             array(
                 'page_title' => "Content",
@@ -62,7 +60,6 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
                 'page_title' => "Settings",
                 'capability' => 'wmp-options-settings',
                 'function' => 'settings',
-                'enqueue_hook' => 'wmp_admin_load_settings_js'
             )
         );
 
@@ -99,14 +96,6 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
 
 			// check if we need to request updates for the what's new section
 			$WMobilePackCookie = new WMobilePack_Cookie();
-
-			if ($WMobilePackCookie->get_cookie('check_updates') === null) {
-
-				WMobilePack_Admin::whatsnew_updates();
-
-				// set next update request after 2 days
-				$WMobilePackCookie->set_cookie('check_updates', 1);
-			}
 
 			// display notify icon if the what's new section was updated
 			$display_notify_icon = false;
