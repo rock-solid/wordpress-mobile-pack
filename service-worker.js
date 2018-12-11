@@ -11,7 +11,7 @@
  * See https://goo.gl/2aRDsh
  */
 
-importScripts("https://pwa-assets.cloudfront.net/static/workbox/workbox-v3.4.1/workbox-sw.js", "https://pwa-assets.cloudfront.net/static/workbox/workbox-v3.4.1/workbox-google-analytics.prod.js");
+importScripts("https://pwa-cdn.baobabsuite.com/static/workbox/workbox-v3.6.3/workbox-sw.js", "https://pwa-cdn.baobabsuite.com/static/workbox/workbox-v3.6.3/workbox-google-analytics.prod.js");
   //"/static/workbox/workbox-v3.4.1/workbox-google-analytics.prod.js"
 
 workbox.skipWaiting();
