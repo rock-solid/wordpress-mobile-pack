@@ -20,6 +20,17 @@ if (!class_exists('WMobilePack_Application')) {
             // Load application only if the PRO plugin is not active
             if (!WMobilePack::is_active_plugin('WordPress Mobile Pack PRO'))
                 $this->check_load();
+			
+			add_action( 'rest_api_init', function() {
+				remove_filter( 'rest_pre_serve_request', 'rest_send_cors_headers' );
+				add_filter( 'rest_pre_serve_request', function( $value ) {
+					header( 'Access-Control-Allow-Origin: *' );
+					header( 'Access-Control-Allow-Methods: GET' );
+					header( 'Access-Control-Allow-Credentials: true' );
+					header( 'Access-Control-Expose-Headers: Link', false );
+					return $value;
+				});
+			}, 15 );
         }
 
 
