@@ -1,12 +1,12 @@
 <?php
 
-
-class ManifestManager {
+class ManifestManager implements Manager {
 
     private $manifest;
 
     public function __construct($manifest) {
         $this->manifest = $manifest;      
+        $this->manifest->setStartUrl(get_site_url());
     }
 
     public function serialize() {
@@ -30,12 +30,16 @@ class ManifestManager {
         return $fileHelper->read_file($_SERVER['DOCUMENT_ROOT'].'/manifest.json');
     }
 
-   
     /**
      * Get the value of manifest
      */ 
     public function getManifest()
     {
+        $manifestContents = $this->read();
+        if (!empty($manifestContents)) {
+            $this->setManifest($this->deserialize($manifestContents));
+        }
+
         return $this->manifest;
     }
 

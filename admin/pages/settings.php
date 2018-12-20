@@ -1,41 +1,38 @@
+<?php
 
-<script type="text/javascript">
-jQuery(document).ready(function() {
-    jQuery("#save").click(function(e) {
-        var jsonData2 = {};
-        
-        var fieldsetData = jQuery("#core-settings").serializeArray();
-        var _this = this;
-        jQuery.each(fieldsetData, function() {
-            
-            var custKey = jQuery('input[name="' + this.name + '"')[0].classList[0];
-            // var deconc = this.name
-            // console.log(_this.getAttribute('class'));
-            jsonData2[custKey] = this.value || '';
-        });
-         console.log(jsonData2);
-         var output2 = JSON.stringify(jQuery("#core-settings").serializeArray());
-        jQuery.ajax(
-        {
+$themeManager = new ThemeManager(new Theme());
+$theme = $themeManager->getTheme();
 
-            url : "http://gt.localhost",
-            type: "POST",
-            data: output2,
-            success: function(response) {
-                alert("Settings saved.");
-            }
-        }); 
-        e.preventDefault();
-    }); 
-});
-</script>
+$manifestManager = new ManifestManager(new Manifest());
+$manifest = $manifestManager->getManifest();
+
+if (isset($_POST["save"])) {
+
+    // Manifest Details
+    $manifest->setName($_POST['appName']);
+    $manifest->setShortName($_POST['appName']);
+    $manifest->setDescription($_POST['description']);
+    
+    // Theme Details
+    $theme->setAppName($_POST['appName']);
+    $theme->setMetaDescription($_POST['description']);
+    $theme->setGTMID($_POST['GTMID']);
+    $theme->setGATrackingCode($_POST['GATrackingCode']);
+    $theme->setSocialShareKitButtons($_POST['socialMedia']);
+    $theme->setAppEndpoint($_POST['appEndpoint']);
+
+	$manifestManager->write();
+	$themeManager->write();
+}
+
+?>
 
 <style>
 
 .save {
-    background: #0c4b7f;
+	background: #0c4b7f;
     color: #ffffff;
-    border: 1px solid #0c90c3;
+    border: 1px solid #7ea82f;
     border-radius: 3px;
     padding: 7px 15px 7px 15px;
     min-width: 120px;
@@ -43,80 +40,69 @@ jQuery(document).ready(function() {
 
 </style>
 
-
 <div id="wmpack-admin">
 	<div class="spacer-60"></div>
-    <!-- set title -->
-    <h1>Publisher's Toolbox PWA <?php echo WMP_VERSION;?></h1>
+
+	<!-- set title -->
+	<h1>Publisher's Toolbox PWA <?php echo WMP_VERSION; ?></h1>
 	<div class="spacer-20"></div>
+
 	<div class="settings">
-        <div class="left-side">
+		<div class="left-side">
+		<!-- add nav menu -->
+		<?php include_once(WMP_PLUGIN_PATH . 'admin/sections/admin-menu.php'); ?>
+		<div class="spacer-0"></div>
 
-            <!-- add nav menu -->
-            <?php include_once(WMP_PLUGIN_PATH.'admin/sections/admin-menu.php'); ?>
-            <div class="spacer-0"></div>
+		<!-- add content form -->
+        <div class="details">
+            <h2 class="title">App Settings</h2>
+            <div class="spacer-20"></div>
 
-            <div class="details">
-                
-                    <h2 class="title">App Settings</h2>
-                    <div class="spacer-20"></div>
-                    <form id="core-settings">
-                        <div class="spacer-10"></div>
-                        <label>Application Name</label>
-                        <input class="appName" type="text" name="appName" id="appName" value=""/>
-                        <div class="spacer-20"></div>
-                        <label>Application Meta Description</label>
-                        <input class="metaDescription" type="text" name="metaDescription" id="metaDescription" value=""/> 
-                        <div class="spacer-20"></div>
-                        <label>Host URL</label>
-                        <input class="hostUrl" type="text" name="hostUrl" id="hostUrl" value=""/>  
-                		<div class="spacer-20"></div>
-                        <label>Manifest URL</label>
-                        <input class="manifestUrl" type="text" name="manifestUrl" id="manifestUrl" value="" />
-                        <div class="spacer-20"></div>
-                        <label>Google Tag Manager ID</label>
-                        <input class="GTMID" type="text" name="GTMID" id="GTMID" value="" />
-                        <div class="spacer-20"></div>
-                        <label>Google Analytics Tracking Code</label>
-                        <input class="GATrackingCode" type="text" name="GATrackingCode" value="" />
-                        <div class="spacer-20"></div>
-                        <div class="submit"><input type="button" id="save" class="save" value="Save"/></div>   
-                         </form>   
+            <div class="spacer-10"></div>
 
-                       
-        </div>
-                  
+            <form id="core-settings" method="post" enctype="multipart/form-data">
+                <label>Application Name</label>
+                <input type="text" name="appName" value="<?= $manifest->getName() ?>"/>
+                <div class="spacer-20"></div>
+
+                <label>Application Meta Description</label>
+                <input type="text" name="description" value="<?= $manifest->getDescription() ?>"/> 
+                <div class="spacer-20"></div>
+
+                <label>Google Tag Manager ID</label>
+                <input type="text" name="GTMID" value="<?= $theme->getGTMID() ?>" />
+                <div class="spacer-20"></div>
+
+                <label>Google Analytics Tracking Code</label>
+                <input type="text" name="GATrackingCode" value="<?= $theme->getGATrackingCode() ?>" />
+                <div class="spacer-20"></div>
+
+                <label>PWA App Endpoint</label>
+                <input type="text" name="appEndpoint" value="<?= $theme->getAppEndpoint() ?>" />
+                <div class="spacer-20"></div>
+                 
                 <div class="spacer-0"></div>
-           
-			    <div class="spacer-15"></div>
 
-			<div class="details">
-                <h2 class="title">Enable Social Media Sharing</h2>
-                    <div class="spacer-20"></div>
-                    <input type="checkbox" name="socialMedia" value="Facebook" checked="true"> Enable Facebook Sharing <br>
-                    <div class="spacer-10"></div>
-                    <input type="checkbox" name="socialMedia" value="Twitter" checked="true"> Enable Twitter Sharing <br>
-                    <div class="spacer-10"></div>
-                    <input type="checkbox" name="socialMedia" value="Google+" checked="true"> Enable Google+ Sharing <br>
-                    <div class="spacer-10"></div>
-                    <input type="checkbox" name="socialMedia" value="Whatsapp" checked="true"> Enable WhatsApp Sharing <br>
+                <h2 class="title">Social Media Sharing</h2>
+                <div class="spacer-20"></div>
 
-      </form>              
+                <input type="checkbox" name="socialMedia[]" value="ssk-facebook" <?= in_array('ssk-facebook', $theme->getSocialShareKitButtons()) ? 'checked' : '' ?> /> Enable Facebook Sharing 
+                <div class="spacer-10"></div>
+
+                <input type="checkbox" name="socialMedia[]" value="ssk-twitter" <?= in_array('ssk-twitter', $theme->getSocialShareKitButtons()) ? 'checked' : '' ?>  /> Enable Twitter Sharing 
+                <div class="spacer-10"></div>
+
+                <input type="checkbox" name="socialMedia[]" value="ssk-google-plus" <?= in_array('ssk-google-plus', $theme->getSocialShareKitButtons()) ? 'checked' : '' ?>  /> Enable Google+ Sharing 
+                <div class="spacer-10"></div>
+
+                <input type="checkbox" name="socialMedia[]" value="ssk-whatsapp" <?= in_array('ssk-whatsapp', $theme->getSocialShareKitButtons()) ? 'checked' : '' ?>  /> Enable WhatsApp Sharing 
+                <div class="spacer-10"></div>
+                
+                <div class="submit">
+                    <input type="submit" name="save" class="save" value="Save" />
+                </div>  
+            </form>            
+        </div>
+        <div class="right-side"></div>
 	</div>
 </div>
-</div>
-</div>
-<?php
-// check if we have a https connection
-$is_secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
-?>
-
-<script type="text/javascript">
-    if (window.WMPJSInterface && window.WMPJSInterface != null){
-        jQuery(document).ready(function(){
-            window.WMPJSInterface.add("UI_editappsettings","WMP_APP_SETTINGS",{'DOMDoc':window.document}, window);
-			window.WMPJSInterface.add("UI_socialmedia","WMP_SOCIAL_MEDIA",{'DOMDoc':window.document}, window);
-            window.WMPJSInterface.add("UI_allowtracking","WMP_ALLOW_TRACKING",{'DOMDoc':window.document}, window);
-        });
-    }
-</script>

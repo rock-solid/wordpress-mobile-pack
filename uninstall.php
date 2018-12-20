@@ -13,6 +13,9 @@ if ( !defined( 'WMP_FILES_UPLOADS_DIR' ) && !defined( 'WMP_FILES_UPLOADS_URL' ) 
     $WMP_Uploads = new WMobilePack_Uploads();
     $WMP_Uploads->define_uploads_dir();
 }
+unlink($_SERVER['DOCUMENT_ROOT'] . '/service-worker.js');
+unlink($_SERVER['DOCUMENT_ROOT'] . '/theme.json');
+unlink($_SERVER['DOCUMENT_ROOT'] . '/manifest.json');
 
 // remove uploaded images and uploads folder
 $WMP_Uploads = new WMobilePack_Uploads();
