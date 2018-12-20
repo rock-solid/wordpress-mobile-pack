@@ -20,7 +20,7 @@ require_once('core/class-wmp.php');
 function wmobilepack_frontend_init() {
 
     require_once('frontend/class-application.php');
-    new WMobilePack_Application();
+    new WMobilePack_Application(plugin_dir_url(__FILE__));
 }
 
 function wmobilepack_admin_init() {

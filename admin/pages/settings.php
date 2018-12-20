@@ -7,7 +7,7 @@ $manifestManager = new ManifestManager(new Manifest());
 $manifest = $manifestManager->getManifest();
 
 if (isset($_POST["save"])) {
-
+    
     // Manifest Details
     $manifest->setName($_POST['appName']);
     $manifest->setShortName($_POST['appName']);
@@ -15,6 +15,7 @@ if (isset($_POST["save"])) {
     
     // Theme Details
     $theme->setAppName($_POST['appName']);
+    $theme->setShowClassicSwitch(isset($_POST['showClassicSwitch']));
     $theme->setMetaDescription($_POST['description']);
     $theme->setGTMID($_POST['GTMID']);
     $theme->setGATrackingCode($_POST['GATrackingCode']);
@@ -79,6 +80,9 @@ if (isset($_POST["save"])) {
 
                 <label>PWA App Endpoint</label>
                 <input type="text" name="appEndpoint" value="<?= $theme->getAppEndpoint() ?>" />
+                <div class="spacer-20"></div>
+
+                <input type="checkbox" style="margin: 0 10px 0 0px;" name="showClassicSwitch" <?= $theme->getShowClassicSwitch() ? 'checked' : '' ?> /> Show Classic Site Switch
                 <div class="spacer-20"></div>
                  
                 <div class="spacer-0"></div>
