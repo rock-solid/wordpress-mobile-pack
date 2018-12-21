@@ -15,13 +15,13 @@ if (!class_exists('WMobilePack_Application')) {
         /**
          * Class constructor
          */
-        public function __construct($plugin_url)
+        public function __construct($plugin_dir)
         {
             // Load application only if the PRO plugin is not active
             if (!WMobilePack::is_active_plugin('WordPress Mobile Pack PRO'))
                 $this->check_load();
 
-            $this->plugin_dir = $plugin_url;
+            $this->plugin_dir = $plugin_dir;
 
 			add_action( 'rest_api_init', function() {
 				remove_filter( 'rest_pre_serve_request', 'rest_send_cors_headers' );

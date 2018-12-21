@@ -35,7 +35,7 @@ if ( ! class_exists( 'WMobilePack_Export_Settings' ) ) {
 				require_once(WMP_PLUGIN_PATH.'frontend/class-application.php');
 			}
 
-            return new WMobilePack_Application(plugin_dir_url(__FILE__));
+            return new WMobilePack_Application($WMP_PLUGIN_DIR);
         }
 
         /**

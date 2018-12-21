@@ -14,6 +14,8 @@
 require_once('core/config.php');
 require_once('core/class-wmp.php');
 
+$WMP_PLUGIN_DIR =  plugin_dir_url(__FILE__);
+
 /**
  * Used to load the required files on the plugins_loaded hook, instead of immediately.
  */
