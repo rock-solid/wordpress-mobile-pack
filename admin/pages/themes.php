@@ -50,7 +50,7 @@
 						<h2 class="title">Available Mobile App Themes</h2>
 						<div class="spacer-30"></div>
 
-						<div class="themes" style="width: 220px;">
+						<div class="themes" >
 							<?php
 								foreach ($arr_themes as $theme){
 									require(WMP_PLUGIN_PATH.'admin/sections/theme-box.php');

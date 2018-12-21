@@ -13,7 +13,7 @@ try {
     $response = curl_getinfo($curl_handle);
     curl_close($curl_handle);
 
-    if($page === false || $response[http_code] != 200) {
+    if($page === false || $response[http_code] != 200 || $_COOKIE["classicCookie"] == "true") {
         throw new Exception('cannot load PWA');
     }
     echo $page;

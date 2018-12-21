@@ -14,13 +14,15 @@
 require_once('core/config.php');
 require_once('core/class-wmp.php');
 
+$WMP_PLUGIN_DIR =  plugin_dir_url(__FILE__);
+
 /**
  * Used to load the required files on the plugins_loaded hook, instead of immediately.
  */
 function wmobilepack_frontend_init() {
 
     require_once('frontend/class-application.php');
-    new WMobilePack_Application();
+    new WMobilePack_Application(plugin_dir_url(__FILE__));
 }
 
 function wmobilepack_admin_init() {

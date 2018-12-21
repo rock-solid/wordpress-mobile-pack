@@ -1476,4 +1476,25 @@ class Theme
 
         return $this;
     }
+
+        /**
+     * Get the value of showClassicSwitch
+     */ 
+    public function getShowClassicSwitch()
+    {
+        return $this->showClassicSwitch;
+    }
+
+    /**
+     * Set the value of showClassicSwitch
+     *
+     * @return  self
+     */ 
+    public function setShowClassicSwitch($showClassicSwitch)
+    {
+        $this->showClassicSwitch = $showClassicSwitch;
+
+        return $this;
+    }
+
 }
