@@ -82,7 +82,7 @@ if (isset($_POST["save"])) {
                 <input type="text" name="appEndpoint" value="<?= $theme->getAppEndpoint() ?>" />
                 <div class="spacer-20"></div>
 
-                <input type="checkbox" style="margin: 0 10px 0 0px;" name="showClassicSwitch" <?= $theme->getShowClassicSwitch() ? 'checked' : '' ?> /> Show Classic Site Switch
+                <input type="checkbox" name="showClassicSwitch" <?= $theme->getShowClassicSwitch() ? 'checked' : '' ?> /> Show Classic Site Switch
                 <div class="spacer-20"></div>
                  
                 <div class="spacer-0"></div>
