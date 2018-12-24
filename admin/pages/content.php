@@ -26,13 +26,14 @@
     $inactive_categories = array();
     
     // Capture excluded sections for theme file
-    $excludedSections = array();
+    $whitelistedSections = array();
     
 	// Compose inactive pages array with only the visible pages
 	foreach ($categories as $category){
         if (in_array($category->cat_ID, $setting_inactive_categories)) {
             $inactive_categories[] = $category->cat_ID;
-            $excludedSections[] = $category->cat_name;
+        } else {
+            $whitelistedSections[] = $category->cat_name;
         }
     }
 
@@ -79,7 +80,7 @@
     }
 
     $theme->setExtraLinks($extraLinks);
-    $theme->setExcludedSections($excludedSections);
+    $theme->setWhitelistedSections($whitelistedSections);
     $themeManager->write();
 ?>
 
