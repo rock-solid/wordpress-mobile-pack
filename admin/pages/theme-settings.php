@@ -75,16 +75,46 @@ if (!empty($_POST['save'])) {
 	$theme->setThemeColour($_POST['themeColour']);
 	$theme->setBackgroundColour($_POST['backgroundColour']);
 	$theme->setTextColour($_POST['textColour']);
-	$theme->setMenuSlideOutWidth($_POST['menuSlideOutWidth']);
 	$theme->setSectionSliderTextColor($_POST['sectionSliderTextColor']);
 	$theme->setSectionSliderBackground($_POST['sectionSliderBackground']);
 	$theme->setHighlightsColour($_POST['highlightsColour']);
 	$theme->setBorderColour($_POST['borderColour']);
 
+	// Theme Details
+	$theme->setSectionDownloadEnabled(isset($_POST['sectionDownloadEnabled']));
+	$theme->setMultiSection(isset($_POST['multiSection']));
+	$theme->setFlattenSections(isset($_POST['flattenSections']));
+	$theme->setShowDateBlockOnFeedListItem(isset($_POST['showDateBlockOnFeedListItem']));
+	$theme->setShowAllFeed(isset($_POST['showAllFeed']));
+	$theme->setMenuSlideOutWidth($_POST['menuSlideOutWidth']);
+	$theme->setImageGalleryHeight($_POST['imageGalleryHeight']);
+	$theme->setMastHeadHeight($_POST['mastHeadHeight']);
+	$theme->setShowDatesOnList(isset($_POST['showDatesOnList']));
+	$theme->setSearchLightTheme(isset($_POST['searchLightTheme']));
+	$theme->setShowSearch(isset($_POST['showSearch']));
+	$theme->setSearchParam($_POST['searchParam']);
+	$theme->setSearchAction($_POST['searchAction']);
+	$theme->setMaxWidth((int) preg_replace('/[^0-9]/', '', $_POST['maxWidth']));
+	$theme->setTopHeros((int) preg_replace('/[^0-9]/', '', $_POST['topHeros']));
+	$theme->setTwitterEmbedUrl($_POST['twitterEmbedUrl']);
+	$theme->setInstagramEmbedUrl($_POST['instagramEmbedUrl']);
+	$theme->setShareTitlePrefix($_POST['shareTitlePrefix']);
+	$theme->setCustomStyles($_POST['customStyles']);
+	$theme->setHamburgerImageMarginTop($_POST['hamburgerImageMarginTop']);
+	$theme->setCustomHtml($_POST['customHtml']);
+	$theme->setInfiniteVerticalArticleScroll(isset($_POST['infiniteVerticalArticleScroll']));
+	$theme->setInfiniteHorizontalArticleScroll(isset($_POST['infiniteHorizontalArticleScroll']));
+	$theme->setNewsItemTimeFormat($_POST['newsItemTimeFormat']);
+	$theme->setNewsItemDateFormat($_POST['newsItemDateFormat']);
+	$theme->setDefaultFeedPageSize((int) preg_replace('/[^0-9]/', '', $_POST['defaultFeedPageSize']));
+	$theme->setListAdInterval((int) preg_replace('/[^0-9]/', '', $_POST['listAdInterval']));
+	$theme->setSectionPrefix($_POST['sectionPrefix']);
+	$theme->setDnsPrefetch(explode(',', $_POST['dnsPrefetch']));
+	
 	// Manifest Colours
 	$manifest->setThemeColor($_POST['themeColour']);
 	$manifest->setBackgroundColor($_POST['backgroundColour']);
-	
+
 	$manifestManager->write();
 	$themeManager->write();
 }
@@ -250,6 +280,144 @@ if (!empty($_POST['save'])) {
 									<label for="borderColour">Border colour</label>
 									<input  value="<?= $theme->getBorderColour() ?>" class="borderColour" type="text" name="borderColour" placeholder="Enter hex value" onkeyup="changeColour(this);" />
 									<div style="background:<?= $theme->getBorderColour() ?>;height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<input type="checkbox" name="sectionDownloadEnabled" <?= $theme->getSectionDownloadEnabled() ? 'checked' : '' ?> /> Section download enabled
+								<div class="spacer-20"></div>
+								
+								<input type="checkbox" name="multiSection" <?= $theme->getMultiSection() ? 'checked' : '' ?> /> Show child categories
+								<div class="spacer-20"></div>
+								
+								<input type="checkbox" name="flattenSections" <?= $theme->getFlattenSections() ? 'checked' : '' ?> /> Flatten sections
+								<div class="spacer-20"></div>
+								
+								<input type="checkbox" name="showDateBlockOnFeedListItem" <?= $theme->getShowDateBlockOnFeedListItem() ? 'checked' : '' ?> /> Show date on feed items
+								<div class="spacer-20"></div>
+								
+								<input type="checkbox" name="showAllFeed" <?= $theme->getShowAllFeed() ? 'checked' : '' ?> /> Show home section
+								<div class="spacer-20"></div>
+								
+								<div class="holder">
+									<label for="imageGalleryHeight">Image gallery height (as px or vh value)</label>
+									<input  value="<?= $theme->getImageGalleryHeight() ?>" class="imageGalleryHeight" type="text" name="imageGalleryHeight" placeholder="Image gallery height" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<div class="holder">
+									<label for="mastHeadHeight">Mast head height (as px or vh value)</label>
+									<input  value="<?= $theme->getMastHeadHeight() ?>" class="mastHeadHeight" type="text" name="mastHeadHeight" placeholder="Mast head height" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<input type="checkbox" name="showDatesOnList" <?= $theme->getShowDatesOnList() ? 'checked' : '' ?> /> Show dates on list
+								<div class="spacer-20"></div>
+								
+								<input type="checkbox" name="showSearch" <?= $theme->getShowSearch() ? 'checked' : '' ?> /> Show menu search bar
+								<div class="spacer-20"></div>
+								
+								<input type="checkbox" name="searchLightTheme" <?= $theme->getSearchLightTheme() ? 'checked' : '' ?> /> Menu search bar light theme
+								<div class="spacer-20"></div>
+
+								<div class="holder">
+									<label for="searchParam">Query parameter for search e.g. "s")</label>
+									<input  value="<?= $theme->getSearchParam() ?>" class="searchParam" type="text" name="searchParam" placeholder="Query parameter for search" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<div class="holder">
+									<label for="searchAction">Search action</label>
+									<input  value="<?= $theme->getSearchAction() ?>" class="searchAction" type="text" name="searchAction" placeholder="Search action" />
+								</div>
+								<div class="spacer-15"></div>
+								
+								<div class="holder">
+									<label for="maxWidth">Max width</label>
+									<input  value="<?= $theme->getMaxWidth() ?>" class="maxWidth" type="number" name="maxWidth" min="1" max="1920" />
+								</div>
+								<div class="spacer-15"></div>
+								
+								<div class="holder">
+									<label for="topHeros">Top hero posts</label>
+									<input  value="<?= $theme->getTopHeros() ?>" class="topHeros" type="number" min="1" max="5" name="topHeros" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<div class="holder">
+									<label for="twitterEmbedUrl">Twitter embed script URL</label>
+									<input  value="<?= $theme->getTwitterEmbedUrl() ?>" class="twitterEmbedUrl" type="text" name="twitterEmbedUrl" placeholder="Twitter embed script URL" />
+								</div>
+								<div class="spacer-15"></div>
+								
+								<div class="holder">
+									<label for="instagramEmbedUrl">Instagram embed script URL</label>
+									<input  value="<?= $theme->getInstagramEmbedUrl() ?>" class="instagramEmbedUrl" type="text" name="instagramEmbedUrl" placeholder="Instagram embed script URL" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<div class="holder">
+									<label for="shareTitlePrefix">Share Title Prefix</label>
+									<input  value="<?= $theme->getShareTitlePrefix() ?>" class="shareTitlePrefix" type="text" name="shareTitlePrefix" placeholder="Share Title Prefix" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<div class="holder">
+									<label for="customStyles">Custom Styles</label>
+									<textarea class="customStyles" type="textarea" name="customStyles" placeholder="Custom Styles"><?= $theme->getCustomStyles() ?></textarea>
+								</div>
+								<div class="spacer-15"></div>
+								
+								<div class="holder">
+									<label for="hamburgerImageMarginTop">Hamburger Image Margin Top(as a px value)</label>
+									<input  value="<?= $theme->getHamburgerImageMarginTop() ?>" class="hamburgerImageMarginTop" type="text" name="hamburgerImageMarginTop" placeholder="Hamburger Image Margin Top" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<div class="holder">
+									<label for="customHtml">Custom HTML</label>
+									<textarea class="customHtml" type="textarea" name="customHtml" placeholder="Custom HTML"><?= $theme->getCustomHtml() ?></textarea>
+								</div>
+								<div class="spacer-15"></div>
+								
+								<input type="checkbox" name="infiniteVerticalArticleScroll" <?= $theme->getInfiniteVerticalArticleScroll() ? 'checked' : '' ?> /> Infinite vertical article scroll
+								<div class="spacer-20"></div>
+								
+								<input type="checkbox" name="infiniteHorizontalArticleScroll" <?= $theme->getInfiniteHorizontalArticleScroll() ? 'checked' : '' ?> /> Infinite horizontal article scroll
+								<div class="spacer-20"></div>
+
+								<div class="holder">
+									<label for="newsItemDateFormat">News item date format</label>
+									<input  value="<?= $theme->getNewsItemDateFormat() ?>" class="newsItemDateFormat" type="text" name="newsItemDateFormat" placeholder="News item date format" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<div class="holder">
+									<label for="newsItemTimeFormat">News item date format</label>
+									<input  value="<?= $theme->getNewsItemTimeFormat() ?>" class="newsItemTimeFormat" type="text" name="newsItemTimeFormat" placeholder="News item time format" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<div class="holder">
+									<label for="defaultFeedPageSize">Feed page size</label>
+									<input  value="<?= $theme->getDefaultFeedPageSize() ?>" class="defaultFeedPageSize" type="number" min="1" max="50" name="defaultFeedPageSize" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<div class="holder">
+									<label for="listAdInterval">Feed advert interval</label>
+									<input  value="<?= $theme->getListAdInterval() ?>" class="listAdInterval" type="number" min="1" max="20" name="listAdInterval" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<div class="holder">
+									<label for="sectionPrefix">Category prefix</label>
+									<input  value="<?= $theme->getSectionPrefix() ?>" class="sectionPrefix" type="text" name="sectionPrefix" placeholder="Category prefix" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<div class="holder">
+									<label for="dnsPrefetch">DNS Prefetch list (seperated by comma)</label>
+									<textarea class="dnsPrefetch" type="textarea" name="dnsPrefetch" placeholder="DNS Prefetch List"><?= implode(",",$theme->getDnsPrefetch()) ?></textarea>
 								</div>
 								<div class="spacer-15"></div>
 

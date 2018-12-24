@@ -135,6 +135,22 @@ class Theme
     private $infiniteHorizontalArticleScroll = true;
 
     private $excludedPageIds = [];
+    
+    private $sectionPrefix = null;
+
+    private $dnsPrefetch =  [];
+
+    private $apiEndPoint;
+
+    private $hasTaboola;
+    
+    private $renderAds;
+    
+    private $renderAdsServerSide;
+    
+    private $firstImpressionsId;
+    
+    private $whitelistedSections;
 
     /**
      * Get the value of appName
@@ -1477,7 +1493,7 @@ class Theme
         return $this;
     }
 
-        /**
+    /**
      * Get the value of showClassicSwitch
      */ 
     public function getShowClassicSwitch()
@@ -1497,4 +1513,163 @@ class Theme
         return $this;
     }
 
+    /**
+     * Get the value of sectionPrefix
+     */ 
+    public function getSectionPrefix()
+    {
+        return $this->sectionPrefix;
+    }
+
+    /**
+     * Set the value of sectionPrefix
+     *
+     * @return  self
+     */ 
+    public function setSectionPrefix($sectionPrefix)
+    {
+        $this->sectionPrefix = $sectionPrefix;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of dnsPrefetch
+     */ 
+    public function getDnsPrefetch()
+    {
+        return $this->dnsPrefetch;
+    }
+
+    /**
+     * Set the value of dnsPrefetch
+     *
+     * @return  self
+     */ 
+    public function setDnsPrefetch($dnsPrefetch)
+    {
+        $this->dnsPrefetch = $dnsPrefetch;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of apiEndpoint
+     */ 
+    public function getApiEndpoint()
+    {
+        return $this->apiEndPoint;
+    }
+
+    /**
+     * Set the value of apiEndPoint
+     *
+     * @return  self
+     */ 
+    public function setApiEndpoint($apiEndpoint)
+    {
+        $this->apiEndPoint = $apiEndpoint;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of renderAds
+     */ 
+    public function getRenderAds()
+    {
+        return $this->renderAds;
+    }
+
+    /**
+     * Set the value of renderAds
+     *
+     * @return self
+     */ 
+    public function setRenderAds($renderAds)
+    {
+        $this->renderAds = $renderAds;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of renderAdsServerSide
+     */ 
+    public function getRenderAdsServerSide()
+    {
+        return $this->renderAdsServerSide;
+    }
+
+    /**
+     * Set the value of renderAdsServerSide
+     *
+     * @return self
+     */ 
+    public function setRenderAdsServerSide($renderAdsServerSide)
+    {
+        $this->renderAdsServerSide = $renderAdsServerSide;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of hasTaboola
+     */ 
+    public function getHasTaboola()
+    {
+        return $this->hasTaboola;
+    }
+
+    /**
+     * Set the value of hasTaboola
+     *
+     * @return self
+     */ 
+    public function setHasTaboola($hasTaboola)
+    {
+        $this->hasTaboola = $hasTaboola;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of firstImpressionsId
+     */ 
+    public function getFirstImpressionsId()
+    {
+        return $this->firstImpressionsId;
+    }
+
+    /**
+     * Set the value of firstImpressionsId
+     *
+     * @return self
+     */ 
+    public function setFirstImpressionsId($firstImpressionsId)
+    {
+        $this->firstImpressionsId = $firstImpressionsId;
+
+        return $this;
+    }
+    
+    /**
+     * Get the value of whitelistedSections
+     */ 
+    public function getWhitelistedSections()
+    {
+        return $this->whitelistedSections;
+    }
+
+    /**
+     * Set the value of whitelistedSections
+     *
+     * @return self
+     */ 
+    public function setWhitelistedSections($whitelistedSections)
+    {
+        $this->whitelistedSections = $whitelistedSections;
+
+        return $this;
+    }
 }

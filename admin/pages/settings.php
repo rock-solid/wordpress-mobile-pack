@@ -16,11 +16,17 @@ if (isset($_POST["save"])) {
     // Theme Details
     $theme->setAppName($_POST['appName']);
     $theme->setShowClassicSwitch(isset($_POST['showClassicSwitch']));
+    $theme->setRenderAds(isset($_POST['renderAds']));
+    $theme->setRenderAdsServerSide(isset($_POST['renderAdsServerSide']));
+    $theme->setHasTaboola(isset($_POST['hasTaboola']));
     $theme->setMetaDescription($_POST['description']);
     $theme->setGTMID($_POST['GTMID']);
     $theme->setGATrackingCode($_POST['GATrackingCode']);
     $theme->setSocialShareKitButtons($_POST['socialMedia']);
     $theme->setAppEndpoint($_POST['appEndpoint']);
+    $theme->setApiEndpoint($_POST['apiEndpoint']);
+    $theme->setDFTNetworkId($_POST['DFTNetworkId']);
+    $theme->setFirstImpressionsId($_POST['firstImpressionsId']);
 
 	$manifestManager->write();
 	$themeManager->write();
@@ -62,11 +68,11 @@ if (isset($_POST["save"])) {
             <div class="spacer-10"></div>
 
             <form id="core-settings" method="post" enctype="multipart/form-data">
-                <label>Application Name</label>
+                <label>Application name</label>
                 <input type="text" name="appName" value="<?= $manifest->getName() ?>"/>
                 <div class="spacer-20"></div>
 
-                <label>Application Meta Description</label>
+                <label>Application meta description</label>
                 <input type="text" name="description" value="<?= $manifest->getDescription() ?>"/> 
                 <div class="spacer-20"></div>
 
@@ -74,15 +80,36 @@ if (isset($_POST["save"])) {
                 <input type="text" name="GTMID" value="<?= $theme->getGTMID() ?>" />
                 <div class="spacer-20"></div>
 
-                <label>Google Analytics Tracking Code</label>
+                <label>Google Analytics tracking code</label>
                 <input type="text" name="GATrackingCode" value="<?= $theme->getGATrackingCode() ?>" />
                 <div class="spacer-20"></div>
 
-                <label>PWA App Endpoint</label>
+                <label>DFP network ID</label>
+                <input type="text" name="DFTNetworkId" value="<?= $theme->getDFTNetworkId() ?>" />
+                <div class="spacer-20"></div>
+                
+                <label>First Impressions ID</label>
+                <input type="text" name="firstImpressionsId" value="<?= $theme->getFirstImpressionsId() ?>" />
+                <div class="spacer-20"></div>
+
+                <label>PWA app endpoint</label>
                 <input type="text" name="appEndpoint" value="<?= $theme->getAppEndpoint() ?>" />
                 <div class="spacer-20"></div>
 
-                <input type="checkbox" name="showClassicSwitch" <?= $theme->getShowClassicSwitch() ? 'checked' : '' ?> /> Show Classic Site Switch
+                <label>WordPress endpoint</label>
+                <input type="text" name="apiEndpoint" value="<?= $theme->getApiEndpoint() ?>" />
+                <div class="spacer-20"></div>
+
+                <input type="checkbox" name="showClassicSwitch" <?= $theme->getShowClassicSwitch() ? 'checked' : '' ?> /> Show classic site switch
+                <div class="spacer-20"></div>
+
+                <input type="checkbox" name="renderAds" <?= $theme->getRenderAds() ? 'checked' : '' ?> /> Render ads
+                <div class="spacer-20"></div>
+
+                <input type="checkbox" name="renderAdsServerSide" <?= $theme->getRenderAdsServerSide() ? 'checked' : '' ?> /> Render ads server side
+                <div class="spacer-20"></div>
+
+                <input type="checkbox" name="hasTaboola" <?= $theme->getHasTaboola() ? 'checked' : '' ?> /> Has Taboola
                 <div class="spacer-20"></div>
                  
                 <div class="spacer-0"></div>
@@ -90,16 +117,16 @@ if (isset($_POST["save"])) {
                 <h2 class="title">Social Media Sharing</h2>
                 <div class="spacer-20"></div>
 
-                <input type="checkbox" name="socialMedia[]" value="ssk-facebook" <?= in_array('ssk-facebook', $theme->getSocialShareKitButtons()) ? 'checked' : '' ?> /> Enable Facebook Sharing 
+                <input type="checkbox" name="socialMedia[]" value="ssk-facebook" <?= in_array('ssk-facebook', $theme->getSocialShareKitButtons()) ? 'checked' : '' ?> /> Enable Facebook sharing 
                 <div class="spacer-10"></div>
 
-                <input type="checkbox" name="socialMedia[]" value="ssk-twitter" <?= in_array('ssk-twitter', $theme->getSocialShareKitButtons()) ? 'checked' : '' ?>  /> Enable Twitter Sharing 
+                <input type="checkbox" name="socialMedia[]" value="ssk-twitter" <?= in_array('ssk-twitter', $theme->getSocialShareKitButtons()) ? 'checked' : '' ?>  /> Enable Twitter sharing 
                 <div class="spacer-10"></div>
 
-                <input type="checkbox" name="socialMedia[]" value="ssk-google-plus" <?= in_array('ssk-google-plus', $theme->getSocialShareKitButtons()) ? 'checked' : '' ?>  /> Enable Google+ Sharing 
+                <input type="checkbox" name="socialMedia[]" value="ssk-google-plus" <?= in_array('ssk-google-plus', $theme->getSocialShareKitButtons()) ? 'checked' : '' ?>  /> Enable Google+ sharing 
                 <div class="spacer-10"></div>
 
-                <input type="checkbox" name="socialMedia[]" value="ssk-whatsapp" <?= in_array('ssk-whatsapp', $theme->getSocialShareKitButtons()) ? 'checked' : '' ?>  /> Enable WhatsApp Sharing 
+                <input type="checkbox" name="socialMedia[]" value="ssk-whatsapp" <?= in_array('ssk-whatsapp', $theme->getSocialShareKitButtons()) ? 'checked' : '' ?>  /> Enable WhatsApp sharing 
                 <div class="spacer-10"></div>
                 
                 <div class="submit">
