@@ -17,15 +17,15 @@
 		array(
 			'id' => 3,
 			'pwa_layout_id' => 1,
-			'title'=> 'Newspaper',
-			'icon' => plugins_url().'/'.WMP_DOMAIN.'/admin/images/themes/theme-3.jpg',
+			'title'=> 'Magazine',
+			'icon' => plugins_url().'/'.WMP_DOMAIN.'/admin/images/themes/theme-4.jpg',
 			'selected' => intval($themeFile->getLayout() == 1)
 		),
 		array(
 			'id' => 4,
 			'pwa_layout_id' => 2,
-			'title'=> 'Magazine',
-			'icon' => plugins_url().'/'.WMP_DOMAIN.'/admin/images/themes/theme-4.jpg',
+			'title'=> 'Newspaper',
+			'icon' => plugins_url().'/'.WMP_DOMAIN.'/admin/images/themes/theme-3.jpg',
 			'selected' => intval($themeFile->getLayout() == 2)
 		),
 	);
