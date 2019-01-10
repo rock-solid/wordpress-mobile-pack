@@ -75,10 +75,13 @@ class ThemeManager implements Manager {
             )
         );
 
-        // // Add Host and Manifest URLs
-        $theme->setHostUrl(get_site_url());
-        $theme->setManifestUrl($_SERVER['DOCUMENT_ROOT'].'/manifest.json');
-        $theme->setServiceWorkerUrl($_SERVER['DOCUMENT_ROOT'].'/service-worker.js');
+        $site_url = get_site_url();
+
+        // Add Host and Manifest URLs
+        $theme->setHostUrl($site_url);
+        $theme->setManifestUrl($site_url . '/manifest.json');
+        $theme->setServiceWorkerUrl($site_url . '/service-worker.js');
+
         $this->theme = $theme;      
     }
 
