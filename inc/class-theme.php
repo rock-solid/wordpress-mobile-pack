@@ -152,6 +152,14 @@ class Theme
     
     private $whitelistedSections;
 
+    private $instagramSocialUrl;
+
+    private $twitterSocialUrl;
+
+    private $facebookSocialUrl;
+
+    private $youtubeSocialUrl;
+
     /**
      * Get the value of appName
      */
@@ -1669,6 +1677,86 @@ class Theme
     public function setWhitelistedSections($whitelistedSections)
     {
         $this->whitelistedSections = $whitelistedSections;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of instagramSocialUrl
+     */ 
+    public function getInstagramSocialUrl()
+    {
+        return $this->instagramSocialUrl;
+    }
+
+    /**
+     * Set the value of instagramSocialUrl
+     *
+     * @return self
+     */ 
+    public function setInstagramSocialUrl($instagramSocialUrl)
+    {
+        $this->instagramSocialUrl = $instagramSocialUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of twitterSocialUrl
+     */ 
+    public function getTwitterSocialUrl()
+    {
+        return $this->twitterSocialUrl;
+    }
+
+    /**
+     * Set the value of twitterSocialUrl
+     *
+     * @return self
+     */ 
+    public function setTwitterSocialUrl($twitterSocialUrl)
+    {
+        $this->twitterSocialUrl = $twitterSocialUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of facebookSocialUrl
+     */ 
+    public function getFacebookSocialUrl()
+    {
+        return $this->facebookSocialUrl;
+    }
+
+    /**
+     * Set the value of facebookSocialUrl
+     *
+     * @return self
+     */ 
+    public function setFacebookSocialUrl($facebookSocialUrl)
+    {
+        $this->facebookSocialUrl = $facebookSocialUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of youtubeSocialUrl
+     */ 
+    public function getYoutubeSocialUrl()
+    {
+        return $this->youtubeSocialUrl;
+    }
+
+    /**
+     * Set the value of youtubeSocialUrl
+     *
+     * @return self
+     */ 
+    public function setYoutubeSocialUrl($youtubeSocialUrl)
+    {
+        $this->youtubeSocialUrl = $youtubeSocialUrl;
 
         return $this;
     }
