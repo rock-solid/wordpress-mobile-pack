@@ -14,7 +14,6 @@ Growth Hackers: gh@appticles.com
 JS Developers: js@appticles.com
 */
 
-
 if ( ! class_exists( 'WMobilePack_Options' ) ) {
     require_once(WMP_PLUGIN_PATH.'inc/class-wmp-options.php');
 }
