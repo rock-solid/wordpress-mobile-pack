@@ -25,6 +25,10 @@ if (isset($_POST["save"])) {
     $theme->setSocialShareKitButtons($_POST['socialMedia']);
     $theme->setAppEndpoint($_POST['appEndpoint']);
     $theme->setApiEndpoint($_POST['apiEndpoint']);
+    $theme->setTwitterSocialUrl($_POST['twitterSocialUrl']);
+    $theme->setFacebookSocialUrl($_POST['facebookSocialUrl']);
+    $theme->setInstagramSocialUrl($_POST['instagramSocialUrl']);
+    $theme->setYoutubeSocialUrl($_POST['youtubeSocialUrl']);
     $theme->setDFTNetworkId($_POST['DFTNetworkId']);
     $theme->setFirstImpressionsId($_POST['firstImpressionsId']);
 
@@ -115,6 +119,22 @@ if (isset($_POST["save"])) {
                 <div class="spacer-0"></div>
 
                 <h2 class="title">Social Media Sharing</h2>
+                <div class="spacer-20"></div>
+
+                <label>Twitter Social Link</label>
+                    <input type="text" name="twitterSocialUrl" value="<?= $theme->getTwitterSocialUrl() ?>" />
+                <div class="spacer-20"></div>
+
+                <label>Instagram Social Link</label>
+                    <input type="text" name="instagramSocialUrl" value="<?= $theme->getInstagramSocialUrl() ?>" />
+                <div class="spacer-20"></div>
+
+                <label>Facebook Social Link</label>
+                    <input type="text" name="facebookSocialUrl" value="<?= $theme->getFacebookSocialUrl() ?>" />
+                <div class="spacer-20"></div>
+
+                <label>YouTube Social Link</label>
+                    <input type="text" name="youtubeSocialUrl" value="<?= $theme->getYoutubeSocialUrl() ?>" />
                 <div class="spacer-20"></div>
 
                 <input type="checkbox" name="socialMedia[]" value="ssk-facebook" <?= in_array('ssk-facebook', $theme->getSocialShareKitButtons()) ? 'checked' : '' ?> /> Enable Facebook sharing 
