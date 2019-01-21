@@ -1,39 +1,47 @@
+<?php
 
-<script type="text/javascript">
-jQuery(document).ready(function() {
-    jQuery("#save").click(function(e) {
-        var jsonData2 = {};
-        
-        var fieldsetData = jQuery("#core-settings").serializeArray();
-        var _this = this;
-        jQuery.each(fieldsetData, function() {
-            
-            var custKey = jQuery('input[name="' + this.name + '"')[0].classList[0];
-            // var deconc = this.name
-            // console.log(_this.getAttribute('class'));
-            jsonData2[custKey] = this.value || '';
-        });
-         console.log(jsonData2);
-         var output2 = JSON.stringify(jQuery("#core-settings").serializeArray());
-        jQuery.ajax(
-        {
+$themeManager = new ThemeManager(new Theme());
+$theme = $themeManager->getTheme();
 
-            url : "http://gt.localhost",
-            type: "POST",
-            data: output2,
-            success: function(response) {
-                alert("Settings saved.");
-            }
-        }); 
-        e.preventDefault();
-    }); 
-});
-</script>
+$manifestManager = new ManifestManager(new Manifest());
+$manifest = $manifestManager->getManifest();
+
+if (isset($_POST["save"])) {
+    
+    // Manifest Details
+    $manifest->setName($_POST['appName']);
+    $manifest->setShortName($_POST['appName']);
+    $manifest->setDescription($_POST['description']);
+    
+    // Theme Details
+    $theme->setAppName($_POST['appName']);
+    $theme->setShowClassicSwitch(isset($_POST['showClassicSwitch']));
+    $theme->setRenderAds(isset($_POST['renderAds']));
+    $theme->setRenderAdsServerSide(isset($_POST['renderAdsServerSide']));
+    $theme->setHasTaboola(isset($_POST['hasTaboola']));
+    $theme->setMetaDescription($_POST['description']);
+    $theme->setGTMID($_POST['GTMID']);
+    $theme->setGATrackingCode($_POST['GATrackingCode']);
+    $theme->setSocialShareKitButtons($_POST['socialMedia']);
+    $theme->setAppEndpoint($_POST['appEndpoint']);
+    $theme->setApiEndpoint($_POST['apiEndpoint']);
+    $theme->setTwitterSocialUrl($_POST['twitterSocialUrl']);
+    $theme->setFacebookSocialUrl($_POST['facebookSocialUrl']);
+    $theme->setInstagramSocialUrl($_POST['instagramSocialUrl']);
+    $theme->setYoutubeSocialUrl($_POST['youtubeSocialUrl']);
+    $theme->setDFTNetworkId($_POST['DFTNetworkId']);
+    $theme->setFirstImpressionsId($_POST['firstImpressionsId']);
+
+	$manifestManager->write();
+	$themeManager->write();
+}
+
+?>
 
 <style>
 
 .save {
-    background: #9aca40;
+	background: #0c4b7f;
     color: #ffffff;
     border: 1px solid #7ea82f;
     border-radius: 3px;
@@ -43,102 +51,109 @@ jQuery(document).ready(function() {
 
 </style>
 
-
 <div id="wmpack-admin">
 	<div class="spacer-60"></div>
-    <!-- set title -->
-    <h1>Publisher's Toolbox PWA <?php echo WMP_VERSION;?></h1>
+
+	<!-- set title -->
+	<h1>Publisher's Toolbox PWA <?php echo WMP_VERSION; ?></h1>
 	<div class="spacer-20"></div>
+
 	<div class="settings">
-        <div class="left-side">
+		<div class="left-side">
+		<!-- add nav menu -->
+		<?php include_once(WMP_PLUGIN_PATH . 'admin/sections/admin-menu.php'); ?>
+		<div class="spacer-0"></div>
 
-            <!-- add nav menu -->
-            <?php include_once(WMP_PLUGIN_PATH.'admin/sections/admin-menu.php'); ?>
-            <div class="spacer-0"></div>
+		<!-- add content form -->
+        <div class="details">
+            <h2 class="title">App Settings</h2>
+            <div class="spacer-20"></div>
 
-            <div class="details">
+            <div class="spacer-10"></div>
+
+            <form id="core-settings" method="post" enctype="multipart/form-data">
+                <label>Application name</label>
+                <input type="text" name="appName" value="<?= $manifest->getName() ?>"/>
+                <div class="spacer-20"></div>
+
+                <label>Application meta description</label>
+                <input type="text" name="description" value="<?= $manifest->getDescription() ?>"/> 
+                <div class="spacer-20"></div>
+
+                <label>Google Tag Manager ID</label>
+                <input type="text" name="GTMID" value="<?= $theme->getGTMID() ?>" />
+                <div class="spacer-20"></div>
+
+                <label>Google Analytics tracking code</label>
+                <input type="text" name="GATrackingCode" value="<?= $theme->getGATrackingCode() ?>" />
+                <div class="spacer-20"></div>
+
+                <label>DFP network ID</label>
+                <input type="text" name="DFTNetworkId" value="<?= $theme->getDFTNetworkId() ?>" />
+                <div class="spacer-20"></div>
                 
-                    <h2 class="title">App Settings</h2>
-                    <div class="spacer-20"></div>
-                    <form id="core-settings">
-                        <div class="spacer-10"></div>
-                        <label>Application Name</label>
-                        <input class="appName" type="text" name="appName" id="appName" value="Gay Times" readonly/>
-                        <div class="spacer-20"></div>
-                        <label>Application Meta Description</label>
-                        <input class="metaDescription" type="text" name="metaDescription" id="metaDescription" value="Gay Times Description" readonly/> 
-                        <div class="spacer-20"></div>
-                        <label>Host URL</label>
-                        <input class="hostUrl" type="text" name="hostUrl" id="hostUrl" value="https://www.gaytimes.co.uk" readonly/>  
-                		<div class="spacer-20"></div>
-                        <label>Manifest URL</label>
-                        <input class="manifestUrl" type="text" name="manifestUrl" id="manifestUrl" value="static/www.gaytimes.co.uk/manifest.json" readonly/>
-                        <div class="spacer-20"></div>
-                        <label>Date Format</label>
-                        <select class="newsItemDateFormat" id="newsItemDateFormat">
-                            <option value="dd-mm-yyyy">DD-MM-YYYY</option>
-                            <option value="yyyy-mm-dd">YYYY-MM-DD</option>
-                            <option value="dd-mmmm-yy">DD-MMMM-YY</option>
-                            <option value="yy-mmmm-dd">YY-MMMM-DD</option>
-                            <option value="dd-mmm-yyyy">DD-MMM-YYYY</option>
-                            <option value="yyyy-mmm-dd">YYYY-MM-DD</option>
-                        </select>
-                        <div class="spacer-20"></div>
-                        <label>Time Format</label>
-                        <select class="newsItemTimeFormat" id="newsItemTimeFormat">
-                            <option value="12h">12 Hours</option>
-                            <option value="24h">24 Hours</option>
-                        </select>    
-						<div class="spacer-20"></div>
-						<label>Default Feed Page Size (W x H)</label>
-                        <select class="defaultFeedPageSize" id="defaultFeedPageSize">
-                            <option value="313x420">313 x 420</option>
-                            <option value="626x840">626 x 840</option>
-                        </select> <!-- values taken from here: https://www.postplanner.com/ultimate-guide-to-facebook-dimensions-cheat-sheet/ -->   
-						<div class="spacer-20"></div>
-                        <label>Google Tag Manager ID</label>
-                        <input class="GTMID" type="text" name="GTMID" id="GTMID" value="GTM-XXXXX" />
-                        <div class="spacer-20"></div>
-                        <label>Google Analytics Tracking Code</label>
-                        <input class="GATrackingCode" type="text" name="GATrackingCode" value="UA-000000-01" />
-                        <div class="spacer-20"></div>
-                        <div class="submit"><input type="button" id="save" class="save" value="Save"/></div>   
-                         </form>   
+                <label>First Impressions ID</label>
+                <input type="text" name="firstImpressionsId" value="<?= $theme->getFirstImpressionsId() ?>" />
+                <div class="spacer-20"></div>
 
-                       
-        </div>
-                  
+                <label>PWA app endpoint</label>
+                <input type="text" name="appEndpoint" value="<?= $theme->getAppEndpoint() ?>" />
+                <div class="spacer-20"></div>
+
+                <label>WordPress endpoint</label>
+                <input type="text" name="apiEndpoint" value="<?= $theme->getApiEndpoint() ?>" />
+                <div class="spacer-20"></div>
+
+                <input type="checkbox" name="showClassicSwitch" <?= $theme->getShowClassicSwitch() ? 'checked' : '' ?> /> Show classic site switch
+                <div class="spacer-20"></div>
+
+                <input type="checkbox" name="renderAds" <?= $theme->getRenderAds() ? 'checked' : '' ?> /> Render ads
+                <div class="spacer-20"></div>
+
+                <input type="checkbox" name="renderAdsServerSide" <?= $theme->getRenderAdsServerSide() ? 'checked' : '' ?> /> Render ads server side
+                <div class="spacer-20"></div>
+
+                <input type="checkbox" name="hasTaboola" <?= $theme->getHasTaboola() ? 'checked' : '' ?> /> Has Taboola
+                <div class="spacer-20"></div>
+                 
                 <div class="spacer-0"></div>
-           
-			    <div class="spacer-15"></div>
 
-			<div class="details">
-                <h2 class="title">Enable Social Media Sharing</h2>
-                    <div class="spacer-20"></div>
-                    <input type="checkbox" name="socialMedia" value="Facebook" checked="true"> Enable Facebook Sharing <br>
-                    <div class="spacer-10"></div>
-                    <input type="checkbox" name="socialMedia" value="Twitter" checked="true"> Enable Twitter Sharing <br>
-                    <div class="spacer-10"></div>
-                    <input type="checkbox" name="socialMedia" value="Google+" checked="true"> Enable Google+ Sharing <br>
-                    <div class="spacer-10"></div>
-                    <input type="checkbox" name="socialMedia" value="Whatsapp" checked="true"> Enable WhatsApp Sharing <br>
+                <h2 class="title">Social Media Sharing</h2>
+                <div class="spacer-20"></div>
 
-      </form>              
+                <label>Twitter Social Link</label>
+                    <input type="text" name="twitterSocialUrl" value="<?= $theme->getTwitterSocialUrl() ?>" />
+                <div class="spacer-20"></div>
+
+                <label>Instagram Social Link</label>
+                    <input type="text" name="instagramSocialUrl" value="<?= $theme->getInstagramSocialUrl() ?>" />
+                <div class="spacer-20"></div>
+
+                <label>Facebook Social Link</label>
+                    <input type="text" name="facebookSocialUrl" value="<?= $theme->getFacebookSocialUrl() ?>" />
+                <div class="spacer-20"></div>
+
+                <label>YouTube Social Link</label>
+                    <input type="text" name="youtubeSocialUrl" value="<?= $theme->getYoutubeSocialUrl() ?>" />
+                <div class="spacer-20"></div>
+
+                <input type="checkbox" name="socialMedia[]" value="ssk-facebook" <?= in_array('ssk-facebook', $theme->getSocialShareKitButtons()) ? 'checked' : '' ?> /> Enable Facebook sharing 
+                <div class="spacer-10"></div>
+
+                <input type="checkbox" name="socialMedia[]" value="ssk-twitter" <?= in_array('ssk-twitter', $theme->getSocialShareKitButtons()) ? 'checked' : '' ?>  /> Enable Twitter sharing 
+                <div class="spacer-10"></div>
+
+                <input type="checkbox" name="socialMedia[]" value="ssk-google-plus" <?= in_array('ssk-google-plus', $theme->getSocialShareKitButtons()) ? 'checked' : '' ?>  /> Enable Google+ sharing 
+                <div class="spacer-10"></div>
+
+                <input type="checkbox" name="socialMedia[]" value="ssk-whatsapp" <?= in_array('ssk-whatsapp', $theme->getSocialShareKitButtons()) ? 'checked' : '' ?>  /> Enable WhatsApp sharing 
+                <div class="spacer-10"></div>
+                
+                <div class="submit">
+                    <input type="submit" name="save" class="save" value="Save" />
+                </div>  
+            </form>            
+        </div>
+        <div class="right-side"></div>
 	</div>
 </div>
-</div>
-</div>
-<?php
-// check if we have a https connection
-$is_secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
-?>
-
-<script type="text/javascript">
-    if (window.WMPJSInterface && window.WMPJSInterface != null){
-        jQuery(document).ready(function(){
-            window.WMPJSInterface.add("UI_editappsettings","WMP_APP_SETTINGS",{'DOMDoc':window.document}, window);
-			window.WMPJSInterface.add("UI_socialmedia","WMP_SOCIAL_MEDIA",{'DOMDoc':window.document}, window);
-            window.WMPJSInterface.add("UI_allowtracking","WMP_ALLOW_TRACKING",{'DOMDoc':window.document}, window);
-        });
-    }
-</script>

@@ -1,37 +1,40 @@
-<script type="text/javascript">
-    if (window.WMPJSInterface && window.WMPJSInterface != null){
-        jQuery(document).ready(function(){
-
-            WMPJSInterface.localpath = "<?php echo plugins_url()."/".WMP_DOMAIN."/"; ?>";
-            WMPJSInterface.init();
-        });
-    }
-</script>
 <?php
+	$themeManager = new ThemeManager(new Theme());
+	$themeFile = $themeManager->getTheme();
 
-	$selected_theme = WMobilePack_Options::get_setting('theme');
+	if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-	$arr_themes = array();
+		if(isset($_POST['Newspaper'])) {
+			$themeFile->setLayout(1);
+		} elseif(isset($_POST['Magazine'])) {
+			$themeFile->setLayout(2);
+		}
 
-	foreach (WMobilePack_Themes_Config::get_allowed_themes() as $i => $theme){
-
-		$arr_themes[] = array(
-			'id' => $i,
-			'title'=> $theme,
-			'icon' => plugins_url().'/'.WMP_DOMAIN.'/admin/images/themes/theme-'.$i.'.jpg',
-			'selected' => intval($selected_theme == $i)
-		);
+		$themeManager->write();
 	}
 
-	$upgrade_content = WMobilePack_Admin::more_updates();
-
-	// get themes from the upgrade json
-	$arr_pro_themes = WMobilePack_Admin::upgrade_pro_themes($upgrade_content);
+	$arr_themes = array(
+		array(
+			'id' => 3,
+			'pwa_layout_id' => 1,
+			'title'=> 'Magazine',
+			'icon' => plugins_url().'/'.WMP_DOMAIN.'/admin/images/themes/theme-4.jpg',
+			'selected' => intval($themeFile->getLayout() == 1)
+		),
+		array(
+			'id' => 4,
+			'pwa_layout_id' => 2,
+			'title'=> 'Newspaper',
+			'icon' => plugins_url().'/'.WMP_DOMAIN.'/admin/images/themes/theme-3.jpg',
+			'selected' => intval($themeFile->getLayout() == 2)
+		),
+	);
 ?>
+
 <div id="wmpack-admin">
 	<div class="spacer-60"></div>
     <!-- set title -->
-    <h1>Publisher's Toolbox PWA <?php echo WMP_VERSION;?></h1>
+    <h1>Publisher's Toolbox PWA <?= WMP_VERSION ?></h1>
 	<div class="spacer-20"></div>
 	<div class="themes">
         <div class="left-side">
@@ -39,72 +42,31 @@
             <!-- add nav menu -->
             <?php include_once(WMP_PLUGIN_PATH.'admin/sections/admin-menu.php'); ?>
             <div class="spacer-0"></div>
+			<form method="post" enctype="multipart/form-data">
+				<?php if (count($arr_themes) > 0):?>
 
-			<?php if (count($arr_themes) > 0):?>
+					<div class="details theming">
 
-				<div class="details theming">
-
-					<h2 class="title">Available Mobile App Themes</h2>
-					<div class="spacer-30"></div>
-
-					<?php if (isset($upgrade_content['premium']['themes']['message'])):?>
-						<p><?php echo $upgrade_content['premium']['themes']['message'];?></p>
+						<h2 class="title">Available Mobile App Themes</h2>
 						<div class="spacer-30"></div>
-					<?php endif;?>
 
-					<div class="themes" style="width: 220px;">
-						<?php
-							foreach ($arr_themes as $theme){
-								require(WMP_PLUGIN_PATH.'admin/sections/theme-box.php');
-							}
-						?>
+						<div class="themes" >
+							<?php
+								foreach ($arr_themes as $theme){
+									require(WMP_PLUGIN_PATH.'admin/sections/theme-box.php');
+								}
+							?>
+						</div>
+						<div class="spacer-0"></div>
 					</div>
-					<div class="spacer-0"></div>
-				</div>
-				<div class="spacer-10"></div>
+					<div class="spacer-10"></div>
 
-			<?php endif;?>
-
-			<?php if (count($arr_pro_themes) > 0):?>
-
-				<div class="details theming" style="display:none;">
-					<div class="ribbon relative">
-						<div class="starred"></div>
-					</div>
-
-					<?php if (isset($upgrade_content['premium']['themes']['title'])):?>
-						<h2 class="title"><?php echo $upgrade_content['premium']['themes']['title']; ?></h2>
-					<?php else: ?>
-						<h2 class="title">Premium Mobile App Themes</h2>
-					<?php endif;?>
-
-					<div class="spacer-30"></div>
-					<div class="themes">
-						<?php
-							foreach ($arr_pro_themes as $theme){
-								require(WMP_PLUGIN_PATH.'admin/sections/theme-box.php');
-							}
-						?>
-					</div>
-				</div>
-			<?php endif;?>
+				<?php endif;?>
+			</form>
 			<div class="spacer-10"></div>
         </div>
 
         <div class="right-side">
-            <!-- waitlist form -->
-            <?php #include_once(WMP_PLUGIN_PATH.'admin/sections/waitlist.php'); ?>
-
-            <!-- add feedback form -->
-            <?php #include_once(WMP_PLUGIN_PATH.'admin/sections/feedback.php'); ?>
         </div>
 	</div>
 </div>
-
-<script type="text/javascript">
-    if (window.WMPJSInterface && window.WMPJSInterface != null){
-        jQuery(document).ready(function(){
-            window.WMPJSInterface.add("UI_switchtheme","WMP_SWITCH_THEME",{'DOMDoc':window.document, 'selectedTheme': <?php echo $selected_theme?>}, window);
-        });
-    }
-</script>

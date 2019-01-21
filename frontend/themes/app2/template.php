@@ -1,9 +1,11 @@
 <?php
 
 try {
+    $themeManager = new ThemeManager(new Theme());
+    $theme = $themeManager->getTheme();
 
     $curl_handle=curl_init();
-    curl_setopt($curl_handle, CURLOPT_URL, 'https://pwa-cdn.baobabsuite.com'.$_SERVER['REQUEST_URI']);
+    curl_setopt($curl_handle, CURLOPT_URL, $theme->getAppEndpoint().$_SERVER['REQUEST_URI']);
     curl_setopt($curl_handle, CURLOPT_CONNECTTIMEOUT, 2);
     curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($curl_handle, CURLOPT_HTTPHEADER, array('Origin: '.$_SERVER['SERVER_NAME']));
@@ -11,7 +13,7 @@ try {
     $response = curl_getinfo($curl_handle);
     curl_close($curl_handle);
 
-    if($page === false || $response[http_code] != 200) {
+    if($page === false || $response['http_code'] != 200 || $_COOKIE['classicCookie'] == "true") {
         throw new Exception('cannot load PWA');
     }
     echo $page;

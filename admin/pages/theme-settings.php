@@ -1,159 +1,133 @@
-<script type="text/javascript">
-    if (window.WMPJSInterface && window.WMPJSInterface != null){
-        jQuery(document).ready(function(){
+<?php
 
-            WMPJSInterface.localpath = "<?php echo plugins_url()."/".WMP_DOMAIN."/"; ?>";
-            WMPJSInterface.init();
-        });
+$themeManager = new ThemeManager(new Theme());
+$theme = $themeManager->getTheme();
+
+$manifestManager = new ManifestManager(new Manifest());
+$manifest = $manifestManager->getManifest();
+
+if (!empty($_POST['save'])) {
+	if (!empty($_FILES['logo']['name'])) {
+		$logoUploaded = media_handle_upload('logo', 0);
+		$logoUrl = wp_get_attachment_url($logoUploaded);
+
+		if (is_wp_error($logoUploaded)) {
+			$logoMsg = "There was a problem uploading the file. Please try again." . $logoUploaded->get_error_message();
+		} else {
+			$theme->setHeaderImage($logoUrl);
+			$theme->setHamburgerImage($logoUrl);
+			$logoMsg = "The file has been uploaded successfully.";
+		}
+	}
+
+	if (!empty($_FILES['appIcon']['name'])) {
+		$appIconUploaded = media_handle_upload('appIcon', 0);
+		$mimeType = get_post_mime_type($appIconUploaded);
+		$appIconArray = array(
+			array(
+				"src" => wp_get_attachment_image_src($appIconUploaded, 'pwa-x-small')[0],
+				"sizes" => "180x180",
+				"type" => $mimeType
+			),
+			array(
+				"src" => wp_get_attachment_image_src($appIconUploaded, 'pwa-small')[0],
+				"sizes" => "192x192",
+				"type" => $mimeType
+			),
+			array(
+				"src" => wp_get_attachment_image_src($appIconUploaded, 'pwa-medium')[0],
+				"sizes" => "384x384",
+				"type" => $mimeType
+			),
+			array(
+				"src" => wp_get_attachment_image_src($appIconUploaded, 'pwa-large')[0],
+				"sizes" => "512x512",
+				"type" => $mimeType
+			),
+		);
+		
+		if (is_wp_error($appIconUploaded)) {
+			$appIconMsg = "There was a problem uploading the file. Please try again. " . $appIconUploaded->get_error_message();
+		} else {
+			$manifest->setIcons($appIconArray);
+			$appIconMsg = "The file has been uploaded successfully.";
+		}
+	}
+
+	if (!empty($_FILES['loadingSpinner']['name'])) {
+		$loadingSpinnerUploaded = media_handle_upload('loadingSpinner', 0);
+		$loadingSpinnerUrl = wp_get_attachment_url($loadingSpinnerUploaded);
+		if (is_wp_error($loadingSpinnerUploaded)) {
+			$loadingSpinnerMsg = "There was a problem uploading the file. Please try again. " . $loadingSpinnerUploaded->get_error_message();
+		} else {
+			$theme->setLoadingSpinner($loadingSpinnerUrl);
+			$loadingSpinnerMsg = "The file has been uploaded successfully.";
+		}
+	}
+
+	// Theme Colours
+	$theme->setBmBurgerBarsBackground($_POST['bmBurgerBarsBackground']);
+	$theme->setBmCrossBackground($_POST['bmCrossBackground']);
+	$theme->setBmMenuBackground($_POST['bmMenuBackground']);
+	$theme->setBmItemListColor($_POST['bmItemListColor']);
+	$theme->setSelectedBackground($_POST['selectedBackground']);
+	$theme->setSelectedText($_POST['selectedText']);
+	$theme->setThemeColour($_POST['themeColour']);
+	$theme->setBackgroundColour($_POST['backgroundColour']);
+	$theme->setTextColour($_POST['textColour']);
+	$theme->setSectionSliderTextColor($_POST['sectionSliderTextColor']);
+	$theme->setSectionSliderBackground($_POST['sectionSliderBackground']);
+	$theme->setHighlightsColour($_POST['highlightsColour']);
+	$theme->setBorderColour($_POST['borderColour']);
+
+	// Theme Details
+	$theme->setSectionDownloadEnabled(isset($_POST['sectionDownloadEnabled']));
+	$theme->setMultiSection(isset($_POST['multiSection']));
+	$theme->setFlattenSections(isset($_POST['flattenSections']));
+	$theme->setShowDateBlockOnFeedListItem(isset($_POST['showDateBlockOnFeedListItem']));
+	$theme->setShowAllFeed(isset($_POST['showAllFeed']));
+	$theme->setMenuSlideOutWidth($_POST['menuSlideOutWidth']);
+	$theme->setImageGalleryHeight($_POST['imageGalleryHeight']);
+	$theme->setMastHeadHeight($_POST['mastHeadHeight']);
+	$theme->setShowDatesOnList(isset($_POST['showDatesOnList']));
+	$theme->setSearchLightTheme(isset($_POST['searchLightTheme']));
+	$theme->setShowSearch(isset($_POST['showSearch']));
+	$theme->setSearchParam($_POST['searchParam']);
+	$theme->setSearchAction($_POST['searchAction']);
+	$theme->setMaxWidth((int) preg_replace('/[^0-9]/', '', $_POST['maxWidth']));
+	$theme->setTopHeros((int) preg_replace('/[^0-9]/', '', $_POST['topHeros']));
+	$theme->setTwitterEmbedUrl($_POST['twitterEmbedUrl']);
+	$theme->setInstagramEmbedUrl($_POST['instagramEmbedUrl']);
+	$theme->setShareTitlePrefix($_POST['shareTitlePrefix']);
+	$theme->setCustomStyles($_POST['customStyles']);
+	$theme->setHamburgerImageMarginTop($_POST['hamburgerImageMarginTop']);
+	$theme->setCustomHtml($_POST['customHtml']);
+	$theme->setInfiniteVerticalArticleScroll(isset($_POST['infiniteVerticalArticleScroll']));
+	$theme->setInfiniteHorizontalArticleScroll(isset($_POST['infiniteHorizontalArticleScroll']));
+	$theme->setNewsItemTimeFormat($_POST['newsItemTimeFormat']);
+	$theme->setNewsItemDateFormat($_POST['newsItemDateFormat']);
+	$theme->setDefaultFeedPageSize((int) preg_replace('/[^0-9]/', '', $_POST['defaultFeedPageSize']));
+	$theme->setListAdInterval((int) preg_replace('/[^0-9]/', '', $_POST['listAdInterval']));
+	$theme->setSectionPrefix($_POST['sectionPrefix']);
+	$theme->setDnsPrefetch(explode(',', $_POST['dnsPrefetch']));
+	
+	// Manifest Colours
+	$manifest->setThemeColor($_POST['themeColour']);
+	$manifest->setBackgroundColor($_POST['backgroundColour']);
+
+	$manifestManager->write();
+	$themeManager->write();
+}
+
+?>
+
+<script type="text/javascript">
+    if (window.WMPJSInterface && window.WMPJSInterface != null) {
+		function changeColour(input) {
+			input.nextElementSibling.style.background = input.value;
+		}
     }
 </script>
-
-<script type="text/javascript">
-        document.getElementById("bmBurgerBarsBackground").value = getSavedValue("bmBurgerBarsBackground");    // set the value to this input
-        document.getElementById("bmCrossBackground").value = getSavedValue("bmCrossBackground");   // set the value to this input
-        /* Here you can add more inputs to set value. if it's saved */
-
-        //Save the value function - save it to localStorage as (ID, VALUE)
-        function saveValue(e){
-            var id = e.id;  // get the sender's id to save it . 
-            var val = e.value; // get the value. 
-            localStorage.setItem(id, val);// Every time user writing something, the localStorage's value will override . 
-        }
-
-        //get the saved value function - return the value of "v" from localStorage. 
-        function getSavedValue  (v){
-            if (localStorage.getItem(v) === null) {
-                return "";// You can change this to your default value. 
-            }
-            return localStorage.getItem(v);
-        }
-</script>
-
-<?php
-							function read_manifest_from_disk(){
-
-								$man = $_SERVER['DOCUMENT_ROOT'].'/manifest.json';
-
-
-								$test = fopen($man, 'w+');
-
-								$test_data = "{ 'data1' : 1, 'data2' : 2 }";
-
-								fwrite($test, $test_data);
-
-								fclose($test);
-
-								$skim = fopen($man, 'r');
-
-								$man_update_out = fread($skim, filesize($man));
-							
-
-								fclose($skim);
-								$man_update_in = json_decode($man_update_out, true);
-
-								return $man_update_out;
-							}
-
-
-							 function write_manifest_to_disk() {
-    						$man = $_SERVER['DOCUMENT_ROOT'].'/manifest.json';
-
-
-    						$man_link = fopen($man, 'a') or die("Can't open file");
-
-    						fwrite($man_link, $man_update_out);
-
-    						fclose($man_link);
-							} 
-
-
-							$man = $_SERVER['DOCUMENT_ROOT'].'/manifest.json';
-
-							if(isset($_POST["save"])) {
-
-
-
-							$defaults = array(
-							'name' => get_bloginfo('name').'|'.get_bloginfo('description'),
-							'short_name' => (mb_strstr(get_bloginfo('name'), ' ', true, 'utf-8') ) ? mb_strstr(get_bloginfo('name'), ' ', true, 'utf-8') : get_bloginfo('name'),
-							'description' => get_bloginfo('description'),
-							'background-color' => '#E4E4E4',
-							'theme_color' => '#E4E4E4',
-							'start_url' => trailingslashit(get_bloginfo('url')),
-							'display' => 'standalone',
-							'orientation' => 'portrait',
-						); 
-
-    					
-							$man = $_SERVER['DOCUMENT_ROOT'].'/manifest.json';
-						}
-
-						if(file_exists($man)) {
-
-							read_manifest_from_disk();
-
-						}
-
-
-    						$man_update_in[] = $defaults;
-    						
-    						$man_update_out = json_encode($man_update_in);
-
-    					write_manifest_to_disk();	
-
-
-
-						?>
-
-
-						<?php
-							$user_settings = $_SERVER['DOCUMENT_ROOT'].'/wp-content/uploads/wordpress-pwa/theme.json';
-							$success = ' ';
-							$failure = ' ';
-
-							if(isset($_POST["save"])) {
-
-							$input_proc = array(
-
-									'bmBurgerBarsBackground' => $_POST['bmBurgerBarsBackground'],
-									'bmCrossBackground' => $_POST['bmCrossBackground'],
-									'bmMenuBackground' => $_POST['bmMenuBackground'],
-									'bmItemListColor' => $_POST['bmItemListColor'],
-									'selectedBackground' => $_POST['selectedBackground'],
-									'selectedText' => $_POST['selectedText'],
-									'themeColour' => $_POST['themeColour'],
-									'backgroundColour' => $_POST['backgroundColour']
-
-							);
-
-							$user_settings = $_SERVER['DOCUMENT_ROOT'].'/wp-content/uploads/wordpress-pwa/theme.json';
-
-
-							if(file_exists($user_settings)) {
-
-								$output = file_get_contents($user_settings); //Need to substitute for fread.
-
-								$array_data = json_decode($output, true);
-						
-							}
-
-
-							$array_data[] = $input_proc; #appends the array with new form data.
-				
-							$output = json_encode($array_data);
-
-							#file_put_contents($user_settings, $output);
-				 
-
-							if(file_put_contents($user_settings, $output)) {
-
-								$success = "<label class='text-success'> Your settings have been saved. </label>";
-								}
-							else {
-								$failure = 'JSON file does not exist';
-							} 	
-						}		
- 						?>
 
 <style>
 
@@ -162,7 +136,6 @@
 }
 
 .color-schemes-custom label {
-	
 	text-align: right;
 }
 
@@ -197,366 +170,287 @@
 
 <div id="wmpack-admin">
 	<div class="spacer-60"></div>
-    <!-- set title -->
-    <h1>Publisher's Toolbox PWA <?php echo WMP_VERSION;?></h1>
+
+	<!-- set title -->
+	<h1>Publisher's Toolbox PWA <?php echo WMP_VERSION; ?></h1>
 	<div class="spacer-20"></div>
+
 	<div class="look-and-feel">
-        <div class="left-side">
+		<div class="left-side">
+		<!-- add nav menu -->
+		<?php include_once(WMP_PLUGIN_PATH . 'admin/sections/admin-menu.php'); ?>
+		<div class="spacer-0"></div>
 
-            <!-- add nav menu -->
-            <?php include_once(WMP_PLUGIN_PATH.'admin/sections/admin-menu.php'); ?>
-            <div class="spacer-0"></div>
-
-            <!-- add content form -->
-
-			<?php
-                $theme_settings = WMobilePack_Themes_Config::get_theme_config();
-
-                if ($theme_settings !== false):
-            ?>
-
+		<!-- add content form -->
 				<div class="details">
-							<p class="section-header">Select Colour Scheme</p>
-							<div class="spacer-20"></div>
+					<p class="title">Select Colour Scheme</p>
+						<div class="spacer-20"></div>
 							<form method="post" id="color-settings" enctype="multipart/form-data">
 								<div class="holder">
-									<label>Mobile Menu Bar Background Colour</label><input class="bmBurgerBarsBackground" type="text" name="bmBurgerBarsBackground" id="bmBurgerBarsBackground" placeholder="Enter hex value" onkeyup="changeColour(this.className); saveValue(this)" /><div class="changedElement" style="height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;"></div>
-									<script>
-										function changeColour(className){
-											document.getElementsByClassName("changedElement")[0].style.background = document.getElementsByClassName("bmBurgerBarsBackground")[0].value;
-										}
-									</script>
-									<script>
-										var input = document.getElementById('bmBurgerBarsBackground');
-										input.addEventListener("keyup", function() {
-											changeColour(input.className);
-											saveValue(input.id);
-										})
-									</script>	
-
+									<label>Menu icon colour</label>
+									<input value="<?= $theme->getBmBurgerBarsBackground() ?>" class="bmBurgerBarsBackground" type="text" name="bmBurgerBarsBackground" id="bmBurgerBarsBackground" placeholder="Enter hex value" onkeyup="changeColour(this);" />
+									<div class="changedElement" style="background:<?= $theme->getBmBurgerBarsBackground() ?>;height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;" />
 								</div>	
 								<div class="spacer-15"></div>
-								<div class="holder">
 
-									<label for="bmCrossBackground">Close Button Background Colour</label>
-									<input type="text" class="bmCrossBackground" name="bmCrossBackground" id="bmCrossBackground" placeholder="Enter hex value" onkeyup="changeColour2(this.className);" /><div class="changedElement2" style="height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;"></div>
-										<script>
-										function changeColour2(className){
-											document.getElementsByClassName("changedElement2")[0].style.background = document.getElementsByClassName("bmCrossBackground")[0].value;
-										}
-									</script>
+								<div class="holder">
+									<label for="bmCrossBackground">Close button colour</label>
+									<input value="<?= $theme->getBmCrossBackground() ?>"   type="text" class="bmCrossBackground" name="bmCrossBackground" id="bmCrossBackground" placeholder="Enter hex value" onkeyup="changeColour(this);" />
+									<div class="changedElement2" style="background:<?= $theme->getBmCrossBackground() ?>;height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;"></div>
 								</div>
 								<div class="spacer-15"></div>
+
 								<div class="holder">
-									<label for="bmMenuBackground">Mobile Menu Background Colour</label>
-									<input class="bmMenuBackground" type="text" name="bmMenuBackground" placeholder="Enter hex value" onkeyup="changeColour3(this.className)" /><div class="changedElement3" style="height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;"></div>
-									<script>
-										function changeColour3(className){
-											document.getElementsByClassName("changedElement3")[0].style.background = document.getElementsByClassName("bmMenuBackground")[0].value;
-										}
-									</script>
+									<label for="bmMenuBackground">Menu background colour</label>
+									<input value="<?= $theme->getBmMenuBackground() ?>" class="bmMenuBackground" type="text" name="bmMenuBackground" placeholder="Enter hex value" onkeyup="changeColour(this);" />
+									<div class="changedElement3" style="background:<?= $theme->getBmMenuBackground() ?>;height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;" />
 								</div>
 								<div class="spacer-15"></div>
+
 								<div class="holder">
-									<label for="bmItemListColor">Mobile Menu Item List Colour</label>
-									<input class="bmItemListColor" type="text" name="bmItemListColor" placeholder="Enter hex value" onkeyup="changeColour4(this.className)" /><div class="changedElement4" style="height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;"></div>
-									<script>
-										function changeColour4(className){
-											document.getElementsByClassName("changedElement4")[0].style.background = document.getElementsByClassName("bmItemListColor")[0].value;
-										}
-									</script>
+									<label for="bmItemListColor">Menu item list colour</label>
+									<input value="<?= $theme->getBmItemListColor() ?>" class="bmItemListColor" type="text" name="bmItemListColor" placeholder="Enter hex value" onkeyup="changeColour(this);" />
+									<div class="changedElement4" style="background:<?= $theme->getBmItemListColor() ?>;height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;" />
 								</div>
 								<div class="spacer-15"></div>
+
 								<div class="holder">
-									<label for="selectedBackground">Selected Item Background Colour</label>
-									<input class="selectedBackground" type="text" name="selectedBackground" placeholder="Enter hex value" onkeyup="changeColour5(this.className)" /><div class="changedElement5" style="height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;"></div>
-									<script>
-										function changeColour5(className){
-											document.getElementsByClassName("changedElement5")[0].style.background = document.getElementsByClassName("selectedBackground")[0].value;
-										}
-									</script>
+									<label for="selectedBackground">Menu selected item colour</label>
+									<input value="<?= $theme->getSelectedBackground() ?>" class="selectedBackground" type="text" name="selectedBackground" placeholder="Enter hex value" onkeyup="changeColour(this);" />
+									<div class="changedElement5" style="background:<?= $theme->getSelectedBackground() ?>;height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;" />
 								</div>			
 								<div class="spacer-15"></div>
+
 								<div class="holder">
-									<label for="selectedText">Selected Text Background Color</label>
-									<input class="selectedText" type="text" name="selectedText" placeholder="Enter hex value" onkeyup="changeColour6(this.className)" /><div class="changedElement6" style="height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;"></div>
-									<script>
-										function changeColour6(className){
-											document.getElementsByClassName("changedElement6")[0].style.background = document.getElementsByClassName("selectedText")[0].value;
-										}
-									</script>
+									<label for="selectedText">Selected text colour</label>
+									<input value="<?= $theme->getSelectedText() ?>" class="selectedText" type="text" name="selectedText" placeholder="Enter hex value" onkeyup="changeColour(this);" />
+									<div class="changedElement6" style="background:<?= $theme->getSelectedText() ?>;height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;" />
 								</div>
 								<div class="spacer-15"></div>
+
 								<div class="holder">
-									<label for="themeColour">Theme Colour</label>
-									<input class="themeColour" type="text" name="themeColour" placeholder="Enter hex value" onkeyup="changeColour7(this.className)" /><div class="changedElement7" style="height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;"></div>
-									<script>
-										function changeColour7(className){
-											document.getElementsByClassName("changedElement7")[0].style.background = document.getElementsByClassName("selectedText")[0].value;
-										}
-									</script>
+									<label for="themeColour">Theme colour</label>
+									<input value="<?= $theme->getThemeColour() ?>" class="themeColour" type="text" name="themeColour" placeholder="Enter hex value" onkeyup="changeColour(this);" />
+									<div class="changedElement7" style="background:<?= $theme->getThemeColour() ?>;height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;" />
 								</div>
 								<div class="spacer-15"></div>
+
 								<div class="holder">
-									<label for="backgroundColour">Background Colour</label>
-									<input class="backgroundColour" type="text" name="backgroundColour" placeholder="Enter hex value" onkeyup="changeColour8(this.className)" /><div class="changedElement8" style="height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;"></div>
-									<script>
-										function changeColour8(className){
-											document.getElementsByClassName("changedElement8")[0].style.background = document.getElementsByClassName("selectedText")[0].value;
-										}
-									</script>
+									<label for="backgroundColour">Background colour</label>
+									<input  value="<?= $theme->getBackgroundColour() ?>" class="backgroundColour" type="text" name="backgroundColour" placeholder="Enter hex value" onkeyup="changeColour(this);" />
+									<div class="changedElement8" style="background:<?= $theme->getBackgroundColour() ?>;height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;" />
 								</div>
 								<div class="spacer-15"></div>
+
 								<div class="holder">
-									<label for="headerImage">Header Image</label>
-									<input class="headerImage" type="file" name="headerImage" id="headerImage"/>
-									<?php
-
-									function header_retrieve(){
-										if(isset($_FILES['headerImage'])){
-											$headerImage = $_FILES['header'];
-											$uploaded1 = media_handle_upload('headerImage', 0);
-
-											if(is_wp_error($uploaded1)){
-												echo "There was a problem uploading the file. Please try again.". $uploaded1->get_error_message();
-											} else {
-												echo "The file has been uploaded successfully.";
-											}
-										}
-									} 
-									?>
-									<?php header_retrieve(); ?>
-									<?php submit_button('Upload') ?>
-								</div>
-								<div class="spacer-15"></div>	
-								<div class="holder">
-									<label for="hamburgerImage">Mobile Menu Bar Image</label>
-									<input class="hamburgerImage" type="file" name="hamburgerImage" id="hamburgerImage"/>
-										<?php
-
-									function hamburger_retrieve(){
-										if(isset($_FILES['hamburgerImage'])){
-											$headerImage = $_FILES['header'];
-											$uploaded2 = media_handle_upload('hamburgerImage', 0);
-
-											if(is_wp_error($uploaded2)){
-												echo "There was a problem uploading the file. Please try again. ". $uploaded2->get_error_message();
-											} else {
-												echo "The file has been uploaded successfully.";
-											}
-										}
-									} 
-									?>
-									<?php hamburger_retrieve(); ?>
-									<?php submit_button('Upload') ?>
+									<label for="textColour">Text colour</label>
+									<input  value="<?= $theme->getTextColour() ?>" class="textColour" type="text" name="textColour" placeholder="Enter hex value" onkeyup="changeColour(this);" />
+									<div style="background:<?= $theme->getTextColour() ?>;height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;" />
 								</div>
 								<div class="spacer-15"></div>
+
 								<div class="holder">
-									<label for="loadingSpinner">Loading Spinner Image</label>
-									<input class="loadingSpinner" type="file" name="loadingSpinner" id="loadingSpinner"/>
-									<?php
-
-									function spinner_retrieve(){
-										if(isset($_FILES['loadingSpinner'])){
-											$headerImage = $_FILES['header'];
-											$uploaded3 = media_handle_upload('loadingSpinner', 0);
-
-											if(is_wp_error($uploaded3)){
-												echo "There was a problem uploading the file. Please try again. ". $uploaded3->get_error_message();
-											} else {
-												echo "The file has been uploaded successfully.";
-											}
-										}
-									} 
-									?>
-									<?php spinner_retrieve(); ?>
-									<?php submit_button('Upload') ?>
+									<label for="menuSlideOutWidth">Menu slide out width (as a percentage)</label>
+									<input  value="<?= $theme->getMenuSlideOutWidth() ?>" class="menuSlideOutWidth" type="text" name="menuSlideOutWidth" placeholder="Enter a width value" />
 								</div>
-						<div class="spacer-20"></div>
-						<div class="submit"><input type="submit" name="save" class="save" value="Save"/></div>		
-						</form>			
+								<div class="spacer-15"></div>
+
+								<div class="holder">
+									<label for="sectionSliderTextColor">Navigation menu text colour</label>
+									<input  value="<?= $theme->getSectionSliderTextColor() ?>" class="sectionSliderTextColor" type="text" name="sectionSliderTextColor" placeholder="Enter hex value" onkeyup="changeColour(this);" />
+									<div style="background:<?= $theme->getSectionSliderTextColor() ?>;height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<div class="holder">
+									<label for="sectionSliderBackground">Navigation menu background colour</label>
+									<input  value="<?= $theme->getSectionSliderBackground() ?>" class="sectionSliderBackground" type="text" name="sectionSliderBackground" placeholder="Enter hex value" onkeyup="changeColour(this);" />
+									<div style="background:<?= $theme->getSectionSliderBackground() ?>;height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<div class="holder">
+									<label for="highlightsColour">Highlights colour</label>
+									<input  value="<?= $theme->getHighlightsColour() ?>" class="highlightsColour" type="text" name="highlightsColour" placeholder="Enter hex value" onkeyup="changeColour(this);" />
+									<div style="background:<?= $theme->getHighlightsColour() ?>;height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<div class="holder">
+									<label for="borderColour">Border colour</label>
+									<input  value="<?= $theme->getBorderColour() ?>" class="borderColour" type="text" name="borderColour" placeholder="Enter hex value" onkeyup="changeColour(this);" />
+									<div style="background:<?= $theme->getBorderColour() ?>;height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<input type="checkbox" name="sectionDownloadEnabled" <?= $theme->getSectionDownloadEnabled() ? 'checked' : '' ?> /> Section download enabled
+								<div class="spacer-20"></div>
+								
+								<input type="checkbox" name="multiSection" <?= $theme->getMultiSection() ? 'checked' : '' ?> /> Show child categories
+								<div class="spacer-20"></div>
+								
+								<input type="checkbox" name="flattenSections" <?= $theme->getFlattenSections() ? 'checked' : '' ?> /> Flatten sections
+								<div class="spacer-20"></div>
+								
+								<input type="checkbox" name="showDateBlockOnFeedListItem" <?= $theme->getShowDateBlockOnFeedListItem() ? 'checked' : '' ?> /> Show date on feed items
+								<div class="spacer-20"></div>
+								
+								<input type="checkbox" name="showAllFeed" <?= $theme->getShowAllFeed() ? 'checked' : '' ?> /> Show home section
+								<div class="spacer-20"></div>
+								
+								<div class="holder">
+									<label for="imageGalleryHeight">Image gallery height (as px or vh value)</label>
+									<input  value="<?= $theme->getImageGalleryHeight() ?>" class="imageGalleryHeight" type="text" name="imageGalleryHeight" placeholder="Image gallery height" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<div class="holder">
+									<label for="mastHeadHeight">Mast head height (as px or vh value)</label>
+									<input  value="<?= $theme->getMastHeadHeight() ?>" class="mastHeadHeight" type="text" name="mastHeadHeight" placeholder="Mast head height" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<input type="checkbox" name="showDatesOnList" <?= $theme->getShowDatesOnList() ? 'checked' : '' ?> /> Show dates on list
+								<div class="spacer-20"></div>
+								
+								<input type="checkbox" name="showSearch" <?= $theme->getShowSearch() ? 'checked' : '' ?> /> Show menu search bar
+								<div class="spacer-20"></div>
+								
+								<input type="checkbox" name="searchLightTheme" <?= $theme->getSearchLightTheme() ? 'checked' : '' ?> /> Menu search bar light theme
+								<div class="spacer-20"></div>
+
+								<div class="holder">
+									<label for="searchParam">Query parameter for search e.g. "s")</label>
+									<input  value="<?= $theme->getSearchParam() ?>" class="searchParam" type="text" name="searchParam" placeholder="Query parameter for search" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<div class="holder">
+									<label for="searchAction">Search action</label>
+									<input  value="<?= $theme->getSearchAction() ?>" class="searchAction" type="text" name="searchAction" placeholder="Search action" />
+								</div>
+								<div class="spacer-15"></div>
+								
+								<div class="holder">
+									<label for="maxWidth">Max width</label>
+									<input  value="<?= $theme->getMaxWidth() ?>" class="maxWidth" type="number" name="maxWidth" min="1" max="1920" />
+								</div>
+								<div class="spacer-15"></div>
+								
+								<div class="holder">
+									<label for="topHeros">Top hero posts</label>
+									<input  value="<?= $theme->getTopHeros() ?>" class="topHeros" type="number" min="1" max="5" name="topHeros" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<div class="holder">
+									<label for="twitterEmbedUrl">Twitter embed script URL</label>
+									<input  value="<?= $theme->getTwitterEmbedUrl() ?>" class="twitterEmbedUrl" type="text" name="twitterEmbedUrl" placeholder="Twitter embed script URL" />
+								</div>
+								<div class="spacer-15"></div>
+								
+								<div class="holder">
+									<label for="instagramEmbedUrl">Instagram embed script URL</label>
+									<input  value="<?= $theme->getInstagramEmbedUrl() ?>" class="instagramEmbedUrl" type="text" name="instagramEmbedUrl" placeholder="Instagram embed script URL" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<div class="holder">
+									<label for="shareTitlePrefix">Share Title Prefix</label>
+									<input  value="<?= $theme->getShareTitlePrefix() ?>" class="shareTitlePrefix" type="text" name="shareTitlePrefix" placeholder="Share Title Prefix" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<div class="holder">
+									<label for="customStyles">Custom Styles</label>
+									<textarea class="customStyles" type="textarea" name="customStyles" placeholder="Custom Styles"><?= $theme->getCustomStyles() ?></textarea>
+								</div>
+								<div class="spacer-15"></div>
+								
+								<div class="holder">
+									<label for="hamburgerImageMarginTop">Hamburger Image Margin Top(as a px value)</label>
+									<input  value="<?= $theme->getHamburgerImageMarginTop() ?>" class="hamburgerImageMarginTop" type="text" name="hamburgerImageMarginTop" placeholder="Hamburger Image Margin Top" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<div class="holder">
+									<label for="customHtml">Custom HTML</label>
+									<textarea class="customHtml" type="textarea" name="customHtml" placeholder="Custom HTML"><?= $theme->getCustomHtml() ?></textarea>
+								</div>
+								<div class="spacer-15"></div>
+								
+								<input type="checkbox" name="infiniteVerticalArticleScroll" <?= $theme->getInfiniteVerticalArticleScroll() ? 'checked' : '' ?> /> Infinite vertical article scroll
+								<div class="spacer-20"></div>
+								
+								<input type="checkbox" name="infiniteHorizontalArticleScroll" <?= $theme->getInfiniteHorizontalArticleScroll() ? 'checked' : '' ?> /> Infinite horizontal article scroll
+								<div class="spacer-20"></div>
+
+								<div class="holder">
+									<label for="newsItemDateFormat">News item date format</label>
+									<input  value="<?= $theme->getNewsItemDateFormat() ?>" class="newsItemDateFormat" type="text" name="newsItemDateFormat" placeholder="News item date format" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<div class="holder">
+									<label for="newsItemTimeFormat">News item date format</label>
+									<input  value="<?= $theme->getNewsItemTimeFormat() ?>" class="newsItemTimeFormat" type="text" name="newsItemTimeFormat" placeholder="News item time format" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<div class="holder">
+									<label for="defaultFeedPageSize">Feed page size</label>
+									<input  value="<?= $theme->getDefaultFeedPageSize() ?>" class="defaultFeedPageSize" type="number" min="1" max="50" name="defaultFeedPageSize" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<div class="holder">
+									<label for="listAdInterval">Feed advert interval</label>
+									<input  value="<?= $theme->getListAdInterval() ?>" class="listAdInterval" type="number" min="1" max="20" name="listAdInterval" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<div class="holder">
+									<label for="sectionPrefix">Category prefix</label>
+									<input  value="<?= $theme->getSectionPrefix() ?>" class="sectionPrefix" type="text" name="sectionPrefix" placeholder="Category prefix" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<div class="holder">
+									<label for="dnsPrefetch">DNS Prefetch list (seperated by comma)</label>
+									<textarea class="dnsPrefetch" type="textarea" name="dnsPrefetch" placeholder="DNS Prefetch List"><?= implode(",",$theme->getDnsPrefetch()) ?></textarea>
+								</div>
+								<div class="spacer-15"></div>
+
+								<div class="holder">
+									<img src="<?= $theme->getHeaderImage() ?>" style="max-height:80px" />
+									<label for="logo">App logo</label>
+									<input type="file" name="logo" style="padding: 7px;"/>
+									<?= $logoMsg ?>
+								</div>
+								<div class="spacer-15" ></div>	
+
+								<div class="holder">
+									<img src="<?= $manifest->getIcons()[0]['src'] ?>" style="max-height:80px" />
+									<label for="appIcon">App icon</label>
+									<input type="file" name="appIcon" style="padding: 7px;"/>
+									<?= $appIconMsg ?>
+								</div>
+								<div class="spacer-15"></div>
+
+								<div class="holder">
+									<img src="<?= $theme->getLoadingSpinner() ?>" style="max-height:80px" />
+									<label for="loadingSpinner">Loading spinner image</label>
+									<input type="file" name="loadingSpinner" style="padding: 7px;"/>
+									<?= $loadingSpinnerMsg ?>
+								</div>
+							<div class="spacer-20"></div>
+
+							<div class="submit">
+								<input type="submit" name="save" class="save" />
+							</div>		
+						</form>	
 				</div>
 				<div class="spacer-15"></div>
-            <?php endif;?>
-
-            <div class="details branding">
-
-                <h2 class="title">Customize Your App's Logo and Icon</h2>
-                <div class="spacer-15"></div>
-                <div class="grey-line"></div>
-                <div class="spacer-20"></div>
-                <p>You can also personalize your app by adding <strong>your own logo and icon</strong>. The logo will be displayed on the home page of your mobile web app, while the icon will be used when readers add your app to their homescreen.</p>
-                <div class="spacer-20"></div>
-
-				<?php
-					$warning_message = '';
-					$icon_filename = WMobilePack_Options::get_setting('icon');
-
-					if ($icon_filename == '') {
-						$warning_message = 'Upload an App Icon to take advantage of the Add To Home Screen functionality!';
-
-					} elseif ($icon_filename != '' && file_exists(WMP_FILES_UPLOADS_DIR . $icon_filename)) {
-						foreach (WMobilePack_Uploads::$manifest_sizes as $manifest_size) {
-							if (!file_exists(WMP_FILES_UPLOADS_DIR . $manifest_size . $icon_filename)) {
-								$warning_message = 'WP Mobile Pack Version 3.2+ comes with Add To Home Screen functionality which requires you to reupload your App Icon.';
-								break;
-							}
-						}
-					}
-				?>
-
-				<div id="wmp_editimages_warning" class="message-container warning" style="display:<?php echo ($warning_message != '') ? 'block':'none' ?>">
-					<div class="wrapper">
-						<div class="relative"><a class="close-x"></a></div>
-						<span><?php echo $warning_message; ?></span>
-					</div>
-					<div class="spacer-10"></div>
-				</div>
-                <div class="left">
-                    <form name="wmp_editimages_form" id="wmp_editimages_form" action="<?php echo admin_url('admin-ajax.php'); ?>?action=wmp_theme_editimages&type=upload" method="post" enctype="multipart/form-data">
-
-                        <?php
-                            $logo_path = WMobilePack_Options::get_setting('logo');
-
-                            if ($logo_path != "") {
-
-                                if (!file_exists(WMP_FILES_UPLOADS_DIR . $logo_path))
-                                    $logo_path = '';
-                                else
-                                    $logo_path = WMP_FILES_UPLOADS_URL . $logo_path;
-                            }
-
-                        ?>
-
-                        <!-- upload logo field -->
-                        <div class="wmp_editimages_uploadlogo" style="display: <?php echo $logo_path == '' ? 'block' : 'none';?>;">
-
-                            <label for="wmp_editimages_logo">Upload your app logo</label>
-
-                            <div class="custom-upload">
-
-                                <input type="file" id="wmp_editimages_logo" name="wmp_editimages_logo" />
-                                <div class="fake-file">
-                                    <input type="text" id="fakefilelogo" disabled="disabled" />
-                                    <a href="#" class="btn grey smaller">Browse</a>
-                                </div>
-
-
-                                <a href="javascript:void(0)" id="wmp_editimages_logo_removenew" class="remove" style="display: none;"></a>
-                            </div>
-
-                            <!-- cancel upload logo button -->
-                            <div class="wmp_editimages_changelogo_cancel cancel-link" style="display: none;">
-                                <a href="javascript:void(0);" class="cancel">cancel</a>
-                            </div>
-                            <div class="field-message error" id="error_logo_container"></div>
-
-                        </div>
-
-                        <!-- logo image -->
-                        <div class="wmp_editimages_logocontainer display-logo" style="display: <?php echo $logo_path != '' ? 'block' : 'none';?>;">
-
-                            <label for="branding_logo">App logo</label>
-                            <div class="img" id="wmp_editimages_currentlogo" style="background:url(<?php echo $logo_path;?>); background-size:contain; background-repeat: no-repeat; background-position: center"></div>
-
-                            <!-- edit/delete logo links -->
-                            <a href="javascript:void(0);" class="wmp_editimages_changelogo btn grey smaller edit">Change</a>
-                            <a href="#" class="wmp_editimages_deletelogo smaller remove">remove</a>
-
-                        </div>
-
-                        <div class="spacer-20"></div>
-
-                        <?php
-                            $icon_path = WMobilePack_Options::get_setting('icon');
-
-                            if ($icon_path != "") {
-
-                                if (!file_exists(WMP_FILES_UPLOADS_DIR . $icon_path))
-                                    $icon_path = '';
-                                else
-                                    $icon_path = WMP_FILES_UPLOADS_URL . $icon_path;
-                            }
-                        ?>
-
-                        <!-- upload icon field -->
-                        <div class="wmp_editimages_uploadicon" style="display: <?php echo $icon_path == '' ? 'block' : 'none';?>;">
-
-                            <label for="wmp_editimages_icon">Upload your app icon</label>
-
-                            <div class="custom-upload">
-
-                                <input type="file" id="wmp_editimages_icon" name="wmp_editimages_icon" />
-                                <div class="fake-file">
-                                    <input type="text" id="fakefileicon" disabled="disabled" />
-                                    <a href="#" class="btn grey smaller">Browse</a>
-                                </div>
-
-                                <a href="javascript:void(0)" id="wmp_editimages_icon_removenew" class="remove" style="display: none;"></a>
-                            </div>
-                            <!-- cancel upload icon button -->
-                            <div class="wmp_editimages_changeicon_cancel cancel-link" style="display: none;">
-                                <a href="javascript:void(0);" class="cancel">cancel</a>
-                            </div>
-                            <div class="field-message error" id="error_icon_container"></div>
-
-                        </div>
-
-                        <!-- icon image -->
-                        <div class="wmp_editimages_iconcontainer display-icon" style="display: <?php echo $icon_path != '' ? 'block' : 'none';?>;;">
-
-                            <label for="branding_icon">App icon</label>
-                            <img src="<?php echo $icon_path;?>" id="wmp_editimages_currenticon" />
-
-                            <!-- edit/delete icon links -->
-                            <a href="javascript:void(0);" class="wmp_editimages_changeicon btn grey smaller edit">Change</a>
-                            <a href="#" class="wmp_editimages_deleteicon smaller remove">remove</a>
-						</div>
-
-						<div class="spacer-20"></div>
-
-						<a href="javascript:void(0);" id="wmp_editimages_send_btn" class="btn green smaller">Save</a>
-
-                    </form>
-                </div>
-
-                <div class="notice notice-left right" style="width: 265px;">
-                    <span>
-                        Add your logo in a .png format with a transparent background. This will be displayed on the cover of your app.<br /><br />
-                        Your icon should be square with a recommended size of 512 x 512 px. This will be displayed when the app will be added to the homescreen.<br /><br />
-                        The file size for uploaded images should not exceed 1MB.
-                    </span>
-                </div>
-                <div class="spacer-0"></div>
-			</div>
-
-			<div class="spacer-15"></div>
-
-
-            <div class="spacer-15"></div>
-
- 
-        </div>
-
-        <div class="right-side">
-            <!-- waitlist form -->
-            <?php #include_once(WMP_PLUGIN_PATH.'admin/sections/waitlist.php'); ?>
-
-            <!-- add feedback form -->
-            <?php #include_once(WMP_PLUGIN_PATH.'admin/sections/feedback.php'); ?>
         </div>
 	</div>
 </div>
-
-<script type="text/javascript">
-    if (window.WMPJSInterface && window.WMPJSInterface != null){
-        jQuery(document).ready(function(){
-
-            window.WMPJSInterface.add("UI_customizetheme","WMP_EDIT_THEME",{'DOMDoc':window.document}, window);
-            window.WMPJSInterface.add("UI_editimages","WMP_EDIT_IMAGES",{'DOMDoc':window.document}, window);
-			window.WMPJSInterface.add("UI_editcover","WMP_EDIT_COVER",{'DOMDoc':window.document}, window);
-			window.WMPJSInterface.add("UI_service_worker","WMP_SERVICE_WORKER",{'DOMDoc':window.document}, window);
-
-        });
-    }
-</script>

@@ -15,11 +15,24 @@ if (!class_exists('WMobilePack_Application')) {
         /**
          * Class constructor
          */
-        public function __construct()
+        public function __construct($plugin_dir)
         {
             // Load application only if the PRO plugin is not active
             if (!WMobilePack::is_active_plugin('WordPress Mobile Pack PRO'))
                 $this->check_load();
+
+            $this->plugin_dir = $plugin_dir;
+
+			add_action( 'rest_api_init', function() {
+				remove_filter( 'rest_pre_serve_request', 'rest_send_cors_headers' );
+				add_filter( 'rest_pre_serve_request', function( $value ) {
+					header( 'Access-Control-Allow-Origin: *' );
+					header( 'Access-Control-Allow-Methods: GET' );
+					header( 'Access-Control-Allow-Credentials: true' );
+					header( 'Access-Control-Expose-Headers: Link', false );
+					return $value;
+				});
+			}, 15 );
         }
 
 
@@ -85,6 +98,16 @@ if (!class_exists('WMobilePack_Application')) {
                     // The cookie was already set for the device, so we can load the app
                     $load_app = true;
                 }
+            } else {
+                $themeManager = new ThemeManager(new Theme());
+                $theme = $themeManager->getTheme();
+
+                // The user is shown a button to redirect them back to the app
+                if($theme->getShowClassicSwitch()) {
+                    add_action('wp_enqueue_scripts', function() {
+                        wp_enqueue_script('show_classic_switch', $this->plugin_dir . '/frontend/themes/app2/js/classic_switch.js', null, null, false);    
+                    });
+                }
             }
 
             // If we need to add the rel=alternate links in the header
@@ -111,11 +134,34 @@ if (!class_exists('WMobilePack_Application')) {
                     add_action('wp_footer', array(&$this, 'show_mobile_link'));
                 }
             }
+        }
 
-            // Add hook in header (for rel=alternate)
-            if ($show_alternate){
-                add_action('wp_head', array(&$this, 'show_rel'));
-            }
+        public function show_classic_switch() {
+            ?>
+                <script>
+                    window.onload = function() {
+                        function onMobileButtonClick() {
+                            document.cookie = "classicCookie=false;"
+                            location.href = location.href.replace("?noapp=true","");
+                        }
+
+                        var mobileButton = document.createElement('div');
+
+                        mobileButton.textContent = "Switch to mobile";
+                        mobileButton.onclick = onMobileButtonClick;
+                        mobileButton.id = 'classicSwitch';
+                        mobileButton.style.position = "fixed";
+                        mobileButton.style.backgroundColor = "#218CC6";
+                        mobileButton.style.color = "#FFF";
+                        mobileButton.style.bottom = "2%";
+                        mobileButton.style.right = "2%";
+                        mobileButton.style.padding = "7px";
+                        mobileButton.style.fontSize = "12px";
+                        
+                        document.body.insertAdjacentElement('beforeend', mobileButton);
+                    }
+                </script>
+            <?php
         }
 
         /**
@@ -242,51 +288,6 @@ if (!class_exists('WMobilePack_Application')) {
         {
             return WMP_PLUGIN_PATH . 'frontend/themes';
 		}
-		
-
-        /**
-         *
-         * Method used to display a rel=alternate link in the header of the desktop theme
-         *
-         * This method is called from check_load().
-         *
-         * @todo (Future releases) Don't set tag if a page's parent is deactivated
-         */
-        public function show_rel()
-        {
-            include(WMP_PLUGIN_PATH.'frontend/sections/show-rel.php');
-        }
-
-
-        /**
-         *
-         * Method used to include a smart app banner in the header of the desktop theme,
-         * when the mobile theme is disabled.
-         *
-         * This method is called from check_load()
-         *
-         * @todo (Future releases) Don't set mobile url if a page's parent is deactivated
-         *
-         */
-        public function show_smart_app_banner()
-        {
-            include(WMP_PLUGIN_PATH.'frontend/sections/smart-app-banner.php');
-        }
-
-		
-        /**
-         *
-         * Method used to display a box on the footer of the theme
-         *
-         * This method is called from check_load()
-         * The box contains a link that sets the cookie and loads the app
-         *
-         */
-        public function show_mobile_link()
-        {
-            include(WMP_PLUGIN_PATH.'frontend/sections/show-mobile-link.php');
-        }
-
 
         /**
          * Returns an array with all the application's frontend settings
