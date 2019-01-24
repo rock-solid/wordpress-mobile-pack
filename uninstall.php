@@ -9,7 +9,7 @@ require_once('core/config.php');
 require_once('core/class-wmp.php');
 
 // create uploads folder and define constants
-if ( !defined( 'WMP_FILES_UPLOADS_DIR' ) && !defined( 'WMP_FILES_UPLOADS_URL' ) ){
+if ( !defined( 'PWA_FILES_UPLOADS_DIR' ) && !defined( 'WMP_FILES_UPLOADS_URL' ) ){
     $WMP_Uploads = new WMobilePack_Uploads();
     $WMP_Uploads->define_uploads_dir();
 }

@@ -202,7 +202,7 @@ if (!class_exists('WMobilePack_Application')) {
         protected function check_device(){
 
             if ( ! class_exists( 'WMobilePack_Detect' ) ) {
-                require_once(WMP_PLUGIN_PATH.'frontend/class-detect.php');
+                require_once(PWA_PLUGIN_PATH.'frontend/class-detect.php');
             }
 
             $WMobileDetect = new WMobilePack_Detect();
@@ -286,7 +286,7 @@ if (!class_exists('WMobilePack_Application')) {
          */
         public function app_theme_root()
         {
-            return WMP_PLUGIN_PATH . 'frontend/themes';
+            return PWA_PLUGIN_PATH . 'frontend/themes';
 		}
 
         /**
@@ -330,7 +330,7 @@ if (!class_exists('WMobilePack_Application')) {
             // check if custom theme exists and the file size is greater than zero
             if ($settings['theme_timestamp'] != ''){
 
-                $custom_theme_path = WMP_FILES_UPLOADS_DIR.'theme-'.$settings['theme_timestamp'].'.css';
+                $custom_theme_path = PWA_FILES_UPLOADS_DIR.'theme-'.$settings['theme_timestamp'].'.css';
 
                 if (!file_exists($custom_theme_path) || filesize($custom_theme_path) == 0){
                     $settings['theme_timestamp'] = '';
@@ -347,7 +347,7 @@ if (!class_exists('WMobilePack_Application')) {
 
                 $file_path = WMobilePack_Options::get_setting($file_type);
 
-                if ($file_path == '' || !file_exists(WMP_FILES_UPLOADS_DIR.$file_path))
+                if ($file_path == '' || !file_exists(PWA_FILES_UPLOADS_DIR.$file_path))
                     $settings[$file_type] = '';
                 else
                     $settings[$file_type] = WMP_FILES_UPLOADS_URL.$file_path;
@@ -355,13 +355,13 @@ if (!class_exists('WMobilePack_Application')) {
 
             // generate comments token
             if (!class_exists('WMobilePack_Tokens')) {
-                require_once(WMP_PLUGIN_PATH . 'inc/class-wmp-tokens.php');
+                require_once(PWA_PLUGIN_PATH . 'inc/class-wmp-tokens.php');
             }
 
             $settings['comments_token'] = WMobilePack_Tokens::get_token();
 
 			if (!class_exists('WMobilePack_Themes_Config')) {
-                require_once(WMP_PLUGIN_PATH . 'inc/class-wmp-themes-config.php');
+                require_once(PWA_PLUGIN_PATH . 'inc/class-wmp-themes-config.php');
             }
 
 			$settings['manifest_color'] = WMobilePack_Themes_Config::get_manifest_background($settings['theme'], $settings['color_scheme']);
@@ -393,10 +393,10 @@ if (!class_exists('WMobilePack_Application')) {
          */
         public static function check_language_file($locale)
         {
-            $language_file_path = WMP_PLUGIN_PATH.'frontend/locales/'.strip_tags($locale).'.json';
+            $language_file_path = PWA_PLUGIN_PATH.'frontend/locales/'.strip_tags($locale).'.json';
 
             if (!file_exists($language_file_path)) {
-                $language_file_path = WMP_PLUGIN_PATH."frontend/locales/default.json";
+                $language_file_path = PWA_PLUGIN_PATH."frontend/locales/default.json";
             }
 
             if (file_exists($language_file_path)){

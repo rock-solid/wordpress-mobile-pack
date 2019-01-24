@@ -1,10 +1,10 @@
 <?php
 
-require_once WMP_PLUGIN_PATH . "libs/scssphp-0.3.0/scss.inc.php";
+require_once PWA_PLUGIN_PATH . "libs/scssphp-0.3.0/scss.inc.php";
 use Leafo\ScssPhp\Compiler;
 
 if ( ! class_exists( 'WMobilePack_Themes_Config' ) ) {
-    require_once(WMP_PLUGIN_PATH.'inc/class-wmp-themes-config.php');
+    require_once(PWA_PLUGIN_PATH.'inc/class-wmp-themes-config.php');
 }
 
 if ( ! class_exists( 'WMobilePack_Themes_Compiler' ) ) {
@@ -50,9 +50,9 @@ if ( ! class_exists( 'WMobilePack_Themes_Compiler' ) ) {
                 'error' => false
             );
 
-            if (!is_writable(WMP_FILES_UPLOADS_DIR)){
+            if (!is_writable(PWA_FILES_UPLOADS_DIR)){
 
-                $response['error'] = "Error uploading theme files, the upload folder ".WMP_FILES_UPLOADS_DIR." is not writable.";
+                $response['error'] = "Error uploading theme files, the upload folder ".PWA_FILES_UPLOADS_DIR." is not writable.";
 
             } else {
 
@@ -91,7 +91,7 @@ if ( ! class_exists( 'WMobilePack_Themes_Compiler' ) ) {
          */
         public function remove_css_file($theme_timestamp)
         {
-            $file_path = WMP_FILES_UPLOADS_DIR.'theme-'.$theme_timestamp.'.css';
+            $file_path = PWA_FILES_UPLOADS_DIR.'theme-'.$theme_timestamp.'.css';
 
             if (file_exists($file_path))
                 unlink($file_path);
@@ -110,7 +110,7 @@ if ( ! class_exists( 'WMobilePack_Themes_Compiler' ) ) {
         {
 
             // attempt to open or create the scss file
-            $file_path = WMP_FILES_UPLOADS_DIR.'_variables.scss';
+            $file_path = PWA_FILES_UPLOADS_DIR.'_variables.scss';
 
             $fp = @fopen($file_path, "w");
 
@@ -170,7 +170,7 @@ if ( ! class_exists( 'WMobilePack_Themes_Compiler' ) ) {
          */
         protected function remove_variables_file()
         {
-            $file_path = WMP_FILES_UPLOADS_DIR.'_variables.scss';
+            $file_path = PWA_FILES_UPLOADS_DIR.'_variables.scss';
 
             if (file_exists($file_path))
                 unlink($file_path);
@@ -192,7 +192,7 @@ if ( ! class_exists( 'WMobilePack_Themes_Compiler' ) ) {
         {
 
             // attempt to open or create the scss file
-            $file_path = WMP_FILES_UPLOADS_DIR.'theme-'.$theme_timestamp.'.css';
+            $file_path = PWA_FILES_UPLOADS_DIR.'theme-'.$theme_timestamp.'.css';
 
             $fp = @fopen($file_path, "w");
 
@@ -201,8 +201,8 @@ if ( ! class_exists( 'WMobilePack_Themes_Compiler' ) ) {
                 $scss_compiler = new Compiler();
 
                 $scss_compiler->setImportPaths(array(
-                    WMP_FILES_UPLOADS_DIR,
-                    WMP_PLUGIN_PATH.'frontend/themes/app'.WMobilePack_Options::get_setting('theme').'/scss/'
+                    PWA_FILES_UPLOADS_DIR,
+                    PWA_PLUGIN_PATH.'frontend/themes/app'.WMobilePack_Options::get_setting('theme').'/scss/'
                 ));
 
                 $scss_compiler->setFormatter('scss_formatter_compressed');

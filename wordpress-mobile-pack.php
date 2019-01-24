@@ -8,12 +8,10 @@
  * Version: 1.0
  * Copyright (c) 2009 - 2018 James Pearce, mTLD Top Level Domain Limited, ribot, Forum Nokia, Appticles.com
  * License: The WordPress Mobile Pack is Licensed under the Apache License, Version 2.0
- * Text Domain: publisher's-toolbox-pwa
+ * Text Domain: publishers-toolbox-pwa
  */
 require_once('core/config.php');
 require_once('core/class-wmp.php');
-
-$WMP_PLUGIN_DIR =  plugin_dir_url(__FILE__); 
 
 /**
  * Used to load the required files on the plugins_loaded hook, instead of immediately.
@@ -57,7 +55,7 @@ if (class_exists( 'WMobilePack' ) && class_exists( 'WMobilePack' )) {
     
     // Copy service worker file into root if not copied before
     if(!file_exists($_SERVER['DOCUMENT_ROOT'] . '/service-worker.js')) {
-        copy(WMP_PLUGIN_PATH . 'service-worker.js', $_SERVER['DOCUMENT_ROOT'] . '/service-worker.js');
+        copy(PWA_PLUGIN_PATH . 'service-worker.js', $_SERVER['DOCUMENT_ROOT'] . '/service-worker.js');
     }
 
     // Add hooks for activating & deactivating the plugin
@@ -71,7 +69,7 @@ if (class_exists( 'WMobilePack' ) && class_exists( 'WMobilePack' )) {
 
         if (defined('DOING_AJAX') && DOING_AJAX) {
 
-            require_once(WMP_PLUGIN_PATH . 'admin/class-admin-ajax.php');
+            require_once(PWA_PLUGIN_PATH . 'admin/class-admin-ajax.php');
             
             $wmobile_pack_ajax = new WMobilePack_Admin_Ajax();
 

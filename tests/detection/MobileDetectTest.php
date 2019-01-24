@@ -1,6 +1,6 @@
 <?php
 
-require_once(WMP_PLUGIN_PATH.'frontend/class-detect.php');
+require_once(PWA_PLUGIN_PATH.'frontend/class-detect.php');
 
 if (!class_exists('MobileDetectTest')) {
 

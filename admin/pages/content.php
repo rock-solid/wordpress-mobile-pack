@@ -2,7 +2,7 @@
     if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
 
-            WMPJSInterface.localpath = "<?php echo plugins_url()."/".WMP_DOMAIN."/"; ?>";
+            WMPJSInterface.localpath = "<?php echo plugins_url()."/".PWA_DOMAIN."/"; ?>";
             WMPJSInterface.init();
         });
     }
@@ -87,13 +87,13 @@
 <div id="wmpack-admin">
 	<div class="spacer-60"></div>
     <!-- set title -->
-    <h1>Publisher's Toolbox PWA <?= WMP_VERSION;?></h1>
+    <h1>Publisher's Toolbox PWA <?= PWA_VERSION;?></h1>
 	<div class="spacer-20"></div>
 	<div class="content">
         <div class="left-side">
         
             <!-- add nav menu -->
-            <?php include_once(WMP_PLUGIN_PATH.'admin/sections/admin-menu.php');?>
+            <?php include_once(PWA_PLUGIN_PATH.'admin/sections/admin-menu.php');?>
             <div class="spacer-0"></div>
             
             <!-- add content form -->
@@ -189,7 +189,7 @@
                                                     $icon_path = $categories_details[$category->cat_ID]['icon'];
 
                                                     if ($icon_path != ''){
-                                                        if (!file_exists(WMP_FILES_UPLOADS_DIR . $icon_path))
+                                                        if (!file_exists(PWA_FILES_UPLOADS_DIR . $icon_path))
                                                             $icon_path = '';
                                                         else
                                                             $icon_path = WMP_FILES_UPLOADS_URL . $icon_path;

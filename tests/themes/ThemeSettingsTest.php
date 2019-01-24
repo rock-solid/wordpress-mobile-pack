@@ -1,7 +1,7 @@
 <?php
 
-require_once(WMP_PLUGIN_PATH.'admin/class-admin-ajax.php');
-require_once(WMP_PLUGIN_PATH.'inc/class-wmp-options.php');
+require_once(PWA_PLUGIN_PATH.'admin/class-admin-ajax.php');
+require_once(PWA_PLUGIN_PATH.'inc/class-wmp-options.php');
 
 /**
  * Testing ajax theme settings functionality

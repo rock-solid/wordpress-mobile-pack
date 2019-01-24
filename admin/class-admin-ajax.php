@@ -1,7 +1,7 @@
 <?php
 
 if ( ! class_exists( 'WMobilePack_Themes_Config' )) {
-    require_once(WMP_PLUGIN_PATH.'inc/class-wmp-themes-config.php');
+    require_once(PWA_PLUGIN_PATH.'inc/class-wmp-themes-config.php');
 }
 
 if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
@@ -25,7 +25,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
         protected function get_theme_manager()
         {
             if ( ! class_exists( 'WMobilePack_Themes_Compiler' ) && version_compare(PHP_VERSION, '5.3') >= 0 ) {
-                require_once(WMP_PLUGIN_PATH.'inc/class-wmp-themes-compiler.php');
+                require_once(PWA_PLUGIN_PATH.'inc/class-wmp-themes-compiler.php');
             }
 
             if (class_exists('WMobilePack_Themes_Compiler')) {
@@ -447,7 +447,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 
 							$manifest_image = wp_get_image_editor($file_path);
 							$manifest_image->resize($manifest_size, $manifest_size, true);
-							$manifest_image->save(WMP_FILES_UPLOADS_DIR . $manifest_size . $file_name);
+							$manifest_image->save(PWA_FILES_UPLOADS_DIR . $manifest_size . $file_name);
 						}
 
 					}
@@ -457,14 +457,14 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 
                         // resize and copy to the plugin uploads folder
                         $image->resize($arrMaximumSize['max_width'], $arrMaximumSize['max_height']);
-                        $image->save(WMP_FILES_UPLOADS_DIR . $file_name);
+                        $image->save(PWA_FILES_UPLOADS_DIR . $file_name);
 
                         $copied_and_resized = true;
 
                     } else {
 
                         // copy file without resizing to the plugin uploads folder
-                        $copied_and_resized = copy($file_path, WMP_FILES_UPLOADS_DIR . $file_name);
+                        $copied_and_resized = copy($file_path, PWA_FILES_UPLOADS_DIR . $file_name);
                     }
 
                 } else {
@@ -574,9 +574,9 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                         $default_uploads_dir = wp_upload_dir();
 
                         // check if the upload folder is writable
-                        if (!is_writable(WMP_FILES_UPLOADS_DIR)){
+                        if (!is_writable(PWA_FILES_UPLOADS_DIR)){
 
-                            $arr_response['messages'][] = "Error uploading image, the upload folder ".WMP_FILES_UPLOADS_DIR." is not writable.";
+                            $arr_response['messages'][] = "Error uploading image, the upload folder ".PWA_FILES_UPLOADS_DIR." is not writable.";
 
                         } elseif (!is_writable($default_uploads_dir['path'])) {
 
@@ -901,7 +901,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 
                                 // load HTML purifier / formatter
                                 if (!class_exists('WMobilePack_Formatter')) {
-                                    require_once(WMP_PLUGIN_PATH . 'inc/class-wmp-formatter.php');
+                                    require_once(PWA_PLUGIN_PATH . 'inc/class-wmp-formatter.php');
                                 }
 
                                 $purifier = WMobilePack_Formatter::init_purifier();
@@ -1108,7 +1108,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                                 if (isset($_SERVER['HTTP_HOST']))
                                     $message .= "Host: ".$_SERVER['HTTP_HOST']."\r\n \r\n";
 
-                                $subject = WMP_PLUGIN_NAME.' Feedback';
+                                $subject = PWA_PLUGIN_NAME.' Feedback';
                                 $to = WMP_FEEDBACK_EMAIL;
 
                                 // set headers

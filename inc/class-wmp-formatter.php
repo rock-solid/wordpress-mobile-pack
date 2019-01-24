@@ -1,8 +1,8 @@
 <?php
 
 // set HTML Purifier
-require_once WMP_PLUGIN_PATH . 'libs/htmlpurifier-4.8.0/library/HTMLPurifier.safe-includes.php';
-require_once WMP_PLUGIN_PATH . 'libs/htmlpurifier-html5/htmlpurifier_html5.php';
+require_once PWA_PLUGIN_PATH . 'libs/htmlpurifier-4.8.0/library/HTMLPurifier.safe-includes.php';
+require_once PWA_PLUGIN_PATH . 'libs/htmlpurifier-html5/htmlpurifier_html5.php';
 
 if ( ! class_exists( 'WMobilePack_Formatter' ) ) {
 

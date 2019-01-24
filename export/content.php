@@ -5,7 +5,7 @@ header( 'Content-Type: application/json; charset=UTF-8' );
 require_once( '../../../../wp-config.php' );
 
 if ( ! class_exists( 'WMobilePack_Export' ) ) {
-	require_once( WMP_PLUGIN_PATH . 'export/class-export.php' );
+	require_once( PWA_PLUGIN_PATH . 'export/class-export.php' );
 }
 
 // Disable error reporting because these methods are used as callbacks by the mobile web app
@@ -70,7 +70,7 @@ if ( isset( $_GET['content'] ) ) {
 	} else {
 
 		if ( ! class_exists( 'WMobilePack_Export_Settings' ) ) {
-			require_once(WMP_PLUGIN_PATH.'/export/class-export-settings.php');
+			require_once(PWA_PLUGIN_PATH.'/export/class-export-settings.php');
 		}
 
 		$export_settings = new WMobilePack_Export_Settings();

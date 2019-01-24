@@ -2,13 +2,13 @@
     <div class="spacer-60"></div>
     
     <!-- set title -->
-    <h1>Publisher's Toolbox PWA <?php echo WMP_VERSION;?></h1>
+    <h1>Publisher's Toolbox PWA <?php echo PWA_VERSION;?></h1>
     <div class="spacer-20"></div>
 
     <div class="whats-new">
         <div class="left-side"> 
             <!-- add nav menu -->
-            <?php include_once(WMP_PLUGIN_PATH.'admin/sections/admin-menu.php'); ?>
+            <?php include_once(PWA_PLUGIN_PATH.'admin/sections/admin-menu.php'); ?>
             <div class="spacer-0"></div>
             
                 <div class="details features">
@@ -21,7 +21,7 @@
                     <div class="feature left">
                         <div class="text">
                             <?php
-                                $step1 = plugins_url(). '/'. WMP_DOMAIN ."/admin/images/step1.png";
+                                $step1 = plugins_url(). '/'. PWA_DOMAIN ."/admin/images/step1.png";
                             ?>
                             <img src="<?php echo $step1; ?>" title="Step 1: Choose between two available app themes" />
                             <span class="title">Step 1: Choose between two available app themes</span>
@@ -36,7 +36,7 @@
                     <div class="feature left">
                         <div class="text">
                             <?php 
-                                $step2 = plugins_url(). '/'. WMP_DOMAIN . "/admin/images/step2.png";
+                                $step2 = plugins_url(). '/'. PWA_DOMAIN . "/admin/images/step2.png";
                             ?>
                             <img src="<?php echo $step2; ?>" title="Step 2: Tailor the look & feel to suit your website" />
                             <span class="title">Step 2: Tailor the look & feel to suit your website</span>
@@ -52,7 +52,7 @@
 
                         <div class="text">
                             <?php
-                                $step3 = plugins_url(). '/'. WMP_DOMAIN . "/admin/images/step3.png";
+                                $step3 = plugins_url(). '/'. PWA_DOMAIN . "/admin/images/step3.png";
                             ?>
                             <img src="<?php echo $step3; ?>" title="Step 3: Decide on the content to be included in your layout" />
                             <span class="title">Step 3: Decide on the content to be included in your layout</span>
@@ -65,7 +65,7 @@
                     <div class="spacer-0"></div>
 
                     <?php 
-                        $step4 = plugins_url(). '/'. WMP_DOMAIN . "/admin/images/step4.png";
+                        $step4 = plugins_url(). '/'. PWA_DOMAIN . "/admin/images/step4.png";
                     ?>
                     <div class="feature left">
                         <img src="<?php echo $step4 ?>" title="Step 4:  Change your settings, implement Google Analytics & social sharing" />

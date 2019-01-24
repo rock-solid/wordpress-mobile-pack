@@ -78,7 +78,7 @@ if ( ! class_exists( 'WMobilePack_Themes_Config' ) ) {
                 $theme = WMobilePack_Options::get_setting('theme');
             }
 
-            $theme_config_path = WMP_PLUGIN_PATH.'frontend/themes/app'.$theme.'/presets.json'; 
+            $theme_config_path = PWA_PLUGIN_PATH.'frontend/themes/app'.$theme.'/presets.json'; 
 
             if (file_exists($theme_config_path)){
 

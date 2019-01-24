@@ -1,6 +1,6 @@
 <?php
 
-require_once(WMP_PLUGIN_PATH."export/class-export-settings.php");
+require_once(PWA_PLUGIN_PATH."export/class-export-settings.php");
 
 class ExportSettingsTest extends WP_UnitTestCase
 {

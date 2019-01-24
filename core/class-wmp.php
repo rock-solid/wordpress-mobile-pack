@@ -1,61 +1,47 @@
 <?php
 
-/**
- __        __                      _     _      _
- \ \      / /__    __ _ _ __ ___  | |__ (_)_ __(_)_ __   __ _
-  \ \ /\ / / _ \  / _` | '__/ _ \ | '_ \| | '__| | '_ \ / _` |
-   \ V  V /  __/ | (_| | | |  __/ | | | | | |  | | | | | (_| |
-    \_/\_/ \___|  \__,_|_|  \___| |_| |_|_|_|  |_|_| |_|\__, |
-                                                        |___/
-Surprised? Don't be. Please do come in, we've been expecting you.
-http://www.appticles.com/jobs.html
----------------------------------
-Growth Hackers: gh@appticles.com
-JS Developers: js@appticles.com
-*/
-
 if ( ! class_exists( 'WMobilePack_Options' ) ) {
-    require_once(WMP_PLUGIN_PATH.'inc/class-wmp-options.php');
+    require_once(PWA_PLUGIN_PATH.'inc/class-wmp-options.php');
 }
 
 if ( ! class_exists( 'WMobilePack_Uploads' ) ) {
-    require_once(WMP_PLUGIN_PATH.'inc/class-wmp-uploads.php');
+    require_once(PWA_PLUGIN_PATH.'inc/class-wmp-uploads.php');
 }
 
 if ( ! class_exists( 'WMobilePack_Cookie' ) ) {
-    require_once(WMP_PLUGIN_PATH.'inc/class-wmp-cookie.php');
+    require_once(PWA_PLUGIN_PATH.'inc/class-wmp-cookie.php');
 }
 
 if ( ! interface_exists( 'Manager' ) ) {
-    require_once(WMP_PLUGIN_PATH.'inc/interface-manager.php');
+    require_once(PWA_PLUGIN_PATH.'inc/interface-manager.php');
 }
 
 if ( ! class_exists( 'Theme' ) ) {
-    require_once(WMP_PLUGIN_PATH.'inc/class-theme.php');
+    require_once(PWA_PLUGIN_PATH.'inc/class-theme.php');
 }
 
 if ( ! class_exists( 'ThemeManager' ) ) {
-    require_once(WMP_PLUGIN_PATH.'inc/class-theme-manager.php');
+    require_once(PWA_PLUGIN_PATH.'inc/class-theme-manager.php');
 }
 
 if ( ! class_exists( 'Manifest' ) ) {
-    require_once(WMP_PLUGIN_PATH.'inc/class-manifest.php');
+    require_once(PWA_PLUGIN_PATH.'inc/class-manifest.php');
 }
 
 if ( ! class_exists( 'ManifestManager' ) ) {
-    require_once(WMP_PLUGIN_PATH.'inc/class-manifest-manager.php');
+    require_once(PWA_PLUGIN_PATH.'inc/class-manifest-manager.php');
 }
 
 if ( ! class_exists( 'Icon' ) ) {
-    require_once(WMP_PLUGIN_PATH.'inc/class-icon.php');
+    require_once(PWA_PLUGIN_PATH.'inc/class-icon.php');
 }
 
 if ( ! class_exists( 'FileHelper' ) ) {
-    require_once(WMP_PLUGIN_PATH.'inc/class-file-helper.php');
+    require_once(PWA_PLUGIN_PATH.'inc/class-file-helper.php');
 }
 
 if ( ! class_exists( 'JsonSerializer' ) ) {
-    require_once (WMP_PLUGIN_PATH.'libs/json-serializer/JsonSerializer/JsonSerializer.php');
+    require_once (PWA_PLUGIN_PATH.'libs/json-serializer/JsonSerializer/JsonSerializer.php');
 }
 
 if ( ! class_exists( 'WMobilePack' ) ) {
@@ -86,7 +72,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
         public function __construct()
         {
             // create uploads folder and define constants
-            if ( !defined( 'WMP_FILES_UPLOADS_DIR' ) && !defined( 'WMP_FILES_UPLOADS_URL' ) ){
+            if ( !defined( 'PWA_FILES_UPLOADS_DIR' ) && !defined( 'WMP_FILES_UPLOADS_URL' ) ){
                 $WMP_Uploads = new WMobilePack_Uploads();
                 $WMP_Uploads->define_uploads_dir();
             }
@@ -163,7 +149,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
             }
 
             if (version_compare(PHP_VERSION, '5.3') < 0) {
-                echo '<div class="error"><p><b>Warning!</b> The ' . WMP_PLUGIN_NAME . ' plugin requires at least PHP 5.3.0!</p></div>';
+                echo '<div class="error"><p><b>Warning!</b> The ' . PWA_PLUGIN_NAME . ' plugin requires at least PHP 5.3.0!</p></div>';
                 return;
             }
 
@@ -184,9 +170,9 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 			if ($icon_filename == '') {
 				echo '<div class="notice notice-warning is-dismissible"><p>Publishers Toolbox PWA: Upload an <a href="' . get_admin_url() . 'admin.php?page=wmp-options-theme-settings"/>App Icon</a> to take advantage of the Add To Home Screen functionality!</p></div>';
 
-			} elseif ($icon_filename != '' && file_exists(WMP_FILES_UPLOADS_DIR . $icon_filename)) {
+			} elseif ($icon_filename != '' && file_exists(PWA_FILES_UPLOADS_DIR . $icon_filename)) {
 				foreach (WMobilePack_Uploads::$manifest_sizes as $manifest_size) {
-					if (!file_exists(WMP_FILES_UPLOADS_DIR . $manifest_size . $icon_filename)) {
+					if (!file_exists(PWA_FILES_UPLOADS_DIR . $manifest_size . $icon_filename)) {
 						echo '<div class="notice notice-warning is-dismissible"><p>Publishers Toolbox PWA comes with Add To Home Screen functionality which requires you to reupload your <a href="' . get_admin_url() . 'admin.php?page=wmp-options-theme-settings"/>App Icon</a>!</p></div>';
 						return;
 					}
@@ -202,7 +188,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
         public function backwards_compatibility(){
 
             if ( ! class_exists( 'WMobilePack_Themes_Config' )) {
-                require_once(WMP_PLUGIN_PATH.'inc/class-wmp-themes-config.php');
+                require_once(PWA_PLUGIN_PATH.'inc/class-wmp-themes-config.php');
             }
 
             if (class_exists('WMobilePack_Themes_Config')){
@@ -251,7 +237,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 
 			if ($theme_timestamp != ''){
 
-				$file_path = WMP_FILES_UPLOADS_DIR.'theme-'.$theme_timestamp.'.css';
+				$file_path = PWA_FILES_UPLOADS_DIR.'theme-'.$theme_timestamp.'.css';
 
 				if (file_exists($file_path)) {
 					unlink($file_path);
@@ -405,7 +391,7 @@ function wmp_create_tracking()
     if (WMobilePack_Options::get_setting('allow_tracking') == 1) {
 
         if ( ! class_exists( 'WMobilePack_Tracking' ) ) {
-            require_once(WMP_PLUGIN_PATH.'inc/class-wmp-tracking.php');
+            require_once(PWA_PLUGIN_PATH.'inc/class-wmp-tracking.php');
         }
 
         if ( class_exists( 'WMobilePack_Tracking') ) {

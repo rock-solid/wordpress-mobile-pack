@@ -1,11 +1,11 @@
 <?php
 
 if ( ! class_exists( 'WMobilePack_Admin' ) ) {
-    require_once(WMP_PLUGIN_PATH.'admin/class-admin.php');
+    require_once(PWA_PLUGIN_PATH.'admin/class-admin.php');
 }
 
 if ( ! class_exists( 'WMobilePack_Themes_Config' )) {
-    require_once(WMP_PLUGIN_PATH.'inc/class-wmp-themes-config.php');
+    require_once(PWA_PLUGIN_PATH.'inc/class-wmp-themes-config.php');
 }
 
 if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
@@ -22,7 +22,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
          * The menu item's title
          * @var string
          */
-        private static $submenu_title = WMP_PLUGIN_NAME;
+        private static $submenu_title = PWA_PLUGIN_NAME;
 
         /**
          * Submenu pages arrays. Each item has the following properties:
@@ -104,7 +104,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
 			}
             
             // add menu and submenu hooks
-            add_menu_page(self::$submenu_title, self::$submenu_title, 'manage_options', $menu_name, '', WP_PLUGIN_URL . '/' . WMP_DOMAIN . '/admin/images/menu-icon2' . ($display_notify_icon == true ? '-updates' : '') . '.png');
+            add_menu_page(self::$submenu_title, self::$submenu_title, 'manage_options', $menu_name, '', WP_PLUGIN_URL . '/' . PWA_DOMAIN . '/admin/images/menu-icon2' . ($display_notify_icon == true ? '-updates' : '') . '.png');
 
             foreach ($pages_list as $submenu_item) {
 
@@ -139,23 +139,23 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
         public function wmp_admin_enqueue_scripts()
         {
             // enqueue styles
-            wp_enqueue_style(WMobilePack_Options::$prefix.'css_general', plugins_url(WMP_DOMAIN.'/admin/css/general-1493993256.css'), array(), WMP_VERSION);
+            wp_enqueue_style(WMobilePack_Options::$prefix.'css_general', plugins_url(PWA_DOMAIN.'/admin/css/general-1493993256.css'), array(), PWA_VERSION);
 
             // enqueue scripts
             $dependencies = array('jquery-core', 'jquery-migrate');
 
-            wp_enqueue_script(WMobilePack_Options::$prefix.'js_validate', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/jquery.validate.min.js'), $dependencies, '1.11.1');
-            wp_enqueue_script(WMobilePack_Options::$prefix.'js_validate_additional', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/validate-additional-methods.min.js'), $dependencies, '1.11.1');
-            wp_enqueue_script(WMobilePack_Options::$prefix.'js_loader', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Loader.min.js'), $dependencies, WMP_VERSION);
-            wp_enqueue_script(WMobilePack_Options::$prefix.'js_ajax_upload', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/AjaxUpload.min.js'), $dependencies, WMP_VERSION);
-            wp_enqueue_script(WMobilePack_Options::$prefix.'js_interface', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/JSInterface.min.js'), $dependencies, WMP_VERSION);
-            wp_enqueue_script(WMobilePack_Options::$prefix.'js_scrollbar', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/perfect-scrollbar.min.js'), array(), WMP_VERSION);
+            wp_enqueue_script(WMobilePack_Options::$prefix.'js_validate', plugins_url(PWA_DOMAIN.'/admin/js/UI.Interface/Lib/jquery.validate.min.js'), $dependencies, '1.11.1');
+            wp_enqueue_script(WMobilePack_Options::$prefix.'js_validate_additional', plugins_url(PWA_DOMAIN.'/admin/js/UI.Interface/Lib/validate-additional-methods.min.js'), $dependencies, '1.11.1');
+            wp_enqueue_script(WMobilePack_Options::$prefix.'js_loader', plugins_url(PWA_DOMAIN.'/admin/js/UI.Interface/Loader.min.js'), $dependencies, PWA_VERSION);
+            wp_enqueue_script(WMobilePack_Options::$prefix.'js_ajax_upload', plugins_url(PWA_DOMAIN.'/admin/js/UI.Interface/AjaxUpload.min.js'), $dependencies, PWA_VERSION);
+            wp_enqueue_script(WMobilePack_Options::$prefix.'js_interface', plugins_url(PWA_DOMAIN.'/admin/js/UI.Interface/JSInterface.min.js'), $dependencies, PWA_VERSION);
+            wp_enqueue_script(WMobilePack_Options::$prefix.'js_scrollbar', plugins_url(PWA_DOMAIN.'/admin/js/UI.Interface/Lib/perfect-scrollbar.min.js'), array(), PWA_VERSION);
 
-            wp_enqueue_script(WMobilePack_Options::$prefix.'js_join_waitlist', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Waitlist/WMP_WAITLIST.min.js'), array(), WMP_VERSION);
-            wp_enqueue_script(WMobilePack_Options::$prefix.'js_feedback', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Feedback/WMP_SEND_FEEDBACK.min.js'), array(), WMP_VERSION);
+            wp_enqueue_script(WMobilePack_Options::$prefix.'js_join_waitlist', plugins_url(PWA_DOMAIN.'/admin/js/UI.Modules/Waitlist/WMP_WAITLIST.min.js'), array(), PWA_VERSION);
+            wp_enqueue_script(WMobilePack_Options::$prefix.'js_feedback', plugins_url(PWA_DOMAIN.'/admin/js/UI.Modules/Feedback/WMP_SEND_FEEDBACK.min.js'), array(), PWA_VERSION);
 
             if (WMobilePack_Options::get_setting('upgrade_notice_updated') == 1){
-                wp_enqueue_script(WMobilePack_Options::$prefix.'js_upgrade_notice', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Waitlist/WMP_UPGRADE_NOTICE.min.js'), array(), WMP_VERSION, true);
+                wp_enqueue_script(WMobilePack_Options::$prefix.'js_upgrade_notice', plugins_url(PWA_DOMAIN.'/admin/js/UI.Modules/Waitlist/WMP_UPGRADE_NOTICE.min.js'), array(), PWA_VERSION, true);
             }
         }
 
@@ -167,8 +167,8 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
         public function wmp_admin_load_theme_settings_js()
         {
 
-			wp_enqueue_style(WMobilePack_Options::$prefix.'css_select_box_it', plugins_url(WMP_DOMAIN.'/admin/css/jquery.selectBoxIt.css'), array(), '3.8.1');
-			wp_enqueue_script(WMobilePack_Options::$prefix.'js_select_box_it', plugins_url(WMP_DOMAIN.'/admin/js/UI.Interface/Lib/jquery.selectBoxIt.min.js'), array('jquery','jquery-ui-core', 'jquery-ui-widget'), '3.8.1');
+			wp_enqueue_style(WMobilePack_Options::$prefix.'css_select_box_it', plugins_url(PWA_DOMAIN.'/admin/css/jquery.selectBoxIt.css'), array(), '3.8.1');
+			wp_enqueue_script(WMobilePack_Options::$prefix.'js_select_box_it', plugins_url(PWA_DOMAIN.'/admin/js/UI.Interface/Lib/jquery.selectBoxIt.min.js'), array('jquery','jquery-ui-core', 'jquery-ui-widget'), '3.8.1');
 
             wp_enqueue_style('wp-color-picker');
         }
@@ -181,8 +181,8 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
          */
         public function wmp_admin_load_content_js()
         {
-            wp_enqueue_script(WMobilePack_Options::$prefix.'js_content_editcategories', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_EDIT_CATEGORIES.min.js'), array(), WMP_VERSION);
-            wp_enqueue_script(WMobilePack_Options::$prefix.'js_content_editpages', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_EDIT_PAGES.min.js'), array(), WMP_VERSION);
+            wp_enqueue_script(WMobilePack_Options::$prefix.'js_content_editcategories', plugins_url(PWA_DOMAIN.'/admin/js/UI.Modules/Content/WMP_EDIT_CATEGORIES.min.js'), array(), PWA_VERSION);
+            wp_enqueue_script(WMobilePack_Options::$prefix.'js_content_editpages', plugins_url(PWA_DOMAIN.'/admin/js/UI.Modules/Content/WMP_EDIT_PAGES.min.js'), array(), PWA_VERSION);
             wp_enqueue_script('jquery-ui-sortable');
         }
 
@@ -194,7 +194,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
          */
         public function wmp_admin_load_category_js()
         {
-            wp_enqueue_script(WMobilePack_Options::$prefix.'js_content_categorydetails', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_CATEGORY_DETAILS.min.js'), array(), WMP_VERSION);
+            wp_enqueue_script(WMobilePack_Options::$prefix.'js_content_categorydetails', plugins_url(PWA_DOMAIN.'/admin/js/UI.Modules/Content/WMP_CATEGORY_DETAILS.min.js'), array(), PWA_VERSION);
         }
 
         /**
@@ -204,7 +204,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
          */
         public function wmp_admin_load_page_js()
         {
-            wp_enqueue_script(WMobilePack_Options::$prefix.'js_content_pagedetails', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Content/WMP_PAGE_DETAILS.min.js'), array(), WMP_VERSION);
+            wp_enqueue_script(WMobilePack_Options::$prefix.'js_content_pagedetails', plugins_url(PWA_DOMAIN.'/admin/js/UI.Modules/Content/WMP_PAGE_DETAILS.min.js'), array(), PWA_VERSION);
         }
     }
 }

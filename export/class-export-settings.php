@@ -32,7 +32,7 @@ if ( ! class_exists( 'WMobilePack_Export_Settings' ) ) {
         protected function get_application_manager()
         {
 			if (!class_exists('WMobilePack_Application')){
-				require_once(WMP_PLUGIN_PATH.'frontend/class-application.php');
+				require_once(PWA_PLUGIN_PATH.'frontend/class-application.php');
 			}
 
             return new WMobilePack_Application($WMP_PLUGIN_DIR);
@@ -53,7 +53,7 @@ if ( ! class_exists( 'WMobilePack_Export_Settings' ) ) {
         {
 
             if (!class_exists('WMobilePack_Application'))
-                require_once(WMP_PLUGIN_PATH.'frontend/class-application.php');
+                require_once(PWA_PLUGIN_PATH.'frontend/class-application.php');
 
             $language_file = WMobilePack_Application::check_language_file($locale);
 
@@ -102,7 +102,7 @@ if ( ! class_exists( 'WMobilePack_Export_Settings' ) ) {
                 );
 
 				if (!class_exists('WMobilePack_Themes_Config')) {
-					require_once(WMP_PLUGIN_PATH . 'inc/class-wmp-themes-config.php');
+					require_once(PWA_PLUGIN_PATH . 'inc/class-wmp-themes-config.php');
 				}
 
 				$background_color = WMobilePack_Themes_Config::get_manifest_background();
@@ -180,8 +180,8 @@ if ( ! class_exists( 'WMobilePack_Export_Settings' ) ) {
             $app = $this->get_application_manager();
             $app_settings = $app->load_app_settings();
 
-			$frontend_path = plugins_url()."/".WMP_DOMAIN."/frontend/";
-            $export_path = plugins_url()."/".WMP_DOMAIN."/export/";
+			$frontend_path = plugins_url()."/".PWA_DOMAIN."/frontend/";
+            $export_path = plugins_url()."/".PWA_DOMAIN."/export/";
 
             $settings = array();
 

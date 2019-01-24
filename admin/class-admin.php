@@ -17,7 +17,7 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
          */
         public function whatsnew() {
 
-            include(WMP_PLUGIN_PATH.'admin/pages/whats-new.php');
+            include(PWA_PLUGIN_PATH.'admin/pages/whats-new.php');
         }
 
 		/**
@@ -27,7 +27,7 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
          */
         public function themes() {
 
-            include(WMP_PLUGIN_PATH.'admin/pages/themes.php');
+            include(PWA_PLUGIN_PATH.'admin/pages/themes.php');
         }
 
         /**
@@ -37,7 +37,7 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
          */
         public function theme_settings() {
 
-            include(WMP_PLUGIN_PATH.'admin/pages/theme-settings.php');
+            include(PWA_PLUGIN_PATH.'admin/pages/theme-settings.php');
         }
 
 
@@ -104,7 +104,7 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
             $all_pages = get_pages(array('sort_column' => 'menu_order,post_title'));
             $pages = $this->build_pages_tree($all_pages);
 
-            include(WMP_PLUGIN_PATH.'admin/pages/content.php');
+            include(PWA_PLUGIN_PATH.'admin/pages/content.php');
         }
 
 
@@ -115,7 +115,7 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
          */
         public function settings() {
 
-            include(WMP_PLUGIN_PATH.'admin/pages/settings.php');
+            include(PWA_PLUGIN_PATH.'admin/pages/settings.php');
         }
 
         /**
@@ -137,7 +137,7 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
                         if ($category != null) {
 
                             // load view
-                            include(WMP_PLUGIN_PATH.'admin/pages/category-details.php');
+                            include(PWA_PLUGIN_PATH.'admin/pages/category-details.php');
                         }
                     }
                 }
@@ -164,7 +164,7 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
                         if ($page != null) {
 
                             if (!class_exists('WMobilePack_Formatter')) {
-                                require_once(WMP_PLUGIN_PATH . 'inc/class-wmp-formatter.php');
+                                require_once(PWA_PLUGIN_PATH . 'inc/class-wmp-formatter.php');
                             }
 
                             $purifier = WMobilePack_Formatter::init_purifier();
@@ -178,7 +178,7 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
                             $content = $purifier->purify(stripslashes($content));
 
                             // load view
-                            include(WMP_PLUGIN_PATH.'admin/pages/page-details.php');
+                            include(PWA_PLUGIN_PATH.'admin/pages/page-details.php');
                         }
                     }
                 }

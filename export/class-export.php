@@ -1,7 +1,7 @@
 <?php
 
 if ( ! class_exists( 'WMobilePack_Formatter' ) ) {
-    require_once(WMP_PLUGIN_PATH.'inc/class-wmp-formatter.php');
+    require_once(PWA_PLUGIN_PATH.'inc/class-wmp-formatter.php');
 }
 
 if ( ! class_exists( 'WMobilePack_Export' ) ) {
@@ -598,7 +598,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                 $nr_categories = count($arr_categories);
 
                 if ($page > ceil($nr_categories/$rows)) {
-                    return '{"categories":' . json_encode(array()) . ',"page":"' .$page . '","rows":"' .$rows  .'"' .',"wpmp":"'.WMP_VERSION.'"}';
+                    return '{"categories":' . json_encode(array()) . ',"page":"' .$page . '","rows":"' .$rows  .'"' .',"wpmp":"'.PWA_VERSION.'"}';
                 }
 
                 $start = $rows * ($page-1);
@@ -677,9 +677,9 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
             }
 
             if ($page && $rows) {
-                return '{"categories":' . json_encode($arr_categories) . ',"page":"' .$page . '","rows":"' .$rows  .'"' .',"wpmp":"'.WMP_VERSION.'"}';
+                return '{"categories":' . json_encode($arr_categories) . ',"page":"' .$page . '","rows":"' .$rows  .'"' .',"wpmp":"'.PWA_VERSION.'"}';
             } else {
-                return '{"categories":' . json_encode($arr_categories) . ',"wpmp":"'.WMP_VERSION.'"}';
+                return '{"categories":' . json_encode($arr_categories) . ',"wpmp":"'.PWA_VERSION.'"}';
             }
         }
 
@@ -1186,7 +1186,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                     if (isset($_GET['code']) && $_GET["code"] !== '') {
 
                         if (!class_exists('WMobilePack_Tokens')) {
-                            require_once(WMP_PLUGIN_PATH . 'inc/class-wmp-tokens.php');
+                            require_once(PWA_PLUGIN_PATH . 'inc/class-wmp-tokens.php');
                         }
 
                         // if the token is valid, go ahead and save comment to the DB

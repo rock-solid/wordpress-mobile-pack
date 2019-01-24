@@ -57,10 +57,10 @@ if (!class_exists('WMobilePack_Uploads')) {
         {
             $wp_uploads_dir = wp_upload_dir();
 
-            $wmp_uploads_dir = $wp_uploads_dir['basedir'] . '/' . WMP_DOMAIN . '/';
+            $wmp_uploads_dir = $wp_uploads_dir['basedir'] . '/' . PWA_DOMAIN . '/';
 
-            define('WMP_FILES_UPLOADS_DIR', $wmp_uploads_dir);
-            define('WMP_FILES_UPLOADS_URL', $wp_uploads_dir['baseurl'] . '/' . WMP_DOMAIN . '/');
+            define('PWA_FILES_UPLOADS_DIR', $wmp_uploads_dir);
+            define('WMP_FILES_UPLOADS_URL', $wp_uploads_dir['baseurl'] . '/' . PWA_DOMAIN . '/');
 
             add_action( 'admin_notices', array( $this, 'display_admin_notices' ) );
         }
@@ -78,13 +78,13 @@ if (!class_exists('WMobilePack_Uploads')) {
             }
 
             // if the directory doesn't exist, display notice
-            if (!file_exists(WMP_FILES_UPLOADS_DIR)) {
-                echo '<div class="error"><p><b>Warning!</b> The ' . WMP_PLUGIN_NAME . ' uploads folder does not exist: ' . WMP_FILES_UPLOADS_DIR . '</p></div>';
+            if (!file_exists(PWA_FILES_UPLOADS_DIR)) {
+                echo '<div class="error"><p><b>Warning!</b> The ' . PWA_PLUGIN_NAME . ' uploads folder does not exist: ' . PWA_FILES_UPLOADS_DIR . '</p></div>';
                 return;
             }
 
-            if (!is_writable(WMP_FILES_UPLOADS_DIR)) {
-                echo '<div class="error"><p><b>Warning!</b> The ' . WMP_PLUGIN_NAME . ' uploads folder is not writable: ' . WMP_FILES_UPLOADS_DIR . '</p></div>';
+            if (!is_writable(PWA_FILES_UPLOADS_DIR)) {
+                echo '<div class="error"><p><b>Warning!</b> The ' . PWA_PLUGIN_NAME . ' uploads folder is not writable: ' . PWA_FILES_UPLOADS_DIR . '</p></div>';
                 return;
             }
         }
@@ -100,7 +100,7 @@ if (!class_exists('WMobilePack_Uploads')) {
 
             $wp_uploads_dir = wp_upload_dir();
 
-            $wmp_uploads_dir = $wp_uploads_dir['basedir'] . '/' . WMP_DOMAIN . '/';
+            $wmp_uploads_dir = $wp_uploads_dir['basedir'] . '/' . PWA_DOMAIN . '/';
 
             // check if the uploads folder exists and is writable
             if (file_exists($wp_uploads_dir['basedir']) && is_dir($wp_uploads_dir['basedir']) && is_writable($wp_uploads_dir['basedir'])) {
@@ -157,7 +157,7 @@ if (!class_exists('WMobilePack_Uploads')) {
             if ($theme_timestamp != ''){
 
                 if ( ! class_exists( 'WMobilePack_Themes_Compiler' ) && version_compare(PHP_VERSION, '5.3') >= 0 ) {
-                    require_once(WMP_PLUGIN_PATH.'inc/class-wmp-themes-compiler.php');
+                    require_once(PWA_PLUGIN_PATH.'inc/class-wmp-themes-compiler.php');
                 }
 
                 if (class_exists('WMobilePack_Themes_Compiler')) {
@@ -171,7 +171,7 @@ if (!class_exists('WMobilePack_Uploads')) {
             $this->remove_htaccess_file();
 
             // delete folder
-            rmdir(WMP_FILES_UPLOADS_DIR);
+            rmdir(PWA_FILES_UPLOADS_DIR);
         }
 
 
@@ -183,7 +183,7 @@ if (!class_exists('WMobilePack_Uploads')) {
          */
         public function get_file_url($file_path){
 
-            if (file_exists(WMP_FILES_UPLOADS_DIR.$file_path)){
+            if (file_exists(PWA_FILES_UPLOADS_DIR.$file_path)){
                 return WMP_FILES_UPLOADS_URL.$file_path;
             }
 
@@ -201,8 +201,8 @@ if (!class_exists('WMobilePack_Uploads')) {
 
             // check the file exists and remove it
             if ($file_path != ''){
-                if (file_exists(WMP_FILES_UPLOADS_DIR.$file_path))
-                    return unlink(WMP_FILES_UPLOADS_DIR.$file_path);
+                if (file_exists(PWA_FILES_UPLOADS_DIR.$file_path))
+                    return unlink(PWA_FILES_UPLOADS_DIR.$file_path);
             }
         }
 
@@ -216,13 +216,13 @@ if (!class_exists('WMobilePack_Uploads')) {
          */
         protected function set_htaccess_file()
         {
-            $file_path = WMP_FILES_UPLOADS_DIR.'.htaccess';
+            $file_path = PWA_FILES_UPLOADS_DIR.'.htaccess';
 
             if (!file_exists($file_path)){
 
-                if (is_writable(WMP_FILES_UPLOADS_DIR)){
+                if (is_writable(PWA_FILES_UPLOADS_DIR)){
 
-                    $template_path = WMP_PLUGIN_PATH.self::$htaccess_template;
+                    $template_path = PWA_PLUGIN_PATH.self::$htaccess_template;
 
                     if (file_exists($template_path)){
 
@@ -249,7 +249,7 @@ if (!class_exists('WMobilePack_Uploads')) {
         protected function remove_htaccess_file()
         {
 
-            $file_path = WMP_FILES_UPLOADS_DIR.'.htaccess';
+            $file_path = PWA_FILES_UPLOADS_DIR.'.htaccess';
 
             if (file_exists($file_path)){
                 unlink($file_path);

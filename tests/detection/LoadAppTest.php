@@ -1,8 +1,8 @@
 <?php
 
-require_once(WMP_PLUGIN_PATH.'frontend/class-application.php');
-require_once(WMP_PLUGIN_PATH.'inc/class-wmp-cookie.php');
-require_once(WMP_PLUGIN_PATH.'inc/class-wmp-options.php');
+require_once(PWA_PLUGIN_PATH.'frontend/class-application.php');
+require_once(PWA_PLUGIN_PATH.'inc/class-wmp-cookie.php');
+require_once(PWA_PLUGIN_PATH.'inc/class-wmp-options.php');
 
 
 /**

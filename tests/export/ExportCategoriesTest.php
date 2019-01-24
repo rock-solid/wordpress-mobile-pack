@@ -1,6 +1,6 @@
 <?php
 
-require_once(WMP_PLUGIN_PATH."export/class-export.php");
+require_once(PWA_PLUGIN_PATH."export/class-export.php");
 
 class ExportCategoriesTest extends WP_UnitTestCase
 {
@@ -106,14 +106,14 @@ class ExportCategoriesTest extends WP_UnitTestCase
         $export_class = new WMobilePack_Export ();
 
         //Case where withArticles is not given so it defaults to 1
-        $this->assertEquals($export_class->export_categories(), json_encode(array('categories' => array(), 'wpmp' => WMP_VERSION)));
+        $this->assertEquals($export_class->export_categories(), json_encode(array('categories' => array(), 'wpmp' => PWA_VERSION)));
 
         //Case where withArticles is give and set to 0, the category is returned but empty
         $_GET['withArticles'] = 0;
 		$home_url = json_encode(home_url('/'));
 		$home_url = str_replace('"','',$home_url);
 
-        $this->assertEquals('{"categories":[{"id":1,"order":1,"name":"Uncategorized","name_slug":"uncategorized","parent_id":0,"link":"'.$home_url.'?cat=1","image":""}],"wpmp":"'.WMP_VERSION.'"}', $export_class->export_categories());
+        $this->assertEquals('{"categories":[{"id":1,"order":1,"name":"Uncategorized","name_slug":"uncategorized","parent_id":0,"link":"'.$home_url.'?cat=1","image":""}],"wpmp":"'.PWA_VERSION.'"}', $export_class->export_categories());
 
         wp_delete_post($post_id);
         wp_delete_post($post_id2);
@@ -133,7 +133,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
 
         $export_class = new WMobilePack_Export ();
 
-        $this->assertEquals($export_class->export_categories(), json_encode(array('categories' => array(), 'wpmp' => WMP_VERSION)));
+        $this->assertEquals($export_class->export_categories(), json_encode(array('categories' => array(), 'wpmp' => PWA_VERSION)));
 
         wp_delete_post($post_id);
     }
@@ -159,7 +159,7 @@ class ExportCategoriesTest extends WP_UnitTestCase
 
         $export_class = new WMobilePack_Export ();
 
-        $this->assertEquals($export_class->export_categories(), json_encode(array('categories' => array(), 'wpmp' => WMP_VERSION)));
+        $this->assertEquals($export_class->export_categories(), json_encode(array('categories' => array(), 'wpmp' => PWA_VERSION)));
 
         wp_delete_post($post_id);
         wp_delete_term($cat_id, 'category');

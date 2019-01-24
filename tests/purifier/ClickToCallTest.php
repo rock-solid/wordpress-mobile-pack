@@ -1,6 +1,6 @@
 <?php
 
-require_once(WMP_PLUGIN_PATH.'inc/class-wmp-formatter.php');
+require_once(PWA_PLUGIN_PATH.'inc/class-wmp-formatter.php');
 
 class ClickToCallTest extends WP_UnitTestCase
 {

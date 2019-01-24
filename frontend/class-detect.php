@@ -41,7 +41,7 @@ if (!class_exists('WMobilePack_Detect')) {
             $is_tablet = 0;
 
             if (!class_exists('WMP_Mobile_Detect')) {
-                require_once (WMP_PLUGIN_PATH.'libs/Mobile-Detect-2.8.25/Mobile_Detect.php');
+                require_once (PWA_PLUGIN_PATH.'libs/Mobile-Detect-2.8.25/Mobile_Detect.php');
 			}
 
             $detect = new WMP_Mobile_Detect();
