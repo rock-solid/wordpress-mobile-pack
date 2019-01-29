@@ -1,6 +1,6 @@
 <?php
 
-class FileHelper
+class PtPwaFileHelper
 {
     public function write_file($path, $contents)
     {

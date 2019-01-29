@@ -28,7 +28,7 @@
                 <directory>./admin/sections</directory>
                 <directory>./frontend/sections</directory>
                 <directory>./frontend/themes</directory>
-                <file>./core/config.php</file>
+                <file>./core/class-config.php</file>
             </exclude>
         </whitelist>
     </filter>

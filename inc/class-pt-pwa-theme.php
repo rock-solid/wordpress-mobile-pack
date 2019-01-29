@@ -1,6 +1,6 @@
 <?php
 
-class Theme
+class PtPwaTheme
 {
     private $appName;
     

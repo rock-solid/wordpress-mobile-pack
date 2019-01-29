@@ -1,6 +1,6 @@
 <?php
 
-class Manifest {
+class PtPwaManifest {
 
     private $name;
 

@@ -1,15 +1,15 @@
 <?php
 
-if (!class_exists('WMobilePack_Detect')) {
+if (!class_exists('PtPwa_Detect')) {
 
     /**
      *
-     * WMobilePack_Detect
+     * PtPwa_Detect
      *
      * Main class for detecting the user's device and browser.
      *
      */
-    class WMobilePack_Detect {
+    class PtPwa_Detect {
 
 
         /* ----------------------------------*/
@@ -22,7 +22,7 @@ if (!class_exists('WMobilePack_Detect')) {
          * @return int
          */
         protected function is_allowed_tablets(){
-			return WMobilePack_Options::get_setting('enable_tablets') == 1;
+			return PtPwa_Options::get_setting('enable_tablets') == 1;
         }
 
 
@@ -41,7 +41,8 @@ if (!class_exists('WMobilePack_Detect')) {
             $is_tablet = 0;
 
             if (!class_exists('WMP_Mobile_Detect')) {
-                require_once (PWA_PLUGIN_PATH.'libs/Mobile-Detect-2.8.25/Mobile_Detect.php');
+                $Pt_Pwa_Config = new Pt_Pwa_Config();
+                require_once ($Pt_Pwa_Config->PWA_PLUGIN_PATH.'libs/Mobile-Detect-2.8.25/Mobile_Detect.php');
 			}
 
             $detect = new WMP_Mobile_Detect();
@@ -88,8 +89,8 @@ if (!class_exists('WMobilePack_Detect')) {
          */
         protected function set_load_app_cookie($value)
         {
-            $WMobilePackCookie = new WMobilePack_Cookie();
-            $WMobilePackCookie->set_cookie('load_app', $value);
+            $PtPwaCookie = new PtPwa_Cookie();
+            $PtPwaCookie->set_cookie('load_app', $value);
         }
     }
 }

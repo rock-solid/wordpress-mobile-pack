@@ -1,13 +1,13 @@
 <?php
 
-if ( ! class_exists( 'WMobilePack_Export_Settings' ) ) {
+if ( ! class_exists( 'PtPwa_Export_Settings' ) ) {
 
     /**
-     * Class WMobilePack_Export_Settings
+     * Class PtPwa_Export_Settings
      *
      * Contains methods for exporting settings, manifest and language files
      */
-     class WMobilePack_Export_Settings
+     class PtPwa_Export_Settings
      {
 
         /**
@@ -19,7 +19,7 @@ if ( ! class_exists( 'WMobilePack_Export_Settings' ) ) {
          */
         protected function get_uploads_manager()
         {
-            return new WMobilePack_Uploads();
+            return new PtPwa_Uploads();
         }
 
 		/**
@@ -31,11 +31,11 @@ if ( ! class_exists( 'WMobilePack_Export_Settings' ) ) {
          */
         protected function get_application_manager()
         {
-			if (!class_exists('WMobilePack_Application')){
+			if (!class_exists('PtPwa_Application')){
 				require_once(PWA_PLUGIN_PATH.'frontend/class-application.php');
 			}
 
-            return new WMobilePack_Application($WMP_PLUGIN_DIR);
+            return new PtPwa_Application($WMP_PLUGIN_DIR);
         }
 
         /**
@@ -52,10 +52,10 @@ if ( ! class_exists( 'WMobilePack_Export_Settings' ) ) {
         public function load_language($locale, $response_type = 'javascript')
         {
 
-            if (!class_exists('WMobilePack_Application'))
+            if (!class_exists('PtPwa_Application'))
                 require_once(PWA_PLUGIN_PATH.'frontend/class-application.php');
 
-            $language_file = WMobilePack_Application::check_language_file($locale);
+            $language_file = PtPwa_Application::check_language_file($locale);
 
             if ($language_file !== false) {
 
@@ -101,11 +101,11 @@ if ( ! class_exists( 'WMobilePack_Export_Settings' ) ) {
 					'orientation' => 'any'
                 );
 
-				if (!class_exists('WMobilePack_Themes_Config')) {
-					require_once(PWA_PLUGIN_PATH . 'inc/class-wmp-themes-config.php');
+				if (!class_exists('PtPwa_Themes_Config')) {
+					require_once(PWA_PLUGIN_PATH . 'inc/class-pt-pwa-themes-config.php');
 				}
 
-				$background_color = WMobilePack_Themes_Config::get_manifest_background();
+				$background_color = PtPwa_Themes_Config::get_manifest_background();
 
 				if ($background_color !== false){
 					$arr_manifest['theme_color'] = $background_color;
@@ -129,7 +129,7 @@ if ( ! class_exists( 'WMobilePack_Export_Settings' ) ) {
             }
 
             // load icon from the local settings and folder
-            $icon_path = WMobilePack_Options::get_setting('icon');
+            $icon_path = PtPwa_Options::get_setting('icon');
 
             if ($icon_path != '' && $_GET['content'] == 'androidmanifest') {
 
@@ -137,7 +137,7 @@ if ( ! class_exists( 'WMobilePack_Export_Settings' ) ) {
 				$arr_manifest['icons'] = array();
 				$WMP_Uploads = $this->get_uploads_manager();
 
-				foreach (WMobilePack_Uploads::$manifest_sizes as $manifest_size) {
+				foreach (PtPwa_Uploads::$manifest_sizes as $manifest_size) {
 
 					$icon_path = $WMP_Uploads->get_file_url($manifest_size . $base_path);
 
@@ -233,7 +233,7 @@ if ( ! class_exists( 'WMobilePack_Export_Settings' ) ) {
 
             if ($app_settings['display_website_link']) {
                 $spliter = parse_url(home_url(), PHP_URL_QUERY) ? '&' : '?';
-                $settings['websiteUrl'] = home_url() . $spliter . WMobilePack_Cookie::$prefix . 'theme_mode=desktop';
+                $settings['websiteUrl'] = home_url() . $spliter . PtPwa_Cookie::$prefix . 'theme_mode=desktop';
             }
 
             $settings['logo'] = $app_settings['logo'];

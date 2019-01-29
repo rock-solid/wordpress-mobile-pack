@@ -2,7 +2,7 @@
     if (window.WMPJSInterface && window.WMPJSInterface != null){
         jQuery(document).ready(function(){
 
-            WMPJSInterface.localpath = "<?php echo plugins_url()."/".PWA_DOMAIN."/"; ?>";
+            WMPJSInterface.localpath = "<?php echo plugins_url()."/".$Pt_Pwa_Config->PWA_DOMAIN."/"; ?>";
             WMPJSInterface.init();
         });
     }
@@ -19,10 +19,10 @@
 
 	$categories = get_categories();
 
-    $order_categories = WMobilePack_Options::get_setting('ordered_categories');
+    $order_categories = PtPwa_Options::get_setting('ordered_categories');
     
     // Depending on the language settings, not all categories might be visible at the same time
-    $setting_inactive_categories = WMobilePack_Options::get_setting('inactive_categories');
+    $setting_inactive_categories = PtPwa_Options::get_setting('inactive_categories');
     $inactive_categories = array();
     
     // Capture excluded sections for theme file
@@ -40,7 +40,7 @@
 	// ------------------------------------ //
 
 	// Depending on the language settings, not all pages might be visible at the same time
-	$setting_inactive_pages = WMobilePack_Options::get_setting('inactive_pages');
+	$setting_inactive_pages = PtPwa_Options::get_setting('inactive_pages');
 
 	$inactive_pages = array();
 
@@ -63,7 +63,7 @@
             }
         }
     }
-    $themeManager = new ThemeManager(new Theme());
+    $themeManager = new PtPwaThemeManager(new PtPwaTheme());
     $theme = $themeManager->getTheme();
     $extraLinks  = [];
 
@@ -87,19 +87,19 @@
 <div id="wmpack-admin">
 	<div class="spacer-60"></div>
     <!-- set title -->
-    <h1>Publisher's Toolbox PWA <?= PWA_VERSION;?></h1>
+    <h1>Publisher's Toolbox PWA <?= $Pt_Pwa_Config->PWA_VERSION;?></h1>
 	<div class="spacer-20"></div>
 	<div class="content">
         <div class="left-side">
         
             <!-- add nav menu -->
-            <?php include_once(PWA_PLUGIN_PATH.'admin/sections/admin-menu.php');?>
+            <?php include_once($Pt_Pwa_Config->PWA_PLUGIN_PATH.'admin/sections/admin-menu.php');?>
             <div class="spacer-0"></div>
             
             <!-- add content form -->
             <div class="details">
 
-                <?php if (WMobilePack::is_active_plugin('Polylang')):?>
+                <?php if (PtPwa::is_active_plugin('Polylang')):?>
                     <div class="message-container warning">
                         <div class="wrapper">
                             <span>When using Polylang, please make sure to select "<strong>Show all languages</strong>" when ordering categories. Inconsistent ordering will result otherwise.</span>
@@ -168,7 +168,7 @@
                             	} else
                             		$arrOrderedCategories = $categories;
 
-                                $categories_details = WMobilePack_Options::get_setting('categories_details');
+                                $categories_details = PtPwa_Options::get_setting('categories_details');
 
                                 foreach ($arrOrderedCategories as $key => $category):
                             
@@ -192,7 +192,7 @@
                                                         if (!file_exists(PWA_FILES_UPLOADS_DIR . $icon_path))
                                                             $icon_path = '';
                                                         else
-                                                            $icon_path = WMP_FILES_UPLOADS_URL . $icon_path;
+                                                            $icon_path = PWA_FILES_UPLOADS_URL . $icon_path;
                                                     }
                                                 }
                                             }

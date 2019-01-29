@@ -1,5 +1,5 @@
 <?php
-    interface Manager {
+    interface PtPwaManager {
         public function serialize();
         public function deserialize($json);
         public function write();

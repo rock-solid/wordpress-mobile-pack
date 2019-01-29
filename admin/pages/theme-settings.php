@@ -1,9 +1,9 @@
 <?php
 
-$themeManager = new ThemeManager(new Theme());
+$themeManager = new PtPwaThemeManager(new PtPwaTheme());
 $theme = $themeManager->getTheme();
 
-$manifestManager = new ManifestManager(new Manifest());
+$manifestManager = new PtPwaManifestManager(new PtPwaManifest());
 $manifest = $manifestManager->getManifest();
 
 if (!empty($_POST['save'])) {
@@ -172,13 +172,13 @@ if (!empty($_POST['save'])) {
 	<div class="spacer-60"></div>
 
 	<!-- set title -->
-	<h1>Publisher's Toolbox PWA <?php echo PWA_VERSION; ?></h1>
+	<h1>Publisher's Toolbox PWA <?php echo $Pt_Pwa_Config->PWA_VERSION; ?></h1>
 	<div class="spacer-20"></div>
 
 	<div class="look-and-feel">
 		<div class="left-side">
 		<!-- add nav menu -->
-		<?php include_once(PWA_PLUGIN_PATH . 'admin/sections/admin-menu.php'); ?>
+		<?php include_once($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'admin/sections/admin-menu.php'); ?>
 		<div class="spacer-0"></div>
 
 		<!-- add content form -->

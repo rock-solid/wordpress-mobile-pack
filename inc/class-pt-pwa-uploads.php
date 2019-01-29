@@ -1,6 +1,6 @@
 <?php
 
-if (!class_exists('WMobilePack_Uploads')) {
+if (!class_exists('PtPwa_Uploads')) {
 
     /**
      * Overall Uploads Management class
@@ -10,7 +10,7 @@ if (!class_exists('WMobilePack_Uploads')) {
      * @todo Test methods from this class separately
      *
      */
-    class WMobilePack_Uploads
+    class PtPwa_Uploads
     {
 
         /* ----------------------------------*/
@@ -57,10 +57,10 @@ if (!class_exists('WMobilePack_Uploads')) {
         {
             $wp_uploads_dir = wp_upload_dir();
 
-            $wmp_uploads_dir = $wp_uploads_dir['basedir'] . '/' . PWA_DOMAIN . '/';
+            $wmp_uploads_dir = $wp_uploads_dir['basedir'] . '/' . $Pt_Pwa_Config->PWA_DOMAIN . '/';
 
             define('PWA_FILES_UPLOADS_DIR', $wmp_uploads_dir);
-            define('WMP_FILES_UPLOADS_URL', $wp_uploads_dir['baseurl'] . '/' . PWA_DOMAIN . '/');
+            define('PWA_FILES_UPLOADS_URL', $wp_uploads_dir['baseurl'] . '/' . $Pt_Pwa_Config->PWA_DOMAIN . '/');
 
             add_action( 'admin_notices', array( $this, 'display_admin_notices' ) );
         }
@@ -79,12 +79,12 @@ if (!class_exists('WMobilePack_Uploads')) {
 
             // if the directory doesn't exist, display notice
             if (!file_exists(PWA_FILES_UPLOADS_DIR)) {
-                echo '<div class="error"><p><b>Warning!</b> The ' . PWA_PLUGIN_NAME . ' uploads folder does not exist: ' . PWA_FILES_UPLOADS_DIR . '</p></div>';
+                echo '<div class="error"><p><b>Warning!</b> The ' . $Pt_Pwa_Config->PWA_PLUGIN_NAME. ' uploads folder does not exist: ' . PWA_FILES_UPLOADS_DIR . '</p></div>';
                 return;
             }
 
             if (!is_writable(PWA_FILES_UPLOADS_DIR)) {
-                echo '<div class="error"><p><b>Warning!</b> The ' . PWA_PLUGIN_NAME . ' uploads folder is not writable: ' . PWA_FILES_UPLOADS_DIR . '</p></div>';
+                echo '<div class="error"><p><b>Warning!</b> The ' . $Pt_Pwa_Config->PWA_PLUGIN_NAME. ' uploads folder is not writable: ' . PWA_FILES_UPLOADS_DIR . '</p></div>';
                 return;
             }
         }
@@ -100,7 +100,7 @@ if (!class_exists('WMobilePack_Uploads')) {
 
             $wp_uploads_dir = wp_upload_dir();
 
-            $wmp_uploads_dir = $wp_uploads_dir['basedir'] . '/' . PWA_DOMAIN . '/';
+            $wmp_uploads_dir = $wp_uploads_dir['basedir'] . '/' . $Pt_Pwa_Config->PWA_DOMAIN . '/';
 
             // check if the uploads folder exists and is writable
             if (file_exists($wp_uploads_dir['basedir']) && is_dir($wp_uploads_dir['basedir']) && is_writable($wp_uploads_dir['basedir'])) {
@@ -127,7 +127,7 @@ if (!class_exists('WMobilePack_Uploads')) {
 
             foreach (array('icon', 'logo', 'cover') as $image_type) {
 
-				$image_path = WMobilePack_Options::get_setting($image_type);
+				$image_path = PtPwa_Options::get_setting($image_type);
 
 				if ($image_path != '' && $image_type == 'icon') {
 					foreach (self::$manifest_sizes as $manifest_size) {
@@ -139,7 +139,7 @@ if (!class_exists('WMobilePack_Uploads')) {
             }
 
             // remove categories images
-            $categories_details = WMobilePack_Options::get_setting('categories_details');
+            $categories_details = PtPwa_Options::get_setting('categories_details');
 
             if (is_array($categories_details) && !empty($categories_details)) {
 
@@ -152,17 +152,17 @@ if (!class_exists('WMobilePack_Uploads')) {
             }
 
             // remove compiled css file (if it exists)
-            $theme_timestamp = WMobilePack_Options::get_setting('theme_timestamp');
+            $theme_timestamp = PtPwa_Options::get_setting('theme_timestamp');
 
             if ($theme_timestamp != ''){
 
-                if ( ! class_exists( 'WMobilePack_Themes_Compiler' ) && version_compare(PHP_VERSION, '5.3') >= 0 ) {
-                    require_once(PWA_PLUGIN_PATH.'inc/class-wmp-themes-compiler.php');
+                if ( ! class_exists( 'PtPwa_Themes_Compiler' ) && version_compare(PHP_VERSION, '5.3') >= 0 ) {
+                    require_once(PWA_PLUGIN_PATH.'inc/class-pt-pwa-themes-compiler.php');
                 }
 
-                if (class_exists('WMobilePack_Themes_Compiler')) {
+                if (class_exists('PtPwa_Themes_Compiler')) {
 
-                    $wmp_themes = new WMobilePack_Themes_Compiler();
+                    $wmp_themes = new PtPwa_Themes_Compiler();
                     $wmp_themes->remove_css_file($theme_timestamp);
                 }
             }
@@ -184,7 +184,7 @@ if (!class_exists('WMobilePack_Uploads')) {
         public function get_file_url($file_path){
 
             if (file_exists(PWA_FILES_UPLOADS_DIR.$file_path)){
-                return WMP_FILES_UPLOADS_URL.$file_path;
+                return PWA_FILES_UPLOADS_URL.$file_path;
             }
 
             return '';

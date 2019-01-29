@@ -7,7 +7,7 @@ require_once $_tests_dir . '/includes/functions.php';
 
 function _manually_load_plugin() {
 
-    require dirname( __FILE__ ) . '/../core/config.php';
+    require dirname( __FILE__ ) . '/../core/class-config.php';
     require dirname( __FILE__ ) . '/../core/class-wmp.php';
 
 	// require dirname( __FILE__ ) . '/../wordpress-mobile-pack.php';

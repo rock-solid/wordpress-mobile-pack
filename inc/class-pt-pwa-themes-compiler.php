@@ -1,13 +1,13 @@
 <?php
 
-require_once PWA_PLUGIN_PATH . "libs/scssphp-0.3.0/scss.inc.php";
+require_once $Pt_Pwa_Config->PWA_PLUGIN_PATH . "libs/scssphp-0.3.0/scss.inc.php";
 use Leafo\ScssPhp\Compiler;
 
-if ( ! class_exists( 'WMobilePack_Themes_Config' ) ) {
-    require_once(PWA_PLUGIN_PATH.'inc/class-wmp-themes-config.php');
+if ( ! class_exists( 'PtPwa_Themes_Config' ) ) {
+    require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH.'inc/class-pt-pwa-themes-config.php');
 }
 
-if ( ! class_exists( 'WMobilePack_Themes_Compiler' ) ) {
+if ( ! class_exists( 'PtPwa_Themes_Compiler' ) ) {
 
     /**
      * Overall Themes Management class
@@ -17,7 +17,7 @@ if ( ! class_exists( 'WMobilePack_Themes_Compiler' ) ) {
      * @todo Test methods from this class separately.
      *
      */
-    class WMobilePack_Themes_Compiler
+    class PtPwa_Themes_Compiler
     {
 
         /* ----------------------------------*/
@@ -117,14 +117,14 @@ if ( ! class_exists( 'WMobilePack_Themes_Compiler' ) ) {
             if ($fp !== false) {
 
                 // read theme settings
-				$theme_config = WMobilePack_Themes_Config::get_theme_config();
+				$theme_config = PtPwa_Themes_Config::get_theme_config();
 
 				if ($theme_config !== false){
 
-					$color_scheme = WMobilePack_Options::get_setting('color_scheme');
+					$color_scheme = PtPwa_Options::get_setting('color_scheme');
 
 					if ($color_scheme == 0){
-						$colors = WMobilePack_Options::get_setting('custom_colors');
+						$colors = PtPwa_Options::get_setting('custom_colors');
 					} else {
 						$colors = $theme_config['presets'][$color_scheme];
 					}
@@ -135,15 +135,15 @@ if ( ! class_exists( 'WMobilePack_Themes_Compiler' ) ) {
 						// check if the theme has a particular font setting
 						if (array_key_exists($font_type.'-font', $theme_config['fonts'])) {
 
-							$font_setting = WMobilePack_Options::get_setting('font_'.$font_type);
-							$font_family = WMobilePack_Themes_Config::$allowed_fonts[$font_setting-1];
+							$font_setting = PtPwa_Options::get_setting('font_'.$font_type);
+							$font_family = PtPwa_Themes_Config::$allowed_fonts[$font_setting-1];
 
 							fwrite($fp, '$'.$font_type."-font:'".str_replace(" ","",$font_family)."';\r\n");
 						}
 					}
 
 					// write font size
-                    fwrite($fp, '$base-font-size:'.WMobilePack_Options::get_setting('font_size')."rem;\r\n");
+                    fwrite($fp, '$base-font-size:'.PtPwa_Options::get_setting('font_size')."rem;\r\n");
 
 					// write colors
 					foreach ($theme_config['vars'] as $key => $var_name){
@@ -202,7 +202,7 @@ if ( ! class_exists( 'WMobilePack_Themes_Compiler' ) ) {
 
                 $scss_compiler->setImportPaths(array(
                     PWA_FILES_UPLOADS_DIR,
-                    PWA_PLUGIN_PATH.'frontend/themes/app'.WMobilePack_Options::get_setting('theme').'/scss/'
+                    $Pt_Pwa_Config->PWA_PLUGIN_PATH.'frontend/themes/app'.PtPwa_Options::get_setting('theme').'/scss/'
                 ));
 
                 $scss_compiler->setFormatter('scss_formatter_compressed');

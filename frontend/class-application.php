@@ -1,15 +1,15 @@
 <?php
 
-if (!class_exists('WMobilePack_Application')) {
+if (!class_exists('PtPwa_Application')) {
 
     /**
      *
-     * WMobilePack_Application
+     * PtPwa_Application
      *
      * Main class for managing frontend apps
      *
      */
-    class WMobilePack_Application {
+    class PtPwa_Application {
 
 
         /**
@@ -18,7 +18,7 @@ if (!class_exists('WMobilePack_Application')) {
         public function __construct($plugin_dir)
         {
             // Load application only if the PRO plugin is not active
-            if (!WMobilePack::is_active_plugin('WordPress Mobile Pack PRO'))
+            if (!PtPwa::is_active_plugin('WordPress Mobile Pack PRO'))
                 $this->check_load();
 
             $this->plugin_dir = $plugin_dir;
@@ -45,7 +45,7 @@ if (!class_exists('WMobilePack_Application')) {
          */
         protected function get_cookie_manager()
         {
-            return new WMobilePack_Cookie();
+            return new PtPwa_Cookie();
         }
 
         /**
@@ -177,7 +177,7 @@ if (!class_exists('WMobilePack_Application')) {
         protected function check_display_mode()
         {
 
-            $display_mode = WMobilePack_Options::get_setting('display_mode');
+            $display_mode = PtPwa_Options::get_setting('display_mode');
 
             if ($display_mode == 'normal')
                 return true;
@@ -201,11 +201,13 @@ if (!class_exists('WMobilePack_Application')) {
          */
         protected function check_device(){
 
-            if ( ! class_exists( 'WMobilePack_Detect' ) ) {
-                require_once(PWA_PLUGIN_PATH.'frontend/class-detect.php');
+            if ( ! class_exists( 'PtPwa_Detect' ) ) {
+                
+                $Pt_Pwa_Config = new Pt_Pwa_Config();
+                require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH.'frontend/class-detect.php');
             }
 
-            $WMobileDetect = new WMobilePack_Detect();
+            $WMobileDetect = new PtPwa_Detect();
             return $WMobileDetect->detect_device();
         }
 
@@ -228,7 +230,7 @@ if (!class_exists('WMobilePack_Application')) {
             $desktop_mode = false;
 
             $cookie_manager = $this->get_cookie_manager();
-            $param_name = WMobilePack_Cookie::$prefix.'theme_mode';
+            $param_name = PtPwa_Cookie::$prefix.'theme_mode';
 
             if (isset($_GET[$param_name]) && is_string($_GET[$param_name])){
 
@@ -286,7 +288,7 @@ if (!class_exists('WMobilePack_Application')) {
          */
         public function app_theme_root()
         {
-            return PWA_PLUGIN_PATH . 'frontend/themes';
+            return $Pt_Pwa_Config->PWA_PLUGIN_PATH . 'frontend/themes';
 		}
 
         /**
@@ -317,7 +319,7 @@ if (!class_exists('WMobilePack_Application')) {
             $settings = array();
 
             foreach ($frontend_options as $option_name){
-                $settings[$option_name] = WMobilePack_Options::get_setting($option_name);
+                $settings[$option_name] = PtPwa_Options::get_setting($option_name);
 
                 // backwards compatibility for font settings with versions lower than 2.2
                 if (in_array($option_name, array('font_headlines', 'font_subtitles', 'font_paragraphs'))){
@@ -345,26 +347,26 @@ if (!class_exists('WMobilePack_Application')) {
             // load images
             foreach (array('icon', 'logo', 'cover') as $file_type){
 
-                $file_path = WMobilePack_Options::get_setting($file_type);
+                $file_path = PtPwa_Options::get_setting($file_type);
 
                 if ($file_path == '' || !file_exists(PWA_FILES_UPLOADS_DIR.$file_path))
                     $settings[$file_type] = '';
                 else
-                    $settings[$file_type] = WMP_FILES_UPLOADS_URL.$file_path;
+                    $settings[$file_type] = PWA_FILES_UPLOADS_URL.$file_path;
             }
 
             // generate comments token
-            if (!class_exists('WMobilePack_Tokens')) {
-                require_once(PWA_PLUGIN_PATH . 'inc/class-wmp-tokens.php');
+            if (!class_exists('PtPwa_Tokens')) {
+                require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'inc/class-pt-pwa-tokens.php');
             }
 
-            $settings['comments_token'] = WMobilePack_Tokens::get_token();
+            $settings['comments_token'] = PtPwa_Tokens::get_token();
 
-			if (!class_exists('WMobilePack_Themes_Config')) {
-                require_once(PWA_PLUGIN_PATH . 'inc/class-wmp-themes-config.php');
+			if (!class_exists('PtPwa_Themes_Config')) {
+                require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'inc/class-pt-pwa-themes-config.php');
             }
 
-			$settings['manifest_color'] = WMobilePack_Themes_Config::get_manifest_background($settings['theme'], $settings['color_scheme']);
+			$settings['manifest_color'] = PtPwa_Themes_Config::get_manifest_background($settings['theme'], $settings['color_scheme']);
 
             return $settings;
         }
@@ -377,8 +379,8 @@ if (!class_exists('WMobilePack_Application')) {
 		*/
 		public function get_language($locale)
 		{
-			if (array_key_exists($locale, WMobilePack_Options::$supported_languages)){
-				return WMobilePack_Options::$supported_languages[$locale];
+			if (array_key_exists($locale, PtPwa_Options::$supported_languages)){
+				return PtPwa_Options::$supported_languages[$locale];
 			}
 
 			return 'en';
@@ -393,10 +395,10 @@ if (!class_exists('WMobilePack_Application')) {
          */
         public static function check_language_file($locale)
         {
-            $language_file_path = PWA_PLUGIN_PATH.'frontend/locales/'.strip_tags($locale).'.json';
+            $language_file_path = $Pt_Pwa_Config->PWA_PLUGIN_PATH.'frontend/locales/'.strip_tags($locale).'.json';
 
             if (!file_exists($language_file_path)) {
-                $language_file_path = PWA_PLUGIN_PATH."frontend/locales/default.json";
+                $language_file_path = $Pt_Pwa_Config->PWA_PLUGIN_PATH."frontend/locales/default.json";
             }
 
             if (file_exists($language_file_path)){

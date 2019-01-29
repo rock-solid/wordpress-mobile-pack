@@ -10,26 +10,34 @@
  * License: The WordPress Mobile Pack is Licensed under the Apache License, Version 2.0
  * Text Domain: publishers-toolbox-pwa
  */
-require_once('core/config.php');
-require_once('core/class-wmp.php');
+
+include('core/class-config.php');
+
+$Pt_Pwa_Config = new Pt_Pwa_Config();
+include('core/class-pwa.php');
 
 /**
  * Used to load the required files on the plugins_loaded hook, instead of immediately.
  */
-function wmobilepack_frontend_init() {
+function pt_pwa_frontend_init() {
+
+    $Pt_Pwa_Config = new Pt_Pwa_Config();
 
     require_once('frontend/class-application.php');
-    new WMobilePack_Application(plugin_dir_url(__FILE__));
+    new PtPwa_Application(plugin_dir_url(__FILE__));
 }
 
-function wmobilepack_admin_init() {
+function pt_pwa_admin_init() {
+
+    $Pt_Pwa_Config = new Pt_Pwa_Config();
 
     require_once('admin/class-admin-init.php');
-    new WMobilePack_Admin_Init();
+    new Pt_Pwa_Admin_Init();
 }
 
-function insert_fallback_script() {
-    $themeManager = new ThemeManager(new Theme());
+function pt_pwa_insert_fallback_script() {
+
+    $themeManager = new PtPwaThemeManager(new PtPwaTheme());
     $theme = $themeManager->getTheme();
 
     ?>
@@ -42,10 +50,10 @@ function insert_fallback_script() {
 }
 
 
-if (class_exists( 'WMobilePack' ) && class_exists( 'WMobilePack' )) {
+if (class_exists( 'PtPwa' ) && class_exists( 'PtPwa' )) {
 
     global $wmobile_pack;
-    $wmobile_pack = new WMobilePack();
+    $wmobile_pack = new PtPwa();
 
     // Add custom PWA sizes
     add_image_size('pwa-x-small', 180, 180);
@@ -55,23 +63,23 @@ if (class_exists( 'WMobilePack' ) && class_exists( 'WMobilePack' )) {
     
     // Copy service worker file into root if not copied before
     if(!file_exists($_SERVER['DOCUMENT_ROOT'] . '/service-worker.js')) {
-        copy(PWA_PLUGIN_PATH . 'service-worker.js', $_SERVER['DOCUMENT_ROOT'] . '/service-worker.js');
+        copy($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'service-worker.js', $_SERVER['DOCUMENT_ROOT'] . '/service-worker.js');
     }
 
     // Add hooks for activating & deactivating the plugin
     register_activation_hook(__FILE__, array(&$wmobile_pack, 'activate'));
     register_deactivation_hook(__FILE__, array(&$wmobile_pack, 'deactivate'));
     
-    add_action('wp_head', 'insert_fallback_script');
+    add_action('wp_head', 'pt_pwa_insert_fallback_script');
     
     // Initialize the Wordpress Mobile Pack check logic and rendering
     if (is_admin()) {
 
         if (defined('DOING_AJAX') && DOING_AJAX) {
 
-            require_once(PWA_PLUGIN_PATH . 'admin/class-admin-ajax.php');
+            require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'admin/class-admin-ajax.php');
             
-            $wmobile_pack_ajax = new WMobilePack_Admin_Ajax();
+            $wmobile_pack_ajax = new PtPwa_Admin_Ajax();
 
             add_action('wp_ajax_wmp_content_status', array(&$wmobile_pack_ajax, 'content_status'));
             add_action('wp_ajax_wmp_content_pagedetails', array(&$wmobile_pack_ajax, 'content_pagedetails'));
@@ -81,11 +89,11 @@ if (class_exists( 'WMobilePack' ) && class_exists( 'WMobilePack' )) {
             add_action('wp_ajax_wmp_settings_app', array(&$wmobile_pack_ajax, 'settings_app'));
 
         } else {
-            add_action('plugins_loaded', 'wmobilepack_admin_init');
+            add_action('plugins_loaded', 'pt_pwa_admin_init');
         }
 
     } else {
-        add_action('plugins_loaded', 'wmobilepack_frontend_init');
+        add_action('plugins_loaded', 'pt_pwa_frontend_init');
     }
 
 }

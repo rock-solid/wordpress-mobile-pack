@@ -100,6 +100,7 @@ class JsonSerializer
      */
     public function serialize($value)
     {
+
         $this->reset();
         $serializedData = $this->serializeData($value);
         $encoded = json_encode($serializedData, $this->calculateEncodeOptions());
@@ -356,6 +357,7 @@ class JsonSerializer
      */
     protected function unserializeData($value)
     {
+
         if (is_scalar($value) || $value === null) {
             return $value;
         }
@@ -426,6 +428,7 @@ class JsonSerializer
      */
     protected function unserializeObject($value)
     {
+
         $className = $value[static::CLASS_IDENTIFIER_KEY];
         unset($value[static::CLASS_IDENTIFIER_KEY]);
 

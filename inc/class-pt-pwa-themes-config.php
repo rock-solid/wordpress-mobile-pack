@@ -1,11 +1,11 @@
 <?php
 
-if ( ! class_exists( 'WMobilePack_Themes_Config' ) ) {
+if ( ! class_exists( 'PtPwa_Themes_Config' ) ) {
 
     /**
      * Overall Themes Config class
      */
-    class WMobilePack_Themes_Config
+    class PtPwa_Themes_Config
     {
 
         /* ----------------------------------*/
@@ -75,10 +75,10 @@ if ( ! class_exists( 'WMobilePack_Themes_Config' ) ) {
         public static function get_theme_config($theme = null){
 
             if ($theme == null){
-                $theme = WMobilePack_Options::get_setting('theme');
+                $theme = PtPwa_Options::get_setting('theme');
             }
 
-            $theme_config_path = PWA_PLUGIN_PATH.'frontend/themes/app'.$theme.'/presets.json'; 
+            $theme_config_path = $Pt_Pwa_Config->PT_PWA_PATH.'frontend/themes/app'.$theme.'/presets.json'; 
 
             if (file_exists($theme_config_path)){
 
@@ -112,11 +112,11 @@ if ( ! class_exists( 'WMobilePack_Themes_Config' ) ) {
 		public static function get_manifest_background($theme = null, $color_scheme = null)
 		{
 			if ($theme == null){
-                $theme = WMobilePack_Options::get_setting('theme');
+                $theme = PtPwa_Options::get_setting('theme');
             }
 
 			if ($color_scheme == null){
-                $color_scheme = WMobilePack_Options::get_setting('color_scheme');
+                $color_scheme = PtPwa_Options::get_setting('color_scheme');
             }
 
             $background = $theme == 1 ? 1 : 9;
@@ -124,7 +124,7 @@ if ( ! class_exists( 'WMobilePack_Themes_Config' ) ) {
 			switch ($color_scheme) {
 
 				case 0 :
-					$custom_colors = WMobilePack_Options::get_setting('custom_colors');
+					$custom_colors = PtPwa_Options::get_setting('custom_colors');
 
 					if (is_array($custom_colors) && isset($custom_colors[$background])) {
 						return $custom_colors[$background];

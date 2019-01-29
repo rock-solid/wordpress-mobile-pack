@@ -1,6 +1,6 @@
 <?php
 
-class Icon {
+class PtPwaIcon {
 
     private $src;
 

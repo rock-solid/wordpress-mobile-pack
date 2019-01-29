@@ -1,6 +1,6 @@
 <?php
 
-if ( ! class_exists( 'WMobilePack_Options' ) ) {
+if ( ! class_exists( 'PtPwa_Options' ) ) {
 
     /**
      * Overall Option Management class
@@ -8,7 +8,7 @@ if ( ! class_exists( 'WMobilePack_Options' ) ) {
      * Instantiates all the options and offers a number of utility methods to work with the options
      *
      */
-    class WMobilePack_Options
+    class PtPwa_Options
     {
 
         /* ----------------------------------*/
@@ -263,17 +263,6 @@ if ( ! class_exists( 'WMobilePack_Options' ) ) {
         public static function deactivate()
         {
 
-            // delete tracking hash
-            delete_option('WPMP_Tracking_Hash');
-
-            // remove transients
-            foreach (array('tracking_cache') as $transient_name) {
-
-                if (get_transient(self::$transient_prefix.$transient_name) !== false)
-                    delete_transient(self::$transient_prefix.$transient_name);
-            }
-
-            self::update_settings('allow_tracking', 0);
         }
 
         /**

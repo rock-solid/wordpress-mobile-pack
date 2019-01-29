@@ -1,13 +1,13 @@
 <?php
 
-if ( ! class_exists( 'WMobilePack_Admin' ) ) {
+if ( ! class_exists( 'PtPwa_Admin' ) ) {
 
     /**
      *
-     * WMobilePack_Admin class for managing the admin area for the Wordpress Mobile Pack plugin
+     * PtPwa_Admin class for managing the admin area for the Wordpress Mobile Pack plugin
      *
      */
-    class WMobilePack_Admin
+    class PtPwa_Admin
     {
 
         /**
@@ -16,8 +16,8 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
          *
          */
         public function whatsnew() {
-
-            include(PWA_PLUGIN_PATH.'admin/pages/whats-new.php');
+            $Pt_Pwa_Config = new Pt_Pwa_Config();
+            include($Pt_Pwa_Config->PWA_PLUGIN_PATH.'admin/pages/whats-new.php');
         }
 
 		/**
@@ -26,8 +26,8 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
          *
          */
         public function themes() {
-
-            include(PWA_PLUGIN_PATH.'admin/pages/themes.php');
+            $Pt_Pwa_Config = new Pt_Pwa_Config();
+            include($Pt_Pwa_Config->PWA_PLUGIN_PATH.'admin/pages/themes.php');
         }
 
         /**
@@ -36,8 +36,8 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
          *
          */
         public function theme_settings() {
-
-            include(PWA_PLUGIN_PATH.'admin/pages/theme-settings.php');
+            $Pt_Pwa_Config = new Pt_Pwa_Config();
+            include($Pt_Pwa_Config->PWA_PLUGIN_PATH.'admin/pages/theme-settings.php');
         }
 
 
@@ -104,7 +104,9 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
             $all_pages = get_pages(array('sort_column' => 'menu_order,post_title'));
             $pages = $this->build_pages_tree($all_pages);
 
-            include(PWA_PLUGIN_PATH.'admin/pages/content.php');
+            $Pt_Pwa_Config = new Pt_Pwa_Config();
+
+            include($Pt_Pwa_Config->PWA_PLUGIN_PATH.'admin/pages/content.php');
         }
 
 
@@ -115,7 +117,9 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
          */
         public function settings() {
 
-            include(PWA_PLUGIN_PATH.'admin/pages/settings.php');
+            $Pt_Pwa_Config = new Pt_Pwa_Config();
+
+            include($Pt_Pwa_Config->PWA_PLUGIN_PATH.'admin/pages/settings.php');
         }
 
         /**
@@ -124,6 +128,8 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
          *
          */
         public function category_content() {
+
+            $Pt_Pwa_Config = new Pt_Pwa_Config();
 
             if (isset($_GET) && is_array($_GET) && !empty($_GET)){
 
@@ -137,7 +143,7 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
                         if ($category != null) {
 
                             // load view
-                            include(PWA_PLUGIN_PATH.'admin/pages/category-details.php');
+                            include($Pt_Pwa_Config->PWA_PLUGIN_PATH.'admin/pages/category-details.php');
                         }
                     }
                 }
@@ -152,6 +158,8 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
          */
         public function page_content() {
 
+            $Pt_Pwa_Config = new Pt_Pwa_Config();
+
             if (isset($_GET) && is_array($_GET) && !empty($_GET)){
 
                 if (isset($_GET['id'])) {
@@ -163,22 +171,22 @@ if ( ! class_exists( 'WMobilePack_Admin' ) ) {
 
                         if ($page != null) {
 
-                            if (!class_exists('WMobilePack_Formatter')) {
-                                require_once(PWA_PLUGIN_PATH . 'inc/class-wmp-formatter.php');
+                            if (!class_exists('PtPwa_Formatter')) {
+                                require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'inc/class-pt-pwa-formatter.php');
                             }
 
-                            $purifier = WMobilePack_Formatter::init_purifier();
+                            $purifier = PtPwa_Formatter::init_purifier();
 
                             // first check if the admin edited the content for this page
-                            if (get_option(WMobilePack_Options::$prefix.'page_' .$page->ID) === false)
+                            if (get_option(PtPwa_Options::$prefix.'page_' .$page->ID) === false)
                                 $content = apply_filters("the_content", $page->post_content);
                             else
-                                $content = apply_filters("the_content", get_option( WMobilePack_Options::$prefix.'page_' .$page->ID  ));
+                                $content = apply_filters("the_content", get_option( PtPwa_Options::$prefix.'page_' .$page->ID  ));
 
                             $content = $purifier->purify(stripslashes($content));
 
                             // load view
-                            include(PWA_PLUGIN_PATH.'admin/pages/page-details.php');
+                            include($Pt_Pwa_Config->PWA_PLUGIN_PATH.'admin/pages/page-details.php');
                         }
                     }
                 }

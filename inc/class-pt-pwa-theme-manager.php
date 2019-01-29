@@ -1,6 +1,6 @@
 <?php
 
-class ThemeManager implements Manager {
+class PtPwaThemeManager implements PtPwaManager {
 
     private $theme;
 
@@ -92,18 +92,19 @@ class ThemeManager implements Manager {
 
     public function deserialize($json) {
         $serializer = new Zumba\JsonSerializer\JsonSerializer();
+
         $this->theme = $serializer->unserialize($json);
         return $this->theme;
     }
 
     public function write() {
-        $fileHelper = new FileHelper();
-        return $fileHelper->write_file($_SERVER['DOCUMENT_ROOT'].'/theme.json', $this->serialize());
+        $PtPwaFileHelper = new PtPwaFileHelper();
+        return $PtPwaFileHelper->write_file($_SERVER['DOCUMENT_ROOT'].'/theme.json', $this->serialize());
     }
 
     public function read() {
-        $fileHelper = new FileHelper();
-        return $fileHelper->read_file($_SERVER['DOCUMENT_ROOT'].'/theme.json');
+        $PtPwaFileHelper = new PtPwaFileHelper();
+        return $PtPwaFileHelper->read_file($_SERVER['DOCUMENT_ROOT'].'/theme.json');
     }
 
     /**
@@ -113,6 +114,7 @@ class ThemeManager implements Manager {
     {
         $themeContents = $this->read();
         if (!empty($themeContents)) {
+
             $this->setTheme($this->deserialize($themeContents));
         }
 

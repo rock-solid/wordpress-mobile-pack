@@ -1,18 +1,18 @@
 <?php
 
-if ( ! class_exists( 'WMobilePack_Themes_Config' )) {
-    require_once(PWA_PLUGIN_PATH.'inc/class-wmp-themes-config.php');
+if ( ! class_exists( 'PtPwa_Themes_Config' )) {
+    require_once(PWA_PLUGIN_PATH.'inc/class-pt-pwa-themes-config.php');
 }
 
-if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
+if ( ! class_exists( 'PtPwa_Admin_Ajax' ) ) {
 
     /**
      *
-     * WMobilePack_Admin_Ajax class for managing Ajax requests from the admin area of the Wordpress Mobile Pack plugin
+     * PtPwa_Admin_Ajax class for managing Ajax requests from the admin area of the Wordpress Mobile Pack plugin
      *
      * @todo Test separately the methods of this class
      */
-    class WMobilePack_Admin_Ajax
+    class PtPwa_Admin_Ajax
     {
 
         /**
@@ -24,12 +24,12 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
          */
         protected function get_theme_manager()
         {
-            if ( ! class_exists( 'WMobilePack_Themes_Compiler' ) && version_compare(PHP_VERSION, '5.3') >= 0 ) {
-                require_once(PWA_PLUGIN_PATH.'inc/class-wmp-themes-compiler.php');
+            if ( ! class_exists( 'PtPwa_Themes_Compiler' ) && version_compare(PHP_VERSION, '5.3') >= 0 ) {
+                require_once(PWA_PLUGIN_PATH.'inc/class-pt-pwa-themes-compiler.php');
             }
 
-            if (class_exists('WMobilePack_Themes_Compiler')) {
-                return new WMobilePack_Themes_Compiler();
+            if (class_exists('PtPwa_Themes_Compiler')) {
+                return new PtPwa_Themes_Compiler();
             }
 
             return false;
@@ -45,7 +45,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
          */
         protected function get_uploads_manager()
         {
-            return new WMobilePack_Uploads();
+            return new PtPwa_Uploads();
         }
 
 
@@ -65,7 +65,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 				if (array_key_exists($font_type.'-font', $allowed_font_settings)) {
 
 					if (!isset($data['wmp_edittheme_font'.$font_type]) ||
-						!in_array($data['wmp_edittheme_font'.$font_type] - 1, array_keys(WMobilePack_Themes_Config::$allowed_fonts))){
+						!in_array($data['wmp_edittheme_font'.$font_type] - 1, array_keys(PtPwa_Themes_Config::$allowed_fonts))){
 
 						return false;
 					}
@@ -101,9 +101,9 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                 if (isset($data['wmp_edittheme_font'.$font_type]) && array_key_exists($font_type.'-font', $allowed_font_settings)) {
 
                     // check if the font settings have changed
-                    if ($data['wmp_edittheme_font'.$font_type] != WMobilePack_Options::get_setting('font_'.$font_type)) {
+                    if ($data['wmp_edittheme_font'.$font_type] != PtPwa_Options::get_setting('font_'.$font_type)) {
 
-                        WMobilePack_Options::update_settings('font_' . $font_type, $data['wmp_edittheme_font' . $font_type]);
+                        PtPwa_Options::update_settings('font_' . $font_type, $data['wmp_edittheme_font' . $font_type]);
                         $response['updated'] = true;
                     }
 
@@ -140,9 +140,9 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 
             if (isset($data['wmp_edittheme_colorscheme'])) {
 
-                if (WMobilePack_Options::get_setting('color_scheme') != $data['wmp_edittheme_colorscheme']) {
+                if (PtPwa_Options::get_setting('color_scheme') != $data['wmp_edittheme_colorscheme']) {
 
-                    WMobilePack_Options::update_settings('color_scheme', $data['wmp_edittheme_colorscheme']);
+                    PtPwa_Options::update_settings('color_scheme', $data['wmp_edittheme_colorscheme']);
                     $response['updated'] = true;
                 }
 
@@ -180,7 +180,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
             $arr_custom_colors = array();
 
             // read theme and custom colors options
-            $selected_custom_colors = WMobilePack_Options::get_setting('custom_colors');
+            $selected_custom_colors = PtPwa_Options::get_setting('custom_colors');
 
             // how many colors does the theme have
             $no_theme_colors = count($colors_variables);
@@ -210,7 +210,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
             // save colors only if all the colors from the theme have been set
             if (count($arr_custom_colors) == $no_theme_colors){
 
-                WMobilePack_Options::update_settings('custom_colors', $arr_custom_colors);
+                PtPwa_Options::update_settings('custom_colors', $arr_custom_colors);
 
             } else {
 
@@ -230,12 +230,12 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
         {
 
             // reset color schemes and fonts
-            WMobilePack_Options::update_settings('color_scheme', 1);
-            WMobilePack_Options::update_settings('custom_colors', array());
-            WMobilePack_Options::update_settings('font_headlines', 1);
-            WMobilePack_Options::update_settings('font_subtitles', 1);
-            WMobilePack_Options::update_settings('font_paragraphs', 1);
-            WMobilePack_Options::update_settings('font_size', 1);
+            PtPwa_Options::update_settings('color_scheme', 1);
+            PtPwa_Options::update_settings('custom_colors', array());
+            PtPwa_Options::update_settings('font_headlines', 1);
+            PtPwa_Options::update_settings('font_subtitles', 1);
+            PtPwa_Options::update_settings('font_paragraphs', 1);
+            PtPwa_Options::update_settings('font_size', 1);
 
             $this->remove_custom_theme();
         }
@@ -248,7 +248,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
         protected function remove_custom_theme(){
 
             // remove compiled css file (if it exists)
-            $theme_timestamp = WMobilePack_Options::get_setting('theme_timestamp');
+            $theme_timestamp = PtPwa_Options::get_setting('theme_timestamp');
 
             if ($theme_timestamp != ''){
 
@@ -257,7 +257,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                 if ($wmp_themes_compiler !== false) {
 
                     $wmp_themes_compiler->remove_css_file($theme_timestamp);
-                    WMobilePack_Options::update_settings('theme_timestamp', '');
+                    PtPwa_Options::update_settings('theme_timestamp', '');
                 }
             }
         }
@@ -276,14 +276,14 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                 $status = 0;
 
                 if (!empty($_GET) && isset($_GET['theme'])){
-                    if (in_array($_GET['theme'], array_keys(WMobilePack_Themes_Config::get_allowed_themes()) )) {
+                    if (in_array($_GET['theme'], array_keys(PtPwa_Themes_Config::get_allowed_themes()) )) {
 
                         $new_theme = $_GET['theme'];
 
-                        if (WMobilePack_Options::get_setting('theme') != $new_theme){
+                        if (PtPwa_Options::get_setting('theme') != $new_theme){
 
                             $status = 1;
-                            WMobilePack_Options::update_settings('theme', $new_theme);
+                            PtPwa_Options::update_settings('theme', $new_theme);
                             $this->reset_theme_settings();
                         }
                     }
@@ -319,13 +319,13 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                 );
 
 				// get the theme's  configuration
-            	$theme_config = WMobilePack_Themes_Config::get_theme_config();
+            	$theme_config = PtPwa_Themes_Config::get_theme_config();
 
             	if ($theme_config !== false) {
 
 					// build array with the allowed fonts sizes
 					$allowed_fonts_sizes = array();
-					foreach (WMobilePack_Themes_Config::$allowed_fonts_sizes as $allowed_font_size) {
+					foreach (PtPwa_Themes_Config::$allowed_fonts_sizes as $allowed_font_size) {
 						$allowed_fonts_sizes[] = $allowed_font_size['size'];
 					}
 
@@ -384,10 +384,10 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                                     } else {
 
                                         // delete old css file (if it exists)
-                                        $old_theme_timestamp = WMobilePack_Options::get_setting('theme_timestamp');
+                                        $old_theme_timestamp = PtPwa_Options::get_setting('theme_timestamp');
 
                                         // update theme timestamp
-                                        WMobilePack_Options::update_settings('theme_timestamp', $theme_timestamp);
+                                        PtPwa_Options::update_settings('theme_timestamp', $theme_timestamp);
 
                                         if ($old_theme_timestamp != '') {
                                             $wmp_themes_compiler->remove_css_file($old_theme_timestamp);
@@ -431,9 +431,9 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 
             $copied_and_resized = false;
 
-            if (array_key_exists($file_type, WMobilePack_Uploads::$allowed_files)) {
+            if (array_key_exists($file_type, PtPwa_Uploads::$allowed_files)) {
 
-                $arrMaximumSize = WMobilePack_Uploads::$allowed_files[$file_type];
+                $arrMaximumSize = PtPwa_Uploads::$allowed_files[$file_type];
 
                 $image = wp_get_image_editor($file_path);
 
@@ -443,7 +443,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 
 					if ($file_type == 'icon') {
 
-						foreach (WMobilePack_Uploads::$manifest_sizes as $manifest_size) {
+						foreach (PtPwa_Uploads::$manifest_sizes as $manifest_size) {
 
 							$manifest_image = wp_get_image_editor($file_path);
 							$manifest_image->resize($manifest_size, $manifest_size, true);
@@ -489,7 +489,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
         {
 
             // get previous image filename
-            $previous_file_path = WMobilePack_Options::get_setting($file_type);
+            $previous_file_path = PtPwa_Options::get_setting($file_type);
 
             // check the file exists and remove it
             if ($previous_file_path != '') {
@@ -497,7 +497,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 
 				if ($file_type == 'icon') {
 
-					foreach (WMobilePack_Uploads::$manifest_sizes as $manifest_size) {
+					foreach (PtPwa_Uploads::$manifest_sizes as $manifest_size) {
 						$WMP_Uploads->remove_uploaded_file($manifest_size . $previous_file_path);
 					}
 
@@ -518,7 +518,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
          */
         protected function remove_image_category($category_id){
 
-            $categories_details = WMobilePack_Options::get_setting('categories_details');
+            $categories_details = PtPwa_Options::get_setting('categories_details');
 
             if (is_array($categories_details)) {
 
@@ -604,7 +604,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                                         $file_type = 'category_icon';
                                     }
 
-                                    if ($info['error'] >= 1 || $info['size'] <= 0 && array_key_exists($file_type, WMobilePack_Uploads::$allowed_files)) {
+                                    if ($info['error'] >= 1 || $info['size'] <= 0 && array_key_exists($file_type, PtPwa_Uploads::$allowed_files)) {
 
                                         $arr_response['status'] = 0;
                                         $arr_response["messages"][] = "We encountered a problem processing your ".($file_type == 'category_icon' ? 'image' : $file_type).". Please choose another image!";
@@ -631,7 +631,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                                         $arrFilename = explode(".", $info['name']);
                                         $fileExtension = end($arrFilename);
 
-                                        $arrAllowedExtensions = WMobilePack_Uploads::$allowed_files[$file_type]['extensions'];
+                                        $arrAllowedExtensions = PtPwa_Uploads::$allowed_files[$file_type]['extensions'];
 
                                         // check file extension
                                         if (!in_array(strtolower($fileExtension), $arrAllowedExtensions)) {
@@ -686,10 +686,10 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                                                             $this->remove_image_category($_POST['wmp_categoryedit_id']);
 
                                                             // update categories settings array
-                                                            $categories_details = WMobilePack_Options::get_setting('categories_details');
+                                                            $categories_details = PtPwa_Options::get_setting('categories_details');
                                                             $categories_details[$_POST['wmp_categoryedit_id']] = array('icon' => $uniqueFilename);
 
-                                                            WMobilePack_Options::update_settings('categories_details', $categories_details);
+                                                            PtPwa_Options::update_settings('categories_details', $categories_details);
 
                                                         } else {
 
@@ -697,12 +697,12 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                                                             $this->remove_image($file_type);
 
                                                             // save option
-                                                            WMobilePack_Options::update_settings($file_type, $uniqueFilename);
+                                                            PtPwa_Options::update_settings($file_type, $uniqueFilename);
                                                         }
 
                                                         // add path in the response
                                                         $arr_response['status'] = 1;
-                                                        $arr_response['uploaded_' . $file_type] = WMP_FILES_UPLOADS_URL . $uniqueFilename;
+                                                        $arr_response['uploaded_' . $file_type] = PWA_FILES_UPLOADS_URL . $uniqueFilename;
                                                     }
 
                                                     // remove file from the default uploads folder
@@ -732,7 +732,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                     // delete icon, logo or cover, depending on the 'source' param
                     if (isset($_GET['source'])) {
 
-                        if (array_key_exists($_GET['source'], WMobilePack_Uploads::$allowed_files)){
+                        if (array_key_exists($_GET['source'], PtPwa_Uploads::$allowed_files)){
 
                             $file_type = $_GET['source'];
 
@@ -742,10 +742,10 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                                 $this->remove_image_category($_GET['category_id']);
 
                                 // update categories settings array
-                                $categories_details = WMobilePack_Options::get_setting('categories_details');
+                                $categories_details = PtPwa_Options::get_setting('categories_details');
                                 unset($categories_details[ $_GET['category_id'] ]);
 
-                                WMobilePack_Options::update_settings('categories_details', $categories_details);
+                                PtPwa_Options::update_settings('categories_details', $categories_details);
 
                                 $arr_response['status'] = 1;
 
@@ -755,7 +755,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                                 $this->remove_image($file_type);
 
                                 // save option with an empty value
-                                WMobilePack_Options::update_settings($file_type, '');
+                                PtPwa_Options::update_settings($file_type, '');
 
                                 $arr_response['status'] = 1;
                             }
@@ -799,9 +799,9 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 
                             // get inactive items option
                             if ($_POST['type'] == 'category')
-                                $inactive_items = WMobilePack_Options::get_setting('inactive_categories');
+                                $inactive_items = PtPwa_Options::get_setting('inactive_categories');
                             else
-                                $inactive_items = WMobilePack_Options::get_setting('inactive_pages');
+                                $inactive_items = PtPwa_Options::get_setting('inactive_pages');
 
                             // add or remove the item from the options array
                             if (in_array($item_id, $inactive_items) && $item_status == 'active')
@@ -812,9 +812,9 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 
                             // save option
                             if ($_POST['type'] == 'category')
-                                WMobilePack_Options::update_settings('inactive_categories', $inactive_items);
+                                PtPwa_Options::update_settings('inactive_categories', $inactive_items);
                             else
-                                WMobilePack_Options::update_settings('inactive_pages', $inactive_items);
+                                PtPwa_Options::update_settings('inactive_pages', $inactive_items);
                         }
                     }
                 }
@@ -865,7 +865,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                                     $status = 1;
 
                                     // Save option
-                                    WMobilePack_Options::update_settings('ordered_categories', $items_ids);
+                                    PtPwa_Options::update_settings('ordered_categories', $items_ids);
                                 }
                             }
                         }
@@ -900,17 +900,17 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                             if (trim($_POST['wmp_pageedit_content']) != '') {
 
                                 // load HTML purifier / formatter
-                                if (!class_exists('WMobilePack_Formatter')) {
-                                    require_once(PWA_PLUGIN_PATH . 'inc/class-wmp-formatter.php');
+                                if (!class_exists('PtPwa_Formatter')) {
+                                    require_once(PWA_PLUGIN_PATH . 'inc/class-pt-pwa-formatter.php');
                                 }
 
-                                $purifier = WMobilePack_Formatter::init_purifier();
+                                $purifier = PtPwa_Formatter::init_purifier();
 
                                 $page_id = intval($_POST['wmp_pageedit_id']);
                                 $page_content = $purifier->purify(stripslashes($_POST['wmp_pageedit_content']));
 
                                 // save option in the db
-                                update_option(WMobilePack_Options::$prefix . 'page_' . $page_id, $page_content);
+                                update_option(PtPwa_Options::$prefix . 'page_' . $page_id, $page_content);
 
                                 $status = 1;
 
@@ -958,16 +958,16 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 
                                 // validate google analytics id
                                 if (preg_match('/^ua-\d{4,9}-\d{1,4}$/i', strval($_POST["wmp_editsettings_ganalyticsid"])))
-                                    WMobilePack_Options::update_settings('google_analytics_id', $_POST['wmp_editsettings_ganalyticsid']);
+                                    PtPwa_Options::update_settings('google_analytics_id', $_POST['wmp_editsettings_ganalyticsid']);
                                 elseif ($_POST["wmp_editsettings_ganalyticsid"] == "")
-                                    WMobilePack_Options::update_settings('google_analytics_id', "");
+                                    PtPwa_Options::update_settings('google_analytics_id', "");
                             }
 
                             // save other options
-                            WMobilePack_Options::update_settings('display_mode', $_POST['wmp_editsettings_displaymode']);
-							WMobilePack_Options::update_settings('enable_tablets', intval($_POST['wmp_editsettings_enable_tablets']));
-                            WMobilePack_Options::update_settings('display_website_link', intval($_POST['wmp_editsettings_displaywebsitelink']));
-                            WMobilePack_Options::update_settings('posts_per_page', $_POST['wmp_editsettings_postsperpage']);
+                            PtPwa_Options::update_settings('display_mode', $_POST['wmp_editsettings_displaymode']);
+							PtPwa_Options::update_settings('enable_tablets', intval($_POST['wmp_editsettings_enable_tablets']));
+                            PtPwa_Options::update_settings('display_website_link', intval($_POST['wmp_editsettings_displaywebsitelink']));
+                            PtPwa_Options::update_settings('posts_per_page', $_POST['wmp_editsettings_postsperpage']);
                         }
                     }
                 }
@@ -1005,12 +1005,12 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                                 $status = 1;
 
                                 // save option
-                                WMobilePack_Options::update_settings($option_name, $enabled_option);
+                                PtPwa_Options::update_settings($option_name, $enabled_option);
 
                                 if ($option_name == 'allow_tracking'){
 
                                     // update cron schedule
-                                    WMobilePack::schedule_tracking($enabled_option);
+                                    PtPwa::schedule_tracking($enabled_option);
                                 }
                             }
                         }
@@ -1042,7 +1042,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 
                         if (in_array($_POST['joined_waitlist'], array('content', 'settings', 'lifestyletheme', 'businesstheme', 'themes_features'))) {
 
-                            $option_waitlists = WMobilePack_Options::get_setting('joined_waitlists');
+                            $option_waitlists = PtPwa_Options::get_setting('joined_waitlists');
 
                             if ($option_waitlists == null || !is_array($option_waitlists)) {
                                 $option_waitlists = array();
@@ -1055,7 +1055,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                                 $option_waitlists[] = $_POST['joined_waitlist'];
 
                                 // save option
-                                WMobilePack_Options::update_settings('joined_waitlists', $option_waitlists);
+                                PtPwa_Options::update_settings('joined_waitlists', $option_waitlists);
                             }
                         }
                     }

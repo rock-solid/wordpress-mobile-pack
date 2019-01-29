@@ -1,53 +1,53 @@
 <?php
 
-if ( ! class_exists( 'WMobilePack_Options' ) ) {
-    require_once(PWA_PLUGIN_PATH.'inc/class-wmp-options.php');
+if ( ! class_exists( 'PtPwa_Options' ) ) {
+    require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH.'inc/class-pt-pwa-options.php');
 }
 
-if ( ! class_exists( 'WMobilePack_Uploads' ) ) {
-    require_once(PWA_PLUGIN_PATH.'inc/class-wmp-uploads.php');
+if ( ! class_exists( 'PtPwa_Uploads' ) ) {
+    require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH.'inc/class-pt-pwa-uploads.php');
 }
 
-if ( ! class_exists( 'WMobilePack_Cookie' ) ) {
-    require_once(PWA_PLUGIN_PATH.'inc/class-wmp-cookie.php');
+if ( ! class_exists( 'PtPwa_Cookie' ) ) {
+    require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH.'inc/class-pt-pwa-cookie.php');
 }
 
-if ( ! interface_exists( 'Manager' ) ) {
-    require_once(PWA_PLUGIN_PATH.'inc/interface-manager.php');
+if ( ! interface_exists( 'PtPwaManager' ) ) {
+    require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH.'inc/pt-pwa-interface-manager.php');
 }
 
-if ( ! class_exists( 'Theme' ) ) {
-    require_once(PWA_PLUGIN_PATH.'inc/class-theme.php');
+if ( ! class_exists( 'PtPwaTheme' ) ) {
+    require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH.'inc/class-pt-pwa-theme.php');
 }
 
-if ( ! class_exists( 'ThemeManager' ) ) {
-    require_once(PWA_PLUGIN_PATH.'inc/class-theme-manager.php');
+if ( ! class_exists( 'PtPwaThemeManager' ) ) {
+    require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH.'inc/class-pt-pwa-theme-manager.php');
 }
 
-if ( ! class_exists( 'Manifest' ) ) {
-    require_once(PWA_PLUGIN_PATH.'inc/class-manifest.php');
+if ( ! class_exists( 'PtPwaManifest' ) ) {
+    require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH.'inc/class-pt-pwa-manifest.php');
 }
 
-if ( ! class_exists( 'ManifestManager' ) ) {
-    require_once(PWA_PLUGIN_PATH.'inc/class-manifest-manager.php');
+if ( ! class_exists( 'PtPwaManifestManager' ) ) {
+    require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH.'inc/class-pt-pwa-manifest-manager.php');
 }
 
-if ( ! class_exists( 'Icon' ) ) {
-    require_once(PWA_PLUGIN_PATH.'inc/class-icon.php');
+if ( ! class_exists( 'PtPwaIcon' ) ) {
+    require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH.'inc/class-pt-pwa-icon.php');
 }
 
-if ( ! class_exists( 'FileHelper' ) ) {
-    require_once(PWA_PLUGIN_PATH.'inc/class-file-helper.php');
+if ( ! class_exists( 'PtPwaFileHelper' ) ) {
+    require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH.'inc/class-pt-pwa-file-helper.php');
 }
 
 if ( ! class_exists( 'JsonSerializer' ) ) {
-    require_once (PWA_PLUGIN_PATH.'libs/json-serializer/JsonSerializer/JsonSerializer.php');
+    require_once ($Pt_Pwa_Config->PWA_PLUGIN_PATH.'libs/json-serializer/JsonSerializer/JsonSerializer.php');
 }
 
-if ( ! class_exists( 'WMobilePack' ) ) {
+if ( ! class_exists( 'PtPwa' ) ) {
 
     /**
-     * WMobilePack
+     * PtPwa
      *
      * Main class for the Wordpress Mobile Pack plugin. This class handles:
      *
@@ -57,7 +57,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
      * - loading the app in the frontend
      *
      */
-    class WMobilePack
+    class PtPwa
     {
 
         /* ----------------------------------*/
@@ -72,8 +72,8 @@ if ( ! class_exists( 'WMobilePack' ) ) {
         public function __construct()
         {
             // create uploads folder and define constants
-            if ( !defined( 'PWA_FILES_UPLOADS_DIR' ) && !defined( 'WMP_FILES_UPLOADS_URL' ) ){
-                $WMP_Uploads = new WMobilePack_Uploads();
+            if ( !defined( 'PWA_FILES_UPLOADS_DIR' ) && !defined( 'PWA_FILES_UPLOADS_URL' ) ){
+                $WMP_Uploads = new PtPwa_Uploads();
                 $WMP_Uploads->define_uploads_dir();
             }
 
@@ -95,12 +95,9 @@ if ( ! class_exists( 'WMobilePack' ) ) {
         public function activate()
         {
             // add settings to database
-            WMobilePack_Options::save_settings(WMobilePack_Options::$options);
+            PtPwa_Options::save_settings(PtPwa_Options::$options);
 
-            // reset tracking schedule using the current option value
-            self::schedule_tracking(WMobilePack_Options::get_setting('allow_tracking'));
-
-            $WMP_Uploads = new WMobilePack_Uploads();
+            $WMP_Uploads = new PtPwa_Uploads();
             $WMP_Uploads->create_uploads_dir();
 
             $this->backwards_compatibility();
@@ -116,14 +113,11 @@ if ( ! class_exists( 'WMobilePack' ) ) {
         public function deactivate()
         {
 
-            // clear scheduled tracking cron
-            self::schedule_tracking( WMobilePack_Options::get_setting('allow_tracking'),  true);
-
             // delete plugin settings
-            WMobilePack_Options::deactivate();
+            PtPwa_Options::deactivate();
 
             // remove the cookies
-            $WMP_Cookie = new WMobilePack_Cookie();
+            $WMP_Cookie = new PtPwa_Cookie();
 
             $WMP_Cookie->set_cookie("theme_mode", false, -3600);
             $WMP_Cookie->set_cookie("load_app", false, -3600);
@@ -148,8 +142,8 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                 return;
             }
 
-            if (version_compare(PHP_VERSION, '5.3') < 0) {
-                echo '<div class="error"><p><b>Warning!</b> The ' . PWA_PLUGIN_NAME . ' plugin requires at least PHP 5.3.0!</p></div>';
+            if (version_compare(PHP_VERSION, '5.6') < 0) {
+                echo '<div class="error"><p><b>Warning!</b> The ' . $Pt_Pwa_Config->PWA_PLUGIN_NAME . ' plugin requires at least PHP 5.6.0!</p></div>';
                 return;
             }
 
@@ -165,13 +159,13 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 		 */
 		 public function display_icon_reupload_notice(){
 
-			$icon_filename = WMobilePack_Options::get_setting('icon');
+			$icon_filename = PtPwa_Options::get_setting('icon');
 
 			if ($icon_filename == '') {
 				echo '<div class="notice notice-warning is-dismissible"><p>Publishers Toolbox PWA: Upload an <a href="' . get_admin_url() . 'admin.php?page=wmp-options-theme-settings"/>App Icon</a> to take advantage of the Add To Home Screen functionality!</p></div>';
 
 			} elseif ($icon_filename != '' && file_exists(PWA_FILES_UPLOADS_DIR . $icon_filename)) {
-				foreach (WMobilePack_Uploads::$manifest_sizes as $manifest_size) {
+				foreach (PtPwa_Uploads::$manifest_sizes as $manifest_size) {
 					if (!file_exists(PWA_FILES_UPLOADS_DIR . $manifest_size . $icon_filename)) {
 						echo '<div class="notice notice-warning is-dismissible"><p>Publishers Toolbox PWA comes with Add To Home Screen functionality which requires you to reupload your <a href="' . get_admin_url() . 'admin.php?page=wmp-options-theme-settings"/>App Icon</a>!</p></div>';
 						return;
@@ -187,35 +181,35 @@ if ( ! class_exists( 'WMobilePack' ) ) {
          */
         public function backwards_compatibility(){
 
-            if ( ! class_exists( 'WMobilePack_Themes_Config' )) {
-                require_once(PWA_PLUGIN_PATH.'inc/class-wmp-themes-config.php');
+            if ( ! class_exists( 'PtPwa_Themes_Config' )) {
+                include('../inc/class-pt-pwa-themes-config.php');
             }
 
-            if (class_exists('WMobilePack_Themes_Config')){
+            if (class_exists('PtPwa_Themes_Config')){
 
                 foreach (array('headlines', 'subtitles', 'paragraphs') as $font_type) {
 
-                    $font_option = WMobilePack_Options::get_setting('font_'.$font_type);
+                    $font_option = PtPwa_Options::get_setting('font_'.$font_type);
 
                     if (!is_numeric($font_option)){
-                        $new_font_option = array_search($font_option, WMobilePack_Themes_Config::$allowed_fonts) + 1;
-                        WMobilePack_Options::update_settings('font_'.$font_type, $new_font_option);
+                        $new_font_option = array_search($font_option, PtPwa_Themes_Config::$allowed_fonts) + 1;
+                        PtPwa_Options::update_settings('font_'.$font_type, $new_font_option);
                     }
                 }
 			}
 			
 			// switch from Obliq v1 to v2
-			$theme = WMobilePack_Options::get_setting('theme');
+			$theme = PtPwa_Options::get_setting('theme');
 
 			if ($theme == 1) {
 				$this->reset_theme_settings();
-				WMobilePack_Options::update_settings('theme', 2);
+				PtPwa_Options::update_settings('theme', 2);
 			}
 
 			// delete premium options
-			delete_option(WMobilePack_Options::$prefix . 'premium_api_key');
-			delete_option(WMobilePack_Options::$prefix . 'premium_config_path');
-			delete_option(WMobilePack_Options::$prefix . 'premium_active');
+			delete_option(PtPwa_Options::$prefix . 'premium_api_key');
+			delete_option(PtPwa_Options::$prefix . 'premium_config_path');
+			delete_option(PtPwa_Options::$prefix . 'premium_active');
 		}
 		
 
@@ -225,15 +219,15 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 		protected function reset_theme_settings(){
 
 			// reset color schemes and fonts
-			WMobilePack_Options::update_settings('color_scheme', 1);
-			WMobilePack_Options::update_settings('custom_colors', array());
-			WMobilePack_Options::update_settings('font_headlines', 1);
-			WMobilePack_Options::update_settings('font_subtitles', 1);
-			WMobilePack_Options::update_settings('font_paragraphs', 1);
-			WMobilePack_Options::update_settings('font_size', 1);
+			PtPwa_Options::update_settings('color_scheme', 1);
+			PtPwa_Options::update_settings('custom_colors', array());
+			PtPwa_Options::update_settings('font_headlines', 1);
+			PtPwa_Options::update_settings('font_subtitles', 1);
+			PtPwa_Options::update_settings('font_paragraphs', 1);
+			PtPwa_Options::update_settings('font_size', 1);
 
 			// remove compiled css file (if it exists)
-			$theme_timestamp = WMobilePack_Options::get_setting('theme_timestamp');
+			$theme_timestamp = PtPwa_Options::get_setting('theme_timestamp');
 
 			if ($theme_timestamp != ''){
 
@@ -243,7 +237,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 					unlink($file_path);
 				}
 
-				WMobilePack_Options::update_settings('theme_timestamp', '');
+				PtPwa_Options::update_settings('theme_timestamp', '');
 			}
 		}
 
@@ -346,57 +340,6 @@ if ( ! class_exists( 'WMobilePack' ) ) {
             // by default return an empty string
             return '';
 
-        }
-
-        /**
-         * (Un-)schedule the tracking cronjob if the tracking option has changed
-         *
-         * Better to be done here, rather than in the WMobilePack_Tracking class as
-         * class-wmp-tracking.php may not be loaded and might not need to be (lean loading).
-         *
-         * @static
-         *
-         * @param  array $value            The (new/current) value of the allow_tracking option
-         * @param  bool  $force_unschedule Whether to force an unschedule (i.e. on deactivate)
-         *
-         * @return  void
-         *
-         */
-        public static function schedule_tracking( $value, $force_unschedule = false )
-        {
-
-            $current_schedule = wp_next_scheduled( WMobilePack_Options::$prefix.'tracking' );
-
-            if ( $force_unschedule !== true && ( $value === 1 && $current_schedule === false ) ) {
-
-                // The tracking checks daily, but only sends new data every 7 days.
-                wp_schedule_event( time(), 'daily', WMobilePack_Options::$prefix.'tracking' );
-
-            } elseif ( $force_unschedule === true || ( $value === 0 && $current_schedule !== false ) ) {
-                wp_clear_scheduled_hook( WMobilePack_Options::$prefix.'tracking' );
-            }
-        }
-    }
-}
-
-/**
- *
- * Action hook and method for creating tracking (executed only if option was enabled)
- *
- */
-add_action( WMobilePack_Options::$prefix.'tracking', 'wmp_create_tracking');
-
-function wmp_create_tracking()
-{
-    if (WMobilePack_Options::get_setting('allow_tracking') == 1) {
-
-        if ( ! class_exists( 'WMobilePack_Tracking' ) ) {
-            require_once(PWA_PLUGIN_PATH.'inc/class-wmp-tracking.php');
-        }
-
-        if ( class_exists( 'WMobilePack_Tracking') ) {
-            $WMP_Tracking = new WMobilePack_Tracking();
-            $WMP_Tracking->tracking();
         }
     }
 }

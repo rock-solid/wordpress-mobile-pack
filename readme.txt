@@ -1,12 +1,10 @@
 === Publisher's Toolbox PWA - Mobile Plugin for Progressive Web Apps & Hybrid Mobile Apps ===
 Contributors: jamesgpearce, andreatrasatti, cborodescu, anghelalexandra
 Tags: android, iOS, html5, iphone, mobile, mobile internet, mobile web, mobile web app, responsive ui, safari, sencha touch, smartphone, webkit, progressive web apps, app builder, apple, apps, convert to app, create blog app, ios app, ipad, make an app, mobile app plugin, mobile application, mobile blog app, mobile converter, mobile plugin, native app plugin, app theme, website to mobile app, WordPress android, WordPress app, WordPress iphone, WordPress mobile, WordPress mobile app
-Requires at least: 3.6
-Tested up to: 4.9.8
+Requires at least: 4.6
+Tested up to: 5.0.3
 Stable tag: 1.0
 License: GPLv2 or later
-
-Mobile plugin to package your content into a progressive web app, build a hybrid mobile app and submit it to App Stores. Multiple mobile app themes.
 
 == Description ==
 
@@ -35,7 +33,7 @@ What the Publisher's Toolbox PWA 1.0 enables you to do:
 
 * **Pages Sync**. Choose what pages you want to display on your mobile web application. You can edit, show/hide different pages and order them according to your needs. 
 
-* **Comments Sync**. All the comments that are displayed in the blog are also synchronized into the mobile web application. On top of that, comments that are posted from within the app are also displayed on the blog. Social media features are available in [Publisher's Toolbox PWA PRO](https://wpmobilepack.com).
+* **Comments Sync**. All the comments that are displayed in the blog are also synchronized into the mobile web application. On top of that, comments that are posted from within the app are also displayed on the blog.
 
 * **Analytics**. Publisher's Toolbox PWA easily integrates with Google Analytics.
 
@@ -45,13 +43,17 @@ We enjoy writing and maintaining this plugin. If you like it too, please rate us
 
 Have fun on your mobile adventures.
 
+== 3rd Party Services and Applications ==
+
+This plugin uses the Publisher's Toolbox PWA Script to fetch the required HTML to display your website's PWA. The content is loaded via the WordPress Rest API, no user data is exposed or transmitted at this point. The service simply fetches the required markup for your content to populate. No account is required. More about our PWA solution can be found here: https://www.publisherstoolbox.com/websuite/
+
 
 == Installation ==
 
-= Simple installation for WordPress v3.6 and later =
+= Simple installation for WordPress v4.6 and later =
 
 1.  Go to the 'Plugins' / 'Add new' menu
-1.	Upload wordpress-mobile-pack.zip then press 'Install now'.
+1.	Upload wordpress-pwa.zip then press 'Install now'.
 1.	Enjoy.
 
 = Comprehensive setup =
@@ -60,7 +62,7 @@ A more comprehensive setup process and guide to configuration is as follows.
 
 1. Locate your WordPress install on the file system
 1. Extract the contents of `wordpress-pwa.zip` into `wp-content/plugins`
-1. In `wp-content/plugins` you should now see a directory named `wordpress-mobile-pack`
+1. In `wp-content/plugins` you should now see a directory named `publishers-toolbox-pwa`
 1. Login to the WordPress admin panel at `http://yoursite.com/wp-admin`
 1. Go to the 'Plugins' menu.
 1. Click 'Activate' for the plugin.
@@ -82,10 +84,10 @@ Please note that the mobile web app will be enabled only on supported devices: i
 == Frequently Asked Questions ==
 
 = When I visit my website from a smartphone, I don't see any posts or pages =
-Please make sure that the endpoint exporting the content can be accessed and doesn't show errors or notices. From a browser, go to the following address: http://yoursite.com/wp-content/plugins/wordpress-mobile-pack/export/content.php?content=exportcategories&limit=5&callback=Ext.data.JsonP.callback. You should see a text starting with "Ext.data.JsonP.callback". If the page displays a "403 forbidden" message or has any errors / notices, it means that the content will not be available to the mobile web app.
+Please make sure that the endpoint exporting the content can be accessed and doesn't show errors or notices. From a browser, go to the following address: http://yoursite.com/wp-content/plugins/publishers-toolbox-pwa/export/content.php?content=exportcategories&limit=5&callback=Ext.data.JsonP.callback. You should see a text starting with "Ext.data.JsonP.callback". If the page displays a "403 forbidden" message or has any errors / notices, it means that the content will not be available to the mobile web app.
 
-= I have enabled Wordpress Mobile Pack, but I still see the desktop theme on my smartphone =
-If you are using a cache plugin, please check the [docs](http://support.appticles.com/optimizing-cache-plugins-wordpress-mobile-pack/). Some additional settings on the cache plugin might be required to correctly enable the mobile detection from Wordpress Mobile Pack.
+= I have enabled Publisher's Toolbox PWA, but I still see the desktop theme on my smartphone =
+If you are using a cache plugin, please ensure that it is disabled or configured correctly. Some additional settings on the cache plugin might be required to correctly enable the mobile detection from Publisher's Toolbox PWA.
 
 = What can I use to replace contact forms? =
 Most of the sites we come across use contact forms to allow users to get in touch or/and send messages. However, when targeting mobile users, forcing them to fill out a dull form (usually pretty long) is the worst UX you can offer to your mobile audience. Instead, here are [a couple of approaches](http://support.appticles.com/replacing-contact-forms-with-click-to-call-links-for-your-mobile-web-application/) you could try out in your mobile web application:

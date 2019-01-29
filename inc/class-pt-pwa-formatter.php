@@ -1,17 +1,17 @@
 <?php
 
 // set HTML Purifier
-require_once PWA_PLUGIN_PATH . 'libs/htmlpurifier-4.8.0/library/HTMLPurifier.safe-includes.php';
-require_once PWA_PLUGIN_PATH . 'libs/htmlpurifier-html5/htmlpurifier_html5.php';
+require_once $Pt_Pwa_Config->PWA_PLUGIN_PATH . 'libs/htmlpurifier-4.8.0/library/HTMLPurifier.safe-includes.php';
+require_once $Pt_Pwa_Config->PWA_PLUGIN_PATH . 'libs/htmlpurifier-html5/htmlpurifier_html5.php';
 
-if ( ! class_exists( 'WMobilePack_Formatter' ) ) {
+if ( ! class_exists( 'PtPwa_Formatter' ) ) {
 
     /**
-     * Class WMobilePack_Formatter
+     * Class PtPwa_Formatter
      *
      * Contains different methods for formatting exported content
      */
-    class WMobilePack_Formatter
+    class PtPwa_Formatter
     {
 
         /**

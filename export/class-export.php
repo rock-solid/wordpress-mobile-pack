@@ -1,13 +1,13 @@
 <?php
 
-if ( ! class_exists( 'WMobilePack_Formatter' ) ) {
-    require_once(PWA_PLUGIN_PATH.'inc/class-wmp-formatter.php');
+if ( ! class_exists( 'PtPwa_Formatter' ) ) {
+    require_once(PWA_PLUGIN_PATH.'inc/class-pt-pwa-formatter.php');
 }
 
-if ( ! class_exists( 'WMobilePack_Export' ) ) {
+if ( ! class_exists( 'PtPwa_Export' ) ) {
 
     /**
-     * Class WMobilePack_Export
+     * Class PtPwa_Export
      *
      * Contains different methods for exporting categories, articles and comments
      *
@@ -16,7 +16,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
      * @todo (Future releases) Remove category_id and category_name from the exports after apps have been modified to use multiple categories per post
      *
      */
-    class WMobilePack_Export
+    class PtPwa_Export
     {
 
         /* ----------------------------------*/
@@ -39,9 +39,9 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
          */
         public function __construct()
         {
-            $this->purifier = WMobilePack_Formatter::init_purifier();
-            $this->inactive_categories = WMobilePack_Options::get_setting('inactive_categories');
-            $this->inactive_pages = WMobilePack_Options::get_setting('inactive_pages');
+            $this->purifier = PtPwa_Formatter::init_purifier();
+            $this->inactive_categories = PtPwa_Options::get_setting('inactive_categories');
+            $this->inactive_pages = PtPwa_Options::get_setting('inactive_pages');
         }
 
 
@@ -54,7 +54,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
          */
         protected function get_uploads_manager()
         {
-            return new WMobilePack_Uploads();
+            return new PtPwa_Uploads();
         }
 
 
@@ -137,7 +137,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                 "author" => get_the_author_meta('display_name'),
                 "link" => get_permalink(),
                 "image" => !empty($image_details) ? $image_details : "",
-                "date" => WMobilePack_Formatter::format_date(strtotime($post->post_date)),
+                "date" => PtPwa_Formatter::format_date(strtotime($post->post_date)),
                 "timestamp" => strtotime($post->post_date),
                 "description" => apply_filters('the_excerpt', get_the_excerpt()),
                 "content" => '',
@@ -171,7 +171,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
             $content = apply_filters("the_content", $post->post_content);
 
             // remove script tags
-            $content = WMobilePack_Formatter::remove_script_tags($content);
+            $content = PtPwa_Formatter::remove_script_tags($content);
             $content = $this->purifier->purify($content);
 
             // remove all urls from attachment images
@@ -184,7 +184,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
             } else {
 
-                $description = WMobilePack_Formatter::truncate_html(strip_tags($content), 100, '...', false, false);
+                $description = PtPwa_Formatter::truncate_html(strip_tags($content), 100, '...', false, false);
                 $description = apply_filters('the_excerpt', $description);
             }
 
@@ -203,7 +203,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                 "author_avatar" => $avatar,
                 "link" => get_permalink($post->ID),
                 "image" => !empty($image_details) ? $image_details : "",
-                "date" => WMobilePack_Formatter::format_date(strtotime($post->post_date)),
+                "date" => PtPwa_Formatter::format_date(strtotime($post->post_date)),
                 "timestamp" => strtotime($post->post_date),
                 "description" => $description,
                 "content" => $content,
@@ -261,7 +261,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
             if (!empty($arr_categories)) {
 
                 // check if the categories were ordered from the admin panel
-                $order_categories = WMobilePack_Options::get_setting('ordered_categories');
+                $order_categories = PtPwa_Options::get_setting('ordered_categories');
 
                 // check if we have a latest category (should be the first one to appear)
                 $has_latest = 0;
@@ -364,7 +364,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
             $categories_images = array();
 
-            $categories_details = WMobilePack_Options::get_setting('categories_details');
+            $categories_details = PtPwa_Options::get_setting('categories_details');
 
             // create an uploads manager object
             $WMP_Uploads = $this->get_uploads_manager();
@@ -387,8 +387,8 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                             // so we can use the default width / height in the exports
                             $categories_images[$category_id] = array(
                                 'src' => $icon_path,
-                                'width' => WMobilePack_Uploads::$allowed_files['category_icon']['max_width'],
-                                'height' => WMobilePack_Uploads::$allowed_files['category_icon']['max_height']
+                                'width' => PtPwa_Uploads::$allowed_files['category_icon']['max_width'],
+                                'height' => PtPwa_Uploads::$allowed_files['category_icon']['max_height']
                             );
                         }
                     }
@@ -735,7 +735,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
                 if ($the_category && !in_array($the_category->term_id, $this->inactive_categories)) {
 
-                    $category_details = WMobilePack_Options::get_setting('categories_details');
+                    $category_details = PtPwa_Options::get_setting('categories_details');
 
                     if (is_array($category_details) && !empty($category_details)) {
 
@@ -755,8 +755,8 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 
                                 $category_image = array(
                                     'src' => $icon_path,
-                                    'width' => WMobilePack_Uploads::$allowed_files['category_icon']['max_width'],
-                                    'height' => WMobilePack_Uploads::$allowed_files['category_icon']['max_height']
+                                    'width' => PtPwa_Uploads::$allowed_files['category_icon']['max_width'],
+                                    'height' => PtPwa_Uploads::$allowed_files['category_icon']['max_height']
                                 );
                             }
                         }
@@ -1119,7 +1119,7 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                                     'id' => $comment->comment_ID,
                                     'author' => $comment->comment_author != '' ? ucfirst($comment->comment_author) : 'Anonymous',
                                     'author_url' => $comment->comment_author_url,
-                                    'date' => WMobilePack_Formatter::format_date(strtotime($comment->comment_date)),
+                                    'date' => PtPwa_Formatter::format_date(strtotime($comment->comment_date)),
                                     'content' => $this->purifier->purify($comment->comment_content),
                                     'article_id' => $post->ID,
                                     'article_title' => strip_tags(trim($post->post_title)),
@@ -1185,12 +1185,12 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                     // check token
                     if (isset($_GET['code']) && $_GET["code"] !== '') {
 
-                        if (!class_exists('WMobilePack_Tokens')) {
-                            require_once(PWA_PLUGIN_PATH . 'inc/class-wmp-tokens.php');
+                        if (!class_exists('PtPwa_Tokens')) {
+                            require_once(PWA_PLUGIN_PATH . 'inc/class-pt-pwa-tokens.php');
                         }
 
                         // if the token is valid, go ahead and save comment to the DB
-                        if (WMobilePack_Tokens::check_token($_GET['code'])) {
+                        if (PtPwa_Tokens::check_token($_GET['code'])) {
 
                             $arr_response = array(
                                 'status' => 0,
@@ -1421,10 +1421,10 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
 								// read featured image
 								$image_details = $this->get_post_image($page->ID);
 
-								if (get_option(WMobilePack_Options::$prefix.'page_' . $page->ID) === false)
+								if (get_option(PtPwa_Options::$prefix.'page_' . $page->ID) === false)
 									$content = apply_filters("the_content", $page->post_content);
 								else
-									$content = apply_filters("the_content", get_option(WMobilePack_Options::$prefix.'page_' . $page->ID));
+									$content = apply_filters("the_content", get_option(PtPwa_Options::$prefix.'page_' . $page->ID));
 
                                 // if the page and its parent are visible, they should exist in the order array
 								if ($pagination === false) {
@@ -1525,13 +1525,13 @@ if ( ! class_exists( 'WMobilePack_Export' ) ) {
                         $image_details = $this->get_post_image($post->ID);
 
                         // for the content, first check if the admin edited the content for this page
-                        if (get_option(WMobilePack_Options::$prefix.'page_' . $post->ID) === false)
+                        if (get_option(PtPwa_Options::$prefix.'page_' . $post->ID) === false)
                             $content = apply_filters("the_content", $post->post_content);
                         else
-                            $content = apply_filters("the_content", get_option(WMobilePack_Options::$prefix.'page_' . $post->ID));
+                            $content = apply_filters("the_content", get_option(PtPwa_Options::$prefix.'page_' . $post->ID));
 
                         // remove script tags
-                        $content = WMobilePack_Formatter::remove_script_tags($content);
+                        $content = PtPwa_Formatter::remove_script_tags($content);
                         $content = $this->purifier->purify($content);
 
                         // remove all urls from attachment images

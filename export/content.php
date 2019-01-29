@@ -4,7 +4,7 @@ header( 'Content-Type: application/json; charset=UTF-8' );
 
 require_once( '../../../../wp-config.php' );
 
-if ( ! class_exists( 'WMobilePack_Export' ) ) {
+if ( ! class_exists( 'PtPwa_Export' ) ) {
 	require_once( PWA_PLUGIN_PATH . 'export/class-export.php' );
 }
 
@@ -13,7 +13,7 @@ error_reporting( 0 );
 
 if ( isset( $_GET['content'] ) ) {
 
-	$export = new WMobilePack_Export();
+	$export = new PtPwa_Export();
 
 	if ( isset( $_GET['callback'] ) ) {
 
@@ -69,11 +69,11 @@ if ( isset( $_GET['content'] ) ) {
 		}
 	} else {
 
-		if ( ! class_exists( 'WMobilePack_Export_Settings' ) ) {
+		if ( ! class_exists( 'PtPwa_Export_Settings' ) ) {
 			require_once(PWA_PLUGIN_PATH.'/export/class-export-settings.php');
 		}
 
-		$export_settings = new WMobilePack_Export_Settings();
+		$export_settings = new PtPwa_Export_Settings();
 
 		switch ( $_GET['content'] ) {
 

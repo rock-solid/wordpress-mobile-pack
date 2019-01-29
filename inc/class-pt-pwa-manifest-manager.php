@@ -1,6 +1,6 @@
 <?php
 
-class ManifestManager implements Manager {
+class PtPwaManifestManager implements PtPwaManager {
 
     private $manifest;
 
@@ -21,13 +21,13 @@ class ManifestManager implements Manager {
     }
 
     public function write() {
-        $fileHelper = new FileHelper();
-        return $fileHelper->write_file($_SERVER['DOCUMENT_ROOT'].'/manifest.json', $this->serialize());
+        $PtPwaFileHelper = new PtPwaFileHelper();
+        return $PtPwaFileHelper->write_file($_SERVER['DOCUMENT_ROOT'].'/manifest.json', $this->serialize());
     }
 
     public function read() {
-        $fileHelper = new FileHelper();
-        return $fileHelper->read_file($_SERVER['DOCUMENT_ROOT'].'/manifest.json');
+        $PtPwaFileHelper = new PtPwaFileHelper();
+        return $PtPwaFileHelper->read_file($_SERVER['DOCUMENT_ROOT'].'/manifest.json');
     }
 
     /**
