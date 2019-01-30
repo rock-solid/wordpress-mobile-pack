@@ -1,5 +1,5 @@
 === Publisher's Toolbox PWA - Mobile Plugin for Progressive Web Apps & Hybrid Mobile Apps ===
-Contributors: jamesgpearce, andreatrasatti, cborodescu, anghelalexandra
+Contributors: jamesgpearce, andreatrasatti, cborodescu, anghelalexandra, publisherstoolbox
 Tags: android, iOS, html5, iphone, mobile, mobile internet, mobile web, mobile web app, responsive ui, safari, sencha touch, smartphone, webkit, progressive web apps, app builder, apple, apps, convert to app, create blog app, ios app, ipad, make an app, mobile app plugin, mobile application, mobile blog app, mobile converter, mobile plugin, native app plugin, app theme, website to mobile app, WordPress android, WordPress app, WordPress iphone, WordPress mobile, WordPress mobile app
 Requires at least: 4.6
 Tested up to: 5.0.3
@@ -79,7 +79,7 @@ Ideally, use a real mobile device to access your (public) site address and check
 
 You can also download a number of mobile emulators that can run on a desktop PC and simulate mobile devices.
 
-Please note that the mobile web app will be enabled only on supported devices: iPhones, Android smartphones, Windows Phone 8 and Firefox OS. Only the following browsers are compatible: Safari, Google Chrome, Android - Native Browser, Internet Explorer 10 and Firefox (as of 2.0.2).
+Please note that the mobile web app will be enabled only on supported devices: iPhones, Android smartphones, Windows Phone 8 and Firefox OS. Only the following browsers are compatible: Safari, Google Chrome, Android - Native Browser, Internet Explorer 10 and Firefox.
 
 == Frequently Asked Questions ==
 
@@ -87,10 +87,7 @@ Please note that the mobile web app will be enabled only on supported devices: i
 Please make sure that the endpoint exporting the content can be accessed and doesn't show errors or notices. From a browser, go to the following address: http://yoursite.com/wp-content/plugins/publishers-toolbox-pwa/export/content.php?content=exportcategories&limit=5&callback=Ext.data.JsonP.callback. You should see a text starting with "Ext.data.JsonP.callback". If the page displays a "403 forbidden" message or has any errors / notices, it means that the content will not be available to the mobile web app.
 
 = I have enabled Publisher's Toolbox PWA, but I still see the desktop theme on my smartphone =
-If you are using a cache plugin, please ensure that it is disabled or configured correctly. Some additional settings on the cache plugin might be required to correctly enable the mobile detection from Publisher's Toolbox PWA.
-
-= What can I use to replace contact forms? =
-Most of the sites we come across use contact forms to allow users to get in touch or/and send messages. However, when targeting mobile users, forcing them to fill out a dull form (usually pretty long) is the worst UX you can offer to your mobile audience. Instead, here are [a couple of approaches](http://support.appticles.com/replacing-contact-forms-with-click-to-call-links-for-your-mobile-web-application/) you could try out in your mobile web application:
+If you are using a caching plugin, please ensure that it is disabled or configured correctly. Some additional settings on the cache plugin might be required to correctly enable the mobile detection from Publisher's Toolbox PWA.
 
 = What devices and operating systems are supported by my mobile web application?
 Publisher's Toolbox PWA is supported on iOS and Android smartphones and tablets. Compatible browsers: Safari, Google Chrome, Android - Native Browser.
@@ -104,9 +101,6 @@ A link called 'Switch to mobile version' will be displayed in the footer of your
 = I want to temporarily deactivate my mobile web application. What steps must I follow? =
 The mobile web application can be deactivated from the "Settings" page of the admin panel. This option will not delete any settings that you have done so far, like customizing the look & feel of your application, but mobile readers will no longer be able to see it on their devices.
 
-= What is the difference between my new mobile web application and a mobile friendly site? =
-The short answer is that a mobile web application is an enriched version of a mobile-friendly site; it's not only about screen size, it's also about functionality (offline mode, for example). The long answer comes in a form of an article, you can check it out here: http://www.appticles.com/blog/2014/05/mobile-web-dying-shifting/.
-
 = What is the difference between my mobile web application and a responsive theme? =
 A responsive theme is all about screen-size: it loads the same styling as the desktop view, adjusting it to fit a smaller screen. On the other hand a mobile web application combines the versatility of the web with the functionality of touch-enabled devices and can support native app-like features such as: 
 
@@ -115,19 +109,4 @@ A responsive theme is all about screen-size: it loads the same styling as the de
 1.  Web push notifications makes it easy to re-engage with users by showing relevant, timely, and contextual notifications, even when the browser is closed.
 1.  Smooth animations, scrolling, and navigations keep the experience silky Smooth.
 1.  Secured via HTTPS.
-
-= Am I able to use my own theme or customize the existing one? =
-Publisher's Toolbox PWA uses a variety of open source JavaScript frameworks from Sencha Touch to Angular/Ionic or React, that mimics a native app interface. Because of that, the app themes we've developed are not regular PHP based themes that can be easily customized by editing the source. It is still possible to make small changes (not recommended), but changing the theme structure will require advance knowledge. We're happy to assist if you're looking for a custom type of application - [please get in touch](https://wpmobilepack.com/contact.html) with us. 
-
-= Am I able to add Javascript code inside the theme? =
-Adding tracking scripts in the source is possible if you place them in the section of the theme files. However, code that is placed inside the posts will not be executed. The theme is implemented enterily in JavaScript and that would mean JavaScript code inside another JavaScript code.
-
-= Am I able to integrate my own advertisement? =
-Google Ad Sense / Google Double Click for Publishers is supported on the PRO version as of v2.1. [Please get in touch](https://wpmobilepack.com/contact.html) if you want us to integrate with another 3rd party ad provider. 
-
-= What is a progressive web app? = 
-Please refer to this comprehensive article about it: https://www.appticles.com/blog/2016/09/progressive-web-apps-for-publishers/.
-
-= Why some 3rd party plugins are not visible on any of the app themes? =
-There are almost 50,000 plugins in the WordPress.org repository. It's impossible to support all of them. [Please get in touch](https://wpmobilepack.com/contact.html) if you want us to integrate with another 3rd party plugin. 
 
