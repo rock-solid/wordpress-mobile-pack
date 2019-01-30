@@ -55,6 +55,9 @@ if (!class_exists('PtPwa_Uploads')) {
          */
         public function define_uploads_dir()
         {
+
+            $Pt_Pwa_Config = new Pt_Pwa_Config();
+
             $wp_uploads_dir = wp_upload_dir();
 
             $wmp_uploads_dir = $wp_uploads_dir['basedir'] . '/' . $Pt_Pwa_Config->PWA_DOMAIN . '/';
@@ -73,6 +76,9 @@ if (!class_exists('PtPwa_Uploads')) {
          */
         public function display_admin_notices()
         {
+
+            $Pt_Pwa_Config = new Pt_Pwa_Config();
+
             if (!current_user_can('manage_options')) {
                 return;
             }
@@ -97,6 +103,8 @@ if (!class_exists('PtPwa_Uploads')) {
          */
         public function create_uploads_dir()
         {
+
+            $Pt_Pwa_Config = new Pt_Pwa_Config();
 
             $wp_uploads_dir = wp_upload_dir();
 
@@ -124,6 +132,8 @@ if (!class_exists('PtPwa_Uploads')) {
          */
         public function remove_uploads_dir()
         {
+
+            $Pt_Pwa_Config = new Pt_Pwa_Config();
 
             foreach (array('icon', 'logo', 'cover') as $image_type) {
 
@@ -157,7 +167,7 @@ if (!class_exists('PtPwa_Uploads')) {
             if ($theme_timestamp != ''){
 
                 if ( ! class_exists( 'PtPwa_Themes_Compiler' ) && version_compare(PHP_VERSION, '5.3') >= 0 ) {
-                    require_once(PWA_PLUGIN_PATH.'inc/class-pt-pwa-themes-compiler.php');
+                    require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH.'inc/class-pt-pwa-themes-compiler.php');
                 }
 
                 if (class_exists('PtPwa_Themes_Compiler')) {

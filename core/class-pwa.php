@@ -143,12 +143,13 @@ if ( ! class_exists( 'PtPwa' ) ) {
             }
 
             if (version_compare(PHP_VERSION, '5.6') < 0) {
+                $Pt_Pwa_Config = new Pt_Pwa_Config();
                 echo '<div class="error"><p><b>Warning!</b> The ' . $Pt_Pwa_Config->PWA_PLUGIN_NAME . ' plugin requires at least PHP 5.6.0!</p></div>';
                 return;
             }
 
 			// display notice to reupload icon
-			$this->display_icon_reupload_notice();
+			//$this->display_icon_reupload_notice();
 
         }
 

@@ -99,7 +99,7 @@ if (!class_exists('PtPwa_Application')) {
                     $load_app = true;
                 }
             } else {
-                $themeManager = new ThemeManager(new Theme());
+                $themeManager = new PtPwaThemeManager(new PtPwaTheme());
                 $theme = $themeManager->getTheme();
 
                 // The user is shown a button to redirect them back to the app
@@ -288,6 +288,7 @@ if (!class_exists('PtPwa_Application')) {
          */
         public function app_theme_root()
         {
+            $Pt_Pwa_Config = new Pt_Pwa_Config();
             return $Pt_Pwa_Config->PWA_PLUGIN_PATH . 'frontend/themes';
 		}
 

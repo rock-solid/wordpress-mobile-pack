@@ -1,7 +1,8 @@
 <?php
 
 try {
-    $themeManager = new ThemeManager(new Theme());
+
+    $themeManager = new PtPwaThemeManager(new PtPwaTheme());
     $theme = $themeManager->getTheme();
 
     $curl_handle=curl_init();

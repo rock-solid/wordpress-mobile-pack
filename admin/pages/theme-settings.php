@@ -344,18 +344,6 @@ if (!empty($_POST['save'])) {
 								<div class="spacer-15"></div>
 
 								<div class="holder">
-									<label for="twitterEmbedUrl">Twitter embed script URL</label>
-									<input  value="<?= $theme->getTwitterEmbedUrl() ?>" class="twitterEmbedUrl" type="text" name="twitterEmbedUrl" placeholder="Twitter embed script URL" />
-								</div>
-								<div class="spacer-15"></div>
-								
-								<div class="holder">
-									<label for="instagramEmbedUrl">Instagram embed script URL</label>
-									<input  value="<?= $theme->getInstagramEmbedUrl() ?>" class="instagramEmbedUrl" type="text" name="instagramEmbedUrl" placeholder="Instagram embed script URL" />
-								</div>
-								<div class="spacer-15"></div>
-
-								<div class="holder">
 									<label for="shareTitlePrefix">Share Title Prefix</label>
 									<input  value="<?= $theme->getShareTitlePrefix() ?>" class="shareTitlePrefix" type="text" name="shareTitlePrefix" placeholder="Share Title Prefix" />
 								</div>

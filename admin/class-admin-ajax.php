@@ -1,7 +1,9 @@
 <?php
 
 if ( ! class_exists( 'PtPwa_Themes_Config' )) {
-    require_once(PWA_PLUGIN_PATH.'inc/class-pt-pwa-themes-config.php');
+
+    $Pt_Pwa_Config = new Pt_Pwa_Config();
+    require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH.'inc/class-pt-pwa-themes-config.php');
 }
 
 if ( ! class_exists( 'PtPwa_Admin_Ajax' ) ) {
@@ -24,8 +26,10 @@ if ( ! class_exists( 'PtPwa_Admin_Ajax' ) ) {
          */
         protected function get_theme_manager()
         {
+
             if ( ! class_exists( 'PtPwa_Themes_Compiler' ) && version_compare(PHP_VERSION, '5.3') >= 0 ) {
-                require_once(PWA_PLUGIN_PATH.'inc/class-pt-pwa-themes-compiler.php');
+                $Pt_Pwa_Config = new Pt_Pwa_Config();
+                require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH.'inc/class-pt-pwa-themes-compiler.php');
             }
 
             if (class_exists('PtPwa_Themes_Compiler')) {
@@ -901,7 +905,10 @@ if ( ! class_exists( 'PtPwa_Admin_Ajax' ) ) {
 
                                 // load HTML purifier / formatter
                                 if (!class_exists('PtPwa_Formatter')) {
-                                    require_once(PWA_PLUGIN_PATH . 'inc/class-pt-pwa-formatter.php');
+
+                                    $Pt_Pwa_Config = new Pt_Pwa_Config();
+
+                                    require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'inc/class-pt-pwa-formatter.php');
                                 }
 
                                 $purifier = PtPwa_Formatter::init_purifier();
@@ -1108,7 +1115,7 @@ if ( ! class_exists( 'PtPwa_Admin_Ajax' ) ) {
                                 if (isset($_SERVER['HTTP_HOST']))
                                     $message .= "Host: ".$_SERVER['HTTP_HOST']."\r\n \r\n";
 
-                                $subject = PWA_PLUGIN_NAME.' Feedback';
+                                $subject = $Pt_Pwa_Config->PWA_PLUGIN_NAME.' Feedback';
                                 $to = WMP_FEEDBACK_EMAIL;
 
                                 // set headers
