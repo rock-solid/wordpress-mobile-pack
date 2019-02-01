@@ -1,4 +1,4 @@
-=== Publisher's Toolbox PWA - Mobile Plugin for Progressive Web Apps & Hybrid Mobile Apps ===
+=== Publisher's Toolbox PWA ===
 Contributors: jamesgpearce, andreatrasatti, cborodescu, anghelalexandra, publisherstoolbox
 Tags: pwa, progressive web app, android, iOS, html5, iphone, mobile, mobile internet, mobile web, mobile web app, responsive ui, safari, sencha touch, smartphone, webkit, progressive web apps, app builder, apple, apps, convert to app, create blog app, ios app, ipad, make an app, mobile app plugin, mobile application, mobile blog app, mobile converter, mobile plugin, native app plugin, app theme, website to mobile app, WordPress android, WordPress app, WordPress iphone, WordPress mobile, WordPress mobile app
 Requires at least: 4.6
@@ -8,18 +8,18 @@ License: GPLv2 or later
 
 == Description ==
 
-**Publisher's Toolbox PWA is a mobile plugin that helps you transform your website's content into a progressive mobile web application. It comes with multiple mobile app themes that you can purchase individually or as a bundle.** 
+**Publisher's Toolbox PWA is a mobile plugin that helps you transform your website's content into a progressive mobile web application. It comes with multiple mobile app themes from which to choose from.** 
 
-Publisher's Toolbox PWA is **supported on** iOS and Android smartphones and tablets. **Compatible browsers**: Safari, Google Chrome, Android - Native Browser.
+Publisher's Toolbox PWA is supported on iOS and Android smartphones and tablets. **Compatible browsers**: Safari, Google Chrome, Android - Native Browser.
 
-What the Publisher's Toolbox PWA enables you to do:
+Publisher's Toolbox PWA provides the following:
 
-* **Progressive Web Apps**. Some of the key features of progressive web apps are: 
+* **Progressive Web App**. Some of the key features of progressive web apps are: 
 
  1. Apps load nearly instantly and are reliable, no matter what kind of network connection your user is on.
  1. Web app install banners give users the ability to quickly and seamlessly add your mobile app to their home screen, making it easy to launch and return to your app.
  1. Web push notifications makes it easy to re-engage with users by showing relevant, timely, and contextual notifications, even when the browser is closed.
- 1. Smooth animations, scrolling, and navigations keep the experience silky smooth.
+ 1. Smooth animations, scrolling, and intuitive navigation keep the experience silky smooth.
  1. Secured via HTTPS.
  1. Responsive UI.
 
