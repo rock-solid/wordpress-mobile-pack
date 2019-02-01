@@ -2,11 +2,11 @@
 
 class PtPwaTheme
 {
-    private $appName;
+    private $appName = "App Name";
     
     private $appEndpoint = "https://pwa-cdn.baobabsuite.com";
 
-    private $metaDescription;
+    private $metaDescription = "Meta Description";
 
     private $hostUrl;
 
@@ -52,7 +52,7 @@ class PtPwaTheme
 
     private $AdUnit = ""; 
 
-    private $AdUnitSectionExtended;
+    private $AdUnitSectionExtended = false;
 
     private $GATrackingCode; 
 
@@ -62,9 +62,9 @@ class PtPwaTheme
 
     private $sectionSliderBackground = '#FFF';
 
-    private $listAdInterval;
+    private $listAdInterval = 0;
 
-    private $listAdMax; 
+    private $listAdMax = 0; 
 
     private $highlightsColour = '#099ee2';
 
@@ -80,9 +80,9 @@ class PtPwaTheme
 
     private $flattenSections = false;
 
-    private $serviceWorkerUrl;
+    private $serviceWorkerUrl = "/service-worker.js";
 
-    private $showDateBlockOnFeedListItem;
+    private $showDateBlockOnFeedListItem = true;
 
     private $showAllFeed = true;
 
@@ -98,9 +98,9 @@ class PtPwaTheme
 
     private $showSearch = false;
 
-    private $searchParam;
+    private $searchParam = "s";
 
-    private $searchAction;
+    private $searchAction = "/";
 
     private $maxWidth = 1024;
 
@@ -108,13 +108,13 @@ class PtPwaTheme
 
     private $tagConfig;
 
-    private $topHeros;
+    private $topHeros = 2;
 
     private $addThisCode;
 
     private $socialShareKitButtons = [];
 
-    private $extraLinks;
+    private $extraLinks = [];
     
     private $excludedSections = [];
     
@@ -140,17 +140,17 @@ class PtPwaTheme
 
     private $dnsPrefetch =  [];
 
-    private $apiEndPoint;
+    private $apiEndPoint = null;
 
-    private $hasTaboola;
+    private $hasTaboola = false;
     
-    private $renderAds;
+    private $renderAds = false;
     
-    private $renderAdsServerSide;
+    private $renderAdsServerSide = false;
     
     private $firstImpressionsId;
     
-    private $whitelistedSections;
+    private $whitelistedSections = null;
 
     private $instagramSocialUrl;
 
