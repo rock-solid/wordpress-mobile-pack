@@ -12,7 +12,7 @@ License: GPLv2 or later
 
 Publisher's Toolbox PWA is **supported on** iOS and Android smartphones and tablets. **Compatible browsers**: Safari, Google Chrome, Android - Native Browser.
 
-What the Publisher's Toolbox PWA 1.0 enables you to do:
+What the Publisher's Toolbox PWA enables you to do:
 
 * **Progressive Web Apps**. Some of the key features of progressive web apps are: 
 
