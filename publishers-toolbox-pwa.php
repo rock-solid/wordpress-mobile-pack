@@ -1,12 +1,11 @@
 <?php
 /**
- * Plugin Name: Publisher's Toolbox PWA
+ * Plugin Name: Publishers Toolbox PWA
  * Plugin URI:  https://www.publisherstoolbox.com/websuite/
  * Description: Publisher's Toolbox PWA is a mobile plugin that helps you transform your WordPress site into a progressive web application. It comes with a choice of two mobile app themes.
  * Author: Publisher's Toolbox
  * Author URI: https://publisherstoolbox.com/
- * Version: 1.0
- * Copyright (c) 2009 - 2018 James Pearce, mTLD Top Level Domain Limited, ribot, Forum Nokia, Appticles.com
+ * Version: 1.3
  * License: The WordPress Mobile Pack is Licensed under the Apache License, Version 2.0
  * Text Domain: publishers-toolbox-pwa
  */
