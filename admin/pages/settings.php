@@ -43,10 +43,17 @@ if (isset($_POST["save"])) {
 .save {
 	background: #0c4b7f;
     color: #ffffff;
-    border: 1px solid #7ea82f;
+    border: 2px solid #0c4b7f;
     border-radius: 3px;
     padding: 7px 15px 7px 15px;
     min-width: 120px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.save:hover {
+    background: #FFF;
+    color: #0c4b7f;
 }
 
 </style>
@@ -88,32 +95,14 @@ if (isset($_POST["save"])) {
                 <input type="text" name="GATrackingCode" value="<?= $theme->getGATrackingCode() ?>" />
                 <div class="spacer-20"></div>
 
-                <label>DFP network ID</label>
+                <label>Google Ad Manager network ID</label>
                 <input type="text" name="DFTNetworkId" value="<?= $theme->getDFTNetworkId() ?>" />
                 <div class="spacer-20"></div>
-                
-                <label>First Impressions ID</label>
-                <input type="text" name="firstImpressionsId" value="<?= $theme->getFirstImpressionsId() ?>" />
-                <div class="spacer-20"></div>
 
-                <label>PWA app endpoint</label>
-                <input type="text" name="appEndpoint" value="<?= $theme->getAppEndpoint() ?>" />
-                <div class="spacer-20"></div>
-
-                <label>WordPress endpoint</label>
-                <input type="text" name="apiEndpoint" value="<?= $theme->getApiEndpoint() ?>" />
+                <input type="hidden" name="apiEndpoint" value="<?= $theme->getApiEndpoint() ?>" />
                 <div class="spacer-20"></div>
 
                 <input type="checkbox" name="showClassicSwitch" <?= $theme->getShowClassicSwitch() ? 'checked' : '' ?> /> Show classic site switch
-                <div class="spacer-20"></div>
-
-                <input type="checkbox" name="renderAds" <?= $theme->getRenderAds() ? 'checked' : '' ?> /> Render ads
-                <div class="spacer-20"></div>
-
-                <input type="checkbox" name="renderAdsServerSide" <?= $theme->getRenderAdsServerSide() ? 'checked' : '' ?> /> Render ads server side
-                <div class="spacer-20"></div>
-
-                <input type="checkbox" name="hasTaboola" <?= $theme->getHasTaboola() ? 'checked' : '' ?> /> Has Taboola
                 <div class="spacer-20"></div>
                  
                 <div class="spacer-0"></div>
@@ -122,11 +111,11 @@ if (isset($_POST["save"])) {
                 <div class="spacer-20"></div>
 
                 <label>Twitter Social Link</label>
-                    <input type="text" name="twitterSocialUrl" value="<?= $theme->getTwitterSocialUrl() ?>" />
+                <input type="text" name="twitterSocialUrl" value="<?= $theme->getTwitterSocialUrl() ?>" />
                 <div class="spacer-20"></div>
 
                 <label>Instagram Social Link</label>
-                    <input type="text" name="instagramSocialUrl" value="<?= $theme->getInstagramSocialUrl() ?>" />
+                <input type="text" name="instagramSocialUrl" value="<?= $theme->getInstagramSocialUrl() ?>" />
                 <div class="spacer-20"></div>
 
                 <label>Facebook Social Link</label>
@@ -143,11 +132,10 @@ if (isset($_POST["save"])) {
                 <input type="checkbox" name="socialMedia[]" value="ssk-twitter" <?= in_array('ssk-twitter', $theme->getSocialShareKitButtons()) ? 'checked' : '' ?>  /> Enable Twitter sharing 
                 <div class="spacer-10"></div>
 
-                <input type="checkbox" name="socialMedia[]" value="ssk-google-plus" <?= in_array('ssk-google-plus', $theme->getSocialShareKitButtons()) ? 'checked' : '' ?>  /> Enable Google+ sharing 
-                <div class="spacer-10"></div>
-
                 <input type="checkbox" name="socialMedia[]" value="ssk-whatsapp" <?= in_array('ssk-whatsapp', $theme->getSocialShareKitButtons()) ? 'checked' : '' ?>  /> Enable WhatsApp sharing 
                 <div class="spacer-10"></div>
+
+                <input type="hidden" name="appEndpoint" value="<?= $theme->getAppEndpoint() ?>" />
                 
                 <div class="submit">
                     <input type="submit" name="save" class="save" value="Save" />

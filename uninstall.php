@@ -6,6 +6,7 @@ if ( !defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 }
 
 require_once('core/class-config.php');
+$Pt_Pwa_Config = new Pt_Pwa_Config();
 require_once('core/class-pwa.php');
 
 // create uploads folder and define constants
