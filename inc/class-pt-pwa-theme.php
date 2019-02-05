@@ -66,13 +66,13 @@ class PtPwaTheme
 
     private $listAdMax = 0; 
 
-    private $highlightsColour = '#099ee2';
+    private $highlightsColour = '#099EE2';
 
-    private $borderColour = '#099ee2';
+    private $borderColour = "pwa-highlight";
 
     private $sectionDownloadEnabled = false;
 
-    private $routes;
+    private $routes = [];
 
     private $layout = 1;
 
@@ -88,15 +88,15 @@ class PtPwaTheme
 
     private $showClassicSwitch = false;
 
-    private $imageGalleryHeight;
+    private $imageGalleryHeight = "60vh";
 
-    private $mastHeadHeight;
+    private $mastHeadHeight = "75vh";
 
     private $showDatesOnList = false;
 
     private $searchLightTheme = false;
 
-    private $showSearch = false;
+    private $showSearch = true;
 
     private $searchParam = "s";
 
@@ -124,11 +124,11 @@ class PtPwaTheme
 
     private $shareTitlePrefix;
 
-    private $customStyles;
+    private $customStyles = " a { color: #099EE2; } .b--pwa-highlight { border-color: #099EE2 } .pwa-highlight { color: #099EE2 }";
 
-    private $hamburgerImageMarginTop;
+    private $hamburgerImageMarginTop = "0px";
 
-    private $customHtml;
+    private $customHtml = null;
 
     private $infiniteVerticalArticleScroll = false;
 
@@ -148,17 +148,17 @@ class PtPwaTheme
     
     private $renderAdsServerSide = false;
     
-    private $firstImpressionsId;
+    private $firstImpressionsId = null;
     
-    private $whitelistedSections = null;
+    private $whitelistedSections = [];
 
-    private $instagramSocialUrl;
+    private $instagramSocialUrl = null;
 
-    private $twitterSocialUrl;
+    private $twitterSocialUrl = null;
 
-    private $facebookSocialUrl;
+    private $facebookSocialUrl = null;
 
-    private $youtubeSocialUrl;
+    private $youtubeSocialUrl = null;
 
     /**
      * Get the value of appName
@@ -796,6 +796,7 @@ class PtPwaTheme
     public function setHighlightsColour($highlightsColour)
     {
         $this->highlightsColour = $highlightsColour;
+        $this->customStyles = "a { color: " . $highlightsColour . "; } .b--pwa-highlight { border-color: " . $highlightsColour . " } .pwa-highlight { color: " . $highlightsColour . " }";
 
         return $this;
     }
