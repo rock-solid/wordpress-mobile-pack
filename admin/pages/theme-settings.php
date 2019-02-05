@@ -20,6 +20,18 @@ if (!empty($_POST['save'])) {
 		}
 	}
 
+	if (!empty($_FILES['hamburgerLogo']['name'])) {
+		$hamburgerLogoUploaded = media_handle_upload('hamburgerLogo', 0);
+		$hamburgerLogoUrl = wp_get_attachment_url($hamburgerLogoUploaded);
+
+		if (is_wp_error($hamburgerLogoUploaded)) {
+			$hamburgerLogoMsg = "There was a problem uploading the file. Please try again." . $logoUploaded->get_error_message();
+		} else {
+			$theme->setHamburgerImage($hamburgerLogoUrl);
+			$hamburgerLogoMsg = "The file has been uploaded successfully.";
+		}
+	}
+
 	if (!empty($_FILES['appIcon']['name'])) {
 		$appIconUploaded = media_handle_upload('appIcon', 0);
 		$mimeType = get_post_mime_type($appIconUploaded);
@@ -76,7 +88,6 @@ if (!empty($_POST['save'])) {
 	$theme->setSectionSliderTextColor($_POST['sectionSliderTextColor']);
 	$theme->setSectionSliderBackground($_POST['sectionSliderBackground']);
 	$theme->setHighlightsColour($_POST['highlightsColour']);
-	$theme->setBorderColour($_POST['borderColour']);
 
 	// Theme Details
 	$theme->setSectionDownloadEnabled(isset($_POST['sectionDownloadEnabled']));
@@ -248,13 +259,6 @@ if (!empty($_POST['save'])) {
 								</div>
 								<div class="spacer-15"></div>
 
-								<div class="holder">
-									<label for="borderColour">Border colour</label>
-									<input  value="<?= $theme->getBorderColour() ?>" class="borderColour" type="text" name="borderColour" placeholder="Enter hex value" onkeyup="changeColour(this);" />
-									<div style="background:<?= $theme->getBorderColour() ?>;height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;" />
-								</div>
-								<div class="spacer-15"></div>
-
 								<input type="checkbox" name="sectionDownloadEnabled" <?= $theme->getSectionDownloadEnabled() ? 'checked' : '' ?> /> Section download enabled
 								<div class="spacer-20"></div>
 								
@@ -329,6 +333,14 @@ if (!empty($_POST['save'])) {
 									<label for="logo">App logo</label>
 									<input type="file" name="logo" style="padding: 7px;"/>
 									<?= $logoMsg ?>
+								</div>
+								<div class="spacer-15" ></div>	
+
+								<div class="holder">
+									<img src="<?= $theme->getHamburgerImage() ?>" style="max-height:80px" />
+									<label for="hamburgerLogo">Hamburger logo</label>
+									<input type="file" name="hamburgerLogo" style="padding: 7px;"/>
+									<?= $hamburgerLogoMsg ?>
 								</div>
 								<div class="spacer-15" ></div>	
 
