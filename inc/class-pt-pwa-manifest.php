@@ -10,9 +10,9 @@ class PtPwaManifest {
 
     private $icons = [];
 
-    private $theme_color;
+    private $theme_color = "#000";
 
-    private $background_color;
+    private $background_color = "#FFF";
 
     private $start_url;
 

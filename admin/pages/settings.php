@@ -16,9 +16,6 @@ if (isset($_POST["save"])) {
     // Theme Details
     $theme->setAppName($_POST['appName']);
     $theme->setShowClassicSwitch(isset($_POST['showClassicSwitch']));
-    $theme->setRenderAds(isset($_POST['renderAds']));
-    $theme->setRenderAdsServerSide(isset($_POST['renderAdsServerSide']));
-    $theme->setHasTaboola(isset($_POST['hasTaboola']));
     $theme->setMetaDescription($_POST['description']);
     $theme->setGTMID($_POST['GTMID']);
     $theme->setGATrackingCode($_POST['GATrackingCode']);
@@ -30,7 +27,6 @@ if (isset($_POST["save"])) {
     $theme->setInstagramSocialUrl($_POST['instagramSocialUrl']);
     $theme->setYoutubeSocialUrl($_POST['youtubeSocialUrl']);
     $theme->setDFTNetworkId($_POST['DFTNetworkId']);
-    $theme->setFirstImpressionsId($_POST['firstImpressionsId']);
 
 	$manifestManager->write();
 	$themeManager->write();
