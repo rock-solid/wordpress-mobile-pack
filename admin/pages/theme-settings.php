@@ -69,8 +69,6 @@ if (!empty($_POST['save'])) {
 	$theme->setBmBurgerBarsBackground($_POST['bmBurgerBarsBackground']);
 	$theme->setBmCrossBackground($_POST['bmCrossBackground']);
 	$theme->setBmMenuBackground($_POST['bmMenuBackground']);
-	$theme->setBmItemListColor($_POST['bmItemListColor']);
-	$theme->setSelectedBackground($_POST['selectedBackground']);
 	$theme->setSelectedText($_POST['selectedText']);
 	$theme->setThemeColour($_POST['themeColour']);
 	$theme->setBackgroundColour($_POST['backgroundColour']);
@@ -83,32 +81,19 @@ if (!empty($_POST['save'])) {
 	// Theme Details
 	$theme->setSectionDownloadEnabled(isset($_POST['sectionDownloadEnabled']));
 	$theme->setMultiSection(isset($_POST['multiSection']));
-	$theme->setFlattenSections(isset($_POST['flattenSections']));
 	$theme->setShowDateBlockOnFeedListItem(isset($_POST['showDateBlockOnFeedListItem']));
 	$theme->setShowAllFeed(isset($_POST['showAllFeed']));
-	$theme->setMenuSlideOutWidth($_POST['menuSlideOutWidth']);
 	$theme->setImageGalleryHeight($_POST['imageGalleryHeight']);
-	$theme->setMastHeadHeight($_POST['mastHeadHeight']);
 	$theme->setShowDatesOnList(isset($_POST['showDatesOnList']));
 	$theme->setSearchLightTheme(isset($_POST['searchLightTheme']));
 	$theme->setShowSearch(isset($_POST['showSearch']));
-	$theme->setSearchParam($_POST['searchParam']);
-	$theme->setSearchAction($_POST['searchAction']);
-	$theme->setMaxWidth((int) preg_replace('/[^0-9]/', '', $_POST['maxWidth']));
 	$theme->setTopHeros((int) preg_replace('/[^0-9]/', '', $_POST['topHeros']));
-	$theme->setTwitterEmbedUrl($_POST['twitterEmbedUrl']);
-	$theme->setInstagramEmbedUrl($_POST['instagramEmbedUrl']);
 	$theme->setShareTitlePrefix($_POST['shareTitlePrefix']);
-	$theme->setCustomStyles($_POST['customStyles']);
-	$theme->setHamburgerImageMarginTop($_POST['hamburgerImageMarginTop']);
-	$theme->setCustomHtml($_POST['customHtml']);
 	$theme->setInfiniteVerticalArticleScroll(isset($_POST['infiniteVerticalArticleScroll']));
 	$theme->setInfiniteHorizontalArticleScroll(isset($_POST['infiniteHorizontalArticleScroll']));
 	$theme->setNewsItemTimeFormat($_POST['newsItemTimeFormat']);
 	$theme->setNewsItemDateFormat($_POST['newsItemDateFormat']);
 	$theme->setDefaultFeedPageSize((int) preg_replace('/[^0-9]/', '', $_POST['defaultFeedPageSize']));
-	$theme->setListAdInterval((int) preg_replace('/[^0-9]/', '', $_POST['listAdInterval']));
-	$theme->setSectionPrefix($_POST['sectionPrefix']);
 	$theme->setDnsPrefetch(explode(',', $_POST['dnsPrefetch']));
 	
 	// Manifest Colours
