@@ -15,7 +15,6 @@ if (!empty($_POST['save'])) {
 			$logoMsg = "There was a problem uploading the file. Please try again." . $logoUploaded->get_error_message();
 		} else {
 			$theme->setHeaderImage($logoUrl);
-			$theme->setHamburgerImage($logoUrl);
 			$logoMsg = "The file has been uploaded successfully.";
 		}
 	}
@@ -99,6 +98,7 @@ if (!empty($_POST['save'])) {
 	$theme->setSearchLightTheme(isset($_POST['searchLightTheme']));
 	$theme->setShowSearch(isset($_POST['showSearch']));
 	$theme->setTopHeros((int) preg_replace('/[^0-9]/', '', $_POST['topHeros']));
+	$theme->setSectionPrefix($_POST['sectionPrefix']);
 	$theme->setShareTitlePrefix($_POST['shareTitlePrefix']);
 	$theme->setInfiniteVerticalArticleScroll(isset($_POST['infiniteVerticalArticleScroll']));
 	$theme->setInfiniteHorizontalArticleScroll(isset($_POST['infiniteHorizontalArticleScroll']));
@@ -293,8 +293,14 @@ if (!empty($_POST['save'])) {
 								<div class="spacer-15"></div>
 
 								<div class="holder">
-									<label for="shareTitlePrefix">Share Message Suffix</label>
-									<input  value="<?= $theme->getShareTitlePrefix() ?>" class="shareTitlePrefix" type="text" name="shareTitlePrefix" placeholder="Share Message Suffix" />
+									<label for="sectionPrefix">Category prefix</label>
+									<input  value="<?= $theme->getSectionPrefix() ?>" class="sectionPrefix" type="text" name="sectionPrefix" placeholder="Category prefix" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<div class="holder">
+									<label for="shareTitlePrefix">Share Message Prefix</label>
+									<input  value="<?= $theme->getShareTitlePrefix() ?>" class="shareTitlePrefix" type="text" name="shareTitlePrefix" placeholder="Share Message Prefix" />
 								</div>
 								<div class="spacer-15"></div>
 								
