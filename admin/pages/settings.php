@@ -28,6 +28,7 @@ if (isset($_POST["save"])) {
     $theme->setInstagramSocialUrl($_POST['instagramSocialUrl']);
     $theme->setYoutubeSocialUrl($_POST['youtubeSocialUrl']);
     $theme->setDFTNetworkId($_POST['DFTNetworkId']);
+    $theme->setIncludeTrailingSlashes(isset($_POST['includeTrailingSlashes']));
 
 	$manifestManager->write();
 	$themeManager->write();
@@ -104,6 +105,9 @@ if (isset($_POST["save"])) {
                 <div class="spacer-20"></div>
 
                 <input type="checkbox" name="showClassicSwitch" <?= $theme->getShowClassicSwitch() ? 'checked' : '' ?> /> Show classic site switch
+                <div class="spacer-20"></div>
+
+                <input type="checkbox" name="includeTrailingSlashes" <?= $theme->getIncludeTrailingSlashes() ? 'checked' : '' ?> /> Include trailing slashes on routes
                 <div class="spacer-20"></div>
                  
                 <div class="spacer-0"></div>

@@ -16,6 +16,14 @@ if ( ! interface_exists( 'PtPwaManager' ) ) {
     require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH.'inc/pt-pwa-interface-manager.php');
 }
 
+if ( ! interface_exists( 'RouteMapper' ) ) {
+    require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH.'inc/interface-pt-pwa-route-mapper.php');
+}
+
+if ( ! class_exists( 'PtPwaRouteMapper' ) ) {
+    require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH.'inc/class-pt-pwa-route-mapper.php');
+}
+
 if ( ! class_exists( 'PtPwaTheme' ) ) {
     require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH.'inc/class-pt-pwa-theme.php');
 }

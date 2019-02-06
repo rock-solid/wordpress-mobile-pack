@@ -160,6 +160,8 @@ class PtPwaTheme
 
     private $youtubeSocialUrl = null;
 
+    private $includeTrailingSlashes = true;
+
     /**
      * Get the value of appName
      */
@@ -1539,6 +1541,14 @@ class PtPwaTheme
     {
         $this->sectionPrefix = $sectionPrefix;
 
+        $includeTrailingSlashes = $this->getIncludeTrailingSlashes();
+
+        $permalink_structure = get_option( 'permalink_structure' );
+
+        $article_pattern = PtPwaRouteMapper::translatePermalinkStructure($permalink_structure);
+
+        $this->setRoutes(PtPwaRouteMapper::mapRoutes($sectionPrefix, $article_pattern, $includeTrailingSlashes));
+
         return $this;
     }
 
@@ -1758,6 +1768,34 @@ class PtPwaTheme
     public function setYoutubeSocialUrl($youtubeSocialUrl)
     {
         $this->youtubeSocialUrl = $youtubeSocialUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of includeTrailingSlashes
+     */ 
+    public function getIncludeTrailingSlashes()
+    {
+        return $this->includeTrailingSlashes;
+    }
+
+    /**
+     * Set the value of includeTrailingSlashes
+     *
+     * @return self
+     */ 
+    public function setIncludeTrailingSlashes($includeTrailingSlashes)
+    {
+        $this->includeTrailingSlashes = $includeTrailingSlashes;
+        
+        $category_prefix = $this->getSectionPrefix();
+
+        $permalink_structure = get_option( 'permalink_structure' );
+
+        $article_pattern = PtPwaRouteMapper::translatePermalinkStructure($permalink_structure);
+
+        $this->setRoutes(PtPwaRouteMapper::mapRoutes($category_prefix, $article_pattern, $includeTrailingSlashes));
 
         return $this;
     }
