@@ -5,7 +5,7 @@
  * Description: Publisher's Toolbox PWA is a mobile plugin that helps you transform your WordPress site into a progressive web application. It comes with a choice of two mobile app themes.
  * Author: Publisher's Toolbox
  * Author URI: https://publisherstoolbox.com/
- * Version: 1.4
+ * Version: 1.5
  * License: Publishers Toolbox PWA is Licensed under the Apache License, Version 2.0
  * Text Domain: publishers-toolbox-pwa
  */
@@ -15,6 +15,26 @@ include('core/class-config.php');
 $Pt_Pwa_Config = new Pt_Pwa_Config();
 include('core/class-pwa.php');
 
+
+function pt_pwa_add_settings_errors() {
+    
+    settings_errors();    
+
+}
+
+// display custom admin error notice
+function pt_pwa_custom_admin_warning() { ?>
+    
+    <div class="notice notice-warning">
+        <h3>Publisher's Toolbox PWA Plugin installed!</h3>
+        <p>
+            Please note that before PWA is enabled for your website, you will need to set a few default configuration options. 
+            <a href="<?= get_bloginfo('url') . '/wp-admin/admin.php?page=wmp-options-theme-settings'; ?>">Click  here</a> to configure your plugin now.
+        </p>
+    </div>
+    
+<?php }
+
 /**
  * Used to load the required files on the plugins_loaded hook, instead of immediately.
  */
@@ -22,8 +42,11 @@ function pt_pwa_frontend_init() {
 
     $Pt_Pwa_Config = new Pt_Pwa_Config();
 
-    require_once('frontend/class-application.php');
-    new PtPwa_Application(plugin_dir_url(__FILE__));
+    if ( $Pt_Pwa_Config->PWA_ENABLED ) :
+        require_once('frontend/class-application.php');
+        new PtPwa_Application(plugin_dir_url(__FILE__));
+    endif;
+
 }
 
 function pt_pwa_admin_init() {
@@ -49,7 +72,7 @@ function pt_pwa_insert_fallback_script() {
 }
 
 
-if (class_exists( 'PtPwa' ) && class_exists( 'PtPwa' )) {
+if (class_exists( 'PtPwa' )) {
 
     global $wmobile_pack;
     $wmobile_pack = new PtPwa();
@@ -77,7 +100,6 @@ if (class_exists( 'PtPwa' ) && class_exists( 'PtPwa' )) {
         if (defined('DOING_AJAX') && DOING_AJAX) {
 
             require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'admin/class-admin-ajax.php');
-            
             $wmobile_pack_ajax = new PtPwa_Admin_Ajax();
 
             add_action('wp_ajax_wmp_content_status', array(&$wmobile_pack_ajax, 'content_status'));
@@ -87,11 +109,36 @@ if (class_exists( 'PtPwa' ) && class_exists( 'PtPwa' )) {
             add_action('wp_ajax_wmp_settings_save', array(&$wmobile_pack_ajax, 'settings_save'));
             add_action('wp_ajax_wmp_settings_app', array(&$wmobile_pack_ajax, 'settings_app'));
 
+            add_action('wp_ajax_pt_pwa_disable_pwa', $Pt_Pwa_Config->ajax_disable_pwa() );
+
         } else {
+
             add_action('plugins_loaded', 'pt_pwa_admin_init');
+
+             $Pt_Pwa_Config = new Pt_Pwa_Config();
+
+            if ( $Pt_Pwa_Config->PWA_ENABLED ) :
+                add_action('admin_notices', 'pt_pwa_add_settings_errors');
+            else :
+                add_action('admin_notices', 'pt_pwa_add_settings_errors');
+                add_action('admin_notices', 'pt_pwa_custom_admin_warning');
+            endif;
+
+            // Create the Main PWA Toggle Setting
+            add_action('admin_init', function(){
+
+                $args = array(
+                    'type' => 'boolean',
+                    'default' => FALSE,
+                );
+                register_setting( 'pt_pwa_options', 'pt_pwa_enabled', $args );                
+
+            });
+            
         }
 
     } else {
+
         add_action('plugins_loaded', 'pt_pwa_frontend_init');
     }
 

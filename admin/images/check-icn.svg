@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="13px" viewBox="0 0 18 13" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Ecommerce" transform="translate(-844.000000, -3389.000000)" fill="#FFFFFF">
+            <g id="Product-Card-#1" transform="translate(150.000000, 2942.000000)">
+                <g id="Color" transform="translate(683.000000, 399.000000)">
+                    <path d="M28.8443688,48.9224987 L28.095269,48.1585481 C27.8879809,47.9471506 27.5523969,47.9471506 27.3451088,48.1585481 L17.6752,58.0207009 C17.4673818,58.2320984 17.1317978,58.2320984 16.9255701,58.0207009 L12.6546937,53.6656962 C12.4474056,53.4542987 12.1118216,53.4542987 11.9055938,53.6656962 L11.1554337,54.4301874 C10.9481456,54.6415849 10.9481456,54.9838218 11.1554337,55.1946786 L16.5369712,60.6834443 C16.950487,61.105158 17.6211249,61.1056986 18.0351709,60.6839849 L28.8438387,49.6875305 C29.0516569,49.4766737 29.052187,49.1338962 28.8443688,48.9224987" id="Icon"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

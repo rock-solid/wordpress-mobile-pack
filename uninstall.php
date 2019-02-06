@@ -20,4 +20,7 @@ $WMP_Uploads = new PtPwa_Uploads();
 $WMP_Uploads->remove_uploads_dir();
 
 // delete plugin settings
+update_option('pt_pwa_enabled', false, 'bool');
 PtPwa_Options::uninstall();
+
+//delete service worker and manifest files

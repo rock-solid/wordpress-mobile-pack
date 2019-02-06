@@ -7,6 +7,7 @@ $manifestManager = new PtPwaManifestManager(new PtPwaManifest());
 $manifest = $manifestManager->getManifest();
 
 if (!empty($_POST['save'])) {
+
 	if (!empty($_FILES['logo']['name'])) {
 		$logoUploaded = media_handle_upload('logo', 0);
 		$logoUrl = wp_get_attachment_url($logoUploaded);
@@ -113,6 +114,7 @@ if (!empty($_POST['save'])) {
 
 	$manifestManager->write();
 	$themeManager->write();
+	$Pt_Pwa_Config->enable_pwa(); // enable_pwa on save
 }
 
 ?>
@@ -169,13 +171,29 @@ if (!empty($_POST['save'])) {
 	min-height: 36px;
 }
 
+form label i {
+	font-weight: bold;
+	font-size: 12px;
+}
+
+form label i.optional {
+	color: orange;
+}
+
+form label i.required {
+	color: red;
+}
+
 </style>
 
 <div id="wmpack-admin">
-	<div class="spacer-60"></div>
+
+	<?php include_once($Pt_Pwa_Config->PWA_PLUGIN_PATH.'admin/enable-pwa-btn.php'); ?>
+
+	<div class="spacer-20"></div>
 
 	<!-- set title -->
-	<h1>Publisher's Toolbox PWA <?php echo $Pt_Pwa_Config->PWA_VERSION; ?></h1>
+	<h1>Publisher's Toolbox PWA</h1>
 	<div class="spacer-20"></div>
 
 	<div class="look-and-feel">
@@ -323,31 +341,31 @@ if (!empty($_POST['save'])) {
 								<div class="spacer-15"></div>
 
 								<div class="holder">
-									<label for="dnsPrefetch">DNS Prefetch list (seperated by comma) - <i>*optional</i></label>
+									<label for="dnsPrefetch">DNS Prefetch list (seperated by comma) <i class="optional">*optional</i></label>
 									<textarea class="dnsPrefetch" type="textarea" name="dnsPrefetch" placeholder="DNS Prefetch List"><?= implode(",",$theme->getDnsPrefetch()) ?></textarea>
 								</div>
 								<div class="spacer-15"></div>
 
-								<div class="holder">
+								<div class="holder" id="appIcon">
 									<img src="<?= $theme->getHeaderImage() ?>" style="max-height:80px" />
-									<label for="logo">App logo</label>
-									<input type="file" name="logo" style="padding: 7px;"/>
+									<label for="logo">App logo <i class="required">* required</i></label>
+									<input type="file" name="logo" style="padding: 7px;" <?= $theme->getHeaderImage() ? '' : 'required'; ?> />
 									<?= $logoMsg ?>
 								</div>
 								<div class="spacer-15" ></div>	
 
 								<div class="holder">
 									<img src="<?= $theme->getHamburgerImage() ?>" style="max-height:80px" />
-									<label for="hamburgerLogo">Hamburger logo</label>
-									<input type="file" name="hamburgerLogo" style="padding: 7px;"/>
+									<label for="hamburgerLogo">Hamburger logo <i class="required">* required</i></label>
+									<input type="file" name="hamburgerLogo" style="padding: 7px;" <?= $theme->getHamburgerImage() ? '' : 'required'; ?>/>
 									<?= $hamburgerLogoMsg ?>
 								</div>
 								<div class="spacer-15" ></div>	
 
 								<div class="holder">
 									<img src="<?= $manifest->getIcons()[0]['src'] ?>" style="max-height:80px" />
-									<label for="appIcon">App icon</label>
-									<input type="file" name="appIcon" style="padding: 7px;"/>
+									<label for="appIcon">App icon <i class="required">* required</i></label>
+									<input type="file" name="appIcon" style="padding: 7px;"  <?= $manifest->getIcons()[0]['src'] ? '' : 'required'; ?> />
 									<?= $appIconMsg ?>
 								</div>
 								<div class="spacer-15"></div>

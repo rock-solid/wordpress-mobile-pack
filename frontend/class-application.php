@@ -19,7 +19,8 @@ if (!class_exists('PtPwa_Application')) {
         {
             // Load application only if the PRO plugin is not active
             if (!PtPwa::is_active_plugin('WordPress Mobile Pack PRO'))
-                $this->check_load();
+            
+            $this->check_load();
 
             $this->plugin_dir = $plugin_dir;
 
@@ -98,7 +99,9 @@ if (!class_exists('PtPwa_Application')) {
                     // The cookie was already set for the device, so we can load the app
                     $load_app = true;
                 }
+
             } else {
+
                 $themeManager = new PtPwaThemeManager(new PtPwaTheme());
                 $theme = $themeManager->getTheme();
 

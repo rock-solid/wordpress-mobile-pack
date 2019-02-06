@@ -33,9 +33,12 @@
 ?>
 
 <div id="wmpack-admin">
-	<div class="spacer-60"></div>
+	
+	<?php include_once($Pt_Pwa_Config->PWA_PLUGIN_PATH.'admin/enable-pwa-btn.php'); ?>
+
+	<div class="spacer-20"></div>
     <!-- set title -->
-    <h1>Publisher's Toolbox PWA <?= $Pt_Pwa_Config->PWA_VERSION ?></h1>
+    <h1>Publisher's Toolbox PWA</h1>
 	<div class="spacer-20"></div>
 	<div class="themes">
         <div class="left-side">

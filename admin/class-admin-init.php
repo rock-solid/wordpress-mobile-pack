@@ -157,6 +157,13 @@ if ( ! class_exists( 'Pt_Pwa_Admin_Init' ) ) {
             wp_enqueue_script(PtPwa_Options::$prefix.'js_join_waitlist', plugins_url($Pt_Pwa_Config->PWA_DOMAIN.'/admin/js/UI.Modules/Waitlist/WMP_WAITLIST.min.js'), array(), $Pt_Pwa_Config->PWA_VERSION);
             wp_enqueue_script(PtPwa_Options::$prefix.'js_feedback', plugins_url($Pt_Pwa_Config->PWA_DOMAIN.'/admin/js/UI.Modules/Feedback/WMP_SEND_FEEDBACK.min.js'), array(), $Pt_Pwa_Config->PWA_VERSION);
 
+            wp_enqueue_script(PtPwa_Options::$prefix.'js_state_toggle', plugins_url($Pt_Pwa_Config->PWA_DOMAIN.'/admin/js/stateToggle.js'), array('jquery'), $Pt_Pwa_Config->PWA_VERSION, true);
+            wp_localize_script(PtPwa_Options::$prefix.'js_state_toggle', 'WpData', array( 
+                    'ajaxurl'       => admin_url( 'admin-ajax.php'),
+                    'security'      => wp_create_nonce( 'disable-pwa' )
+                )
+            );
+
             if (PtPwa_Options::get_setting('upgrade_notice_updated') == 1){
                 wp_enqueue_script(PtPwa_Options::$prefix.'js_upgrade_notice', plugins_url($Pt_Pwa_Config->PWA_DOMAIN.'/admin/js/UI.Modules/Waitlist/WMP_UPGRADE_NOTICE.min.js'), array(), $Pt_Pwa_Config->PWA_VERSION, true);
             }
