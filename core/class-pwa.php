@@ -1,7 +1,7 @@
 <?php
 
 if ( ! class_exists( 'PtPwa_Options' ) ) {
-    require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH.'/inc/class-pt-pwa-options.php');
+    require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH.'inc/class-pt-pwa-options.php');
 }
 
 if ( ! class_exists( 'PtPwa_Uploads' ) ) {

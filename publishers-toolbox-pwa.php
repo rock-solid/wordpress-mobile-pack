@@ -77,6 +77,8 @@ if (class_exists( 'PtPwa' )) {
     global $wmobile_pack;
     $wmobile_pack = new PtPwa();
 
+    $Pt_Pwa_Config = new Pt_Pwa_Config();
+
     // Add custom PWA sizes
     add_image_size('pwa-x-small', 180, 180);
     add_image_size('pwa-small', 192, 192);
@@ -92,7 +94,10 @@ if (class_exists( 'PtPwa' )) {
     register_activation_hook(__FILE__, array(&$wmobile_pack, 'activate'));
     register_deactivation_hook(__FILE__, array(&$wmobile_pack, 'deactivate'));
     
-    add_action('wp_head', 'pt_pwa_insert_fallback_script');
+    //Fallback script for desktop served on mobile
+    if ( $Pt_Pwa_Config->PWA_ENABLED ) :
+        add_action('wp_head', 'pt_pwa_insert_fallback_script');
+    endif;
     
     // Initialize the Wordpress Mobile Pack check logic and rendering
     if (is_admin()) {

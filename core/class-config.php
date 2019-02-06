@@ -34,12 +34,11 @@ class Pt_Pwa_Config {
 
         update_option('pt_pwa_enabled', false, 'bool');
         $this->PWA_ENABLED = get_option('pt_pwa_enabled');
-
+        
     }
 
     public function ajax_disable_pwa() {
-        
-
+    
         ob_start();
         update_option('pt_pwa_enabled', false, 'bool');
         $this->PWA_ENABLED = get_option('pt_pwa_enabled');
