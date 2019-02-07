@@ -29,6 +29,14 @@ if (isset($_POST["save"])) {
     $theme->setYoutubeSocialUrl($_POST['youtubeSocialUrl']);
     $theme->setDFTNetworkId($_POST['DFTNetworkId']);
     $theme->setIncludeTrailingSlashes(isset($_POST['includeTrailingSlashes']));
+    
+    if (empty($_POST['AdUnit'])) {
+        $theme->setAdUnit("");
+        $theme->setAdUnitSectionExtended(false);
+    } else {
+        $theme->setAdUnit($_POST['AdUnit']);
+        $theme->setAdUnitSectionExtended(true);
+    }
 
 	$manifestManager->write();
 	$themeManager->write();
@@ -99,6 +107,10 @@ if (isset($_POST["save"])) {
 
                 <label>Google Ad Manager network ID</label>
                 <input type="text" name="DFTNetworkId" value="<?= $theme->getDFTNetworkId() ?>" />
+                <div class="spacer-20"></div>
+
+                <label>Ad unit</label>
+                <input type="text" name="AdUnit" value="<?= $theme->getAdUnit() ?>" />
                 <div class="spacer-20"></div>
 
                 <input type="hidden" name="apiEndpoint" value="<?= $theme->getApiEndpoint() ?>" />
