@@ -162,6 +162,8 @@ class PtPwaTheme
 
     private $includeTrailingSlashes = true;
 
+    private $appIconUrl = null;
+
     /**
      * Get the value of appName
      */
@@ -1778,6 +1780,26 @@ class PtPwaTheme
     public function getIncludeTrailingSlashes()
     {
         return $this->includeTrailingSlashes;
+    }
+
+    /**
+     * Get the value of appIconUrl
+     */
+    public function getAppIconUrl()
+    {
+        return $this->appIconUrl;
+    }
+
+    /**
+     * Set the value of appIconUrl
+     *
+     * @return  self
+     */
+    public function setAppIconUrl($appIconUrl)
+    {
+        $this->appIconUrl = $appIconUrl;
+
+        return $this;
     }
 
     /**

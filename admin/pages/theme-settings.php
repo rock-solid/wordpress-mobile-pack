@@ -61,19 +61,9 @@ if (!empty($_POST['save'])) {
 		if (is_wp_error($appIconUploaded)) {
 			$appIconMsg = "There was a problem uploading the file. Please try again. " . $appIconUploaded->get_error_message();
 		} else {
+			$theme->setAppIconUrl(wp_get_attachment_image_src($appIconUploaded, 'pwa-x-small')[0]);
 			$manifest->setIcons($appIconArray);
 			$appIconMsg = "The file has been uploaded successfully.";
-		}
-	}
-
-	if (!empty($_FILES['loadingSpinner']['name'])) {
-		$loadingSpinnerUploaded = media_handle_upload('loadingSpinner', 0);
-		$loadingSpinnerUrl = wp_get_attachment_url($loadingSpinnerUploaded);
-		if (is_wp_error($loadingSpinnerUploaded)) {
-			$loadingSpinnerMsg = "There was a problem uploading the file. Please try again. " . $loadingSpinnerUploaded->get_error_message();
-		} else {
-			$theme->setLoadingSpinner($loadingSpinnerUrl);
-			$loadingSpinnerMsg = "The file has been uploaded successfully.";
 		}
 	}
 
@@ -356,7 +346,7 @@ form label i.required {
 									<img src="<?= $theme->getHeaderImage() ?>" style="max-height:80px" />
 									<label for="logo">App logo <i class="required">* required</i></label>
 									<input type="file" name="logo" style="padding: 7px;" <?= $theme->getHeaderImage() ? '' : 'required'; ?> />
-									<?= $logoMsg ?>
+									<?= $logoMsg ? $logoMsg : '' ?>
 								</div>
 								<div class="spacer-15" ></div>	
 
