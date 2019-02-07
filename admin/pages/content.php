@@ -68,15 +68,13 @@
     $extraLinks  = [];
 
     foreach($pages as $page) {
-        $link = array(
-            'label' => $page['obj']->post_title,
-        );
-        $link['link'] = '/' . $page['obj']->post_name;
-        
-        if(in_array($page['obj']->ID, $inactive_pages)) {
-            $link['link'] = $link['link'] . '?noapp=true';
+        if(!in_array($page['obj']->ID, $inactive_pages)) {
+            $link = array(
+                'label' => $page['obj']->post_title,
+                'link' => '/' . $page['obj']->post_name . '?noapp=true'
+            );
+            $extraLinks[] = $link;
         }
-        $extraLinks[] = $link;
     }
 
     $theme->setExtraLinks($extraLinks);

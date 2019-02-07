@@ -64,8 +64,7 @@ if (!class_exists('PtPwa_Application')) {
         {
             // Set app as visible by default
             $Pt_Pwa_Config = new Pt_Pwa_Config();
-            
-            $visible_app = Pt_Pwa_Config->PWA_ENABLED;
+            $visible_app = $Pt_Pwa_Config->PWA_ENABLED;
 
             if($_GET["noapp"] || $_REQUEST["noapp"]){
                 $visible_app = false;
