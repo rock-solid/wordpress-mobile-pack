@@ -27,35 +27,48 @@
 
     </label>
 	
-	<?php if ( $Pt_Pwa_Config->PWA_ENABLED ) : ?>
+	<?php  
+
+	if ( $Pt_Pwa_Config->PWA_ENABLED ) : ?>
+    	
     	<span class="label">PWA Enabled</span>
-    	<a href="#" class="disable-pt-pwa">Disable PWA</a>
+    	<form id="disable-pwa" method="post">
+    		<input type="submit" class="disable-pt-pwa" name="disable-pt-pwa" value="Disable PWA">
+    	</form>
     	<img src="<?= plugins_url(). '/'. $Pt_Pwa_Config->PWA_DOMAIN .'/admin/images/loading.gif'; ?>" width="36" height="36" class="loader"  />
-    <?php else : ?>
+
+    	<?php if (!empty($_POST['disable-pt-pwa'])) :
+
+    		 $Pt_Pwa_Config->disable_pwa();
+
+   		else : ?>
+
     	<span class="label">PWA Disabled</span>
-	<?php endif; ?>
+
+	<?php endif; endif; ?>
 
 </div>
 
 <style>
 
-	a.disable-pt-pwa {
+	input.disable-pt-pwa {
 		display: inline-block; 
 		margin-left: 20px;
 		height: 36px;
-		line-height: 36px !important;
 		background: #ffb900;
 		border: 2px solid white;
 		color: white !important;
 		text-align: center;
-		font-size: 20px;
+		font-size: 18px;
 		font-weight: bold !important;
 		padding: 0 10px;
 		transition: all 0.3s ease-in-out;
 		margin-right: 10px;
+		cursor: pointer;
+		outline: none !important;
 	}
 
-	a.disable-pt-pwa:hover {
+	input.disable-pt-pwa:hover {
 		background: white;
 		color: #ffb900 !important;
 	}
