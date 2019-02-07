@@ -24,16 +24,16 @@ if (!class_exists('PtPwa_Application')) {
 
             $this->plugin_dir = $plugin_dir;
 
-			add_action( 'rest_api_init', function() {
-				remove_filter( 'rest_pre_serve_request', 'rest_send_cors_headers' );
-				add_filter( 'rest_pre_serve_request', function( $value ) {
-					header( 'Access-Control-Allow-Origin: *' );
-					header( 'Access-Control-Allow-Methods: GET' );
-					header( 'Access-Control-Allow-Credentials: true' );
-					header( 'Access-Control-Expose-Headers: Link', false );
-					return $value;
-				});
-			}, 15 );
+            add_action( 'rest_api_init', function() {
+                remove_filter( 'rest_pre_serve_request', 'rest_send_cors_headers' );
+                add_filter( 'rest_pre_serve_request', function( $value ) {
+                    header( 'Access-Control-Allow-Origin: *' );
+                    header( 'Access-Control-Allow-Methods: GET' );
+                    header( 'Access-Control-Allow-Credentials: true' );
+                    header( 'Access-Control-Expose-Headers: Link', false );
+                    return $value;
+                });
+            }, 15 );
         }
 
 
@@ -64,7 +64,6 @@ if (!class_exists('PtPwa_Application')) {
         {
             // Set app as visible by default
             $Pt_Pwa_Config = new Pt_Pwa_Config();
-            
             $visible_app = $Pt_Pwa_Config->PWA_ENABLED;
 
             if($_GET["noapp"] || $_REQUEST["noapp"]){
@@ -126,14 +125,14 @@ if (!class_exists('PtPwa_Application')) {
 
                 if ($desktop_mode == false) {
 
-					// We're loading the mobile web app, so we don't need the rel=alternate links
-					$show_alternate = false;
-					$this->load_app();
+                    // We're loading the mobile web app, so we don't need the rel=alternate links
+                    $show_alternate = false;
+                    $this->load_app();
 
                 } else {
 
                     // The user returned to desktop, so show him a smart app banner
-					add_action('wp_head', array(&$this, 'show_smart_app_banner'));
+                    add_action('wp_head', array(&$this, 'show_smart_app_banner'));
 
                     // Add hook in footer to show the switch to mobile link
                     add_action('wp_footer', array(&$this, 'show_mobile_link'));
@@ -288,14 +287,14 @@ if (!class_exists('PtPwa_Application')) {
         }
 
 
-		/**
+        /**
          * Return path to the mobile themes folder
          */
         public function app_theme_root()
         {
             $Pt_Pwa_Config = new Pt_Pwa_Config();
             return $Pt_Pwa_Config->PWA_PLUGIN_PATH . 'frontend/themes';
-		}
+        }
 
         /**
          * Returns an array with all the application's frontend settings
@@ -316,10 +315,10 @@ if (!class_exists('PtPwa_Application')) {
                 'google_analytics_id',
                 'display_website_link',
                 'posts_per_page',
-				'enable_facebook',
-				'enable_twitter',
-				'enable_google',
-				'service_worker_installed'
+                'enable_facebook',
+                'enable_twitter',
+                'enable_google',
+                'service_worker_installed'
             );
 
             $settings = array();
@@ -368,29 +367,29 @@ if (!class_exists('PtPwa_Application')) {
 
             $settings['comments_token'] = PtPwa_Tokens::get_token();
 
-			if (!class_exists('PtPwa_Themes_Config')) {
+            if (!class_exists('PtPwa_Themes_Config')) {
                 require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'inc/class-pt-pwa-themes-config.php');
             }
 
-			$settings['manifest_color'] = PtPwa_Themes_Config::get_manifest_background($settings['theme'], $settings['color_scheme']);
+            $settings['manifest_color'] = PtPwa_Themes_Config::get_manifest_background($settings['theme'], $settings['color_scheme']);
 
             return $settings;
         }
 
-		/**
-		* Get the language from the locale setting.
-		*
-		* @param string $locale (eg. 'en_EN')
-		* @return string (eg. 'en')
-		*/
-		public function get_language($locale)
-		{
-			if (array_key_exists($locale, PtPwa_Options::$supported_languages)){
-				return PtPwa_Options::$supported_languages[$locale];
-			}
+        /**
+        * Get the language from the locale setting.
+        *
+        * @param string $locale (eg. 'en_EN')
+        * @return string (eg. 'en')
+        */
+        public function get_language($locale)
+        {
+            if (array_key_exists($locale, PtPwa_Options::$supported_languages)){
+                return PtPwa_Options::$supported_languages[$locale];
+            }
 
-			return 'en';
-		}
+            return 'en';
+        }
 
 
         /**
