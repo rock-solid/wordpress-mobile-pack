@@ -41,7 +41,6 @@ class Pt_Pwa_Config {
 
         update_option('pt_pwa_enabled', false, 'bool');
         $this->PWA_ENABLED = get_option('pt_pwa_enabled');
-        echo 'success';
         wp_die();
 
     }
