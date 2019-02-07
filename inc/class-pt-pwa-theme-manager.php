@@ -6,6 +6,8 @@ class PtPwaThemeManager implements PtPwaManager {
 
     public function __construct($theme) {
         
+        $Pt_Pwa_Config = new Pt_Pwa_Config();
+        
         // Add routes to theme.json
         $permalink_structure = get_option( 'permalink_structure' );
         $category_prefix = get_option( 'category_base' );
@@ -23,7 +25,7 @@ class PtPwaThemeManager implements PtPwaManager {
         $theme->setSectionPrefix($category_prefix);
         $theme->setIncludeTrailingSlashes($includeTrailingSlashes);
         $theme->setLoadingSpinner(plugins_url() . '/'. $Pt_Pwa_Config->PWA_DOMAIN ."/admin/images/ajax-loader.gif");
-        
+
         $this->theme = $theme;      
     }
 
