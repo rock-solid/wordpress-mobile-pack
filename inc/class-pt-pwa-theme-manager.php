@@ -22,7 +22,8 @@ class PtPwaThemeManager implements PtPwaManager {
         $theme->setServiceWorkerUrl($site_url . '/service-worker.js');
         $theme->setSectionPrefix($category_prefix);
         $theme->setIncludeTrailingSlashes($includeTrailingSlashes);
-
+        $theme->setLoadingSpinner(plugins_url() . '/'. $Pt_Pwa_Config->PWA_DOMAIN ."/admin/images/ajax-loader.gif");
+        
         $this->theme = $theme;      
     }
 
