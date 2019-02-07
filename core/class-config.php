@@ -38,16 +38,10 @@ class Pt_Pwa_Config {
     }
 
     public function ajax_disable_pwa() {
-    
-        ob_start();
+
         update_option('pt_pwa_enabled', false, 'bool');
         $this->PWA_ENABLED = get_option('pt_pwa_enabled');
         echo 'success';
-
-        $data = ob_get_clean();
-
-        wp_send_json_success( $data );
-
         wp_die();
 
     }
