@@ -81,7 +81,8 @@ if (!empty($_POST['save'])) {
 	$theme->setSectionSliderTextColor($_POST['sectionSliderTextColor']);
 	$theme->setSectionSliderBackground($_POST['sectionSliderBackground']);
 	$theme->setHighlightsColour($_POST['highlightsColour']);
-
+	$theme->setBmMenuHeaderBackground($_POST['bmMenuHeaderBackground']);
+	
 	// Theme Details
 	$theme->setSectionDownloadEnabled(isset($_POST['sectionDownloadEnabled']));
 	$theme->setMultiSection(isset($_POST['multiSection']));
@@ -218,6 +219,13 @@ form label i.required {
 									<label for="bmMenuBackground">Menu background colour</label>
 									<input value="<?= $theme->getBmMenuBackground() ?>" class="bmMenuBackground" type="text" name="bmMenuBackground" placeholder="Enter hex value" onkeyup="changeColour(this);" />
 									<div class="changedElement3" style="background:<?= $theme->getBmMenuBackground() ?>;height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;" />
+								</div>
+								<div class="spacer-15"></div>
+
+								<div class="holder">
+									<label for="bmMenuHeaderBackground">Menu header background colour</label>
+									<input value="<?= $theme->getBmMenuHeaderBackground() ?>" class="bmMenuHeaderBackground" type="text" name="bmMenuHeaderBackground" placeholder="Enter hex value" onkeyup="changeColour(this);" />
+									<div class="changedElement3" style="background:<?= $theme->getBmMenuHeaderBackground() ?>;height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;" />
 								</div>
 								<div class="spacer-15"></div>
 

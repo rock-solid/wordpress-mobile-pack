@@ -28,6 +28,8 @@ class PtPwaTheme
 
     private $bmItemListColor = "#000";
 
+    private $bmMenuHeaderBackground = "#fff";
+
     private $bmOverlayBackground = "transparent";
 
     private $selectedBackground = "#fff";
@@ -1865,6 +1867,26 @@ class PtPwaTheme
     public function setMenuTextColour($menuTextColour)
     {
         $this->menuTextColour = $menuTextColour;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of bmMenuHeaderBackground
+     */ 
+    public function getBmMenuHeaderBackground()
+    {
+        return $this->bmMenuHeaderBackground;
+    }
+
+    /**
+     * Set the value of bmMenuHeaderBackground
+     *
+     * @return  self
+     */ 
+    public function setBmMenuHeaderBackground($bmMenuHeaderBackground)
+    {
+        $this->bmMenuHeaderBackground = $bmMenuHeaderBackground;
 
         return $this;
     }
