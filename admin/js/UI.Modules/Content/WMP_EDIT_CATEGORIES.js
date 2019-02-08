@@ -128,6 +128,8 @@ function WMP_EDIT_CATEGORIES(){
                                 } else {
                                     jQuery('#'+JSObject.type+'_warning', JSObject.DOMDoc).show();
                                 }
+
+                                window.location.reload();
                                 
 							} else {
 							

@@ -134,6 +134,8 @@ function WMP_EDIT_PAGES(){
 							} else {
 								jQuery('#'+JSObject.type+'_warning', JSObject.DOMDoc).show();
 							}
+
+							window.location.reload();
 							
 						} else {
 						

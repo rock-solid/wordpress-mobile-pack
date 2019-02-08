@@ -22,7 +22,11 @@ if (isset($_POST["save"])) {
     $theme->setGATrackingCode($_POST['GATrackingCode']);
     $theme->setSocialShareKitButtons($_POST['socialMedia']);
     $theme->setAppEndpoint($_POST['appEndpoint']);
-    $theme->setApiEndpoint($_POST['apiEndpoint']);
+
+    if (isset($_POST["apiEndpoint"])) {
+        $theme->setApiEndpoint($_POST['apiEndpoint']);
+    }
+
     $theme->setTwitterSocialUrl($_POST['twitterSocialUrl']);
     $theme->setFacebookSocialUrl($_POST['facebookSocialUrl']);
     $theme->setInstagramSocialUrl($_POST['instagramSocialUrl']);
@@ -113,7 +117,8 @@ if (isset($_POST["save"])) {
                 <input type="text" name="AdUnit" value="<?= $theme->getAdUnit() ?>" />
                 <div class="spacer-20"></div>
 
-                <input type="hidden" name="apiEndpoint" value="<?= $theme->getApiEndpoint() ?>" />
+                <label>API Endpoint</label>
+                <input type="text" name="apiEndpoint" value="<?= $theme->getApiEndpoint() ?>" disabled />
                 <div class="spacer-20"></div>
 
                 <input type="checkbox" name="showClassicSwitch" <?= $theme->getShowClassicSwitch() ? 'checked' : '' ?> /> Show classic site switch
