@@ -24,13 +24,19 @@ class PtPwaTheme
 
     private $bmMenuBackground = "#fff";
 
+    private $bmMenuBlockBackground = "#fff";
+
     private $bmItemListColor = "#000";
+
+    private $bmMenuHeaderBackground = "#fff";
 
     private $bmOverlayBackground = "transparent";
 
-    private $selectedBackground = "moon-gray";
+    private $selectedBackground = "#fff";
 
     private $selectedText = "#ee3224";
+
+    private $menuTextColour = "#000";
 
     private $themeColour = "#fff";
 
@@ -70,7 +76,7 @@ class PtPwaTheme
 
     private $borderColour = "pwa-highlight";
 
-    private $sectionDownloadEnabled = false;
+    private $sectionDownloadEnabled = true;
 
     private $routes = [];
 
@@ -84,7 +90,7 @@ class PtPwaTheme
 
     private $showDateBlockOnFeedListItem = true;
 
-    private $showAllFeed = true;
+    private $showAllFeed = false;
 
     private $showClassicSwitch = false;
 
@@ -144,9 +150,9 @@ class PtPwaTheme
 
     private $hasTaboola = false;
     
-    private $renderAds = false;
+    private $renderAds = true;
     
-    private $renderAdsServerSide = false;
+    private $renderAdsServerSide = true;
     
     private $firstImpressionsId = null;
     
@@ -1579,6 +1585,9 @@ class PtPwaTheme
      */ 
     public function getApiEndpoint()
     {
+        if($this->apiEndPoint == null){
+            return $this->hostUrl;
+        }
         return $this->apiEndPoint;
     }
 
@@ -1818,6 +1827,66 @@ class PtPwaTheme
         $article_pattern = PtPwaRouteMapper::translatePermalinkStructure($permalink_structure);
 
         $this->setRoutes(PtPwaRouteMapper::mapRoutes($category_prefix, $article_pattern, $includeTrailingSlashes));
+
+        return $this;
+    }
+
+    /**
+     * Get the value of bmMenuBlockBackground
+     */ 
+    public function getBmMenuBlockBackground()
+    {
+        return $this->bmMenuBlockBackground;
+    }
+
+    /**
+     * Set the value of bmMenuBlockBackground
+     *
+     * @return  self
+     */ 
+    public function setBmMenuBlockBackground($bmMenuBlockBackground)
+    {
+        $this->bmMenuBlockBackground = $bmMenuBlockBackground;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of menuTextColour
+     */ 
+    public function getMenuTextColour()
+    {
+        return $this->menuTextColour;
+    }
+
+    /**
+     * Set the value of menuTextColour
+     *
+     * @return  self
+     */ 
+    public function setMenuTextColour($menuTextColour)
+    {
+        $this->menuTextColour = $menuTextColour;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of bmMenuHeaderBackground
+     */ 
+    public function getBmMenuHeaderBackground()
+    {
+        return $this->bmMenuHeaderBackground;
+    }
+
+    /**
+     * Set the value of bmMenuHeaderBackground
+     *
+     * @return  self
+     */ 
+    public function setBmMenuHeaderBackground($bmMenuHeaderBackground)
+    {
+        $this->bmMenuHeaderBackground = $bmMenuHeaderBackground;
 
         return $this;
     }

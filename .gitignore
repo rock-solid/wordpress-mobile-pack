@@ -4,5 +4,6 @@ gulptools/merged/*
 gulptools/scss/*
 gulptools/.sass-cache/*
 coverage/*
+node_modules/*
 *.DS_store
 .DS_store?
