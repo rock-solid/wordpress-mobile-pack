@@ -41,11 +41,11 @@
 
     		 $Pt_Pwa_Config->disable_pwa();
 
-   		else : ?>
+   		endif; else : ?>
 
     	<span class="label">PWA Disabled</span>
 
-	<?php endif; endif; ?>
+	<?php endif; ?>
 
 </div>
 
@@ -142,7 +142,7 @@
 	}
 
 	.custom-checkboxes input[type="checkbox"]:checked + label span {
-		background-color: #2ecc71;
+		background-color: #46b450;
 	}
 
 	.custom-checkboxes input[type="checkbox"]label span img {

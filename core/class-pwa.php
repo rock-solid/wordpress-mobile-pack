@@ -190,8 +190,10 @@ if ( ! class_exists( 'PtPwa' ) ) {
          */
         public function backwards_compatibility(){
 
+            $Pt_Pwa_Config = new Pt_Pwa_Config();
+
             if ( ! class_exists( 'PtPwa_Themes_Config' )) {
-                include('../inc/class-pt-pwa-themes-config.php');
+                include($Pt_Pwa_Config->PWA_PLUGIN_PATH.'inc/class-pt-pwa-themes-config.php');
             }
 
             if (class_exists('PtPwa_Themes_Config')){

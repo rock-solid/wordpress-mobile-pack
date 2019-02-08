@@ -60,9 +60,9 @@ if (!class_exists('PtPwa_Uploads')) {
 
             $wp_uploads_dir = wp_upload_dir();
 
-            $wmp_uploads_dir = $wp_uploads_dir['basedir'] . '/' . $Pt_Pwa_Config->PWA_DOMAIN . '/';
+            $pt_pwa_uploads_dir = $wp_uploads_dir['basedir'] . '/' . $Pt_Pwa_Config->PWA_DOMAIN . '/';
 
-            define('PWA_FILES_UPLOADS_DIR', $wmp_uploads_dir);
+            define('PWA_FILES_UPLOADS_DIR', $pt_pwa_uploads_dir);
             define('PWA_FILES_UPLOADS_URL', $wp_uploads_dir['baseurl'] . '/' . $Pt_Pwa_Config->PWA_DOMAIN . '/');
 
             add_action( 'admin_notices', array( $this, 'display_admin_notices' ) );
@@ -108,15 +108,15 @@ if (!class_exists('PtPwa_Uploads')) {
 
             $wp_uploads_dir = wp_upload_dir();
 
-            $wmp_uploads_dir = $wp_uploads_dir['basedir'] . '/' . $Pt_Pwa_Config->PWA_DOMAIN . '/';
+            $pt_pwa_uploads_dir = $wp_uploads_dir['basedir'] . '/' . $Pt_Pwa_Config->PWA_DOMAIN . '/';
 
             // check if the uploads folder exists and is writable
             if (file_exists($wp_uploads_dir['basedir']) && is_dir($wp_uploads_dir['basedir']) && is_writable($wp_uploads_dir['basedir'])) {
 
                 // if the directory doesn't exist, create it
-                if (!file_exists($wmp_uploads_dir)) {
+                if (!file_exists($pt_pwa_uploads_dir)) {
 
-                    mkdir($wmp_uploads_dir, 0777);
+                    mkdir($pt_pwa_uploads_dir, 0777);
 
                     // add .htaccess file in the uploads folder
                     $this->set_htaccess_file();
@@ -226,13 +226,16 @@ if (!class_exists('PtPwa_Uploads')) {
          */
         protected function set_htaccess_file()
         {
+
+            $Pt_Pwa_Config = new Pt_Pwa_Config();
+
             $file_path = PWA_FILES_UPLOADS_DIR.'.htaccess';
 
             if (!file_exists($file_path)){
 
                 if (is_writable(PWA_FILES_UPLOADS_DIR)){
 
-                    $template_path = PWA_PLUGIN_PATH.self::$htaccess_template;
+                    $template_path = $Pt_Pwa_Config->PWA_PLUGIN_PATH.self::$htaccess_template;
 
                     if (file_exists($template_path)){
 
