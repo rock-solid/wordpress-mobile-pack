@@ -91,7 +91,6 @@ if ( ! class_exists( 'PtPwa' ) ) {
             }
         }
 
-
         /**
          *
          * The activate() method is called on the activation of the plugin.
@@ -109,6 +108,7 @@ if ( ! class_exists( 'PtPwa' ) ) {
             $WMP_Uploads->create_uploads_dir();
 
             $this->backwards_compatibility();
+    
         }
 
 
