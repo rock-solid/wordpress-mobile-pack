@@ -73,6 +73,7 @@ if ( ! class_exists( 'Pt_Pwa_Admin_Init' ) ) {
 
             // add admin menu hook
             add_action('admin_menu', array(&$this, 'wmp_admin_menu'));
+            add_action('network_admin_menu', array(&$this, 'wmp_admin_menu'));
 
             $Pt_Pwa_Config = new Pt_Pwa_Config();
         }
