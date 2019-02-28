@@ -72,12 +72,7 @@ if ( ! class_exists( 'Pt_Pwa_Admin_Init' ) ) {
             add_action('admin_enqueue_scripts', array(&$this, 'wmp_admin_enqueue_scripts'));
 
             // add admin menu hook
-
-            if (is_multisite()) :
-                add_action('network_admin_menu', array(&$this, 'wmp_admin_menu'));
-            else : 
-                add_action('admin_menu', array(&$this, 'wmp_admin_menu'));
-            endif;
+            add_action('admin_menu', array(&$this, 'wmp_admin_menu'));
 
             $Pt_Pwa_Config = new Pt_Pwa_Config();
         }
