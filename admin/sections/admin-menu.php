@@ -18,19 +18,19 @@ if ($screen->id !== '') {
 <nav class="menu">
     <ul>
         <li <?php echo $current_page == 'wmp-options' ? 'class="selected"' : '';?>>
-            <a href="<?php echo add_query_arg(array('page'=>'wmp-options'), network_admin_url('admin.php'));?>">Quick Start</a>
+            <a href="<?php echo add_query_arg(array('page'=>'wmp-options'), admin_url('admin.php'));?>">Quick Start</a>
         </li>
         <li <?php echo $current_page == 'wmp-options-themes' ? 'class="selected"' : '';?>>
-            <a href="<?php echo add_query_arg(array('page'=>'wmp-options-themes'), network_admin_url('admin.php'));?>">App Themes</a>
+            <a href="<?php echo add_query_arg(array('page'=>'wmp-options-themes'), admin_url('admin.php'));?>">App Themes</a>
         </li>
 		<li <?php echo $current_page == 'wmp-options-theme-settings' ? 'class="selected"' : '';?>>
-            <a href="<?php echo add_query_arg(array('page'=>'wmp-options-theme-settings'), network_admin_url('admin.php'));?>">Look & Feel</a>
+            <a href="<?php echo add_query_arg(array('page'=>'wmp-options-theme-settings'), admin_url('admin.php'));?>">Look & Feel</a>
         </li>
         <li <?php echo ($current_page == 'wmp-options-content' || $current_page == 'wmp-page-details' || $current_page == 'wmp-category-details') ? 'class="selected"' : '';?>>
-            <a href="<?php echo add_query_arg(array('page'=>'wmp-options-content'), network_admin_url('admin.php'));?>">Content</a>
+            <a href="<?php echo add_query_arg(array('page'=>'wmp-options-content'), admin_url('admin.php'));?>">Content</a>
         </li>
         <li <?php echo $current_page == 'wmp-options-settings' ? 'class="selected"' : '';?>>
-            <a href="<?php echo add_query_arg(array('page'=>'wmp-options-settings'), network_admin_url('admin.php'));?>">Settings</a>
+            <a href="<?php echo add_query_arg(array('page'=>'wmp-options-settings'), admin_url('admin.php'));?>">Settings</a>
         </li>
     </ul>
 </nav>
