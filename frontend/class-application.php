@@ -240,7 +240,7 @@ if (!class_exists('PtPwa_Application')) {
 
                 $theme_mode = $_GET[$param_name];
 
-                if ($theme_mode == "desktop" || $theme_mode == "mobile"){
+                if ($theme_mode === "desktop" || $theme_mode === "mobile"){
                     $cookie_manager->set_cookie('theme_mode', $theme_mode, 3600*30*24);
                 }
 

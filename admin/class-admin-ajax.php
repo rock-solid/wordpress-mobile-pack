@@ -608,7 +608,7 @@ if ( ! class_exists( 'PtPwa_Admin_Ajax' ) ) {
                                         $file_type = 'category_icon';
                                     }
 
-                                    if ($info['error'] >= 1 || $info['size'] <= 0 && array_key_exists($file_type, PtPwa_Uploads::$allowed_files)) {
+                                    if ($info['error'] >= 1 ||  $info['size'] <= 0 && array_key_exists($file_type, PtPwa_Uploads::$allowed_files)) {
 
                                         $arr_response['status'] = 0;
                                         $arr_response["messages"][] = "We encountered a problem processing your ".($file_type == 'category_icon' ? 'image' : $file_type).". Please choose another image!";
