@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Publishers Toolbox PWA
+ * Plugin Name: Publishers Toolbox PWA (DEVELOPMENT)
  * Plugin URI:  https://www.publisherstoolbox.com/websuite/
  * Description: Publisher's Toolbox PWA is a mobile plugin that helps you transform your WordPress site into a progressive web application. It comes with a choice of two mobile app themes.
  * Author: Publisher's Toolbox
