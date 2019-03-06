@@ -14,14 +14,14 @@ try {
     $response = curl_getinfo($curl_handle);
     curl_close($curl_handle);
 
-    if($page === false || $response['http_code'] != 200 || $_COOKIE['classicCookie'] == "true") {
+    if($page === false || $response['http_code'] != 200 || $_COOKIE['classicCookie'] === "true") {
         throw new Exception('cannot load PWA');
     }
     echo $page;
 
 } catch (Exception $e) {
 
-    if (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1) ||  isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https') {
+    if ((isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1)) || (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')) {
         $protocol = 'https://';
     } else {
         $protocol = 'http://';

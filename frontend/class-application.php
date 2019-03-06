@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 if (!class_exists('PtPwa_Application')) {
 
@@ -208,7 +208,7 @@ if (!class_exists('PtPwa_Application')) {
             if ( ! class_exists( 'PtPwa_Detect' ) ) {
                 
                 $Pt_Pwa_Config = new Pt_Pwa_Config();
-                require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH.'frontend/class-detect.php');
+                require_once $Pt_Pwa_Config->PWA_PLUGIN_PATH.'frontend/class-detect.php';
             }
 
             $WMobileDetect = new PtPwa_Detect();
@@ -240,8 +240,8 @@ if (!class_exists('PtPwa_Application')) {
 
                 $theme_mode = $_GET[$param_name];
 
-                if ($theme_mode === "desktop" || $theme_mode === "mobile"){
-                    $cookie_manager->set_cookie('theme_mode', $theme_mode, 3600*30*24);
+                if ($theme_mode == "desktop" || $theme_mode == "mobile"){
+                    $cookie_manager->set_cookie('theme_mode', $theme_mode, 2592000);
                 }
 
                 if ($theme_mode == "desktop")
@@ -362,13 +362,15 @@ if (!class_exists('PtPwa_Application')) {
 
             // generate comments token
             if (!class_exists('PtPwa_Tokens')) {
-                require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'inc/class-pt-pwa-tokens.php');
+                $Pt_Pwa_Config = new Pt_Pwa_Config();
+                require_once $Pt_Pwa_Config->PWA_PLUGIN_PATH . 'inc/class-pt-pwa-tokens.php';
             }
 
             $settings['comments_token'] = PtPwa_Tokens::get_token();
 
             if (!class_exists('PtPwa_Themes_Config')) {
-                require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'inc/class-pt-pwa-themes-config.php');
+                $Pt_Pwa_Config = new Pt_Pwa_Config();
+                require_once $Pt_Pwa_Config->PWA_PLUGIN_PATH . 'inc/class-pt-pwa-themes-config.php';
             }
 
             $settings['manifest_color'] = PtPwa_Themes_Config::get_manifest_background($settings['theme'], $settings['color_scheme']);
@@ -399,7 +401,9 @@ if (!class_exists('PtPwa_Application')) {
          * @return bool|string
          */
         public static function check_language_file($locale)
-        {
+        {   
+            $Pt_Pwa_Config = new Pt_Pwa_Config();
+            
             $language_file_path = $Pt_Pwa_Config->PWA_PLUGIN_PATH.'frontend/locales/'.strip_tags($locale).'.json';
 
             if (!file_exists($language_file_path)) {
