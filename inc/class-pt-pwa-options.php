@@ -150,10 +150,10 @@ if ( ! class_exists( 'PtPwa_Options' ) ) {
                     // set option not saved variable
                     $option_not_saved = false;
 
-                    foreach ($option as $option_name => $option_value) {
+                    foreach ($option as $option_name => $option_loop_value) {
 
                         if (array_key_exists($option_name, self::$options))
-                            add_option(self::$prefix . $option_name, $option_value);
+                            add_option(self::$prefix . $option_name, $option_loop_value);
                         else
                             $option_not_saved = true; // there is at least one option not in the default list
                     }
@@ -193,11 +193,11 @@ if ( ! class_exists( 'PtPwa_Options' ) ) {
 
                     $option_not_updated = false;
 
-                    foreach ($option as $option_name => $option_value) {
+                    foreach ($option as $option_name => $option_loop_value) {
 
                         // set option not saved variable
                         if (array_key_exists($option_name, self::$options))
-                            update_option(self::$prefix . $option_name, $option_value);
+                            update_option(self::$prefix . $option_name, $option_loop_value);
                         else
                             $option_not_updated = true; // there is at least one option not in the default list
                     }

@@ -116,7 +116,7 @@ if (!class_exists('PtPwa_Uploads')) {
                 // if the directory doesn't exist, create it
                 if (!file_exists($pt_pwa_uploads_dir)) {
 
-                    if (!mkdir($pt_pwa_uploads_dir, 0777) && !is_dir($pt_pwa_uploads_dir))   {
+                    if (!mkdir($pt_pwa_uploads_dir, 0777) && !is_dir($pt_pwa_uploads_dir)) {
                         throw new \RuntimeException(sprintf('Directory "%s" was not created', $pt_pwa_uploads_dir));
                     }
 
