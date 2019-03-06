@@ -69,7 +69,7 @@ if ( ! class_exists( 'PtPwa_Admin_Ajax' ) ) {
 				if (array_key_exists($font_type.'-font', $allowed_font_settings)) {
 
 					if (!isset($data['wmp_edittheme_font'.$font_type]) ||
-						!in_array($data['wmp_edittheme_font'.$font_type] - 1, array_keys(PtPwa_Themes_Config::$allowed_fonts))){
+						!array_key_exists($data['wmp_edittheme_font' . $font_type] - 1, PtPwa_Themes_Config::$allowed_fonts)){
 
 						return false;
 					}
@@ -280,7 +280,7 @@ if ( ! class_exists( 'PtPwa_Admin_Ajax' ) ) {
                 $status = 0;
 
                 if (!empty($_GET) && isset($_GET['theme'])){
-                    if (in_array($_GET['theme'], array_keys(PtPwa_Themes_Config::get_allowed_themes()) )) {
+                    if (array_key_exists($_GET['theme'], PtPwa_Themes_Config::get_allowed_themes())) {
 
                         $new_theme = $_GET['theme'];
 
@@ -608,110 +608,112 @@ if ( ! class_exists( 'PtPwa_Admin_Ajax' ) ) {
                                         $file_type = 'category_icon';
                                     }
 
-                                    if ($info['error'] >= 1 || $info['size'] <= 0 && array_key_exists($file_type, PtPwa_Uploads::$allowed_files)) {
+                                    if (!empty($info)) {
+                                        if ($info['error'] >= 1 || ($info['size'] <= 0 && array_key_exists($file_type, PtPwa_Uploads::$allowed_files))) {
 
-                                        $arr_response['status'] = 0;
-                                        $arr_response["messages"][] = "We encountered a problem processing your ".($file_type == 'category_icon' ? 'image' : $file_type).". Please choose another image!";
+                                            $arr_response['status'] = 0;
+                                            $arr_response["messages"][] = "We encountered a problem processing your ".($file_type == 'category_icon' ? 'image' : $file_type).". Please choose another image!";
 
-                                    } elseif ($info['size'] > 1048576){
+                                        } elseif ($info['size'] > 1048576){
 
-                                        $arr_response['status'] = 0;
-                                        $arr_response["messages"][] = "Do not exceed the 1MB file size limit when uploading your custom ".($file_type == 'category_icon' ? 'image' : $file_type).".";
+                                            $arr_response['status'] = 0;
+                                            $arr_response["messages"][] = "Do not exceed the 1MB file size limit when uploading your custom ".($file_type == 'category_icon' ? 'image' : $file_type).".";
 
-                                    } elseif ($file_type == 'category_icon' && (!isset($_POST['wmp_categoryedit_id']) || !is_numeric($_POST['wmp_categoryedit_id']))) {
+                                        } elseif ($file_type == 'category_icon' && (!isset($_POST['wmp_categoryedit_id']) || !is_numeric($_POST['wmp_categoryedit_id']))) {
 
-                                        // If the category icon file is NOT accompanied by the category ID, default to the error message
-                                        $arr_response['status'] = 0;
-
-                                    } else {
-
-                                        /****************************************/
-                                        /*										*/
-                                        /* SET FILENAME, ALLOWED FORMATS AND SIZE */
-                                        /*										*/
-                                        /****************************************/
-
-                                        // make unique file name for the image
-                                        $arrFilename = explode(".", $info['name']);
-                                        $fileExtension = end($arrFilename);
-
-                                        $arrAllowedExtensions = PtPwa_Uploads::$allowed_files[$file_type]['extensions'];
-
-                                        // check file extension
-                                        if (!in_array(strtolower($fileExtension), $arrAllowedExtensions)) {
-
-                                            $arr_response['messages'][] = "Error saving image, please add a ".implode(' or ',$arrAllowedExtensions)." image for your ".($file_type == 'category_icon' ? 'category' : $file_type)."!";
+                                            // If the category icon file is NOT accompanied by the category ID, default to the error message
+                                            $arr_response['status'] = 0;
 
                                         } else {
 
                                             /****************************************/
                                             /*										*/
-                                            /* UPLOAD IMAGE                         */
+                                            /* SET FILENAME, ALLOWED FORMATS AND SIZE */
                                             /*										*/
                                             /****************************************/
 
-                                            $uniqueFilename = $file_type.'_'.time().'.'.$fileExtension;
+                                            // make unique file name for the image
+                                            $arrFilename = explode(".", $info['name']);
+                                            $fileExtension = end($arrFilename);
 
-                                            // upload to the default uploads folder
-                                            $upload_overrides = array( 'test_form' => false );
-                                            $movefile = wp_handle_upload( $info, $upload_overrides );
+                                            $arrAllowedExtensions = PtPwa_Uploads::$allowed_files[$file_type]['extensions'];
 
-                                            if (is_array($movefile)) {
+                                            // check file extension
+                                            if (!in_array(strtolower($fileExtension), $arrAllowedExtensions)) {
 
-                                                if (isset($movefile['error'])) {
+                                                $arr_response['messages'][] = "Error saving image, please add a ".implode(' or ',$arrAllowedExtensions)." image for your ".($file_type == 'category_icon' ? 'category' : $file_type)."!";
 
-                                                    $arr_response['messages'][] = $movefile['error'];
+                                            } else {
 
-                                                } else {
+                                                /****************************************/
+                                                /*										*/
+                                                /* UPLOAD IMAGE                         */
+                                                /*										*/
+                                                /****************************************/
 
-                                                    /****************************************/
-                                                    /*										*/
-                                                    /* RESIZE AND COPY IMAGE                */
-                                                    /*										*/
-                                                    /****************************************/
+                                                $uniqueFilename = $file_type.'_'.time().'.'.$fileExtension;
 
-                                                    $copied_and_resized = $this->resize_image($file_type, $movefile['file'], $uniqueFilename, $error_message);
+                                                // upload to the default uploads folder
+                                                $upload_overrides = array( 'test_form' => false );
+                                                $movefile = wp_handle_upload( $info, $upload_overrides );
 
-                                                    if ($error_message != ''){
-                                                        $arr_response["messages"][] = $error_message;
-                                                    }
+                                                if (is_array($movefile)) {
 
-                                                    /****************************************/
-                                                    /*										*/
-                                                    /* DELETE PREVIOUS IMAGE AND SET OPTION */
-                                                    /*										*/
-                                                    /****************************************/
+                                                    if (isset($movefile['error'])) {
 
-                                                    if ($copied_and_resized) {
+                                                        $arr_response['messages'][] = $movefile['error'];
 
-                                                        if ($file_type == 'category_icon') {
+                                                    } else {
 
-                                                            // delete previous image
-                                                            $this->remove_image_category($_POST['wmp_categoryedit_id']);
+                                                        /****************************************/
+                                                        /*										*/
+                                                        /* RESIZE AND COPY IMAGE                */
+                                                        /*										*/
+                                                        /****************************************/
 
-                                                            // update categories settings array
-                                                            $categories_details = PtPwa_Options::get_setting('categories_details');
-                                                            $categories_details[$_POST['wmp_categoryedit_id']] = array('icon' => $uniqueFilename);
+                                                        $copied_and_resized = $this->resize_image($file_type, $movefile['file'], $uniqueFilename, $error_message);
 
-                                                            PtPwa_Options::update_settings('categories_details', $categories_details);
-
-                                                        } else {
-
-                                                            // delete previous image
-                                                            $this->remove_image($file_type);
-
-                                                            // save option
-                                                            PtPwa_Options::update_settings($file_type, $uniqueFilename);
+                                                        if ($error_message != ''){
+                                                            $arr_response["messages"][] = $error_message;
                                                         }
 
-                                                        // add path in the response
-                                                        $arr_response['status'] = 1;
-                                                        $arr_response['uploaded_' . $file_type] = PWA_FILES_UPLOADS_URL . $uniqueFilename;
-                                                    }
+                                                        /****************************************/
+                                                        /*										*/
+                                                        /* DELETE PREVIOUS IMAGE AND SET OPTION */
+                                                        /*										*/
+                                                        /****************************************/
 
-                                                    // remove file from the default uploads folder
-                                                    if (file_exists($movefile['file']))
-                                                        unlink($movefile['file']);
+                                                        if ($copied_and_resized) {
+
+                                                            if ($file_type == 'category_icon') {
+
+                                                                // delete previous image
+                                                                $this->remove_image_category($_POST['wmp_categoryedit_id']);
+
+                                                                // update categories settings array
+                                                                $categories_details = PtPwa_Options::get_setting('categories_details');
+                                                                $categories_details[$_POST['wmp_categoryedit_id']] = array('icon' => $uniqueFilename);
+
+                                                                PtPwa_Options::update_settings('categories_details', $categories_details);
+
+                                                            } else {
+
+                                                                // delete previous image
+                                                                $this->remove_image($file_type);
+
+                                                                // save option
+                                                                PtPwa_Options::update_settings($file_type, $uniqueFilename);
+                                                            }
+
+                                                            // add path in the response
+                                                            $arr_response['status'] = 1;
+                                                            $arr_response['uploaded_' . $file_type] = PWA_FILES_UPLOADS_URL . $uniqueFilename;
+                                                        }
+
+                                                        // remove file from the default uploads folder
+                                                        if (file_exists($movefile['file']))
+                                                            unlink($movefile['file']);
+                                                    }
                                                 }
                                             }
                                         }
@@ -1074,65 +1076,5 @@ if ( ! class_exists( 'PtPwa_Admin_Ajax' ) ) {
             exit();
         }
 
-
-        /**
-         *
-         * Method used to send a feedback e-mail from the admin
-         *
-         * Handle request, then display 1 for success and 0 for error.
-         *
-         */
-        public function send_feedback()
-        {
-
-            if (current_user_can('manage_options')){
-
-                $status = 0;
-
-                if (isset($_POST) && is_array($_POST) && !empty($_POST)){
-
-                    if (isset($_POST['wmp_feedback_page']) &&
-                        isset($_POST['wmp_feedback_name']) &&
-                        isset($_POST['wmp_feedback_email']) &&
-                        isset($_POST['wmp_feedback_message'])){
-
-                        if ($_POST['wmp_feedback_page'] != '' &&
-                            $_POST['wmp_feedback_name'] != '' &&
-                            $_POST['wmp_feedback_email'] != '' &&
-                            $_POST['wmp_feedback_message'] != ''){
-
-                            $admin_email = $_POST['wmp_feedback_email'];
-
-                            // filter e-mail
-                            if (filter_var($admin_email, FILTER_VALIDATE_EMAIL) !== false ){
-
-                                // set e-mail variables
-                                $message = "Name: ".strip_tags($_POST["wmp_feedback_name"])."\r\n \r\n";
-                                $message .= "E-mail: ".$admin_email."\r\n \r\n";
-                                $message .= "Message: ".strip_tags($_POST["wmp_feedback_message"])."\r\n \r\n";
-                                $message .= "Page: ".stripslashes(strip_tags($_POST['wmp_feedback_page']))."\r\n \r\n";
-
-                                if (isset($_SERVER['HTTP_HOST']))
-                                    $message .= "Host: ".$_SERVER['HTTP_HOST']."\r\n \r\n";
-
-                                $subject = $Pt_Pwa_Config->PWA_PLUGIN_NAME.' Feedback';
-                                $to = WMP_FEEDBACK_EMAIL;
-
-                                // set headers
-                                $headers = 'From:'.$admin_email."\r\nReply-To:".$admin_email;
-
-                                // send e-mail
-                                if (mail($to, $subject, $message, $headers))
-                                    $status = 1;
-                            }
-                        }
-                    }
-                }
-
-                echo $status;
-            }
-
-            exit();
-        }
     }
 }

@@ -125,7 +125,7 @@ class HTMLPurifier_URI
         // URI that we don't allow into one we do.  So instead, we just
         // check if the scheme can be dropped because there is no host
         // and it is our default scheme.
-        if (!is_null($this->scheme) && is_null($this->host) || $this->host === '') {
+        if ((!is_null($this->scheme) && is_null($this->host)) || $this->host === '') {
             // support for relative paths is pretty abysmal when the
             // scheme is present, so axe it when possible
             $def = $config->getDefinition('URI');
