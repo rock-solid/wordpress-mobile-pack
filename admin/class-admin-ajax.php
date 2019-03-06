@@ -1,11 +1,5 @@
 <?php
 
-if ( ! class_exists( 'PtPwa_Themes_Config' )) {
-
-    $Pt_Pwa_Config = new Pt_Pwa_Config();
-    require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH.'inc/class-pt-pwa-themes-config.php');
-}
-
 if ( ! class_exists( 'PtPwa_Admin_Ajax' ) ) {
 
     /**
@@ -195,60 +189,6 @@ if ( ! class_exists( 'PtPwa_Admin_Ajax' ) ) {
 
             exit();
         }
-
-
-        /**
-         *
-         * Method used to save the page details content in the database
-         *
-         */
-        public function content_pagedetails()
-        {
-
-            if (current_user_can( 'manage_options' )){
-
-                $status = 0;
-
-                if (isset($_POST) && is_array($_POST) && !empty($_POST)){
-
-                    if (isset($_POST['wmp_pageedit_id']) && isset($_POST['wmp_pageedit_content'])){
-
-                        if (is_numeric($_POST['wmp_pageedit_id'])){
-
-                            if (trim($_POST['wmp_pageedit_content']) != '') {
-
-                                // load HTML purifier / formatter
-                                if (!class_exists('PtPwa_Formatter')) {
-
-                                    $Pt_Pwa_Config = new Pt_Pwa_Config();
-
-                                    require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'inc/class-pt-pwa-formatter.php');
-                                }
-
-                                $purifier = PtPwa_Formatter::init_purifier();
-
-                                $page_id = intval($_POST['wmp_pageedit_id']);
-                                $page_content = $purifier->purify(stripslashes($_POST['wmp_pageedit_content']));
-
-                                // save option in the db
-                                update_option(PtPwa_Options::$prefix . 'page_' . $page_id, $page_content);
-
-                                $status = 1;
-
-                            } else {
-                                $status = 2;
-                            }
-                        }
-                    }
-                }
-
-                echo $status;
-            }
-
-            exit();
-        }
-
-
 
         /**
          *

@@ -1,5 +1,9 @@
 <?php
 
+if (!class_exists('PtPwa_Options')) {
+  require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH. 'inc/class-pt-pwa-options.php');
+}
+
 if (!class_exists('PtPwa_Uploads')) {
   require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'inc/class-pt-pwa-uploads.php');
 }
@@ -39,6 +43,7 @@ if (!class_exists('PtPwaFileHelper')) {
 if (!class_exists('JsonSerializer')) {
   require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'libs/json-serializer/JsonSerializer/JsonSerializer.php');
 }
+
 
 if (!class_exists('PtPwa')) {
 

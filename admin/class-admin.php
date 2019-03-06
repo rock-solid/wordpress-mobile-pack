@@ -149,48 +149,5 @@ if ( ! class_exists( 'PtPwa_Admin' ) ) {
                 }
             }
         }
-
-
-        /**
-         *
-         * Method used to render a form with a page's details
-         *
-         */
-        public function page_content() {
-
-            $Pt_Pwa_Config = new Pt_Pwa_Config();
-
-            if (isset($_GET) && is_array($_GET) && !empty($_GET)){
-
-                if (isset($_GET['id'])) {
-
-                    if (is_numeric($_GET['id'])) {
-
-                        // get page
-                        $page = get_page($_GET['id']);
-
-                        if ($page != null) {
-
-                            if (!class_exists('PtPwa_Formatter')) {
-                                require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'inc/class-pt-pwa-formatter.php');
-                            }
-
-                            $purifier = PtPwa_Formatter::init_purifier();
-
-                            // first check if the admin edited the content for this page
-                            if (get_option(PtPwa_Options::$prefix.'page_' .$page->ID) === false)
-                                $content = apply_filters("the_content", $page->post_content);
-                            else
-                                $content = apply_filters("the_content", get_option( PtPwa_Options::$prefix.'page_' .$page->ID  ));
-
-                            $content = $purifier->purify(stripslashes($content));
-
-                            // load view
-                            include($Pt_Pwa_Config->PWA_PLUGIN_PATH.'admin/pages/page-details.php');
-                        }
-                    }
-                }
-            }
-        }
     }
 }
