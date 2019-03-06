@@ -23,7 +23,7 @@ if (!class_exists('PtPwa_Detect')) {
          */
     protected function is_allowed_tablets()
     {
-      return PtPwa_Options::get_setting('enable_tablets') == 1;
+      return false;
     }
 
     /**
@@ -75,3 +75,4 @@ if (!class_exists('PtPwa_Detect')) {
     }
   }
 }
+
