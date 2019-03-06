@@ -5,7 +5,7 @@ class PtPwaRouteMapper implements RouteMapper {
      * Translate permalink structure from WP structure to PWA structure
      *
      * @param $permalink_structure
-     * 
+     *
      * @return $article_pattern
      */
     public static function translatePermalinkStructure($permalink_structure)
@@ -16,7 +16,7 @@ class PtPwaRouteMapper implements RouteMapper {
             $article_pattern =  '/?p=:id';
         } else {
             $param_keys = explode('/', $permalink_structure);
-            
+
             foreach( $param_keys as $param ) {
                 switch($param) {
                     case '%category%':
@@ -40,7 +40,7 @@ class PtPwaRouteMapper implements RouteMapper {
                     case '%day%':
                         $article_pattern = $article_pattern . ':day/';
                         break;
-                    default: 
+                    default:
                         break;
                 }
             }
@@ -53,7 +53,7 @@ class PtPwaRouteMapper implements RouteMapper {
      * Identifies if permalink has a trailing slash at the end
      *
      * @param $permalink_structure
-     * 
+     *
      * @return $includeTrailingSlashes
      */
     public static function includeTrailingSlashes($permalink_structure)
@@ -67,7 +67,7 @@ class PtPwaRouteMapper implements RouteMapper {
      * @param $category_prefix
      * @param $article_pattern
      * @param $includeTrailingSlashes
-     * 
+     *
      * @return $routes
      */
     public static function mapRoutes($category_prefix, $article_pattern, $includeTrailingSlashes)
@@ -82,30 +82,28 @@ class PtPwaRouteMapper implements RouteMapper {
             array(
                 "name"      =>  "home",
                 "pattern"   =>  "/",
-                "page"      =>  "index" 
+                "page"      =>  "index"
             ),
             array(
                 "name"      =>  "list",
                 "pattern"   =>  $category_prefix . "/:sectionSlug" . $trailingSlash,
-                "page"      =>  "index" 
+                "page"      =>  "index"
             ),
             array(
                 "name"      =>  "list 2",
                 "pattern"   =>  $category_prefix . "/:sectionSlug/:secondSectionSlug" . $trailingSlash,
-                "page"      =>  "index" 
+                "page"      =>  "index"
             ),
             array(
                 "name"      =>  "article",
                 "pattern"   =>  "/:articleSlug" . $trailingSlash,
-                "page"      =>  "article" 
+                "page"      =>  "article"
             ),
             array(
                 "name"      =>  null,
                 "pattern"   =>  $article_pattern,
-                "page"      =>  "article" 
+                "page"      =>  "article"
             ),
         );
     }
 }
-
-?>

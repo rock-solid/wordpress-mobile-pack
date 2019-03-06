@@ -32,10 +32,8 @@ try {
     if(strpos($_SERVER['REQUEST_URI'], '?')){
         $queryVar = '&';
     }
-        
+
     $current_link = $protocol.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']. $queryVar."noapp=true";
 
     header("Location: ".$current_link);
 }
-
-?>

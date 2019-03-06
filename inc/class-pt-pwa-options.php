@@ -198,6 +198,8 @@ if (!class_exists('PtPwa_Options')) {
             return delete_option(self::$prefix . $option);
         }
       }
+
+      return false;
     }
 
 

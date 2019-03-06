@@ -17,7 +17,6 @@
         public function __construct($plugin_dir)
         {
           // Load application only if the PRO plugin is not active
-          if (!PtPwa::is_active_plugin('Publishers Toolbox PWA PRO'))
             $this->check_load();
             $this->plugin_dir = $plugin_dir;
 
@@ -96,7 +95,7 @@
     <script>
         window.onload = function() {
             function onMobileButtonClick() {
-                document.cookie = 'classicCookie=false;'
+                document.cookie = 'classicCookie=false;';
                 location.href = location.href.replace('?noapp=true', '');
             }
 

@@ -55,5 +55,3 @@ class PtPwaManifestManager implements PtPwaManager {
         return $this;
     }
 }
-
-?>
