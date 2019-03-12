@@ -94,7 +94,7 @@ class PtPwaRouteMapper implements RouteMapper {
             )
         );
 
-        if($article_pattern !== ":sectionSlug/:articleSlug/") {
+        if($article_pattern !== "/:sectionSlug/:articleSlug/") {
             array_push(
                 $routes,
                 array(
