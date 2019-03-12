@@ -25,6 +25,9 @@ class PtPwaRouteMapper implements RouteMapper {
                     case '%postname%':
                         $article_pattern = $article_pattern . ':title/';
                         break;
+                    case '%postname%-%bcf_baobab_content_id%':
+                        $article_pattern = $article_pattern . ':articleSlug/';
+                    break;
                     case '%post_id%':
                         $article_pattern = $article_pattern . ':id/';
                         break;
@@ -78,7 +81,7 @@ class PtPwaRouteMapper implements RouteMapper {
             $category_prefix = "/" . $category_prefix;
         }
 
-        return array(
+        $routes = array(
             array(
                 "name"      =>  "home",
                 "pattern"   =>  "/",
@@ -88,12 +91,22 @@ class PtPwaRouteMapper implements RouteMapper {
                 "name"      =>  "list",
                 "pattern"   =>  $category_prefix . "/:sectionSlug" . $trailingSlash,
                 "page"      =>  "index" 
-            ),
-            array(
-                "name"      =>  "list 2",
-                "pattern"   =>  $category_prefix . "/:sectionSlug/:secondSectionSlug" . $trailingSlash,
-                "page"      =>  "index" 
-            ),
+            )
+        );
+
+        if($article_pattern !== ":sectionSlug/:articleSlug/") {
+            array_push(
+                $routes,
+                array(
+                    "name"      =>  "list 2",
+                    "pattern"   =>  $category_prefix . "/:sectionSlug/:secondSectionSlug" . $trailingSlash,
+                    "page"      =>  "index" 
+                )
+            );
+        }
+        
+        array_push(
+            $routes,
             array(
                 "name"      =>  "article",
                 "pattern"   =>  "/:articleSlug" . $trailingSlash,
@@ -103,8 +116,10 @@ class PtPwaRouteMapper implements RouteMapper {
                 "name"      =>  null,
                 "pattern"   =>  $article_pattern,
                 "page"      =>  "article" 
-            ),
+            )
         );
+
+        return $routes;
     }
 }
 
