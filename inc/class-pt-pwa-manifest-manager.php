@@ -5,7 +5,7 @@ class PtPwaManifestManager implements PtPwaManager {
     private $manifest;
 
     public function __construct($manifest) {
-        $this->manifest = $manifest;      
+        $this->manifest = $manifest;
         $this->manifest->setStartUrl(get_site_url());
     }
 
@@ -32,7 +32,7 @@ class PtPwaManifestManager implements PtPwaManager {
 
     /**
      * Get the value of manifest
-     */ 
+     */
     public function getManifest()
     {
         $manifestContents = $this->read();
@@ -47,7 +47,7 @@ class PtPwaManifestManager implements PtPwaManager {
      * Set the value of manifest
      *
      * @return  self
-     */ 
+     */
     public function setManifest($manifest)
     {
         $this->manifest = $manifest;
@@ -55,5 +55,3 @@ class PtPwaManifestManager implements PtPwaManager {
         return $this;
     }
 }
-
-?>

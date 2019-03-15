@@ -5,11 +5,6 @@ if ( ! class_exists( 'PtPwa_Admin' ) ) {
     require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH.'admin/class-admin.php');
 }
 
-if ( ! class_exists( 'PtPwa_Themes_Config' )) {
-    $Pt_Pwa_Config = new Pt_Pwa_Config();
-    require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH.'inc/class-pt-pwa-themes-config.php');
-}
-
 if ( ! class_exists( 'Pt_Pwa_Admin_Init' ) ) {
 
     /**
@@ -95,15 +90,14 @@ if ( ! class_exists( 'Pt_Pwa_Admin_Init' ) ) {
 
 			$menu_name = 'wmp-options';
 
-			// check if we need to request updates for the what's new section
-			$PtPwaCookie = new PtPwa_Cookie();
+
 
 			// display notify icon if the what's new section was updated
 			$display_notify_icon = false;
 			if (PtPwa_Options::get_setting('whats_new_updated') == 1) {
 				$display_notify_icon = true;
 			}
-            
+
             // add menu and submenu hooks
             add_menu_page('PT PWA', 'PT PWA', 'manage_options', $menu_name, '', WP_PLUGIN_URL . '/' . $Pt_Pwa_Config->PWA_DOMAIN . '/admin/images/menu-icon2' . ($display_notify_icon == true ? '-updates' : '') . '.png');
 
@@ -162,21 +156,6 @@ if ( ! class_exists( 'Pt_Pwa_Admin_Init' ) ) {
             }
         }
 
-        /**
-         *
-         * Load specific javascript files for the admin Look & Feel submenu page
-         *
-         */
-        public function wmp_admin_load_theme_settings_js()
-        {
-
-            $Pt_Pwa_Config = new Pt_Pwa_Config();
-
-			wp_enqueue_style(PtPwa_Options::$prefix.'css_select_box_it', plugins_url($Pt_Pwa_Config->PWA_DOMAIN.'/admin/css/jquery.selectBoxIt.css'), array(), '3.8.1');
-			wp_enqueue_script(PtPwa_Options::$prefix.'js_select_box_it', plugins_url($Pt_Pwa_Config->PWA_DOMAIN.'/admin/js/UI.Interface/Lib/jquery.selectBoxIt.min.js'), array('jquery','jquery-ui-core', 'jquery-ui-widget'), '3.8.1');
-
-            wp_enqueue_style('wp-color-picker');
-        }
 
 
         /**
