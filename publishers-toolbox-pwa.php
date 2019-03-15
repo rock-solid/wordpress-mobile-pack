@@ -5,7 +5,7 @@
  * Description: Publisher's Toolbox PWA is a mobile plugin that helps you transform your WordPress site into a progressive web application. It comes with a choice of two mobile app themes.
  * Author: Publisher's Toolbox
  * Author URI: https://publisherstoolbox.com/
- * Version: 1.6.0
+ * Version: 1.7.3
  * License: Publishers Toolbox PWA is Licensed under the Apache License, Version 2.0
  * Text Domain: publishers-toolbox-pwa
  */
