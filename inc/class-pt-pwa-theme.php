@@ -3,7 +3,7 @@
 class PtPwaTheme
 {
     private $appName = "App Name";
-    
+
     private $appEndpoint = "https://pwa-cdn.baobabsuite.com";
 
     private $metaDescription = "Meta Description";
@@ -54,15 +54,15 @@ class PtPwaTheme
 
     private $menuSlideOutWidth = '75%';
 
-    private $DFTNetworkId = NULL; 
+    private $DFTNetworkId;
 
-    private $AdUnit = ""; 
+    private $AdUnit = '';
 
     private $AdUnitSectionExtended = false;
 
-    private $GATrackingCode; 
+    private $GATrackingCode;
 
-    private $GTMID; 
+    private $GTMID;
 
     private $sectionSliderTextColor = '#000';
 
@@ -70,7 +70,7 @@ class PtPwaTheme
 
     private $listAdInterval = 0;
 
-    private $listAdMax = 0; 
+    private $listAdMax = 0;
 
     private $highlightsColour = '#099EE2';
 
@@ -121,9 +121,9 @@ class PtPwaTheme
     private $socialShareKitButtons = [];
 
     private $extraLinks = [];
-    
+
     private $excludedSections = [];
-    
+
     private $twitterEmbedUrl = "https://platform.twitter.com/widgets.js";
 
     private $instagramEmbedUrl = "https://www.instagram.com/embed.js";
@@ -134,41 +134,41 @@ class PtPwaTheme
 
     private $hamburgerImageMarginTop = "0px";
 
-    private $customHtml = null;
+    private $customHtml;
 
     private $infiniteVerticalArticleScroll = false;
 
     private $infiniteHorizontalArticleScroll = true;
 
     private $excludedPageIds = [];
-    
-    private $sectionPrefix = null;
+
+    private $sectionPrefix;
 
     private $dnsPrefetch =  [];
 
-    private $apiEndPoint = null;
+    private $apiEndPoint ;
 
     private $hasTaboola = false;
-    
+
     private $renderAds = true;
-    
+
     private $renderAdsServerSide = true;
-    
-    private $firstImpressionsId = null;
-    
+
+    private $firstImpressionsId;
+
     private $whitelistedSections = [];
 
-    private $instagramSocialUrl = null;
+    private $instagramSocialUrl;
 
-    private $twitterSocialUrl = null;
+    private $twitterSocialUrl;
 
-    private $facebookSocialUrl = null;
+    private $facebookSocialUrl;
 
-    private $youtubeSocialUrl = null;
+    private $youtubeSocialUrl;
 
     private $includeTrailingSlashes = true;
 
-    private $appIconUrl = null;
+    private $appIconUrl;
 
     /**
      * Get the value of appName
@@ -1274,7 +1274,7 @@ class PtPwaTheme
 
     /**
      * Get the value of twitterEmbedUrl
-     */ 
+     */
     public function getTwitterEmbedUrl()
     {
         return $this->twitterEmbedUrl;
@@ -1284,7 +1284,7 @@ class PtPwaTheme
      * Set the value of twitterEmbedUrl
      *
      * @return  self
-     */ 
+     */
     public function setTwitterEmbedUrl($twitterEmbedUrl)
     {
         $this->twitterEmbedUrl = $twitterEmbedUrl;
@@ -1294,7 +1294,7 @@ class PtPwaTheme
 
     /**
      * Get the value of instagramEmbedUrl
-     */ 
+     */
     public function getInstagramEmbedUrl()
     {
         return $this->instagramEmbedUrl;
@@ -1304,7 +1304,7 @@ class PtPwaTheme
      * Set the value of instagramEmbedUrl
      *
      * @return  self
-     */ 
+     */
     public function setInstagramEmbedUrl($instagramEmbedUrl)
     {
         $this->instagramEmbedUrl = $instagramEmbedUrl;
@@ -1314,7 +1314,7 @@ class PtPwaTheme
 
     /**
      * Get the value of shareTitlePrefix
-     */ 
+     */
     public function getShareTitlePrefix()
     {
         return $this->shareTitlePrefix;
@@ -1324,7 +1324,7 @@ class PtPwaTheme
      * Set the value of shareTitlePrefix
      *
      * @return  self
-     */ 
+     */
     public function setShareTitlePrefix($shareTitlePrefix)
     {
         $this->shareTitlePrefix = $shareTitlePrefix;
@@ -1334,7 +1334,7 @@ class PtPwaTheme
 
     /**
      * Get the value of customStyles
-     */ 
+     */
     public function getCustomStyles()
     {
         return $this->customStyles;
@@ -1344,7 +1344,7 @@ class PtPwaTheme
      * Set the value of customStyles
      *
      * @return  self
-     */ 
+     */
     public function setCustomStyles($customStyles)
     {
         $this->customStyles = $customStyles;
@@ -1354,7 +1354,7 @@ class PtPwaTheme
 
     /**
      * Get the value of moreBlockTags
-     */ 
+     */
     public function getMoreBlockTags()
     {
         return $this->moreBlockTags;
@@ -1364,7 +1364,7 @@ class PtPwaTheme
      * Set the value of moreBlockTags
      *
      * @return  self
-     */ 
+     */
     public function setMoreBlockTags($moreBlockTags)
     {
         $this->moreBlockTags = $moreBlockTags;
@@ -1374,7 +1374,7 @@ class PtPwaTheme
 
     /**
      * Get the value of hamburgerImageMarginTop
-     */ 
+     */
     public function getHamburgerImageMarginTop()
     {
         return $this->hamburgerImageMarginTop;
@@ -1384,7 +1384,7 @@ class PtPwaTheme
      * Set the value of hamburgerImageMarginTop
      *
      * @return  self
-     */ 
+     */
     public function setHamburgerImageMarginTop($hamburgerImageMarginTop)
     {
         $this->hamburgerImageMarginTop = $hamburgerImageMarginTop;
@@ -1394,7 +1394,7 @@ class PtPwaTheme
 
     /**
      * Get the value of customHtml
-     */ 
+     */
     public function getCustomHtml()
     {
         return $this->customHtml;
@@ -1404,7 +1404,7 @@ class PtPwaTheme
      * Set the value of customHtml
      *
      * @return  self
-     */ 
+     */
     public function setCustomHtml($customHtml)
     {
         $this->customHtml = $customHtml;
@@ -1414,7 +1414,7 @@ class PtPwaTheme
 
     /**
      * Get the value of infiniteVerticalArticleScroll
-     */ 
+     */
     public function getInfiniteVerticalArticleScroll()
     {
         return $this->infiniteVerticalArticleScroll;
@@ -1424,7 +1424,7 @@ class PtPwaTheme
      * Set the value of infiniteVerticalArticleScroll
      *
      * @return  self
-     */ 
+     */
     public function setInfiniteVerticalArticleScroll($infiniteVerticalArticleScroll)
     {
         $this->infiniteVerticalArticleScroll = $infiniteVerticalArticleScroll;
@@ -1434,7 +1434,7 @@ class PtPwaTheme
 
     /**
      * Get the value of infiniteHorizontalArticleScroll
-     */ 
+     */
     public function getInfiniteHorizontalArticleScroll()
     {
         return $this->infiniteHorizontalArticleScroll;
@@ -1444,7 +1444,7 @@ class PtPwaTheme
      * Set the value of infiniteHorizontalArticleScroll
      *
      * @return  self
-     */ 
+     */
     public function setInfiniteHorizontalArticleScroll($infiniteHorizontalArticleScroll)
     {
         $this->infiniteHorizontalArticleScroll = $infiniteHorizontalArticleScroll;
@@ -1454,7 +1454,7 @@ class PtPwaTheme
 
     /**
      * Get the value of remote
-     */ 
+     */
     public function getRemote()
     {
         return $this->remote;
@@ -1464,7 +1464,7 @@ class PtPwaTheme
      * Set the value of remote
      *
      * @return  self
-     */ 
+     */
     public function setRemote($remote)
     {
         $this->remote = $remote;
@@ -1474,7 +1474,7 @@ class PtPwaTheme
 
     /**
      * Get the value of excludedSections
-     */ 
+     */
     public function getExcludedSections()
     {
         return $this->excludedSections;
@@ -1484,7 +1484,7 @@ class PtPwaTheme
      * Set the value of excludedSections
      *
      * @return  self
-     */ 
+     */
     public function setExcludedSections($excludedSections)
     {
         $this->excludedSections = $excludedSections;
@@ -1494,7 +1494,7 @@ class PtPwaTheme
 
     /**
      * Get the value of appEndpoint
-     */ 
+     */
     public function getAppEndpoint()
     {
         return $this->appEndpoint;
@@ -1504,7 +1504,7 @@ class PtPwaTheme
      * Set the value of appEndpoint
      *
      * @return  self
-     */ 
+     */
     public function setAppEndpoint($appEndpoint)
     {
         $this->appEndpoint = $appEndpoint;
@@ -1514,7 +1514,7 @@ class PtPwaTheme
 
     /**
      * Get the value of showClassicSwitch
-     */ 
+     */
     public function getShowClassicSwitch()
     {
         return $this->showClassicSwitch;
@@ -1524,7 +1524,7 @@ class PtPwaTheme
      * Set the value of showClassicSwitch
      *
      * @return  self
-     */ 
+     */
     public function setShowClassicSwitch($showClassicSwitch)
     {
         $this->showClassicSwitch = $showClassicSwitch;
@@ -1534,7 +1534,7 @@ class PtPwaTheme
 
     /**
      * Get the value of sectionPrefix
-     */ 
+     */
     public function getSectionPrefix()
     {
         return $this->sectionPrefix;
@@ -1544,7 +1544,7 @@ class PtPwaTheme
      * Set the value of sectionPrefix
      *
      * @return  self
-     */ 
+     */
     public function setSectionPrefix($sectionPrefix)
     {
         $this->sectionPrefix = $sectionPrefix;
@@ -1562,7 +1562,7 @@ class PtPwaTheme
 
     /**
      * Get the value of dnsPrefetch
-     */ 
+     */
     public function getDnsPrefetch()
     {
         return $this->dnsPrefetch;
@@ -1572,7 +1572,7 @@ class PtPwaTheme
      * Set the value of dnsPrefetch
      *
      * @return  self
-     */ 
+     */
     public function setDnsPrefetch($dnsPrefetch)
     {
         $this->dnsPrefetch = $dnsPrefetch;
@@ -1582,7 +1582,7 @@ class PtPwaTheme
 
     /**
      * Get the value of apiEndpoint
-     */ 
+     */
     public function getApiEndpoint()
     {
         if($this->apiEndPoint == null){
@@ -1595,7 +1595,7 @@ class PtPwaTheme
      * Set the value of apiEndPoint
      *
      * @return  self
-     */ 
+     */
     public function setApiEndpoint($apiEndpoint)
     {
         $this->apiEndPoint = $apiEndpoint;
@@ -1605,7 +1605,7 @@ class PtPwaTheme
 
     /**
      * Get the value of renderAds
-     */ 
+     */
     public function getRenderAds()
     {
         return $this->renderAds;
@@ -1615,7 +1615,7 @@ class PtPwaTheme
      * Set the value of renderAds
      *
      * @return self
-     */ 
+     */
     public function setRenderAds($renderAds)
     {
         $this->renderAds = $renderAds;
@@ -1625,7 +1625,7 @@ class PtPwaTheme
 
     /**
      * Get the value of renderAdsServerSide
-     */ 
+     */
     public function getRenderAdsServerSide()
     {
         return $this->renderAdsServerSide;
@@ -1635,7 +1635,7 @@ class PtPwaTheme
      * Set the value of renderAdsServerSide
      *
      * @return self
-     */ 
+     */
     public function setRenderAdsServerSide($renderAdsServerSide)
     {
         $this->renderAdsServerSide = $renderAdsServerSide;
@@ -1645,7 +1645,7 @@ class PtPwaTheme
 
     /**
      * Get the value of hasTaboola
-     */ 
+     */
     public function getHasTaboola()
     {
         return $this->hasTaboola;
@@ -1655,7 +1655,7 @@ class PtPwaTheme
      * Set the value of hasTaboola
      *
      * @return self
-     */ 
+     */
     public function setHasTaboola($hasTaboola)
     {
         $this->hasTaboola = $hasTaboola;
@@ -1665,7 +1665,7 @@ class PtPwaTheme
 
     /**
      * Get the value of firstImpressionsId
-     */ 
+     */
     public function getFirstImpressionsId()
     {
         return $this->firstImpressionsId;
@@ -1675,17 +1675,17 @@ class PtPwaTheme
      * Set the value of firstImpressionsId
      *
      * @return self
-     */ 
+     */
     public function setFirstImpressionsId($firstImpressionsId)
     {
         $this->firstImpressionsId = $firstImpressionsId;
 
         return $this;
     }
-    
+
     /**
      * Get the value of whitelistedSections
-     */ 
+     */
     public function getWhitelistedSections()
     {
         return $this->whitelistedSections;
@@ -1695,7 +1695,7 @@ class PtPwaTheme
      * Set the value of whitelistedSections
      *
      * @return self
-     */ 
+     */
     public function setWhitelistedSections($whitelistedSections)
     {
         $this->whitelistedSections = $whitelistedSections;
@@ -1705,7 +1705,7 @@ class PtPwaTheme
 
     /**
      * Get the value of instagramSocialUrl
-     */ 
+     */
     public function getInstagramSocialUrl()
     {
         return $this->instagramSocialUrl;
@@ -1715,7 +1715,7 @@ class PtPwaTheme
      * Set the value of instagramSocialUrl
      *
      * @return self
-     */ 
+     */
     public function setInstagramSocialUrl($instagramSocialUrl)
     {
         $this->instagramSocialUrl = $instagramSocialUrl;
@@ -1725,7 +1725,7 @@ class PtPwaTheme
 
     /**
      * Get the value of twitterSocialUrl
-     */ 
+     */
     public function getTwitterSocialUrl()
     {
         return $this->twitterSocialUrl;
@@ -1735,7 +1735,7 @@ class PtPwaTheme
      * Set the value of twitterSocialUrl
      *
      * @return self
-     */ 
+     */
     public function setTwitterSocialUrl($twitterSocialUrl)
     {
         $this->twitterSocialUrl = $twitterSocialUrl;
@@ -1745,7 +1745,7 @@ class PtPwaTheme
 
     /**
      * Get the value of facebookSocialUrl
-     */ 
+     */
     public function getFacebookSocialUrl()
     {
         return $this->facebookSocialUrl;
@@ -1755,7 +1755,7 @@ class PtPwaTheme
      * Set the value of facebookSocialUrl
      *
      * @return self
-     */ 
+     */
     public function setFacebookSocialUrl($facebookSocialUrl)
     {
         $this->facebookSocialUrl = $facebookSocialUrl;
@@ -1765,7 +1765,7 @@ class PtPwaTheme
 
     /**
      * Get the value of youtubeSocialUrl
-     */ 
+     */
     public function getYoutubeSocialUrl()
     {
         return $this->youtubeSocialUrl;
@@ -1775,7 +1775,7 @@ class PtPwaTheme
      * Set the value of youtubeSocialUrl
      *
      * @return self
-     */ 
+     */
     public function setYoutubeSocialUrl($youtubeSocialUrl)
     {
         $this->youtubeSocialUrl = $youtubeSocialUrl;
@@ -1785,7 +1785,7 @@ class PtPwaTheme
 
     /**
      * Get the value of includeTrailingSlashes
-     */ 
+     */
     public function getIncludeTrailingSlashes()
     {
         return $this->includeTrailingSlashes;
@@ -1815,11 +1815,11 @@ class PtPwaTheme
      * Set the value of includeTrailingSlashes
      *
      * @return self
-     */ 
+     */
     public function setIncludeTrailingSlashes($includeTrailingSlashes)
     {
         $this->includeTrailingSlashes = $includeTrailingSlashes;
-        
+
         $category_prefix = $this->getSectionPrefix();
 
         $permalink_structure = get_option( 'permalink_structure' );
@@ -1833,7 +1833,7 @@ class PtPwaTheme
 
     /**
      * Get the value of bmMenuBlockBackground
-     */ 
+     */
     public function getBmMenuBlockBackground()
     {
         return $this->bmMenuBlockBackground;
@@ -1843,7 +1843,7 @@ class PtPwaTheme
      * Set the value of bmMenuBlockBackground
      *
      * @return  self
-     */ 
+     */
     public function setBmMenuBlockBackground($bmMenuBlockBackground)
     {
         $this->bmMenuBlockBackground = $bmMenuBlockBackground;
@@ -1853,7 +1853,7 @@ class PtPwaTheme
 
     /**
      * Get the value of menuTextColour
-     */ 
+     */
     public function getMenuTextColour()
     {
         return $this->menuTextColour;
@@ -1863,7 +1863,7 @@ class PtPwaTheme
      * Set the value of menuTextColour
      *
      * @return  self
-     */ 
+     */
     public function setMenuTextColour($menuTextColour)
     {
         $this->menuTextColour = $menuTextColour;
@@ -1873,7 +1873,7 @@ class PtPwaTheme
 
     /**
      * Get the value of bmMenuHeaderBackground
-     */ 
+     */
     public function getBmMenuHeaderBackground()
     {
         return $this->bmMenuHeaderBackground;
@@ -1883,10 +1883,30 @@ class PtPwaTheme
      * Set the value of bmMenuHeaderBackground
      *
      * @return  self
-     */ 
+     */
     public function setBmMenuHeaderBackground($bmMenuHeaderBackground)
     {
         $this->bmMenuHeaderBackground = $bmMenuHeaderBackground;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of excludedPageIds
+     */
+    public function getExcludedPageIds()
+    {
+        return $this->excludedPageIds;
+    }
+
+    /**
+     * Set the value of excludedPageIds
+     *
+     * @return  self
+     */
+    public function setExcludedPageIds($excludedPageIds)
+    {
+        $this->excludedPageIds = $excludedPageIds;
 
         return $this;
     }

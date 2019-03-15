@@ -116,7 +116,9 @@ if (!class_exists('PtPwa_Uploads')) {
                 // if the directory doesn't exist, create it
                 if (!file_exists($pt_pwa_uploads_dir)) {
 
-                    mkdir($pt_pwa_uploads_dir, 0777);
+                    if (!mkdir($pt_pwa_uploads_dir, 0777) && !is_dir($pt_pwa_uploads_dir)) {
+                        throw new \RuntimeException(sprintf('Directory "%s" was not created', $pt_pwa_uploads_dir));
+                    }
 
                     // add .htaccess file in the uploads folder
                     $this->set_htaccess_file();
@@ -161,22 +163,6 @@ if (!class_exists('PtPwa_Uploads')) {
                 }
             }
 
-            // remove compiled css file (if it exists)
-            $theme_timestamp = PtPwa_Options::get_setting('theme_timestamp');
-
-            if ($theme_timestamp != ''){
-
-                if ( ! class_exists( 'PtPwa_Themes_Compiler' ) && version_compare(PHP_VERSION, '5.3') >= 0 ) {
-                    require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH.'inc/class-pt-pwa-themes-compiler.php');
-                }
-
-                if (class_exists('PtPwa_Themes_Compiler')) {
-
-                    $wmp_themes = new PtPwa_Themes_Compiler();
-                    $wmp_themes->remove_css_file($theme_timestamp);
-                }
-            }
-
             // remove htaccess file
             $this->remove_htaccess_file();
 
@@ -214,6 +200,7 @@ if (!class_exists('PtPwa_Uploads')) {
                 if (file_exists(PWA_FILES_UPLOADS_DIR.$file_path))
                     return unlink(PWA_FILES_UPLOADS_DIR.$file_path);
             }
+            return true;
         }
 
         /**
@@ -267,6 +254,8 @@ if (!class_exists('PtPwa_Uploads')) {
             if (file_exists($file_path)){
                 unlink($file_path);
             }
+
+            return true;
         }
     }
 }

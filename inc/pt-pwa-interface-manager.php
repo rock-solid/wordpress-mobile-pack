@@ -5,4 +5,3 @@
         public function write();
         public function read();
     }
-?>

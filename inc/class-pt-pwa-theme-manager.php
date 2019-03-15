@@ -5,9 +5,9 @@ class PtPwaThemeManager implements PtPwaManager {
     private $theme;
 
     public function __construct($theme) {
-        
+
         $Pt_Pwa_Config = new Pt_Pwa_Config();
-        
+
         // Add routes to theme.json
         $permalink_structure = get_option( 'permalink_structure' );
         $category_prefix = get_option( 'category_base' );
@@ -26,7 +26,7 @@ class PtPwaThemeManager implements PtPwaManager {
         $theme->setIncludeTrailingSlashes($includeTrailingSlashes);
         $theme->setLoadingSpinner(plugins_url() . '/'. $Pt_Pwa_Config->PWA_DOMAIN ."/admin/images/ajax-loader.gif");
 
-        $this->theme = $theme;      
+        $this->theme = $theme;
     }
 
     public function serialize() {
@@ -53,7 +53,7 @@ class PtPwaThemeManager implements PtPwaManager {
 
     /**
      * Get the value of theme
-     */ 
+     */
     public function getTheme()
     {
         $themeContents = $this->read();
@@ -69,7 +69,7 @@ class PtPwaThemeManager implements PtPwaManager {
      * Set the value of theme
      *
      * @return  self
-     */ 
+     */
     public function setTheme($theme)
     {
         $this->theme = $theme;
@@ -77,5 +77,3 @@ class PtPwaThemeManager implements PtPwaManager {
         return $this;
     }
 }
-
-?>

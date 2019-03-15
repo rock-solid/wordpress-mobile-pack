@@ -7,7 +7,7 @@ class PtPwaFileHelper
         if (file_exists($path)) {
             unlink($path);
         }
-        
+
         $file = fopen($path, "w") or die("Unable to open file!");
         fwrite($file, $contents);
         fclose($file);
@@ -21,9 +21,7 @@ class PtPwaFileHelper
             $contents = fread($file, filesize($path));
             fclose($file);
             return $contents;
-        } 
+        }
         return false;
     }
 }
-
-?>

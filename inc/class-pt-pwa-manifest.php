@@ -19,10 +19,10 @@ class PtPwaManifest {
     private $display = "standalone";
 
     private $orientation = "portrait";
-     
+
     /**
      * Get the value of name
-     */ 
+     */
     public function getName()
     {
         return $this->name;
@@ -32,7 +32,7 @@ class PtPwaManifest {
      * Set the value of name
      *
      * @return  self
-     */ 
+     */
     public function setName($name)
     {
         $this->name = $name;
@@ -42,7 +42,7 @@ class PtPwaManifest {
 
     /**
      * Get the value of short_name
-     */ 
+     */
     public function getShortName()
     {
         return $this->short_name;
@@ -52,7 +52,7 @@ class PtPwaManifest {
      * Set the value of short_name
      *
      * @return  self
-     */ 
+     */
     public function setShortName($short_name)
     {
         $this->short_name = $short_name;
@@ -62,7 +62,7 @@ class PtPwaManifest {
 
     /**
      * Get the value of description
-     */ 
+     */
     public function getDescription()
     {
         return $this->description;
@@ -72,7 +72,7 @@ class PtPwaManifest {
      * Set the value of description
      *
      * @return  self
-     */ 
+     */
     public function setDescription($description)
     {
         $this->description = $description;
@@ -82,7 +82,7 @@ class PtPwaManifest {
 
     /**
      * Get the value of icons
-     */ 
+     */
     public function getIcons()
     {
         return $this->icons;
@@ -92,7 +92,7 @@ class PtPwaManifest {
      * Set the value of icons
      *
      * @return  self
-     */ 
+     */
     public function setIcons($icons)
     {
         $this->icons = $icons;
@@ -102,7 +102,7 @@ class PtPwaManifest {
 
     /**
      * Get the value of theme_color
-     */ 
+     */
     public function getThemeColor()
     {
         return $this->theme_color;
@@ -112,7 +112,7 @@ class PtPwaManifest {
      * Set the value of theme_color
      *
      * @return  self
-     */ 
+     */
     public function setThemeColor($theme_color)
     {
         $this->theme_color = $theme_color;
@@ -122,7 +122,7 @@ class PtPwaManifest {
 
     /**
      * Get the value of background_color
-     */ 
+     */
     public function getBackgroundColor()
     {
         return $this->background_color;
@@ -132,7 +132,7 @@ class PtPwaManifest {
      * Set the value of background_color
      *
      * @return  self
-     */ 
+     */
     public function setBackgroundColor($background_color)
     {
         $this->background_color = $background_color;
@@ -142,7 +142,7 @@ class PtPwaManifest {
 
     /**
      * Get the value of start_url
-     */ 
+     */
     public function getStartUrl()
     {
         return $this->start_url;
@@ -152,7 +152,7 @@ class PtPwaManifest {
      * Set the value of start_url
      *
      * @return  self
-     */ 
+     */
     public function setStartUrl($start_url)
     {
         $this->start_url = $start_url;
@@ -162,7 +162,7 @@ class PtPwaManifest {
 
     /**
      * Get the value of display
-     */ 
+     */
     public function getDisplay()
     {
         return $this->display;
@@ -172,7 +172,7 @@ class PtPwaManifest {
      * Set the value of display
      *
      * @return  self
-     */ 
+     */
     public function setDisplay($display)
     {
         $this->display = $display;
@@ -180,6 +180,3 @@ class PtPwaManifest {
         return $this;
     }
 }
-
-?>
-
