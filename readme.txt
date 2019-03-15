@@ -4,6 +4,7 @@ Tags: pwa, progressive web app, android, iOS, html5, iphone, mobile, mobile inte
 Requires at least: 4.6
 Tested up to: 5.1
 Stable tag: 1.7.3
+Version: 1.7.3
 License: GPLv2 or later
 
 == Description ==
