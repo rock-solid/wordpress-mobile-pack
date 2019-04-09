@@ -119,6 +119,10 @@ if (isset($_POST["save"])) {
                     <input type="text" name="apiEndpoint" value="<?= $theme->getApiEndpoint() ?>" disabled />
                     <div class="spacer-20"></div>
 
+                    <label>Application Endpoint</label>
+                    <input type="text" name="appEndpoint" value="<?= $theme->getAppEndpoint() ?>" />
+                    <div class="spacer-20"></div>
+
                     <input type="checkbox" name="showClassicSwitch" <?= $theme->getShowClassicSwitch() ? 'checked' : '' ?> /> Show classic site switch
                     <div class="spacer-20"></div>
 
@@ -154,8 +158,6 @@ if (isset($_POST["save"])) {
 
                     <input type="checkbox" name="socialMedia[]" value="ssk-whatsapp" <?= in_array('ssk-whatsapp', $theme->getSocialShareKitButtons()) ? 'checked' : '' ?> /> Enable WhatsApp sharing
                     <div class="spacer-10"></div>
-
-                    <input type="hidden" name="appEndpoint" value="<?= $theme->getAppEndpoint() ?>" />
 
                     <div class="submit">
                         <input type="submit" name="save" class="save" value="Save" />

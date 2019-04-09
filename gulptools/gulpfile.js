@@ -5,7 +5,7 @@
  *
  */
 var gulp = require('gulp'),
-  minify = require('gulp-minify')
+  minify = require('gulp-minify');
 /**
  *
  * Minify admin JS files

@@ -91,6 +91,7 @@ if (!empty($_POST['save'])) {
   $theme->setImageGalleryHeight($_POST['imageGalleryHeight']);
   $theme->setShowDatesOnList(isset($_POST['showDatesOnList']));
   $theme->setSearchLightTheme(isset($_POST['searchLightTheme']));
+  $theme->setMenuLightIcons (isset($_POST['menuLightIcons']));
   $theme->setShowSearch(isset($_POST['showSearch']));
   $theme->setTopHeros((int)preg_replace('/[^0-9]/', '', $_POST['topHeros']));
   $theme->setSectionPrefix($_POST['sectionPrefix']);
@@ -324,6 +325,9 @@ if (!empty($_POST['save'])) {
                     <div class="spacer-20"></div>
 
                     <input type="checkbox" name="searchLightTheme" <?= $theme->getSearchLightTheme() ? 'checked' : '' ?> /> Do you want search bar foreground light theme?
+                    <div class="spacer-20"></div>
+
+                    <input type="checkbox" name="menuLightIcons" <?= $theme->getMenuLightIcons() ? 'checked' : '' ?> /> Use light Icons?
                     <div class="spacer-20"></div>
 
                     <div class="holder">
