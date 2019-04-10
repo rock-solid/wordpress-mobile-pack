@@ -113,13 +113,13 @@ class PtPwaRouteMapper implements RouteMapper {
             $routes,
             array(
                 "name"      =>  "article",
-                "pattern"   =>  $article_pattern,
-                "page"      =>  "article" 
+                "pattern"   =>  ":articleSlug" . $trailingSlash,
+                "page"      =>  "article"
             ),
             array(
                 "name"      =>  null,
-                "pattern"   =>  ":articleSlug" . $trailingSlash,
-                "page"      =>  "article"
+                "pattern"   =>  $article_pattern,
+                "page"      =>  "article" 
             )
         );
 
