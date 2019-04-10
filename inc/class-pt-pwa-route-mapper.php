@@ -104,18 +104,22 @@ class PtPwaRouteMapper implements RouteMapper {
                 )
             );
         }
+
+        if (!empty($article_pattern) && !$includeTrailingSlashes) {
+            $article_pattern = rtrim($article_pattern, '/');
+        }
         
         array_push(
             $routes,
             array(
                 "name"      =>  "article",
-                "pattern"   =>  "/:articleSlug" . $trailingSlash,
-                "page"      =>  "article"
+                "pattern"   =>  $article_pattern,
+                "page"      =>  "article" 
             ),
             array(
                 "name"      =>  null,
-                "pattern"   =>  $article_pattern,
-                "page"      =>  "article" 
+                "pattern"   =>  ":articleSlug" . $trailingSlash,
+                "page"      =>  "article"
             )
         );
 
