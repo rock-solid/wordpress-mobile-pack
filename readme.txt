@@ -2,19 +2,20 @@
 Contributors: jamesgpearce, andreatrasatti, cborodescu, anghelalexandra, publisherstoolbox
 Tags: pwa, progressive web app, android, iOS, html5, iphone, mobile, mobile internet, mobile web, mobile web app, responsive ui, safari, sencha touch, smartphone, webkit, progressive web apps, app builder, apple, apps, convert to app, create blog app, ios app, ipad, make an app, mobile app plugin, mobile application, mobile blog app, mobile converter, mobile plugin, native app plugin, app theme, website to mobile app, WordPress android, WordPress app, WordPress iphone, WordPress mobile, WordPress mobile app
 Requires at least: 4.6
-Tested up to: 5.0.3
-Stable tag: 1.5.3
+Tested up to: 5.1
+Stable tag: 1.7.4
+Version: 1.7.4
 License: GPLv2 or later
 
 == Description ==
 
-**Publisher's Toolbox PWA is a WordPress plugin that helps you transform your website's content into a progressive mobile web application. It comes with multiple mobile app themes and display configurations from which to choose from.** 
+**Publisher's Toolbox PWA is a WordPress plugin that helps you transform your website's content into a progressive mobile web application. It comes with multiple mobile app themes and display configurations from which to choose from.**
 
 Publisher's Toolbox PWA is supported on iOS and Android smartphones and tablets. **Compatible browsers**: Safari, Google Chrome, Android - Native Browser.
 
 Publisher's Toolbox PWA provides the following:
 
-* **Progressive Web App**. Some of the key features of progressive web apps are: 
+* **Progressive Web App**. Some of the key features of progressive web apps are:
 
  1. Apps load nearly instantly and are reliable, no matter what kind of network connection your user is on.
  1. Web app install banners give users the ability to quickly and seamlessly add your mobile app to their home screen, making it easy to launch and return to your app.
@@ -31,7 +32,7 @@ Publisher's Toolbox PWA provides the following:
 
 * **Posts Sync**. The articles/posts inside the mobile web application are organized into their corresponding categories, thus readers can simply swipe through articles and jump from category to category in a seamless way.
 
-* **Pages Sync**. Choose what pages you want to display on your mobile web application. You can edit, show/hide different pages and order them according to your needs. 
+* **Pages Sync**. Choose what pages you want to display on your mobile web application. You can edit, show/hide different pages and order them according to your needs.
 
 * **Comments Sync**. All the comments that are displayed in the blog are also synchronized into the mobile web application. On top of that, comments that are posted from within the app are also displayed on the blog.
 
@@ -104,7 +105,7 @@ A link called 'Switch to mobile version' will be displayed in the footer of your
 The mobile web application can be deactivated from the "Settings" page of the admin panel. This option will not delete any settings that you have done so far, like customizing the look & feel of your application, but mobile readers will no longer be able to see it on their devices.
 
 = What is the difference between my mobile web application and a responsive theme? =
-A responsive theme is all about screen-size: it loads the same styling as the desktop view, adjusting it to fit a smaller screen. On the other hand a mobile web application combines the versatility of the web with the functionality of touch-enabled devices and can support native app-like features such as: 
+A responsive theme is all about screen-size: it loads the same styling as the desktop view, adjusting it to fit a smaller screen. On the other hand a mobile web application combines the versatility of the web with the functionality of touch-enabled devices and can support native app-like features such as:
 
 1. Apps load nearly instantly and are reliable, no matter what kind of network connection your user is on.
 1.  Web app install banners give users the ability to quickly and seamlessly add your mobile app to their home screen, making it easy to launch and return to your app.

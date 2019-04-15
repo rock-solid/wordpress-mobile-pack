@@ -4,7 +4,7 @@ class PtPwaTheme
 {
     private $appName = "App Name";
 
-    private $appEndpoint = "https://pwa-cdn.baobabsuite.com";
+    private $appEndpoint = "https://pwa-cdn.publisherstoolbox.com";
 
     private $metaDescription = "Meta Description";
 
@@ -101,6 +101,8 @@ class PtPwaTheme
     private $showDatesOnList = false;
 
     private $searchLightTheme = false;
+
+    private $menuLightIcons = false;
 
     private $showSearch = true;
 
@@ -1047,6 +1049,26 @@ class PtPwaTheme
     public function setSearchLightTheme($searchLightTheme)
     {
         $this->searchLightTheme = $searchLightTheme;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of getMenuLightIcons
+     */
+    public function getMenuLightIcons()
+    {
+        return $this->menuLightIcons;
+    }
+
+    /**
+     * Set the value of menuLightIcons
+     *
+     * @return  self
+     */
+    public function setMenuLightIcons($menuLightIcons)
+    {
+        $this->menuLightIcons = $menuLightIcons;
 
         return $this;
     }
