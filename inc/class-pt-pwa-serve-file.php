@@ -57,13 +57,12 @@
         protected function handle_file_request() {
             global $wp;
 
-/*            global $wp_rewrite;
+            /*
+            global $wp_rewrite;
             echo '<pre style="clear:both;position:relative;z-index:9999;background-color:lightgrey;color:red;border:1px orange solid;padding:10px;">';
             print_r($wp_rewrite->rules);
-            echo '</pre>';*/
-
-
-
+            echo '</pre>';
+            */
 
             $file = $wp->query_vars['pwa_files'];
             $filepath = '';

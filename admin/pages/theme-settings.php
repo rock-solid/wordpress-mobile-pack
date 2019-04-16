@@ -6,6 +6,10 @@
     $manifestManager = new PtPwaManifestManager(new PtPwaManifest());
     $manifest = $manifestManager->getManifest();
 
+    $logoMsg = '';
+    $hamburgerLogoMsg = '';
+    $appIconMsg = '';
+
     if (!empty($_POST['save'])) {
 
         if (!empty($_FILES['logo']['name'])) {
@@ -120,49 +124,10 @@
         }
     }
 </script>
-<style>
-    .color-schemes-custom input {
-        margin: .4rem;
-    }
-
-    .color-schemes-custom label {
-        text-align: right;
-    }
-
-    .save {
-        background: #0c4b7f;
-        color: #ffffff;
-        border: 2px solid #0c4b7f;
-        border-radius: 3px;
-        padding: 7px 15px 7px 15px;
-        min-width: 120px;
-        cursor: pointer;
-        transition: all 0.3s ease-in-out;
-    }
-
-    .save:hover {
-        background: #FFF;
-        color: #0c4b7f;
-    }
-
-    form label i {
-        font-weight: bold;
-        font-size: 12px;
-    }
-
-    form label i.optional {
-        color: orange;
-    }
-
-    form label i.required {
-        color: red;
-    }
-</style>
 <div id="wmpack-admin">
-    <?php include_once($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'admin/enable-pwa-btn.php'); ?>
     <div class="spacer-20"></div>
-    <!-- set title -->
     <h1>Publisher's Toolbox PWA</h1>
+    <?php include_once($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'admin/enable-pwa-btn.php'); ?>
     <div class="spacer-20"></div>
     <div class="look-and-feel">
         <div class="left-side">
@@ -171,7 +136,7 @@
             <div class="spacer-0"></div>
             <!-- add content form -->
             <div class="details">
-                <p class="title">Select Colour Scheme</p>
+                <h2 class="title">Setup Colour Scheme</h2>
                 <div class="spacer-20"></div>
                 <form method="post" id="color-settings" enctype="multipart/form-data">
                     <div class="holder">
@@ -258,13 +223,15 @@
                         <div style="background:<?php echo $theme->getHighlightsColour() ?>;height:20px; width: 40px; border:1px solid #E4E4E4; border-radius:2px;" />
                     </div>
                     <div class="spacer-15"></div>
-                    <input type="checkbox" name="sectionDownloadEnabled" <?php echo $theme->getSectionDownloadEnabled() ? 'checked' : '' ?> /> Enable category download, which allows the latest content for that section to available offline
+                    <h2 class="title">Setup Post and Category options</h2>
+                    <div class="spacer-15"></div>
+                    <input type="checkbox" name="sectionDownloadEnabled" <?php echo $theme->getSectionDownloadEnabled() ? 'checked' : '' ?> /> Enable category download, this allows the latest content for the section to be available offline
                     <div class="spacer-20"></div>
                     <input type="checkbox" name="multiSection" <?php echo $theme->getMultiSection() ? 'checked' : '' ?> /> Show child categories
                     <div class="spacer-20"></div>
                     <input type="checkbox" name="showDateBlockOnFeedListItem" <?php echo $theme->getShowDateBlockOnFeedListItem() ? 'checked' : '' ?> /> Show date on feed items
                     <div class="spacer-20"></div>
-                    <input type="checkbox" name="showAllFeed" <?php echo $theme->getShowAllFeed() ? 'checked' : '' ?> /> Show home section, which all your latest posts
+                    <input type="checkbox" name="showAllFeed" <?php echo $theme->getShowAllFeed() ? 'checked' : '' ?> /> Show home section, with all the latest posts
                     <div class="spacer-20"></div>
                     <div class="holder">
                         <label for="imageGalleryHeight">Image gallery height (as px or vh value)</label>
@@ -300,7 +267,7 @@
                     <div class="spacer-20"></div>
                     <div class="holder">
                         <label for="newsItemDateFormat">News item date format</label>
-                        <input value="<?php echo $theme->getNewsItemDateFormat() ?>" class="newsItemDateFormat" type="dat" name="newsItemDateFormat" placeholder="eg Do MMM YYYY" />
+                        <input value="<?php echo $theme->getNewsItemDateFormat() ?>" class="newsItemDateFormat" type="text" name="newsItemDateFormat" placeholder="eg Do MMM YYYY" />
                     </div>
                     <div class="spacer-15"></div>
                     <div class="holder">
@@ -319,29 +286,36 @@
                         <textarea class="dnsPrefetch" type="textarea" name="dnsPrefetch" placeholder="DNS Prefetch List"><?php echo implode(",", $theme->getDnsPrefetch()) ?></textarea>
                     </div>
                     <div class="spacer-15"></div>
+                    <h2 class="title">Setup Logo and Icons</h2>
+                    <div class="spacer-15"></div>
                     <div class="holder" id="appIcon">
-                        <img src="<?php echo $theme->getHeaderImage() ?>" style="max-height:80px" />
                         <label for="logo">App logo <i class="required">* required</i></label>
+                        <?php if ($theme->getHeaderImage()) { ?>
+                            <img src="<?php echo $theme->getHeaderImage() ?>" style="max-height:80px" /><br><?php } ?>
                         <input type="file" name="logo" style="padding: 7px;" <?php echo $theme->getHeaderImage() ? '' : 'required'; ?> />
-                        <?php echo $logoMsg ? $logoMsg : '' ?>
+                        <?php echo $logoMsg ? '<p class="description">' . $logoMsg . '</p>' : '' ?>
                     </div>
                     <div class="spacer-15"></div>
                     <div class="holder">
-                        <img src="<?php echo $theme->getHamburgerImage() ?>" style="max-height:80px" />
                         <label for="hamburgerLogo">Hamburger logo <i class="required">* required</i></label>
+                        <?php if ($theme->getHamburgerImage()) { ?>
+                            <img src="<?php echo $theme->getHamburgerImage() ?>" style="max-height:80px" />
+                            <br><?php } ?>
                         <input type="file" name="hamburgerLogo" style="padding: 7px;" <?php echo $theme->getHamburgerImage() ? '' : 'required'; ?> />
-                        <?php echo $hamburgerLogoMsg ?>
+                        <?php echo $hamburgerLogoMsg ? '<p class="description">' . $hamburgerLogoMsg . '</p>' : '' ?>
                     </div>
                     <div class="spacer-15"></div>
                     <div class="holder">
-                        <img src="<?php echo $manifest->getIcons()[0]['src'] ?>" style="max-height:80px" />
                         <label for="appIcon">App icon <i class="required">* required</i></label>
+                        <?php if ($manifest->getIcons()[0]['src']) { ?>
+                            <img src="<?php echo $manifest->getIcons()[0]['src'] ?>" style="max-height:80px" />
+                            <br><?php } ?>
                         <input type="file" name="appIcon" style="padding: 7px;" <?php echo $manifest->getIcons()[0]['src'] ? '' : 'required'; ?> />
-                        <?php echo $appIconMsg ?>
+                        <?php echo $appIconMsg ? '<p class="description">' . $appIconMsg . '</p>' : '' ?>
                     </div>
                     <div class="spacer-15"></div>
                     <div class="submit">
-                        <input type="submit" name="save" class="save" />
+                        <input type="submit" name="save" class="save" value="Save Look and Feel" />
                     </div>
                 </form>
             </div>

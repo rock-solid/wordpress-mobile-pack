@@ -7,12 +7,6 @@
         });
     }
 </script>
-<style>
-    #wmpack-admin .content .left-side ul.categories li span.status.active::before,
-    #wmpack-admin .content .left-side ul.categories li a.status.active::before {
-        background-color: #0c90c3;
-    }
-</style>
 <?php
 
     $categories = get_categories();
@@ -45,8 +39,12 @@
     $no_root_pages = 0;
     $inactive_root_pages = 0;
 
-    // Compose inactive pages array with only the visible pages
-/*    foreach ($all_pages as $key => $page) {
+    /**
+     * Compose inactive pages array with only the visible pages
+     * $all_pages reference PtPwa_Admin
+     */
+    $all_pages = get_pages(array('sort_column' => 'menu_order,post_title'));
+    foreach ($all_pages as $key => $page) {
 
         if (intval($page->post_parent) == 0) {
             $no_root_pages++;
@@ -60,11 +58,16 @@
                 $inactive_root_pages++;
             }
         }
-    }*/
+    }
     $themeManager = new PtPwaThemeManager(new PtPwaTheme());
     $theme = $themeManager->getTheme();
     $extraLinks = [];
 
+    /**
+     * Page links build
+     * $pages reference PtPwa_Admin
+     */
+    $pages = $this->build_pages_tree($all_pages);
     foreach ($pages as $page) {
         if (!in_array($page['obj']->ID, $inactive_pages)) {
             $link = array(
@@ -78,12 +81,41 @@
     $theme->setExtraLinks($extraLinks);
     $theme->setWhitelistedSections($whitelistedSections);
     $themeManager->write();
+
+    /**
+     * Recursive method for displaying the pages tree
+     *
+     * @param $list = Pages tree
+     * @param $level = The level of the page
+     * @param $inactive_pages = Array with inactive pages
+     */
+    function wmp_display_pages_tree($list, $level, $inactive_pages) {
+
+        foreach ($list as $page) { ?>
+            <?php $status = in_array($page['obj']->ID, $inactive_pages) ? 'inactive' : 'active'; ?>
+            <li data-page-id="<?php echo $page['obj']->ID; ?>" style="width: <?php echo 100 - $level * 5; ?>%; margin-left:<?php echo $level * 5; ?>%">
+                <div class="row">
+                    <span class="status <?php echo $status; ?> <?php echo $level == 0 ? 'main-page' : ''; ?>"><?php echo $status; ?></span>
+                    <span class="title">
+                                <?php for ($i = 0; $i < $level; $i++) {
+                                    echo ' — ';
+                                } ?>
+                                <?php echo $page['obj']->post_title; ?>
+                            </span>
+                </div>
+            </li>
+            <?php if (!empty($page['child'])) {
+                wmp_display_pages_tree($page['child'], $level + 1, $inactive_pages);
+            } ?>
+            <?php
+        }
+    }
+
 ?>
 <div id="wmpack-admin">
-    <?php include_once($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'admin/enable-pwa-btn.php'); ?>
     <div class="spacer-20"></div>
-    <!-- set title -->
     <h1>Publisher's Toolbox PWA</h1>
+    <?php include_once($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'admin/enable-pwa-btn.php'); ?>
     <div class="spacer-20"></div>
     <div class="content">
         <div class="left-side">
@@ -232,43 +264,6 @@
                             </div>
                             <div class="spacer-10"></div>
                         </div>
-                        <?php
-
-                            /**
-                             * Recursive method for displaying the pages tree
-                             *
-                             * @param $list = Pages tree
-                             * @param $level = The level of the page
-                             * @param $inactive_pages = Array with inactive pages
-                             */
-                            function wmp_display_pages_tree($list, $level, $inactive_pages) {
-
-                                foreach ($list as $page) :
-
-                                    $status = in_array($page['obj']->ID, $inactive_pages) ? 'inactive' : 'active';
-                                    ?>
-                                    <li data-page-id="<?php echo $page['obj']->ID; ?>" style="width: <?php echo 100 - $level * 5; ?>%; margin-left:<?php echo $level * 5; ?>%">
-                                        <div class="row">
-                                            <span class="status <?php echo $status; ?> <?php echo $level == 0 ? 'main-page' : ''; ?>"><?php echo $status; ?></span>
-                                            <span class="title">
-                                <?php
-                                    for ($i = 0; $i < $level; $i++)
-                                        echo ' — ';
-
-                                    echo $page['obj']->post_title;
-                                ?>
-                            </span>
-                                        </div>
-                                    </li>
-                                    <?php
-                                    if (!empty($page['child'])) : ?>
-                                        <?php wmp_display_pages_tree($page['child'], $level + 1, $inactive_pages); ?>
-                                    <?php
-                                    endif;
-                                endforeach;
-                            }
-
-                        ?>
                         <ul class="categories pages">
                             <?php wmp_display_pages_tree($pages, 0, $inactive_pages); ?>
                         </ul>

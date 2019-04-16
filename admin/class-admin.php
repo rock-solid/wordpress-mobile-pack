@@ -44,7 +44,6 @@
          * @return array
          */
         protected function build_pages_tree($all_pages) {
-
             $nodes_pages = array();
 
             foreach ($all_pages as $p) {
@@ -63,15 +62,13 @@
                 $pid = $n['parent_id'];
                 $id = $n['id'];
 
-                if (!isset($pages_tree[$pid])) {
+                if (!isset($pages_tree[$pid]))
                     $pages_tree[$pid] = array('child' => array());
-                }
 
-                if (isset($pages_tree[$id])) {
+                if (isset($pages_tree[$id]))
                     $child = &$pages_tree[$id]['child'];
-                } else {
+                else
                     $child = array();
-                }
 
                 $pages_tree[$id] = $n;
                 $pages_tree[$id]['child'] = &$child;
@@ -88,6 +85,7 @@
             }
 
             return array();
+
         }
 
         /**
@@ -96,12 +94,7 @@
          *
          */
         public function content() {
-
-            //$all_pages = get_pages(array('sort_column' => 'menu_order,post_title'));
-            //$pages = $this->build_pages_tree($all_pages);
-
             $Pt_Pwa_Config = new Pt_Pwa_Config();
-
             include($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'admin/pages/content.php');
         }
 
@@ -111,9 +104,7 @@
          *
          */
         public function settings() {
-
             $Pt_Pwa_Config = new Pt_Pwa_Config();
-
             include($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'admin/pages/settings.php');
         }
 

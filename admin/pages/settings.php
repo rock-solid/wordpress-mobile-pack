@@ -48,28 +48,11 @@
     }
 
 ?>
-<style>
-    .save {
-        background: #0c4b7f;
-        color: #ffffff;
-        border: 2px solid #0c4b7f;
-        border-radius: 3px;
-        padding: 7px 15px 7px 15px;
-        min-width: 120px;
-        cursor: pointer;
-        transition: all 0.3s ease-in-out;
-    }
-
-    .save:hover {
-        background: #FFF;
-        color: #0c4b7f;
-    }
-</style>
 <div id="wmpack-admin">
-    <?php include_once($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'admin/enable-pwa-btn.php'); ?>
-    <div class="spacer-20"></div>
     <!-- set title -->
+    <div class="spacer-20"></div>
     <h1>Publisher's Toolbox PWA</h1>
+    <?php include_once($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'admin/enable-pwa-btn.php'); ?>
     <div class="spacer-20"></div>
     <div class="settings">
         <div class="left-side">
@@ -125,14 +108,19 @@
                     <label>YouTube Social Link</label>
                     <input type="text" name="youtubeSocialUrl" value="<?php echo $theme->getYoutubeSocialUrl() ?>" />
                     <div class="spacer-20"></div>
-                    <input type="checkbox" name="socialMedia[]" value="ssk-facebook" <?php echo in_array('ssk-facebook', $theme->getSocialShareKitButtons()) ? 'checked' : '' ?> /> Enable Facebook sharing
+                    <?php if (is_array($theme->getSocialShareKitButtons())) {
+                        $socialShare = $theme->getSocialShareKitButtons();
+                    } else {
+                        $socialShare = [];
+                    } ?>
+                    <input type="checkbox" name="socialMedia[]" value="ssk-facebook" <?php echo in_array('ssk-facebook', $socialShare) ? 'checked' : '' ?> /> Enable Facebook sharing
                     <div class="spacer-10"></div>
-                    <input type="checkbox" name="socialMedia[]" value="ssk-twitter" <?php echo in_array('ssk-twitter', $theme->getSocialShareKitButtons()) ? 'checked' : '' ?> /> Enable Twitter sharing
+                    <input type="checkbox" name="socialMedia[]" value="ssk-twitter" <?php echo in_array('ssk-twitter', $socialShare) ? 'checked' : '' ?> /> Enable Twitter sharing
                     <div class="spacer-10"></div>
-                    <input type="checkbox" name="socialMedia[]" value="ssk-whatsapp" <?php echo in_array('ssk-whatsapp', $theme->getSocialShareKitButtons()) ? 'checked' : '' ?> /> Enable WhatsApp sharing
+                    <input type="checkbox" name="socialMedia[]" value="ssk-whatsapp" <?php echo in_array('ssk-whatsapp', $socialShare) ? 'checked' : '' ?> /> Enable WhatsApp sharing
                     <div class="spacer-10"></div>
                     <div class="submit">
-                        <input type="submit" name="save" class="save" value="Save" />
+                        <input type="submit" name="save" class="save" value="Save Settings" />
                     </div>
                 </form>
             </div>

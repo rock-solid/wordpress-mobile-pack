@@ -51,7 +51,7 @@
             $Pt_Pwa_Config = new Pt_Pwa_Config();
             $visible_app = $Pt_Pwa_Config->PWA_ENABLED;
 
-            if ($_GET["noapp"] || $_REQUEST["noapp"]) {
+            if (isset($_GET["noapp"]) || isset($_REQUEST["noapp"])) {
                 $visible_app = false;
             }
 

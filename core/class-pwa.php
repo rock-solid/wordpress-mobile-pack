@@ -113,6 +113,8 @@
              */
             public function setup_hooks() {
                 add_action('admin_notices', array($this, 'display_admin_notices'));
+                //Add svg support
+                add_filter('upload_mimes', array($this, 'cc_mime_types'));
             }
 
             /**
@@ -132,7 +134,7 @@
                     return;
                 }
 
-                // display notice to reupload icon
+                //display notice to reupload icon
                 //$this->display_icon_reupload_notice();
             }
 
@@ -142,7 +144,16 @@
              *
              */
             public function backwards_compatibility() { }
-            
+
+            /**
+             * @param $mimes
+             * @return array
+             */
+            function cc_mime_types($mimes) {
+                $mimes['svg'] = 'image/svg+xml';
+                return $mimes;
+            }
+
             /**
              *
              * Method used to check if a specific plugin is installed and active,
