@@ -14,7 +14,7 @@
         curl_close($curl_handle);
 
         if ($page === false || $response['http_code'] != 200 || $_COOKIE['classicCookie'] === "true") {
-            throw new Exception('cannot load PWA');
+            throw new Requests_Exception_HTTP_500('Cannot Load PWA');
         }
         echo $page;
 

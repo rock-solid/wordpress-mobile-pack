@@ -98,14 +98,11 @@
                         }
                     }
 
-                    if (!$option_not_saved) {
-                        return true;
-                    } else {
-                        return false; // there was an error
+                    if ($option_not_saved) {
+                        return false;
                     }
 
                 } elseif (is_string($option) && $option_value != '') {
-
                     if (array_key_exists($option, self::$options)) {
                         return add_option(self::$prefix . $option, $option_value);
                     }
@@ -142,10 +139,8 @@
                         }
                     }
 
-                    if (!$option_not_updated) {
-                        return true;
-                    } else {
-                        return false; // there was an error
+                    if ($option_not_updated) {
+                        return false;
                     }
 
                 } elseif (is_string($option) && $option_value !== NULL) {
@@ -182,8 +177,8 @@
                         }
 
                     }
-
                     return true;
+
                 } elseif (is_string($option)) {
 
                     if (array_key_exists($option, self::$options)) {
@@ -196,11 +191,7 @@
         }
 
         /**
-         *
          * Delete all transients and temporary data when the plugin is deactivated
-         *
-         * @todo Prefix WPMP_Tracking_Hash with the transient prefix instead of WPMP
-         *
          */
         public static function deactivate() {
         }

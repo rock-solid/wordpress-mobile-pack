@@ -1,10 +1,7 @@
 <?php if (!class_exists('PtPwa_Admin_Ajax')) {
 
     /**
-     *
      * PtPwa_Admin_Ajax class for managing Ajax requests from the admin area of the Wordpress Mobile Pack plugin
-     *
-     * @todo Test separately the methods of this class
      */
     class PtPwa_Admin_Ajax {
         /**
@@ -137,40 +134,30 @@
          */
         public function content_order() {
 
-            if (current_user_can('manage_options')) {
+            if (current_user_can('manage_options') && isset($_POST) && is_array($_POST) && !empty($_POST) && isset($_POST['ids']) && isset($_POST['type']) && $_POST['ids'] != '' && $_POST['type'] == 'categories') {
 
                 $status = 0;
 
-                if (isset($_POST) && is_array($_POST) && !empty($_POST)) {
+                // Retrieve the ids list from the param
+                $items_ids = array_filter(explode(",", $_POST['ids']));
 
-                    if (isset($_POST['ids']) && isset($_POST['type'])) {
+                if (count($items_ids) > 0) {
 
-                        if ($_POST['ids'] != '' && $_POST['type'] == 'categories') {
+                    // Check if the received ids are numeric
+                    $valid_ids = true;
 
-                            // Retrieve the ids list from the param
-                            $items_ids = array_filter(explode(",", $_POST['ids']));
-
-                            if (count($items_ids) > 0) {
-
-                                // Check if the received ids are numeric
-                                $valid_ids = true;
-
-                                foreach ($items_ids as $item_id) {
-
-                                    if (!is_numeric($item_id)) {
-                                        $valid_ids = false;
-                                    }
-                                }
-
-                                if ($valid_ids) {
-
-                                    $status = 1;
-
-                                    // Save option
-                                    PtPwa_Options::update_settings('ordered_categories', $items_ids);
-                                }
-                            }
+                    foreach ($items_ids as $item_id) {
+                        if (!is_numeric($item_id)) {
+                            $valid_ids = false;
                         }
+                    }
+
+                    if ($valid_ids) {
+
+                        $status = 1;
+
+                        // Save option
+                        PtPwa_Options::update_settings('ordered_categories', $items_ids);
                     }
                 }
 

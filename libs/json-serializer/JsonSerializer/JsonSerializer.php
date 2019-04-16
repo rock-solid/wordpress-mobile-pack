@@ -161,12 +161,10 @@
                     $encodedKeys[$key] |= static::KEY_UTF8ENCODED;
                 }
 
-                if (is_string($value)) {
-                    if (!mb_check_encoding($value, 'UTF-8')) {
-                        $value = mb_convert_encoding($value, 'UTF-8', '8bit');
-                        $encodedKeys[$key] = isset($encodedKeys[$key]) ? $encodedKeys[$key] : 0;
-                        $encodedKeys[$key] |= static::VALUE_UTF8ENCODED;
-                    }
+                if (is_string($value) && !mb_check_encoding($value, 'UTF-8')) {
+                    $value = mb_convert_encoding($value, 'UTF-8', '8bit');
+                    $encodedKeys[$key] = isset($encodedKeys[$key]) ? $encodedKeys[$key] : 0;
+                    $encodedKeys[$key] |= static::VALUE_UTF8ENCODED;
                 }
 
                 $encodedData[$key] = $value;
@@ -344,6 +342,7 @@
          *
          * @param mixed $value
          * @return mixed
+         * @throws ReflectionException
          */
         protected function unserializeData($value) {
 
@@ -373,8 +372,7 @@
          */
         protected function decodeNonUtf8FromUtf8($serializedData) {
             if (is_array($serializedData) && isset($serializedData[static::SCALAR_IDENTIFIER_KEY])) {
-                $serializedData = mb_convert_encoding($serializedData[static::SCALAR_IDENTIFIER_KEY], '8bit', 'UTF-8');
-                return $serializedData;
+                return mb_convert_encoding($serializedData[static::SCALAR_IDENTIFIER_KEY], '8bit', 'UTF-8');
             } elseif (is_scalar($serializedData) || $serializedData === NULL) {
                 return $serializedData;
             }
@@ -470,6 +468,9 @@
                         case static::UNDECLARED_PROPERTY_MODE_EXCEPTION:
                             throw new JsonSerializerException('Undefined attribute detected during unserialization');
                             break;
+                        default:
+
+                            break;
                     }
                 }
             }
@@ -494,7 +495,8 @@
                 'O:' . strlen($className) . ':"' . $className . '":',
                 serialize($obj)
             );
-            return unserialize($serialized);
+           
+            return unserialize($serialized, array('allowed_classes' => [$className]));
         }
 
         /**

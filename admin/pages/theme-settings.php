@@ -282,33 +282,34 @@
                     <div class="spacer-15"></div>
                     <div class="holder">
                         <label for="dnsPrefetch">DNS Prefetch list (seperated by comma)
-                            <i class="optional">*optional</i></label>
+                            <em class="optional">*optional</em></label>
                         <textarea class="dnsPrefetch" type="textarea" name="dnsPrefetch" placeholder="DNS Prefetch List"><?php echo implode(",", $theme->getDnsPrefetch()) ?></textarea>
                     </div>
                     <div class="spacer-15"></div>
                     <h2 class="title">Setup Logo and Icons</h2>
                     <div class="spacer-15"></div>
                     <div class="holder" id="appIcon">
-                        <label for="logo">App logo <i class="required">* required</i></label>
+                        <label for="logo">App Logo <em class="required">* required</em></label>
                         <?php if ($theme->getHeaderImage()) { ?>
-                            <img src="<?php echo $theme->getHeaderImage() ?>" style="max-height:80px" /><br><?php } ?>
+                            <img src="<?php echo $theme->getHeaderImage() ?>" style="max-height:80px" alt="header image" />
+                            <br><?php } ?>
                         <input type="file" name="logo" style="padding: 7px;" <?php echo $theme->getHeaderImage() ? '' : 'required'; ?> />
                         <?php echo $logoMsg ? '<p class="description">' . $logoMsg . '</p>' : '' ?>
                     </div>
                     <div class="spacer-15"></div>
                     <div class="holder">
-                        <label for="hamburgerLogo">Hamburger logo <i class="required">* required</i></label>
+                        <label for="hamburgerLogo">Hamburger Logo <em class="required">* required</em></label>
                         <?php if ($theme->getHamburgerImage()) { ?>
-                            <img src="<?php echo $theme->getHamburgerImage() ?>" style="max-height:80px" />
+                            <img src="<?php echo $theme->getHamburgerImage() ?>" style="max-height:80px" alt="hamburger image" />
                             <br><?php } ?>
                         <input type="file" name="hamburgerLogo" style="padding: 7px;" <?php echo $theme->getHamburgerImage() ? '' : 'required'; ?> />
                         <?php echo $hamburgerLogoMsg ? '<p class="description">' . $hamburgerLogoMsg . '</p>' : '' ?>
                     </div>
                     <div class="spacer-15"></div>
                     <div class="holder">
-                        <label for="appIcon">App icon <i class="required">* required</i></label>
+                        <label for="appIcon">App Icon <em class="required">* required</em></label>
                         <?php if ($manifest->getIcons()[0]['src']) { ?>
-                            <img src="<?php echo $manifest->getIcons()[0]['src'] ?>" style="max-height:80px" />
+                            <img src="<?php echo $manifest->getIcons()[0]['src'] ?>" style="max-height:80px" alt="app icon" />
                             <br><?php } ?>
                         <input type="file" name="appIcon" style="padding: 7px;" <?php echo $manifest->getIcons()[0]['src'] ? '' : 'required'; ?> />
                         <?php echo $appIconMsg ? '<p class="description">' . $appIconMsg . '</p>' : '' ?>

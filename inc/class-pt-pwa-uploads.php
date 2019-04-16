@@ -5,8 +5,6 @@
      *
      * Instantiates all the uploads and offers a number of utility methods to work with the options
      *
-     * @todo Test methods from this class separately
-     *
      */
     class PtPwa_Uploads {
 
@@ -75,18 +73,16 @@
             $Pt_Pwa_Config = new Pt_Pwa_Config();
 
             if (!current_user_can('manage_options')) {
-                return;
+                wp_die(__('You do not have sufficient permissions to access this page.'));
             }
 
             // If the directory doesn't exist, display notice
             if (!file_exists(PWA_FILES_UPLOADS_DIR)) {
                 echo '<div class="error"><p><b>Warning!</b> The ' . $Pt_Pwa_Config->PWA_PLUGIN_NAME . ' uploads folder does not exist: ' . PWA_FILES_UPLOADS_DIR . '</p></div>';
-                return;
             }
 
             if (!is_writable(PWA_FILES_UPLOADS_DIR)) {
                 echo '<div class="error"><p><b>Warning!</b> The ' . $Pt_Pwa_Config->PWA_PLUGIN_NAME . ' uploads folder is not writable: ' . PWA_FILES_UPLOADS_DIR . '</p></div>';
-                return;
             }
         }
 
@@ -110,7 +106,7 @@
                 if (!file_exists($pt_pwa_uploads_dir)) {
 
                     if (!mkdir($pt_pwa_uploads_dir, 0777) && !is_dir($pt_pwa_uploads_dir)) {
-                        throw new RuntimeException(sprintf('Directory "%s" was not created', $pt_pwa_uploads_dir));
+                        throw new InvalidArgumentException(sprintf('Directory "%s" was not created', $pt_pwa_uploads_dir));
                     }
 
                     // add .htaccess file in the uploads folder
@@ -125,8 +121,6 @@
          *
          */
         public function remove_uploads_dir() {
-
-            $Pt_Pwa_Config = new Pt_Pwa_Config();
 
             foreach (array('icon', 'logo', 'cover') as $image_type) {
 
@@ -145,7 +139,7 @@
             $categories_details = PtPwa_Options::get_setting('categories_details');
 
             if (is_array($categories_details) && !empty($categories_details)) {
-                foreach ($categories_details as $category_id => $category_details) {
+                foreach ($categories_details as $category_details) {
                     if (is_array($category_details) && array_key_exists('icon', $category_details)) {
                         $this->remove_uploaded_file($category_details['icon']);
                     }
@@ -181,10 +175,8 @@
          */
         public function remove_uploaded_file($file_path) {
             // Check the file exists and remove it
-            if ($file_path != '') {
-                if (file_exists(PWA_FILES_UPLOADS_DIR . $file_path)) {
-                    return unlink(PWA_FILES_UPLOADS_DIR . $file_path);
-                }
+            if ($file_path != '' && file_exists(PWA_FILES_UPLOADS_DIR . $file_path)) {
+                return unlink(PWA_FILES_UPLOADS_DIR . $file_path);
             }
             return true;
         }
@@ -203,20 +195,17 @@
 
             $file_path = PWA_FILES_UPLOADS_DIR . '.htaccess';
 
-            if (!file_exists($file_path)) {
+            if (!file_exists($file_path) && is_writable(PWA_FILES_UPLOADS_DIR)) {
 
-                if (is_writable(PWA_FILES_UPLOADS_DIR)) {
+                $template_path = $Pt_Pwa_Config->PWA_PLUGIN_PATH . self::$htaccess_template;
 
-                    $template_path = $Pt_Pwa_Config->PWA_PLUGIN_PATH . self::$htaccess_template;
+                if (file_exists($template_path)) {
 
-                    if (file_exists($template_path)) {
+                    $fp = @fopen($file_path, "w");
+                    fwrite($fp, file_get_contents($template_path));
+                    fclose($fp);
 
-                        $fp = @fopen($file_path, "w");
-                        fwrite($fp, file_get_contents($template_path));
-                        fclose($fp);
-
-                        return true;
-                    }
+                    return true;
                 }
             }
 

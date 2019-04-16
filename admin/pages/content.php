@@ -89,19 +89,19 @@
      * @param $level = The level of the page
      * @param $inactive_pages = Array with inactive pages
      */
-    function wmp_display_pages_tree($list, $level, $inactive_pages) {
-
-        foreach ($list as $page) { ?>
+    function wmp_display_pages_tree($list, $level, $inactive_pages) { ?>
+        <ul class="categories pages">
+        <?php foreach ($list as $page) { ?>
             <?php $status = in_array($page['obj']->ID, $inactive_pages) ? 'inactive' : 'active'; ?>
             <li data-page-id="<?php echo $page['obj']->ID; ?>" style="width: <?php echo 100 - $level * 5; ?>%; margin-left:<?php echo $level * 5; ?>%">
                 <div class="row">
                     <span class="status <?php echo $status; ?> <?php echo $level == 0 ? 'main-page' : ''; ?>"><?php echo $status; ?></span>
                     <span class="title">
-                                <?php for ($i = 0; $i < $level; $i++) {
-                                    echo ' — ';
-                                } ?>
-                                <?php echo $page['obj']->post_title; ?>
-                            </span>
+                    <?php for ($i = 0; $i < $level; $i++) {
+                        echo ' — ';
+                    } ?>
+                    <?php echo $page['obj']->post_title; ?>
+                   </span>
                 </div>
             </li>
             <?php if (!empty($page['child'])) {
@@ -109,6 +109,7 @@
             } ?>
             <?php
         }
+        ?></ul><?php
     }
 
 ?>
@@ -141,7 +142,7 @@
                 <div class="spacer-20"></div>
                 <div class="spacer-20"></div>
                 <!-- start categories list -->
-                <?php if (count($categories) > 0) : ?>
+                <?php if (count($categories) > 0) { ?>
                     <form name="wmp_editcategories_form" id="wmp_editcategories_form" action="" method="post">
                         <div id="wmp_editcategories_warning" class="message-container warning" style="display: <?php echo count($inactive_categories) < count($categories) ? 'none' : 'block' ?>;">
                             <div class="wrapper">
@@ -184,36 +185,33 @@
                                             $arrOrderedCategories[] = clone $category;
                                         }
                                     }
-                                } else
+                                } else {
                                     $arrOrderedCategories = $categories;
+                                }
 
                                 $categories_details = PtPwa_Options::get_setting('categories_details');
 
                                 foreach ($arrOrderedCategories as $key => $category) :
 
                                     $status = 'active';
-                                    if (in_array($category->cat_ID, $inactive_categories))
+                                    if (in_array($category->cat_ID, $inactive_categories)) {
                                         $status = 'inactive';
+                                    }
 
                                     // check category icon path
                                     $icon_path = '';
-                                    if (is_array($categories_details)) {
+                                    if (is_array($categories_details) &&
+                                        array_key_exists($category->cat_ID, $categories_details) &&
+                                        is_array($categories_details[$category->cat_ID]) &&
+                                        array_key_exists('icon', $categories_details[$category->cat_ID])) {
 
-                                        if (array_key_exists($category->cat_ID, $categories_details)) {
+                                        $icon_path = $categories_details[$category->cat_ID]['icon'];
 
-                                            if (is_array($categories_details[$category->cat_ID])) {
-
-                                                if (array_key_exists('icon', $categories_details[$category->cat_ID])) {
-
-                                                    $icon_path = $categories_details[$category->cat_ID]['icon'];
-
-                                                    if ($icon_path != '') {
-                                                        if (!file_exists(PWA_FILES_UPLOADS_DIR . $icon_path))
-                                                            $icon_path = '';
-                                                        else
-                                                            $icon_path = PWA_FILES_UPLOADS_URL . $icon_path;
-                                                    }
-                                                }
+                                        if ($icon_path != '') {
+                                            if (!file_exists(PWA_FILES_UPLOADS_DIR . $icon_path)) {
+                                                $icon_path = '';
+                                            } else {
+                                                $icon_path = PWA_FILES_UPLOADS_URL . $icon_path;
                                             }
                                         }
                                     }
@@ -229,7 +227,7 @@
                                 <?php endforeach; ?>
                         </ul>
                     </form>
-                <?php else : ?>
+                <?php } else { ?>
                     <div class="message-container warning">
                         <div class="wrapper">
                             <div class="title">
@@ -238,7 +236,7 @@
                             <span>Since you don't have any categories, no content will be displayed in your mobile web app!</span>
                         </div>
                     </div>
-                <?php endif; ?>
+                <?php } ?>
             </div>
             <div class="spacer-10"></div>
             <div class="details" id="editpages_container">
@@ -255,7 +253,7 @@
                 </p>
                 <div class="spacer-20"></div>
                 <!-- start pages list -->
-                <?php if (count($all_pages) > 0) : ?>
+                <?php if (count($all_pages) > 0) { ?>
                     <form name="wmp_editpages_form" id="wmp_editpages_form" action="" method="post">
                         <div id="wmp_editpages_warning" class="message-container warning" style="display: <?php echo $inactive_root_pages < $no_root_pages ? 'none' : 'block' ?>;">
                             <div class="wrapper">
@@ -264,11 +262,9 @@
                             </div>
                             <div class="spacer-10"></div>
                         </div>
-                        <ul class="categories pages">
-                            <?php wmp_display_pages_tree($pages, 0, $inactive_pages); ?>
-                        </ul>
+                        <?php wmp_display_pages_tree($pages, 0, $inactive_pages); ?>
                     </form>
-                <?php else : ?>
+                <?php } else { ?>
                     <div class="message-container warning">
                         <div class="wrapper">
                             <div class="title">
@@ -277,7 +273,7 @@
                             <span>You don't have any pages to be displayed in your mobile web app!</span>
                         </div>
                     </div>
-                <?php endif; ?>
+                <?php } ?>
             </div>
         </div>
         <div class="right-side"></div>

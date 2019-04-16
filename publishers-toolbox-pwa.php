@@ -20,9 +20,7 @@
      * Used to load the required files on the plugins_loaded hook, instead of immediately.
      */
     function pt_pwa_frontend_init() {
-
         $Pt_Pwa_Config = new Pt_Pwa_Config();
-
         if ($Pt_Pwa_Config->PWA_ENABLED) {
             require_once('frontend/class-application.php');
             new PtPwa_Application(plugin_dir_url(__FILE__));
@@ -30,7 +28,7 @@
     }
 
     /**
-     *
+     * init admin section
      */
     function pt_pwa_admin_init() {
         require_once('admin/class-admin-init.php');
@@ -38,7 +36,7 @@
     }
 
     /**
-     *
+     * Fallback if anything fails
      */
     function pt_pwa_insert_fallback_script() {
 
@@ -47,9 +45,9 @@
 
         ?>
         <script>
+            "use strict";
             window.appEndpoint = '<?php echo $theme->getAppEndpoint() ?>';
             window.appColour = '<?php echo $theme->getThemeColour() ?>';
-            "use strict";
 
             function detect() {
                 var e = getNodeVersion();
@@ -77,7 +75,7 @@
                 var n = e.map(function (e) {
                     var n = e.rule.exec(t),
                         o = n && n[1].split(/[._]/).slice(0, 3);
-                    return o && o.length < 3 && (o = o.concat(1 == o.length ? [0, 0] : [0])), n && {
+                    return o && o.length < 3 && (o = o.concat(1 === o.length ? [0, 0] : [0])), n && {
                         name: e.name,
                         version: o.join(".")
                     }
@@ -180,9 +178,10 @@
                     };
                 document.write('<plaintext style="display:none">');
                 var loader =
-                    "<html><head><style>.loader {position: absolute;margin: auto;top: 0;right: 0;bottom: 0;left: 0;border: 16px solid #f3f3f3; /* Light grey */border-top: 16px solid " +
+                    "<html><head><style>" +
+                    ".loader {position: absolute;margin: auto;top: 0;right: 0;bottom: 0;left: 0;border: 16px solid #f3f3f3;border-top: 16px solid " +
                     window.appColour +
-                    "; /* Blue */border-radius: 50%;width: 60px;height: 60px;animation: spin 2s linear infinite;}@keyframes spin {0% { transform: rotate(0deg); }100% { transform: rotate(360deg); }}</style></head>";
+                    "; border-radius: 50%;width: 60px;height: 60px;animation: spin 2s linear infinite;}@keyframes spin {0% { transform: rotate(0deg); }100% { transform: rotate(360deg); }}</style></head>";
                 loader += '<div class="loader">', loader += "</div></html>", document.children[0].innerHTML = loader, fetch_text(
                     window.appEndpoint + window.location.pathname).then(function (e) {
                     document.write('<plaintext style="display:none">'), document.children[0].innerHTML = e;
@@ -203,7 +202,7 @@
     }
 
     /**
-     *
+     * Load WP Errors
      */
     function pt_pwa_add_settings_errors() {
         settings_errors();
@@ -223,7 +222,7 @@
         <?php
     }
 
-    if (class_exists('PtPwa') && class_exists('PtPwa')) {
+    if (class_exists('PtPwa')) {
 
         global $wmobile_pack;
 
@@ -239,7 +238,9 @@
 
         // Copy service worker file into root if not copied before
         if (is_multisite()) {
-            copy($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'service-worker.js', PWA_FILES_UPLOADS_DIR . '/service-worker.js');
+            if (!file_exists($Pt_Pwa_Config->PWA_PLUGIN_PATH . '/service-worker.js')) {
+                copy($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'service-worker.js', PWA_FILES_UPLOADS_DIR . '/service-worker.js');
+            }
         } elseif (!file_exists($_SERVER['DOCUMENT_ROOT'] . '/service-worker.js')) {
             copy($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'service-worker.js', $_SERVER['DOCUMENT_ROOT'] . '/service-worker.js');
         }

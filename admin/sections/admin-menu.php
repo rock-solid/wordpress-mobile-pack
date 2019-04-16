@@ -4,14 +4,14 @@
 
     // set current page
     if ($screen->id !== '') {
-
-        if (strpos($screen->id, "_page_") !== false)
+        if (strpos($screen->id, "_page_") !== false) {
             $current_page = substr($screen->id, strpos($screen->id, "_page_") + 6);
-        else
+        } else {
             $current_page = substr($screen->id, strpos($screen->id, "_category_") + 10);
-
-    } else
+        }
+    } else {
         $current_page = '';
+    }
 ?>
 <!-- add nav main menu -->
 <nav class="menu">

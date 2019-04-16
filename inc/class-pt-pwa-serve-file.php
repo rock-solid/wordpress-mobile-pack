@@ -30,20 +30,12 @@
          */
         public function add_endpoint() {
             add_rewrite_rule('[^\/"]+\.(json|js)', 'index.php?' . static::ENDPOINT_QUERY_PARAM . '=$matches[1]', 'top');
-
-            // add_rewrite_rule('^' . static::ENDPOINT_QUERY_NAME . '/([^/]*)/?', 'index.php?' . static::ENDPOINT_QUERY_PARAM . '=$matches[1]', 'top');
-
-            //////////////////////////////////
-            flush_rewrite_rules(false); //// <---------- REMOVE THIS WHEN DONE
-            //////////////////////////////////
         }
 
         /**
          * Sniff Requests
-         *
-         * @param $wp_query
          */
-        public function sniff_requests($wp_query) {
+        public function sniff_requests() {
             global $wp;
 
             if (isset($wp->query_vars[static::ENDPOINT_QUERY_PARAM])) {
@@ -57,19 +49,11 @@
         protected function handle_file_request() {
             global $wp;
 
-            /*
-            global $wp_rewrite;
-            echo '<pre style="clear:both;position:relative;z-index:9999;background-color:lightgrey;color:red;border:1px orange solid;padding:10px;">';
-            print_r($wp_rewrite->rules);
-            echo '</pre>';
-            */
-
             $file = $wp->query_vars['pwa_files'];
             $filepath = '';
 
             switch ($file) {
 
-                // example.com/files/xyz
                 case 'json':
                     if ($wp->request == 'theme.json') {
                         $filepath = PWA_FILES_UPLOADS_DIR . 'theme.json';
@@ -81,6 +65,9 @@
                     if ($wp->request == 'service-worker.js') {
                         $filepath = PWA_FILES_UPLOADS_DIR . 'service-worker.js';
                     }
+                    break;
+                default:
+
                     break;
             }
 
@@ -116,15 +103,11 @@
                 if ($headers) {
                     // Write some headers
                     $extension = end(explode(".", $filepath));
-                    switch ($extension) {
-                        case 'js' :
-                            header('Content-Type: application/javascript');
-                            break;
-                        case 'json' :
-                            header('Content-Type: application/json');
-                            break;
+                    if ($extension == 'js') {
+                        header('Content-Type: application/javascript');
+                    } elseif ($extension == 'json') {
+                        header('Content-Type: application/json');
                     }
-
                     header("Cache-control: private");
                     header("Content-transfer-encoding: binary\n");
                     header("Content-Length: " . filesize($filepath));

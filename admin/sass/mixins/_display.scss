@@ -31,13 +31,11 @@
     -webkit-box-flex: $flex !important;
     -ms-flex: $flex 0 $preferredSize !important;
     -moz-box-flex: $flex !important;
-    box-flex: $flex !important;
     flex: $flex 0 $preferredSize !important;
   } @else {
     -webkit-box-flex: $flex;
     -ms-flex: $flex 0 $preferredSize;
     -moz-box-flex: $flex;
-    box-flex: $flex;
     flex: $flex 0 $preferredSize;
   }
 }
@@ -46,7 +44,6 @@
   @if $important == important {
     -webkit-box-orient: $orient !important;
     -moz-box-orient: $orient !important;
-    box-orient: $orient !important;
     @if $orient == horizontal {
       -ms-flex-direction: row !important;
       flex-direction: row !important;
@@ -57,7 +54,6 @@
   } @else {
     -webkit-box-orient: $orient;
     -moz-box-orient: $orient;
-    box-orient: $orient;
     @if $orient == horizontal {
       -ms-flex-direction: row;
       flex-direction: row;
@@ -73,7 +69,6 @@
     -webkit-box-pack: $pack !important;
     -moz-box-pack: $pack !important;
     -ms-flex-pack: $pack !important;
-    box-pack: $pack !important;
     @if $pack == start {
       justify-content: flex-start !important;
     } @else if $pack == end {
@@ -87,7 +82,6 @@
     -webkit-box-pack: $pack;
     -moz-box-pack: $pack;
     -ms-flex-pack: $pack;
-    box-pack: $pack;
     @if $pack == start {
       justify-content: flex-start;
     } @else if $pack == end {
@@ -105,7 +99,6 @@
     -webkit-box-align: $align !important;
     -moz-box-align: $align !important;
     -ms-flex-align: $align !important;
-    box-align: $align !important;
 
     @if $align == start {
       align-items: flex-start !important;
@@ -118,7 +111,6 @@
     -webkit-box-align: $align;
     -moz-box-align: $align;
     -ms-flex-align: $align;
-    box-align: $align;
 
     @if $align == start {
       align-items: flex-start;

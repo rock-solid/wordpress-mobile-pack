@@ -18,8 +18,6 @@
 
         private $display = "standalone";
 
-        private $orientation = "portrait";
-
         /**
          * Get the value of name
          */

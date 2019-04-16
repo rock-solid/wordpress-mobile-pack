@@ -59,20 +59,15 @@
              * Init admin menu and enqueue general Javascript & CSS files
              */
             public function __construct() {
-
                 // enqueue css and javascript for the admin area
                 add_action('admin_enqueue_scripts', array(&$this, 'wmp_admin_enqueue_scripts'));
 
                 // add admin menu hook
                 add_action('admin_menu', array(&$this, 'wmp_admin_menu'));
-
-                //$Pt_Pwa_Config = new Pt_Pwa_Config();
             }
 
             /**
-             *
              * Build the admin menu and add all admin pages of the plugin
-             *
              */
             public function wmp_admin_menu() {
 
@@ -86,16 +81,15 @@
                 $menu_name = 'wmp-options';
 
                 // display notify icon if the what's new section was updated
-                $display_notify_icon = false;
+                $display_notify_icon = 0;
                 if (PtPwa_Options::get_setting('whats_new_updated') == 1) {
-                    $display_notify_icon = true;
+                    $display_notify_icon = 1;
                 }
 
                 // add menu and submenu hooks
-                add_menu_page('PT PWA', 'PT PWA', 'manage_options', $menu_name, '', WP_PLUGIN_URL . '/' . $Pt_Pwa_Config->PWA_DOMAIN . '/admin/images/menu-icon2' . ($display_notify_icon == true ? '-updates' : '') . '.png');
+                add_menu_page('PT PWA', 'PT PWA', 'manage_options', $menu_name, '', WP_PLUGIN_URL . '/' . $Pt_Pwa_Config->PWA_DOMAIN . '/admin/images/menu-icon2' . ($display_notify_icon == 1 ? '-updates' : '') . '.png');
 
                 foreach ($pages_list as $submenu_item) {
-
                     // add page in the submenu
                     $submenu_page = add_submenu_page($menu_name, $submenu_item['page_title'], $submenu_item['page_title'], 'manage_options', $submenu_item['capability'], array(&$PtPwaAdmin, $submenu_item['function']));
 
@@ -106,7 +100,6 @@
                 }
 
                 if ($menu_name == 'wmp-options') {
-
                     // fake submenu since it is not visible (for editing a category's details)
                     $category_page = add_submenu_page(NULL, 'Content', 'Category Details', 'manage_options', 'wmp-category-details', array(&$PtPwaAdmin, 'category_content'));
                     add_action('load-' . $category_page, array(&$this, 'wmp_admin_load_category_js'));
@@ -118,10 +111,8 @@
             }
 
             /**
-             *
              * The wmp_admin_enqueue_scripts is used to enqueue scripts and styles for the admin area.
              * The scripts and styles loaded by this method are used on all admin pages.
-             *
              */
             public function wmp_admin_enqueue_scripts() {
                 $Pt_Pwa_Config = new Pt_Pwa_Config();
@@ -139,47 +130,41 @@
                 wp_enqueue_script(PtPwa_Options::$prefix . 'js_interface', plugins_url($Pt_Pwa_Config->PWA_DOMAIN . '/admin/js/UI.Interface/JSInterface.min.js'), $dependencies, $Pt_Pwa_Config->PWA_VERSION);
                 wp_enqueue_script(PtPwa_Options::$prefix . 'js_scrollbar', plugins_url($Pt_Pwa_Config->PWA_DOMAIN . '/admin/js/UI.Interface/Lib/perfect-scrollbar.min.js'), array(), $Pt_Pwa_Config->PWA_VERSION);
 
-                wp_enqueue_script(PtPwa_Options::$prefix . 'js_join_waitlist', plugins_url($Pt_Pwa_Config->PWA_DOMAIN . '/admin/js/UI.Modules/Waitlist/WMP_WAITLIST.min.js'), array(), $Pt_Pwa_Config->PWA_VERSION);
-                wp_enqueue_script(PtPwa_Options::$prefix . 'js_feedback', plugins_url($Pt_Pwa_Config->PWA_DOMAIN . '/admin/js/UI.Modules/Feedback/WMP_SEND_FEEDBACK.min.js'), array(), $Pt_Pwa_Config->PWA_VERSION);
+                wp_enqueue_script(PtPwa_Options::$prefix . 'js_join_waitlist', plugins_url($Pt_Pwa_Config->PWA_DOMAIN . '/admin/js/UI.Modules/Waitlist/wp-waitlist.min.js'), array(), $Pt_Pwa_Config->PWA_VERSION);
+                wp_enqueue_script(PtPwa_Options::$prefix . 'js_feedback', plugins_url($Pt_Pwa_Config->PWA_DOMAIN . '/admin/js/UI.Modules/Feedback/wp-send-feedback.min.js'), array(), $Pt_Pwa_Config->PWA_VERSION);
 
                 if (PtPwa_Options::get_setting('upgrade_notice_updated') == 1) {
-                    wp_enqueue_script(PtPwa_Options::$prefix . 'js_upgrade_notice', plugins_url($Pt_Pwa_Config->PWA_DOMAIN . '/admin/js/UI.Modules/Waitlist/WMP_UPGRADE_NOTICE.min.js'), array(), $Pt_Pwa_Config->PWA_VERSION, true);
+                    wp_enqueue_script(PtPwa_Options::$prefix . 'js_upgrade_notice', plugins_url($Pt_Pwa_Config->PWA_DOMAIN . '/admin/js/UI.Modules/Waitlist/wp-upgrade-notice.min.js'), array(), $Pt_Pwa_Config->PWA_VERSION, true);
                 }
             }
 
             /**
-             *
              * Load specific javascript files for the admin Content submenu page
-             *
              */
             public function wmp_admin_load_content_js() {
                 $Pt_Pwa_Config = new Pt_Pwa_Config();
 
-                wp_enqueue_script(PtPwa_Options::$prefix . 'js_content_editcategories', plugins_url($Pt_Pwa_Config->PWA_DOMAIN . '/admin/js/UI.Modules/Content/WMP_EDIT_CATEGORIES.min.js'), array(), $Pt_Pwa_Config->PWA_VERSION);
-                wp_enqueue_script(PtPwa_Options::$prefix . 'js_content_editpages', plugins_url($Pt_Pwa_Config->PWA_DOMAIN . '/admin/js/UI.Modules/Content/WMP_EDIT_PAGES.min.js'), array(), $Pt_Pwa_Config->PWA_VERSION);
+                wp_enqueue_script(PtPwa_Options::$prefix . 'js_content_editcategories', plugins_url($Pt_Pwa_Config->PWA_DOMAIN . '/admin/js/UI.Modules/Content/wp-edit-categories.min.js'), array(), $Pt_Pwa_Config->PWA_VERSION);
+                wp_enqueue_script(PtPwa_Options::$prefix . 'js_content_editpages', plugins_url($Pt_Pwa_Config->PWA_DOMAIN . '/admin/js/UI.Modules/Content/wp-edit-pages.min.js'), array(), $Pt_Pwa_Config->PWA_VERSION);
                 wp_enqueue_script('jquery-ui-sortable');
             }
 
             /**
-             *
              * Load specific javascript files for the admin category details
-             *
              */
             public function wmp_admin_load_category_js() {
                 $Pt_Pwa_Config = new Pt_Pwa_Config();
 
-                wp_enqueue_script(PtPwa_Options::$prefix . 'js_content_categorydetails', plugins_url($Pt_Pwa_Config->PWA_DOMAIN . '/admin/js/UI.Modules/Content/WMP_CATEGORY_DETAILS.min.js'), array(), $Pt_Pwa_Config->PWA_VERSION);
+                wp_enqueue_script(PtPwa_Options::$prefix . 'js_content_categorydetails', plugins_url($Pt_Pwa_Config->PWA_DOMAIN . '/admin/js/UI.Modules/Content/wp-category-details.min.js'), array(), $Pt_Pwa_Config->PWA_VERSION);
             }
 
             /**
-             *
              * Load specific javascript files for the admin Content submenu page
-             *
              */
             public function wmp_admin_load_page_js() {
                 $Pt_Pwa_Config = new Pt_Pwa_Config();
 
-                wp_enqueue_script(PtPwa_Options::$prefix . 'js_content_pagedetails', plugins_url($Pt_Pwa_Config->PWA_DOMAIN . '/admin/js/UI.Modules/Content/WMP_PAGE_DETAILS.min.js'), array(), $Pt_Pwa_Config->PWA_VERSION);
+                wp_enqueue_script(PtPwa_Options::$prefix . 'js_content_pagedetails', plugins_url($Pt_Pwa_Config->PWA_DOMAIN . '/admin/js/UI.Modules/Content/wp-page-details.min.js'), array(), $Pt_Pwa_Config->PWA_VERSION);
             }
         }
     }

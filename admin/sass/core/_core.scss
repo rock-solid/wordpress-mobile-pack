@@ -1,4 +1,7 @@
 #wmpack-admin {
+
+  width: 50%;
+
   *, *:after, *:before {
     font-weight: normal;
     @include wbz-box-sizing(border-box);
@@ -209,18 +212,6 @@
       color: $notice-color;
     }
   }
-}
-
-body {
-  min-width: $total-width;
-}
-
-#wp-content {
-  background: $body-color;
-}
-
-#wmpack-admin {
-  width: 100%;
 
   .left-side {
     padding-right: 13px;
@@ -263,7 +254,7 @@ body {
 
           a {
             color: $base-text-color;
-            font-family: 'AcordeRegular';
+            font-family: 'AcordeRegular', Arial, Helvetica, sans-serif;
             font-size: 17px;
             line-height: normal;
             padding: 20px 0;
@@ -475,6 +466,14 @@ body {
       }
     }
   }
+}
+
+body {
+  min-width: $total-width;
+}
+
+#wp-content {
+  background: $body-color;
 }
 
 .wp-admin {

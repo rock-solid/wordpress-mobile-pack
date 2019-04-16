@@ -125,17 +125,13 @@
             public function display_admin_notices() {
 
                 if (!current_user_can('manage_options')) {
-                    return;
+                    wp_die(__('You do not have sufficient permissions to access this page.'));
                 }
 
                 if (version_compare(PHP_VERSION, '5.6') < 0) {
                     $Pt_Pwa_Config = new Pt_Pwa_Config();
                     echo '<div class="error"><p><b>Warning!</b> The ' . $Pt_Pwa_Config->PWA_PLUGIN_NAME . ' plugin requires at least PHP 5.6.0!</p></div>';
-                    return;
                 }
-
-                //display notice to reupload icon
-                //$this->display_icon_reupload_notice();
             }
 
             /**
@@ -178,14 +174,13 @@
                     // get active plugins from the DB
                     $apl = get_option('active_plugins');
 
-                    // get list withh all the installed plugins
+                    // get list with all the installed plugins
                     $plugins = get_plugins();
 
                     foreach ($apl as $p) {
-                        if (isset($plugins[$p])) {
+                        if (isset($plugins[$p]) && $plugins[$p]['Name'] == $plugin_name) {
                             // check if the active plugin is the searched plugin
-                            if ($plugins[$p]['Name'] == $plugin_name)
-                                $active_plugin = true;
+                            $active_plugin = true;
                         }
                     }
                 }

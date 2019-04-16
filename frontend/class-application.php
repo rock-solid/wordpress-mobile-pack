@@ -1,11 +1,9 @@
 <?php if (!class_exists('PtPwa_Application')) {
 
     /**
-     *
      * PtPwa_Application
      *
      * Main class for managing frontend apps
-     *
      */
     class PtPwa_Application {
 

@@ -92,7 +92,6 @@
       @include wbz-box-shadow(none);
       border: 1px solid $input-border;
       padding: 0 15px;
-      width: 220px !important;
 
       &:focus {
         outline: none;
@@ -158,12 +157,14 @@
   input[type=checkbox] {
     &:checked {
       &::before {
-        margin: 0px;
+        margin: 0;
         float: left;
         display: inline-block;
         vertical-align: middle;
         width: 16px;
-        font: normal 21px/1 'dashicons';
+        font-weight: normal;
+        font-size: 21px;
+        font-family: 'dashicons', Arial, Helvetica, sans-serif;
         speak: none;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -283,12 +284,6 @@
       line-height: 20px;
     }
 
-    &.error {
-      background: none;
-      border: none;
-
-    }
-
     .wrapper {
       @include wbz-display-box();
       @include wbz-box-orient(vertical);
@@ -346,6 +341,10 @@
     }
 
     &.error {
+
+      background: none;
+      border: none;
+
       .wrapper {
         border: 1px solid $error-border;
         background: $error-bg;

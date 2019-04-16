@@ -1,16 +1,12 @@
 <?php if (!class_exists('PtPwa_Admin')) {
 
     /**
-     *
      * PtPwa_Admin class for managing the admin area for the Wordpress Mobile Pack plugin
-     *
      */
     class PtPwa_Admin {
 
         /**
-         *
          * Method used to render the main admin page
-         *
          */
         public function whatsnew() {
             $Pt_Pwa_Config = new Pt_Pwa_Config();
@@ -18,9 +14,7 @@
         }
 
         /**
-         *
          * Method used to render the themes selection page from the admin area
-         *
          */
         public function themes() {
             $Pt_Pwa_Config = new Pt_Pwa_Config();
@@ -28,9 +22,7 @@
         }
 
         /**
-         *
          * Method used to render the theme settings page from the admin area
-         *
          */
         public function theme_settings() {
             $Pt_Pwa_Config = new Pt_Pwa_Config();
@@ -62,13 +54,15 @@
                 $pid = $n['parent_id'];
                 $id = $n['id'];
 
-                if (!isset($pages_tree[$pid]))
+                if (!isset($pages_tree[$pid])) {
                     $pages_tree[$pid] = array('child' => array());
+                }
 
-                if (isset($pages_tree[$id]))
+                if (isset($pages_tree[$id])) {
                     $child = &$pages_tree[$id]['child'];
-                else
+                } else {
                     $child = array();
+                }
 
                 $pages_tree[$id] = $n;
                 $pages_tree[$id]['child'] = &$child;
@@ -89,9 +83,7 @@
         }
 
         /**
-         *
          * Method used to render the content selection page from the admin area
-         *
          */
         public function content() {
             $Pt_Pwa_Config = new Pt_Pwa_Config();
@@ -99,9 +91,7 @@
         }
 
         /**
-         *
          * Method used to render the settings page from the admin area
-         *
          */
         public function settings() {
             $Pt_Pwa_Config = new Pt_Pwa_Config();
@@ -109,29 +99,20 @@
         }
 
         /**
-         *
          * Method used to render a form with a category's details
-         *
          */
         public function category_content() {
 
             $Pt_Pwa_Config = new Pt_Pwa_Config();
 
-            if (isset($_GET) && is_array($_GET) && !empty($_GET)) {
+            if (isset($_GET) && is_array($_GET) && !empty($_GET) && isset($_GET['id']) && is_numeric($_GET['id'])) {
 
-                if (isset($_GET['id'])) {
+                // get category
+                $category = get_category($_GET['id']);
 
-                    if (is_numeric($_GET['id'])) {
-
-                        // get category
-                        $category = get_category($_GET['id']);
-
-                        if ($category != NULL) {
-
-                            // load view
-                            include($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'admin/pages/category-details.php');
-                        }
-                    }
+                if ($category != NULL) {
+                    // load view
+                    include($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'admin/pages/category-details.php');
                 }
             }
         }
