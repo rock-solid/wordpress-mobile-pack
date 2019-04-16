@@ -46,7 +46,7 @@
     $inactive_root_pages = 0;
 
     // Compose inactive pages array with only the visible pages
-    foreach ($all_pages as $key => $page) {
+/*    foreach ($all_pages as $key => $page) {
 
         if (intval($page->post_parent) == 0) {
             $no_root_pages++;
@@ -60,7 +60,7 @@
                 $inactive_root_pages++;
             }
         }
-    }
+    }*/
     $themeManager = new PtPwaThemeManager(new PtPwaTheme());
     $theme = $themeManager->getTheme();
     $extraLinks = [];

@@ -53,7 +53,6 @@
                 )
             );
 
-
             /**
              * Class constructor
              *
@@ -67,7 +66,7 @@
                 // add admin menu hook
                 add_action('admin_menu', array(&$this, 'wmp_admin_menu'));
 
-                $Pt_Pwa_Config = new Pt_Pwa_Config();
+                //$Pt_Pwa_Config = new Pt_Pwa_Config();
             }
 
             /**
@@ -85,7 +84,6 @@
                 $pages_list = self::$submenu_pages;
 
                 $menu_name = 'wmp-options';
-
 
                 // display notify icon if the what's new section was updated
                 $display_notify_icon = false;
@@ -119,7 +117,6 @@
                 }
             }
 
-
             /**
              *
              * The wmp_admin_enqueue_scripts is used to enqueue scripts and styles for the admin area.
@@ -135,7 +132,7 @@
                 // enqueue scripts
                 $dependencies = array('jquery-core', 'jquery-migrate');
 
-                wp_enqueue_script(PtPwa_Options::$prefix . 'js_validate', plugins_url($Pt_Pwa_Config->PWA_DOMAIN . '/admin/js/UI.Interface/Lib/jquery.validate.min.js'), $dependencies, '1.11.1');
+                wp_enqueue_script(PtPwa_Options::$prefix . 'js_validate', plugins_url($Pt_Pwa_Config->PWA_DOMAIN . '/admin/js/UI.Interface/Lib/jquery.validate.min.js'), $dependencies, $Pt_Pwa_Config->PWA_VERSION);
                 wp_enqueue_script(PtPwa_Options::$prefix . 'js_validate_additional', plugins_url($Pt_Pwa_Config->PWA_DOMAIN . '/admin/js/UI.Interface/Lib/validate-additional-methods.min.js'), $dependencies, '1.11.1');
                 wp_enqueue_script(PtPwa_Options::$prefix . 'js_loader', plugins_url($Pt_Pwa_Config->PWA_DOMAIN . '/admin/js/UI.Interface/Loader.min.js'), $dependencies, $Pt_Pwa_Config->PWA_VERSION);
                 wp_enqueue_script(PtPwa_Options::$prefix . 'js_ajax_upload', plugins_url($Pt_Pwa_Config->PWA_DOMAIN . '/admin/js/UI.Interface/AjaxUpload.min.js'), $dependencies, $Pt_Pwa_Config->PWA_VERSION);
@@ -149,7 +146,6 @@
                     wp_enqueue_script(PtPwa_Options::$prefix . 'js_upgrade_notice', plugins_url($Pt_Pwa_Config->PWA_DOMAIN . '/admin/js/UI.Modules/Waitlist/WMP_UPGRADE_NOTICE.min.js'), array(), $Pt_Pwa_Config->PWA_VERSION, true);
                 }
             }
-
 
             /**
              *

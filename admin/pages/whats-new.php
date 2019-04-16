@@ -16,7 +16,9 @@
                 <div class="spacer-15"></div>
                 <div class="feature left">
                     <div class="text">
-                        <?php $step1 = plugins_url() . '/' . $Pt_Pwa_Config->PWA_DOMAIN . "/admin/images/step1.png" ?>
+                        <?php
+                            $step1 = plugins_url() . '/' . $Pt_Pwa_Config->PWA_DOMAIN . "/admin/images/step1.png";
+                        ?>
                         <img src="<?php echo $step1; ?>" title="Step 1: Choose between two available app themes" />
                         <span class="title">Step 1: Choose between two available app themes</span>
                         <p>
@@ -27,7 +29,9 @@
                 <div class="spacer-0"></div>
                 <div class="feature left">
                     <div class="text">
-                        <?php $step2 = plugins_url() . '/' . $Pt_Pwa_Config->PWA_DOMAIN . "/admin/images/step2.png"; ?>
+                        <?php
+                            $step2 = plugins_url() . '/' . $Pt_Pwa_Config->PWA_DOMAIN . "/admin/images/step2.png";
+                        ?>
                         <img src="<?php echo $step2; ?>" title="Step 2: Tailor the look & feel to suit your website" />
                         <span class="title">Step 2: Tailor the look & feel to suit your website</span>
                         <p>
@@ -38,7 +42,9 @@
                 <div class="spacer-0"></div>
                 <div class="feature left">
                     <div class="text">
-                        <?php $step3 = plugins_url() . '/' . $Pt_Pwa_Config->PWA_DOMAIN . "/admin/images/step3.png"; ?>
+                        <?php
+                            $step3 = plugins_url() . '/' . $Pt_Pwa_Config->PWA_DOMAIN . "/admin/images/step3.png";
+                        ?>
                         <img src="<?php echo $step3; ?>" title="Step 3: Decide on the content to be included in your layout" />
                         <span class="title">Step 3: Decide on the content to be included in your layout</span>
                         <p>

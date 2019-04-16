@@ -14,6 +14,9 @@
         public $PWA_VERSION;
         public $PWA_ENABLED;
 
+        /**
+         * Pt_Pwa_Config constructor.
+         */
         public function __construct() {
             $this->PWA_PLUGIN_PATH = WP_PLUGIN_DIR . '/publishers-toolbox-pwa/';
             $this->PWA_PLUGIN_NAME = 'PT PWA';
@@ -22,10 +25,16 @@
             $this->PWA_ENABLED = get_option('pt_pwa_enabled');
         }
 
+        /**
+         * Enable
+         */
         public function enable_pwa() {
             update_option('pt_pwa_enabled', true);
         }
 
+        /**
+         * Disable
+         */
         public function disable_pwa() {
             update_option('pt_pwa_enabled', false);
         }

@@ -8,13 +8,20 @@
      *
      */
     class PtPwa_Application {
+
+        public $plugin_dir, $serveFile;
+
         /**
          * Class constructor
+         * @param $plugin_dir
          */
         public function __construct($plugin_dir) {
             // Load application only if the PRO plugin is not active
             $this->check_load();
             $this->plugin_dir = $plugin_dir;
+
+            // If multi site, add custom endpoints
+            $this->pwa_check_multisite();
 
             add_action('rest_api_init', function () {
                 remove_filter('rest_pre_serve_request', 'rest_send_cors_headers');
@@ -86,28 +93,28 @@
 
         public function show_classic_switch() {
             echo "
-    <script>
-        window.onload = function() {
-            function onMobileButtonClick() {
-                document.cookie = 'classicCookie=false;';
-                location.href = location.href.replace('?noapp=true', '');
-            }
-
-            var mobileButton = document.createElement('div');
-
-            mobileButton.textContent = 'Switch to mobile';
-            mobileButton.onclick = onMobileButtonClick;
-            mobileButton.id = 'classicSwitch';
-            mobileButton.style.position = 'fixed';
-            mobileButton.style.backgroundColor = '#218CC6';
-            mobileButton.style.color = '#FFF';
-            mobileButton.style.bottom = '2%';
-            mobileButton.style.right = '2%';
-            mobileButton.style.padding = '7px';
-            mobileButton.style.fontSize = '12px';
-            document.body.insertAdjacentElement('beforeend', mobileButton);
-        }
-    </script>";
+            <script>
+                window.onload = function() {
+                    function onMobileButtonClick() {
+                        document.cookie = 'classicCookie=false;';
+                        location.href = location.href.replace('?noapp=true', '');
+                    }
+        
+                    var mobileButton = document.createElement('div');
+        
+                    mobileButton.textContent = 'Switch to mobile';
+                    mobileButton.onclick = onMobileButtonClick;
+                    mobileButton.id = 'classicSwitch';
+                    mobileButton.style.position = 'fixed';
+                    mobileButton.style.backgroundColor = '#218CC6';
+                    mobileButton.style.color = '#FFF';
+                    mobileButton.style.bottom = '2%';
+                    mobileButton.style.right = '2%';
+                    mobileButton.style.padding = '7px';
+                    mobileButton.style.fontSize = '12px';
+                    document.body.insertAdjacentElement('beforeend', mobileButton);
+                }
+            </script>";
         }
 
         /**
@@ -127,7 +134,6 @@
             return $WMobileDetect->detect_device();
         }
 
-
         /**
          *
          * Method that loads the mobile web application theme.
@@ -141,7 +147,6 @@
             add_filter('theme_root_uri', array(&$this, 'pwa_app_root'), 11);
         }
 
-
         /**
          * Return the theme name
          */
@@ -149,13 +154,22 @@
             return 'app';
         }
 
-
         /**
          * Return path to the mobile themes folder
          */
         public function pwa_app_root() {
             $Pt_Pwa_Config = new Pt_Pwa_Config();
             return $Pt_Pwa_Config->PWA_PLUGIN_PATH . 'frontend/pwa';
+        }
+
+        /**
+         * Return path to the mobile themes folder
+         */
+        public function pwa_check_multisite() {
+            if (is_multisite()) {
+                $Pt_Pwa_Config = new Pt_Pwa_Config();
+                require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'inc/class-pt-pwa-serve-file.php');
+            }
         }
     }
 }

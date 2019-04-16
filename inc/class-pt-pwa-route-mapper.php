@@ -56,7 +56,7 @@
          *
          * @param $permalink_structure
          *
-         * @return $includeTrailingSlashes
+         * @return bool $includeTrailingSlashes
          */
         public static function includeTrailingSlashes($permalink_structure) {
             return substr($permalink_structure, -1) === "/";
@@ -69,7 +69,7 @@
          * @param $article_pattern
          * @param $includeTrailingSlashes
          *
-         * @return $routes
+         * @return array $routes
          */
         public static function mapRoutes($category_prefix, $article_pattern, $includeTrailingSlashes) {
             $trailingSlash = $includeTrailingSlashes ? '/' : '';

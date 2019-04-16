@@ -24,19 +24,13 @@
             'ordered_pages'               => array(), // this option is @deprecated starting from v2.2
             'categories_details'          => array(),
 
-
             // administrative
             'joined_waitlists'            => array(),
             'whats_new_updated'           => 0,
             'whats_new_last_updated'      => 0,
             'upgrade_notice_updated'      => 0, // if we should display the upgrade notice
             'upgrade_notice_last_updated' => 0, // upgrade timestamp
-
         );
-
-        /* ----------------------------------*/
-        /* Methods							 */
-        /* ----------------------------------*/
 
         /**
          *
@@ -49,7 +43,6 @@
          * @return mixed
          */
         public static function get_setting($option) {
-
             // if the passed param is an array, return an array with all the settings
             if (is_array($option)) {
 
@@ -79,7 +72,6 @@
             }
         }
 
-
         /**
          *
          * The save_settings method is used to save an option value (or options) in the database.
@@ -91,7 +83,6 @@
          *
          */
         public static function save_settings($option, $option_value = '') {
-
             if (current_user_can('manage_options')) {
 
                 if (is_array($option) && !empty($option)) {
@@ -100,24 +91,26 @@
                     $option_not_saved = false;
 
                     foreach ($option as $option_name => $option_loop_value) {
-
-                        if (array_key_exists($option_name, self::$options))
+                        if (array_key_exists($option_name, self::$options)) {
                             add_option(self::$prefix . $option_name, $option_loop_value);
-                        else
+                        } else {
                             $option_not_saved = true; // there is at least one option not in the default list
+                        }
                     }
 
-                    if (!$option_not_saved)
+                    if (!$option_not_saved) {
                         return true;
-                    else
+                    } else {
                         return false; // there was an error
+                    }
+
                 } elseif (is_string($option) && $option_value != '') {
 
-                    if (array_key_exists($option, self::$options))
+                    if (array_key_exists($option, self::$options)) {
                         return add_option(self::$prefix . $option, $option_value);
+                    }
                 }
             }
-
             return false;
         }
 
@@ -142,26 +135,30 @@
                     foreach ($option as $option_name => $option_loop_value) {
 
                         // set option not saved variable
-                        if (array_key_exists($option_name, self::$options))
+                        if (array_key_exists($option_name, self::$options)) {
                             update_option(self::$prefix . $option_name, $option_loop_value);
-                        else
+                        } else {
                             $option_not_updated = true; // there is at least one option not in the default list
+                        }
                     }
 
-                    if (!$option_not_updated)
+                    if (!$option_not_updated) {
                         return true;
-                    else
+                    } else {
                         return false; // there was an error
+                    }
+
                 } elseif (is_string($option) && $option_value !== NULL) {
 
-                    if (array_key_exists($option, self::$options))
+                    if (array_key_exists($option, self::$options)) {
                         return update_option(self::$prefix . $option, $option_value);
+                    }
+
                 }
             }
 
             return false;
         }
-
 
         /**
          *
@@ -180,21 +177,23 @@
 
                     foreach ($option as $option_name => $option_value) {
 
-                        if (array_key_exists($option_name, self::$options))
+                        if (array_key_exists($option_name, self::$options)) {
                             delete_option(self::$prefix . $option_name);
+                        }
+
                     }
 
                     return true;
                 } elseif (is_string($option)) {
 
-                    if (array_key_exists($option, self::$options))
+                    if (array_key_exists($option, self::$options)) {
                         return delete_option(self::$prefix . $option);
+                    }
                 }
             }
 
             return false;
         }
-
 
         /**
          *
@@ -203,7 +202,8 @@
          * @todo Prefix WPMP_Tracking_Hash with the transient prefix instead of WPMP
          *
          */
-        public static function deactivate() { }
+        public static function deactivate() {
+        }
 
         /**
          *

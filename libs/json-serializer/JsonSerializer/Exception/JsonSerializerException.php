@@ -1,9 +1,8 @@
 <?php
 
-namespace Zumba\JsonSerializer\Exception;
+    namespace Zumba\JsonSerializer\Exception;
 
-use Zumba\Exception\JsonSerializerException as OriginalException;
+    use Zumba\Exception\JsonSerializerException as OriginalException;
 
-class JsonSerializerException extends OriginalException
-{
-}
+    class JsonSerializerException extends OriginalException {
+    }

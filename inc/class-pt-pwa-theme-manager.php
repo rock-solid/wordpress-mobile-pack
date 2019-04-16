@@ -4,6 +4,10 @@
 
         private $theme;
 
+        /**
+         * PtPwaThemeManager constructor.
+         * @param $theme
+         */
         public function __construct($theme) {
 
             $Pt_Pwa_Config = new Pt_Pwa_Config();
@@ -29,11 +33,18 @@
             $this->theme = $theme;
         }
 
+        /**
+         * @return string
+         */
         public function serialize() {
             $serializer = new Zumba\JsonSerializer\JsonSerializer();
             return $serializer->serialize($this->theme);
         }
 
+        /**
+         * @param $json
+         * @return mixed
+         */
         public function deserialize($json) {
             $serializer = new Zumba\JsonSerializer\JsonSerializer();
 
@@ -41,13 +52,25 @@
             return $this->theme;
         }
 
+        /**
+         * @return bool|mixed
+         */
         public function write() {
             $PtPwaFileHelper = new PtPwaFileHelper();
+            if (is_multisite()) {
+                return $PtPwaFileHelper->write_file(PWA_FILES_UPLOADS_DIR . '/theme.json', $this->serialize());
+            }
             return $PtPwaFileHelper->write_file($_SERVER['DOCUMENT_ROOT'] . '/theme.json', $this->serialize());
         }
 
+        /**
+         * @return bool|string
+         */
         public function read() {
             $PtPwaFileHelper = new PtPwaFileHelper();
+            if (is_multisite()) {
+                return $PtPwaFileHelper->read_file(PWA_FILES_UPLOADS_DIR . '/theme.json');
+            }
             return $PtPwaFileHelper->read_file($_SERVER['DOCUMENT_ROOT'] . '/theme.json');
         }
 
@@ -57,7 +80,6 @@
         public function getTheme() {
             $themeContents = $this->read();
             if (!empty($themeContents)) {
-
                 $this->setTheme($this->deserialize($themeContents));
             }
 

@@ -34,6 +34,7 @@
 <div id="wmpack-admin">
     <?php include_once($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'admin/enable-pwa-btn.php'); ?>
     <div class="spacer-20"></div>
+    <!-- set title -->
     <h1>Publisher's Toolbox PWA</h1>
     <div class="spacer-20"></div>
     <div class="themes">
@@ -47,9 +48,11 @@
                         <h2 class="title">Available Mobile App Themes</h2>
                         <div class="spacer-30"></div>
                         <div class="themes">
-                            <?php foreach ($arr_themes as $theme) {
-                                require($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'admin/sections/theme-box.php');
-                            } ?>
+                            <?php
+                                foreach ($arr_themes as $theme) {
+                                    require($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'admin/sections/theme-box.php');
+                                }
+                            ?>
                         </div>
                         <div class="spacer-0"></div>
                     </div>

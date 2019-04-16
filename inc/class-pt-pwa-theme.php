@@ -235,6 +235,7 @@
         /**
          * Set the value of manifestUrl
          *
+         * @param $manifestUrl
          * @return  self
          */
         public function setManifestUrl($manifestUrl) {
@@ -253,6 +254,7 @@
         /**
          * Set the value of newsItemDateFormat
          *
+         * @param $newsItemDateFormat
          * @return  self
          */
         public function setNewsItemDateFormat($newsItemDateFormat) {

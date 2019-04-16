@@ -34,7 +34,6 @@
          */
         public function setName($name) {
             $this->name = $name;
-
             return $this;
         }
 
@@ -70,7 +69,6 @@
          */
         public function setDescription($description) {
             $this->description = $description;
-
             return $this;
         }
 
@@ -88,7 +86,6 @@
          */
         public function setIcons($icons) {
             $this->icons = $icons;
-
             return $this;
         }
 
@@ -106,7 +103,6 @@
          */
         public function setThemeColor($theme_color) {
             $this->theme_color = $theme_color;
-
             return $this;
         }
 
@@ -124,7 +120,6 @@
          */
         public function setBackgroundColor($background_color) {
             $this->background_color = $background_color;
-
             return $this;
         }
 
@@ -142,7 +137,6 @@
          */
         public function setStartUrl($start_url) {
             $this->start_url = $start_url;
-
             return $this;
         }
 
@@ -160,7 +154,6 @@
          */
         public function setDisplay($display) {
             $this->display = $display;
-
             return $this;
         }
     }

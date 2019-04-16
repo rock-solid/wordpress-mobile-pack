@@ -41,10 +41,6 @@
 
         protected static $htaccess_template = 'frontend/sections/htaccess-template.txt';
 
-        /* ----------------------------------*/
-        /* Methods							 */
-        /* ----------------------------------*/
-
         /**
          *
          * Define constants with the uploads dir paths
@@ -53,13 +49,18 @@
         public function define_uploads_dir() {
 
             $Pt_Pwa_Config = new Pt_Pwa_Config();
-
             $wp_uploads_dir = wp_upload_dir();
 
-            $pt_pwa_uploads_dir = $wp_uploads_dir['basedir'] . '/' . $Pt_Pwa_Config->PWA_DOMAIN . '/';
-
-            define('PWA_FILES_UPLOADS_DIR', $pt_pwa_uploads_dir);
+            define('PWA_FILES_UPLOADS_DIR', $wp_uploads_dir['basedir'] . '/' . $Pt_Pwa_Config->PWA_DOMAIN . '/');
             define('PWA_FILES_UPLOADS_URL', $wp_uploads_dir['baseurl'] . '/' . $Pt_Pwa_Config->PWA_DOMAIN . '/');
+
+            /**
+             * Fix for multi site option
+             * If folder doesnt exist, create it now!
+             */
+            if (!file_exists(PWA_FILES_UPLOADS_DIR)) {
+                mkdir(PWA_FILES_UPLOADS_DIR, 0777, true);
+            }
 
             add_action('admin_notices', array($this, 'display_admin_notices'));
         }
@@ -77,7 +78,7 @@
                 return;
             }
 
-            // if the directory doesn't exist, display notice
+            // If the directory doesn't exist, display notice
             if (!file_exists(PWA_FILES_UPLOADS_DIR)) {
                 echo '<div class="error"><p><b>Warning!</b> The ' . $Pt_Pwa_Config->PWA_PLUGIN_NAME . ' uploads folder does not exist: ' . PWA_FILES_UPLOADS_DIR . '</p></div>';
                 return;
@@ -109,7 +110,7 @@
                 if (!file_exists($pt_pwa_uploads_dir)) {
 
                     if (!mkdir($pt_pwa_uploads_dir, 0777) && !is_dir($pt_pwa_uploads_dir)) {
-                        throw new \RuntimeException(sprintf('Directory "%s" was not created', $pt_pwa_uploads_dir));
+                        throw new RuntimeException(sprintf('Directory "%s" was not created', $pt_pwa_uploads_dir));
                     }
 
                     // add .htaccess file in the uploads folder
@@ -144,9 +145,7 @@
             $categories_details = PtPwa_Options::get_setting('categories_details');
 
             if (is_array($categories_details) && !empty($categories_details)) {
-
                 foreach ($categories_details as $category_id => $category_details) {
-
                     if (is_array($category_details) && array_key_exists('icon', $category_details)) {
                         $this->remove_uploaded_file($category_details['icon']);
                     }
@@ -167,11 +166,9 @@
          * @return string
          */
         public function get_file_url($file_path) {
-
             if (file_exists(PWA_FILES_UPLOADS_DIR . $file_path)) {
                 return PWA_FILES_UPLOADS_URL . $file_path;
             }
-
             return '';
         }
 
@@ -183,11 +180,11 @@
          *
          */
         public function remove_uploaded_file($file_path) {
-
-            // check the file exists and remove it
+            // Check the file exists and remove it
             if ($file_path != '') {
-                if (file_exists(PWA_FILES_UPLOADS_DIR . $file_path))
+                if (file_exists(PWA_FILES_UPLOADS_DIR . $file_path)) {
                     return unlink(PWA_FILES_UPLOADS_DIR . $file_path);
+                }
             }
             return true;
         }
@@ -235,7 +232,6 @@
          *
          */
         protected function remove_htaccess_file() {
-
             $file_path = PWA_FILES_UPLOADS_DIR . '.htaccess';
 
             if (file_exists($file_path)) {

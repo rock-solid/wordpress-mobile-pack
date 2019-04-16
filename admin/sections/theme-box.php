@@ -5,7 +5,7 @@
         <div class="corner relative <?php echo $is_selected ? 'active' : ''; ?>">
             <div class="indicator"></div>
         </div>
-        <div class="image" style="background:url(<?= isset($theme['icon']) ? esc_attr($theme['icon']) : '' ?>);">
+        <div class="image" style="background:url(<?php echo isset($theme['icon']) ? esc_attr($theme['icon']) : '' ?>);">
             <div class="relative">
                 <div class="overlay">
                     <div class="spacer-100"></div>

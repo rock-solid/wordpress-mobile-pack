@@ -9,30 +9,35 @@
 
 ?>
 <div class="custom-checkboxes">
-    <input type="checkbox" id="enable-pt-pwa" name="enable-pt-pwa" value="enable-pt-pwa" <?= $Pt_Pwa_Config->PWA_ENABLED ? 'checked' : ''; ?> disabled>
+    <input type="checkbox" id="enable-pt-pwa" name="enable-pt-pwa" value="enable-pt-pwa" <?php echo $Pt_Pwa_Config->PWA_ENABLED ? 'checked' : ''; ?> disabled>
     <label for="enable-pt-pwa">
+
       <span>
+
       	<?php if ($Pt_Pwa_Config->PWA_ENABLED) : ?>
-            <img src="<?= plugins_url() . '/' . $Pt_Pwa_Config->PWA_DOMAIN . '/admin/images/check-icn.svg'; ?>" />
+            <img src="<?php echo plugins_url() . '/' . $Pt_Pwa_Config->PWA_DOMAIN . '/admin/images/check-icn.svg'; ?>" />
         <?php else : ?>
             <div class="x">X</div>
         <?php endif; ?>
+
       </span>
     </label>
-    <?php if ($Pt_Pwa_Config->PWA_ENABLED) : ?>
-        <span class="label">PWA Enabled</span>
-        <form id="disable-pwa" method="post">
-            <input type="submit" class="disable-pt-pwa" name="disable-pt-pwa" value="Disable PWA">
-        </form>
-        <img src="<?= plugins_url() . '/' . $Pt_Pwa_Config->PWA_DOMAIN . '/admin/images/loading.gif'; ?>" width="36" height="36" class="loader" />
-        <?php if (!empty($_POST['disable-pt-pwa'])) :
+    <?php
 
-            $Pt_Pwa_Config->disable_pwa();
+        if ($Pt_Pwa_Config->PWA_ENABLED) : ?>
+            <span class="label">PWA Enabled</span>
+            <form id="disable-pwa" method="post">
+                <input type="submit" class="disable-pt-pwa" name="disable-pt-pwa" value="Disable PWA">
+            </form>
+            <img src="<?php echo plugins_url() . '/' . $Pt_Pwa_Config->PWA_DOMAIN . '/admin/images/loading.gif'; ?>" width="36" height="36" class="loader" />
+            <?php if (!empty($_POST['disable-pt-pwa'])) :
 
-        endif;
-    else : ?>
-        <span class="label">PWA Disabled</span>
-    <?php endif; ?>
+                $Pt_Pwa_Config->disable_pwa();
+
+            endif;
+        else : ?>
+            <span class="label">PWA Disabled</span>
+        <?php endif; ?>
 </div>
 <style>
     input.disable-pt-pwa {

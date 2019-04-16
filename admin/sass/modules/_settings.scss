@@ -1,40 +1,41 @@
-#wmpack-admin{
-	.settings{
-		display: table;
+#wmpack-admin {
+  .settings {
+    display: table;
 
-		.left-side{
-			width: 100%;
-			display: table;
-			vertical-align: top;
+    .left-side {
+      width: 100%;
+      display: table;
+      vertical-align: top;
 
-			.details{
-				padding: 30px;
-				background-color: $box-color;
+      .details {
+        padding: 30px;
+        background-color: $box-color;
 
-				h2.title{
-					font-family: 'OlRoundGothicLight', sans-serif;
-					font-size: 25px;
-					line-height: normal;
-					color: $base-text-color;
-				}
-				.display-mode{
+        h2.title {
+          font-family: 'OlRoundGothicLight', sans-serif;
+          font-size: 25px;
+          line-height: normal;
+          color: $base-text-color;
+        }
 
-					p, label{
-						font-family: 'AcordeRegular', sans-serif;
-						font-size:15px;
-						line-height: normal;
-						color: $base-text-color;
-					}
+        .display-mode {
 
-					.notices-container {
-						width: 465px;
+          p, label {
+            font-family: 'AcordeRegular', sans-serif;
+            font-size: 15px;
+            line-height: normal;
+            color: $base-text-color;
+          }
 
-						.notice {
-							max-width: 90%;
-						}
-					}
-				}
-			}
-		}
-	}
+          .notices-container {
+            width: 465px;
+
+            .notice {
+              max-width: 90%;
+            }
+          }
+        }
+      }
+    }
+  }
 }

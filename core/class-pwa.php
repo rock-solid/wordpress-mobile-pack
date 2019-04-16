@@ -1,5 +1,7 @@
 <?php
 
+    $Pt_Pwa_Config = new Pt_Pwa_Config();
+
     if (!class_exists('PtPwa_Options')) {
         require_once($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'inc/class-pt-pwa-options.php');
     }
@@ -58,10 +60,6 @@
          *
          */
         class PtPwa {
-
-            /* ----------------------------------*/
-            /* Methods							 */
-            /* ----------------------------------*/
 
             /**
              *
@@ -144,8 +142,7 @@
              *
              */
             public function backwards_compatibility() { }
-
-
+            
             /**
              *
              * Method used to check if a specific plugin is installed and active,
