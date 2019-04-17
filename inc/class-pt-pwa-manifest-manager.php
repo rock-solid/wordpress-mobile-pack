@@ -37,7 +37,7 @@
         public function write() {
             $PtPwaFileHelper = new PtPwaFileHelper();
             if (is_multisite()) {
-                return $PtPwaFileHelper->write_file(PWA_FILES_UPLOADS_DIR . '/manifest.json', $this->serialize());
+                return $PtPwaFileHelper->write_file(PWA_FILES_UPLOADS_DIR . get_current_blog_id() . '/manifest.json', $this->serialize());
             }
             return $PtPwaFileHelper->write_file($_SERVER['DOCUMENT_ROOT'] . '/manifest.json', $this->serialize());
         }
@@ -48,7 +48,7 @@
         public function read() {
             $PtPwaFileHelper = new PtPwaFileHelper();
             if (is_multisite()) {
-                return $PtPwaFileHelper->read_file(PWA_FILES_UPLOADS_DIR . '/manifest.json');
+                return $PtPwaFileHelper->read_file(PWA_FILES_UPLOADS_DIR . get_current_blog_id() . '/manifest.json');
             }
             return $PtPwaFileHelper->read_file($_SERVER['DOCUMENT_ROOT'] . '/manifest.json');
         }

@@ -495,7 +495,7 @@
                 'O:' . strlen($className) . ':"' . $className . '":',
                 serialize($obj)
             );
-           
+
             return unserialize($serialized, array('allowed_classes' => [$className]));
         }
 

@@ -56,14 +56,14 @@
 
                 case 'json':
                     if ($wp->request == 'theme.json') {
-                        $filepath = PWA_FILES_UPLOADS_DIR . 'theme.json';
+                        $filepath = PWA_FILES_UPLOADS_DIR . get_current_blog_id() . '/theme.json';
                     } elseif ($wp->request == 'manifest.json') {
-                        $filepath = PWA_FILES_UPLOADS_DIR . 'manifest.json';
+                        $filepath = PWA_FILES_UPLOADS_DIR . get_current_blog_id() . '/manifest.json';
                     }
                     break;
                 case 'js':
                     if ($wp->request == 'service-worker.js') {
-                        $filepath = PWA_FILES_UPLOADS_DIR . 'service-worker.js';
+                        $filepath = PWA_FILES_UPLOADS_DIR . get_current_blog_id() . '/service-worker.js';
                     }
                     break;
                 default:

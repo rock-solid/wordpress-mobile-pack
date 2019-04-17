@@ -58,7 +58,7 @@
         public function write() {
             $PtPwaFileHelper = new PtPwaFileHelper();
             if (is_multisite()) {
-                return $PtPwaFileHelper->write_file(PWA_FILES_UPLOADS_DIR . '/theme.json', $this->serialize());
+                return $PtPwaFileHelper->write_file(PWA_FILES_UPLOADS_DIR . get_current_blog_id() . '/theme.json', $this->serialize());
             }
             return $PtPwaFileHelper->write_file($_SERVER['DOCUMENT_ROOT'] . '/theme.json', $this->serialize());
         }
@@ -69,7 +69,7 @@
         public function read() {
             $PtPwaFileHelper = new PtPwaFileHelper();
             if (is_multisite()) {
-                return $PtPwaFileHelper->read_file(PWA_FILES_UPLOADS_DIR . '/theme.json');
+                return $PtPwaFileHelper->read_file(PWA_FILES_UPLOADS_DIR . get_current_blog_id() . '/theme.json');
             }
             return $PtPwaFileHelper->read_file($_SERVER['DOCUMENT_ROOT'] . '/theme.json');
         }

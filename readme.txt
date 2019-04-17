@@ -3,8 +3,8 @@ Contributors: jamesgpearce, andreatrasatti, cborodescu, anghelalexandra, publish
 Tags: pwa, progressive web app, android, iOS, html5, iphone, mobile, mobile internet, mobile web, mobile web app, responsive ui, safari, sencha touch, smartphone, webkit, progressive web apps, app builder, apple, apps, convert to app, create blog app, ios app, ipad, make an app, mobile app plugin, mobile application, mobile blog app, mobile converter, mobile plugin, native app plugin, app theme, website to mobile app, WordPress android, WordPress app, WordPress iphone, WordPress mobile, WordPress mobile app
 Requires at least: 4.6
 Tested up to: 5.1
-Stable tag: 1.7.5
-Version: 1.7.5
+Stable tag: 1.8.0
+Version: 1.8.0
 License: GPLv2 or later
 
 == Description ==
@@ -107,9 +107,9 @@ The mobile web application can be deactivated from the "Settings" page of the ad
 = What is the difference between my mobile web application and a responsive theme? =
 A responsive theme is all about screen-size: it loads the same styling as the desktop view, adjusting it to fit a smaller screen. On the other hand a mobile web application combines the versatility of the web with the functionality of touch-enabled devices and can support native app-like features such as:
 
-1. Apps load nearly instantly and are reliable, no matter what kind of network connection your user is on.
-1.  Web app install banners give users the ability to quickly and seamlessly add your mobile app to their home screen, making it easy to launch and return to your app.
+1. Apps load nearly instantly and is reliable, no matter what kind of network connection your user is on.
+1.  Web app install banners and gives users the ability to quickly and seamlessly add your mobile app to their home screen, making it easy to launch and return to your app.
 1.  Web push notifications makes it easy to re-engage with users by showing relevant, timely, and contextual notifications, even when the browser is closed.
-1.  Smooth animations, scrolling, and navigations keep the experience silky Smooth.
+1.  Smooth animations, scrolling, and navigations keeps the experience silky Smooth.
 1.  Secured via HTTPS.
 

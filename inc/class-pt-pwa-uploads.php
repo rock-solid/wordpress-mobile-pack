@@ -56,8 +56,16 @@
              * Fix for multi site option
              * If folder doesnt exist, create it now!
              */
-            if (!file_exists(PWA_FILES_UPLOADS_DIR)) {
-                mkdir(PWA_FILES_UPLOADS_DIR, 0777, true);
+            if (is_multisite()) {
+                foreach (get_sites() as $sites) {
+                    if (!file_exists(PWA_FILES_UPLOADS_DIR . $sites->blog_id)) {
+                        mkdir(PWA_FILES_UPLOADS_DIR . $sites->blog_id, 0755, true);
+                    }
+                }
+            } else {
+                if (!file_exists(PWA_FILES_UPLOADS_DIR)) {
+                    mkdir(PWA_FILES_UPLOADS_DIR, 0755, true);
+                }
             }
 
             add_action('admin_notices', array($this, 'display_admin_notices'));
@@ -84,6 +92,13 @@
             if (!is_writable(PWA_FILES_UPLOADS_DIR)) {
                 echo '<div class="error"><p><b>Warning!</b> The ' . $Pt_Pwa_Config->PWA_PLUGIN_NAME . ' uploads folder is not writable: ' . PWA_FILES_UPLOADS_DIR . '</p></div>';
             }
+
+            //Check if sub directory install
+            if (defined('SUBDOMAIN_INSTALL') && !SUBDOMAIN_INSTALL) {
+                echo '<div class="error"><p><b>Warning!</b> Sub Directory Multisite is not supported by <b>' . $Pt_Pwa_Config->PWA_PLUGIN_NAME . '</b> plugin. You can deactivate it through the Network Admin dashboard.</p></div>';
+
+            }
+
         }
 
         /**
@@ -150,7 +165,13 @@
             $this->remove_htaccess_file();
 
             // delete folder
-            rmdir(PWA_FILES_UPLOADS_DIR);
+            if (is_multisite()) {
+                foreach (get_sites() as $sites) {
+                    rmdir(PWA_FILES_UPLOADS_DIR . $sites->blog_id);
+                }
+            } else {
+                rmdir(PWA_FILES_UPLOADS_DIR);
+            }
         }
 
         /**
@@ -175,9 +196,19 @@
          */
         public function remove_uploaded_file($file_path) {
             // Check the file exists and remove it
-            if ($file_path != '' && file_exists(PWA_FILES_UPLOADS_DIR . $file_path)) {
-                return unlink(PWA_FILES_UPLOADS_DIR . $file_path);
+            if (is_multisite()) {
+                foreach (get_sites() as $sites) {
+                    rmdir(PWA_FILES_UPLOADS_DIR . $sites->blog_id);
+                    if ($file_path != '' && file_exists(PWA_FILES_UPLOADS_DIR . $sites->blog_id . $file_path)) {
+                        return unlink(PWA_FILES_UPLOADS_DIR . $sites->blog_id . $file_path);
+                    }
+                }
+            } else {
+                if ($file_path != '' && file_exists(PWA_FILES_UPLOADS_DIR . $file_path)) {
+                    return unlink(PWA_FILES_UPLOADS_DIR . $file_path);
+                }
             }
+
             return true;
         }
 
