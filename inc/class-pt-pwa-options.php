@@ -191,6 +191,15 @@
         }
 
         /**
+         *
+         */
+        public static function cleanPwaFiles() {
+            unlink($_SERVER['DOCUMENT_ROOT'] . '/service-worker.js');
+            unlink($_SERVER['DOCUMENT_ROOT'] . '/theme.json');
+            unlink($_SERVER['DOCUMENT_ROOT'] . '/manifest.json');
+        }
+
+        /**
          * Delete all transients and temporary data when the plugin is deactivated
          */
         public static function deactivate() {
@@ -202,6 +211,9 @@
          *
          */
         public static function uninstall() {
+
+            //Remove single site files
+            self::cleanPwaFiles();
 
             // delete plugin settings
             self::delete_settings(self::$options);
