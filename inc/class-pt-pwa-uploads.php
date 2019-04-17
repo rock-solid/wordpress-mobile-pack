@@ -49,7 +49,8 @@
             $Pt_Pwa_Config = new Pt_Pwa_Config();
             $wp_uploads_dir = wp_upload_dir();
 
-            define('PWA_FILES_UPLOADS_DIR', $wp_uploads_dir['basedir'] . '/' . $Pt_Pwa_Config->PWA_DOMAIN . '/');
+            //Upload to plugin directory then point files to root
+            define('PWA_FILES_UPLOADS_DIR', plugin_dir_path(__DIR__) . 'external/');
             define('PWA_FILES_UPLOADS_URL', $wp_uploads_dir['baseurl'] . '/' . $Pt_Pwa_Config->PWA_DOMAIN . '/');
 
             /**

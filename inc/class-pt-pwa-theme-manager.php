@@ -18,18 +18,17 @@
             $article_pattern = PtPwaRouteMapper::translatePermalinkStructure($permalink_structure);
             $includeTrailingSlashes = PtPwaRouteMapper::includeTrailingSlashes($permalink_structure);
 
+            // Add Host and Manifest URLs
             $theme->setRoutes(PtPwaRouteMapper::mapRoutes($category_prefix, $article_pattern, $includeTrailingSlashes));
-
             $site_url = get_site_url();
 
-            // Add Host and Manifest URLs
+            //Start setup
             $theme->setHostUrl($site_url);
             $theme->setManifestUrl($site_url . '/manifest.json');
             $theme->setServiceWorkerUrl($site_url . '/service-worker.js');
             $theme->setSectionPrefix($category_prefix);
             $theme->setIncludeTrailingSlashes($includeTrailingSlashes);
             $theme->setLoadingSpinner(plugins_url() . '/' . $Pt_Pwa_Config->PWA_DOMAIN . "/admin/images/ajax-loader.gif");
-
             $this->theme = $theme;
         }
 
@@ -47,7 +46,6 @@
          */
         public function deserialize($json) {
             $serializer = new Zumba\JsonSerializer\JsonSerializer();
-
             $this->theme = $serializer->unserialize($json);
             return $this->theme;
         }
@@ -89,11 +87,11 @@
         /**
          * Set the value of theme
          *
+         * @param $theme
          * @return  self
          */
         public function setTheme($theme) {
             $this->theme = $theme;
-
             return $this;
         }
     }

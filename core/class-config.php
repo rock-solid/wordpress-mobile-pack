@@ -21,7 +21,7 @@
             $this->PWA_PLUGIN_PATH = WP_PLUGIN_DIR . '/publishers-toolbox-pwa/';
             $this->PWA_PLUGIN_NAME = 'PT PWA';
             $this->PWA_DOMAIN = 'publishers-toolbox-pwa';
-            $this->PWA_VERSION = '1.7.4';
+            $this->PWA_VERSION = '1.8.0';
             $this->PWA_ENABLED = get_option('pt_pwa_enabled');
         }
 
