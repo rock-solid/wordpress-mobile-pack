@@ -58,6 +58,8 @@
              * If folder doesnt exist, create it now!
              */
             if (is_multisite()) {
+                // Detect legacy files in root and move them
+                $this->checkLegacyFiles();
                 foreach (get_sites() as $sites) {
                     if (!file_exists(PWA_FILES_UPLOADS_DIR . $sites->blog_id)) {
                         mkdir(PWA_FILES_UPLOADS_DIR . $sites->blog_id, 0755, true);
@@ -70,6 +72,33 @@
             }
 
             add_action('admin_notices', array($this, 'display_admin_notices'));
+        }
+
+        /**
+         * Detects legacy PWA setup files and moves them to id 1
+         * This only applies to MultiSite
+         */
+        public function checkLegacyFiles() {
+            define('PWA_WORKER_FILE', $_SERVER['DOCUMENT_ROOT'] . '/service-worker.js');
+            define('PWA_THEME_FILE', $_SERVER['DOCUMENT_ROOT'] . '/theme.json');
+            define('PWA_MANIFEST_FILE', $_SERVER['DOCUMENT_ROOT'] . '/manifest.json');
+            define('PWA_EXTERNAL_DIR', PWA_FILES_UPLOADS_DIR . get_current_blog_id());
+
+            //Check if MultiSite
+            if (is_multisite()) {
+                //Check for service worker
+                if (file_exists(PWA_THEME_FILE)) {
+                    rename(PWA_WORKER_FILE, PWA_EXTERNAL_DIR . '/service-worker.js');
+                }
+                // Check for theme file
+                if (file_exists(PWA_THEME_FILE)) {
+                    rename(PWA_THEME_FILE, PWA_EXTERNAL_DIR . '/theme.json');
+                }
+                //Check for manifest file
+                if (file_exists(PWA_MANIFEST_FILE)) {
+                    rename(PWA_MANIFEST_FILE, PWA_EXTERNAL_DIR . '/service-worker.js');
+                }
+            }
         }
 
         /**

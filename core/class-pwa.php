@@ -123,7 +123,6 @@
              *
              */
             public function display_admin_notices() {
-
                 if (!current_user_can('manage_options')) {
                     wp_die(__('You do not have sufficient permissions to access this page.'));
                 }
@@ -135,11 +134,12 @@
             }
 
             /**
-             *
              * Transform settings to fit the new plugin structure
-             *
              */
-            public function backwards_compatibility() { }
+            public function backwards_compatibility() {
+                //Flush rules to set new pwa urls for MultiSite
+                flush_rewrite_rules(false);
+            }
 
             /**
              * @param $mimes
