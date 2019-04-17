@@ -236,10 +236,11 @@
         add_image_size('pwa-medium', 384, 384);
         add_image_size('pwa-large', 512, 512);
 
-        // Copy service worker file into root if not copied before
         if (is_multisite()) {
-            if (!file_exists($Pt_Pwa_Config->PWA_PLUGIN_PATH . '/service-worker.js')) {
-                copy($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'service-worker.js', PWA_FILES_UPLOADS_DIR . get_current_blog_id() . '/service-worker.js');
+            foreach (get_sites() as $sites) {
+                if (!file_exists(PWA_FILES_UPLOADS_DIR . $sites->blog_id . '/service-worker.js')) {
+                    copy($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'service-worker.js', PWA_FILES_UPLOADS_DIR . get_current_blog_id() . '/service-worker.js');
+                }
             }
         } elseif (!file_exists($_SERVER['DOCUMENT_ROOT'] . '/service-worker.js')) {
             copy($Pt_Pwa_Config->PWA_PLUGIN_PATH . 'service-worker.js', $_SERVER['DOCUMENT_ROOT'] . '/service-worker.js');
