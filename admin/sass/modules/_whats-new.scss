@@ -1,107 +1,114 @@
-#wmpack-admin{
-	.whats-new{
-		display: table;
-		.left-side{
-			width: 100%;
-			display: table;
-			vertical-align: top;
+#wmpack-admin {
+  .whats-new {
+    display: table;
+
+    .left-side {
+      width: 100%;
+      display: table;
+      vertical-align: top;
 
 
-			.details{
-				padding:30px;
-				background-color: $box-color;
+      .details {
+        padding: 30px;
+        background-color: $box-color;
 
-                &.waitlist {
-                    padding-top: 0px;
+        &.waitlist {
+          padding-top: 0px;
 
-					.waitlist-subscribe {
-						border: 2px dotted $base-green;
-						background: #f4f4f4;
-						padding: 20px;
-						margin: 0 20px 0 20px;
+          .waitlist-subscribe {
+            border: 2px dotted $base-green;
+            background: #f4f4f4;
+            padding: 20px;
+            margin: 0 20px 0 20px;
 
-						p {
-							text-align: center;
-						}
+            p {
+              text-align: center;
+            }
 
-						form {
-							float: none;
-							text-align: center;
+            form {
+              float: none;
+              text-align: center;
 
-							.error {
-								width: 220px;
-								margin: 0 auto;
-							}
+              .error {
+                width: 220px;
+                margin: 0 auto;
+              }
 
-							.btn {
-                        		margin: 0 auto;
-							}
-						}
-					}
-                    .added {
-                        margin: 0 auto;
-                    }
+              .btn {
+                margin: 0 auto;
+              }
+            }
+          }
+
+          .added {
+            margin: 0 auto;
+          }
+        }
+
+        h1 {
+          font-family: 'OlRoundGothicLight', sans-serif;
+          font-size: 40px;
+          line-height: 40px;
+          color: $base-text-color;
+          text-align: center;
+          letter-spacing: 0.5px;
+        }
+
+        .upgrade-message {
+          text-align: center;
+        }
+
+        h2.title {
+          font-family: 'OlRoundGothicLight', sans-serif;
+          font-size: 25px;
+          line-height: normal;
+          color: $base-text-color;
+        }
+
+        .showcase {
+          width: 671px;
+          margin: 0 auto;
+        }
+
+        &.features {
+
+          padding-bottom: 0px;
+
+          .feature {
+
+            margin-bottom: 30px;
+
+            img {
+              width: 130px;
+              height: auto;
+              float: left;
+              margin: 20px 30px 20px 0;
+            }
+
+            .text {
+              span {
+                font-family: "OpenSansRegular", sans-serif;
+                font-size: 14px;
+                color: $base-text-color;
+
+                &.title {
+                  display: block;
+                  margin: 15px 0 8px 0;
+                  font-size: 18px;
+                  color: #333333;
                 }
+              }
+            }
 
-				h1{
-					font-family: 'OlRoundGothicLight', sans-serif;
-					font-size: 40px;
-					line-height: 40px;
-					color: $base-text-color;
-					text-align: center;
-					letter-spacing: 0.5px;
-				}
-				.upgrade-message{
-					text-align: center;
-				}
-				h2.title{
-					font-family: 'OlRoundGothicLight', sans-serif;
-					font-size: 25px;
-					line-height: normal;
-					color: $base-text-color;
-				}
-				.showcase{
-					width: 671px;
-					margin: 0 auto;
-				}
-
-                &.features {
-
-                    padding-bottom: 0px;
-
-                    .feature {
-
-                        margin-bottom: 30px;
-
-                        img {
-                            width: 130px;
-                            height: auto;
-                            float: left;
-                            margin: 20px 30px 20px 0;
-                        }
-                        .text {
-                            span {
-                                font-family: "OpenSansRegular", sans-serif;
-                                font-size: 14px;
-                                color: $base-text-color;
-
-                                &.title {
-                                    display: block;
-                                    margin: 15px 0 8px 0;
-                                    font-size: 18px;
-                                    color: #333333;
-                                }
-                            }
-                        }
-                        &.right {
-                            img {
-                                float: right;
-                                margin: 20px 0 0 30px;
-                            }
-                        }
-                    }
-                }
-			}
-		}
-	}
+            &.right {
+              img {
+                float: right;
+                margin: 20px 0 0 30px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

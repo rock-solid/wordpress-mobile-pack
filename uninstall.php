@@ -1,26 +1,25 @@
 <?php
+    // If uninstall is not called from WordPress, exit
+    if (!defined('WP_UNINSTALL_PLUGIN')) {
+        exit();
+    }
 
-// If uninstall is not called from WordPress, exit
-if ( !defined( 'WP_UNINSTALL_PLUGIN' ) ) {
-    exit();
-}
+    require_once('core/class-config.php');
+    $Pt_Pwa_Config = new Pt_Pwa_Config();
+    require_once('core/class-pwa.php');
 
-require_once('core/class-config.php');
-$Pt_Pwa_Config = new Pt_Pwa_Config();
-require_once('core/class-pwa.php');
+    // Create uploads folder and define constants
+    if (!defined('PWA_FILES_UPLOADS_DIR') && !defined('PWA_FILES_UPLOADS_URL')) {
+        $WMP_Uploads = new PtPwa_Uploads();
+        $WMP_Uploads->define_uploads_dir();
+    }
 
-// create uploads folder and define constants
-if ( !defined( 'PWA_FILES_UPLOADS_DIR' ) && !defined( 'PWA_FILES_UPLOADS_URL' ) ){
+    // Remove uploaded images and uploads folder
     $WMP_Uploads = new PtPwa_Uploads();
-    $WMP_Uploads->define_uploads_dir();
-}
+    $WMP_Uploads->remove_uploads_dir();
 
-// remove uploaded images and uploads folder
-$WMP_Uploads = new PtPwa_Uploads();
-$WMP_Uploads->remove_uploads_dir();
+    // Delete plugin settings
+    delete_option('pt_pwa_enabled');
+    PtPwa_Options::uninstall();
 
-// delete plugin settings
-delete_option('pt_pwa_enabled');
-PtPwa_Options::uninstall();
-
-//delete service worker and manifest files
+    //delete service worker and manifest files

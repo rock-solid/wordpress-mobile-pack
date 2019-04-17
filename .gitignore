@@ -8,3 +8,8 @@ node_modules/*
 *.DS_store
 .DS_store?
 .idea/
+external/
+
+\.scannerwork/
+
+sonar-project\.properties
