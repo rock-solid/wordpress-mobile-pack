@@ -110,10 +110,6 @@
 
             $Pt_Pwa_Config = new Pt_Pwa_Config();
 
-            if (!current_user_can('manage_options')) {
-                wp_die(__('You do not have sufficient permissions to access this page.'));
-            }
-
             // If the directory doesn't exist, display notice
             if (!file_exists(PWA_FILES_UPLOADS_DIR)) {
                 echo '<div class="error"><p><b>Warning!</b> The ' . $Pt_Pwa_Config->PWA_PLUGIN_NAME . ' uploads folder does not exist: ' . PWA_FILES_UPLOADS_DIR . '</p></div>';
