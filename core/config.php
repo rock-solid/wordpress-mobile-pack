@@ -18,8 +18,8 @@ define('WMP_MORE_UPDATES','http://cdn-wpmp.appticles.com/dashboard/more/more5.js
 define('WMP_MORE_UPDATES_HTTPS','https://d3oqwjghculspf.cloudfront.net/dashboard/more/more5.json');
 define('WMP_MORE_UPDATES_VERSION', 6);
 
-define('WMP_WAITLIST_PATH','http://localhost:8000/api/waitlist-subscribe');
-define('WMP_WAITLIST_PATH_HTTPS','https://localhost:8000/api/waitlist-subscribe');
+define('WMP_MAILCHIMP_API_KEY','e661bba1e8d921e2cd7096c2bd677272-us13');
+define('WMP_MAILCHIMP_SUBSCRIBE_LIST_ID','c06f491064');
 
 define('WMP_APPTICLES_TRACKING_SSL','https://api.appticles.com/content1/wptracking');
 

@@ -1058,17 +1058,33 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                             $status = 1;
 
                             if ( ! in_array( $_POST['joined_waitlist'], $option_waitlists ) ) {
+                                $api_key = WMP_MAILCHIMP_API_KEY;
+                                $list_id = WMP_MAILCHIMP_SUBSCRIBE_LIST_ID;
+                                $email   = sanitize_text_field( $_POST['email'] );
+
+                                $data = [
+                                    'email_address' => $email,
+                                    'status'        => 'subscribed',
+                                ];
+                                $member_id = md5( strtolower( $email ) );
+
                                 $curl = curl_init();
+
                                 curl_setopt_array( $curl,
                                   array(
-                                    CURLOPT_URL            => $_POST['submit_url'] . '?email=' . sanitize_text_field( $_POST['email'] ),
-                                    CURLOPT_PORT           => '8000',
+                                    CURLOPT_URL            => 'https://' . substr( $api_key, strpos( $api_key, '-' ) + 1 ) . '.api.mailchimp.com/3.0/lists/' . $list_id . '/members/' . $member_id,
                                     CURLOPT_RETURNTRANSFER => true,
                                     CURLOPT_ENCODING       => '',
                                     CURLOPT_MAXREDIRS      => 10,
                                     CURLOPT_TIMEOUT        => 30,
                                     CURLOPT_HTTP_VERSION   => CURL_HTTP_VERSION_1_1,
-                                    CURLOPT_CUSTOMREQUEST  => 'GET',
+                                    CURLOPT_USERPWD        => 'user:' . $api_key,
+                                    CURLOPT_CUSTOMREQUEST  => 'PUT',
+                                    CURLOPT_SSL_VERIFYPEER => false,
+                                    CURLOPT_POSTFIELDS     => json_encode( $data ),
+                                    CURLOPT_HTTPHEADER     => [
+                                        'Content-Type: application/json',
+                                    ],
                                   )
                                 );
 
