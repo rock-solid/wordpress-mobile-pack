@@ -214,8 +214,6 @@ function WMP_WAITLIST(){
 			function(response){
         WMPJSInterface.Preloader.remove(100);
 
-        console.log(response);
-
         var status = parseInt(response);
 
         if (status == 0) {

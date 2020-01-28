@@ -1097,7 +1097,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                                   $option_waitlists[] = $_POST['joined_waitlist'];
 
                                   // save option
-                                  // WMobilePack_Options::update_settings('joined_waitlists', $option_waitlists);
+                                  WMobilePack_Options::update_settings('joined_waitlists', $option_waitlists);
                                 }
                             }
                         }
