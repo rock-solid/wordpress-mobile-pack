@@ -1038,7 +1038,14 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                 if (isset($_POST) && is_array($_POST) && !empty($_POST)) {
 
                     // handle joined waitlists
-                    if (isset($_POST['joined_waitlist']) && $_POST['joined_waitlist'] != '') {
+                    if (
+                      isset( $_POST['joined_waitlist'] ) &&
+                      $_POST['joined_waitlist'] != '' &&
+                      isset( $_POST['submit_url'] ) &&
+                      $_POST['submit_url'] != '' &&
+                      isset( $_POST['email'] ) &&
+                      $_POST['email'] != ''
+                    ) {
 
                         if (in_array($_POST['joined_waitlist'], array('content', 'settings', 'lifestyletheme', 'businesstheme', 'themes_features'))) {
 
@@ -1048,14 +1055,34 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                                 $option_waitlists = array();
                             }
 
-                            if (!in_array($_POST['joined_waitlist'], $option_waitlists)) {
+                            $status = 1;
 
-                                $status = 1;
+                            if ( ! in_array( $_POST['joined_waitlist'], $option_waitlists ) ) {
+                                $curl = curl_init();
+                                curl_setopt_array( $curl,
+                                  array(
+                                    CURLOPT_URL            => $_POST['submit_url'] . '?email=' . sanitize_text_field( $_POST['email'] ),
+                                    CURLOPT_PORT           => '8000',
+                                    CURLOPT_RETURNTRANSFER => true,
+                                    CURLOPT_ENCODING       => '',
+                                    CURLOPT_MAXREDIRS      => 10,
+                                    CURLOPT_TIMEOUT        => 30,
+                                    CURLOPT_HTTP_VERSION   => CURL_HTTP_VERSION_1_1,
+                                    CURLOPT_CUSTOMREQUEST  => 'GET',
+                                  )
+                                );
 
-                                $option_waitlists[] = $_POST['joined_waitlist'];
+                                $response = curl_exec( $curl );
+                                $err      = curl_error( $curl );
 
-                                // save option
-                                WMobilePack_Options::update_settings('joined_waitlists', $option_waitlists);
+                                if ( ! $err ) {
+                                  $status = 1;
+
+                                  $option_waitlists[] = $_POST['joined_waitlist'];
+
+                                  // save option
+                                  // WMobilePack_Options::update_settings('joined_waitlists', $option_waitlists);
+                                }
                             }
                         }
                     }
