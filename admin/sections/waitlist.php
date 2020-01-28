@@ -3,6 +3,8 @@
 
     $joined_waitlists = WMobilePack_Options::get_setting('joined_waitlists');
 
+    // WMobilePack_Options::update_settings('joined_waitlists', []);
+
     if ($joined_waitlists != '' && in_array('themes_features', $joined_waitlists))
         $joined_features_waitlist = true;
 
