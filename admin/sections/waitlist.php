@@ -47,7 +47,6 @@
                 {
                     'DOMDoc':       window.document,
                     'container' :   window.document.getElementById('wmp_waitlist_container'),
-                    'submitURL' :   '<?php echo $is_secure ? WMP_WAITLIST_PATH_HTTPS : WMP_WAITLIST_PATH;?>',
                     'listType' :    'themes_features'
                 },
                 window

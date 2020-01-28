@@ -1041,8 +1041,6 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                     if (
                       isset( $_POST['joined_waitlist'] ) &&
                       $_POST['joined_waitlist'] != '' &&
-                      isset( $_POST['submit_url'] ) &&
-                      $_POST['submit_url'] != '' &&
                       isset( $_POST['email'] ) &&
                       $_POST['email'] != ''
                     ) {

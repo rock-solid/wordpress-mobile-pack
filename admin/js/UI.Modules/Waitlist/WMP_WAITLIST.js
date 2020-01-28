@@ -207,7 +207,6 @@ function WMP_WAITLIST(){
 			ajaxurl,
 			{
 				'action': 'wmp_join_waitlist',
-        'submit_url': JSObject.submitURL,
 				'email': jQuery("#"+JSObject.type+"_emailaddress", JSObject.container).val(),
         'joined_waitlist': JSObject.listType,
 			},
