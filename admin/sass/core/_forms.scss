@@ -51,8 +51,8 @@
 		@include wbz-border-radius($input-radius);
 		@include wbz-box-shadow(none);
 		border: 1px solid $input-border;
-		padding: 0 15px; 
-		
+		padding: 0 15px;
+
 		&.smaller{
 			width: $input-size-smaller;
 		}
@@ -67,10 +67,10 @@
 			border:1px solid darken($input-border,$darken-amounth);
 		}
 	}
-	
-	
+
+
 	.selectboxit-container{
-		 
+
 		 .selectboxit{
 			font-family: 'AcordeSemiBold', sans-serif;
 			width: $input-size-normal;
@@ -81,34 +81,34 @@
 			@include wbz-border-radius($input-radius);
 			@include wbz-box-shadow(none);
 			border: 1px solid $input-border;
-			padding: 0 15px; 
+			padding: 0 15px;
 			width: 220px!important;
-			
+
 			&:focus{
 				outline:none;
 				border:1px solid darken($input-border,$darken-amounth);
 			}
-			
+
 			span, .selectboxit-options a {
 				height: 36px;
 				line-height:33px;
 			}
 		}
-		
+
 		.selectboxit-arrow-container{
 			width: 25px;
 		}
-		
+
 		.selectboxit-options{
 			border-radius: 0;
 			width: 220px;
-			
+
 			.selectboxit-option{
 				height: 36px;
 				border-bottom: $btn-border 1px solid;
-				
+
 			}
-			
+
 			a{
 				height: 36px;
 				line-height: 33px;
@@ -117,12 +117,12 @@
 				border-radius: 0;
 			}
 		}
-		
+
 		span{
 			height: 36px;
 			line-height: 33px;
 		}
-		
+
 		.selectboxit-list{
 			 > .selectboxit-focus{
 			 	 > .selectboxit-option-anchor{
@@ -131,16 +131,16 @@
 			 }
 		}
 	}
-	
+
 	input[type="radio"],
     input[type="checkbox"]{
 		width: 16px;
 		height: 16px;
 		float: left;
 		margin: 0 10px 0 30px;
-		
+
 		&::before{
-			margin: 4px;
+			margin: 3px;
 		}
 	}
     input[type=checkbox]{
@@ -156,8 +156,8 @@
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
                 position: relative;
-                top: -3px;
-                left: -4px;
+                top: -5px;
+                left: -2px;
             }
         }
     }
@@ -171,9 +171,9 @@
 		@include wbz-border-radius($input-radius);
 		@include wbz-box-shadow(none);
 		border: 1px solid $input-border;
-		padding: 10px 15px; 
+		padding: 10px 15px;
 		resize: none;
-		
+
 		&.smaller{
 			width: $input-size-smaller;
 		}
@@ -192,14 +192,14 @@
 			background: $error-bg;
 		}
 	}
-	
+
 	label{
 		@include wbz-display-box();
 		font-family: 'AcordeRegular', sans-serif;
 		color: $label-color;
 		font-size: $label-font-size;
 	}
-	
+
 	::-webkit-input-placeholder{
 		padding: 2px 0 0 0;
 		color: #b2b5bc;
@@ -210,23 +210,23 @@
 		color: #b2b5bc;
 		font-size: 13px;
 	}
-	::-moz-placeholder{ 
+	::-moz-placeholder{
 		padding: 2px 0 0 0;
 		color: #b2b5bc;
 		font-size: 13px;
 	}
-	:-ms-input-placeholder{ 
+	:-ms-input-placeholder{
 		color: #b2b5bc!important;
 		font-size: 13px;
 	}
-	
+
 	.field-message{
 		@include wbz-display-box();
 		margin: 0px 0 0px 15px;
 		@include wbz-box-shadow(none);
 		background: transparent;
 		border: 0;
-		
+
 		span{
 			font-family: "OpenSansRegular", sans-serif;
 			font-size: 13px;
@@ -262,9 +262,9 @@
 		&.error{
 			background:none;
 			border:none;
-		
+
 		}
-		
+
 		.wrapper{
 			@include wbz-display-box();
 			@include wbz-box-orient(vertical);
@@ -272,7 +272,7 @@
 			width: 100%;
 			padding: 25px 50px;
 			margin: 10px 0;
-			
+
 			.relative{
 				width: 100%;
 			}
@@ -281,7 +281,7 @@
 			width: 100%;
 			@include wbz-display-box();
 			@include wbz-box-orient(horizontal, important);
-			
+
 			h2{
 				font-family: 'OlRoundGothicLight', sans-serif;
 				@include wbz-display-box();
@@ -306,7 +306,7 @@
 			top: -10px;
 			right: -25px;
 			position: absolute;
-			
+
 			&:hover{
 				cursor: pointer;
                 color: #ffc26b;
@@ -324,7 +324,7 @@
 			.title{
 				h2{
 					color: $error-color;
-					
+
 					&.underlined{
 						border-bottom: 1px solid $error-border;
 					}
@@ -335,7 +335,7 @@
 			}
 			.close-x{
 				color: $error-border;
-				
+
 				&:hover{
 					color: darken($error-border,$darken-amounth/2);
 				}
@@ -349,7 +349,7 @@
 			.title{
 				h2{
 					color: $success-color;
-					
+
 					&.underlined{
 						border-bottom: 1px solid $success-border;
 					}
@@ -360,7 +360,7 @@
 			}
 			.close-x{
 				color: $success-border;
-				
+
 				&:hover{
 					color: darken($success-border,$darken-amounth/2);
 				}
@@ -374,7 +374,7 @@
 			.title{
 				h2{
 					color: $warning-color;
-					
+
 					&.underlined{
 						border-bottom: 1px solid $warning-border;
 					}
@@ -390,7 +390,7 @@
 			}
 			.close-x{
 				color: $warning-border;
-				
+
 				&:hover{
 					color: darken($warning-border,$darken-amounth/2);
 				}
