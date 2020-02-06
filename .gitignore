@@ -6,3 +6,4 @@ gulptools/.sass-cache/*
 coverage/*
 *.DS_store
 .DS_store?
+yarn.lock
