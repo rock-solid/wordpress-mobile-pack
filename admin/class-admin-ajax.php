@@ -1038,7 +1038,12 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                 if (isset($_POST) && is_array($_POST) && !empty($_POST)) {
 
                     // handle joined waitlists
-                    if (isset($_POST['joined_waitlist']) && $_POST['joined_waitlist'] != '') {
+                    if (
+                      isset( $_POST['joined_waitlist'] ) &&
+                      $_POST['joined_waitlist'] != '' &&
+                      isset( $_POST['email'] ) &&
+                      $_POST['email'] != ''
+                    ) {
 
                         if (in_array($_POST['joined_waitlist'], array('content', 'settings', 'lifestyletheme', 'businesstheme', 'themes_features'))) {
 
@@ -1048,14 +1053,50 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
                                 $option_waitlists = array();
                             }
 
-                            if (!in_array($_POST['joined_waitlist'], $option_waitlists)) {
+                            $status = 1;
 
-                                $status = 1;
+                            if ( ! in_array( $_POST['joined_waitlist'], $option_waitlists ) ) {
+                                $api_key = WMP_MAILCHIMP_API_KEY;
+                                $list_id = WMP_MAILCHIMP_SUBSCRIBE_LIST_ID;
+                                $email   = sanitize_text_field( $_POST['email'] );
 
-                                $option_waitlists[] = $_POST['joined_waitlist'];
+                                $data = [
+                                    'email_address' => $email,
+                                    'status'        => 'subscribed',
+                                ];
+                                $member_id = md5( strtolower( $email ) );
 
-                                // save option
-                                WMobilePack_Options::update_settings('joined_waitlists', $option_waitlists);
+                                $curl = curl_init();
+
+                                curl_setopt_array( $curl,
+                                  array(
+                                    CURLOPT_URL            => 'https://' . substr( $api_key, strpos( $api_key, '-' ) + 1 ) . '.api.mailchimp.com/3.0/lists/' . $list_id . '/members/' . $member_id,
+                                    CURLOPT_RETURNTRANSFER => true,
+                                    CURLOPT_ENCODING       => '',
+                                    CURLOPT_MAXREDIRS      => 10,
+                                    CURLOPT_TIMEOUT        => 30,
+                                    CURLOPT_HTTP_VERSION   => CURL_HTTP_VERSION_1_1,
+                                    CURLOPT_USERPWD        => 'user:' . $api_key,
+                                    CURLOPT_CUSTOMREQUEST  => 'PUT',
+                                    CURLOPT_SSL_VERIFYPEER => false,
+                                    CURLOPT_POSTFIELDS     => json_encode( $data ),
+                                    CURLOPT_HTTPHEADER     => [
+                                        'Content-Type: application/json',
+                                    ],
+                                  )
+                                );
+
+                                $response = curl_exec( $curl );
+                                $err      = curl_error( $curl );
+
+                                if ( ! $err ) {
+                                  $status = 1;
+
+                                  $option_waitlists[] = $_POST['joined_waitlist'];
+
+                                  // save option
+                                  WMobilePack_Options::update_settings('joined_waitlists', $option_waitlists);
+                                }
                             }
                         }
                     }
