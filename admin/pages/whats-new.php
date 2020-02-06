@@ -14,51 +14,51 @@
     <div class="spacer-20"></div>
     <?php $page_content = WMobilePack_Admin::whatsnew_updates();?>
     <div class="whats-new">
-        <div class="left-side"> 
-        
+        <div class="left-side">
+
             <!-- add nav menu -->
             <?php include_once(WMP_PLUGIN_PATH.'admin/sections/admin-menu.php'); ?>
             <div class="spacer-0"></div>
-            
+
             <?php if(is_array($page_content) && !empty($page_content)):?>
-            
+
 				<?php if (array_key_exists('header', $page_content)):?>
                     <div class="details">
                         <div class="spacer-10"></div>
-                        
+
                         <?php if (array_key_exists('title', $page_content['header'])):?>
                             <h1><?php echo $page_content['header']['title'];?></h1>
                         <?php endif;?>
-                          
+
                         <?php if (array_key_exists('subtitle', $page_content['header'])):?>
                             <div class="spacer-10"></div>
                             <h1><?php echo $page_content['header']['subtitle'];?></h1>
                         <?php endif;?>
-                        
+
                         <div class="spacer-20"></div>
-                    
+
                         <?php if (array_key_exists('banner', $page_content['header'])):?>
                             <div class="showcase">
                                 <img src="<?php echo $page_content['header']['banner'];?>" />
                             </div>
                             <div class="spacer-20"></div>
                         <?php endif;?>
-                        
+
                         <?php if (array_key_exists('devices', $page_content['header'])):?>
                             <?php echo $page_content['header']['devices'];?>
                             <div class="spacer-20"></div>
                         <?php endif;?>
-                        
+
                     </div>
                     <div class="spacer-10"></div>
                 <?php endif;?>
-                
+
                 <?php if (array_key_exists('features', $page_content)):?>
-                
+
                     <div class="details features">
-                    
+
                         <?php if (array_key_exists('title', $page_content['features'])):?>
-    
+
                             <h2 class="title"><?php echo $page_content['features']['title'];?></h2>
                             <div class="spacer-15"></div>
                             <div class="grey-line"></div>
@@ -66,13 +66,13 @@
                         <?php endif;?>
 
                         <?php if (array_key_exists('list', $page_content['features']) && is_array($page_content['features']['list'])):?>
-                            
-                            <?php 
+
+                            <?php
                                 $pos = 'left';
-                                
+
                                 foreach ($page_content['features']['list'] as $feature):
                             ?>
-                            
+
                                 <div class="feature <?php echo $pos;?>">
 
                                     <?php if (array_key_exists('image', $feature)):?>
@@ -93,28 +93,28 @@
                                         <?php if (array_key_exists('title', $feature)):?>
                                            <span class="title"><?php echo $feature['title'];?></span>
                                         <?php endif;?>
-                                        
+
                                         <?php if (array_key_exists('text', $feature)):?>
                                            <?php echo $feature['text'];?>
                                         <?php endif;?>
-                                        
+
                                     </div>
                                 </div>
                                 <div class="spacer-0"></div>
-                                
+
                             <?php
                                     if ($pos == 'left')
                                         $pos = 'right';
                                     else
                                         $pos = 'left';
-                                        
+
                                 endforeach;
-                            ?>   
-                            
+                            ?>
+
                         <?php endif;?>
                     </div>
                 <?php endif;?>
-                
+
         	<?php elseif ($page_content == 'warning'):?>
             	<div class="details">
                     <div class="spacer-10"></div>
@@ -123,7 +123,7 @@
                             <div class="title">
                                 <h2 class="underlined">Can't check for updates!</h2>
                             </div>
-                            <span>We are unable to display the updates on this page due to the fact that both <a href="https://php.net/manual/en/book.curl.php" target="_blank">cURL</a> and <a href="http://www.php.net/manual/en/function.fopen.php" target="_blank">fopen</a> are disabled.</span> 
+                            <span>We are unable to display the updates on this page due to the fact that both <a href="https://php.net/manual/en/book.curl.php" target="_blank">cURL</a> and <a href="http://www.php.net/manual/en/function.fopen.php" target="_blank">fopen</a> are disabled.</span>
                         </div>
                     </div>
                 </div>
@@ -137,7 +137,7 @@
                     <div class="feature left">
 
                         <a href="https://www.youtube.com/watch?v=elxjfdbAoqM&feature=youtu.be" target="_blank">
-                            <img src="https://d3oqwjghculspf.cloudfront.net/dashboard/quick_start/images/customize.png"
+                            <img src="https://rcksld-wpmp.s3.amazonaws.com/dashboard/quick_start/images/customize.png"
                                  title="Step 1. Customize your mobile web app's look &amp; feel"/>
                         </a>
 
@@ -158,7 +158,7 @@
 
                     <div class="feature right">
 
-                        <img src="https://d3oqwjghculspf.cloudfront.net/dashboard/quick_start/images/responsive.png"
+                        <img src="https://rcksld-wpmp.s3.amazonaws.com/dashboard/quick_start/images/responsive.png"
                              title="Step 2. Decide on the content you want for your app"/>
 
                         <div class="text">
@@ -173,7 +173,7 @@
 
                     <div class="feature left">
 
-                        <img src="https://d3oqwjghculspf.cloudfront.net/dashboard/quick_start/images/social-buttons.png"
+                        <img src="https://rcksld-wpmp.s3.amazonaws.com/dashboard/quick_start/images/social-buttons.png"
                              title="Step 3. Edit your app's settings"/>
 
                         <div class="text">
@@ -190,7 +190,7 @@
 
                     <div class="feature right">
 
-                        <img src="https://d3oqwjghculspf.cloudfront.net/dashboard/quick_start/images/analytics.png"
+                        <img src="https://rcksld-wpmp.s3.amazonaws.com/dashboard/quick_start/images/analytics.png"
                              title="Step 4. Grow your mobile traffic"/>
 
                         <div class="text">
@@ -214,7 +214,7 @@
             <?php include_once(WMP_PLUGIN_PATH.'admin/sections/subscribe.php'); ?>
 
         </div>
-        <div class="right-side"> 
+        <div class="right-side">
             <!-- add news and updates -->
             <?php include_once(WMP_PLUGIN_PATH.'admin/sections/news.php'); ?>
 

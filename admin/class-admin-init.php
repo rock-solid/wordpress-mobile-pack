@@ -118,7 +118,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
 			if (WMobilePack_Options::get_setting('whats_new_updated') == 1) {
 				$display_notify_icon = true;
 			}
-            
+
             // add menu and submenu hooks
             add_menu_page(self::$submenu_title, self::$submenu_title, 'manage_options', $menu_name, '', WP_PLUGIN_URL . '/' . WMP_DOMAIN . '/admin/images/appticles-logo' . ($display_notify_icon == true ? '-updates' : '') . '.png');
 
@@ -170,9 +170,9 @@ if ( ! class_exists( 'WMobilePack_Admin_Init' ) ) {
             wp_enqueue_script(WMobilePack_Options::$prefix.'js_join_waitlist', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Waitlist/WMP_WAITLIST.min.js'), array(), WMP_VERSION);
             wp_enqueue_script(WMobilePack_Options::$prefix.'js_feedback', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Feedback/WMP_SEND_FEEDBACK.min.js'), array(), WMP_VERSION);
 
-            if (WMobilePack_Options::get_setting('upgrade_notice_updated') == 1){
-                wp_enqueue_script(WMobilePack_Options::$prefix.'js_upgrade_notice', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Waitlist/WMP_UPGRADE_NOTICE.min.js'), array(), WMP_VERSION, true);
-            }
+            // if (WMobilePack_Options::get_setting('upgrade_notice_updated') == 1){
+            //     wp_enqueue_script(WMobilePack_Options::$prefix.'js_upgrade_notice', plugins_url(WMP_DOMAIN.'/admin/js/UI.Modules/Waitlist/WMP_UPGRADE_NOTICE.min.js'), array(), WMP_VERSION, true);
+            // }
         }
 
 
