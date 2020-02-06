@@ -1030,7 +1030,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
          */
         public function settings_waitlist()
         {
-
+            /*
             if (current_user_can('manage_options')) {
 
                 $status = 0;
@@ -1104,6 +1104,7 @@ if ( ! class_exists( 'WMobilePack_Admin_Ajax' ) ) {
 
                 echo $status;
             }
+            */
 
             exit();
         }
