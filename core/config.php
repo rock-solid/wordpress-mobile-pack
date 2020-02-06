@@ -18,9 +18,6 @@ define('WMP_MORE_UPDATES','https://rcksld-wpmp.s3.amazonaws.com/dashboard/more/m
 define('WMP_MORE_UPDATES_HTTPS','https://rcksld-wpmp.s3.amazonaws.com/dashboard/more/more5.json');
 define('WMP_MORE_UPDATES_VERSION', 6);
 
-define('WMP_MAILCHIMP_API_KEY','e661bba1e8d921e2cd7096c2bd677272-us13');
-define('WMP_MAILCHIMP_SUBSCRIBE_LIST_ID','6989f14b64');
-
 define('WMP_APPTICLES_TRACKING_SSL','https://api.wpmobilepack.com/content1/wptracking');
 
 define("WMP_APPTICLES_PRO_LINK", "https://wpmobilepack.com");
