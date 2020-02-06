@@ -8,10 +8,9 @@
     \_/\_/ \___|  \__,_|_|  \___| |_| |_|_|_|  |_|_| |_|\__, |
                                                         |___/
 Surprised? Don't be. Please do come in, we've been expecting you.
-http://www.appticles.com/jobs.html
+http://www.rcksld.com/
 ---------------------------------
-Growth Hackers: gh@appticles.com
-JS Developers: js@appticles.com
+JS Developers: careers@rocksoliddigital.com
 */
 
 
@@ -213,7 +212,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
                     }
                 }
 			}
-			
+
 			// switch from Obliq v1 to v2
 			$theme = WMobilePack_Options::get_setting('theme');
 
@@ -227,7 +226,7 @@ if ( ! class_exists( 'WMobilePack' ) ) {
 			delete_option(WMobilePack_Options::$prefix . 'premium_config_path');
 			delete_option(WMobilePack_Options::$prefix . 'premium_active');
 		}
-		
+
 
 		/**
 		 * Reset theme settings (for migrating from Obliq v1 to Obliq v2)

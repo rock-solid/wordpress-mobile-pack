@@ -5,8 +5,8 @@
  * Description: WordPress Mobile Pack 3.0+ is a mobile plugin that helps you transform your WordPress-based content (posts/articles, categories, pages) into a progressive web application. It comes with multiple mobile app themes and extensions that you can purchase individually or as a bundle.
  * Author: WPMobilePack.com
  * Author URI: https://wpmobilepack.com/
- * Version: 3.4
- * Copyright (c) 2009 - 2018 James Pearce, mTLD Top Level Domain Limited, ribot, Forum Nokia, Appticles.com
+ * Version: 3.4.1
+ * Copyright (c) 2009 - 2020 James Pearce, mTLD Top Level Domain Limited, ribot, Forum Nokia, Rcksld.com
  * License: The WordPress Mobile Pack is Licensed under the Apache License, Version 2.0
  * Text Domain: wordpress-mobile-pack
  */

@@ -2,15 +2,15 @@
 Contributors: jamesgpearce, andreatrasatti, cborodescu, anghelalexandra
 Tags: android, iOS, html5, iphone, mobile, mobile internet, mobile web, mobile web app, responsive ui, safari, sencha touch, smartphone, webkit, progressive web apps, app builder, apple, apps, convert to app, create blog app, ios app, ipad, make an app, mobile app plugin, mobile application, mobile blog app, mobile converter, mobile plugin, native app plugin, app theme, website to mobile app, WordPress android, WordPress app, WordPress iphone, WordPress mobile, WordPress mobile app
 Requires at least: 3.6
-Tested up to: 4.9.8
-Stable tag: 3.4
+Tested up to: 5.3.2
+Stable tag: 3.4.1
 License: GPLv2 or later
 
 Mobile plugin to package your content into a progressive web app, build a hybrid mobile app and submit it to App Stores. Multiple mobile app themes.
 
 == Description ==
 
-**[WordPress Mobile Pack](https://wpmobilepack.com) is a mobile plugin that helps you transform your website's content into a progressive mobile web application. It comes with multiple mobile app themes that you can purchase individually or as a bundle.** 
+**[WordPress Mobile Pack](https://wpmobilepack.com) is a mobile plugin that helps you transform your website's content into a progressive mobile web application. It comes with multiple mobile app themes that you can purchase individually or as a bundle.**
 
 WordPress Mobile Pack is **supported on** iOS and Android smartphones and tablets. **Compatible browsers**: Safari, Google Chrome, Android - Native Browser.
 
@@ -18,7 +18,7 @@ The pack has been tested on WordPress 3.6 and later. Please read the [Known issu
 
 What the WordPress Mobile Pack 3.0+ enables you to do:
 
-* **Progressive Web Apps**. Some of the key features of progressive web apps are: 
+* **Progressive Web Apps**. Some of the key features of progressive web apps are:
 
  1. Apps load nearly instantly and are reliable, no matter what kind of network connection your user is on.
  1. Web app install banners give users the ability to quickly and seamlessly add your mobile app to their home screen, making it easy to launch and return to your app.
@@ -35,7 +35,7 @@ What the WordPress Mobile Pack 3.0+ enables you to do:
 
 * **Posts Sync**. The articles/posts inside the mobile web application are organized into their corresponding categories, thus readers can simply swipe through articles and jump from category to category in a seamless way.
 
-* **Pages Sync**. Choose what pages you want to display on your mobile web application. You can edit, show/hide different pages and order them according to your needs. 
+* **Pages Sync**. Choose what pages you want to display on your mobile web application. You can edit, show/hide different pages and order them according to your needs.
 
 * **Comments Sync**. All the comments that are displayed in the blog are also synchronized into the mobile web application. On top of that, comments that are posted from within the app are also displayed on the blog. Social media features are available in [WordPress Mobile Pack PRO](https://wpmobilepack.com).
 
@@ -45,11 +45,11 @@ What the WordPress Mobile Pack 3.0+ enables you to do:
 
 WordPress Mobile Pack also comes with a  **PRO version** suitable for **professional bloggers, publishing companies with multiple publications** in their portfolio or web agencies. Some of the benefits of using [WordPress Mobile Pack PRO](https://wpmobilepack.com) are:
 
-* **Customize your mobile web app's appearance** to resemble your brand identity. 
+* **Customize your mobile web app's appearance** to resemble your brand identity.
 
-* Since mobile web apps don't have any shared revenue constraints, you can **take full control of your income**. [Wordpress Mobile Pack PRO](https://wpmobilepack.com) allows you to easily connect with your Google DFP & AdSense campaigns. 
+* Since mobile web apps don't have any shared revenue constraints, you can **take full control of your income**. [Wordpress Mobile Pack PRO](https://wpmobilepack.com) allows you to easily connect with your Google DFP & AdSense campaigns.
 
-* We take pride in offering fantastic [Wordpress Mobile Pack PRO](https://wpmobilepack.com) **maintenance and hands-on support**. Our team of friendly mobile web experts makes sure technology doesn't stand in your way. 
+* We take pride in offering fantastic [Wordpress Mobile Pack PRO](https://wpmobilepack.com) **maintenance and hands-on support**. Our team of friendly mobile web experts makes sure technology doesn't stand in your way.
 
 * **Access to multiple app themes** that can be purchased individually or as a bundle: BASE, MOSAIC, OBLIQ, ELEVATE, FOLIO, INVISION, POPSICLE, PULSE, GHOST, PHANTOM, LUCID, EXTRUDE, VEDI, BLEND, PURE, GOTHAM, FUTURE & PALM.
 
@@ -107,7 +107,7 @@ Please note that the mobile web app will be enabled only on supported devices: i
 Please make sure that the endpoint exporting the content can be accessed and doesn't show errors or notices. From a browser, go to the following address: http://yoursite.com/wp-content/plugins/wordpress-mobile-pack/export/content.php?content=exportcategories&limit=5&callback=Ext.data.JsonP.callback. You should see a text starting with "Ext.data.JsonP.callback". If the page displays a "403 forbidden" message or has any errors / notices, it means that the content will not be available to the mobile web app.
 
 = I have enabled Wordpress Mobile Pack, but I still see the desktop theme on my smartphone =
-If you are using a cache plugin, please check the [docs](http://support.appticles.com/optimizing-cache-plugins-wordpress-mobile-pack/). Some additional settings on the cache plugin might be required to correctly enable the mobile detection from Wordpress Mobile Pack.
+Some additional settings on the cache plugin might be required to correctly enable the mobile detection from Wordpress Mobile Pack.
 
 = What can I use to replace contact forms? =
 Most of the sites we come across use contact forms to allow users to get in touch or/and send messages. However, when targeting mobile users, forcing them to fill out a dull form (usually pretty long) is the worst UX you can offer to your mobile audience. Instead, here are [a couple of approaches](http://support.appticles.com/replacing-contact-forms-with-click-to-call-links-for-your-mobile-web-application/) you could try out in your mobile web application:
@@ -125,10 +125,10 @@ A link called 'Switch to mobile version' will be displayed in the footer of your
 The mobile web application can be deactivated from the "Settings" page of the admin panel. This option will not delete any settings that you have done so far, like customizing the look & feel of your application, but mobile readers will no longer be able to see it on their devices.
 
 = What is the difference between my new mobile web application and a mobile friendly site? =
-The short answer is that a mobile web application is an enriched version of a mobile-friendly site; it's not only about screen size, it's also about functionality (offline mode, for example). The long answer comes in a form of an article, you can check it out here: http://www.appticles.com/blog/2014/05/mobile-web-dying-shifting/.
+The short answer is that a mobile web application is an enriched version of a mobile-friendly site; it's not only about screen size, it's also about functionality (offline mode, for example).
 
 = What is the difference between my mobile web application and a responsive theme? =
-A responsive theme is all about screen-size: it loads the same styling as the desktop view, adjusting it to fit a smaller screen. On the other hand a mobile web application combines the versatility of the web with the functionality of touch-enabled devices and can support native app-like features such as: 
+A responsive theme is all about screen-size: it loads the same styling as the desktop view, adjusting it to fit a smaller screen. On the other hand a mobile web application combines the versatility of the web with the functionality of touch-enabled devices and can support native app-like features such as:
 
 1. Apps load nearly instantly and are reliable, no matter what kind of network connection your user is on.
 1.  Web app install banners give users the ability to quickly and seamlessly add your mobile app to their home screen, making it easy to launch and return to your app.
@@ -137,22 +137,22 @@ A responsive theme is all about screen-size: it loads the same styling as the de
 1.  Secured via HTTPS.
 
 = Am I able to use my own theme or customize the existing one? =
-WordPress Mobile Pack uses a variety of open source JavaScript frameworks from Sencha Touch to Angular/Ionic or React, that mimics a native app interface. Because of that, the app themes we've developed are not regular PHP based themes that can be easily customized by editing the source. It is still possible to make small changes (not recommended), but changing the theme structure will require advance knowledge. We're happy to assist if you're looking for a custom type of application - [please get in touch](https://wpmobilepack.com/contact.html) with us. 
+WordPress Mobile Pack uses a variety of open source JavaScript frameworks from Sencha Touch to Angular/Ionic or React, that mimics a native app interface. Because of that, the app themes we've developed are not regular PHP based themes that can be easily customized by editing the source. It is still possible to make small changes (not recommended), but changing the theme structure will require advance knowledge. We're happy to assist if you're looking for a custom type of application - [please get in touch](https://wpmobilepack.com/contact.html) with us.
 
 = Am I able to add Javascript code inside the theme? =
 Adding tracking scripts in the source is possible if you place them in the section of the theme files. However, code that is placed inside the posts will not be executed. The theme is implemented enterily in JavaScript and that would mean JavaScript code inside another JavaScript code.
 
 = Am I able to integrate my own advertisement? =
-Google Ad Sense / Google Double Click for Publishers is supported on the PRO version as of v2.1. [Please get in touch](https://wpmobilepack.com/contact.html) if you want us to integrate with another 3rd party ad provider. 
-
-= What is a progressive web app? = 
-Please refer to this comprehensive article about it: https://www.appticles.com/blog/2016/09/progressive-web-apps-for-publishers/.
+Google Ad Sense / Google Double Click for Publishers is supported on the PRO version as of v2.1. [Please get in touch](https://wpmobilepack.com/contact.html) if you want us to integrate with another 3rd party ad provider.
 
 = Why some 3rd party plugins are not visible on any of the app themes? =
-There are almost 50,000 plugins in the WordPress.org repository. It's impossible to support all of them. [Please get in touch](https://wpmobilepack.com/contact.html) if you want us to integrate with another 3rd party plugin. 
+There are almost 50,000 plugins in the WordPress.org repository. It's impossible to support all of them. [Please get in touch](https://wpmobilepack.com/contact.html) if you want us to integrate with another 3rd party plugin.
 
 
 == Changelog ==
+
+= 3.4.1 =
+* Small updates
 
 = 3.4 =
 * Add 512x512 icon size for the app manifest
@@ -200,17 +200,17 @@ There are almost 50,000 plugins in the WordPress.org repository. It's impossible
 * Fix display for images included in a div tag with fixed height
 * Fix for bug that hides tiny-mce dropdown in post edit view
 
-= 2.2.6 =		
+= 2.2.6 =
 * Add Facebook, Twitter and Google+ share buttons for posts. Social media settings are edited from the plugin's admin panel.
 * Translated app in Japaneze (ja). A big thanks to Miru Yamashiro.
 * Add pre-order options for Premium themes.
 * Add order option for PRO themes bundle.
 
-= 2.2.5 =		
-* Integrate with the official [Google AMP plugin] (https://wordpress.org/plugins/amp/) 		
-* Add Google Maps embedded iframe support		
-* New API endpoints (export category, pagination params for export categories)		
-* Premium - add support for connecting with new themes (Popsicle and Invision)		
+= 2.2.5 =
+* Integrate with the official [Google AMP plugin] (https://wordpress.org/plugins/amp/)
+* Add Google Maps embedded iframe support
+* New API endpoints (export category, pagination params for export categories)
+* Premium - add support for connecting with new themes (Popsicle and Invision)
 * Premium - add support for embedding Google Tag Manager code
 
 = 2.2.4 =
